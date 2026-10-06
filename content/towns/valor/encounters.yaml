@@ -1,0 +1,12 @@
+- id: enc.valor.duelist
+  map: map.town.valor
+  grid:
+    - "......."
+    - "......."
+    - "..T.T.."
+    - "......."
+    - "......."
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.valor-duelist, at: [3, 1] }
+  music: music.battle

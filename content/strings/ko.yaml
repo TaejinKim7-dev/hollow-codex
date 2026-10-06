@@ -329,3 +329,117 @@ compassion.option.relief-tax.text: 그대가 기록관의 서랍에서 세금 �
 # --- 리오나 능력·생물 ---
 compassion.ability.persuade.name: 공감으로 풀어주기
 compassion.creature.beggar.name: 굶주린 거지
+
+# --- 용맹의 마을 솔강 (M3 Task 34) ---
+town.solgang.name: 솔강
+valor.music.title: 솔강의 결투가
+
+valor.npc.champion.name: 무패의 투사
+valor.npc.champion.greet: 나는 이 투기장에서 진 적이 없다. 도전자가 오면 맞설 뿐, 물러서지 않는다.
+valor.npc.champion.name.t: 이름은 투사들이 붙여 준 무패로 충분하다. 여기서는 서 있는 동안만 이름이 있다.
+valor.npc.champion.job.t: 내 일은 서는 것이다. 도전자가 오면 맞서고, 쓰러질 때까지 발을 떼지 않는다. 그것이 이 마을의 용맹이다.
+valor.npc.champion.battle.t: 싸움은 발을 떼지 않는 것에서 시작한다. 한 발 물러서면 전부 무너진다. ……그렇게 배웠다.
+valor.npc.champion.arena.t: 이 투기장의 모래는 쓰러진 자의 이름을 덮는다. 관중은 선 자의 이름만 외치지.
+valor.npc.champion.retreat-law.t: 후퇴를 허하는 법이라니. 그런 것은 겁쟁이들의 변명이다. 이 마을이 강한 것은 물러서지 않아서다.
+
+valor.npc.sergeant.name: 훈련관 하르
+valor.npc.sergeant.greet: 허리에 칼을 찼군. 그런데 발은 벌써 뒤로 빠져 있지. 여기서는 그 자세부터 고친다.
+valor.npc.sergeant.name.t: 훈련관 하르다. 새로 온 이들은 첫날에 물러서는 법부터 잊게 만든다.
+valor.npc.sergeant.job.t: 내 일은 병영을 돌보고 젊은이를 세우는 것이다. ……요즘은 세운 만큼 묻는 일이 많아졌지만.
+valor.npc.sergeant.brother.t: 전우란 같은 줄에 서서 함께 버티는 사이다. 버틴 자가 사라지면, 남은 자가 그 이름을 부른다.
+valor.npc.sergeant.barracks.t: 병영에는 빈 자리가 늘고 있다. 갑옷은 그대로인데, 그 갑옷을 채울 이가 없다.
+
+valor.npc.smith.name: 대장장이 브란
+valor.npc.smith.greet: 칼을 맡기려는가, 방패를 맡기려는가. 여기 사람들은 둘 다 이고 온다만.
+valor.npc.smith.name.t: 브란이라 한다. 이 대장간에서 쇠를 두드린 지 사십 년이다.
+valor.npc.smith.job.t: 칼도 만들고 방패도 만든다. 그런데 요즘은 방패 주문이 부쩍 줄었지. 다들 앞만 보고 서려 하니.
+valor.npc.smith.shield.t: 방패는 등을 맡기는 물건이 아니다. 이쪽을 지키려고 드는 것이지. 등을 맡길 사람이 없으면 방패는 무거운 짐이 된다.
+
+valor.npc.brewer.name: 주막 주인 오렌
+valor.npc.brewer.greet: 자네 왔나. 싸움 전이든 후든, 여기서는 잔을 내려놓는 법이 없지.
+valor.npc.brewer.name.t: 오렌이라 하네. 이 주막을 삼십 년째 지키고 있지.
+valor.npc.brewer.job.t: 술을 빚고 잔을 채우는 일이지. 패한 자에게도 잔을 준다. ……이긴 자보다 살아 돌아온 자에게 더 많이 주고 싶지만.
+valor.npc.brewer.brother.t: 전우와 형제는 다르지 않다. 잔을 나누는 사이지. 요즘 젊은이들은 잔을 나눌 겨를도 없이 나가 버린다.
+
+valor.npc.child.name: 광장 아이 루피
+valor.npc.child.greet: 너도 투사야? 무패 아저씨처럼 될 거야? 나는 아직 칼이 무거워서 못 드는데.
+valor.npc.child.name.t: 난 루피라고 해. 광장에서 제일 빨리 달려.
+valor.npc.child.job.t: 내 일은 투기장 담장에 매달려 구경하는 거야. ……그런데 요즘은 아무도 안 이겨. 다 쓰러져.
+valor.npc.child.champion.t: 무패 아저씨는 한 번도 안 졌대. ……그런데 아저씨 친구들은 다 어디 갔지? 나는 그게 궁금해.
+
+valor.npc.veteran.name: 노병 켈
+valor.npc.veteran.greet: 허리 굽은 늙은일세. 싸우는 것보다 지나간 노래를 기억하는 것이 요즘 내 일이지.
+valor.npc.veteran.name.t: 켈이라고 부르게. 한때는 이 마을에서 창을 들던 사람이야.
+valor.npc.veteran.job.t: 지금은 노래를 기억하고 옮기는 일을 하네. 옛 병사들이 행군하며 부르던 노래가 하나 있는데, 이 마을에서는 반절만 남았지.
+valor.npc.veteran.retreat.t: 후퇴? 여기서는 도망이라 부르지. 하지만 옛 노래는 달리 불렀어. 한 발 물러나 다친 전우를 데리고 돌아오는 것도 용기라고.
+
+valor.npc.scout.name: 정찰병 사이
+valor.npc.scout.greet: 이방인? 마을 밖에서 뭘 봤어? ……요즘은 나가는 길보다 돌아오는 길이 무서워.
+valor.npc.scout.name.t: 정찰병 사이야. 성벽 밖을 살피는 일을 해.
+valor.npc.scout.job.t: 길을 다니며 산적과 야수를 살핀다. ……그런데 요즘은 마을 젊은이들의 시신을 더 자주 만나. 전투에서 죽은 게 아니라 물러서지 못해서 쓰러진 몸이야.
+valor.npc.scout.duelist.t: 떠돌이 결투가를 봤어. 그자는 이기려고 싸우지 않아. 살아 남는 법을 보여 주려고 싸우지. ……이 마을은 그걸 배우려 하질 않아.
+
+valor.npc.healer.name: 치료사 미르
+valor.npc.healer.greet: 다친 데를 보여 주게. ……겉은 멀쩡한데 속은 훤히 보이는군.
+valor.npc.healer.name.t: 미르라 합니다. 치료소에서 상처를 꿰매고 뼈를 맞춥니다.
+valor.npc.healer.job.t: 상처를 치료합니다. 이 마을에서는 등에 난 상처가 가장 부끄러운 상처라고 배웠지. 그래도 저는 그 상처가 가장 반갑습니다.
+valor.npc.healer.blood.t: 피는 숨고 싶어도 숨지 않습니다. 피를 흘린 자리에는 꼭 그를 기다리는 사람이 있다는 뜻이지요.
+
+valor.npc.standard.name: 기수 다인
+valor.npc.standard.greet: 이 깃발은 앞으로 나아갈 때만 듭니다. ……뒤로 갈 때는 들 이유가 없다고들 하지요.
+valor.npc.standard.name.t: 기수 다인이라 합니다. 이 깃발을 투기장에 세우는 사람입니다.
+valor.npc.standard.job.t: 저는 깃발을 듭니다. 투사가 쓰러지면 그 위에 덮지요. ……언젠가는 살아 돌아온 이에게 이 깃발을 돌려주고 싶습니다.
+valor.npc.standard.courage.t: 용기란 깃발을 앞세워 돌진하는 것이 아니라고 배웠습니다. 마지막까지 깃발을 지키고 돌아오는 것이라고요.
+
+valor.npc.widow.name: 과부 렌
+valor.npc.widow.greet: ……남편 이야기를 하러 오셨습니까, 아니면 그저 지나가는 길입니까.
+valor.npc.widow.name.t: 렌이라고 합니다. 이 마을에서 남편을 잃은 사람입니다.
+valor.npc.widow.job.t: 예전에는 옷을 지었습니다. 지금은 깨어지지 않은 약속을 기억하는 일을 합니다.
+valor.npc.widow.retreat-law.t: 남편이 떠나기 전에 이런 법이 있었다고 들었습니다. 다친 전우를 데리고 돌아온 자를 겁쟁이라 부르지 않는다는 법이요. ……어느새 그 법은 사라지고, 다친 전우를 버리고도 계속 서는 것이 명예가 되었습니다.
+
+# --- 솔강 단서 ---
+valor.word.courage.label: 용기
+valor.word.courage.hint: 물러서지 않는 것이 아니라 돌아오는 것. 노래의 마지막 소절이 이 낱말을 부른다.
+valor.word.retreat.label: 후퇴
+valor.word.retreat.hint: 이 마을이 도망이라 부르는 것. 그러나 옛 법과 옛 노래는 다르게 부른다.
+valor.word.shield.label: 방패
+valor.word.shield.hint: 등을 막는 물건이 아니라 이쪽을 지키려 드는 것. 돌아온 자가 다시 드는 것.
+valor.word.battle.label: 전투
+valor.word.battle.hint: 무패의 투사가 서 있는 곳. 그가 물러서지 않는 이유.
+valor.word.blood.label: 피
+valor.word.blood.hint: 등에 난 상처에서도 흐르는 것. 치료사가 가장 반가워하는 흔적.
+valor.word.brother.label: 전우
+valor.word.brother.hint: 같은 줄에 서서 버티는 사이. 잔을 나누는 사이라지만, 지금은 잔을 나눌 이가 없다.
+valor.fact.solgang.champion.label: 무패의 투사
+valor.fact.solgang.champion.hint: 투기장에서 진 적 없는 사내. 도전자가 쓰러져도 물러서지 말라고 외친다.
+valor.fact.solgang.sergeant.label: 훈련관 하르
+valor.fact.solgang.sergeant.hint: 병영을 돌보며 젊은이를 세우는 사람. 문 밖에서는 하지 못하는 말을 안다.
+valor.fact.solgang.veteran.label: 노병 켈
+valor.fact.solgang.veteran.hint: 옛 군가를 반절만 기억하는 늙은 병사. 마지막 소절을 잃어버렸다.
+valor.fact.solgang.smith.label: 대장장이 브란
+valor.fact.solgang.smith.hint: 칼과 방패를 만드는 사람. 요즘은 방패 주문이 줄었다고 한다.
+valor.fact.solgang.arena.label: 솔강 투기장
+valor.fact.solgang.arena.hint: 쓰러진 자의 이름은 지우고 선 자의 이름만 남기는 모래바닥.
+valor.fact.solgang.barracks.label: 병영
+valor.fact.solgang.barracks.hint: 갑옷은 그대로인데 채울 이가 줄어드는 곳. 지난해 열둘 중 셋만 돌아왔다.
+valor.fact.solgang.forge.label: 대장간
+valor.fact.solgang.forge.hint: 꺼지지 않는 용광로. 무엇을 벼리는지가 해마다 달라진다.
+valor.fact.solgang.battle-hymn.label: 옛 행군가
+valor.fact.solgang.battle-hymn.hint: 앞에 적이 있고 뒤에 고향이 있다면 방패를 들어라. 마지막 소절은 돌아오는 자를 노래한다.
+valor.fact.solgang.retreat-law.label: 사라진 후퇴법
+valor.fact.solgang.retreat-law.hint: 다친 전우를 데리고 돌아온 자를 겁쟁이라 부르지 않는다는 옛 법. 어느새 사라졌다.
+valor.fact.creature.valor-duelist.label: 떠돌이 결투가
+valor.fact.creature.valor-duelist.hint: 악하지 않다. 이기려 싸우지 않고, 살아 돌아오는 법을 보여 주려는 자.
+
+# --- 솔강 추론·위기 ---
+valor.deduction.valor.sentence: 참된 용맹은 {1}을 뽐내는 데 있지 않고, {2}해 돌아와 {3}을 다시 드는 데 있다
+valor.deduction.valor.hint: 무패의 투기장은 물러섬을 모른다. 노병의 옛 군가와 과부의 옛 법이 다른 결말을 가리킨다.
+valor.crisis.challenge.text: 투기장에 사람들이 모였다. 젊은 도전자가 피를 흘리며 무릎을 꿇었는데, 무패의 투사가 물러서지 말라며 창을 겨눈다. 도전자는 숨을 몰아쉬며 일어서려다 다시 쓰러진다. 관중은 숨을 죽이고, 훈련관은 고개를 돌린다. 그때 노병이 낮게 노래를 부르기 시작한다. 이제 그대가 나설 차례다.
+valor.option.allow-retreat.label: 옛 군가를 따라 불러 물러남도 용기임을 알린다
+valor.option.allow-retreat.text: 그대가 노병의 노래를 따라 부른다. 앞에 적이 있고 뒤에 고향이 있다면 방패를 들어라. 그리고 잃어버린 마지막 소절을 잇는다. 방패를 들고 돌아오는 자가 용기다. 관중이 하나둘 따라 부르고, 무패의 투사는 겨눈 창을 천천히 내린다. 도전자는 끌려 나가지 않고 스스로 걸어 나온다. 투기장의 모래 위에 처음으로 돌아온 자의 이름이 적힌다. 용기는 물러서지 않는 데 있지 않고 돌아와 다시 서는 데 있음을 솔강이 알았다.
+valor.option.duel-honor.label: 무패의 투사에게 직접 결투를 청한다
+valor.option.duel-honor.text: 그대가 창을 들어 결투를 청한다. 무패의 투사가 웃는다. 오래도록 그런 도전자를 기다렸다고. 창이 부딪히고, 그대가 마지막 일격을 멈춘다. 목 앞에서 창을 거두는 순간 관중이 술렁인다. 무패는 무릎을 꿇고 말한다. 나는 이기는 법만 배웠지 멈추는 법은 배우지 못했다고. 그대가 손을 내밀어 그를 일으킨다. 이긴 자가 아니라 세운 자가 명예롭다는 것을 마을이 보았다.
+
+# --- 솔강 능력·생물 ---
+valor.ability.shield.name: 방패 들기
+valor.creature.duelist.name: 떠돌이 결투가

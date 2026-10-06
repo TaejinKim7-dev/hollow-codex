@@ -1,0 +1,208 @@
+# 솔강(용맹) NPC 10명. 대사는 전부 content/strings/ko.yaml의 valor.npc.* 키로 참조한다.
+- id: npc.valor.champion
+  map: map.town.valor
+  pos: [13, 10]
+  schedule:
+    "0": [13, 10]
+    "6": [13, 9]
+    "12": [13, 10]
+    "18": [14, 11]
+  name: valor.npc.champion.name
+  greet: valor.npc.champion.greet
+  sprite: [town, 85]
+  topics:
+    name:
+      - text: valor.npc.champion.name.t
+    job:
+      - text: valor.npc.champion.job.t
+        grants: [fact.solgang.champion, word.battle]
+    word.battle:
+      - text: valor.npc.champion.battle.t
+        grants: [fact.solgang.arena]
+    fact.solgang.arena:
+      - text: valor.npc.champion.arena.t
+        grants: [word.courage]
+    fact.solgang.retreat-law:
+      - text: valor.npc.champion.retreat-law.t
+        lie: true
+- id: npc.valor.sergeant
+  map: map.town.valor
+  pos: [6, 7]
+  schedule:
+    "0": [6, 7]
+    "6": [7, 7]
+    "12": [6, 7]
+    "18": [8, 7]
+  name: valor.npc.sergeant.name
+  greet: valor.npc.sergeant.greet
+  sprite: [town, 86]
+  topics:
+    name:
+      - text: valor.npc.sergeant.name.t
+    job:
+      - text: valor.npc.sergeant.job.t
+        grants: [fact.solgang.sergeant, fact.solgang.barracks]
+    word.brother:
+      - text: valor.npc.sergeant.brother.t
+    fact.solgang.barracks:
+      - text: valor.npc.sergeant.barracks.t
+        grants: [word.battle]
+- id: npc.valor.smith
+  map: map.town.valor
+  pos: [5, 16]
+  schedule:
+    "0": [5, 16]
+    "6": [6, 16]
+    "12": [5, 16]
+    "18": [5, 17]
+  name: valor.npc.smith.name
+  greet: valor.npc.smith.greet
+  sprite: [town, 87]
+  topics:
+    name:
+      - text: valor.npc.smith.name.t
+    job:
+      - text: valor.npc.smith.job.t
+        grants: [fact.solgang.smith, fact.solgang.forge, word.shield]
+    word.shield:
+      - text: valor.npc.smith.shield.t
+        grants: [fact.solgang.forge]
+- id: npc.valor.brewer
+  map: map.town.valor
+  pos: [20, 4]
+  schedule:
+    "0": [20, 4]
+    "6": [20, 4]
+    "12": [20, 4]
+    "18": [21, 4]
+  name: valor.npc.brewer.name
+  greet: valor.npc.brewer.greet
+  sprite: [town, 88]
+  topics:
+    name:
+      - text: valor.npc.brewer.name.t
+    job:
+      - text: valor.npc.brewer.job.t
+        grants: [word.brother]
+    word.brother:
+      - text: valor.npc.brewer.brother.t
+        grants: [fact.solgang.barracks]
+- id: npc.valor.child
+  map: map.town.valor
+  pos: [13, 7]
+  schedule:
+    "0": [13, 7]
+    "6": [12, 7]
+    "12": [13, 7]
+    "18": [14, 7]
+  name: valor.npc.child.name
+  greet: valor.npc.child.greet
+  sprite: [town, 89]
+  topics:
+    name:
+      - text: valor.npc.child.name.t
+    job:
+      - text: valor.npc.child.job.t
+        grants: [word.courage]
+    fact.solgang.champion:
+      - text: valor.npc.child.champion.t
+        grants: [word.courage, word.battle]
+- id: npc.valor.veteran
+  map: map.town.valor
+  pos: [5, 1]
+  schedule:
+    "0": [5, 1]
+    "6": [6, 1]
+    "12": [5, 1]
+    "18": [4, 1]
+  name: valor.npc.veteran.name
+  greet: valor.npc.veteran.greet
+  sprite: [town, 90]
+  topics:
+    name:
+      - text: valor.npc.veteran.name.t
+    job:
+      - text: valor.npc.veteran.job.t
+        grants: [fact.solgang.veteran, fact.solgang.battle-hymn, word.retreat]
+    word.retreat:
+      - text: valor.npc.veteran.retreat.t
+        grants: [word.courage, fact.solgang.battle-hymn]
+- id: npc.valor.scout
+  map: map.town.valor
+  pos: [12, 16]
+  schedule:
+    "0": [12, 16]
+    "6": [13, 16]
+    "12": [12, 16]
+    "18": [11, 16]
+  name: valor.npc.scout.name
+  greet: valor.npc.scout.greet
+  sprite: [town, 91]
+  topics:
+    name:
+      - text: valor.npc.scout.name.t
+    job:
+      - text: valor.npc.scout.job.t
+        grants: [fact.solgang.barracks]
+    fact.creature.valor-duelist:
+      - text: valor.npc.scout.duelist.t
+- id: npc.valor.healer
+  map: map.town.valor
+  pos: [21, 16]
+  schedule:
+    "0": [21, 16]
+    "6": [22, 16]
+    "12": [21, 16]
+    "18": [21, 17]
+  name: valor.npc.healer.name
+  greet: valor.npc.healer.greet
+  sprite: [town, 92]
+  topics:
+    name:
+      - text: valor.npc.healer.name.t
+    job:
+      - text: valor.npc.healer.job.t
+        grants: [word.blood, fact.creature.valor-duelist]
+    word.blood:
+      - text: valor.npc.healer.blood.t
+        grants: [fact.creature.valor-duelist]
+- id: npc.valor.standard
+  map: map.town.valor
+  pos: [10, 14]
+  schedule:
+    "0": [10, 14]
+    "6": [11, 14]
+    "12": [10, 14]
+    "18": [12, 14]
+  name: valor.npc.standard.name
+  greet: valor.npc.standard.greet
+  sprite: [town, 93]
+  topics:
+    name:
+      - text: valor.npc.standard.name.t
+    job:
+      - text: valor.npc.standard.job.t
+        grants: [fact.solgang.arena, fact.solgang.sergeant]
+    word.courage:
+      - text: valor.npc.standard.courage.t
+        grants: [word.battle]
+- id: npc.valor.widow
+  map: map.town.valor
+  pos: [24, 7]
+  schedule:
+    "0": [24, 7]
+    "6": [24, 7]
+    "12": [24, 7]
+    "18": [25, 7]
+  name: valor.npc.widow.name
+  greet: valor.npc.widow.greet
+  sprite: [town, 94]
+  topics:
+    name:
+      - text: valor.npc.widow.name.t
+    job:
+      - text: valor.npc.widow.job.t
+        grants: [fact.solgang.retreat-law, word.retreat]
+    fact.solgang.retreat-law:
+      - text: valor.npc.widow.retreat-law.t
+        grants: [word.retreat, word.shield]

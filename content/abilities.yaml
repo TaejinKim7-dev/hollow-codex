@@ -1,2 +1,3 @@
 - { id: ability.see-lies, name: ability.see-lies.name }
 - { id: ability.compassion-persuade, name: compassion.ability.persuade.name }
+- { id: ability.valor-shield, name: valor.ability.shield.name }

@@ -1,0 +1,82 @@
+# 솔강(용맹) 마을 테마 — original heroic chip tune.
+# A 단조, 4/4, 120bpm, 4채널, 16마디(64박 = 32초) 루프.
+# 물러서지 않는 투기장의 긴장과, 돌아오는 자를 기다리는 노래를 함께 그린다.
+tempo: 120
+loop: true
+channels:
+  - wave: square50
+    volume: 0.40
+    notes: >-
+      A4/4 C5/4 E5/2
+      D5/4 C5/4 A4/2
+      F4/4 A4/4 C5/2
+      B4/4 G4/4 E4/2
+      A4/4 C5/4 E5/4 A5/4
+      G5/4 E5/4 D5/2
+      F5/4 E5/4 D5/4 C5/4
+      B4/2 A4/2
+      A4/4 C5/4 E5/4 A5/4
+      A5/4 G5/4 F5/2
+      E5/4 D5/4 C5/2
+      D5/4 E5/4 F5/2
+      E5/4 C5/4 A4/4 E4/4
+      F4/4 G4/4 A4/2
+      G4/4 A4/4 B4/4 C5/4
+      D5/2 A4/2
+  - wave: square25
+    volume: 0.22
+    notes: >-
+      E4/2 A4/2
+      F4/2 E4/2
+      C4/2 F4/2
+      G4/2 E4/2
+      E4/2 A4/2
+      C5/2 B4/2
+      A4/2 G4/2
+      E4/2 E4/2
+      E4/2 A4/2
+      F5/2 E5/2
+      C5/2 A4/2
+      F4/2 A4/2
+      A4/2 C5/2
+      C5/2 A4/2
+      B4/2 G4/2
+      A4/2 E4/2
+  - wave: triangle
+    volume: 0.46
+    notes: >-
+      A2/4 A2/4 E3/4 E3/4
+      F2/4 F2/4 C3/4 C3/4
+      C3/4 C3/4 G3/4 G3/4
+      G2/4 G2/4 D3/4 D3/4
+      A2/4 A2/4 E3/4 A2/4
+      C3/4 C3/4 G3/4 E3/4
+      F2/4 F2/4 C3/4 A2/4
+      G2/4 G2/4 D3/4 D3/4
+      A2/4 A2/4 E3/4 E3/4
+      F2/4 F2/4 C3/4 C3/4
+      C3/4 C3/4 G3/4 G3/4
+      F2/4 F2/4 A2/4 C3/4
+      A2/4 A2/4 E3/4 E3/4
+      F2/4 F2/4 C3/4 C3/4
+      G2/4 G2/4 B2/4 D3/4
+      A2/4 E3/4 A2/2
+  - wave: noise
+    volume: 0.18
+    notes: >-
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4
+      x/8 r/8 x/8 r/8 x/4 r/4

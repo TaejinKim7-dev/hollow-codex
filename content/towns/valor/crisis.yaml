@@ -1,0 +1,16 @@
+- id: crisis.valor.challenge
+  npc: npc.valor.champion
+  text: valor.crisis.challenge.text
+  options:
+    option.allow-retreat:
+      requires: [fact.solgang.battle-hymn]
+      requiresDeductions: [deduction.valor]
+      setsFlags: [flag.valor.retreat-allowed]
+      label: valor.option.allow-retreat.label
+      text: valor.option.allow-retreat.text
+    option.duel-honor:
+      requires: [fact.solgang.champion]
+      requiresDeductions: []
+      setsFlags: [flag.valor.duel-won]
+      label: valor.option.duel-honor.label
+      text: valor.option.duel-honor.text
