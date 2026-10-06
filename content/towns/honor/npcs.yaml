@@ -1,0 +1,257 @@
+# 아르곤(명예) NPC 10명. 대사는 전부 content/strings/ko.yaml의 honor.npc.* 키로 참조한다.
+- id: npc.honor.elder
+  map: map.town.honor
+  pos: [4, 3]
+  schedule:
+    "0": [4, 3]
+    "6": [5, 3]
+    "12": [4, 3]
+    "18": [5, 3]
+  name: honor.npc.elder.name
+  greet: honor.npc.elder.greet
+  sprite: [town, 90]
+  topics:
+    name:
+      - text: honor.npc.elder.name.t
+    job:
+      - text: honor.npc.elder.job.t
+        grants: [fact.argon.elder, word.face]
+    word.honor:
+      - text: honor.npc.elder.honor.t
+        grants: [word.honor]
+    word.shame:
+      - text: honor.npc.elder.shame.t
+        grants: [word.shame]
+    word.face:
+      - text: honor.npc.elder.face.t
+    fact.argon.heir:
+      - text: honor.npc.elder.heir.t
+        lie: true
+- id: npc.honor.heir
+  map: map.town.honor
+  pos: [8, 4]
+  schedule:
+    "0": [8, 4]
+    "6": [8, 5]
+    "12": [8, 4]
+    "18": [7, 4]
+  name: honor.npc.heir.name
+  greet: honor.npc.heir.greet
+  sprite: [town, 89]
+  topics:
+    name:
+      - text: honor.npc.heir.name.t
+    job:
+      - text: honor.npc.heir.job.t
+        grants: [fact.argon.heir, word.shame]
+    fact.argon.lineage-song:
+      - text: honor.npc.heir.song.t
+        grants: [fact.argon.lineage-song, word.truth]
+    word.truth:
+      - text: honor.npc.heir.truth.t
+        grants: [word.truth]
+    word.courage:
+      - text: honor.npc.heir.courage.t
+        grants: [word.courage]
+- id: npc.honor.herald
+  map: map.town.honor
+  pos: [11, 8]
+  schedule:
+    "0": [11, 8]
+    "6": [12, 8]
+    "12": [11, 8]
+    "18": [11, 9]
+  name: honor.npc.herald.name
+  greet: honor.npc.herald.greet
+  sprite: [town, 85]
+  topics:
+    name:
+      - text: honor.npc.herald.name.t
+    job:
+      - text: honor.npc.herald.job.t
+        grants: [fact.argon.herald, fact.argon.lineage-song]
+    fact.argon.lineage-song:
+      - text: honor.npc.herald.song.t
+        grants: [fact.argon.lineage-song]
+    word.honor:
+      - text: honor.npc.herald.honor.t
+    fact.argon.elder:
+      - text: honor.npc.herald.elder.t
+        grants: [fact.argon.humiliation-rule]
+- id: npc.honor.scribe
+  map: map.town.honor
+  pos: [17, 3]
+  schedule:
+    "0": [17, 3]
+    "6": [17, 4]
+    "12": [17, 3]
+    "18": [18, 3]
+  name: honor.npc.scribe.name
+  greet: honor.npc.scribe.greet
+  sprite: [town, 92]
+  topics:
+    name:
+      - text: honor.npc.scribe.name.t
+    job:
+      - text: honor.npc.scribe.job.t
+        grants: [fact.argon.family-rank, word.face]
+    fact.argon.family-rank:
+      - text: honor.npc.scribe.rank.t
+        grants: [fact.argon.family-rank, word.honor]
+    word.truth:
+      - text: honor.npc.scribe.truth.t
+        grants: [word.truth]
+    fact.argon.heir:
+      - text: honor.npc.scribe.heir.t
+        grants: [fact.argon.heir]
+- id: npc.honor.swordmaster
+  map: map.town.honor
+  pos: [5, 13]
+  schedule:
+    "0": [5, 13]
+    "6": [6, 13]
+    "12": [5, 13]
+    "18": [5, 14]
+  name: honor.npc.swordmaster.name
+  greet: honor.npc.swordmaster.greet
+  sprite: [town, 86]
+  topics:
+    name:
+      - text: honor.npc.swordmaster.name.t
+    job:
+      - text: honor.npc.swordmaster.job.t
+        grants: [fact.argon.swordmaster, word.courage]
+    word.courage:
+      - text: honor.npc.swordmaster.courage.t
+        grants: [word.courage, fact.argon.kneeling-lord]
+    word.honor:
+      - text: honor.npc.swordmaster.honor.t
+        grants: [word.honor]
+    fact.argon.lineage-song:
+      - text: honor.npc.swordmaster.song.t
+        grants: [fact.argon.kneeling-lord]
+    word.face:
+      - text: honor.npc.swordmaster.face.t
+        grants: [word.pride]
+- id: npc.honor.brewer
+  map: map.town.honor
+  pos: [18, 13]
+  schedule:
+    "0": [18, 13]
+    "6": [19, 13]
+    "12": [18, 13]
+    "18": [18, 14]
+  name: honor.npc.brewer.name
+  greet: honor.npc.brewer.greet
+  sprite: [town, 88]
+  topics:
+    name:
+      - text: honor.npc.brewer.name.t
+    job:
+      - text: honor.npc.brewer.job.t
+        grants: [fact.argon.plaza, word.pride]
+    fact.argon.heir:
+      - text: honor.npc.brewer.heir.t
+        grants: [fact.argon.heir]
+- id: npc.honor.child
+  map: map.town.honor
+  pos: [9, 8]
+  schedule:
+    "0": [9, 8]
+    "6": [10, 8]
+    "12": [9, 8]
+    "18": [9, 9]
+  name: honor.npc.child.name
+  greet: honor.npc.child.greet
+  sprite: [town, 93]
+  topics:
+    name:
+      - text: honor.npc.child.name.t
+    job:
+      - text: honor.npc.child.job.t
+        grants: [fact.argon.lineage-song]
+    fact.argon.lineage-song:
+      - text: honor.npc.child.song.t
+        grants: [fact.argon.lineage-song, word.honor]
+    word.shame:
+      - text: honor.npc.child.shame.t
+    fact.argon.widow:
+      - text: honor.npc.child.widow.t
+        grants: [fact.argon.widow]
+- id: npc.honor.widow
+  map: map.town.honor
+  pos: [20, 9]
+  schedule:
+    "0": [20, 9]
+    "6": [20, 10]
+    "12": [20, 9]
+    "18": [21, 9]
+  name: honor.npc.widow.name
+  greet: honor.npc.widow.greet
+  sprite: [town, 94]
+  topics:
+    name:
+      - text: honor.npc.widow.name.t
+    job:
+      - text: honor.npc.widow.job.t
+        grants: [fact.argon.widow, word.shame]
+    word.shame:
+      - text: honor.npc.widow.shame.t
+        grants: [word.shame]
+    fact.argon.lineage-song:
+      - text: honor.npc.widow.song.t
+        grants: [fact.argon.lineage-song, fact.argon.kneeling-lord]
+    word.pride:
+      - text: honor.npc.widow.pride.t
+        grants: [word.pride]
+    fact.argon.heir:
+      - text: honor.npc.widow.heir.t
+        grants: [fact.argon.heir]
+- id: npc.honor.mason
+  map: map.town.honor
+  pos: [14, 13]
+  schedule:
+    "0": [14, 13]
+    "6": [14, 14]
+    "12": [14, 13]
+    "18": [13, 13]
+  name: honor.npc.mason.name
+  greet: honor.npc.mason.greet
+  sprite: [town, 91]
+  topics:
+    name:
+      - text: honor.npc.mason.name.t
+    job:
+      - text: honor.npc.mason.job.t
+        grants: [fact.argon.manor]
+    fact.argon.manor:
+      - text: honor.npc.mason.manor.t
+        grants: [fact.argon.family-rank, fact.argon.kneeling-lord]
+    fact.argon.family-rank:
+      - text: honor.npc.mason.rank.t
+        grants: [fact.argon.family-rank]
+    word.face:
+      - text: honor.npc.mason.face.t
+- id: npc.honor.seamstress
+  map: map.town.honor
+  pos: [12, 17]
+  schedule:
+    "0": [12, 17]
+    "6": [13, 17]
+    "12": [12, 17]
+    "18": [12, 18]
+  name: honor.npc.seamstress.name
+  greet: honor.npc.seamstress.greet
+  sprite: [town, 87]
+  topics:
+    name:
+      - text: honor.npc.seamstress.name.t
+    job:
+      - text: honor.npc.seamstress.job.t
+        grants: [word.face]
+    word.face:
+      - text: honor.npc.seamstress.face.t
+        grants: [word.face]
+    fact.argon.widow:
+      - text: honor.npc.seamstress.widow.t
+        grants: [fact.argon.widow]

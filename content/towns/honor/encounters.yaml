@@ -1,0 +1,13 @@
+# 아르곤(명예) 조우 — 체면을 걸고 싸움을 거는 자랑꾼.
+- id: enc.honor.duelist
+  map: map.town.honor
+  grid:
+    - "T.....T"
+    - "......."
+    - "......."
+    - "......."
+    - "T.....T"
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.honor-braggart, at: [3, 1] }
+  music: music.battle

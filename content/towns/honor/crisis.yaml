@@ -1,0 +1,17 @@
+# 아르곤(명예) 위기 — 가문의 이름을 거두려는 원로와, 진실을 부른 후계자.
+- id: crisis.honor.lineage
+  npc: npc.honor.elder
+  text: honor.crisis.lineage.text
+  options:
+    option.truth-lineage:
+      requires: [fact.argon.lineage-song]
+      requiresDeductions: [deduction.honor]
+      setsFlags: [flag.honor.lineage-truth]
+      label: honor.option.truth-lineage.label
+      text: honor.option.truth-lineage.text
+    option.exile-elder:
+      requires: [fact.argon.family-rank]
+      requiresDeductions: []
+      setsFlags: [flag.honor.elder-exiled]
+      label: honor.option.exile-elder.label
+      text: honor.option.exile-elder.text

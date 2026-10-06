@@ -1,0 +1,6 @@
+# 아르곤(명예) 추론 — 참된 명예는 체면이 아니라 진실과 용기로 세운다.
+- id: deduction.honor
+  sentence: honor.deduction.honor.sentence
+  hint: honor.deduction.honor.hint
+  answer: [word.truth, word.courage, word.honor]
+  unlocks: [ability.honor-truth]
