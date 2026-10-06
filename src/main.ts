@@ -174,6 +174,15 @@ function handleEvents(events: readonly GameEvent[]): void {
         // M2 진행 이벤트: UI/세이브는 apply에서 처리, 여기선 디버그 기록만.
         log.log("event-m2", e)
         break
+      case "codexWritten":
+      case "codexFinalChosen":
+        // M5 빈 경전: 8쪽·마지막 장 UI는 panels.render가 state에서 직접 그린다. 여기선 디버그 기록만.
+        log.log("event-codex", e)
+        break
+      case "epilogue":
+        // M5 에필로그: 선택한 단어에 따른 마을 메시지는 패널/에필로그 화면 몫. 여기선 디버그 기록만.
+        log.log("event-epilogue", e)
+        break
       default:
         break
     }
