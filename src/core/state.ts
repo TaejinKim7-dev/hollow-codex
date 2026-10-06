@@ -7,6 +7,7 @@ export function createInitialState(content: GameContent, seed: number): GameStat
     version: 1,
     rng: seed >>> 0,
     turn: 0,
+    language: "ko",
     time: { hour: 8, day: 1 },           // 오전 8시 시작 (D12)
     rings: { visited: [], knownFacts: [] },
     codex: { answers: {}, finalWord: null, finalOpen: false },

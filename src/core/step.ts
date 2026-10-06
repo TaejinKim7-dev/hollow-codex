@@ -16,6 +16,12 @@ import { writeCodex, writeFinal } from "./codex/codex.ts"
 export function step(state: GameState, command: Command, content: GameContent): StepResult {
   const ignored: StepResult = { state, events: [] }
 
+  // 언어 전환은 모드와 무관하게 항상 허용한다. 같으면 같은 state를 돌려준다.
+  if (command.type === "setLanguage") {
+    if (command.language === state.language) return ignored
+    return { state: { ...state, language: command.language }, events: [] }
+  }
+
   if (state.combat !== null) {
     switch (command.type) {
       case "combat":

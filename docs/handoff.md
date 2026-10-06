@@ -314,3 +314,25 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 | 48 | `855d42a` | docs: M6 최종 통합 (CHANGELOG.md + handoff 확인 절) |
 
 (End of file)
+
+## 2026-10-06 POST-M6 — 영어 i18n (spec §8 "(선택) 영어")
+
+- **작업**: English localization. `content/strings/en.yaml` 신규(1007개 키, ko와 정확히 동일 키 집합 + ko에 `ui.language` 추가). 언어 전환 토글을 메뉴에 추가.
+- **e2e 안 돌림** (정책). 단위 테스트와 `tsc`만.
+- **merge 게이트 (HEAD 예정 `todo-i18n` 브랜치)** — 전부 exit 0:
+  - `npm ci` 0
+  - `npm run test:unit` 0 — 48 files, **282 passed** (기존 273 + 신규 9)
+  - `npm run typecheck` 0
+  - `npm run check:content` 0 — `ok (12 maps, 81 npcs, 140 facts, 15 ledger files)`
+  - `npm run build` 0 — dist 13 files, 510846 bytes (PWA precache 14 entries / 467.75 KiB)
+  - `npm run audit:dist` 0 — `ok (13 files, 510846 bytes)`
+  - `git diff --check` 0
+- **변경 요약**:
+  - `content/strings/en.yaml` — 전 키 영어 번역 (UI·NPC 대사·단서·추론·위기·음악 제목·에필로그 3종×8마을).
+  - `src/content/compile.ts` — strings를 언어별(`strings[lang]`)로 읽고, en은 ko와 키 집합 일치를 검증. denylist 검사도 en 포함.
+  - `src/ui/strings.ts` — `t(lang, strings, key, vars)` 시그니처. en에 없는 키는 ko로 폴백.
+  - `src/ui/panels.ts` — 고정 문구 `refreshStatics()`로 언어 변경 시 갱신, 메뉴에 Language 버튼.
+  - `src/core/types.ts`·`state.ts`·`step.ts` — GameState에 `language: "ko" | "en"` 추가 + `setLanguage` 명령.
+  - `src/core/save/serialize.ts` — SAVE_VERSION 3, v2→v3 마이그레이션(기본 ko).
+- RED 기록: `tests/unit/ui/strings-i18n.test.ts` 최초 3 failed (`npx vitest run tests/unit/ui/strings-i18n.test.ts`).
+- **확인 필요**: 브라우저에서 언어 토글·세이브 복원(Language 버튼 라벨과 화면 전환).

@@ -27,7 +27,6 @@ log.log("credits", { files: credits.length })
 const screen = document.getElementById("screen") as HTMLCanvasElement | null
 if (screen === null) throw new Error("missing #screen")
 const canvas = screen
-canvas.setAttribute("aria-label", t(content.strings, "ui.aria.canvas"))
 const ctx = canvas.getContext("2d")
 if (ctx === null) throw new Error("canvas 2d unavailable")
 const canvas2d = ctx
@@ -245,7 +244,7 @@ function showTouchHintOnce(): void {
   touchHintShown = true
   const hint = document.createElement("div")
   hint.className = "touch-hint"
-  hint.textContent = t(content.strings, "ui.touch-hint")
+  hint.textContent = t(state?.language ?? "ko", content.strings, "ui.touch-hint")
   document.body.appendChild(hint)
   window.setTimeout(() => hint.remove(), 1600)
 }
@@ -281,6 +280,7 @@ async function main(): Promise<void> {
   s = ensureM2State(s)
   state = s
   lastAutoTurn = s.turn
+  canvas.setAttribute("aria-label", t(s.language, content.strings, "ui.aria.canvas"))
   ;(window as unknown as { __hollowCodex__?: { state(): GameState | null } }).__hollowCodex__ = {
     state: () => state
   }

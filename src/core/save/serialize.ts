@@ -1,7 +1,7 @@
 import type { GameState } from "../types.ts"
 
 export const SAVE_FORMAT = "hollow-codex-save"
-export const SAVE_VERSION = 2
+export const SAVE_VERSION = 3
 
 export type DeserializeResult =
   | { ok: true; state: GameState }
@@ -34,8 +34,17 @@ export function migrateV1ToV2(state: unknown): unknown {
   }
 }
 
+/** v2 저장에는 language가 없다. 기본값 ko를 붙인다 (영문 i18n 추가). */
+export function migrateV2ToV3(state: unknown): unknown {
+  if (!isObject(state)) return state
+  return {
+    ...state,
+    language: state["language"] === undefined ? "ko" : state["language"]
+  }
+}
+
 /** 저장 형식이 올라갈 때마다 이전 버전의 state를 다음 버전으로 바꾸는 함수를 여기에 등록한다. */
-export const MIGRATIONS: Readonly<Record<number, (s: unknown) => unknown>> = { 1: migrateV1ToV2 }
+export const MIGRATIONS: Readonly<Record<number, (s: unknown) => unknown>> = { 1: migrateV1ToV2, 2: migrateV2ToV3 }
 
 export function serialize(state: GameState): string {
   return JSON.stringify({ format: SAVE_FORMAT, version: SAVE_VERSION, state })
@@ -65,6 +74,7 @@ function isMinimalState(value: unknown): value is GameState {
   if (finalWord !== null && typeof finalWord !== "string") return false
   if (typeof codex["finalOpen"] !== "boolean") return false
   return (
+    (value["language"] === "ko" || value["language"] === "en") &&
     typeof value["mapId"] === "string" &&
     typeof value["turn"] === "number" &&
     typeof value["rng"] === "number" &&

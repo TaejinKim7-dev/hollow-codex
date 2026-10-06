@@ -25,6 +25,7 @@ export type Command =
   | { type: "resolveCrisis"; crisisId: Id; optionId: Id } | { type: "recruit"; npcId: Id }
   | { type: "combat"; action: CombatAction }
   | { type: "ringStep"; at: Id }
+  | { type: "setLanguage"; language: "ko" | "en" }
   | { type: "writeCodex"; deductionId: Id; word: Id }
   | { type: "writeFinal"; word: Id }
 
@@ -59,6 +60,7 @@ export interface GameState {
   readonly version: 1
   readonly rng: number
   readonly turn: number
+  readonly language: "ko" | "en"                              // i18n: UI/locale
   readonly time: TimeState                                    // D12 — move 1회당 1시간
   readonly rings: { readonly visited: readonly Id[]; readonly knownFacts: readonly Id[] }   // D15
   readonly codex: CodexState                                  // M5 — 빈 경전

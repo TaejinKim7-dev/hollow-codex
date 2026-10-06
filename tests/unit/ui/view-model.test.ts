@@ -56,7 +56,7 @@ describe("combatView", () => {
 
 describe("t", () => {
   it("t marks a missing key", () => {
-    expect(t({}, "x.y")).toBe("⟦x.y⟧")
-    expect(t({ a: "안녕 {n}" }, "a", { n: "엘린" })).toBe("안녕 엘린")
+    expect(t("ko", {}, "x.y")).toBe("⟦x.y⟧")
+    expect(t("ko", { ko: { a: "안녕 {n}" } }, "a", { n: "엘린" })).toBe("안녕 엘린")
   })
 })

@@ -51,13 +51,14 @@ export function dialogueView(
   const npc = dialogue === null ? undefined : content.npcs[dialogue.npcId]
   if (dialogue === null || npc === undefined) return null
   const s = content.strings
+  const lang = state.language
 
   const seeLies = state.abilities.includes("ability.see-lies")
-  const lines = log.map((line) => ({ text: t(s, line.textKey), lieMark: line.lie && seeLies }))
+  const lines = log.map((line) => ({ text: t(lang, s, line.textKey), lieMark: line.lie && seeLies }))
 
   const chips = availableTopics(state, content, dialogue.npcId).map((topic) => ({
     topic,
-    label: t(s, topic === "name" ? "topic.name" : topic === "job" ? "topic.job" : `${topic}.label`)
+    label: t(lang, s, topic === "name" ? "topic.name" : topic === "job" ? "topic.job" : `${topic}.label`)
   }))
 
   let choices: DialogueView["choices"] = []
@@ -65,7 +66,7 @@ export function dialogueView(
     const variants = content.npcs[dialogue.npcId]?.topics[dialogue.pendingChoice]
     const variant = variants === undefined ? null : pickVariant(state, variants)
     for (const option of variant?.choice ?? []) {
-      choices = [...choices, { optionId: option.optionId, label: t(s, option.labelKey) }]
+      choices = [...choices, { optionId: option.optionId, label: t(lang, s, option.labelKey) }]
     }
   }
 
@@ -74,7 +75,7 @@ export function dialogueView(
     if (def.npc !== dialogue.npcId || state.crises[crisisId] !== undefined) continue
     const rows = crisisOptions(state, content, crisisId).map(({ optionId, available, missing }) => ({
       optionId,
-      label: t(s, def.options[optionId]?.labelKey ?? optionId),
+      label: t(lang, s, def.options[optionId]?.labelKey ?? optionId),
       available,
       hints: missing.map((id) => content.facts[id]?.hintKey ?? content.deductions[id]?.hintKey)
         .filter((key): key is string => key !== undefined)
@@ -83,7 +84,7 @@ export function dialogueView(
   }
 
   return {
-    npcName: t(s, npc.nameKey),
+    npcName: t(lang, s, npc.nameKey),
     lines,
     chips,
     choices,
@@ -97,10 +98,11 @@ const byLabel = (a: { readonly label: string }, b: { readonly label: string }): 
 
 export function notebookView(state: GameState, content: GameContent): NotebookView {
   const s = content.strings
+  const lang = state.language
   const knownOf = (kind: FactKind): { id: Id; label: string }[] =>
     state.facts
       .filter((id) => content.facts[id]?.kind === kind)
-      .map((id) => ({ id, label: t(s, content.facts[id]?.labelKey ?? id) }))
+      .map((id) => ({ id, label: t(lang, s, content.facts[id]?.labelKey ?? id) }))
       .sort(byLabel)
 
   const facts = {
@@ -115,11 +117,11 @@ export function notebookView(state: GameState, content: GameContent): NotebookVi
   const deductions = Object.entries(content.deductions).map(([id, def]) => {
     const page = state.deductions[id]
     const slots = (page?.slots ?? [null, null, null]).map((w) =>
-      w === null ? null : t(s, content.facts[w]?.labelKey ?? w)
+      w === null ? null : t(lang, s, content.facts[w]?.labelKey ?? w)
     )
     return {
       id,
-      sentence: t(s, def.sentenceKey),
+      sentence: t(lang, s, def.sentenceKey),
       slots,
       confirmed: page?.confirmed ?? false,
       words: knownOf("word")
@@ -149,25 +151,26 @@ const onEdge = (grid: readonly string[], p: Pos): boolean => {
 
 export function codexView(state: GameState, content: GameContent): CodexView {
   const s = content.strings
+  const lang = state.language
   const words = state.facts
     .filter((id) => content.facts[id]?.kind === "word")
-    .map((id) => ({ id, label: t(s, content.facts[id]?.labelKey ?? id) }))
+    .map((id) => ({ id, label: t(lang, s, content.facts[id]?.labelKey ?? id) }))
     .sort(byLabel)
   const pages = CODEX_PAGES.map(({ deductionId, virtue }) => {
     const written = state.codex.answers[deductionId] ?? null
     return {
       deductionId,
       virtue,
-      title: t(s, `archive.alcove.${virtue}.title`),
-      answer: written === null ? null : t(s, content.facts[written]?.labelKey ?? written),
+      title: t(lang, s, `archive.alcove.${virtue}.title`),
+      answer: written === null ? null : t(lang, s, content.facts[written]?.labelKey ?? written),
       words
     }
   })
   const finalChoices = FINAL_WORD_IDS
     .filter((id) => content.facts[id] !== undefined)
-    .map((id) => ({ id, label: t(s, content.facts[id]?.labelKey ?? id) }))
+    .map((id) => ({ id, label: t(lang, s, content.facts[id]?.labelKey ?? id) }))
   const finalWord =
-    state.codex.finalWord === null ? null : t(s, content.facts[state.codex.finalWord]?.labelKey ?? state.codex.finalWord)
+    state.codex.finalWord === null ? null : t(lang, s, content.facts[state.codex.finalWord]?.labelKey ?? state.codex.finalWord)
   return { pages, finalOpen: state.codex.finalOpen, finalWord, finalChoices }
 }
 
@@ -175,6 +178,7 @@ export function combatView(state: GameState, content: GameContent): CombatView |
   const combat = state.combat
   if (combat === null) return null
   const s = content.strings
+  const lang = state.language
   const actor = combat.units.find((u) => u.id === combat.active)
 
   const actions: CombatAction["kind"][] = ["attack", "push", "persuade", "defend"]
@@ -183,15 +187,15 @@ export function combatView(state: GameState, content: GameContent): CombatView |
   actions.push("endTurn")
 
   const active = combat.active === "player"
-    ? t(s, "player.name")
-    : t(s, content.npcs[combat.active]?.nameKey ?? combat.active)
+    ? t(lang, s, "player.name")
+    : t(lang, s, content.npcs[combat.active]?.nameKey ?? combat.active)
 
   const units = combat.units.map((u): CombatView["units"][number] => {
     const name = u.side === "ally"
       ? u.id === "player"
-        ? t(s, "player.name")
-        : t(s, content.npcs[u.id]?.nameKey ?? u.id)
-      : t(s, u.creature === null ? u.id : content.creatures[u.creature]?.nameKey ?? u.creature)
+        ? t(lang, s, "player.name")
+        : t(lang, s, content.npcs[u.id]?.nameKey ?? u.id)
+      : t(lang, s, u.creature === null ? u.id : content.creatures[u.creature]?.nameKey ?? u.creature)
     let evilKnown: boolean | null = null
     if (u.side === "enemy" && u.creature !== null) {
       const creature = content.creatures[u.creature]

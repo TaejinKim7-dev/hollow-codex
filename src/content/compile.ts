@@ -14,7 +14,9 @@ const FACT_KINDS: readonly FactKind[] = ["person", "place", "word", "song", "mea
 const WAVES: readonly string[] = ["square50", "square25", "triangle", "noise"]
 const ALWAYS_REQUIRED_STRINGS: readonly string[] = ["npc.default.unknown", "topic.name", "topic.job"]
 const DENYLIST_FILE = "ip-denylist.yaml"
-const STRINGS_FILE = "strings/ko.yaml"
+const KO_STRINGS_FILE = "strings/ko.yaml"
+/** 언어 파일 이름 패턴: strings/<lang>.yaml (ko는 필수, en은 선택). */
+const STRINGS_FILE_RE = /^strings\/([a-z]+)\.yaml$/
 
 type Mutable<T> = { -readonly [K in keyof T]: T[K] }
 type Fact = GameContent["facts"][string]
@@ -42,7 +44,7 @@ interface Draft {
   abilities: Table<{ readonly nameKey: string }>
   music: Table<Score>
   moongates: Table<Moongate>
-  strings: Record<string, string>
+  strings: Record<string, Record<string, string>>   // 언어 → 키 → 문구
   start: GameContent["start"] | null
 }
 
@@ -118,10 +120,12 @@ function readAbilities(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   })
 }
 
-function readStrings(r: Reader, v: unknown, d: Draft): void {
+/** strings/<lang>.yaml의 모든 키를 d.strings[lang]에 담는다. 같은 파일 안 중복 키는 나중 값이 덮는다. */
+function readStrings(r: Reader, v: unknown, d: Draft, lang: string): void {
   if (v === null || v === undefined) return
+  const target = d.strings[lang] ?? (d.strings[lang] = {})
   for (const [k, s] of Object.entries(r.obj(v, ""))) {
-    if (typeof s === "string") d.strings[k] = s
+    if (typeof s === "string") target[k] = s
     else r.fail(k, "expected a string value")
   }
 }
@@ -341,7 +345,9 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
     else if (file === "tiles.yaml") readTiles(r, v, d)
     else if (file === "start.yaml") readStart(r, v, d)
     else if (file === "abilities.yaml") readAbilities(r, v, d, ctx)
-    else if (file === STRINGS_FILE) readStrings(r, v, d)
+    else if (STRINGS_FILE_RE.test(file)) {
+      readStrings(r, v, d, STRINGS_FILE_RE.exec(file)?.[1] ?? "ko")
+    }
     else if (file === "creatures.yaml") readCreatures(r, v, d, ctx)
     else if (file === "moongates.yaml") readMoongates(r, v, d, ctx)
     else if (music !== null) {
@@ -441,11 +447,12 @@ function checkReferences(d: Draft, out: string[]): void {
 // ---------- group 4: string keys ----------
 
 function checkStringKeys(d: Draft, out: string[]): void {
+  const ko = d.strings["ko"] ?? {}
   const need = (file: string, where: string, key: string): void => {
-    if (!(key in d.strings)) out.push(`${file}: ${where}: string key "${key}" missing from ${STRINGS_FILE}`)
+    if (!(key in ko)) out.push(`${file}: ${where}: string key "${key}" missing from ${KO_STRINGS_FILE}`)
   }
   for (const key of ALWAYS_REQUIRED_STRINGS) {
-    if (!(key in d.strings)) out.push(`${STRINGS_FILE}: required string key "${key}" missing`)
+    if (!(key in ko)) out.push(`${KO_STRINGS_FILE}: required string key "${key}" missing`)
   }
   for (const [id, n] of Object.entries(d.npcs.items)) {
     const f = d.npcs.file[id] ?? ""
@@ -479,6 +486,16 @@ function checkStringKeys(d: Draft, out: string[]): void {
   }
   for (const [id, c] of Object.entries(d.creatures.items)) need(d.creatures.file[id] ?? "", `${id}.name`, c.nameKey)
   for (const [id, a] of Object.entries(d.abilities.items)) need(d.abilities.file[id] ?? "", `${id}.name`, a.nameKey)
+  // 언어 파일은 ko와 키 집합이 일치해야 한다. en이 없으면 ko만으로 충분하다.
+  for (const [lang, strings] of Object.entries(d.strings)) {
+    if (lang === "ko") continue
+    for (const key of Object.keys(ko)) {
+      if (!(key in strings)) out.push(`strings/${lang}.yaml: string key "${key}" missing (present in ${KO_STRINGS_FILE})`)
+    }
+    for (const key of Object.keys(strings)) {
+      if (!(key in ko)) out.push(`strings/${lang}.yaml: string key "${key}" not present in ${KO_STRINGS_FILE}`)
+    }
+  }
 }
 
 // ---------- group 5: map and grid geometry ----------
@@ -575,9 +592,11 @@ function checkDenied(raw: RawContent, d: Draft, out: string[]): void {
   const texts: { where: string; text: string }[] = []
   const add = (where: string, text: string): void => { texts.push({ where, text }) }
   for (const file of Object.keys(raw)) if (file !== DENYLIST_FILE) add(`${file}: path`, file)
-  for (const [k, s] of Object.entries(d.strings)) {
-    add(`${STRINGS_FILE}: key ${k}`, k)
-    add(`${STRINGS_FILE}: ${k}`, s)
+  for (const [lang, strings] of Object.entries(d.strings)) {
+    for (const [k, s] of Object.entries(strings)) {
+      add(`strings/${lang}.yaml: key ${k}`, k)
+      add(`strings/${lang}.yaml: ${k}`, s)
+    }
   }
   for (const id of Object.keys(d.sheets)) add(`tiles.yaml: sheet id ${id}`, id)
   const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.music, d.moongates]

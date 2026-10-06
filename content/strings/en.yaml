@@ -1,0 +1,1168 @@
+# English strings (optional localization, spec §8).
+# Key set must match content/strings/ko.yaml exactly (checked by compileContent).
+npc.default.unknown: "…Hmm, I'm afraid I don't know that."
+topic.name: Name
+topic.job: Job
+
+# --- Village people ---
+npc.field.gatekeeper.name: Stone Gatekeeper
+npc.field.gatekeeper.greet: A stranger, all the way to this far field. I am the gatekeeper who watches over these stones.
+npc.field.gatekeeper.name.t: I have long forgotten what a name was. Once, everyone asked each other's names. Now the folk of Kalas ask for confession records before names.
+npc.field.gatekeeper.job.t: My work is keeping the stones the pilgrims left behind. Three hundred years ago, a pilgrim walked in among these stones. The village has been different ever since.
+npc.field.gatekeeper.pilgrim.t: The pilgrim taught not with words but by deeds. One saying he left behind — that no one can write the truth for another.
+npc.field.gatekeeper.archive.t: The old archive… a place Kalas sealed away as forbidden ground. Everyone insists they have forgotten it, and yet they probe about it before even passing the gate.
+
+npc.field.hunter.name: The Hunter
+npc.field.hunter.greet: Shh, quietly. There are wolves howling across the river.
+npc.field.hunter.name.t: A name… nothing comes when you call it, so just call me the Hunter.
+npc.field.hunter.job.t: I'm someone who lives with the wolves of the field. At first I nocked arrows at them. They were hard to reach. But the wolves were only hungry, never evil.
+
+npc.kalas.confessor.name: Gate Confessor
+npc.kalas.confessor.greet: Before you step past the gate, let me ask one thing first. What wrong have you done today?
+npc.kalas.confessor.name.t: I am the one who takes the confessions of those passing the gate. Kalas does not begin with suspicion. It begins with confession.
+npc.kalas.confessor.job.guilty.t: But from the look of your clothes, something is weighing on you. Have you entered the forbidden ground? If you have, that is what must be confessed first.
+npc.kalas.confessor.job.t: Confession is the work. Ten, twenty times a day people speak the wrongs they have done and I write them down. Those who do not speak must denounce those who do… absurd, and yet it has become this village's way.
+option.confess-yes.label: I entered.
+option.confess-yes.text: I will take the confession. Kalas punishes no one who admits it, so move freely within the village.
+option.confess-no.label: No, I did not enter.
+option.confess-no.text: …Hm. There is a blur of ambiguity in that answer. A confession must be clear. I will record today's wavering words.
+
+npc.kalas.warden.name: Chief Denouncer
+npc.kalas.warden.greet: This is the Kalas Office of Denunciation. State your identity. No — before that, tell me how you know about last night.
+npc.kalas.warden.name.t: Call me the chief, who oversees all the denunciations of this village. Here, records are presented before names; that is the courtesy.
+npc.kalas.warden.job.t: The Office's work is to examine every record. Who hid what, and when — it must always remain in the ledgers. Kalas believes records protect the village. Of course, trials are decided by the ledger too.
+npc.kalas.warden.lantern.t: The lantern in the square… that night the square was empty. I was sorting scrolls at the office. That is all.
+npc.kalas.warden.trial.witness.t: The trial will open five days from now. But the apprentice scribe will not open her mouth. This is a situation that needs testimony. You there — do you know anything about that child?
+npc.kalas.warden.trial.t: Kalas's trials proceed by public confession. Without a witness, a verdict rests on a confession alone. That is why confession matters above all.
+option.tell-warden.label: Tobi saw that night.
+option.tell-warden.text: …My sibling's name comes up. This could make sufficient testimony. I'll put it in the record. It will surely be used in this trial.
+option.deny-warden.label: I know nothing about that child.
+option.deny-warden.text: Hm, your answer wavers. In court, do not forget that every word you speak becomes a record.
+
+npc.kalas.elin.name: Elin, Apprentice Denouncer
+npc.kalas.elin.greet: Well met. I am Elin, apprentice denouncer. I am learning the law of records at the chief's side.
+npc.kalas.elin.name.t: I'm Elin. I grew up in the Office since I was small. The people here took me in, so I would become someone who never betrays records.
+npc.kalas.elin.job.t: I keep the ledgers. I like copying letters neatly and exactly. But lately I have been watching the ledgers turned to hurting people.
+npc.kalas.elin.ledger.t: When the letters of a ledger cover someone's name… I am only an apprentice, so I can say nothing, but I have seen the ledger become a weapon that stabs neighbors.
+
+npc.kalas.nia.name: Nia the Scribe
+npc.kalas.nia.greet: …I'm sorry, I can't take a confession right now. I have become someone who must confess too.
+npc.kalas.nia.name.t: I'm Nia. I was the scribe who wrote down people's confessions at the Office. …That 'was' tastes bitter.
+npc.kalas.nia.job.t: A scribe's work is to copy other people's words most exactly. To keep others' words I had to trim my own, and what I guarded most firmly was… silence.
+npc.kalas.nia.lantern.t: I'm the one who broke the lantern. That night, alone in the square, I was careless. That's all.
+npc.kalas.nia.ledger.t: If it's about the ledger — I can speak now, now that I believe what Tobi saw. I no longer hate that person. They must have needed someone's record too.
+
+npc.kalas.tobi.name: Tobi, Nia's Brother
+npc.kalas.tobi.greet: Oh, hi… are you here to see my big sister? Then that's a relief. No — nothing, nothing.
+npc.kalas.tobi.name.t: I'm Tobi. My sister's name is Nia. Nia can't lie, so people trusted her and told her everything. So she spent her whole life keeping those words.
+npc.kalas.tobi.nia.t: Nia is in the holding room now. The one who took people's confessions is now waiting on her own. I feel like I'm doing something wrong.
+npc.kalas.tobi.lantern.t: …That night, I slept on the roof south of the square. Someone climbed onto the lantern and shattered its glass. That man was the chief of the Office. But because Nia never once spoke my name, I have kept my mouth shut too… until now.
+
+npc.kalas.mira.name: Mira the Weaver
+npc.kalas.mira.greet: Come here. I can't make you cloth, but I can spare you a story.
+npc.kalas.mira.name.t: I'm Mira. I've worked thread for eight years. Thread is honest — loose or taut, you can feel it all in the fingertips. Thread is the only thing I trust in this village.
+npc.kalas.mira.job.t: I weave cloth. I sell it at market, and sometimes I take the wrapping of the Office's scrolls.
+npc.kalas.mira.lantern.t: Ah, that story has reached you already. I picked up a piece of the lantern in the square. It was bound tightly in thread. Someone meant to hide the piece. Take it if you need it.
+npc.kalas.mira.ledger.t: Every year the Office's scrolls grow a bundle thicker. Last year a neighbor's child's slip of the tongue was recorded, and the family had to leave the village. That ledger does not keep the truth — it piles up suspicion.
+
+npc.kalas.child.name: Village Child
+npc.kalas.child.greet: Whoa, a stranger! Do you know the square's song?
+npc.kalas.child.name.t: I have lots of names but I forgot them all! Just call me Me. That's how it is for all the kids here.
+npc.kalas.child.job.t: My job is singing! When the moon rises, we all gather in the square and sing the lantern song. Then even the adults stop and listen. Want me to sing it for you?
+
+npc.kalas.innkeeper.name: The Innkeeper
+npc.kalas.innkeeper.greet: Welcome in! The rooms are all empty, so sleep easy. By Kalas custom, a roof is given free of charge.
+npc.kalas.innkeeper.name.t: Just an ordinary innkeeper. But in Kalas even 'ordinary' arouses suspicion, so just call me the innkeeper.
+npc.kalas.innkeeper.job.t: I run an inn — trading passing guests for village news. The talk these days is all about Nia the scribe. Such a good-natured girl. There's also a rumor that a trial will be held in five days.
+npc.kalas.innkeeper.trial.t: Now that you mention the trial, there's a rumor the Office has hidden away some old document somewhere. The likeliest place is that old archive. But it's forbidden ground, so whoever enters must confess.
+
+npc.kalas.librarian.name: The Old Librarian
+npc.kalas.librarian.greet: …Ah, another one who comes down to this cramped place. Welcome. Books you can touch are all that remain now.
+npc.kalas.librarian.name.t: I was the librarian who kept the old archive. Now I live hidden deep in this cellar, but a book is not a wall — it is something to hold in your hands.
+npc.kalas.librarian.pilgrim.t: If it's the pilgrim's story, look at that letter. Three hundred years ago the pilgrim left it for this village. I have kept it, waiting for the day someone understands its meaning.
+npc.kalas.librarian.job.t: My work was teaching the children and keeping the records. Those grave robbers each came with their own tale and broke through this archive's walls. I have watched people fall to greed for so long that I can spot it at a glance now.
+
+# --- Clue labels and hints ---
+word.pilgrim.label: Pilgrim
+word.pilgrim.hint: The one who came in among the stones three hundred years ago and lived all eight virtues. He left behind that no one can write the truth for another.
+word.truth.label: Truth
+word.truth.hint: A single line left by the pilgrim. Kalas's ledger is covering something.
+word.weapon.label: Weapon
+word.weapon.hint: When records hurt people, they are no longer truth.
+word.lantern.label: Lantern
+word.lantern.hint: Since the night the square's lantern went out, someone's story has begun to go out too.
+word.duty.label: Duty
+word.duty.hint: In this village confession is a duty. The duty of not being suspected.
+word.ledger.label: Ledger
+word.ledger.hint: The Office's scrolls. A place where a neighbor's name grows by one line.
+word.silence.label: Silence
+word.silence.hint: What the scribe kept to the very end. Because keeping is sometimes the falling.
+word.confession.label: Confession
+word.confession.hint: Not speaking a sin, but laying bare what was left unsaid.
+word.trial.label: Trial
+word.trial.hint: In five days, the trial of the apprentice scribe will open.
+fact.kalas.nia.label: Nia the Scribe
+fact.kalas.nia.hint: The scribe who wrote down people's confessions at the Office. Now she waits on her own confession.
+fact.kalas.tobi.label: Tobi, Nia's Brother
+fact.kalas.tobi.hint: A boy who knows what his sister means to protect. He remembers the night he slept on a rooftop.
+fact.kalas.archive.label: The Old Archive
+fact.kalas.archive.hint: Forbidden ground sealed by the Office. Whoever enters must confess.
+fact.song.lantern-song.label: The Lantern Song
+fact.song.lantern-song.hint: A song the children sing in the square. Someone's name is missing from its words.
+fact.creature.wolf-hungry.label: The Hungry Wolf
+fact.creature.wolf-hungry.hint: The wolf is only hungry, never evil. A frightened beast waits for understanding before the arrow.
+fact.creature.robber-greed.label: The Grave Robber
+fact.creature.robber-greed.hint: Those who broke through the wall with their own tales. Greed ran ahead of their walking.
+fact.kalas.lantern-shard.label: Thread-Wound Lantern Shard
+fact.kalas.lantern-shard.hint: A piece fallen from the square's lantern. Someone wound it in thread to hide it.
+fact.kalas.brother-witness.label: Tobi's Confession
+fact.kalas.brother-witness.hint: What he saw from the roof that night. The child opened his mouth for the first time.
+fact.kalas.pilgrim-letter.label: The Pilgrim's Letter
+fact.kalas.pilgrim-letter.hint: The letter the pilgrim left for this village, kept all along by the librarian.
+fact.kalas.ledger-doubt.label: Doubting the Ledger
+fact.kalas.ledger-doubt.hint: Those who believed the ledger kept the truth are beginning, little by little, to show their cracks.
+fact.kalas.elin-forgiven.label: Nia's Forgiveness
+fact.kalas.elin-forgiven.hint: The place where the scribe at last unbound the silence she kept. It was a letting-go instead of hatred.
+
+# --- Deduction ---
+deduction.honesty.sentence: Honesty is writing {1} not as {2} but as {3}
+deduction.honesty.hint: Kalas hardened honesty into records. The meaning the pilgrim left lies on the other side of that.
+
+# --- Crisis ---
+crisis.kalas.trial.text: People of the square gather before the Office. The trial that has been closed for five days opens. The chief denouncer unrolls a scroll and speaks. 'This scribe, Nia, broke the square's lantern and failed to report it. A confession already exists; testimony is unnecessary.' The crowd stirs. Someone among the people looks at you. Now it is your turn to step forward.
+option.truth.label: Produce Tobi's testimony and the lantern shard
+option.truth.text: You present Tobi's words and the thread-wound lantern shard. 'Whoever hid this shard is the one who broke the lantern.' In a trembling voice, Tobi tells what he saw from the roof. The people turn to the chief denouncer. Nia's silence is at last understood, and the ledger keeps the truth.
+option.lantern.label: Read the pilgrim's letter
+option.lantern.text: You take out the pilgrim's letter and read it. 'Do not write the truth as a weapon; light it as a lantern.' The chief's ledger goes into the fire, and the extinguished lantern in the square is lit again. Truth standing before records — that is Kalas's new beginning.
+
+# --- Creatures ---
+creature.wolf.name: Wild Wolf
+creature.robber.name: Archive Grave Robber
+
+# --- Abilities ---
+ability.see-lies.name: Eyes That See Lies
+
+# --- UI (drawn in Task 13b) ---
+player.name: Stranger
+ui.notebook: Notebook
+ui.menu: Menu
+ui.save: Save
+ui.load: Load
+ui.new: New Game
+ui.credits: Credits
+ui.credits-intro: "Hollow Codex stands on the work of:"
+ui.credits.group.fonts: Fonts
+ui.credits.group.tiles: Tiles
+ui.credits.group.music: Music
+ui.credits.group.code: Code
+ui.touch-hint: Touch to move
+ui.close: Close
+ui.recruit: Recruit
+ui.end-talk: End Talk
+ui.tab.facts: Facts
+ui.tab.deductions: Deductions
+ui.tab.hints: Hints
+ui.kind.person: People
+ui.kind.place: Places
+ui.kind.word: Words
+ui.kind.song: Songs
+ui.kind.meaning: Meanings
+ui.kind.creature: Creatures
+ui.combat.move: Move
+ui.combat.attack: Attack
+ui.combat.push: Push
+ui.combat.persuade: Persuade
+ui.combat.defend: Defend
+ui.combat.flee: Flee
+ui.combat.endTurn: End Turn
+ui.evil: Evil
+ui.not-evil: Not Evil
+ui.unknown-nature: Unknown Nature
+ui.day: day
+ui.hour: hour
+ui.day-hour: "{day} day, {hour}:00"
+ui.open-rings: Rings
+ui.no-rings: You don't know any rings yet.
+ui.ring-travel: Travel
+ui.language: Language
+
+# --- Accessibility (M6 Task 46) ---
+ui.skip-to-content: Skip to content
+ui.aria.canvas: Game screen
+ui.aria.open-notebook: Notebook
+ui.aria.open-menu: Menu
+ui.aria.open-rings: Stone rings
+ui.aria.open-codex: Empty Codex
+ui.aria.time: "Current time {time}"
+ui.aria.save-slot: "Save slot {slot}"
+ui.aria.travel: "Travel to {name}"
+ui.aria.ask-topic: "Ask about {topic}"
+ui.aria.choose-option: "Choose {option}"
+ui.aria.recruit: Recruit companion
+ui.aria.tab: "{tab} tab"
+ui.aria.deduction-slot: "Deduction slot {n}"
+ui.aria.codex-page: "Page {name}"
+ui.aria.codex-write: "Write on {name}"
+ui.aria.final: "Choose {name}"
+# --- Stone rings (M2, Task 22) ---
+ring.honesty.name: Ring of the Light Spring
+ring.honesty.song: Song of the Light Spring
+ring.compassion.name: Ring of the Silver Light
+ring.compassion.song: Song of the Silver Light
+ring.valor.name: Ring of the Great Wind
+ring.valor.song: Song of the Great Wind
+ring.justice.name: Ring of the Balance Wall
+ring.justice.song: Song of the Balance Wall
+ring.sacrifice.name: Ring of the Empty Hand
+ring.sacrifice.song: Song of the Empty Hand
+ring.honor.name: Ring of the High Peak
+ring.honor.song: Song of the High Peak
+ring.spirituality.name: Ring of the Still Well
+ring.spirituality.song: Song of the Still Well
+ring.humility.name: Ring of the Low Flower
+ring.humility.song: Song of the Low Flower
+
+fact.ring.honesty.label: Ring of the Light Spring
+fact.ring.honesty.hint: In the middle of Kalas's field, an old song seeps up between the dry grass.
+fact.ring.compassion.label: Ring of the Silver Light
+fact.ring.compassion.hint: Beneath the cairn on the northeast coast, a peaceful song shepherds sing.
+fact.ring.valor.label: Ring of the Great Wind
+fact.ring.valor.hint: At the western forest's edge, a song keeps the sound of wind in the branches.
+fact.ring.justice.label: Ring of the Balance Wall
+fact.ring.justice.hint: On the flat of the northern plateau, a song cuts the horizon like a balance beam.
+fact.ring.sacrifice.label: Ring of the Empty Hand
+fact.ring.sacrifice.hint: In a crack in the eastern shore rocks, a song sung with an empty hand.
+fact.ring.honor.label: Ring of the High Peak
+fact.ring.honor.hint: On the hill across the river, a song heard low when you climb the peak.
+fact.ring.spirituality.label: Ring of the Still Well
+fact.ring.spirituality.hint: In the southwest marsh, a song recited in the spring's brushing against stone.
+fact.ring.humility.label: Ring of the Low Flower
+fact.ring.humility.hint: On the southern plain, a song of petals falling between the blades of grass.
+
+# --- Reona, village of compassion (M3 Task 33) ---
+town.reona.name: Reona
+compassion.music.title: Reona's Almoner
+
+compassion.npc.almoner.name: The Almoner
+compassion.npc.almoner.greet: Welcome to Reona. No one goes hungry here. …It is only that you receive your ration the way we have decided.
+compassion.npc.almoner.name.t: I am the almoner in charge of charity. In this village, how many shares you receive rises before your name.
+compassion.npc.almoner.job.t: My work is keeping the storehouse and setting the rations. How much to give to whom, who is still qualified. …Charity begins with taking in and ends with giving out.
+compassion.npc.almoner.charity.t: Charity is the order by which those who can give look after those who cannot. If that order wavers, everyone goes hungry. So receivers must be grateful, and givers must keep giving.
+compassion.npc.almoner.pantry.t: An open storehouse? That is only an old tale. Anyone walking in and taking their fill — what kind of disorder would that be? We share out in good order.
+compassion.npc.almoner.tax.t: Tax reform… there was talk of opening the storehouse to lower the tax. But that would shrink the share reserved for charity. I opposed it. That way the poor keep receiving help.
+
+compassion.npc.baker.name: The Baker
+compassion.npc.baker.greet: Smelled the bread and came? Sorry, today's share has not come out yet.
+compassion.npc.baker.name.t: I'm the baker. I bake each morning and send the loaves to the almoner's storehouse each evening.
+compassion.npc.baker.job.t: My work is baking bread. But do you know where it goes? Half to the storehouse, half… even I don't know where half goes.
+compassion.npc.baker.hunger.t: Hunger makes no sound. It dwindles quietly at the end of the alley, and one day it is simply gone. I watch that soundless dwindling every day.
+compassion.npc.baker.beggar.t: Do you know the one who lives in the alley? The almoner calls him a lazy hand, but I know him. He falls asleep every night smelling the bread.
+
+compassion.npc.child.name: Piri, the Alley Child
+compassion.npc.child.greet: A stranger! Everyone in Reona goes to collect bread — why don't you?
+compassion.npc.child.name.t: They call me Piri. I have a real name, but no one ever asks, so I forgot it.
+compassion.npc.child.job.t: My job is playing! But lately there's more lining up than playing. From morning I stand in line before the storehouse. Mom collects my share for me.
+compassion.npc.child.song.t: Do you know the song the wanderer sings? Open your hand and bread comes; close your hand and no one knows. I like that one.
+
+compassion.npc.beggar.name: Halv the Beggar
+compassion.npc.beggar.greet: …I'm sorry, I have nothing to give you right now. I am only a body that receives.
+compassion.npc.beggar.name.t: My name… I lost it long ago. People just call me beggar, so I call myself that too.
+compassion.npc.beggar.job.t: My work is standing in line. I stand before the storehouse in the morning and stand again in the evening. Between them, nothing happens. …Sometimes, instead of bread, I receive a song.
+compassion.npc.beggar.gift.t: Once a child split his own bread in half and gave it to me. That was not a ration. That was… a gift. Rations come from above; gifts come from beside.
+compassion.npc.beggar.song.t: Have you heard the wandering singer's song? It says the giving hand is no empty hand. I weep often at that line.
+
+compassion.npc.priest.name: Priest Lien of the Chapel
+compassion.npc.priest.greet: Peace be with you. This chapel is open to anyone. …The storehouse, less so.
+compassion.npc.priest.name.t: I am the priest who keeps this chapel. The people of Reona call me the recording priest.
+compassion.npc.priest.job.t: I used to record this village's old customs. I wrote down, line by line, the stories I heard from the elders who have passed. Those writings keep falling out of favor with the almoner of late.
+compassion.npc.priest.pantry.t: According to the records, Reona's storehouse originally had no door. Even when the hungry went in and took their fill, no one reproached them. Because giving was simply being together.
+compassion.npc.priest.love.t: Love does not come down from above. Love is sitting side by side. If charity makes one bow the head, love brings the heads level.
+
+compassion.npc.wanderer.name: Sel the Wandering Singer
+compassion.npc.wanderer.greet: I walked a long road to reach here. This is a village where songs carry well. …By good intent, I mean.
+compassion.npc.wanderer.name.t: My name is Sel. A wanderer who leaves one song in each village.
+compassion.npc.wanderer.job.t: My work is walking and singing. I carry the songs learned on the road to the next village. In Reona there is one song I have not yet sung through.
+compassion.npc.wanderer.song.t: Hear this song. Compassion does not lay a gift on top of sharing; it is being together in love. …The people of this village know only half of it.
+compassion.npc.wanderer.sharing.t: Sharing is good. But if there is only sharing, the giver and the receiver are parted forever. That is why the song says to stand beside sharing, not on top of it.
+
+compassion.npc.miller.name: Mare the Miller
+compassion.npc.miller.greet: A place that smells of flour. Bear with the rattle of the grinding stone.
+compassion.npc.miller.name.t: They call me Mare. I have ground grain at this mill for thirty years.
+compassion.npc.miller.job.t: Grinding grain, that's the work. But lately I count more than I grind. How many sacks go into the almoner's storehouse, who pays how much….
+compassion.npc.miller.tax.t: "Some years back a young recorder proposed lowering the tax — opening the storehouse to the people. The almoner blocked it. His reason: there must be givers for there to be receivers. After that the village grew poorer."
+
+compassion.npc.seamstress.name: Yuna the Seamstress
+compassion.npc.seamstress.greet: Cloth runs short, so I can't make you clothes — but I am rich in stories.
+compassion.npc.seamstress.name.t: They call me Yuna. I sew south of the square.
+compassion.npc.seamstress.job.t: I make and mend clothes. I even sewed the almoner's robes. I know how heavy those hems are.
+compassion.npc.seamstress.bakery.t: You speak of the bakery. Smoke rises from its chimney even at night. You could say the chimney knows where the morning bread goes.
+
+compassion.npc.scribe.name: Teo the Recorder
+compassion.npc.scribe.greet: I am the recorder. …Will you leave a statement, or ask me something?
+compassion.npc.scribe.name.t: They call me Teo. I keep this village's records.
+compassion.npc.scribe.job.t: I organize the ledgers and documents. I also write the charity ration ledger. …Numbers are honest; the people who write them are less so.
+compassion.npc.scribe.charity.t: The word charity is always written in the expenditure column of the ledger. In some years it was written as 'investment' too. The moment a person is written down as an investment, they become a body that must repay forever.
+compassion.npc.scribe.tax.t: The tax reform document is still in my drawer. The almoner ordered it destroyed, but I could not throw it away. It seemed like something someone would need to read someday.
+
+compassion.npc.grandmother.name: Hanna the Old Mother
+compassion.npc.grandmother.greet: Come in, sit and rest awhile. From here you can see the line before the storehouse well.
+compassion.npc.grandmother.name.t: Call me Hanna. I have lived eighty years in this village.
+compassion.npc.grandmother.job.t: My work now is only to sit. …No, there is one more. Remembering the songs of my childhood.
+compassion.npc.grandmother.song.t: Let me sing you one. Open your hand and bread comes; close your hand and no one knows. But the old lyrics were different. Open your hand and bread comes; join hands together and everyone is full. …When the lyrics changed, even I couldn't tell you.
+compassion.npc.grandmother.love.t: What is love? Sitting at the table. Whoever eats first, everyone sits and eats together. That is love. What comes down from above is not love — it is alms.
+
+# --- Reona clues ---
+compassion.word.sharing.label: Sharing
+compassion.word.sharing.hint: What the order of charity calls sharing. It keeps the giver and the receiver parted forever.
+compassion.word.gift.label: Gift
+compassion.word.gift.hint: Rations come from above; gifts come from beside. The half-loaf a beggar received from a child.
+compassion.word.love.label: Love
+compassion.word.love.hint: The true principle of compassion. Not alms handed down from above, but sitting side by side and eating together.
+compassion.word.charity.label: Charity
+compassion.word.charity.hint: What this village calls order. It hardens the divide between giver and receiver.
+compassion.word.dependence.label: Dependence
+compassion.word.dependence.hint: The relation charity creates. The receiver must be grateful, and repay forever.
+compassion.word.hunger.label: Hunger
+compassion.word.hunger.hint: What dwindles and disappears without a sound. At the alley's end, where no one sees.
+compassion.fact.reona.almoner.label: The Almoner
+compassion.fact.reona.almoner.hint: The official who keeps Reona's storehouse and sets the rations. He believes charity is order.
+compassion.fact.reona.baker.label: The Baker
+compassion.fact.reona.baker.hint: Bakes bread every day and sends half to the storehouse. Where the other half goes, no one knows.
+compassion.fact.reona.wanderer.label: The Wandering Singer
+compassion.fact.reona.wanderer.hint: A wayfarer who leaves one song in each village. In Reona there is a song left half-sung.
+compassion.fact.reona.bakery.label: Reona's Bakery
+compassion.fact.reona.bakery.hint: A place whose chimney smokes even at night. The chimney knows where half the baked bread goes.
+compassion.fact.reona.plaza.label: The Square
+compassion.fact.reona.plaza.hint: Where people line up before the storehouse. Every morning the same shadows stand in the same places.
+compassion.fact.reona.chapel.label: The Chapel
+compassion.fact.reona.chapel.hint: Where the records of the old customs remain. It is written that the storehouse once had no door.
+compassion.fact.reona.song.label: The Wanderer's Song
+compassion.fact.reona.song.hint: Compassion does not lay a gift on top of sharing; it is being together in love. The people of Reona know only half of it.
+compassion.fact.reona.open-pantry.label: The Old Custom of the Open Storehouse
+compassion.fact.reona.open-pantry.hint: Reona's storehouse once had no door. The hungry walked in and took, and no one reproached them.
+compassion.fact.reona.relief-tax.label: The Failed Tax Reform
+compassion.fact.reona.relief-tax.hint: An attempt to open the storehouse to the people and lower the tax. The almoner blocked it, and the village grew poorer.
+compassion.fact.creature.compassion-beggar.label: The Hungry Beggar
+compassion.fact.creature.compassion-beggar.hint: Not evil — only hungry. His hands are not lazy; they are merely empty.
+
+# --- Reona deduction and crisis ---
+compassion.deduction.compassion.sentence: Compassion is not laying {2} on top of {1}, but being together through {3}
+compassion.deduction.compassion.hint: The order of charity puts sharing first. The wanderer's song sings love from the other side.
+compassion.crisis.hoard.text: People gather before the storehouse. The almoner begins sharing out bread, and when a child falls, no one reaches for them. The almoner speaks. If the order wavers no one receives anything; stand in line. Then, from far across the square, the wanderer's song is heard. Now it is your turn to step forward.
+compassion.option.open-pantry.label: Open the storehouse door and let everyone share together
+compassion.option.open-pantry.text: You sing along with the wanderer's song and read from the old record. The storehouse once had no door. The almoner's door opens, and people pass the bread among themselves. In a square where no seat of giver or receiver remains, everyone is full. The village learns that compassion is not laid on top of sharing, but kept together in love.
+compassion.option.relief-tax.label: Make public the tax reform document
+compassion.option.relief-tax.text: You take the tax reform document from the recorder's drawer and reveal it. An old promise to return the storehouse to the people and lower the tax. The almoner bows his head. The village relearns how to feed itself. Where the alms ended, people began to call one another's names.
+
+# --- Reona abilities and creatures ---
+compassion.ability.persuade.name: Unbinding with Empathy
+compassion.creature.beggar.name: The Hungry Beggar
+
+# --- Solgang, village of valor (M3 Task 34) ---
+town.solgang.name: Solgang
+valor.music.title: Solgang's Duelist
+
+valor.npc.champion.name: The Undefeated Champion
+valor.npc.champion.greet: I have never lost in this arena. When a challenger comes I stand to meet them — I do not step back.
+valor.npc.champion.name.t: The name Undefeated, given by the fighters, is enough. Here you have a name only while you are standing.
+valor.npc.champion.job.t: My work is standing. When a challenger comes I meet them, and I do not move my feet until one of us falls. That is the valor of this village.
+valor.npc.champion.battle.t: Battle begins with not moving your feet. Step back once and everything falls apart. …That is how I was taught.
+valor.npc.champion.arena.t: This arena's sand covers the names of the fallen. The crowd shouts only the name of the one still standing.
+valor.npc.champion.retreat-law.t: A law allowing retreat — that is an excuse for cowards. This village is strong because it never steps back.
+
+valor.npc.sergeant.name: Harr the Drillmaster
+valor.npc.sergeant.greet: You wear a sword at your hip. But your feet are already stepping back. Here, we correct that stance first.
+valor.npc.sergeant.name.t: I am Harr, the drillmaster. On the first day we make the newcomers forget how to fall back.
+valor.npc.sergeant.job.t: My work is tending the barracks and making the young stand. …Lately there is more burying than standing.
+valor.npc.sergeant.brother.t: A comrade is one who stands in the same line and holds together. When the one who held disappears, those remaining call his name.
+valor.npc.sergeant.barracks.t: The barracks fill with empty places. The armor is still there — there is simply no one to fill it.
+
+valor.npc.smith.name: Bran the Blacksmith
+valor.npc.smith.greet: Want to trust us with a sword, or a shield? The folk here carry both on their backs.
+valor.npc.smith.name.t: They call me Bran. I have beaten iron in this forge for forty years.
+valor.npc.smith.job.t: I make swords, and I make shields. But shield orders have thinned of late. Everyone only wants to stand facing forward.
+valor.npc.smith.shield.t: A shield is not a thing to trust with your back. You raise it to guard this side. When there is no one to leave your back to, a shield becomes heavy baggage.
+
+valor.npc.brewer.name: Oren the Tavern Keeper
+valor.npc.brewer.greet: You've come. Before a fight or after, here no one sets a cup down.
+valor.npc.brewer.name.t: They call me Oren. I've kept this tavern for thirty years.
+valor.npc.brewer.job.t: I brew the drink and fill the cups. I pour for the defeated too. …Though I would rather pour more for those who came home alive than for the winners.
+valor.npc.brewer.brother.t: A comrade and a brother are no different — they are ones who share a cup. Lately the young march out without even time to share one.
+
+valor.npc.child.name: Rupi, the Square Child
+valor.npc.child.greet: Are you a fighter too? Going to be like the Undefeated uncle? I can't — the sword is still too heavy for me.
+valor.npc.child.name.t: I'm Rupi. I run the fastest in the square.
+valor.npc.child.job.t: My job is hanging on the arena fence and watching. …But lately no one wins. They all fall.
+valor.npc.child.champion.t: They say the Undefeated uncle has never lost. …But where did all his friends go? That's what I want to know.
+
+valor.npc.veteran.name: Kel the Old Soldier
+valor.npc.veteran.greet: Just an old man with a bent back. Remembering old songs is more my work than fighting these days.
+valor.npc.veteran.name.t: Call me Kel. Once I was someone who carried a spear for this village.
+valor.npc.veteran.job.t: Now my work is remembering songs and passing them on. There is a marching song the old soldiers sang — in this village only half of it remains.
+valor.npc.veteran.retreat.t: Retreat? Here they call it fleeing. But the old song sang it differently. Stepping back to bring a wounded comrade home — that too is courage.
+
+valor.npc.scout.name: Sai the Scout
+valor.npc.scout.greet: A stranger? What did you see outside the village? …These days the road home frightens me more than the road out.
+valor.npc.scout.name.t: I'm Sai the scout. I keep watch beyond the walls.
+valor.npc.scout.job.t: I walk the roads, watching for bandits and beasts. …But lately I meet more of the village's young dead. Bodies that did not die in battle but fell for refusing to step back.
+valor.npc.scout.duelist.t: I saw a wandering duelist. He does not fight to win — he fights to show how to stay alive. …This village will not learn that.
+
+valor.npc.healer.name: Mir the Healer
+valor.npc.healer.greet: Show me the wound. …The outside is whole, but the inside is wide open to see.
+valor.npc.healer.name.t: They call me Mir. I stitch wounds and set bones at the infirmary.
+valor.npc.healer.job.t: I treat wounds. In this village I was taught that a wound on the back is the most shameful. Even so, I find it the most welcome.
+valor.npc.healer.blood.t: Blood cannot hide even when it wants to. Wherever blood is spilled, there is always someone waiting for that person — that is what it means.
+
+valor.npc.standard.name: Dain the Standard-Bearer
+valor.npc.standard.greet: This banner is raised only when we go forward. …When we go back, they say there is no reason to raise it.
+valor.npc.standard.name.t: I am Dain the standard-bearer. I plant this banner in the arena.
+valor.npc.standard.job.t: I carry the banner. When a fighter falls, I cover them with it. …One day I want to return this banner to someone who comes back alive.
+valor.npc.standard.courage.t: I was taught that courage is not charging with the banner at the front. It is keeping the banner to the end and coming home with it.
+
+valor.npc.widow.name: Ren the Widow
+valor.npc.widow.greet: …Did you come to speak of my husband, or are you only passing through?
+valor.npc.widow.name.t: They call me Ren. I am someone who lost a husband in this village.
+valor.npc.widow.job.t: I used to sew clothes. Now my work is remembering a promise that was never broken.
+valor.npc.widow.retreat-law.t: Before my husband left, I heard there was such a law. One that did not call a man a coward for bringing a wounded comrade home. …Somewhere along the way the law vanished, and standing on even while abandoning the wounded became honor.
+
+# --- Solgang clues ---
+valor.word.courage.label: Courage
+valor.word.courage.hint: Not refusing to step back, but coming back. The song's last line sings this word.
+valor.word.retreat.label: Retreat
+valor.word.retreat.hint: What this village calls fleeing. But the old law and the old song call it differently.
+valor.word.shield.label: Shield
+valor.word.shield.hint: Not a thing that blocks your back, but one raised to guard this side. What those who returned take up again.
+valor.word.battle.label: Battle
+valor.word.battle.hint: Where the undefeated champion stands. The reason he never steps back.
+valor.word.blood.label: Blood
+valor.word.blood.hint: What flows even from a wound on the back. The trace the healer most welcomes.
+valor.word.brother.label: Comrade
+valor.word.brother.hint: One who stands in the same line and holds. They say it is a bond of shared cups — but now there is no one left to share one with.
+valor.fact.solgang.champion.label: The Undefeated Champion
+valor.fact.solgang.champion.hint: A man never defeated in the arena. He cries to fallen challengers not to step back.
+valor.fact.solgang.sergeant.label: Harr the Drillmaster
+valor.fact.solgang.sergeant.hint: One who tends the barracks and makes the young stand. He knows the words he cannot say outside the gate.
+valor.fact.solgang.veteran.label: Kel the Old Soldier
+valor.fact.solgang.veteran.hint: An old soldier who remembers only half of an old marching song. He lost the last line.
+valor.fact.solgang.smith.label: Bran the Blacksmith
+valor.fact.solgang.smith.hint: A maker of swords and shields. They say shield orders have dwindled of late.
+valor.fact.solgang.arena.label: Solgang's Arena
+valor.fact.solgang.arena.hint: A sand floor that erases the names of the fallen and keeps only the name of the one standing.
+valor.fact.solgang.barracks.label: The Barracks
+valor.fact.solgang.barracks.hint: Where the armor stays but the ones to fill it dwindle. Last year only three of twelve came home.
+valor.fact.solgang.forge.label: The Forge
+valor.fact.solgang.forge.hint: A furnace that never dies. What is forged there changes year by year.
+valor.fact.solgang.battle-hymn.label: The Old Marching Song
+valor.fact.solgang.battle-hymn.hint: If the enemy is ahead and your home behind, raise your shield. The last line sings of those who return.
+valor.fact.solgang.retreat-law.label: The Vanished Retreat Law
+valor.fact.solgang.retreat-law.hint: An old law that did not call a man a coward for bringing a wounded comrade home. It vanished somewhere along the way.
+valor.fact.creature.valor-duelist.label: The Wandering Duelist
+valor.fact.creature.valor-duelist.hint: Not evil. He fights not to win, but to show the way to come back alive.
+
+# --- Solgang deduction and crisis ---
+valor.deduction.valor.sentence: True valor is not in flaunting {1}, but in {2} and coming home to raise {3} again
+valor.deduction.valor.hint: The undefeated arena knows no stepping back. The old soldier's marching song and the widow's old law point to a different ending.
+valor.crisis.challenge.text: People gather in the arena. A young challenger kneels bleeding, and the undefeated champion levels his spear, shouting not to step back. The challenger gasps, tries to rise, and falls again. The crowd holds its breath; the drillmaster turns his head. Then the old soldier begins to sing, low. Now it is your turn to step forward.
+valor.option.allow-retreat.label: Sing the old marching song and declare that retreat is also courage
+valor.option.allow-retreat.text: You sing the old soldier's song. If the enemy is ahead and your home behind, raise your shield. Then you take up the lost last line. The one who lifts a shield and comes home is the brave one. One by one the crowd joins in, and the undefeated champion slowly lowers his spear. The challenger walks out on his own feet, not dragged. For the first time, the name of one who returned is written in the arena sand. Solgang learns that valor lies not in refusing to step back, but in coming home and standing again.
+valor.option.duel-honor.label: Challenge the undefeated champion to a duel yourself
+valor.option.duel-honor.text: "You raise a spear and challenge him. The undefeated champion laughs — he has waited long for such a challenger. The spears clash, and you stop the final blow. The moment you draw your spear back from his throat, the crowd stirs. The Undefeated kneels and says: I learned how to win, but never how to stop. You reach out a hand and raise him to his feet. The village sees that the one who lifts others up is honored more than the one who wins."
+
+# --- Solgang abilities and creatures ---
+valor.ability.shield.name: Raising the Shield
+valor.creature.duelist.name: The Wandering Duelist
+
+# --- Seles, village of justice (M3 Task 35) ---
+town.seles.name: Seles
+justice.music.title: Seles's Verdict
+
+justice.npc.judge.name: Arben the Judge
+justice.npc.judge.greet: This is the court of Seles. Stand in one line. Custom allows no exceptions.
+justice.npc.judge.name.t: I am Arben. For thirty years I have handed down this court's verdicts. In Seles, the custom before a grave comes before the name of the living.
+justice.npc.judge.job.t: My work is keeping the custom and giving the punishment. In the month of mourning no one may sing, and those who break it take the lash. Custom guards the village. That is justice.
+justice.npc.judge.law.t: Law is rooted in custom. Singing during mourning brings the lash. Taking things out before a grave brings exile. Our law has no item called emotion.
+justice.npc.judge.punishment.t: Punishment is the fire that makes people remember custom. Forty lashes — no punishment is ever reduced. That is how Seles calls justice.
+justice.npc.judge.compassion.t: Compassion is a word unfit for this court. If punishments shrink, everyone will try to shake the custom. I am the one who stops that shaking.
+justice.npc.judge.lullaby.t: A lullaby? Singing, in the month of mourning? That is an offense against custom. The widow Cele cannot escape punishment.
+justice.npc.judge.mourner.t: The young man seen at the grave is a thief. The witness has already stood. The punishment is fixed.
+
+justice.npc.clerk.name: Leon the Court Clerk
+justice.npc.clerk.greet: Testimony remains in the records. Quietly, and exactly.
+justice.npc.clerk.name.t: I am Leon, the court's clerk. The one who copies the verdicts and charges.
+justice.npc.clerk.job.t: I write the trial records. Today I wrote three sheets of verdicts. All flogging or exile. I once counted pride in writing letters; lately I am afraid of counting punishments in letters.
+justice.npc.clerk.law.t: The law is already written. The mourning prohibition, the punishment table, the no-remission clause. The judge says he only reads the record, but the one who writes it will tell you — it is not that simple.
+justice.npc.clerk.punishment.t: There are three kinds of punishment. Flogging, exile, and kneeling before a grave. Kneeling is the lightest. …The children call it the turning-away, and that nickname troubles me.
+justice.npc.clerk.harsh.t: Look at these records. Last month, six people broke the mourning. All took forty lashes. Even the one who sang, even the one who laid flowers at a grave. My hands shake every time I write those numbers.
+justice.npc.clerk.prisoner.t: …The imprisoned youth. I did not record his name. The judge ordered he be called only 'thief.' The record 'thief' passes judgment before the truth does. That is something I have never seen before.
+
+justice.npc.widow.name: Cele the Widow
+justice.npc.widow.greet: …Did you hear a lullaby? I'm sorry, I mustn't sing during mourning. Each night it slips out of my mouth without my meaning to.
+justice.npc.widow.name.t: I'm Cele. A widow who buried her husband a month ago. The people of Seles call me the singing widow.
+justice.npc.widow.job.t: When my husband was alive I wove thread into cloth. Now… every day I go to the grave, pull up the grass, and touch the stones. That is my work. Mourning is not work — it becomes the body.
+justice.npc.widow.compassion.t: People don't call compassion comfort. Feeling compassion itself is said to break the mourning. So no one reaches for the one who weeps. In the month of mourning, song, comfort, and tears are all forbidden.
+justice.npc.widow.lullaby.t: That song is the lullaby only the two of us sang when my husband was alive. The song you sing to soothe a child, or an adult in fear. Even after death it seems to keep me, so at the grave I sang it after all. …Let the lashes come. The nights I don't sing frighten me more.
+justice.npc.widow.prisoner.t: You speak of my son. He went to his father's grave every night. He found the necklace my husband had hidden somewhere by the grave, and he was polishing it. A witness saw him and called him a thief. My son speaks the truth, but custom comes before truth.
+justice.npc.widow.truth.t: The truth is… on the night my husband died I did not weep. Following the rites, I said nothing. But the me who sings now is more truthful than the me of that night. Because mourning imprisoned the truth.
+justice.npc.widow.mourning-duty.t: They say mourning used to be a time of closing the door for a hundred days. Somewhere along the way mourning became a prohibition. Don't weep, don't sing, only kneel before the grave. No one knows whose punishment made it so.
+
+justice.npc.prisoner.name: Iren the Imprisoned Youth
+justice.npc.prisoner.greet: …I'm sorry. I'm afraid that anything I say will be written down as a thief's words.
+justice.npc.prisoner.name.t: I'm Iren. My mother is Cele, and my father was a stonemason. …When my father died suddenly, only I was left before the grave.
+justice.npc.prisoner.job.t: I learned to work stone in my father's workshop. Now I only sit alone in this cell. Father said that when you touch stone, you see the truth.
+justice.npc.prisoner.truth.t: I told exactly what happened that night at the grave — that I found my mother's necklace, that I was late because I saw an injured fledgling, that I was wiping the necklace at the side of the grave. But the judge made the record 'thief' first.
+justice.npc.prisoner.fairness.t: If it were fairness, my father's work and my mother's song would both be laid on the same scale. But Seles's scale gives the punishment first and weighs afterward.
+justice.npc.prisoner.widow.t: My mother sings the lullaby before the grave each night — even after the rites forbade song, until her voice gave out. I grew up hearing that song. It keeps me.
+justice.npc.prisoner.mourner.t: Do you know that mourner? He was my father's friend. He wandered by the grave every night to guard it, and mistook a stranger for a thief. Grief does that to a person, I suppose.
+
+justice.npc.witness.name: Kain the Witness
+justice.npc.witness.greet: I'd sell my two eyes. I saw that night clearly.
+justice.npc.witness.name.t: I am Kain. The cobbler of this village. These days I stand as a witness in court more and more often.
+justice.npc.witness.job.t: I make shoes, and at night I keep watch over the village. I record anyone who walks toward the grave. …I don't know when that became my work.
+justice.npc.witness.law.t: Where there is law, there are witnesses. I only tell what I saw. The sound of singing during mourning, the shadows passing in and out of the graves. The law told me to keep an eye on those.
+justice.npc.witness.punishment.t: Punishment isn't frightening — it is order. After the lashes, everyone remembers the custom. I believe punishment corrects people.
+justice.npc.witness.mourner.t: I saw the youth Iren holding something gleaming at the grave. If he wasn't a thief, what would he be seeking at a grave? …But thinking on it now, it did look like a necklace. If it was his mother's?
+
+justice.npc.child.name: Rine the Square Child
+justice.npc.child.greet: The adults only ever say be quiet, so I can't sing. But you look okay, don't you?
+justice.npc.child.name.t: I'm Rine. A child born in this village. I know more songs than anyone in Seles.
+justice.npc.child.job.t: My job is remembering songs! In the square, near the graves, I memorize all the sounds the adults make with their throats. …But lately the adults forbid singing, so I'm the keeper of the songs now.
+justice.npc.child.lullaby.t: The widow lady's lullaby? I know it too! The moon lights the grave, and I sing your lullaby. She sings it before the grave every night. The judge mustn't catch her… I like that song.
+justice.npc.child.love.t: Love? That is… singing before a grave. The song my mother sang to put me to sleep and the one the widow sings to her husband are the same song. Singing even when it's forbidden. Is that love?
+justice.npc.child.widow.t: The widow lady is kind — why does she have to be punished? If singing is a crime, I'm a criminal too, and no one punishes me. She gets punished because she's an adult.
+
+justice.npc.priest.name: Serno the Priest
+justice.npc.priest.greet: Peace. This shrine is older than the graves, but I too live by the mourning rules.
+justice.npc.priest.name.t: I am Serno. As the priest who keeps this village's shrine, I am also the one who keeps the old records of mourning.
+justice.npc.priest.job.t: I tend the old records and prepare the words of the mourning rites. …But through the years, the word 'forbidden' has grown in the records. Do not weep, do not sing, do not break the rules.
+justice.npc.priest.mourning-duty.t: The old mourning records had no punishment in them. The month of mourning was a time of closing the door for a hundred days, when neighbors brought meals and sat together talking by night. It was no place for punishment.
+justice.npc.priest.comfort-widow.t: Comfort is not teaching. It is sitting beside the grave and listening to the song being sung. If you hear that song and sit with her, the punishment will lose its power.
+justice.npc.priest.compassion.t: "Compassion is thought to lessen punishment, but truly it is suffering together. The old records say: if justice is the scale, compassion is the hand that holds it."
+justice.npc.priest.harsh.t: Punishment outweighing custom is recent. Forty lashes — in the old days it was not even cause for a cell. That punishment has made people afraid, and now no one weeps before a grave.
+
+justice.npc.mason.name: Duman the Mason
+justice.npc.mason.greet: I raise gravestones. Stone cannot carve lies, which is why my work survives in this village.
+justice.npc.mason.name.t: They call me Duman. A mason who handles the stone of this village's gravestones and house foundations.
+justice.npc.mason.job.t: I used to carve the names of the living. Now I carve the punishments of the dead. Inscribing 'defied the mourning' on grave markers, I mean. The pace at which the names on stone grow frightens me.
+justice.npc.mason.law.t: Law… should be like stone. It should carry weight, hold fast, and hold no lies. Today's law is not stone but clay. Rain reshapes it.
+justice.npc.mason.harsh.t: Last month I cut six inscriptions. All for singing. Look — since when is there a law that carves gravestones for singers? …This village uses the stones meant for the dead to punish the living.
+justice.npc.mason.comfort-widow.t: There is still hope, though. I carved the gravestone of Cele the widow's husband, and that stone alone still reads 'rests here.' Her son polishes it every day. While the stone endures, the scale will find its balance someday.
+
+justice.npc.scribe.name: Bela the Scribe
+justice.npc.scribe.greet: I write the verdicts. …Between documents and words, I can no longer tell which is the truth.
+justice.npc.scribe.name.t: I am Bela, the scribe who copies this village's verdicts and mourning records.
+justice.npc.scribe.job.t: Every day I sort the punishment records. Yesterday, forty lashes for one song. Today, one more for merely lingering before a grave. The numbers are honest — it is the law that sets them that isn't.
+justice.npc.scribe.truth.t: I was taught that records hold the truth. But now the records make the truth. Write 'thief' and he becomes a thief; write 'mourner' and it changes. The same night, the same grave, the same youth. One word divides a person.
+justice.npc.scribe.prisoner.t: I read the youth's record again. The witness's words, the hour of the night, the place of the grave. Nowhere was theft written. Only that he had been before the grave. That single line brought him to this cell.
+justice.npc.scribe.harsh.t: The numbers on the punishment table grow every year. Lashes for defying mourning, exile for the graves. As the numbers stack, the villagers grow quieter, and I grow more afraid of writing numbers.
+
+justice.npc.gravedigger.name: Gorno the Gravedigger
+justice.npc.gravedigger.greet: This is where the dead live. For the living — be quieter, and more truthful.
+justice.npc.gravedigger.name.t: They call me Gorno. I dig and guard the earth of this graveyard.
+justice.npc.gravedigger.job.t: I dig graves, light candles, and walk my rounds at night. …But lately the living come by night more often. Afraid of punishment, they've gone as quiet as the dead.
+justice.npc.gravedigger.mourner.t: That mourner… he weeps before a grave every night. When he sees a stranger he blocks them, calling thief. Grief can blind a person that way. He is not wicked — he is someone swallowed in mourning.
+justice.npc.gravedigger.compassion.t: "I learned compassion like this: when I go to dig a grave and see someone keening, it is I who should smile instead. Even with the dead lying there, it is the living who need comfort."
+justice.npc.gravedigger.lullaby.t: That lullaby… I hear it every night. A sound that carries between the graves. The judge forbade it, but as I see it, that song harms no one. Rather, it keeps me.
+justice.npc.gravedigger.prisoner.t: Iren is no thief. I saw him every night — kneeling before the grave, polishing the stone, listening to the lullaby. That necklace was what the dead man left his wife, and the son was finding it to return to his mother.
+
+# --- Seles clues ---
+justice.word.fairness.label: Fairness
+justice.word.fairness.hint: Laying everyone on the same scale. Seles's law gives the punishment first and weighs afterward.
+justice.word.law.label: Law
+justice.word.law.hint: The mourning prohibitions and punishment clauses rooted in custom. There is no item called emotion.
+justice.word.punishment.label: Punishment
+justice.word.punishment.hint: Flogging, exile, kneeling before a grave. The fire that makes custom remembered.
+justice.word.compassion.label: Compassion
+justice.word.compassion.hint: What people forbade in place of comfort. Mourning punishes compassion.
+justice.fact.seles.judge.label: Arben the Judge
+justice.fact.seles.judge.hint: Seles's judge, who has passed verdicts for thirty years. He believes custom is justice.
+justice.fact.seles.widow.label: Cele the Widow
+justice.fact.seles.widow.hint: A month since she buried her husband. Every night she sings the forbidden lullaby before the grave.
+justice.fact.seles.prisoner.label: Iren the Imprisoned Youth
+justice.fact.seles.prisoner.hint: Cele's son. He found his mother's necklace at the grave and was accused of theft.
+justice.fact.seles.witness.label: Kain the Witness
+justice.fact.seles.witness.hint: The witness who saw something gleaming at the grave. He tells only what he saw and leaves the judgment to the law.
+justice.fact.seles.mason.label: Duman the Mason
+justice.fact.seles.mason.hint: One who works the stone of gravestones and foundations. Now he carves inscriptions for those who defied mourning.
+justice.fact.seles.court.label: The Court of Seles
+justice.fact.seles.court.hint: Where punishment comes before record. Verdicts pile up three sheets a day.
+justice.fact.seles.graveyard.label: The Graveyard
+justice.fact.seles.graveyard.hint: Where a lullaby carries every night. The living, afraid of punishment, have gone as quiet as the dead.
+justice.fact.seles.mourning-lullaby.label: The Mourner's Lullaby
+justice.fact.seles.mourning-lullaby.hint: The moon lights the grave, and I sing your lullaby. The song Cele kept for her husband.
+justice.fact.seles.mourning-duty.label: The Lost Month of Mourning
+justice.fact.seles.mourning-duty.hint: The hundred days of the old records. Not punishment — a time when neighbors brought meals and sat together.
+justice.fact.seles.harsh-punishment.label: The Harsh Punishment
+justice.fact.seles.harsh-punishment.hint: Forty lashes for one song. Exile for entering the graves. The table's numbers grow every year.
+justice.fact.seles.comfort-widow.label: The Hand of Comfort
+justice.fact.seles.comfort-widow.hint: Sitting by the grave and listening to the song. When comfort stands before punishment, the scale finds its balance.
+justice.fact.creature.justice-mourner.label: The Grief-Stricken Mourner
+justice.fact.creature.justice-mourner.hint: Not evil. It is grief that makes him mistake a stranger for a thief. He is a person swallowed in mourning.
+
+# --- Seles deduction and crisis ---
+justice.deduction.justice.sentence: Justice is not blocking {2} in the name of {1}, but ruling through {3}
+justice.deduction.justice.hint: The judge's law keeps custom with punishment. What Seles lost is the balance of the scale. Set the scale with truth and rule with love, and justice is at last achieved.
+justice.crisis.mourning.text: Moonlight runs cold before the courthouse. The widow Cele, who sang during mourning, and the youth Iren, who found a necklace at the grave, are dragged before the judge. The judge unfurls the verdict. The song broke custom; the grave yielded a thief. The punishment is fixed. The crowd holds its breath. A child bows her head, and the gravedigger looks toward the graves. Now it is your turn to step forward.
+justice.option.comfort-widow.label: Sing the lullaby to show the truth and offer comfort
+justice.option.comfort-widow.text: Before the courthouse, you sing the lullaby in a trembling voice. The moon lights the grave, and I sing your lullaby. The crowd stops breathing. The witness bows his head, and the priest takes out the old records and reads them. The month of mourning was not punishment but a time of being together. After a long silence, the judge folds the verdict. For the first time, Seles's scale takes up truth and love and finds its balance. Comfort is handed down instead of punishment.
+justice.option.strict-law.label: Read out the punishment clauses and rule by the law
+justice.option.strict-law.text: You unfold the punishment table and read by the law. Song — forty lashes; entering the graves — exile. The judge nods, and the flogging is carried out. The people grow quieter, but somewhere a child's lullaby continues, low. Seles kept its custom. Yet no one stands before the graves anymore.
+
+# --- Seles abilities and creatures ---
+justice.ability.eye.name: The Eye of Justice
+justice.creature.mourner.name: The Grief-Stricken Mourner
+
+# --- Dione village (M4 Task 37) ---
+town.dione.name: Dione
+sacrifice.music.title: Dione's Altar
+
+sacrifice.npc.altar-priest.name: Kreon, Priest of the Altar
+sacrifice.npc.altar-priest.greet: Come in. Stand before the altar and everything is stripped away. Lay down all that you carry.
+sacrifice.npc.altar-priest.name.t: I am Kreon, the priest who keeps Dione's altar. Today too, the altar swallows someone's offering.
+sacrifice.npc.altar-priest.job.t: Before being a priest, I am the altar's servant. People come here to give their wealth, their bodies, even a last scrap. That is our village's love. Lay down something too before you go.
+sacrifice.npc.altar-priest.devotion.t: Devotion is emptying yourself entirely. If something remains, it is not devotion — it is greed. The altar is the fire that burns that greed.
+sacrifice.npc.altar-priest.love.t: Love gives without reserve, and gives again until the self disappears. A heart that holds back like yours is not called love.
+sacrifice.npc.altar-priest.widow-song.t: That song is clinging. Nothing but a lingering hold on the dead. What the widow cannot release at the altar is that clinging.
+sacrifice.npc.altar-priest.penitent.t: That penitent — he shows you the road you must walk. He takes up the whip before the altar every day now. That is the true posture.
+
+sacrifice.npc.widow.name: Leah the Widow
+sacrifice.npc.widow.greet: …Did you come from the altar? Or did you come to hear my dead husband's song.
+sacrifice.npc.widow.name.t: I'm Leah. My husband did not come back from the altar. People call me the singing widow.
+sacrifice.npc.widow.job.t: Since my husband died, I boil a half-loaf of bread every evening. The way he liked it. The altar says to throw even that away… but it keeps my days.
+sacrifice.npc.widow.love.t: Love was not the wound my husband carved, but the evenings we sat and shared. Counting wounds is not love — it is competing.
+sacrifice.npc.widow.widow-song.t: That song is one only my husband and I sang. Before the altar came, it was the dawn song the women of this village sang. My husband left while singing it. So now the song holds me.
+sacrifice.npc.widow.altar.t: The altar demands a person's last possession. My husband laid his hand on the altar to prove his love, and the wound never let him come back. …I'll say no more of it.
+sacrifice.npc.widow.devotion.t: Devotion… that word took my husband. He kept meaning to give more, and in the end gave himself. The altar only knows how to receive.
+
+sacrifice.npc.child.name: Rio the Child
+sacrifice.npc.child.greet: If you talk to me the punishment is missing dinner. But it's okay — I'm already used to it.
+sacrifice.npc.child.name.t: I'm Rio. I'm six, and I'm practicing to be a little handmaid of the altar. The priest says if you strip away a lot when you're small, you can make a great sacrifice later.
+sacrifice.npc.child.job.t: My work is skipping one meal a day and not choosing a single thing I like. The priest calls it a holy burden, but I don't see why I'm learning to carry a burden.
+sacrifice.npc.child.burden.t: Burden? The priest says the more burdens, the holier. But Granny's bread box looks like the real burden to me. It doesn't look that way for people, though.
+sacrifice.npc.child.widow-song.t: Auntie Leah's song! I sing it secretly in the backyard every night. The priest mustn't hear — but when she sings it, my heart grows warm.
+sacrifice.npc.child.widow.t: Auntie Leah always shares a half-loaf with me. She says don't offer it to the altar. But is that also a sacrifice… no, what should I call it. I'm too little to know the words.
+
+sacrifice.npc.pilgrim.name: Ion the Pilgrim
+sacrifice.npc.pilgrim.greet: I wander from place to place, a pilgrim. I walked three years to answer the rumor of Dione's altar.
+sacrifice.npc.pilgrim.name.t: They call me Ion. One staff and one notebook are all my fortune. I record the true sacrifices I hear and see in every place.
+sacrifice.npc.pilgrim.job.t: My work is being a witness — recording, without taking sides, what happens before the altar and what the villagers turn their eyes from. Until I came here, I believed sacrifice was beautiful.
+sacrifice.npc.pilgrim.witness.t: A witness is one who remembers what they saw to the very end. I copied this village's records three times over. The priest lifts his scarred hand at the altar, but I also remember how whole that hand once was.
+sacrifice.npc.pilgrim.martyr-contest.t: This village competes before the altar over who offered more painfully. They measure the length of wounds and count the days of fasting — last year, one who cut his own hand won. The priest calls it holy competition. I record it as the martyr contest.
+sacrifice.npc.pilgrim.devotion.t: Devotion brought me here, but now I fear the word. Wherever they tell you to give everything, there is a receiver. I want to record that receiver too.
+
+sacrifice.npc.surgeon.name: Sane the Surgeon
+sacrifice.npc.surgeon.greet: Sit. Show me the wound. …Clean. Good.
+sacrifice.npc.surgeon.name.t: They call me Sane. The only surgeon in this village who works with knife and thread. My blade never cuts wounds — it only joins them.
+sacrifice.npc.surgeon.job.t: My work is sewing wounds. But most wounds in this village are self-made — made to stand before the altar, to lose bigger than the next. I seal them every day, and I keep becoming a witness.
+sacrifice.npc.surgeon.witness.t: If you want a witness, I am the best one. My fingertips know which wounds came from a knife and which from the altar's bowl. I haven't seen the priest's hand in years. In a surgeon's record, wounds are the truth.
+sacrifice.npc.surgeon.martyr-contest.t: The wound contest — watching the recorder lay his rule to it is truly absurd. It ignores that a wound is not proof of pain but a share of love.
+sacrifice.npc.surgeon.penitent.t: That penitent is my patient. He whipped his back and came to me infected. I treat him, but he will be before the altar again soon. The village makes more wounds than I can heal.
+sacrifice.npc.surgeon.courage.t: Courage is not adding more wounds. It is not turning from a wound, but looking at the face of the one who will hurt. In this village, that is the hardest thing.
+
+sacrifice.npc.scribe.name: Mir the Recorder
+sacrifice.npc.scribe.greet: Records are eternal. …If only the records I write did not frighten me.
+sacrifice.npc.scribe.name.t: I am Mir, Dione's recorder — the one who copies the lists of what is offered to the altar.
+sacrifice.npc.scribe.job.t: "I keep the altar's ledger. Names, offerings, and the length of wounds. The larger the numbers, the more praise. Yesterday I wrote in one column: one finger. I spent today looking at it."
+sacrifice.npc.scribe.martyr-contest.t: Some call it the martyr contest. I only write the numbers. But numbers do not lie. A husband's finger, a child's meal, an old man's knee. The altar is collecting those numbers.
+sacrifice.npc.scribe.burden.t: The old ledger says a burden is not carried alone but carried together. Now each carries only their own and will not take up another's. If that is what the altar teaches, I will not record its teaching.
+sacrifice.npc.scribe.widow.t: "Lady Leah's affair is in every ledger. The one who gave much, the greatest sacrifice. Beside it stands one short line: a widow who boils a half-loaf every night. That is the line I should truly record, and I have not managed to put it into any ledger yet."
+
+sacrifice.npc.mason.name: Harpa the Mason
+sacrifice.npc.mason.greet: I'm someone who has lived touching stone. Stone doesn't lie, which I like. The altar… even stone learned to lie, in shock.
+sacrifice.npc.mason.name.t: They call me Harpa. A mason who works the stone of this village's houses and of the altar. I am also a descendant of the altar's builders.
+sacrifice.npc.mason.job.t: I repair the altar's stone. But strangely, the stone sways beforehand, knowing whose offering it will burn. It is because the foundation of an old shrine remains underground. Different words were carved on that foundation.
+sacrifice.npc.mason.altar.t: "Lift this altar. Beneath it is the hearth of the old shrine. The words carved there mean: the fire that kept this village was not the altar but the hearth relit every evening. It was a place that filled, not a place that stripped away."
+sacrifice.npc.mason.courage.t: Courage is not holding up a stone about to fall. It is becoming the stone that holds up a person about to fall. Lately I want to make such a stone, so I am dressing the altar anew.
+sacrifice.npc.mason.widow-song.t: That song is familiar to my ears too. When Leah sings in the evening, the hearth fire seems to sing along. It is the flame the altar is trying to put out.
+
+sacrifice.npc.baker.name: Sera the Bread Baker
+sacrifice.npc.baker.greet: Fresh bread. …If you mean to offer it at the altar, leave. I don't put bread there.
+sacrifice.npc.baker.name.t: I'm Sera. At the village bakery I bake bread each morning, and in the evening I share it.
+sacrifice.npc.baker.job.t: My work is kneading flour, keeping the fire, and handing out bread. The priest calls me one who can't sacrifice. Every time I hear it, I stoke the fire harder.
+sacrifice.npc.baker.living-love.t: I believe true sacrifice is not offering your life at once, but stoking the fire and handing out bread every morning. The altar takes a moment; this bread keeps a day alive. Sharing — that is the love I know.
+sacrifice.npc.baker.love.t: Love lives between the baker and the eater. It does not burn in the fire. Like dough rising, it rises together.
+
+sacrifice.npc.healer.name: Nora the Healer
+sacrifice.npc.healer.greet: If you have a wound, show me. One with no wounds may be the most wounded person in this village.
+sacrifice.npc.healer.name.t: They call me Nora. A healer who works herbs and medicines beside Sane the surgeon. I make wounds close.
+sacrifice.npc.healer.job.t: My work is dressing the wounds Sane has sewn. I also tend the wounds on that penitent's back. However well they heal, they split open again whenever he goes to the altar. Instead of those who make wounds, we should teach how to live with them.
+sacrifice.npc.healer.penitent.t: He is not wicked. He is only poor, taught that holiness must be proven with wounds. I hope he learns someday that he can be holy with none.
+sacrifice.npc.healer.burden.t: Knowing how to lighten a burden is not the start — knowing how to share one is. That is where healing begins. A wound you can say hurts is already half healed.
+
+sacrifice.npc.gardener.name: Mano the Gardener
+sacrifice.npc.gardener.greet: A field only grows better with tending. Some say going hungry here is noble… but I know the earth waits for hands.
+sacrifice.npc.gardener.name.t: They call me Mano, the gardener who tends the plot behind the village. Pumpkin, carrot, radish — names the altar has forbidden.
+sacrifice.npc.gardener.job.t: My work is sowing seed, pulling weeds, and giving water. Then I share half the harvest with the villagers. The priest tells me to offer even that half.
+sacrifice.npc.gardener.garden.t: This plot is the oldest place in the village — older than the altar. The children taught that hunger is holy come here starving, eat a radish, and go. I teach them it is not a burden, it is food.
+sacrifice.npc.gardener.martyr-contest.t: A wound contest — on the way back from market I see the quarrels before the altar. Who fasted more, who ached more. Nothing like that grows in a plot. Because nothing like that is ever planted.
+
+# --- Dione clues ---
+sacrifice.word.devotion.label: Devotion
+sacrifice.word.devotion.hint: The word the altar teaches. The name for emptying and burning the whole self. The word the pilgrim came to fear.
+sacrifice.word.burden.label: Burden
+sacrifice.word.burden.hint: The altar teaches that more burdens make you holier. But the healer teaches how to share burdens.
+sacrifice.word.witness.label: Witness
+sacrifice.word.witness.hint: One who remembers what they saw to the very end. The surgeon's fingertips and the pilgrim's notebook do that work.
+sacrifice.fact.dione.altar-priest.label: Kreon, Priest of the Altar
+sacrifice.fact.dione.altar-priest.hint: The priest who keeps the altar. He teaches emptying the self utterly and stokes the village's martyr contests.
+sacrifice.fact.dione.widow.label: Leah the Widow
+sacrifice.fact.dione.widow.hint: A widow who lost her husband to the altar. Every night she keeps her days with an evening loaf and an old song.
+sacrifice.fact.dione.pilgrim.label: Ion the Pilgrim
+sacrifice.fact.dione.pilgrim.hint: A pilgrim who walked three years to find a true sacrifice. He copied the altar's records three times over.
+sacrifice.fact.dione.surgeon.label: Sane the Surgeon
+sacrifice.fact.dione.surgeon.hint: The only surgeon who closes wounds. He knows most wounds in this village are self-made.
+sacrifice.fact.dione.scribe.label: Mir the Recorder
+sacrifice.fact.dione.scribe.hint: The recorder of the altar's ledger. He knows every number has a name.
+sacrifice.fact.dione.altar.label: The Altar of Dione
+sacrifice.fact.dione.altar.hint: The stone altar at the village's center. Beneath it lies the foundation of an older hearth.
+sacrifice.fact.dione.sanctuary.label: The Sanctuary
+sacrifice.fact.dione.sanctuary.hint: The sanctuary around the altar. On its walls is carved the law of renunciation.
+sacrifice.fact.dione.garden.label: The Garden Behind the Village
+sacrifice.fact.dione.garden.hint: A garden older than the altar. Starving children sneak there to eat radishes.
+sacrifice.fact.dione.widow-song.label: The Widow's Song
+sacrifice.fact.dione.widow-song.hint: The dawn song Leah sang with her husband. Dione's last song, never offered at the altar.
+sacrifice.fact.dione.martyr-contest.label: The Martyr Contest
+sacrifice.fact.dione.martyr-contest.hint: The altar's custom of competing over who offered more painfully. Wound lengths and fasting days are written as numbers.
+sacrifice.fact.dione.renunciation-law.label: The Law of Renunciation
+sacrifice.fact.dione.renunciation-law.hint: The law the altar commands. What you keep is greed; only empty hands are called love.
+sacrifice.fact.dione.living-love.label: The Hearth's Love
+sacrifice.fact.dione.living-love.hint: Words carved into the old foundation. The fire was kept not by the place that stripped away, but by the place that filled every day.
+sacrifice.fact.creature.sacrifice-penitent.label: The Penitent of Repentance
+sacrifice.fact.creature.sacrifice-penitent.hint: Not evil. One taught that holiness must be proven with wounds. He whips his own back before the altar.
+
+# --- Dione deduction and crisis ---
+sacrifice.deduction.sacrifice.sentence: Sacrifice is not a {1} that swallows the self, but bearing {3} through {2}
+sacrifice.deduction.sacrifice.hint: The altar teaches burning the self in the name of devotion. The widow's song and the hearth's foundation point to a true sacrifice that is borne, not swallowed.
+sacrifice.crisis.altar.text: Villagers gather before the altar. Priest Kreon lifts little Rio's hand and cries out. Love is giving without reserve; only when the child is emptied entirely is it true sacrifice. Rio kneels with a frightened face. Behind them, widow Leah hides a half-loaf, and the pilgrim Ion grips his staff. Sane the surgeon bows his head, and Mir the recorder unrolls the ledger. Now it is your turn to step forward.
+sacrifice.option.open-altar.label: Sing the widow's song to show love and courage
+sacrifice.option.open-altar.text: "You sing the old song before the altar. Leah and little Rio add their voices. The priest shouts, but Harpa the mason pushes the altar stone aside to reveal the old hearth. On the foundation is carved: the fire that kept this village was not the altar but the hearth relit every evening. The priest wavers, and the villagers put down the cords they used to measure wounds. Dione learns that sacrifice is not devotion swallowing the self, but bearing courage in love. That evening, the fire is lit in the bakery instead of at the altar."
+sacrifice.option.exile-priest.label: Read out the martyr contest records and close the altar
+sacrifice.option.exile-priest.text: You take out the pilgrim's notebook and the recorder's ledger and read them aloud. One finger, one meal, one knee. The counts of what the altar received pile up before it. The priest falls silent, and one by one the villagers lift their heads. The priest leaves the altar, and the altar is closed. But the child still skips a meal every evening. Dione stopped competing, but has not yet learned how to live.
+
+# --- Dione abilities and creatures ---
+sacrifice.ability.meaning.name: The Meaning of Sacrifice
+sacrifice.creature.penitent.name: The Penitent of Repentance
+
+# --- Argon, village of honor (M4 Task 38) ---
+town.argon.name: Argon
+honor.music.title: Argon's House Song
+
+honor.npc.elder.name: Elder Beron
+honor.npc.elder.greet: A guest of Argon. Give me your name. Which line you belong to, which house's sigil you carry.
+honor.npc.elder.name.t: I am Beron, an elder who has kept this house's rank order for three generations. In this village a name comes from the house. No house, no name.
+honor.npc.elder.job.t: My work is counting the ranks and keeping face. Who stands above and who below — if that order wavers, the whole village falls. The ledger that counts names is my law.
+honor.npc.elder.honor.t: Honor is the face of a house. When that face cracks, whether dead or living, the flaw must be washed clean. Keeping honor — that alone is this village's order.
+honor.npc.elder.shame.t: Knowing shame is itself honor. An insult weighs more than death. One whose face is trampled is a name already gone, even while alive.
+honor.npc.elder.face.t: A broken face cannot be mended. So before it breaks, harden the face you have now. Rather than lie down, shatter standing.
+honor.npc.elder.heir.t: My heir Sion? He dishonored the house. With a song he invented about a lost verse, he insulted the founder. One who breaks face is struck from the name. That is our law.
+
+honor.npc.heir.name: Sion the Heir
+honor.npc.heir.greet: …Another who comes face to face with me. To those who avoid a name about to be erased, I am already a stranger. Will you not avoid me?
+honor.npc.heir.name.t: They call me Sion. I was this house's heir. …That 'was' is bitter.
+honor.npc.heir.job.t: An heir's work is to learn words and learn the sword, and one day inherit the house. But I lost all of it over a single verse of a song.
+honor.npc.heir.song.t: Do you know the second verse of that song? Our house memorizes only the first — the lord who never knelt. But the second verse sings differently. He was a kneeling lord. Not one who raised a celebrated spear, but one who knelt to save everyone.
+honor.npc.heir.truth.t: Truth hurts more than face. I sang that second verse. The founder knelt from fear? No. He knelt not from fear but to save the village. That is the truth this village hides.
+honor.npc.heir.courage.t: I was taught that courage is nothing other than raising a sword. But the song's second verse says kneeling is courage too. Facing the enemy's blade and thinking first of the villagers' lives — that was the founder's courage.
+
+honor.npc.herald.name: Luka the Herald
+honor.npc.herald.greet: A herald who carries the house's voice. Whose name shall I cry today?
+honor.npc.herald.name.t: Call me Luka. I am the herald who cries the house's ranks before duels and at rites.
+honor.npc.herald.job.t: My work is calling names — by rank, by house. But lately I cry more names that must be erased. When that name is called, the people bow their heads.
+honor.npc.herald.song.t: The house song is all in the copy I keep — from the first verse to the second. …But at rites we always sing only the front. It is our house's way never to sing the last verse.
+honor.npc.herald.honor.t: Honor — how dare I. I only cry out. That the name standing above is the right name. …But every time I turn to the back pages of the songbook, it rises in me that there are names this village does not sing.
+honor.npc.herald.elder.t: "Elder Beron is the master of rank. He holds the power to raise and lower names. He set one law: one who breaks face must kneel in apology or be struck from the name. An insult weighs more than death, he says. That is this village's law of shame."
+
+honor.npc.scribe.name: Eli the House Recorder
+honor.npc.scribe.greet: House recorder. Before I open the ledger — have you come to add a name, or to erase one?
+honor.npc.scribe.name.t: They call me Eli. I write and erase the names of this house. An erased letter leaves a mark. Those marks keep growing.
+honor.npc.scribe.job.t: I keep the rank ledger. Who was born in which line, which name rose and which fell. …But the elder reaches into this ledger himself. Those parts I could not write.
+honor.npc.scribe.rank.t: The family rank law. The line you are born into becomes the order of your name. But trace the rank ledger back, and there is one erased line. The ledger knows who erased it.
+honor.npc.scribe.truth.t: When I try to write the truth, the ledger grows heavy. When the elder moved to erase Sion's name, I felt the weight of that truth. To the very moment a name is erased, it is always face, not truth, that wins.
+honor.npc.scribe.heir.t: Sion sang the second verse. What crime is that? But in the name ledger, rank comes before truth. Tomorrow the elder will make Sion kneel in the square and take his apology. Before the erasure.
+
+honor.npc.swordmaster.name: Kaion the Swordmaster
+honor.npc.swordmaster.greet: Before you draw a sword, tell me what you mean to guard. That decides what I teach.
+honor.npc.swordmaster.name.t: Kaion. I teach swordsmanship in this village. But I don't teach how to win. Why learn a sword that cannot let you live after winning?
+honor.npc.swordmaster.job.t: I teach the sword, and before children learn how to raise a blade I teach them how to kneel. One who doesn't know how to kneel is no man with a sword.
+honor.npc.swordmaster.courage.t: Courage… do you know the founder's story? He is remembered as the lord who never once knelt. But the truth differs. He knelt once before a blade — to save the villagers. I teach that kneeling is harder than raising a sword.
+honor.npc.swordmaster.honor.t: One who knows honor only as face keeps even his sword for face. But true honor… is knowing what to keep and what to abandon, even before a blade.
+honor.npc.swordmaster.song.t: The house song carries how swordsmanship began in this village. The first verse sings he never knelt; the second sings he knelt. The same blade, the same lord, a different song. Which side will you sing?
+honor.npc.swordmaster.face.t: I've seen many raise a sword wrongly to keep their face. Face carried on your back is a shield; held before your face it is a blindfold. Behind a blindfold you cannot even see the fight.
+
+honor.npc.brewer.name: Mur the Brewer
+honor.npc.brewer.greet: Welcome. Drink doesn't ask your name. After a cup, everyone wears the same face.
+honor.npc.brewer.name.t: They call me Mur. I've brewed at this tavern for thirty years — a man of the lowest line in this village, too.
+honor.npc.brewer.job.t: I brew the drink, fill the cups, toast honorable names, and forget erased ones. In the tavern all names are equal. Rank and house alike — all sink into the cup.
+honor.npc.brewer.heir.t: The day Sion sang the song, I watched, cup in hand. Before everyone's eyes, he sang the second verse alone, all the way through. Some bowed their heads and clapped. Most fell silent and only stared at the ranks. …Those faces stay with me.
+
+honor.npc.child.name: Arin the Village Child
+honor.npc.child.greet: Hi! Do you want to learn a song? I know the back part of the house song!
+honor.npc.child.name.t: I'm Arin! A village kid, and nobody asks my name. Because my line is low. But I know the songs best of all!
+honor.npc.child.job.t: My job is singing! In the square, at the tavern, at the rites. The adults sing the founder's boast-song, but I also sing the founder's hidden song. They say the founder was a kneeling lord!
+honor.npc.child.song.t: The first verse sings a lord who never knelt, and the second verse sings one who knelt. I like the second better. A song about what really happened is more fun than a boasting one!
+honor.npc.child.shame.t: Shame — you know the kneeling in the square, right? That's what the adults call shame. But the founder knelt too, and he's still the founder. So I don't really get what shame is.
+honor.npc.child.widow.t: Auntie Serin cries a lot. Because her husband's name was erased. I remember that name in a song too. You can erase a name, but you can't erase a song!
+
+honor.npc.widow.name: Serin the Widow
+honor.npc.widow.greet: …Did you come to sing, or to find an erased name?
+honor.npc.widow.name.t: They call me Serin. A widow whose name was erased in this village. My husband knelt in the square, and even so his name was erased.
+honor.npc.widow.job.t: My work is selling cloth in the market. When my husband lived, we sold it together. Now I stand alone without that name. In a village where face loomed larger than a husband.
+honor.npc.widow.shame.t: Do you know what shame is? In this village, kneeling. But I think — my husband's kneeling was not shame but love. He knelt to save everyone.
+honor.npc.widow.song.t: The second verse of that song survives in this village as a folk lyric. Sung by children, sung by widows, sung by erased names. The founder was a kneeling lord. Not one who fled — one who knelt to save.
+honor.npc.widow.pride.t: Pride is not raised with a sword. My husband meant to fight for pride, but he knelt for my sake. That moment of kneeling — I think it was greater than pride.
+honor.npc.widow.heir.t: The day Sion sang that song, I wept. It brought back my husband's affair. The boy only sang the truth, and this village means to punish that truth. Tomorrow, in the square, the elder… .
+
+honor.npc.mason.name: Toben the Mason
+honor.npc.mason.greet: I'm someone who lives touching stone. I dress sigils, but the stone hidden beneath them is older.
+honor.npc.mason.name.t: They call me Toben. A mason who works the stone of this village's manors and square. Stone knows no rank.
+honor.npc.mason.job.t: I dress the manors' sigils and lay the square's flagstones. And when I happen to make repairs, I face words carved in old stone. Words people want to forget.
+honor.npc.mason.manor.t: The house manor. Its sigil shows a lord who never knelt. But a different picture remains on the old hall's stone — a picture of a kneeling lord. Someone covered that stone over with the sigil.
+honor.npc.mason.rank.t: The rank ledger was originally carved on a stone pillar beneath the ridge beam. One line from hundreds of years ago is erased. The stone I dress long remembers what name was on that erased line.
+honor.npc.mason.face.t: Stone has no face, which is good. When it cracks, the crack shows as it is. People hide cracks with face, but stone cannot. That is why I trust that stone is truth.
+
+honor.npc.seamstress.name: Rian the Seamstress
+honor.npc.seamstress.greet: Cloth doesn't ask your name. Whatever line you belong to, it only wraps the body.
+honor.npc.seamstress.name.t: They call me Rian. I sew this village's clothes. I have made the rite robes, and even the clothes worn in the shame rite.
+honor.npc.seamstress.job.t: I stitch the gold thread of the rite robes and embroider sigils on collars. But for the shame rite I make clothes that cover even the sigil. The face-keeping house dresses its own in clothes that shed face.
+honor.npc.seamstress.face.t: You hold your clothes straight to keep face, but on the day you kneel they all crumple anyway. Face should not be a garment you wear but a heart you keep.
+honor.npc.seamstress.widow.t: I have mended all of Lady Serin's clothes of late — even the clothes of her erased husband. Every time I mend them with care, I feel I am stitching in place of an erased name.
+
+# --- Argon clues ---
+honor.word.honor.label: Honor
+honor.word.honor.hint: What this village calls face and family rank. But the song's second verse sings a different honor.
+honor.word.shame.label: Shame
+honor.word.shame.hint: An insult weighs more than death. So the truth is hidden, and the kneeling lord was erased.
+honor.word.pride.label: Pride
+honor.word.pride.hint: A heart that seems greater not when raised by the sword but in the moment of kneeling.
+honor.word.face.label: Face
+honor.word.face.hint: A house's face that cannot be mended once cracked. This village weighs it heavier than life.
+honor.fact.argon.elder.label: Elder Beron
+honor.fact.argon.elder.hint: The elder who has kept the rank for three generations. He holds the ledger that raises and lowers names.
+honor.fact.argon.heir.label: Sion the Heir
+honor.fact.argon.heir.hint: The heir who sang the lost second verse of the song. He cracked the house's face and now stands at risk of erasure.
+honor.fact.argon.herald.label: Luka the Herald
+honor.fact.argon.herald.hint: The herald who cries the ranks. He holds the full copy of the house song, but at rites only the front is sung.
+honor.fact.argon.swordmaster.label: Kaion the Swordmaster
+honor.fact.argon.swordmaster.hint: A master who does not teach winning. He teaches kneeling before the sword.
+honor.fact.argon.widow.label: Serin the Widow
+honor.fact.argon.widow.hint: A widow whose husband knelt in the square and was erased anyway. One of the few who know the song's second verse.
+honor.fact.argon.manor.label: The House Manor
+honor.fact.argon.manor.hint: A manor whose gate bears the ranks. The sigil shows a lord who never knelt, but the old hall's stone says differently.
+honor.fact.argon.plaza.label: The Square
+honor.fact.argon.plaza.hint: Where names are cried out. Where the shame rite is held, and everyone watches an erased name.
+honor.fact.argon.lineage-song.label: The House Song
+honor.fact.argon.lineage-song.hint: A proud old song. The first verse sings a lord who never knelt; the lost second verse sings one who did.
+honor.fact.argon.family-rank.label: The Family Rank Law
+honor.fact.argon.family-rank.hint: The law by which the line you are born into becomes the order of your name. One erased line remains in the ledger.
+honor.fact.argon.humiliation-rule.label: The Law of Shame
+honor.fact.argon.humiliation-rule.hint: One who breaks face must kneel in apology or be struck from the name. The law that an insult weighs more than death.
+honor.fact.argon.kneeling-lord.label: The Kneeling Founder
+honor.fact.argon.kneeling-lord.hint: The first lord who knelt before an enemy's blade to save the village. The descendants sing of it turned into a boast.
+honor.fact.creature.honor-braggart.label: The Braggart Duelist
+honor.fact.creature.honor-braggart.hint: Evil. One who picks fights over face. Believing winning is honor, he lunges at anyone who offers a hilt.
+
+# --- Argon deduction and crisis ---
+honor.deduction.honor.sentence: Honor is not a hardened face guarding {1}, but building {3} through {2}
+honor.deduction.honor.hint: "Argon calls face and family rank honor. But the song's second verse and the swordmaster say: keep the truth, and build honor with courage."
+honor.crisis.lineage.text: People of the square gather, ordered by house. Elder Beron raises the rank ledger high and cries out. In a seat meant to keep the house's name sits one who dishonored it. The heir Sion invented a song and insulted the founder. One who breaks face must kneel in apology or be struck from the name. Herald Luka unrolls the ledger, and the people hold their breath. The heir Sion does not kneel — he stands and lifts his head. Now it is your turn to step forward.
+honor.option.truth-lineage.label: Sing the second verse of the house song to the end and reveal the truth
+honor.option.truth-lineage.text: You break the silence and begin to sing the house song. First the first verse, the lord who never knelt that everyone knows. Then the lost second verse, the kneeling lord. The founder did not flee. To save everyone, he knelt before the enemy's blade. The child Arin joins in, and the widow Serin adds her voice. The swordmaster nods, and one by one the people of the square learn the second verse. The elder's ledger is lowered, and Sion does not apologize. Argon learns that honor lies not in hardening one's face, but in keeping the truth and building with courage.
+honor.option.exile-elder.label: Read out the erased line of the rank ledger and cast out the elder
+honor.option.exile-elder.text: You gather the words of recorder Eli and mason Toben and read out the erased line of the rank ledger. The founder's name was on that line originally, and someone erased it to hide the humiliation. Elder Beron bows his head, and the square stirs. The elder is struck from the name and leaves the village. But the rank ledger still remains, and the people begin to form ranks again. Argon shed its false face, but has not yet learned how to build true honor.
+
+# --- Argon abilities and creatures ---
+honor.ability.truth.name: The Sword of Truth
+honor.creature.braggart.name: The Braggart Duelist
+
+# --- Elia, village of spirituality (M4 Task 39) ---
+town.elia.name: Elia
+spirituality.music.title: Elia's Breath
+
+spirituality.npc.monk.name: Abbot Daru
+spirituality.npc.monk.greet: A stranger seeking Elia? Do you wish to meditate? Then show me a license first. Meditation is not free.
+spirituality.npc.monk.name.t: I am the abbot of this meditation hall, Daru. In this village, a license number is remembered longer than a name.
+spirituality.npc.monk.job.t: My work is keeping the order of the mind. Meditation is not for everyone. Only the qualified enter the hall, and the qualification is proven by a license. If you are caught meditating without one, it is apostasy.
+spirituality.npc.monk.ritual.t: Ritual is form. And form must hold firm. Dawn prayers, afternoon sutras, evening incense. If this order wavers, the mind wavers too. So I cannot give a license to one who breaks procedure, however upright the mind.
+spirituality.npc.monk.prayer.t: Only license holders may pray. The first stage is the borrowed prayer, the next is the shared prayer, and the last is the solitary prayer. Each stage requires a license, and I sign them all.
+spirituality.npc.monk.silent-chant.t: A sacred song? I have heard of none. There is no such song in the meditation hall. If there is a song passing from mouth to mouth, it was invented by those without licenses.
+spirituality.npc.monk.truth.t: Truth? Hmph. What place has truth in meditation? Only procedure matters. Keep the procedure, and anyone can become holy. Do not seek truth. One who seeks truth loses their license.
+
+spirituality.npc.novice.name: Ian the Novice
+spirituality.npc.novice.greet: Oh, did you come to take the license exam? I'm about to take mine soon too.
+spirituality.npc.novice.name.t: They call me Ian. I've been a novice monk for three years. Once I receive a license, I can finally step properly into the meditation hall.
+spirituality.npc.novice.job.t: Every morning I scrub the meditation hall floor. I can't meditate yet, but I can scrub beneath the feet of those who do. The abbot calls this work mercy too. I still don't know if it is mercy or license.
+spirituality.npc.novice.prayer.t: They say prayer can be learned only after receiving a license. But I have heard the hermit's song. It is a sound without a license, and strangely it felt most like prayer of all.
+spirituality.npc.novice.meditation-hall.t: The hall door is always locked. Show a license and it opens; without one, you stand before the door. I have stood before it for three years.
+spirituality.npc.novice.silent-chant.t: That song… I've heard it in secret too. The breath-like song the old hermit breathes out in the back garden. It would be trouble if the abbot heard of it. But after hearing it, the mind empties. The fear along with it.
+
+spirituality.npc.scribe.name: Seon, the License Clerk
+spirituality.npc.scribe.greet: The license issuance records. Applications on Mondays, renewals at the start of each season. Meditation is by appointment.
+spirituality.npc.scribe.name.t: They call me Seon. A clerk who issues and records licenses in the meditation hall's archive.
+spirituality.npc.scribe.job.t: This archive holds three hundred years of license records. Names, signatures, renewal dates. Everyone who meditates is written in this ledger. One who meditates outside the ledger — that is spirituality outside the book.
+spirituality.npc.scribe.ritual.t: Ritual must be as exact as a ledger. If procedure goes awry, the license is withdrawn; when the license is withdrawn, meditation is prohibited. I am the one who records those withdrawals.
+spirituality.npc.scribe.prayer.t: In the old license records, the word 'prayer' appears from the first page. In the new records, the word 'license' appears from the first page. The same ledger, the words turned around.
+spirituality.npc.scribe.library.t: This archive is like the heart of the meditation hall. Three hundred years ago, a pilgrim left a sutra on this very spot. Now that sutra lies buried under the license ledgers.
+
+spirituality.npc.healer.name: Rua the Healer
+spirituality.npc.healer.greet: The breath first, the credentials after. There is no law of asking the sick for a license.
+spirituality.npc.healer.name.t: They call me Rua. A healer who cares for the sick of this village. Because I teach how to rule the breath outside the hall, I have no license.
+spirituality.npc.healer.job.t: The sick do not hold out licenses. The one who cannot breathe, the one afflicted by sleeplessness, the one whose chest is tight. I listen to their breath first. That is my prayer.
+spirituality.npc.healer.breath.t: Breath needs no license. Breathe in, breathe out — that alone empties the mind. If you hold your breath waiting for a license, the mind only tightens more.
+spirituality.npc.healer.breath-song.t: I used to teach the children a breath song at the sick one's bedside. 'The breath lives, the trembling rests.' Now, they say, singing in the hall gets your license withdrawn. This village licenses even its songs.
+spirituality.npc.healer.courage.t: Courage is not presenting a license. Courage is taking the sick one's hand and singing one verse of a forbidden song. I want to summon that courage someday.
+
+spirituality.npc.hermit.name: Pella the Hermit
+spirituality.npc.hermit.greet: …Shh. I am a person without a name. I erased it myself, so I would not be written into the license ledger. Even so, to one who comes speaking, I owe a quiet answer.
+spirituality.npc.hermit.name.t: Pella. Once I was a monk of this hall. There was a time I prayed with song instead of license. Now I live in the archive's shadow, my name erased.
+spirituality.npc.hermit.job.t: I meditate. Without a license, without dawn prayers, without ritual. I only count my breath and sing. Here in the archive's depths, where no one knows.
+spirituality.npc.hermit.spirit.t: Spirit is not a matter of tomorrow. When it is still, when the breath grows shallow, it comes to rest in the mind without your knowing. The license was a seat for that spirit. But somewhere along the way only the seat remained, and the spirit was driven out.
+spirituality.npc.hermit.silent-chant.t: You are listening. This song I do not let out of the mouth. Song is not sung by imitating — it is sung by being sung. One who can truly sing, sings without sound. Truth, love, and courage too vanish when sung aloud. They only come alive when they breathe together in the heart.
+spirituality.npc.hermit.truth.t: Truth. I am reluctant now even to let that word out of my mouth. One who speaks truth has their license withdrawn and is forced into silence. But truth cannot be withdrawn with a license. The license lives on paper; the truth lives in the breath.
+spirituality.npc.hermit.courage.t: Courage. The scarcest thing in this village. Meditating after throwing away the license, in an age when meditation requires one — that is the only courage I know.
+
+spirituality.npc.gardener.name: Hore the Gardener
+spirituality.npc.gardener.greet: The garden needs no license. Bury a seed, and it grows without one.
+spirituality.npc.gardener.name.t: They call me Hore. A gardener who tends the herbs and flowers in the garden behind the hall. While the monks empty their minds, I empty the mind of the earth.
+spirituality.npc.gardener.job.t: This garden is older than the meditation hall. It is where the pilgrim planted herbs and left them. The breath that mends wounds, the worry worn into furrows — the plants that cure such things. Licenses do not grow here.
+spirituality.npc.gardener.breath.t: The breath is like a garden. Tended, it deepens; left alone, it dries up. In spring I level my breath with the hoe. That is my only ritual.
+spirituality.npc.gardener.love.t: Love is the garden's water. No one waters a license number. We water people, we water flowers, and sometimes we water a strange traveler too.
+spirituality.npc.gardener.courtyard.t: This courtyard runs all the way to the hall's door. Those coming to buy licenses, those who lost theirs — they pass along this path. The grass looks on them all alike.
+
+spirituality.npc.child.name: Rine the Child
+spirituality.npc.child.greet: Shh, caught me! …No, I'm teasing. I was singing.
+spirituality.npc.child.name.t: I'm Rine! A child who lives in the garden behind the hall. The monks call me 'little noise,' but I grow quietest when I sing.
+spirituality.npc.child.job.t: My job is singing! When Grandfather Hore pulls the garden weeds, I sing the breath song. A song without a license — if the abbot hears, I'll be scolded. But singing it makes my heart flutter light.
+spirituality.npc.child.silent-chant.t: That's my song! The one the hermit breathes out in the back garden — I hide behind a tree and sing along. He says you mustn't make a sound, so I only mouth it silently. But mouthing it really does clear the mind. Isn't that strange?
+spirituality.npc.child.prayer.t: I've never learned to pray. They say you need a license to pray. But to me the breath song feels like prayer, and I don't yet know how to get a license.
+
+spirituality.npc.brewer.name: Ion the Brewmaster
+spirituality.npc.brewer.greet: Want a cup of tea that never passed the hall? No, just joking. I'm the one who does the least holy work in this village.
+spirituality.npc.brewer.name.t: They call me Ion. A brewmaster who makes barley tea and medicinal wine at the tavern. The monks ask for a license for the tea, but I don't stick licenses on my kettle.
+spirituality.npc.brewer.job.t: My work is boiling water, steeping tea, and listening to the villagers' stories. Those worn out from buying licenses at the hall only catch their breath at my tavern.
+spirituality.npc.brewer.license-rule.t: The license system. It's been three years since the abbot started selling licenses at the hall door. Before that, anyone could enter the hall and sit quietly. Now, a price has been put on that quiet sitting.
+spirituality.npc.brewer.ritual.t: Ritual. At dawn prayers, those without licenses cannot even light incense. But the old records say the pilgrim prayed without incense.
+
+spirituality.npc.gatekeeper.name: Gur the Gatekeeper
+spirituality.npc.gatekeeper.greet: Gatekeeper of the meditation hall. Without a license, you do not pass this door. …Of course, that door is not the only one in the hall.
+spirituality.npc.gatekeeper.name.t: Call me Gur. A gatekeeper who guards the village entrance and the hall's door. There are two gates, and I bar only one with a license.
+spirituality.npc.gatekeeper.job.t: I bar the hall door with a license and leave the village entrance open. But of late a false monk appears at the village gate, seizing people to sell them meditation. Without a license, even. That one is the real danger.
+spirituality.npc.gatekeeper.fake-monk.t: That false monk. In a cowl, rapping a wooden fish, telling people to donate for the grace of meditation. Open your purse, another donation; open it again, and he takes the bow and the name too. He is not in the license ledger. Real monks are evil in license; that one is evil in donations.
+spirituality.npc.gatekeeper.courtyard.t: If it's the hall's courtyard — as gatekeeper I have something to say. Inside the yard it is quiet; outside it has grown noisy. Those who once sat and leveled their breath without a license must now pay and take exams.
+
+spirituality.npc.widow.name: Ire the Widow
+spirituality.npc.widow.greet: I have no license, so I cannot enter the hall. And so I live counting my husband's breath outside the door.
+spirituality.npc.widow.name.t: They call me Ire. A widow who lives facing the hall door. My husband, trying to get a license, gave it up for me, who prayed beside him.
+spirituality.npc.widow.job.t: What my husband left behind is the breath song. In a village where even calling something prayer requires a license, I count my breath beside him every evening. Because the license is not recorded to the dead.
+spirituality.npc.widow.breath-song.t: The breath song is a song the women of old sang. 'The breath lives, the trembling rests.' Before the license system, this was the prayer. We meditated with this song.
+spirituality.npc.widow.love.t: Love holds out no license. My husband gave up his license so I would not be left outside meditation. Love lets you breathe deeper than meditation, even without being meditation.
+spirituality.npc.widow.courage.t: Courage… lately I want to sing that breath song aloud before the hall door. Let the license be withdrawn. Because what my husband taught me is that true meditation is becoming free of fear.
+
+# --- Elia clues ---
+spirituality.word.spirit.label: Spirit
+spirituality.word.spirit.hint: What the hermit saw within the breath. The license was the spirit's seat, but now only the seat remains and the spirit is driven out.
+spirituality.word.prayer.label: Prayer
+spirituality.word.prayer.hint: What only license holders may offer. But the old ledger has records of praying without a license.
+spirituality.word.breath.label: Breath
+spirituality.word.breath.hint: The only meditation that needs no license. Breathe in, breathe out, and the mind empties.
+spirituality.word.ritual.label: Ritual
+spirituality.word.ritual.hint: "The dawn prayers and sutra readings reduced to form. The village's law: if procedure goes awry, the license is withdrawn."
+spirituality.fact.elia.monk.label: Abbot Daru
+spirituality.fact.elia.monk.hint: The abbot who issues meditation licenses. Three years ago meditation became a matter of credentials.
+spirituality.fact.elia.novice.label: Ian the Novice
+spirituality.fact.elia.novice.hint: A novice preparing for the license exam for three years. He scrubs the hall floor but cannot step inside the door.
+spirituality.fact.elia.hermit.label: Pella the Hermit
+spirituality.fact.elia.hermit.hint: A former monk meditating without a license in the archive's shadow. The only one who knows the breath song.
+spirituality.fact.elia.healer.label: Rua the Healer
+spirituality.fact.elia.healer.hint: A healer who teaches how to rule the breath. She does not ask the sick for licenses.
+spirituality.fact.elia.widow.label: Ire the Widow
+spirituality.fact.elia.widow.hint: A widow counting her husband's breath outside the hall door, without a license. She remembers the old breath song.
+spirituality.fact.elia.meditation-hall.label: The Meditation Hall
+spirituality.fact.elia.meditation-hall.hint: The house at the village's center that you enter only by showing a license. Its door is always locked.
+spirituality.fact.elia.library.label: The Archive
+spirituality.fact.elia.library.hint: The hall's archive stacked with three hundred years of license records. The sutra the pilgrim left lies buried under ledgers.
+spirituality.fact.elia.courtyard.label: The Hall's Courtyard
+spirituality.fact.elia.courtyard.hint: The herb garden and courtyard older than the hall itself. The old place where you leveled your breath without a license.
+spirituality.fact.elia.silent-chant.label: The Breath Song
+spirituality.fact.elia.silent-chant.hint: An old song sung without sounding it. The hermit breathes it out in the back garden, and the child sings along.
+spirituality.fact.elia.breath-song.label: The Dawn Breath Song
+spirituality.fact.elia.breath-song.hint: The breath lives, the trembling rests. The early dawn song women sang before the license system.
+spirituality.fact.elia.license-rule.label: The Meditation License Law
+spirituality.fact.elia.license-rule.hint: Since three years ago meditation requires credentials. The prayers of those without licenses are withdrawn.
+spirituality.fact.creature.spirituality-fake-monk.label: The False Monk Demanding Donations
+spirituality.fact.creature.spirituality-fake-monk.hint: Evil. One who sells meditation without a license, with cowl and wooden fish. Each time the purse opens, he demands a larger donation.
+
+# --- Elia deduction and crisis ---
+spirituality.deduction.spirituality.sentence: Spirituality is hearing {1} and achieving {3} through {2}
+spirituality.deduction.spirituality.hint: The abbot's license left only the ritual and locked the mind. The true spirituality the hermit's breath song and the widow's song speak of is achieved when the three principles breathe together.
+spirituality.crisis.license.text: Villagers gather in the hall's front courtyard. Abbot Daru unfurls the license ledger and cries out. This village's meditation belongs to the credentialed. One who steps into the hall without a license commits apostasy. Today, the novice Ian takes the license exam. But he cannot pay the exam fee and stands before the door. Clerk Seon unrolls the ledger, healer Rua clenches her hands, and the hermit Pella hears all of it from the archive's shadow. The child Rine holds her breath, and gardener Hore bows his head. Now it is your turn to step forward.
+spirituality.option.open-meditation.label: Sing the hermit's breath song in silence and open the hall's door
+spirituality.option.open-meditation.text: You step forward and sing, without sound, the breath song you learned from the hermit. Hear the truth, in love, in courage. The novice Ian adds his voice, and the widow Ire continues it. Gardener Hore lays the garden herbs before the door, and healer Rua levels her breath. Clerk Seon draws out the old record that never left the ledger and reads it. True meditation was not in the license but in truth, love, and courage breathing together. Abbot Daru lowers the ledger, and the hall's door opens for the first time without a license. From that day, Elia is a village where anyone may sit quietly.
+spirituality.option.exile-monk.label: Read out the ledger's withdrawal records and cast out the abbot
+spirituality.option.exile-monk.text: You take out clerk Seon's records and read them aloud. In three years the license fee tripled, and every prayer of the unlicensed was withdrawn. The ledger holds only names, signatures, and renewal dates — not a line of the prayers they offered. Abbot Daru has his licenses withdrawn and leaves the village. The hall's door opens, but the people still fear the song. Elia shed its licenses, but has not yet learned how to build true spirituality.
+
+# --- Elia abilities and creatures ---
+spirituality.ability.mind.name: The Quiet Mind
+spirituality.creature.fake-monk.name: The False Monk Demanding Donations
+
+# --- Heron, village of humility (M4 Task 40) ---
+town.heron.name: Heron
+humility.music.title: Heron's Breath
+
+humility.npc.silent-elder.name: The Silent Elder
+humility.npc.silent-elder.greet: …Silence.
+humility.npc.silent-elder.name.t: I do not ask names. …In a moment. Speak your name. That name will find you.
+humility.npc.silent-elder.job.t: I keep the silence.
+humility.npc.silent-elder.silence.t: Silence is a place, not a sound.
+humility.npc.silent-elder.wordname.t: A name is not spoken — it is kept. …Do you know that name?
+humility.npc.silent-elder.chapel.t: The chapel. Built without words.
+
+humility.npc.listener.name: The Listener
+humility.npc.listener.greet: …I will listen.
+humility.npc.listener.job.t: I do the listening.
+humility.npc.listener.listening.t: Listening is not filling — it is emptying.
+humility.npc.listener.three.t: Empty, and the three are heard.
+humility.npc.listener.silence.t: Quietly.
+
+humility.npc.wellkeeper.name: The Wellkeeper
+humility.npc.wellkeeper.greet: The well has no words.
+humility.npc.wellkeeper.job.t: I keep the well.
+humility.npc.wellkeeper.wordname.t: Water has no name.
+humility.npc.wellkeeper.silence-rule.t: It is the rule of giving no name. As water rises without knowing a name.
+
+humility.npc.child.name: Village Child
+humility.npc.child.greet: …They tell me to be quiet too.
+humility.npc.child.job.t: I memorize songs. Without sounding them.
+humility.npc.child.listening.t: Lend your ears, and you hear.
+humility.npc.child.silent-chant.t: A song sung on the breath. It is sung even when unheard.
+
+humility.npc.librarian.name: The Archive Keeper
+humility.npc.librarian.greet: Books have no words. …Come in.
+humility.npc.librarian.job.t: I gather blank pages.
+humility.npc.librarian.three.t: There is a page where three are written. Truth, love, courage.
+humility.npc.librarian.listening.t: It is listening more than reading.
+
+humility.npc.gardener.name: The Forester
+humility.npc.gardener.greet: Trees do not call names.
+humility.npc.gardener.job.t: I tend the forest.
+humility.npc.gardener.listening.t: The forest speaks not in sound but in breath.
+humility.npc.gardener.wordname.t: Name it, and the leaf falls.
+
+humility.npc.cook.name: The Cook
+humility.npc.cook.greet: …As quietly as rice.
+humility.npc.cook.job.t: I cook. Without sound.
+humility.npc.cook.silence.t: Even a boiling pot makes no sound.
+
+humility.npc.novice.name: The Novice
+humility.npc.novice.greet: …I am still in training.
+humility.npc.novice.job.t: I learn silence.
+humility.npc.novice.silence.t: Close the mouth, and the ears open.
+humility.npc.novice.wordname.t: I was taught to forget names.
+
+humility.npc.hermit.name: The Hermit
+humility.npc.hermit.greet: …Quietly. Do you not hear that sound?
+humility.npc.hermit.job.t: I count my breath, hidden.
+humility.npc.hermit.silence.t: Silence is not emptiness — it is a place.
+humility.npc.hermit.three.t: Humility is the three all emptied.
+humility.npc.hermit.listening.t: At the forest's edge stands a quiet warden. Not evil, but it silences sound.
+
+humility.npc.widow.name: The Widow
+humility.npc.widow.greet: …I have forgotten even my husband's name.
+humility.npc.widow.job.t: I keep the forgotten name.
+humility.npc.widow.wordname.t: The name is buried in the grave.
+humility.npc.widow.listening.t: I listen quietly.
+
+# --- Heron clues ---
+humility.word.listening.label: Listening
+humility.word.listening.hint: Emptying rather than filling. Heard only when the ears open in silence.
+humility.word.three.label: The Three
+humility.word.three.hint: Truth, love, and courage. Humility begins in a place where those three are left empty.
+humility.word.name.label: Name
+humility.word.name.hint: What Heron forbade. One who does not keep a name is imprisoned in the silence.
+humility.fact.heron.silent-elder.label: The Silent Elder
+humility.fact.heron.silent-elder.hint: The elder who keeps Heron's law of silence. He asks no names, and he demands names.
+humility.fact.heron.listener.label: The Listener
+humility.fact.heron.listener.hint: One who sits wordless at the side of the square. The one in Heron who has heard the longest.
+humility.fact.heron.novice.label: The Novice
+humility.fact.heron.novice.hint: A youth learning the discipline of silence. Learning the way to forget names.
+humility.fact.heron.hermit.label: The Hermit
+humility.fact.heron.hermit.hint: A hermit hidden in the woods at the village's edge. The only one who calls silence a 'place.'
+humility.fact.heron.chapel-of-silence.label: The Chapel of Silence
+humility.fact.heron.chapel-of-silence.hint: A chapel built without words. Heron's center, kept by the elder.
+humility.fact.heron.library.label: The Empty Archive
+humility.fact.heron.library.hint: An archive gathered of blank pages. On one page, three are written.
+humility.fact.heron.well.label: The Wordless Well
+humility.fact.heron.well.hint: A well that rises without a name. It shows Heron's hidden law.
+humility.fact.heron.grove.label: The Nameless Forest
+humility.fact.heron.grove.hint: A forest where naming makes the leaf fall. The trees know each other without calling.
+humility.fact.heron.silent-chant.label: The Breath Song
+humility.fact.heron.silent-chant.hint: A song sung without sounding it. The only song the child and the hermit know.
+humility.fact.heron.breathing-rhythm.label: The Rhythm of the Breath
+humility.fact.heron.breathing-rhythm.hint: The only rhythm Heron counts. Breathe in, hold, breathe out.
+humility.fact.heron.silence-rule.label: The Rule of Silence
+humility.fact.heron.silence-rule.hint: Heron's law. No one may speak their own name. The silence swallows all words.
+humility.fact.heron.real-name.label: My Lost Name
+humility.fact.heron.real-name.hint: "The elder asks: what is your name? Only keeping the name can open the silence."
+humility.fact.creature.humility-silencer.label: The Warden of Silence
+humility.fact.creature.humility-silencer.hint: Not evil. A being that merely silences sound. Keeping the silence is its work.
+
+# --- Heron deduction and crisis ---
+humility.deduction.humility.sentence: Humility is a place where you empty yourself before {1} and hear {3} through {2}
+humility.deduction.humility.hint: Heron is a village that left all three principles empty. Before the silence, with what can you hear what? If you kept your name, what remains behind is the emptying.
+humility.crisis.name.text: Villagers gather before the Chapel of Silence. The elder stands leaning on a nameless staff. 'I would now take away this village's last law. Long has a lock been kept on names. But the locking imprisoned us more. You, stranger. Speak your name. Then Heron's silence becomes an end, not a beginning.' Everyone holds their breath. Now it is your turn to open your mouth.
+humility.option.speak-name.label: Speak your own name and lift the law of silence
+humility.option.speak-name.text: You step forward and speak your name. The chapel echoes it. One by one, quietly, the people sing it back. The elder lays down his staff. 'A name is not for holding — it is for calling each other.' Heron's silence is reborn as a courtesy of opening the mouth. Humility is a place where the three are left empty, and after the emptying, a place where names are called again.
+humility.option.stay-silent.label: Keep the silence and swallow your name
+humility.option.stay-silent.text: You swallow your name and bow your head. The elder looks at you for a long while. '…Your silence too is truthful. But as long as that silence imprisons a name, Heron is still not empty.' The village disperses quietly. The law remains, but only the hermit's breath song circles the village without a sound.
+
+# --- Heron creatures ---
+humility.creature.silencer.name: The Warden of Silence
+
+# --- Sealed archive · empty codex (M5 Task 42) ---
+archive.name: Sealed Archive
+archive.unlock-message: The seal is broken.
+archive.alcove.honesty.title: Page of Honesty
+archive.alcove.compassion.title: Page of Compassion
+archive.alcove.valor.title: Page of Valor
+archive.alcove.justice.title: Page of Justice
+archive.alcove.sacrifice.title: Page of Sacrifice
+archive.alcove.honor.title: Page of Honor
+archive.alcove.spirituality.title: Page of Spirituality
+archive.alcove.humility.title: Page of Humility
+archive.alcove.locked: Still sealed.
+archive.alcove.write: Write on this page
+archive.final-page.title: The Last Page
+archive.final-page.prompt: Truth, love, courage — which is the one that unites the three principles?
+archive.epilogue.title: Epilogue
+archive.epilogue.placeholder: The codex is empty, but your words remain.
+ui.open-codex: Codex
+
+# --- Epilogue variants (M5 Task 43) ---
+epilogue.truth.title: Empty Codex of Truth
+epilogue.truth.prologue: You wrote the answers of the eight virtues and chose 'truth' for the last page. The codex is still empty, but the towns are beginning to face one another's truths.
+epilogue.truth.honesty.text: Kalas's Office of Denunciation stood open. The ledger was no longer a wall imprisoning neighbors, but a place where people spoke facts to one another.
+epilogue.truth.compassion.text: In the streets of Reona, the name of the one who begged was spoken for the first time. Compassion was not hiding — it was recognizing what is, as it is.
+epilogue.truth.valor.text: Solgang's arena was quiet. Overcoming fear was no longer a strength that pressed others down, but the act of acknowledging the facts before oneself.
+epilogue.truth.justice.text: Seles's courthouse returned to being a place for the living, not a grave. Justice was not covering over, but laying facts upon the scale.
+epilogue.truth.sacrifice.text: Dione's altar stood empty. Whatever was offered, it began with telling the truth of what remained of oneself.
+epilogue.truth.honor.text: Argon's house sigils were stripped away. Honor was not keeping a name, but revealing what was hidden behind it.
+epilogue.truth.spirituality.text: Elia's meditation licenses vanished. Spirituality was not something granted, but facing the truth of this breath as it is.
+epilogue.truth.humility.text: Heron's law of silence was lifted. Humility was not closing one's mouth, but a place where one could speak one's own name in truth.
+epilogue.love.title: Empty Codex of Love
+epilogue.love.prologue: You chose 'love' for the last page. The empty codex was not filled, but the towns find the root of virtue in caring for one another.
+epilogue.love.honesty.text: Kalas's Office became a shelter. Telling the facts was no longer a way of wounding each other, but a way of staying near.
+epilogue.love.compassion.text: Reona's bowls grew larger. Compassion was sharing, and while they shared, no one was alone.
+epilogue.love.valor.text: Solgang's duels stopped and became hands that raised one another. Courage was not standing alone, but standing again together.
+epilogue.love.justice.text: In Seles, comfort followed the verdict. Justice was not punishing, but letting live again.
+epilogue.love.sacrifice.text: Nothing remained on Dione's altar. Sacrifice was not losing, but using what remains together.
+epilogue.love.honor.text: Argon's houses knocked on one another's doors. Honor was not a sigil shining alone, but a name shared with a neighbor.
+epilogue.love.spirituality.text: Elia's meditation became breathing together. Spirituality was not realizing alone, but knowing how to hear the breath beside you.
+epilogue.love.humility.text: Heron's people called one another's names. Humility was not erasing the self, but making room to hear another's name.
+epilogue.courage.title: Empty Codex of Courage
+epilogue.courage.prologue: You chose 'courage' for the last page. What remains in the empty codex is the record of one step — the towns begin to walk again, past their fear.
+epilogue.courage.honesty.text: Kalas's people opened the ledger themselves. What frightened them was not the records, but the years of living with them covered over.
+epilogue.courage.compassion.text: In Reona, the one who begged reached out a hand first. Compassion, too, begins with the courage to offer.
+epilogue.courage.valor.text: Solgang's fighters put down their weapons and went to the fields. True courage was not fighting, but knowing how to stop.
+epilogue.courage.justice.text: Seles's court amended its old custom itself. Justice was not judging others, but the courage to change oneself.
+epilogue.courage.sacrifice.text: Dione's priest knelt first before the altar. Sacrifice was not losing something, but not fearing the loss.
+epilogue.courage.honor.text: Argon's heir burned the old sigil. Honor was not the courage to keep, but the courage to let go.
+epilogue.courage.spirituality.text: Elia's people entered meditation without licenses. Spirituality was not waiting for permission, but the courage to stand alone.
+epilogue.courage.humility.text: Heron's elder spoke his own name first. Humility was not hiding, but the courage to step forward even from a low place.

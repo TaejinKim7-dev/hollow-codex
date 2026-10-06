@@ -182,6 +182,7 @@ ui.day-hour: "{day}일차 {hour}시"
 ui.open-rings: 고리
 ui.no-rings: 아직 고리를 모릅니다.
 ui.ring-travel: 이동
+ui.language: 언어
 
 # --- 접근성 (M6 Task 46) ---
 ui.skip-to-content: 본문으로 건너뛰기

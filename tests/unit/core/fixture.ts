@@ -125,7 +125,7 @@ export function testContent(): GameContent {
     },
     abilities: { "ability.see-lies": { nameKey: "ability.see-lies.name" } },
     music: { "music.a": oneNote, "music.b": oneNote, "music.battle": oneNote },
-    strings: Object.fromEntries(stringKeys.map((k) => [k, k])),
+    strings: { ko: Object.fromEntries(stringKeys.map((k) => [k, k])) },
     moongates: {},
     start: { map: "map.a", pos: { x: 1, y: 1 }, hp: 10, attack: 3 }
   }
