@@ -1,0 +1,50 @@
+# 열석 고리 8개 (D2, D14). 고리 1개(ring.honesty)는 칼라스 들판(map.field)에,
+# 나머지 7개는 대륙 오버월드(map.over) 곳곳에 있다. at은 해당 고리 타일(o)의 셀.
+- id: ring.honesty
+  at: [6, 7]
+  name: ring.honesty.name
+  song: ring.honesty.song
+  fact: fact.ring.honesty
+  onOverworld: map.field
+- id: ring.compassion
+  at: [56, 8]
+  name: ring.compassion.name
+  song: ring.compassion.song
+  fact: fact.ring.compassion
+  onOverworld: map.over
+- id: ring.valor
+  at: [4, 20]
+  name: ring.valor.name
+  song: ring.valor.song
+  fact: fact.ring.valor
+  onOverworld: map.over
+- id: ring.justice
+  at: [20, 8]
+  name: ring.justice.name
+  song: ring.justice.song
+  fact: fact.ring.justice
+  onOverworld: map.over
+- id: ring.sacrifice
+  at: [60, 22]
+  name: ring.sacrifice.name
+  song: ring.sacrifice.song
+  fact: fact.ring.sacrifice
+  onOverworld: map.over
+- id: ring.honor
+  at: [34, 22]
+  name: ring.honor.name
+  song: ring.honor.song
+  fact: fact.ring.honor
+  onOverworld: map.over
+- id: ring.spirituality
+  at: [10, 34]
+  name: ring.spirituality.name
+  song: ring.spirituality.song
+  fact: fact.ring.spirituality
+  onOverworld: map.over
+- id: ring.humility
+  at: [28, 42]
+  name: ring.humility.name
+  song: ring.humility.song
+  fact: fact.ring.humility
+  onOverworld: map.over

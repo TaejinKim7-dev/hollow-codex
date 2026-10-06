@@ -1,0 +1,34 @@
+# 열석 고리 8개의 단서 (D10, D14). 고리의 이름과 노래를 알아야 그 고리로 이동할 수 있다.
+# M2에서는 모든 고리를 잠금 해제 상태로 둔다 (스켈레톤만, D10).
+- id: fact.ring.honesty
+  kind: song
+  label: fact.ring.honesty.label
+  hint: fact.ring.honesty.hint
+- id: fact.ring.compassion
+  kind: song
+  label: fact.ring.compassion.label
+  hint: fact.ring.compassion.hint
+- id: fact.ring.valor
+  kind: song
+  label: fact.ring.valor.label
+  hint: fact.ring.valor.hint
+- id: fact.ring.justice
+  kind: song
+  label: fact.ring.justice.label
+  hint: fact.ring.justice.hint
+- id: fact.ring.sacrifice
+  kind: song
+  label: fact.ring.sacrifice.label
+  hint: fact.ring.sacrifice.hint
+- id: fact.ring.honor
+  kind: song
+  label: fact.ring.honor.label
+  hint: fact.ring.honor.hint
+- id: fact.ring.spirituality
+  kind: song
+  label: fact.ring.spirituality.label
+  hint: fact.ring.spirituality.hint
+- id: fact.ring.humility
+  kind: song
+  label: fact.ring.humility.label
+  hint: fact.ring.humility.hint

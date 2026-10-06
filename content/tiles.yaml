@@ -9,6 +9,7 @@ tiles:
   "=": { sprite: [town, 65], walk: 1 }
   "~": { sprite: [town, 77], walk: null }
   T: { sprite: [town, 5], walk: null }
+  "^": { sprite: [town, 45], walk: null }
   "#": { sprite: [town, 45], walk: null }
   "+": { sprite: [town, 47], walk: 1 }
   o: { sprite: [town, 93], walk: null }

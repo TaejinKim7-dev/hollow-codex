@@ -170,3 +170,37 @@ ui.combat.endTurn: 턴 넘기기
 ui.evil: 악하다
 ui.not-evil: 악하지 않다
 ui.unknown-nature: 성격 불명
+# --- 열석 고리 (M2, Task 22) ---
+ring.honesty.name: 빛샘의 고리
+ring.honesty.song: 빛샘의 노래
+ring.compassion.name: 온빛의 고리
+ring.compassion.song: 온빛의 노래
+ring.valor.name: 큰바람의 고리
+ring.valor.song: 큰바람의 노래
+ring.justice.name: 저울벽의 고리
+ring.justice.song: 저울벽의 노래
+ring.sacrifice.name: 빈손의 고리
+ring.sacrifice.song: 빈손의 노래
+ring.honor.name: 높은봉의 고리
+ring.honor.song: 높은봉의 노래
+ring.spirituality.name: 고요샘의 고리
+ring.spirituality.song: 고요샘의 노래
+ring.humility.name: 낮은꽃의 고리
+ring.humility.song: 낮은꽃의 노래
+
+fact.ring.honesty.label: 빛샘의 고리
+fact.ring.honesty.hint: 칼라스 들판 한가운데, 마른 풀 사이로 오래된 노래가 스며 있다.
+fact.ring.compassion.label: 온빛의 고리
+fact.ring.compassion.hint: 북동 해안의 돌무더기 아래, 목동이 부르는 평온한 노래.
+fact.ring.valor.label: 큰바람의 고리
+fact.ring.valor.hint: 서쪽 숲 가장자리, 바람이 나뭇가지를 울리는 소리를 곁에 두고.
+fact.ring.justice.label: 저울벽의 고리
+fact.ring.justice.hint: 북부 고원의 평지, 지평선을 저울대처럼 가르는 노래.
+fact.ring.sacrifice.label: 빈손의 고리
+fact.ring.sacrifice.hint: 동쪽 해안 바위틈, 아무것도 쥐지 않은 손으로 부르는 노래.
+fact.ring.honor.label: 높은봉의 고리
+fact.ring.honor.hint: 강 건너 언덕, 봉우리에 오르면 나지막이 들리는 노래.
+fact.ring.spirituality.label: 고요샘의 고리
+fact.ring.spirituality.hint: 남서 습지, 샘물이 돌을 스치는 소리로 읊는 노래.
+fact.ring.humility.label: 낮은꽃의 고리
+fact.ring.humility.hint: 남쪽 평원, 풀잎 사이로 꽃잎이 떨어지는 노래.
