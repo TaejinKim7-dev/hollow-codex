@@ -48,3 +48,6 @@ claude                                             # 새 세션: CLAUDE.md → H
 ```
 - 이 프로젝트용 Claude 메모리(`~/.claude/projects/-home-taejin-hollow-codex/memory/`)에 작업 방식 메모 3개(묻지 말고 추천안 진행, 테스트는 Haiku 서브에이전트, 수정 후 e2e 금지)와 출처 메모를 넣어 두었다.
 - Task 1 이후 게이트: `npm ci && npm run test:unit && npm run typecheck && npm run check:content && npm run build && npm run audit:dist && git diff --check` (Haiku 서브에이전트로 실행).
+
+## 2026-10-06 Task 1
+골격·규칙 문서 작성, 게이트 결과는 아래.
