@@ -1,0 +1,16 @@
+- id: crisis.sacrifice.altar
+  npc: npc.sacrifice.altar-priest
+  text: sacrifice.crisis.altar.text
+  options:
+    option.open-altar:
+      requires: [fact.dione.widow-song]
+      requiresDeductions: [deduction.sacrifice]
+      setsFlags: [flag.sacrifice.altar-opened]
+      label: sacrifice.option.open-altar.label
+      text: sacrifice.option.open-altar.text
+    option.exile-priest:
+      requires: [fact.dione.martyr-contest]
+      requiresDeductions: []
+      setsFlags: [flag.sacrifice.priest-exiled]
+      label: sacrifice.option.exile-priest.label
+      text: sacrifice.option.exile-priest.text

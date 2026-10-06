@@ -3,3 +3,4 @@
 - { id: creature.compassion-beggar, name: compassion.creature.beggar.name, evil: false, hp: 3, attack: 1, sprite: [town, 84], lore: fact.creature.compassion-beggar }
 - { id: creature.valor-duelist, name: valor.creature.duelist.name, evil: false, hp: 6, attack: 3, sprite: [town, 85], lore: fact.creature.valor-duelist }
 - { id: creature.justice-mourner, name: justice.creature.mourner.name, evil: false, hp: 5, attack: 1, sprite: [town, 86], lore: fact.creature.justice-mourner }
+- { id: creature.sacrifice-penitent, name: sacrifice.creature.penitent.name, evil: false, hp: 5, attack: 1, sprite: [town, 87], lore: fact.creature.sacrifice-penitent }

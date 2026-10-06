@@ -582,3 +582,134 @@ justice.option.strict-law.text: 그대가 형벌 표를 펼쳐 법대로 읽는�
 # --- 셀레스 능력·생물 ---
 justice.ability.eye.name: 정의의 눈
 justice.creature.mourner.name: 슬픔에 잠긴 조문객
+
+# --- 디오네 마을 (M4 Task 37) ---
+town.dione.name: 디오네
+sacrifice.music.title: 디오네의 제단
+
+sacrifice.npc.altar-priest.name: 제단 사제 크레온
+sacrifice.npc.altar-priest.greet: 어서 오너라. 제단 앞에 서면 모든 것이 덜어져 간다. 네가 가진 것을 모두 내려놓아라.
+sacrifice.npc.altar-priest.name.t: 나는 크레온. 디오네의 제단을 지키는 사제다. 이 제단은 오늘도 누군가의 것을 받아 삼킨다.
+sacrifice.npc.altar-priest.job.t: 나는 사제이기 전에, 이 제단의 심부름꾼이다. 사람들은 이곳에 와서 재산을, 몸을, 마지막 한 조각마저 바친다. 그것이 우리 마을의 사랑이다. 너도 무엇이든 하나 덜어놓고 가거라.
+sacrifice.npc.altar-priest.devotion.t: 헌신은 자신을 모조리 비우는 일이다. 남기는 것이 있으면 그것은 헌신이 아니다. 욕심이다. 제단은 그 욕심을 태우는 불이다.
+sacrifice.npc.altar-priest.love.t: 사랑은 아낌없이 주고, 또 주다가 자신이 사라지는 것이지. 너처럼 아끼는 마음은 사랑이라 부르지 않는다.
+sacrifice.npc.altar-priest.widow-song.t: 그 노래는 집착이다. 죽은 자를 붙잡는 미련일 뿐. 과부가 제단에서 풀어 놓지 못하는 것이 그 미련이다.
+sacrifice.npc.altar-priest.penitent.t: 저 고행자네. 저이가 그대가 가야 할 길을 보여 준다. 저이는 이제 매일 제단 앞에서 채찍을 든다. 참된 자세다.
+
+sacrifice.npc.widow.name: 과부 레아
+sacrifice.npc.widow.greet: ……제단에서 오셨나요? 아니면 죽은 남편의 노래를 들으러 왔나요.
+sacrifice.npc.widow.name.t: 레아라고 합니다. 남편은 제단에서 돌아오지 못했어요. 사람들은 나를 노래 부르는 과부라고 부르지요.
+sacrifice.npc.widow.job.t: 남편이 죽은 뒤로는 저녁마다 빵 반쪽을 삶아요. 남편이 좋아하던 방식으로요. 제단에서는 그것마저 버리라고 하지만…… 그것이 내 하루를 지켜요.
+sacrifice.npc.widow.love.t: 사랑은 남편이 새긴 상처가 아니라, 우리가 함께 앉아 나눈 저녁이었어요. 상처를 세고 있는 것은 사랑이 아니라 경쟁이에요.
+sacrifice.npc.widow.widow-song.t: 그 노래는 남편과 나만 부르던 노래예요. 제단에 서기 전, 이 마을의 아낙들이 부르던 이른 아침 노래지요. 남편은 그 노래를 부르다 떠났어요. 그래서 지금은 그 노래가 나를 붙들어요.
+sacrifice.npc.widow.altar.t: 제단은 사람의 마지막 것을 요구해요. 남편은 사랑을 증명하려 제단에 손을 올렸고, 그 상처로 돌아오지 못했어요. ……더는 자세히 말하지 않겠어요.
+sacrifice.npc.widow.devotion.t: 헌신이라…… 그 말이 남편을 데려갔어요. 더 많이 바치려 하다, 결국 자신까지 바쳤지요. 제단은 받는 데만 익숙해요.
+
+sacrifice.npc.child.name: 아이 리오
+sacrifice.npc.child.greet: 나한테 말 걸면 저녁을 못 먹는 벌이야. 그래도 괜찮아, 나는 벌써 익숙해.
+sacrifice.npc.child.name.t: 나는 리오야. 여섯 살이고, 제단의 작은 하녀가 되는 연습을 해. 사제가 그러는데, 어릴 때 많이 덜어내야 큰 희생을 할 수 있대.
+sacrifice.npc.child.job.t: 내 일은 매일 한 끼 버리고, 좋아하는 것을 하나 고르지 않는 거야. 사제가 이걸 거룩한 짐이라고 부르는데, 나는 왜 짐을 지려고 배우는지 모르겠어.
+sacrifice.npc.child.burden.t: 짐? 사제는 짐이 많을수록 거룩하다고 해. 그런데 난 할머니가 옮기시는 빵 상자가 짐처럼 보여. 사람한테는 안 그런데.
+sacrifice.npc.child.widow-song.t: 레아 아주머니 노래! 나 매일 밤 뒤뜰에서 몰래 불러. 사제가 들으면 안 되는데, 아주머니가 불러 주면 마음이 따뜻해져.
+sacrifice.npc.child.widow.t: 레아 아주머니는 빵 반쪽을 꼭 나눠 줘. 제단에 바치지 말라고. 근데 그것도 희생…… 아니, 뭐라고 해야 하지. 나는 아직 어려서 낱말을 몰라.
+
+sacrifice.npc.pilgrim.name: 순례자 이온
+sacrifice.npc.pilgrim.greet: 나는 이곳저곳을 떠도는 순례자요. 디오네의 제단 소문을 듣고 삼 년째 걸어왔소.
+sacrifice.npc.pilgrim.name.t: 이온이라 하오. 지팡이 하나와 수첩 한 권이 내 전 재산이지. 여기저기서 듣고 본 진실한 희생을 기록하고 있소.
+sacrifice.npc.pilgrim.job.t: 나의 일은 증인이 되는 것이오. 제단 앞에서 벌어지는 일을, 마을 사람들이 눈감는 일을 좌우 없이 기록하는 일이지. 여기 오기 전까지 나는 희생이 아름답다고 믿었소.
+sacrifice.npc.pilgrim.witness.t: 증인이란 본 것을 끝까지 기억하는 사람이지. 나는 이 마을의 기록을 세 벌 베꼈소. 사제는 제단에서 상처 입은 손을 치켜들지만, 나는 그 손이 얼마나 온전한지도 기억하고 있소.
+sacrifice.npc.pilgrim.martyr-contest.t: 이 마을은 제단 앞에서 누가 더 아프게 바쳤는지 겨루오. 상처의 길이를 재고, 굶은 날을 세고, 작년에는 스스로 손을 그은 자가 승리했지. 사제는 그것을 거룩한 경쟁이라 부르오. 나는 그것을 순교 경쟁이라 기록했소.
+sacrifice.npc.pilgrim.devotion.t: 헌신이 나를 여기까지 데려왔지만, 이제는 그 낱말이 무섭소. 모든 것을 바치라고 하는 곳에는, 받는 자가 있다는 것을. 나는 그 받는 자까지 기록하고 싶소.
+
+sacrifice.npc.surgeon.name: 외과의 세인
+sacrifice.npc.surgeon.greet: 앉게. 상처를 보여 주게. ……멀쩡하군. 잘 됐어.
+sacrifice.npc.surgeon.name.t: 나는 세인이라네. 이 마을에서 유일하게 칼과 실을 다루는 외과의야. 내 칼은 상처를 자르지 않고, 상처를 잇는 데만 쓴다네.
+sacrifice.npc.surgeon.job.t: 내 일은 상처를 꿰매는 것이야. 그런데 이 마을의 상처는 대부분 스스로 만든 것이지. 제단 앞에 서기 위해, 남들보다 크게 지기 위해. 나는 매일 상처를 봉합하며 증인이 되어 간다네.
+sacrifice.npc.surgeon.witness.t: 증인이라면 나는 최고의 증인일세. 어떤 상처가 칼에서 났고, 어떤 것이 제단의 그릇에서 났는지 손끝으로 다 알지. 사제의 손은 내가 여러 해째 보지 못했네. 외과의의 기록에는 상처가 진실이라서.
+sacrifice.npc.surgeon.martyr-contest.t: 상처 대회라. 기록사가 자를 대고 재는 것을 보고 있으면 참 기막히지. 상처는 아픔의 증거가 아니라 사랑의 몫이라는 것을 무시하는 거야.
+sacrifice.npc.surgeon.penitent.t: 저 고행자는 내 환자일세. 등을 채찍질하다 감염되어 온 것이지. 나는 치료하지만, 그는 곧 다시 제단에 갈 거야. 내가 고치는 상처보다 마을이 만드는 상처가 더 많다네.
+sacrifice.npc.surgeon.courage.t: 용기는 상처를 더 내는 것이 아니야. 상처를 보지 않으려 하지 않고, 아파할 사람의 얼굴을 바라보는 것이지. 이 마을에서는 그게 가장 힘든 일이야.
+
+sacrifice.npc.scribe.name: 기록사 미르
+sacrifice.npc.scribe.greet: 기록은 영원하다. ……내가 쓰는 기록이, 나를 두렵게 하지 않는다면.
+sacrifice.npc.scribe.name.t: 미르입니다. 디오네의 기록사로, 제단에 바쳐진 것들의 목록을 옮겨 적는 사람이지요.
+sacrifice.npc.scribe.job.t: 제단의 장부를 정리합니다. 이름, 바친 것, 그리고 상처의 길이. 숫자가 커질수록 칭송받지요. 어제 장부의 한 난에 이렇게 적었습니다. 손가락 하나. 오늘은 그것을 바라보며 하루를 보냈습니다.
+sacrifice.npc.scribe.martyr-contest.t: 순교 경쟁이라고 부르는 사람도 있지요. 나는 숫자를 적을 뿐입니다. 하지만 숫자는 거짓말을 하지 않아요. 남편의 손가락, 아이의 끼니, 노인의 무릎. 제단은 그 숫자를 거두어들이고 있지요.
+sacrifice.npc.scribe.burden.t: 짐은 지는 것이 아니라 함께 지는 것이라고, 옛 장부에는 적혀 있지요. 각자 자기 짐만 지고, 남의 짐을 지려 하지 않는 지금. 그것이 제단이 가르치는 것이라면, 나는 그 가르침을 기록하지 않겠습니다.
+sacrifice.npc.scribe.widow.t: 레아 부인의 일은 모든 장부에 있습니다. 많은 것을 바친 자, 최고의 희생자. 그 옆에 짧은 한 줄이 있지요. 밤마다 빵 반쪽을 삶는 과부. 내가 진짜 기록해야 하는 것은 그 줄인데, 아직 어느 장부에도 옮기지 못했습니다.
+
+sacrifice.npc.mason.name: 석공 하르파
+sacrifice.npc.mason.greet: 돌을 만지며 살아온 사람이야. 돌은 거짓말하지 않아서 좋지. 제단은…… 돌도 놀라서 거짓말을 배웠어.
+sacrifice.npc.mason.name.t: 하르파라 하네. 이 마을의 집과 제단의 돌을 다루는 석공일세. 제단을 쌓은 자손이기도 하지.
+sacrifice.npc.mason.job.t: 제단 돌을 보수하는 일을 하네. 그런데 이상하게도, 제단은 누구 것을 태우는지 돌이 미리 흔들려. 땅속에 옛 성소의 초석이 남아 있어서일세. 그 초석에는 다른 글이 새겨져 있었어.
+sacrifice.npc.mason.altar.t: 이 제단을 들어 보게. 그 밑에 옛 성소의 아궁이가 있네. 거기 새겨진 글은, 이 마을을 지킨 불은 제단이 아니라 저녁마다 다시 켜지는 아궁이였다는 뜻일세. 덜어내는 자리가 아니라 채워 주는 자리였지.
+sacrifice.npc.mason.courage.t: 용기라는 것은, 무너질 듯한 돌을 버티게 하는 것이 아니라, 무너질 사람을 받쳐 주는 돌이 되는 것이지. 나는 요즘 그런 돌을 만들고 싶어서 제단을 새로 다듬고 있네.
+sacrifice.npc.mason.widow-song.t: 그 노래는 내 귀에도 익숙하지. 레아가 저녁에 부르면, 아궁이의 불이 따라 부르는 것 같아. 제단이 꺼뜨리려 하는 불말일세.
+
+sacrifice.npc.baker.name: 빵 굽는 세라
+sacrifice.npc.baker.greet: 갓 나온 빵이야. ……제단에 바칠 거면 나가 주게. 난 거기 빵을 두지 않아.
+sacrifice.npc.baker.name.t: 세라야. 마을 빵집에서 아침마다 빵을 굽는 사람이고, 저녁에는 빵을 나누는 사람이야.
+sacrifice.npc.baker.job.t: 내 일은 밀가루를 반죽하고 불을 지키고 빵을 내어 주는 일이야. 사제는 나를 보고, 희생을 못 하는 사람이라 해. 나는 그 말을 들을 때마다 불을 더 때.
+sacrifice.npc.baker.living-love.t: 진짜 희생은 한 번에 목숨을 바치는 게 아니라, 매일 아침 불을 지피고 빵을 내어 주는 거라고 생각해. 제단이 받는 것은 순간이지만, 이 빵은 하루를 살려. 나눈다는 것, 그것이 내가 아는 사랑이야.
+sacrifice.npc.baker.love.t: 사랑은 굽는 사람과 먹는 사람 사이에 있는 거지. 불에 타는 게 아니야. 반죽이 차오르듯, 함께 차오르는 것.
+
+sacrifice.npc.healer.name: 치유사 노라
+sacrifice.npc.healer.greet: 상처가 있으면 보여 주게. 상처 없는 사람은, 이 마을에서 제일 아픈 사람일지도 몰라.
+sacrifice.npc.healer.name.t: 노라라네. 외과의 세인 옆에서 풀과 약을 다루는 치유사야. 상처를 아물게 하는 사람이지.
+sacrifice.npc.healer.job.t: 내 일은 세인이 꿰맨 상처에 약을 바르는 것이야. 저 고행자 등의 상처도 내가 다스리지. 아무리 아물어도 그가 제단에 가면 다시 터져. 상처를 만드는 사람이 아니라, 상처에서 살아가는 법을 가르쳐야 하는데.
+sacrifice.npc.healer.penitent.t: 그이는 악한 이가 아니야. 다만 거룩함을 상처로 증명해야 한다고 배운 불쌍한 이지. 나는 그이가 상처 없이도 거룩할 수 있다는 것을, 언젠가 알게 되길 바라.
+sacrifice.npc.healer.burden.t: 짐을 가볍게 하는 것이 아니라, 짐을 나누는 법을 아는 것. 그것이 치유의 시작이지. 아프다고 말할 수 있는 상처는, 이미 반은 나은 상처야.
+
+sacrifice.npc.gardener.name: 정지기 마노
+sacrifice.npc.gardener.greet: 밭은 다듬을수록 좋아지지. 누군가는 여기서 굶는 게 드높은 일이라지만…… 나는 땅이 손을 기다린다는 걸 알아.
+sacrifice.npc.gardener.name.t: 마노라네. 마을 뒤편 텃밭을 가꾸는 정지기야. 호박, 당근, 무. 제단이 금지한 이름들이지.
+sacrifice.npc.gardener.job.t: 내 일은 씨를 뿌리고 잡초를 뽑고 물을 주는 일이야. 그리고 수확의 절반을 마을 사람들에게 나누어 주지. 사제는 그 절반까지도 바치라고 해.
+sacrifice.npc.gardener.garden.t: 이 텃밭은 마을에서 가장 오래된 자리야. 제단보다 오래됐어. 굶는 것이 거룩하다고 배운 아이들이, 배고파서 이곳에 와서 무를 먹고 가. 짐이 아니라 양식이라고, 나는 그 아이들에게 가르쳐.
+sacrifice.npc.gardener.martyr-contest.t: 상처 겨루기라니. 장에 다녀오다 보면 제단 앞에서 다투는 것을 봐. 누가 더 굶었는지, 누가 더 아팠는지. 텃밭에서는 그런 건 자라지 않아. 그런 건 아무것도 심지 않으니까.
+
+# --- 디오네 단서 ---
+sacrifice.word.devotion.label: 헌신
+sacrifice.word.devotion.hint: 제단이 가르치는 낱말. 자신을 모조리 비우고 태우라는 이름. 순례자가 두려워하게 된 말.
+sacrifice.word.burden.label: 짐
+sacrifice.word.burden.hint: 제단은 짐이 많을수록 거룩하다고 가르친다. 그러나 치유사는 짐을 나누는 법을 가르친다.
+sacrifice.word.witness.label: 증인
+sacrifice.word.witness.hint: 본 것을 끝까지 기억하는 사람. 외과의의 손끝과 순례자의 수첩이 그 일을 한다.
+sacrifice.fact.dione.altar-priest.label: 제단 사제 크레온
+sacrifice.fact.dione.altar-priest.hint: 제단을 지키는 사제. 자신을 온전히 비우라 가르치며, 마을의 순교 경쟁을 부추긴다.
+sacrifice.fact.dione.widow.label: 과부 레아
+sacrifice.fact.dione.widow.hint: 제단에서 남편을 잃은 과부. 밤마다 저녁빵과 옛 노래로 하루를 지킨다.
+sacrifice.fact.dione.pilgrim.label: 순례자 이온
+sacrifice.fact.dione.pilgrim.hint: 진실한 희생을 찾아 삼 년을 걸어온 순례자. 제단의 기록을 세 벌 베꼈다.
+sacrifice.fact.dione.surgeon.label: 외과의 세인
+sacrifice.fact.dione.surgeon.hint: 상처를 봉합하는 유일한 외과의. 대부분의 상처가 스스로 만든 것임을 안다.
+sacrifice.fact.dione.scribe.label: 기록사 미르
+sacrifice.fact.dione.scribe.hint: 제단 장부를 옮겨 적는 기록사. 숫자마다 이름이 있음을 안다.
+sacrifice.fact.dione.altar.label: 디오네의 제단
+sacrifice.fact.dione.altar.hint: 마을 한가운데의 돌제단. 그 밑에는 더 오래된 아궁이의 초석이 남아 있다.
+sacrifice.fact.dione.sanctuary.label: 성소
+sacrifice.fact.dione.sanctuary.hint: 제단을 둘러싼 성소. 벽에는 버림의 계율이 새겨져 있다.
+sacrifice.fact.dione.garden.label: 뒤편 텃밭
+sacrifice.fact.dione.garden.hint: 제단보다 오래된 텃밭. 굶는 아이들이 몰래 와서 무를 먹는 곳.
+sacrifice.fact.dione.widow-song.label: 과부의 노래
+sacrifice.fact.dione.widow-song.hint: 레아가 남편과 부르던 이른 아침 노래. 제단에 바쳐지지 않은 디오네의 마지막 노래.
+sacrifice.fact.dione.martyr-contest.label: 순교 경쟁
+sacrifice.fact.dione.martyr-contest.hint: 누가 더 아프게 바쳤는지 겨루는 제단의 습속. 상처의 길이와 굶은 날이 숫자로 적힌다.
+sacrifice.fact.dione.renunciation-law.label: 버림의 계율
+sacrifice.fact.dione.renunciation-law.hint: 제단이 명하는 법. 남기는 것은 욕심이고, 빈손이 되어야 사랑이라 부른다.
+sacrifice.fact.dione.living-love.label: 아궁이의 사랑
+sacrifice.fact.dione.living-love.hint: 옛 성소의 초석이 새긴 말. 덜어내는 자리가 아니라 매일 채워 주는 자리가 지킨 불.
+sacrifice.fact.creature.sacrifice-penitent.label: 회개의 고행자
+sacrifice.fact.creature.sacrifice-penitent.hint: 악하지 않다. 거룩함을 상처로 증명해야 한다고 배운 이. 제단 앞에서 등을 채찍질한다.
+
+# --- 디오네 추론·위기 ---
+sacrifice.deduction.sacrifice.sentence: 희생은 {1}(이)라 나를 삼키는 것이 아니라, {2}(으)로 {3}을 감당하는 것이다
+sacrifice.deduction.sacrifice.hint: 제단은 헌신의 이름으로 자신을 태우라고 가르친다. 과부의 노래와 아궁이의 초석이 가리키는 참된 희생은 삼켜지는 일이 아니라 감당하는 일이다.
+sacrifice.crisis.altar.text: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 리오의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치는 것. 아이가 온전히 덜어낼 때 그것이 진정한 희생이라고. 리오는 겁먹은 얼굴로 무릎을 꿇는다. 과부 레아가 뒤에서 빵 반쪽을 감추고, 순례자 이온이 지팡이를 움켜쥔다. 외과의 세인은 고개를 숙이고, 기록사 미르는 장부를 펼친다. 이제 그대가 나설 차례다.
+sacrifice.option.open-altar.label: 과부의 노래를 불러 사랑과 용기를 보인다
+sacrifice.option.open-altar.text: 그대가 제단 앞에서 옛 노래를 부른다. 레아와 아이 리오가 목소리를 보탠다. 사제가 소리치지만, 석공 하르파가 제단 돌을 밀어 옛 아궁이를 드러낸다. 초석에는, 이 마을을 지킨 불은 제단이 아니라 저녁마다 다시 켜지는 아궁이였다고 새겨져 있다. 사제는 흔들리고, 마을 사람들은 상처의 길이를 재던 줄을 내려놓는다. 희생은 자신을 삼키는 헌신이 아니라, 사랑으로 용기를 감당하는 일임을 디오네가 안다. 그날 저녁, 제단 대신 빵집에 불이 켜진다.
+sacrifice.option.exile-priest.label: 순교 경쟁의 기록을 낭독하고 제단을 닫는다
+sacrifice.option.exile-priest.text: 그대가 순례자의 수첩과 기록사의 장부를 꺼내 낭독한다. 손가락 하나, 끼니 하나, 무릎 하나. 제단이 받은 것들의 숫자가 제단 앞에 쌓인다. 사제는 침묵하고, 마을 사람들은 하나둘 고개를 든다. 사제는 제단을 떠나고, 제단은 닫힌다. 그러나 아이는 여전히 매일 저녁 한 끼를 거른다. 디오네는 경쟁을 멈췄지만, 아직 사는 법을 배우지 못했다.
+
+# --- 디오네 능력·생물 ---
+sacrifice.ability.meaning.name: 희생의 의미
+sacrifice.creature.penitent.name: 회개의 고행자

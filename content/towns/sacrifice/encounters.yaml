@@ -1,0 +1,12 @@
+- id: enc.sacrifice.martyr
+  map: map.town.sacrifice
+  grid:
+    - "T.....T"
+    - "......."
+    - "......."
+    - "......."
+    - "T.....T"
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.sacrifice-penitent, at: [3, 1] }
+  music: music.battle

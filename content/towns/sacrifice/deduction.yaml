@@ -1,0 +1,5 @@
+- id: deduction.sacrifice
+  sentence: sacrifice.deduction.sacrifice.sentence
+  hint: sacrifice.deduction.sacrifice.hint
+  answer: [word.devotion, word.love, word.courage]
+  unlocks: [ability.sacrifice-meaning]

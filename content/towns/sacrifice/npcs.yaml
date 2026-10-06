@@ -1,0 +1,259 @@
+# 디오네(희생) NPC 10명. 대사는 전부 content/strings/ko.yaml의 sacrifice.npc.* 키로 참조한다.
+- id: npc.sacrifice.altar-priest
+  map: map.town.sacrifice
+  pos: [6, 3]
+  schedule:
+    "0": [6, 3]
+    "6": [6, 4]
+    "12": [6, 3]
+    "18": [7, 3]
+  name: sacrifice.npc.altar-priest.name
+  greet: sacrifice.npc.altar-priest.greet
+  sprite: [town, 90]
+  topics:
+    name:
+      - text: sacrifice.npc.altar-priest.name.t
+    job:
+      - text: sacrifice.npc.altar-priest.job.t
+        grants: [fact.dione.altar, fact.dione.sanctuary, word.devotion]
+    word.devotion:
+      - text: sacrifice.npc.altar-priest.devotion.t
+        grants: [word.devotion, fact.dione.renunciation-law]
+    word.love:
+      - text: sacrifice.npc.altar-priest.love.t
+    fact.dione.widow-song:
+      - text: sacrifice.npc.altar-priest.widow-song.t
+        lie: true
+    fact.creature.sacrifice-penitent:
+      - text: sacrifice.npc.altar-priest.penitent.t
+- id: npc.sacrifice.widow
+  map: map.town.sacrifice
+  pos: [7, 10]
+  schedule:
+    "0": [7, 10]
+    "6": [8, 10]
+    "12": [7, 10]
+    "18": [6, 10]
+  name: sacrifice.npc.widow.name
+  greet: sacrifice.npc.widow.greet
+  sprite: [town, 94]
+  topics:
+    name:
+      - text: sacrifice.npc.widow.name.t
+    job:
+      - text: sacrifice.npc.widow.job.t
+        grants: [fact.dione.widow, fact.dione.widow-song]
+    word.love:
+      - text: sacrifice.npc.widow.love.t
+        grants: [word.love]
+    fact.dione.widow-song:
+      - text: sacrifice.npc.widow.widow-song.t
+        grants: [fact.dione.widow-song, word.love]
+    fact.dione.altar:
+      - text: sacrifice.npc.widow.altar.t
+        grants: [fact.dione.altar]
+    word.devotion:
+      - text: sacrifice.npc.widow.devotion.t
+        grants: [word.devotion]
+- id: npc.sacrifice.child
+  map: map.town.sacrifice
+  pos: [13, 7]
+  schedule:
+    "0": [13, 7]
+    "6": [14, 7]
+    "12": [13, 7]
+    "18": [12, 7]
+  name: sacrifice.npc.child.name
+  greet: sacrifice.npc.child.greet
+  sprite: [town, 88]
+  topics:
+    name:
+      - text: sacrifice.npc.child.name.t
+    job:
+      - text: sacrifice.npc.child.job.t
+        grants: [word.burden]
+    word.burden:
+      - text: sacrifice.npc.child.burden.t
+        grants: [word.burden]
+    fact.dione.widow-song:
+      - text: sacrifice.npc.child.widow-song.t
+        grants: [fact.dione.widow-song, word.love]
+    fact.dione.widow:
+      - text: sacrifice.npc.child.widow.t
+        grants: [fact.dione.widow]
+- id: npc.sacrifice.pilgrim
+  map: map.town.sacrifice
+  pos: [12, 8]
+  schedule:
+    "0": [12, 8]
+    "6": [12, 9]
+    "12": [13, 8]
+    "18": [11, 8]
+  name: sacrifice.npc.pilgrim.name
+  greet: sacrifice.npc.pilgrim.greet
+  sprite: [town, 89]
+  topics:
+    name:
+      - text: sacrifice.npc.pilgrim.name.t
+    job:
+      - text: sacrifice.npc.pilgrim.job.t
+        grants: [fact.dione.pilgrim, word.witness]
+    word.witness:
+      - text: sacrifice.npc.pilgrim.witness.t
+        grants: [word.witness]
+    fact.dione.martyr-contest:
+      - text: sacrifice.npc.pilgrim.martyr-contest.t
+        grants: [fact.dione.martyr-contest]
+    word.devotion:
+      - text: sacrifice.npc.pilgrim.devotion.t
+        grants: [word.devotion]
+- id: npc.sacrifice.surgeon
+  map: map.town.sacrifice
+  pos: [9, 14]
+  schedule:
+    "0": [9, 14]
+    "6": [9, 13]
+    "12": [10, 14]
+    "18": [8, 14]
+  name: sacrifice.npc.surgeon.name
+  greet: sacrifice.npc.surgeon.greet
+  sprite: [town, 87]
+  topics:
+    name:
+      - text: sacrifice.npc.surgeon.name.t
+    job:
+      - text: sacrifice.npc.surgeon.job.t
+        grants: [fact.dione.surgeon, word.witness]
+    word.witness:
+      - text: sacrifice.npc.surgeon.witness.t
+        grants: [word.witness]
+    fact.dione.martyr-contest:
+      - text: sacrifice.npc.surgeon.martyr-contest.t
+        grants: [fact.dione.martyr-contest]
+    fact.creature.sacrifice-penitent:
+      - text: sacrifice.npc.surgeon.penitent.t
+        grants: [fact.creature.sacrifice-penitent]
+    word.courage:
+      - text: sacrifice.npc.surgeon.courage.t
+        grants: [word.courage]
+- id: npc.sacrifice.scribe
+  map: map.town.sacrifice
+  pos: [18, 3]
+  schedule:
+    "0": [18, 3]
+    "6": [18, 4]
+    "12": [19, 3]
+    "18": [18, 3]
+  name: sacrifice.npc.scribe.name
+  greet: sacrifice.npc.scribe.greet
+  sprite: [town, 92]
+  topics:
+    name:
+      - text: sacrifice.npc.scribe.name.t
+    job:
+      - text: sacrifice.npc.scribe.job.t
+        grants: [fact.dione.scribe, fact.dione.martyr-contest]
+    fact.dione.martyr-contest:
+      - text: sacrifice.npc.scribe.martyr-contest.t
+        grants: [fact.dione.martyr-contest, word.burden]
+    word.burden:
+      - text: sacrifice.npc.scribe.burden.t
+        grants: [word.burden]
+    fact.dione.widow:
+      - text: sacrifice.npc.scribe.widow.t
+        grants: [fact.dione.widow]
+- id: npc.sacrifice.mason
+  map: map.town.sacrifice
+  pos: [14, 13]
+  schedule:
+    "0": [14, 13]
+    "6": [15, 13]
+    "12": [14, 13]
+    "18": [14, 14]
+  name: sacrifice.npc.mason.name
+  greet: sacrifice.npc.mason.greet
+  sprite: [town, 91]
+  topics:
+    name:
+      - text: sacrifice.npc.mason.name.t
+    job:
+      - text: sacrifice.npc.mason.job.t
+        grants: [fact.dione.altar]
+    fact.dione.altar:
+      - text: sacrifice.npc.mason.altar.t
+        grants: [fact.dione.living-love]
+    word.courage:
+      - text: sacrifice.npc.mason.courage.t
+        grants: [word.courage]
+    fact.dione.widow-song:
+      - text: sacrifice.npc.mason.widow-song.t
+        grants: [fact.dione.widow-song]
+- id: npc.sacrifice.baker
+  map: map.town.sacrifice
+  pos: [20, 14]
+  schedule:
+    "0": [20, 14]
+    "6": [20, 13]
+    "12": [21, 14]
+    "18": [19, 14]
+  name: sacrifice.npc.baker.name
+  greet: sacrifice.npc.baker.greet
+  sprite: [town, 86]
+  topics:
+    name:
+      - text: sacrifice.npc.baker.name.t
+    job:
+      - text: sacrifice.npc.baker.job.t
+        grants: [fact.dione.living-love]
+    fact.dione.living-love:
+      - text: sacrifice.npc.baker.living-love.t
+        grants: [fact.dione.living-love, word.love]
+    word.love:
+      - text: sacrifice.npc.baker.love.t
+        grants: [word.love]
+- id: npc.sacrifice.healer
+  map: map.town.sacrifice
+  pos: [7, 14]
+  schedule:
+    "0": [7, 14]
+    "6": [7, 13]
+    "12": [6, 14]
+    "18": [8, 14]
+  name: sacrifice.npc.healer.name
+  greet: sacrifice.npc.healer.greet
+  sprite: [town, 93]
+  topics:
+    name:
+      - text: sacrifice.npc.healer.name.t
+    job:
+      - text: sacrifice.npc.healer.job.t
+        grants: [fact.dione.surgeon, fact.creature.sacrifice-penitent]
+    fact.creature.sacrifice-penitent:
+      - text: sacrifice.npc.healer.penitent.t
+        grants: [fact.creature.sacrifice-penitent]
+    word.burden:
+      - text: sacrifice.npc.healer.burden.t
+        grants: [word.burden]
+- id: npc.sacrifice.gardener
+  map: map.town.sacrifice
+  pos: [16, 18]
+  schedule:
+    "0": [16, 18]
+    "6": [15, 18]
+    "12": [16, 18]
+    "18": [17, 18]
+  name: sacrifice.npc.gardener.name
+  greet: sacrifice.npc.gardener.greet
+  sprite: [town, 85]
+  topics:
+    name:
+      - text: sacrifice.npc.gardener.name.t
+    job:
+      - text: sacrifice.npc.gardener.job.t
+        grants: [fact.dione.garden]
+    fact.dione.garden:
+      - text: sacrifice.npc.gardener.garden.t
+        grants: [fact.dione.garden, word.burden]
+    fact.dione.martyr-contest:
+      - text: sacrifice.npc.gardener.martyr-contest.t
+        grants: [fact.dione.martyr-contest]
