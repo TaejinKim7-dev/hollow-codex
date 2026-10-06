@@ -579,7 +579,8 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
     maps: d.maps.items, npcs: d.npcs.items, facts: d.facts.items,
     deductions: d.deductions.items as GameContent["deductions"],   // answer length checked in group 7
     crises: d.crises.items, creatures: d.creatures.items, encounters: d.encounters.items,
-    abilities: d.abilities.items, music: d.music.items, strings: d.strings, start: d.start
+    abilities: d.abilities.items, music: d.music.items, strings: d.strings, start: d.start,
+    moongates: {}   // D14 — M2 Task 19·24가 콘텐츠 파싱/검증을 추가한다
   }
   return { content, errors }
 }

@@ -9,7 +9,7 @@ describe("move", () => {
     const grass = step(at(1, 1), { type: "move", dir: "e" }, c)           // (2,1) 풀
     expect(grass.state.player.pos).toEqual({ x: 2, y: 1 })
     expect(grass.state.turn).toBe(1)
-    expect(grass.events).toEqual([{ type: "moved", pos: { x: 2, y: 1 } }])
+    expect(grass.events).toEqual([{ type: "moved", pos: { x: 2, y: 1 } }, { type: "timePassed", hour: 9, day: 1 }])
     const bush = step(at(2, 1), { type: "move", dir: "e" }, c)            // (3,1) 덤불
     expect(bush.state.turn).toBe(2)
   })
@@ -25,7 +25,7 @@ describe("move", () => {
   it("changes map at an exit and arrives at the exit's arrive position", () => {
     const r = step(at(4, 2), { type: "move", dir: "e" }, c)
     expect(r.state.mapId).toBe("map.b"); expect(r.state.player.pos).toEqual({ x: 1, y: 1 })
-    expect(r.events).toEqual([{ type: "moved", pos: { x: 5, y: 2 } }, { type: "mapChanged", mapId: "map.b" }, { type: "music", track: "music.b" }])
+    expect(r.events).toEqual([{ type: "moved", pos: { x: 5, y: 2 } }, { type: "timePassed", hour: 9, day: 1 }, { type: "mapChanged", mapId: "map.b" }, { type: "music", track: "music.b" }])
     expect(r.state.flags).toEqual(["flag.visited-b"])
   })
   it("entering a healing map restores hp", () => {
@@ -37,7 +37,7 @@ describe("move", () => {
   })
   it("starts the encounter placed on the tile", () => {
     const r = step(at(1, 2), { type: "move", dir: "s" }, c)                // (1,3) enc.a
-    expect(r.events.map((e) => e.type)).toEqual(["moved", "combatStarted", "music"])
+    expect(r.events.map((e) => e.type)).toEqual(["moved", "timePassed", "combatStarted", "music"])
     expect(r.state.combat?.encounterId).toBe("enc.a")
     expect(r.state.combat?.returnPos).toEqual({ x: 1, y: 2 })
     expect(r.state.combat?.units.map((u) => u.id)).toEqual(["player", "creature.slime#0", "creature.bandit#1"])

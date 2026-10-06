@@ -126,6 +126,7 @@ export function testContent(): GameContent {
     abilities: { "ability.see-lies": { nameKey: "ability.see-lies.name" } },
     music: { "music.a": oneNote, "music.b": oneNote, "music.battle": oneNote },
     strings: Object.fromEntries(stringKeys.map((k) => [k, k])),
+    moongates: {},
     start: { map: "map.a", pos: { x: 1, y: 1 }, hp: 10, attack: 3 }
   }
 }
@@ -142,8 +143,7 @@ export function stateWith(patch: Partial<GameState>): GameState {
   return deepFreeze({ ...createInitialState(testContent(), 1), ...patch })
 }
 
-export function run(state: GameState, commands: readonly Command[]): { state: GameState; events: GameEvent[] } {
-  const content = testContent()
+export function run(state: GameState, commands: readonly Command[], content: GameContent = testContent()): { state: GameState; events: GameEvent[] } {
   const events: GameEvent[] = []
   let current = state
   for (const command of commands) {

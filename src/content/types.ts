@@ -32,11 +32,21 @@ export interface MapDef {
   readonly encounters: readonly { readonly at: Pos; readonly id: Id }[]
   readonly enterFlags: readonly Id[]
   readonly heals: boolean
+  readonly isOverworld?: boolean                                  // D20 — M2 신규
+  readonly terrainCost?: Readonly<Record<string, number>>        // D20 — 글리프 → 이동 비용
 }
 export interface NpcDef {
   readonly map: Id; readonly pos: Pos; readonly nameKey: string; readonly greetKey: string; readonly sprite: SpriteRef
   readonly topics: Readonly<Record<string, readonly Topic[]>>      // 키: "name" | "job" | 단서 id (D8, D9)
   readonly companion?: CompanionDef
+  readonly schedule?: Readonly<Record<string, Pos>>                // D13 — 키: "0" | "6" | "12" | "18"
+}
+export interface MoongateDef {
+  readonly at: Pos
+  readonly nameKey: string
+  readonly songKey: string
+  readonly fact: Id        // fact required to unlock (D10)
+  readonly onOverworld: Id // which MapDef.id this ring is on
 }
 export interface CrisisOptionDef {
   readonly requires: readonly Id[]; readonly requiresDeductions: readonly Id[]
@@ -56,6 +66,7 @@ export interface GameContent {
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
   readonly music: Readonly<Record<Id, Score>>
   readonly strings: Readonly<Record<string, string>>
+  readonly moongates: Readonly<Record<Id, MoongateDef>>   // D14
   readonly start: { readonly map: Id; readonly pos: Pos; readonly hp: number; readonly attack: number }
 }
 

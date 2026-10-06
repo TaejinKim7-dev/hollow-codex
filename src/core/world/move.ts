@@ -1,10 +1,20 @@
 import type { GameContent } from "../../content/types.ts"
-import type { Dir, GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
+import type { Dir, GameEvent, GameState, Id, Pos, StepResult, TimeState } from "../types.ts"
 import { startCombat } from "../combat/grid.ts"
 import { addSorted, samePos } from "../state.ts"
 import { findPath, offset, tileAt } from "./path.ts"
 
 export { tileAt } from "./path.ts"
+
+/** 시간을 1시간 진행한다 (D12). 24시가 되면 day가 올라가고 hour가 0으로 감긴다. */
+function advanceTime(time: TimeState): { state: TimeState; events: GameEvent[] } {
+  const hour = time.hour + 1
+  if (hour < 24) {
+    return { state: { hour, day: time.day }, events: [{ type: "timePassed", hour, day: time.day }] }
+  }
+  const day = time.day + 1
+  return { state: { hour: 0, day }, events: [{ type: "timePassed", hour: 0, day }, { type: "dayPassed", day }] }
+}
 
 /** state.mapId 지도에서 p에 선 NPC. 동행 중(party)인 NPC는 지도에서 빠진다(D19). */
 export function npcAt(state: GameState, content: GameContent, p: Pos): Id | null {
@@ -21,8 +31,9 @@ export function move(state: GameState, dir: Dir, content: GameContent): StepResu
   if (tile === null || tile.walk === null || npcAt(state, content, target) !== null) {
     return { state: { ...state, player: { ...state.player, facing: dir } }, events: [{ type: "bumped" }] }
   }
-  let next: GameState = { ...state, turn: state.turn + tile.walk, player: { ...state.player, facing: dir, pos: target } }
-  const events: GameEvent[] = [{ type: "moved", pos: target }]
+  const t = advanceTime(state.time)
+  let next: GameState = { ...state, turn: state.turn + tile.walk, time: t.state, player: { ...state.player, facing: dir, pos: target } }
+  const events: GameEvent[] = [{ type: "moved", pos: target }, ...t.events]
   const map = content.maps[state.mapId]
   if (!map) throw new Error(`unknown map: ${state.mapId}`)
 

@@ -24,6 +24,7 @@ export type Command =
   | { type: "fillSlot"; deductionId: Id; slot: number; word: Id | null }
   | { type: "resolveCrisis"; crisisId: Id; optionId: Id } | { type: "recruit"; npcId: Id }
   | { type: "combat"; action: CombatAction }
+  | { type: "ringStep"; at: Id }
 
 export type GameEvent =
   | { type: "moved"; pos: Pos } | { type: "bumped" } | { type: "mapChanged"; mapId: Id }
@@ -35,11 +36,18 @@ export type GameEvent =
   | { type: "crisisResolved"; crisisId: Id; optionId: Id }
   | { type: "combatStarted"; encounterId: Id } | { type: "combatEnded"; outcome: "victory" | "defeat" | "fled" }
   | { type: "sfx"; name: string } | { type: "music"; track: Id }
+  | { type: "timePassed"; hour: number; day: number } | { type: "dayPassed"; day: number }
+  | { type: "ringTraveled"; from: Id; to: Id }
+  | { type: "companionJoinRejected"; npcId: Id }
+
+export interface TimeState { readonly hour: number; readonly day: number }
 
 export interface GameState {
   readonly version: 1
   readonly rng: number
   readonly turn: number
+  readonly time: TimeState                                    // D12 — move 1회당 1시간
+  readonly rings: { readonly visited: readonly Id[]; readonly knownFacts: readonly Id[] }   // D15
   readonly mapId: Id
   readonly player: { readonly pos: Pos; readonly facing: Dir; readonly hp: number; readonly maxHp: number; readonly attack: number }
   readonly facts: readonly Id[]                                  // 정렬·중복 없음
