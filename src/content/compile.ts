@@ -3,7 +3,7 @@
 // 5 map/grid geometry, 6 grant paths, 7 deduction answers, 8 denied terms.
 import type { Id, Pos, Virtue } from "../core/types.ts"
 import { findDenied, parseDenylist } from "./denylist.ts"
-import { makeReader } from "./shape.ts"
+import { isObj, makeReader } from "./shape.ts"
 import type { Obj, Reader } from "./shape.ts"
 import type {
   ChoiceOption, CompanionDef, CrisisOptionDef, FactKind, GameContent, MapDef, NpcDef, RawContent, Score, SpriteRef, Topic
@@ -278,6 +278,20 @@ function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   })
 }
 
+/** The IP guard must fail closed: a missing or malformed list is an error, never an empty list. */
+function checkDenylistShape(r: Reader, v: unknown): void {
+  if (!isObj(v)) {
+    r.fail("", "expected a mapping with latin and hangul string lists")
+    return
+  }
+  for (const key of ["latin", "hangul"]) {
+    const list = v[key]
+    if (!Array.isArray(list) || !list.every((x) => typeof x === "string" && x.trim() !== "")) {
+      r.fail(key, "expected a list of non-empty strings")
+    }
+  }
+}
+
 function readAll(raw: RawContent, ctx: Ctx): Draft {
   const d: Draft = {
     sheets: {}, tiles: {}, playerSprite: null, maps: table(), npcs: table(), facts: table(), deductions: table(),
@@ -285,11 +299,12 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
   }
   if (!("tiles.yaml" in raw)) ctx.shape.push("tiles.yaml: missing required file")
   if (!("start.yaml" in raw)) ctx.shape.push("start.yaml: missing required file")
+  if (!(DENYLIST_FILE in raw)) ctx.shape.push(`${DENYLIST_FILE}: missing required file`)
   for (const [file, v] of Object.entries(raw)) {
     const r = makeReader(file, ctx.shape)
     const music = /^music\/([^/]+)\.yaml$/.exec(file)
     const town = /^towns\/[^/]+\/(maps|npcs|facts|deduction|crisis|encounters)\.yaml$/.exec(file)
-    if (file === DENYLIST_FILE) continue
+    if (file === DENYLIST_FILE) checkDenylistShape(r, v)
     else if (file === "tiles.yaml") readTiles(r, v, d)
     else if (file === "start.yaml") readStart(r, v, d)
     else if (file === "abilities.yaml") readAbilities(r, v, d, ctx)
@@ -512,21 +527,24 @@ function checkDenied(raw: RawContent, d: Draft, out: string[]): void {
     add(`${STRINGS_FILE}: key ${k}`, k)
     add(`${STRINGS_FILE}: ${k}`, s)
   }
-  for (const id of Object.keys(d.sheets)) add(`tiles.yaml: sheet id`, id)
+  for (const id of Object.keys(d.sheets)) add(`tiles.yaml: sheet id ${id}`, id)
   const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.music]
-  for (const t of tables) for (const [id, f] of Object.entries(t.file)) add(`${f}: id`, id)
-  const flags = (file: string, ids: readonly Id[] | undefined): void => { for (const x of ids ?? []) add(`${file}: flag`, x) }
-  for (const [id, m] of Object.entries(d.maps.items)) flags(d.maps.file[id] ?? "", m.enterFlags)
+  for (const t of tables) for (const [id, f] of Object.entries(t.file)) add(`${f}: id ${id}`, id)
+  const flags = (file: string, where: string, ids: readonly Id[] | undefined): void => {
+    for (const x of ids ?? []) add(`${file}: ${where} flag ${x}`, x)
+  }
+  for (const [id, m] of Object.entries(d.maps.items)) flags(d.maps.file[id] ?? "", `${id}.enterFlags`, m.enterFlags)
   for (const [id, n] of Object.entries(d.npcs.items)) {
     const f = d.npcs.file[id] ?? ""
     for (const [key, variants] of Object.entries(n.topics)) {
-      add(`${f}: ${id} topic key`, key)
+      const tw = `${id}.topics`
+      add(`${f}: ${tw} key "${key}"`, key)
       for (const t of variants) {
-        flags(f, t.setsFlags); flags(f, t.requiresFlags); flags(f, t.excludeFlags)
+        flags(f, `${tw}.${key}`, t.setsFlags); flags(f, `${tw}.${key}`, t.requiresFlags); flags(f, `${tw}.${key}`, t.excludeFlags)
         for (const c of t.choice ?? []) {
-          add(`${f}: ${id} option id`, c.optionId)
-          flags(f, c.setsFlags)
-          if (c.deed !== undefined) add(`${f}: ${id} deed id`, c.deed.deed)
+          add(`${f}: ${tw}.${key} option id ${c.optionId}`, c.optionId)
+          flags(f, `${tw}.${key}.${c.optionId}`, c.setsFlags)
+          if (c.deed !== undefined) add(`${f}: ${tw}.${key}.${c.optionId} deed id ${c.deed.deed}`, c.deed.deed)
         }
       }
     }
@@ -534,8 +552,8 @@ function checkDenied(raw: RawContent, d: Draft, out: string[]): void {
   for (const [id, c] of Object.entries(d.crises.items)) {
     const f = d.crises.file[id] ?? ""
     for (const [optId, o] of Object.entries(c.options)) {
-      add(`${f}: ${id} option id`, optId)
-      flags(f, o.setsFlags)
+      add(`${f}: ${id}.options option id ${optId}`, optId)
+      flags(f, `${id}.options.${optId}`, o.setsFlags)
     }
   }
   out.push(...findDenied(texts, deny))

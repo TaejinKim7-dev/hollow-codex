@@ -13,6 +13,15 @@ function walk(dir: string): string[] {
   return out
 }
 
+/** Parses one YAML file's text; syntax errors are rethrown as `<rel>: <message>`. */
+export function parseYamlFile(rel: string, text: string): unknown {
+  try {
+    return parse(text) as unknown
+  } catch (e) {
+    throw new Error(`${rel}: ${e instanceof Error ? e.message : String(e)}`, { cause: e })
+  }
+}
+
 /** Reads every `**\/*.yaml` under `dir` into { "relative/path.yaml": parsed value }, sorted by path. */
 export function loadContentDir(dir: string): RawContent {
   if (!existsSync(dir) || !statSync(dir).isDirectory()) throw new Error(`content directory not found: ${dir}`)
@@ -20,6 +29,6 @@ export function loadContentDir(dir: string): RawContent {
     .map((p) => [relative(dir, p).split(sep).join("/"), p] as const)
     .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
   const out: Record<string, unknown> = {}
-  for (const [rel, p] of entries) out[rel] = parse(readFileSync(p, "utf8")) as unknown
+  for (const [rel, p] of entries) out[rel] = parseYamlFile(rel, readFileSync(p, "utf8"))
   return out
 }

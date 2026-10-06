@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { compileContent } from "../../src/content/compile.ts"
-import { loadContentDir } from "../../src/content/load-node.ts"
+import { loadContentDir, parseYamlFile } from "../../src/content/load-node.ts"
 
 const raw = () => loadContentDir("tests/fixtures/content-min")
 const withFile = (path: string, value: unknown) => ({ ...raw(), [path]: value })
@@ -100,5 +100,27 @@ describe("compileContent", () => {
   it("reports a file at an unknown path", () => {
     const { errors } = compileContent(withFile("towns/min/extra.yaml", []))
     expect(errors).toContain("towns/min/extra.yaml: unknown content file")
+  })
+
+  it("reports a missing or malformed denylist", () => {
+    const { ["ip-denylist.yaml"]: _drop, ...without } = raw()
+    for (const bad of [without, withFile("ip-denylist.yaml", null), withFile("ip-denylist.yaml", { latin: ["x"], hangl: ["y"] }), withFile("ip-denylist.yaml", { latin: "x", hangul: [] })]) {
+      const { content, errors } = compileContent(bad)
+      expect(content).toBeNull()
+      expect(errors.some((e) => e.startsWith("ip-denylist.yaml: "))).toBe(true)
+    }
+  })
+
+  it("names the offending id in a denied-term error", () => {
+    const facts = [...(raw()["towns/min/facts.yaml"] as Obj[]), { id: "fact.forbiddenland", kind: "place", label: "fact.min.person.label", hint: "fact.min.person.hint" }]
+    const { content, errors } = compileContent(withFile("towns/min/facts.yaml", facts))
+    expect(content).toBeNull()
+    expect(errors).toContain('towns/min/facts.yaml: id fact.forbiddenland: denied term "forbiddenland"')
+  })
+})
+
+describe("parseYamlFile", () => {
+  it("prefixes YAML syntax errors with the relative file path", () => {
+    expect(() => parseYamlFile("towns/min/npcs.yaml", "a: [1, 2\nb: c")).toThrow(/^towns\/min\/npcs\.yaml: /)
   })
 })
