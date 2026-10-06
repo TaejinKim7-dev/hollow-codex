@@ -1,0 +1,249 @@
+# 엘리아(영성) NPC 10명. 대사는 전부 content/strings/ko.yaml의 spirituality.npc.* 키로 참조한다.
+- id: npc.spirituality.monk
+  map: map.town.spirituality
+  pos: [10, 8]
+  schedule:
+    "0": [10, 8]
+    "6": [11, 8]
+    "12": [10, 8]
+    "18": [10, 9]
+  name: spirituality.npc.monk.name
+  greet: spirituality.npc.monk.greet
+  sprite: [town, 89]
+  topics:
+    name:
+      - text: spirituality.npc.monk.name.t
+    job:
+      - text: spirituality.npc.monk.job.t
+        grants: [fact.elia.monk, word.ritual]
+    word.ritual:
+      - text: spirituality.npc.monk.ritual.t
+    word.prayer:
+      - text: spirituality.npc.monk.prayer.t
+    fact.elia.silent-chant:
+      - text: spirituality.npc.monk.silent-chant.t
+        lie: true
+    word.truth:
+      - text: spirituality.npc.monk.truth.t
+        lie: true
+- id: npc.spirituality.novice
+  map: map.town.spirituality
+  pos: [8, 9]
+  schedule:
+    "0": [8, 9]
+    "6": [8, 10]
+    "12": [8, 9]
+    "18": [7, 9]
+  name: spirituality.npc.novice.name
+  greet: spirituality.npc.novice.greet
+  sprite: [town, 86]
+  topics:
+    name:
+      - text: spirituality.npc.novice.name.t
+    job:
+      - text: spirituality.npc.novice.job.t
+        grants: [fact.elia.novice, word.prayer]
+    word.prayer:
+      - text: spirituality.npc.novice.prayer.t
+    fact.elia.meditation-hall:
+      - text: spirituality.npc.novice.meditation-hall.t
+        grants: [fact.elia.meditation-hall]
+    fact.elia.silent-chant:
+      - text: spirituality.npc.novice.silent-chant.t
+- id: npc.spirituality.scribe
+  map: map.town.spirituality
+  pos: [18, 4]
+  schedule:
+    "0": [18, 4]
+    "6": [18, 5]
+    "12": [18, 4]
+    "18": [19, 4]
+  name: spirituality.npc.scribe.name
+  greet: spirituality.npc.scribe.greet
+  sprite: [town, 92]
+  topics:
+    name:
+      - text: spirituality.npc.scribe.name.t
+    job:
+      - text: spirituality.npc.scribe.job.t
+        grants: [word.ritual, fact.elia.license-rule]
+    word.ritual:
+      - text: spirituality.npc.scribe.ritual.t
+    word.prayer:
+      - text: spirituality.npc.scribe.prayer.t
+        grants: [word.prayer]
+    fact.elia.library:
+      - text: spirituality.npc.scribe.library.t
+        grants: [fact.elia.library]
+- id: npc.spirituality.healer
+  map: map.town.spirituality
+  pos: [4, 3]
+  schedule:
+    "0": [4, 3]
+    "6": [5, 3]
+    "12": [4, 3]
+    "18": [4, 4]
+  name: spirituality.npc.healer.name
+  greet: spirituality.npc.healer.greet
+  sprite: [town, 87]
+  topics:
+    name:
+      - text: spirituality.npc.healer.name.t
+    job:
+      - text: spirituality.npc.healer.job.t
+        grants: [fact.elia.healer, word.breath]
+    word.breath:
+      - text: spirituality.npc.healer.breath.t
+        grants: [word.breath]
+    fact.elia.breath-song:
+      - text: spirituality.npc.healer.breath-song.t
+        grants: [fact.elia.breath-song]
+    word.courage:
+      - text: spirituality.npc.healer.courage.t
+        grants: [word.courage]
+- id: npc.spirituality.hermit
+  map: map.town.spirituality
+  pos: [23, 3]
+  schedule:
+    "0": [23, 3]
+    "6": [23, 4]
+    "12": [23, 3]
+    "18": [22, 3]
+  name: spirituality.npc.hermit.name
+  greet: spirituality.npc.hermit.greet
+  sprite: [town, 85]
+  topics:
+    name:
+      - text: spirituality.npc.hermit.name.t
+    job:
+      - text: spirituality.npc.hermit.job.t
+        grants: [fact.elia.hermit, fact.elia.silent-chant]
+    word.spirit:
+      - text: spirituality.npc.hermit.spirit.t
+        grants: [word.spirit]
+    fact.elia.silent-chant:
+      - text: spirituality.npc.hermit.silent-chant.t
+        grants: [fact.elia.silent-chant, word.truth]
+    word.truth:
+      - text: spirituality.npc.hermit.truth.t
+        grants: [word.truth]
+    word.courage:
+      - text: spirituality.npc.hermit.courage.t
+        grants: [word.courage]
+- id: npc.spirituality.gardener
+  map: map.town.spirituality
+  pos: [14, 10]
+  schedule:
+    "0": [14, 10]
+    "6": [14, 9]
+    "12": [14, 10]
+    "18": [13, 10]
+  name: spirituality.npc.gardener.name
+  greet: spirituality.npc.gardener.greet
+  sprite: [town, 91]
+  topics:
+    name:
+      - text: spirituality.npc.gardener.name.t
+    job:
+      - text: spirituality.npc.gardener.job.t
+        grants: [fact.elia.courtyard, word.breath]
+    word.breath:
+      - text: spirituality.npc.gardener.breath.t
+        grants: [word.breath]
+    word.love:
+      - text: spirituality.npc.gardener.love.t
+        grants: [word.love]
+    fact.elia.courtyard:
+      - text: spirituality.npc.gardener.courtyard.t
+- id: npc.spirituality.child
+  map: map.town.spirituality
+  pos: [12, 12]
+  schedule:
+    "0": [12, 12]
+    "6": [12, 11]
+    "12": [12, 12]
+    "18": [11, 12]
+  name: spirituality.npc.child.name
+  greet: spirituality.npc.child.greet
+  sprite: [town, 93]
+  topics:
+    name:
+      - text: spirituality.npc.child.name.t
+    job:
+      - text: spirituality.npc.child.job.t
+        grants: [fact.elia.silent-chant]
+    fact.elia.silent-chant:
+      - text: spirituality.npc.child.silent-chant.t
+    word.prayer:
+      - text: spirituality.npc.child.prayer.t
+- id: npc.spirituality.brewer
+  map: map.town.spirituality
+  pos: [21, 15]
+  schedule:
+    "0": [21, 15]
+    "6": [22, 15]
+    "12": [21, 15]
+    "18": [21, 16]
+  name: spirituality.npc.brewer.name
+  greet: spirituality.npc.brewer.greet
+  sprite: [town, 88]
+  topics:
+    name:
+      - text: spirituality.npc.brewer.name.t
+    job:
+      - text: spirituality.npc.brewer.job.t
+        grants: [fact.elia.courtyard]
+    fact.elia.license-rule:
+      - text: spirituality.npc.brewer.license-rule.t
+        grants: [fact.elia.license-rule]
+    word.ritual:
+      - text: spirituality.npc.brewer.ritual.t
+        grants: [word.ritual]
+- id: npc.spirituality.gatekeeper
+  map: map.town.spirituality
+  pos: [2, 2]
+  schedule:
+    "0": [2, 2]
+    "6": [1, 2]
+    "12": [2, 2]
+    "18": [2, 3]
+  name: spirituality.npc.gatekeeper.name
+  greet: spirituality.npc.gatekeeper.greet
+  sprite: [town, 90]
+  topics:
+    name:
+      - text: spirituality.npc.gatekeeper.name.t
+    job:
+      - text: spirituality.npc.gatekeeper.job.t
+        grants: [fact.creature.spirituality-fake-monk]
+    fact.creature.spirituality-fake-monk:
+      - text: spirituality.npc.gatekeeper.fake-monk.t
+        grants: [fact.creature.spirituality-fake-monk]
+    fact.elia.courtyard:
+      - text: spirituality.npc.gatekeeper.courtyard.t
+- id: npc.spirituality.widow
+  map: map.town.spirituality
+  pos: [23, 10]
+  schedule:
+    "0": [23, 10]
+    "6": [23, 11]
+    "12": [23, 10]
+    "18": [24, 10]
+  name: spirituality.npc.widow.name
+  greet: spirituality.npc.widow.greet
+  sprite: [town, 94]
+  topics:
+    name:
+      - text: spirituality.npc.widow.name.t
+    job:
+      - text: spirituality.npc.widow.job.t
+        grants: [fact.elia.widow, fact.elia.breath-song]
+    fact.elia.breath-song:
+      - text: spirituality.npc.widow.breath-song.t
+        grants: [fact.elia.breath-song]
+    word.love:
+      - text: spirituality.npc.widow.love.t
+        grants: [word.love]
+    word.courage:
+      - text: spirituality.npc.widow.courage.t
+        grants: [word.courage]

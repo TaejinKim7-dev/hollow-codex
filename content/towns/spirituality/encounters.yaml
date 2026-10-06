@@ -1,0 +1,13 @@
+# 엘리아(영성) 조우 — 두건을 쓰고 명상의 은혜를 헌납하라며 공갈하는 가짜 스님.
+- id: enc.spirituality.fake-monk
+  map: map.town.spirituality
+  grid:
+    - "T.....T"
+    - "......."
+    - "......."
+    - "......."
+    - "T.....T"
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.spirituality-fake-monk, at: [3, 1] }
+  music: music.battle

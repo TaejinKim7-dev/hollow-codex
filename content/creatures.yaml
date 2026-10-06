@@ -5,3 +5,4 @@
 - { id: creature.justice-mourner, name: justice.creature.mourner.name, evil: false, hp: 5, attack: 1, sprite: [town, 86], lore: fact.creature.justice-mourner }
 - { id: creature.sacrifice-penitent, name: sacrifice.creature.penitent.name, evil: false, hp: 5, attack: 1, sprite: [town, 87], lore: fact.creature.sacrifice-penitent }
 - { id: creature.honor-braggart, name: honor.creature.braggart.name, evil: true, hp: 6, attack: 3, sprite: [town, 88], lore: fact.creature.honor-braggart }
+- { id: creature.spirituality-fake-monk, name: spirituality.creature.fake-monk.name, evil: true, hp: 5, attack: 2, sprite: [town, 95], lore: fact.creature.spirituality-fake-monk }

@@ -1,0 +1,6 @@
+# 엘리아(영성) 추론 — 참된 영성은 면허가 아니라 진실과 사랑과 용기가 함께 숨 쉬는 것이다.
+- id: deduction.spirituality
+  sentence: spirituality.deduction.spirituality.sentence
+  hint: spirituality.deduction.spirituality.hint
+  answer: [word.truth, word.love, word.courage]
+  unlocks: [ability.spirituality-mind]

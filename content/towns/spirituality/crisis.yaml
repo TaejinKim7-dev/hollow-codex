@@ -1,0 +1,17 @@
+# 엘리아(영성) 위기 — 명상 면허를 파는 주지와, 면허 없이 명상하려는 마을 사람들.
+- id: crisis.spirituality.license
+  npc: npc.spirituality.monk
+  text: spirituality.crisis.license.text
+  options:
+    option.open-meditation:
+      requires: [fact.elia.silent-chant]
+      requiresDeductions: [deduction.spirituality]
+      setsFlags: [flag.spirituality.meditation-open]
+      label: spirituality.option.open-meditation.label
+      text: spirituality.option.open-meditation.text
+    option.exile-monk:
+      requires: [fact.elia.license-rule]
+      requiresDeductions: []
+      setsFlags: [flag.spirituality.monk-exiled]
+      label: spirituality.option.exile-monk.label
+      text: spirituality.option.exile-monk.text

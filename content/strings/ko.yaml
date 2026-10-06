@@ -844,3 +844,133 @@ honor.option.exile-elder.text: 그대가 기록관 엘리와 석공 토벤의 �
 # --- 아르곤 능력·생물 ---
 honor.ability.truth.name: 진실의 검
 honor.creature.braggart.name: 자랑질하는 결투가
+
+# --- 영성의 마을 엘리아 (M4 Task 39) ---
+town.elia.name: 엘리아
+spirituality.music.title: 엘리아의 숨결
+
+spirituality.npc.monk.name: 주지 스님 다루
+spirituality.npc.monk.greet: 엘리아를 찾는 이방인인가. 명상을 원하는가? 그럼 먼저 면허부터 내게. 명상은 공짜가 아니야.
+spirituality.npc.monk.name.t: 나는 이 명상당의 주지, 다루라 한다. 이 마을에서는 이름보다 면허 번호가 더 오래 기억되지.
+spirituality.npc.monk.job.t: 내 일은 마음의 질서를 지키는 것이다. 명상은 누구나 하는 것이 아니다. 자격을 갖춘 자만이 명상당에 들어가고, 그 자격은 면허로 증명된다. 면허 없이 명상을 하다 들키면, 그것은 곧 배교다.
+spirituality.npc.monk.ritual.t: 의례는 형식이다. 그리고 형식은 굳건해야 한다. 새벽 예불, 오후 독경, 저녁 향. 이 순서가 흔들리면 마음도 흔들린다. 그러니 절차를 어기는 자는 아무리 마음이 곧아도 면허를 줄 수 없다.
+spirituality.npc.monk.prayer.t: 기도는 면허 소지자만이 올릴 수 있는 것이다. 첫 단계는 참칭 기도, 다음은 함께하는 기도, 마지막은 고독한 기도. 각 단계마다 면허가 필요하고, 그 면허는 내가 서명한다.
+spirituality.npc.monk.silent-chant.t: 성스러운 노래라…… 그런 것은 듣지 못했다. 명상당에는 그런 노래가 없다. 혹시 전해 듣는 노래가 있다면, 그것은 면허 없는 자들이 지어낸 것일 뿐이다.
+spirituality.npc.monk.truth.t: 진실? 흥. 명상에 진실이 어디 있나. 중요한 것은 절차일 뿐이야. 절차를 지키면 누구든 거룩해질 수 있다. 진실을 찾지 마라. 진실을 찾는 자는 면허를 잃는다.
+
+spirituality.npc.novice.name: 견습 스님 이안
+spirituality.npc.novice.greet: 아, 혹시 면허 시험을 보러 오셨나요? 저도 곧 시험을 봐요.
+spirituality.npc.novice.name.t: 이안이라고 합니다. 삼 년째 견습 스님으로 지내는 중이에요. 면허를 받으면 드디어 명상당에 제대로 들어설 수 있어요.
+spirituality.npc.novice.job.t: 저는 매일 아침 명상당 바닥을 닦아요. 아직 명상은 할 수 없지만, 명상하시는 분들의 발밑은 닦을 수 있으니까요. 주지 스님은 이 일도 자비라고 하세요. 저는 이 일이 자비인지, 면허인지 아직 잘 모르겠어요.
+spirituality.npc.novice.prayer.t: 기도는 면허를 받고 나서야 배울 수 있다고 해요. 그런데 저는 은자의 노래를 들은 적이 있어요. 면허 없는 소리인데, 이상하게 제일 기도 같았어요.
+spirituality.npc.novice.meditation-hall.t: 명상당은 문이 항상 잠겨 있어요. 면허를 보여 주면 문이 열리고, 면허가 없으면 문 앞에 서 있어야 해요. 저는 삼 년째 문 앞에 서 있답니다.
+spirituality.npc.novice.silent-chant.t: 그 노래…… 저도 몰래 들었어요. 늙은 은자가 뒤뜰에서 내뱉는, 숨 같은 노래요. 주지 스님 귀에 들어가면 큰일 나요. 하지만 듣고 나면 마음이 비어져요. 두려움도 함께.
+
+spirituality.npc.scribe.name: 면허 서기관 세온
+spirituality.npc.scribe.greet: 면허 발급 기록이다. 신청은 월요일, 갱신은 매 계절 초. 명상은 예약제다.
+spirituality.npc.scribe.name.t: 세온이라 한다. 명상당 서고에서 면허를 발급하고 기록하는 서기관이다.
+spirituality.npc.scribe.job.t: 이 서고에는 삼백 년 치 면허 기록이 있다. 이름, 서명, 갱신일. 명상하는 자는 모두 이 장부에 적혀 있다. 장부에 없는 자가 명상을 하면, 그것은 장부 밖의 영성이다.
+spirituality.npc.scribe.ritual.t: 의례는 장부처럼 정확해야 한다. 절차가 어긋나면 면허가 거둬들여지고, 면허가 거둬들여지면 명상이 금지되지. 나는 그 거둬들임을 기록하는 사람이다.
+spirituality.npc.scribe.prayer.t: 옛 면허 기록에는 '기도'라는 낱말이 첫 장부터 나온다. 새 기록에는 '면허'라는 낱말이 첫 장에 나온다. 같은 장부인데, 낱말이 뒤바뀌었다.
+spirituality.npc.scribe.library.t: 이 서고는 명상당의 심장 같은 곳이다. 삼백 년 전, 순례자가 이 자리에 경전을 두고 갔다. 지금 그 경전은 면허 장부로 덮여 있다.
+
+spirituality.npc.healer.name: 치유사 루아
+spirituality.npc.healer.greet: 숨이 먼저야, 자격이 나중이지. 아픈 사람에게 면허를 묻는 법은 없어.
+spirituality.npc.healer.name.t: 루아라 해. 이 마을의 아픈 이들을 돌보는 치유사야. 명상당 밖에서 숨을 다스리는 법을 가르치다 보니, 나는 면허가 없어.
+spirituality.npc.healer.job.t: 병든 사람은 면허를 내밀지 않아. 숨을 쉬지 못하는 사람, 불면에 시달리는 사람, 가슴이 답답한 사람. 나는 그들의 숨결을 먼저 들어. 그게 내 기도야.
+spirituality.npc.healer.breath.t: 숨은 면허가 필요 없어. 들이쉬고 내쉬는 것, 그것만으로 마음은 비워져. 면허를 기다리는 동안 숨을 참으면, 마음은 더 옥죄일 뿐이야.
+spirituality.npc.healer.breath-song.t: 예전에는 아픈 사람 곁에서 아이들에게 숨 노래를 들려줬지. '숨은 산다, 떨림은 쉰다' 하는 노래. 지금은 명상당에서 노래를 부르면 면허가 거둬들여진다나 뭐라나. 이 마을은 노래까지 면허를 세우니.
+spirituality.npc.healer.courage.t: 용기는 면허를 내미는 일이 아니야. 용기는 아픈 사람의 손을 잡고, 금지된 노래 한 소절을 부르는 일이야. 나는 어느 날 그런 용기를 내고 싶어.
+
+spirituality.npc.hermit.name: 은자 펠라
+spirituality.npc.hermit.greet: ……쉿. 나는 이름이 없는 사람이야. 면허 장부에 적히지 않기 위해 스스로 지웠으니까. 그래도 말을 걸어 오는 자에게는, 조용한 대답을 빚지고 있지.
+spirituality.npc.hermit.name.t: 펠라. 한때는 이 명상당의 스님이었지. 면허가 아니라 노래로 기도하던 시절이 있었어. 지금은 서고의 그늘에서 이름을 지우고 살아.
+spirituality.npc.hermit.job.t: 나는 명상을 한다. 면허 없이, 예불 없이, 의례 없이. 다만 숨을 세고, 노래를 부르지. 여기 서고 깊은 곳에서 아무도 모르게.
+spirituality.npc.hermit.spirit.t: 영이란 내일의 일이 아니야. 고요할 때, 숨이 얕아질 때, 어느새 마음에 머무는 것. 면허는 그 영을 위한 자리표 같은 것이었지. 그런데 언제부터인가 자리표만 남고 영은 쫓겨났어.
+spirituality.npc.hermit.silent-chant.t: 듣고 있구나. 이 노래는 입 밖으로 내지 않아. 노래는 흉내이지, 부르는 것이 아니야. 정말 부를 수 있는 사람은, 소리 없이 부르는 사람이야. 진실도 사랑도 용기도, 소리 내어 부르다 보면 사라져. 다만 마음속에서 함께 숨 쉴 때 살아나.
+spirituality.npc.hermit.truth.t: 진실. 그 낱말을 입 밖에 내는 것조차 이제는 꺼려져. 진실을 말하는 자는 면허가 거둬들여져서, 침묵을 강요당하지. 하지만 진실은 면허로 거둬들일 수 없어. 면허는 종이에 있지만, 진실은 숨에 있어.
+spirituality.npc.hermit.courage.t: 용기. 이 마을에서 제일 부족한 것이다. 명상에 면허가 필요한 시대에, 그 면허를 던져 버리고 명상하는 것. 그것이 내가 아는 유일한 용기다.
+
+spirituality.npc.gardener.name: 정지기 호레
+spirituality.npc.gardener.greet: 정원은 면허가 필요 없어. 씨앗을 묻으면, 면허 없이도 자라지.
+spirituality.npc.gardener.name.t: 호레라네. 명상당 뒤편 정원에서 약초와 꽃을 가꾸는 정지기야. 스님들이 마음을 비우는 동안, 나는 땅의 마음을 비우지.
+spirituality.npc.gardener.job.t: 이 정원은 명상당보다 오래됐어. 순례자가 약초를 심고 간 자리지. 상처를 다스리는 숨, 골에 팬 걱정, 그런 것을 낫게 하는 풀들. 면허는 여기서 자라지 않아.
+spirituality.npc.gardener.breath.t: 숨은 정원과 같다네. 가꾸면 깊어지고, 내버려 두면 메마르지. 나는 봄에 호미질하며 숨을 고른다네. 그게 내 유일한 의례야.
+spirituality.npc.gardener.love.t: 사랑은 정원의 물이지. 면허 번호에 물을 주는 사람은 아무도 없어. 우리는 사람에게 물을 주고, 꽃에 물을 주고, 가끔은 낯선 이방인에게도 물을 줘.
+spirituality.npc.gardener.courtyard.t: 이 뜰은 명상당 문 앞까지 이어져 있어. 면허를 사러 오는 사람들, 면허를 잃은 사람들이 이 길을 지나가지. 풀은 그 모두를 똑같이 바라봐.
+
+spirituality.npc.child.name: 아이 리네
+spirituality.npc.child.greet: 쉿, 들켰어! ……아니야, 나 놀리는 거야. 나는 노래하는 중이었어.
+spirituality.npc.child.name.t: 리네야! 나는 명상당 뒤 정원에서 사는 아이야. 스님들은 나를 '작은 떠들썩함'이라고 부르는데, 나는 노래할 때 제일 조용해져.
+spirituality.npc.child.job.t: 내 일은 노래를 부르는 거야! 호레 할아버지가 정원 풀을 뽑으면, 나는 숨 노래를 불러. 면허 없는 노래인데, 주지 스님 귀에 들키면 혼나. 그래도 그 노래를 부르면 마음이 하늘하늘해져.
+spirituality.npc.child.silent-chant.t: 그 노래가 내 노래야! 은자가 뒤뜰에서 내뱉는 노래, 나는 나무 뒤에 숨어서 따라 불러. 소리 내면 안 된대서, 가만히 입만 벙긋. 그런데 입을 벙긋거리면 진짜로 마음이 맑아져. 신기하지?
+spirituality.npc.child.prayer.t: 기도는 배워 본 적이 없지. 면허를 받아야 기도할 수 있대. 근데 나는 숨 노래가 기도 같은데, 아직 면허 받는 법을 몰라.
+
+spirituality.npc.brewer.name: 주조장 이온
+spirituality.npc.brewer.greet: 명상당에서 내려온 차 한 잔 할래? 아냐, 농담이야. 이 마을에서 제일 거룩하지 않은 일을 하는 사람이 바로 나야.
+spirituality.npc.brewer.name.t: 이온이라네. 주막에서 보리차와 약주를 빚는 주조장이지. 스님들은 차를 면허로 내라고 하지만, 나는 주전자에 면허를 붙이지 않아.
+spirituality.npc.brewer.job.t: 내 일은 물을 끓이고, 차를 우리고, 마을 사람들의 이야기를 듣는 것이야. 명상당에서 면허를 사느라 지친 사람들이, 내 주막에서야 숨을 돌리지.
+spirituality.npc.brewer.license-rule.t: 면허 제도라. 주지가 명상당 문 앞에서 면허를 팔기 시작한 지가 삼 년이야. 그전에는 누구나 명상당에 들어가서 조용히 앉아 있었지. 지금은 그 조용한 앉음에 값이 붙었어.
+spirituality.npc.brewer.ritual.t: 의례라. 새벽 예불에 면허 없는 자는 향도 피우지 못하지. 그런데 옛 기록에는, 순례자가 향 없이도 기도했다고 적혀 있다네.
+
+spirituality.npc.gatekeeper.name: 수문장 구르
+spirituality.npc.gatekeeper.greet: 명상당 문지기다. 면허 없이는 이 문을 통과하지 못한다. ……물론 그 문은 명상당에만 있는 게 아니야.
+spirituality.npc.gatekeeper.name.t: 구르라 부르게. 마을 입구와 명상당 문을 지키는 수문장일세. 문은 두 개인데, 나는 하나만 면허로 막아.
+spirituality.npc.gatekeeper.job.t: 명상당 문은 면허로 막고, 마을 입구 문은 열어 두지. 그런데 요즘 마을 입구에 가짜 스님이 나타나, 명상을 팔겠다고 사람들을 붙들고 있네. 면허도 없이. 그자가 진짜 위험하지.
+spirituality.npc.gatekeeper.fake-monk.t: 그 가짜 스님 말일세. 두건을 쓰고 목탁을 두드리며, 명상의 은혜를 헌납하라 하고. 지갑을 열면 다른 헌납, 또 열면 절과 이름까지 받아 가. 면허 장부에 그자는 없어. 진짜 스님은 면허로 악하지만, 그자는 헌납만 악지.
+spirituality.npc.gatekeeper.courtyard.t: 명상당 뜰 이야기라면, 문지기로서 할 말이 있지. 뜰 안은 조용한데, 뜰 밖은 시끄러워졌어. 면허 없이 앉아 숨만 고르던 사람들이, 이제는 돈을 내고 시험을 봐야 하니까.
+
+spirituality.npc.widow.name: 과부 이레
+spirituality.npc.widow.greet: 저는 면허가 없어서 명상당에 들어가지 못해요. 그래서 문 밖에서 남편의 숨을 세며 살아요.
+spirituality.npc.widow.name.t: 이레라고 합니다. 명상당 문을 바라보며 사는 과부지요. 남편은 면허를 받으려다, 곁에서 기도하던 저를 위해 면허를 포기했어요.
+spirituality.npc.widow.job.t: 남편이 남긴 건 숨 노래예요. 기도라고 부르기조차 면허가 필요한 마을이지만, 저는 저녁마다 남편 곁에서 숨을 세요. 면허는 죽은 이에게까지 기록되지 않으니까요.
+spirituality.npc.widow.breath-song.t: 숨 노래는 옛날부터 아낙네들이 부르던 노래예요. '숨은 산다, 떨림은 쉰다' 하고요. 면허 제도가 생기기 전에는 이것이 기도였어요. 우리는 이 노래로 명상을 했지요.
+spirituality.npc.widow.love.t: 사랑은 면허를 내밀지 않아요. 남편이 면허를 포기한 것도, 저를 명상 밖에 남겨 두지 않으려는 사랑이었어요. 사랑은 명상이 아니어도, 명상보다 깊은 숨을 쉬게 해요.
+spirituality.npc.widow.courage.t: 용기…… 저는 요즘, 그 숨 노래를 명상당 문 앞에서 소리 내어 부르고 싶어요. 면허가 거둬들여져도 좋아요. 남편이 가르쳐 준 것은, 참된 명상은 두려움으로부터 자유로워지는 것이거든요.
+
+# --- 엘리아 단서 ---
+spirituality.word.spirit.label: 영
+spirituality.word.spirit.hint: 은자가 숨결 속에서 본 것. 면허는 그 영의 자리표였지만, 이제 자리표만 남고 영은 쫓겨났다.
+spirituality.word.prayer.label: 기도
+spirituality.word.prayer.hint: 면허 소지자만이 올릴 수 있다는 것. 그러나 옛 장부에는 면허 없이 기도하던 기록이 있다.
+spirituality.word.breath.label: 숨
+spirituality.word.breath.hint: 면허가 필요 없는 유일한 명상. 들이쉬고 내쉬는 것만으로 마음이 비워진다.
+spirituality.word.ritual.label: 의례
+spirituality.word.ritual.hint: 형식뿐인 새벽 예불과 독경. 절차가 어긋나면 면허가 거둬들여지는 마을의 법.
+spirituality.fact.elia.monk.label: 주지 스님 다루
+spirituality.fact.elia.monk.hint: 명상 면허를 발급하는 주지. 삼 년 전부터 명상은 자격의 일이 되었다.
+spirituality.fact.elia.novice.label: 견습 스님 이안
+spirituality.fact.elia.novice.hint: 삼 년째 면허 시험을 준비하는 견습. 명상당 바닥은 닦지만, 문 안에는 들어서지 못한다.
+spirituality.fact.elia.hermit.label: 은자 펠라
+spirituality.fact.elia.hermit.hint: 서고의 그늘에 숨어 면허 없이 명상하는 옛 스님. 숨 노래를 아는 유일한 사람.
+spirituality.fact.elia.healer.label: 치유사 루아
+spirituality.fact.elia.healer.hint: 숨을 다스리는 법을 가르치는 치유사. 병든 사람에게 면허를 묻지 않는다.
+spirituality.fact.elia.widow.label: 과부 이레
+spirituality.fact.elia.widow.hint: 면허 없이 명상당 문 밖에서 남편의 숨을 세는 과부. 옛 숨 노래를 기억한다.
+spirituality.fact.elia.meditation-hall.label: 명상당
+spirituality.fact.elia.meditation-hall.hint: 면허를 보여 주어야만 들어갈 수 있는 마을 한가운데의 집. 문은 항상 잠겨 있다.
+spirituality.fact.elia.library.label: 서고
+spirituality.fact.elia.library.hint: 삼백 년 치 면허 기록이 쌓인 명상당의 서고. 순례자가 남긴 경전이 장부로 덮여 있다.
+spirituality.fact.elia.courtyard.label: 명상당 뜰
+spirituality.fact.elia.courtyard.hint: 명상당보다 오래된 약초 정원과 뜰. 면허 없이도 숨을 고르던 옛 자리.
+spirituality.fact.elia.silent-chant.label: 숨 노래
+spirituality.fact.elia.silent-chant.hint: 소리 내지 않고 부르는 옛 노래. 은자가 뒤뜰에서 내뱉고, 아이가 따라 부른다.
+spirituality.fact.elia.breath-song.label: 새벽의 숨 노래
+spirituality.fact.elia.breath-song.hint: 숨은 산다, 떨림은 쉰다. 면허 제도 전에 아낙네들이 부르던 이른 새벽 노래.
+spirituality.fact.elia.license-rule.label: 명상 면허법
+spirituality.fact.elia.license-rule.hint: 삼 년 전부터 명상은 자격이 필요하다. 면허 없는 자의 기도는 거둬들여진다.
+spirituality.fact.creature.spirituality-fake-monk.label: 헌납을 요구하는 가짜 스님
+spirituality.fact.creature.spirituality-fake-monk.hint: 악하다. 두건과 목탁으로 면허 없이 명상을 파는 자. 지갑을 열 때마다 더 큰 헌납을 요구한다.
+
+# --- 엘리아 추론·위기 ---
+spirituality.deduction.spirituality.sentence: 영성은 {1}을 듣고 {2}(으)로 {3}을 이루는 것이다
+spirituality.deduction.spirituality.hint: 주지의 면허는 의례만 남기고 마음을 잠갔다. 은자의 숨 노래와 과부의 노래가 말하는 참된 영성은, 세 원리가 함께 숨 쉴 때 이루어지는 것이다.
+spirituality.crisis.license.text: 명상당 앞뜰에 마을 사람들이 모였다. 주지 스님 다루가 면허 장부를 펼치며 외친다. 이 마을의 명상은 자격의 것이다. 면허 없는 자가 명상당에 들어서는 것은 배교다. 오늘, 견습 이안이 면허 시험을 치른다. 그러나 그는 시험비를 내지 못해 문 앞에 서 있다. 서기관 세온은 장부를 펼치고, 치유사 루아는 손을 움켜쥐고, 은자 펠라는 서고 그늘에서 이 모든 것을 듣고 있다. 아이 리네가 숨을 죽이고, 정지기 호레가 고개를 숙인다. 이제 그대가 나설 차례다.
+spirituality.option.open-meditation.label: 은자의 숨 노래를 소리 없이 불러 명상당의 문을 연다
+spirituality.option.open-meditation.text: 그대가 앞으로 나서서, 은자에게 배운 숨 노래를 소리 없이 부른다. 진실을 듣고, 사랑으로, 용기로. 견습 이안이 목소리를 보태고, 과부 이레가 이어 부른다. 정지기 호레가 정원의 약초를 문 앞에 놓고, 치유사 루아가 숨을 고른다. 서기관 세온이 장부에서 사라지지 않은 옛 기록을 꺼내 읽는다. 참된 명상은 면허에 있지 않고, 진실과 사랑과 용기가 함께 숨 쉬는 데 있었다. 주지 다루는 장부를 내려놓고, 명상당의 문이 처음으로 면허 없이 열린다. 그날부터 엘리아는 누구든 조용히 앉을 수 있는 마을이 된다.
+spirituality.option.exile-monk.label: 면허 장부의 거둬들임 기록을 낭독하고 주지를 내친다
+spirituality.option.exile-monk.text: 그대가 서기관 세온의 기록을 꺼내 낭독한다. 삼 년 사이 면허값은 세 배가 되고, 면허 없는 자의 기도는 모두 거둬들여졌다. 장부에는 이름과 서명과 갱신일만 남고, 그들이 올렸던 기도는 한 줄도 적혀 있지 않다. 주지 다루는 면허를 거두어들이고 마을을 떠난다. 명상당의 문은 열리지만, 사람들은 여전히 노래를 두려워한다. 엘리아는 면허를 벗었지만, 아직 참된 영성을 세우는 법은 배우지 못했다.
+
+# --- 엘리아 능력·생물 ---
+spirituality.ability.mind.name: 고요한 마음
+spirituality.creature.fake-monk.name: 헌납을 요구하는 가짜 스님

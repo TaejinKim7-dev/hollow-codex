@@ -4,3 +4,4 @@
 - { id: ability.justice-eye, name: justice.ability.eye.name }
 - { id: ability.sacrifice-meaning, name: sacrifice.ability.meaning.name }
 - { id: ability.honor-truth, name: honor.ability.truth.name }
+- { id: ability.spirituality-mind, name: spirituality.ability.mind.name }

@@ -16,3 +16,4 @@
 | content/music/justice.yaml | original measured chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
 | content/music/sacrifice.yaml | original sacred chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
 | content/music/honor.yaml | original proud martial chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
+| content/music/spirituality.yaml | original meditative chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
