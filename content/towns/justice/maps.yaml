@@ -1,0 +1,14 @@
+# 미덕 마을 내부 스텁 — justice (D22). M3·M4에서 실제 내부로 교체.
+- id: map.town.justice
+  rows:
+    - "######"
+    - "#+...#"
+    - "#..L.#"
+    - "#...<#"
+    - "######"
+  exits:
+    - { at: [4, 3], to: map.over, arrive: [40, 6] }
+  music: music.overworld
+  encounters: []
+  enterFlags: []
+  heals: true

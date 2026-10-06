@@ -1,7 +1,7 @@
-# 대륙 오버월드 지도 (map.over) + M2 스켈레톤 마을 스텁 7곳 (Task 22).
+# 대륙 오버월드 지도 (map.over). 미덕 마을 스텁 7곳은 각 마을 폴더의 maps.yaml로 분리했다 (Task 23).
 # map.over: 64×48 대륙. 지형 비용은 D20의 terrainCost를 따른다.
 #   .=1  ,=2  :=2  ~=null  T=3  ^=null  ==1  o=null(고리 진입은 ringStep)  +=1  #=null
-# `+` 마을 입구 8곳: 칼라스(map.field) + 미덕 마을 7곳(스텁, M3·M4에서 내부 채움).
+# `+` 마을 입구 8곳: 칼라스(map.field) + 미덕 마을 7곳(내부는 M3·M4에서 채움).
 # `o` 열석 고리 7개 + 칼라스 안쪽 1개(map.field) = 총 8 (D2).
 - id: map.over
   isOverworld: true
@@ -67,106 +67,14 @@
     - "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   exits:
     - { at: [14, 24], to: map.field, arrive: [11, 8] }
-    - { at: [50, 8], to: town.compassion, arrive: [1, 1] }
-    - { at: [10, 10], to: town.valor, arrive: [1, 1] }
-    - { at: [40, 6], to: town.justice, arrive: [1, 1] }
-    - { at: [58, 30], to: town.sacrifice, arrive: [1, 1] }
-    - { at: [22, 18], to: town.honor, arrive: [1, 1] }
-    - { at: [6, 36], to: town.spirituality, arrive: [1, 1] }
-    - { at: [32, 40], to: town.humility, arrive: [1, 1] }
+    - { at: [50, 8], to: map.town.compassion, arrive: [1, 1] }
+    - { at: [10, 10], to: map.town.valor, arrive: [1, 1] }
+    - { at: [40, 6], to: map.town.justice, arrive: [1, 1] }
+    - { at: [58, 30], to: map.town.sacrifice, arrive: [1, 1] }
+    - { at: [22, 18], to: map.town.honor, arrive: [1, 1] }
+    - { at: [6, 36], to: map.town.spirituality, arrive: [1, 1] }
+    - { at: [32, 40], to: map.town.humility, arrive: [1, 1] }
   music: music.overworld
   encounters: []
   enterFlags: []
   heals: false
-# --- 이하 7곳은 M2 스켈레톤 스텁 (D22). Task 23에서 실제 마을 내부로 교체한다. ---
-- id: town.compassion
-  rows:
-    - "######"
-    - "#+...#"
-    - "#..L.#"
-    - "#...<#"
-    - "######"
-  exits:
-    - { at: [4, 3], to: map.over, arrive: [50, 8] }
-  music: music.overworld
-  encounters: []
-  enterFlags: []
-  heals: true
-- id: town.valor
-  rows:
-    - "######"
-    - "#+...#"
-    - "#..L.#"
-    - "#...<#"
-    - "######"
-  exits:
-    - { at: [4, 3], to: map.over, arrive: [10, 10] }
-  music: music.overworld
-  encounters: []
-  enterFlags: []
-  heals: true
-- id: town.justice
-  rows:
-    - "######"
-    - "#+...#"
-    - "#..L.#"
-    - "#...<#"
-    - "######"
-  exits:
-    - { at: [4, 3], to: map.over, arrive: [40, 6] }
-  music: music.overworld
-  encounters: []
-  enterFlags: []
-  heals: true
-- id: town.sacrifice
-  rows:
-    - "######"
-    - "#+...#"
-    - "#..L.#"
-    - "#...<#"
-    - "######"
-  exits:
-    - { at: [4, 3], to: map.over, arrive: [58, 30] }
-  music: music.overworld
-  encounters: []
-  enterFlags: []
-  heals: true
-- id: town.honor
-  rows:
-    - "######"
-    - "#+...#"
-    - "#..L.#"
-    - "#...<#"
-    - "######"
-  exits:
-    - { at: [4, 3], to: map.over, arrive: [22, 18] }
-  music: music.overworld
-  encounters: []
-  enterFlags: []
-  heals: true
-- id: town.spirituality
-  rows:
-    - "######"
-    - "#+...#"
-    - "#..L.#"
-    - "#...<#"
-    - "######"
-  exits:
-    - { at: [4, 3], to: map.over, arrive: [6, 36] }
-  music: music.overworld
-  encounters: []
-  enterFlags: []
-  heals: true
-- id: town.humility
-  rows:
-    - "######"
-    - "#+...#"
-    - "#..L.#"
-    - "#...<#"
-    - "######"
-  exits:
-    - { at: [4, 3], to: map.over, arrive: [32, 40] }
-  music: music.overworld
-  encounters: []
-  enterFlags: []
-  heals: true
