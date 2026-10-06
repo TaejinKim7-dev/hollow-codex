@@ -489,7 +489,8 @@ YAML 키 `name/greet/label/hint/sentence/text` → 컴파일 결과의 `nameKey/
 5. 지도: 모든 행 길이가 같음(`` `rows of unequal width` ``), 모든 글자가 `tiles`에 있음(`` `tile "${ch}" missing from tiles.yaml` ``), 출구·조우·NPC·`start.pos`·`allyStart`·적 위치가 지도/격자 안이고 `walk !== null`인 칸.
 6. 획득 경로: 추론의 정답 단어 각각이 어떤 topic 또는 choice의 `grants`에 있음(`` `answer word ${id} has no grant path` ``).
 7. 추론 `answer` 길이 3, 정답 단어의 kind는 `word`.
-8. 금지어: `findDenied`를 strings의 모든 값, 모든 id, 모든 topic 키, RawContent의 모든 파일 경로에 실행. `ip-denylist.yaml` 자체는 대상에서 뺀다.
+8. 금지어: `findDenied`를 strings의 모든 값, 모든 id, 모든 topic 키, RawContent의 모든 파일 경로에 실행. `ip-denylist.yaml` 자체는 대상에서 뺀다. 오류의 `where`에는 걸린 값(id·키·경로)을 넣는다. **목록 파일이 없거나 `latin`·`hangul` 문자열 목록을 가진 매핑이 아니면 오류**(`ip-denylist.yaml: …`) — 금지어 검사는 실패 쪽으로 닫힌다(spec §2.3).
+9. YAML 문법 오류는 `loadContentDir`가 `<상대 경로>: <메시지>`로 다시 던진다.
 
 - [ ] **Step 1: fixture** `tests/fixtures/content-min/`
   - `tiles.yaml`: `sheets: { test: { file: test.png, columns: 4 } }`, `tiles: { ".": { sprite: [test, 0], walk: 1 }, "#": { sprite: [test, 1], walk: null } }`, `player: [test, 2]`
@@ -528,27 +529,36 @@ it("reports a tile character missing from tiles.yaml") // rows에 "~" → 'tile 
 it("reports a topic key that is not name, job or a fact id") // topics: { 아무거나: … } → "아무거나"
 it("reports every error at once")               // 위 두 가지를 함께 넣으면 errors.length >= 2
 it("reports a denied term in a string value")   // strings에 "x: 금지된땅의 노래" → 'denied term "금지된땅"'
+it("reports a denied term inside an id")       // fact id "word.forbiddenland" → 오류에 "word.forbiddenland"
+it("reports a missing or malformed denylist")   // ip-denylist.yaml 삭제 또는 { latn: [] } → "ip-denylist.yaml"
 ```
 
   `tests/unit/denylist.test.ts`:
 
 ```ts
-const deny = { latin: ["britannia", "cove", "lord british"], hangul: ["브리타니아"] }
+// 지어낸 단어만 쓴다: 실제 금지 목록은 content/ip-denylist.yaml에만 있을 수 있다(tests/ 포함 금지).
+const deny = { latin: ["zorvania", "nook", "lord zorvan"], hangul: ["조르바니아"] }
 it("catches a denied word regardless of case", () => {
-  const out = findDenied([{ where: "strings:greet", text: "Welcome to BRITANNIA" }], deny)
-  expect(out).toEqual(['strings:greet: denied term "britannia"'])
+  const out = findDenied([{ where: "strings:greet", text: "Welcome to ZORVANIA" }], deny)
+  expect(out).toEqual(['strings:greet: denied term "zorvania"'])
 })
 it("catches a Hangul transliteration", () => {
-  expect(findDenied([{ where: "w", text: "브리타니아의 땅" }], deny)).toHaveLength(1)
+  expect(findDenied([{ where: "w", text: "조르바니아의 땅" }], deny)).toHaveLength(1)
 })
 it("matches multi-word terms across spaces, underscores and hyphens", () => {
-  expect(findDenied([{ where: "w", text: "npc.lord_british" }, { where: "v", text: "Lord-British" }], deny)).toHaveLength(2)
+  expect(findDenied([{ where: "w", text: "npc.lord_zorvan" }, { where: "v", text: "Lord-Zorvan" }], deny)).toHaveLength(2)
 })
 it("does not flag a denied term inside a longer word", () => {
-  expect(findDenied([{ where: "w", text: "they discovered the recovery" }], deny)).toEqual([])
+  expect(findDenied([{ where: "w", text: "they played snooker in the nooks" }], deny)).toEqual([])
 })
 it("ignores clean text", () => {
   expect(findDenied([{ where: "w", text: "칼라스의 등불" }], deny)).toEqual([])
+})
+it("parseDenylist reads latin and hangul lists, lower-casing latin", () => {
+  expect(parseDenylist({ latin: ["Zorvania"], hangul: ["조르바니아"] })).toEqual({ latin: ["zorvania"], hangul: ["조르바니아"] })
+})
+it("parseDenylist treats a missing file as empty lists", () => {
+  expect(parseDenylist(undefined)).toEqual({ latin: [], hangul: [] })
 })
 ```
 
@@ -566,7 +576,7 @@ it("ignores clean text", () => {
 - [ ] **Step 7: Vite 연결**
   - `vite-plugin.ts`: `resolveId(id)`가 `"virtual:content"`면 `"\0virtual:content"`; `load`에서 `loadContentDir` + `compileContent`, 오류가 있으면 `this.error(errors.join("\n"))`, 아니면 `` `export default ${JSON.stringify(content)}` ``. `configureServer`에서 `server.watcher.add(contentDir)`, `content/` 파일 변경 시 가상 모듈 무효화 + `server.ws.send({ type: "full-reload" })`.
   - `vite.config.ts`: `plugins: [hollowContent(resolve(import.meta.dirname, "content"))]`.
-  - `src/vite-env.d.ts`에 추가: `declare module "virtual:content" { import type { GameContent } from "./content/types.ts"; const content: GameContent; export default content }`.
+  - `src/vite-env.d.ts`에 추가: `declare module "virtual:content" { const content: import("./content/types.ts").GameContent; export default content }` (ambient 모듈 안의 상대 `import type`은 TS 오류이고 `skipLibCheck`가 숨겨 `any`가 되므로 `import()` 타입을 쓴다).
   - `scripts/check-content.ts`: 같은 두 함수, 오류를 `console.error`로 한 줄씩, 있으면 exit 1, 없으면 `check:content: ok (<지도 수> maps, <NPC 수> npcs, <단서 수> facts)`.
   - `src/main.ts`: `import content from "virtual:content"` 후 `log.log("content", { maps: Object.keys(content.maps).length })`.
 
@@ -635,7 +645,7 @@ it("credits strip the URL scheme", () => {
   `| content/music/field.yaml | 자리표시 한 음(Task 15에서 편곡으로 교체) | TaejinKim7-dev | CC-BY-SA-4.0 |`
 - [ ] **Step 6: 연결**
   - `check-content.ts`가 장부 대상 파일(D20: `assets/**` 재귀 + `content/music/*.yaml`)을 나열해 `checkLedger(parseLedger(readFileSync("assets/LEDGER.md", "utf8")), files)`도 실행. 출력 끝에 `, <n> ledger files` 추가(LICENSE*·LEDGER.md 제외한 수).
-  - `vite-plugin.ts`에 `virtual:credits`(같은 방식) 추가, `src/vite-env.d.ts`에 선언.
+  - `vite-plugin.ts`에 `virtual:credits`(같은 방식) 추가, `src/vite-env.d.ts`에 `declare module "virtual:credits" { const credits: readonly import("./content/ledger.ts").LedgerRow[]; export default credits }`.
   - `src/ui/fonts.css`: `@font-face { font-family: "NeoDunggeunmo"; src: url("../../assets/fonts/neodgm.woff2") format("woff2"); font-display: swap }` + `body { font-family: "NeoDunggeunmo", monospace }`. `src/main.ts`에서 `import "./ui/fonts.css"`.
 - [ ] **Step 7: 확인** — Run: `npm run check:content` → `check:content: ok (1 maps, 0 npcs, 0 facts, 2 ledger files)`. Run: `npm run build && npm run audit:dist` → `audit:dist: ok`, `ls dist/assets | grep woff2` → 파일 하나.
 - [ ] **Step 8: 커밋** `feat(assets): asset ledger check, NeoDunggeunmo font and credits`
@@ -677,7 +687,7 @@ map.a (6×5)          map.b (4×3)
 - 조우 `enc.a`: map.a, grid 5×5 전부 `"."`, allyStart `[(2,4), (1,4), (3,4)]`, enemies `[{ creature: "creature.slime", at: (2,0) }, { creature: "creature.bandit", at: (4,1) }]`, music `music.battle`.
 - 능력 `ability.see-lies`. 악보 `music.a`, `music.b`, `music.battle`: 한 음짜리.
 
-같은 파일의 헬퍼: `deepFreeze<T>(x: T): T`, `stateWith(patch: Partial<GameState>): GameState`(= `deepFreeze({ ...createInitialState(testContent(), 1), ...patch })`), `run(state, commands: Command[]): { state; events }`(차례로 `step`, 이벤트 이어 붙임).
+같은 파일의 헬퍼: `deepFreeze<T>(x: T): T`, `stateWith(patch: Partial<GameState>): GameState`(= `deepFreeze({ ...createInitialState(testContent(), 1), ...patch })`), `run(state, commands: Command[]): { state; events }`(차례로 `step`, 이벤트 이어 붙임), `at(x: number, y: number): GameState`(= `stateWith({ player: { ...stateWith({}).player, pos: { x, y } } })`, map.a). Task 6–13의 테스트는 이 헬퍼들을 import해서 쓴다(파일마다 다시 만들지 않는다).
 
 ### Task 5: 코어 상태와 이동
 
@@ -696,7 +706,7 @@ map.a (6×5)          map.b (4×3)
 - 이동 규칙(`move`): `facing = dir`은 항상 바뀐다. 목표 칸이 지도 밖·`walk null`·NPC 칸 → `[{ type: "bumped" }]`, 위치·턴 그대로. 아니면 이동, `turn += walk`, `[{ type: "moved", pos }]`. 그 칸이 출구면 이어서 지도 전환: `mapId = to`, `pos = arrive`, `flags ∪= enterFlags`, 새 지도 `heals`면 `hp = maxHp`, 이벤트 `mapChanged`, `music(새 지도 music)` 추가. 그 칸에 `clearedEncounters`에 없는 조우가 있으면 `startCombat(…, returnPos = 이동 전 위치)`, 이벤트 `combatStarted`, `music(encounter.music)` 추가.
 - `moveTo`: `findPath(…, blocked = npc 칸)`의 첫 걸음을 `move`로 실행. 경로가 `null`이거나 `[]`면 같은 state, 이벤트 0.
 
-- [ ] **Step 1: 실패 테스트** `tests/unit/core/move.test.ts` — 모든 입력 상태는 `stateWith`(깊은 동결)로 만든다. `const c = testContent()`, `const at = (x: number, y: number) => stateWith({ player: { ...stateWith({}).player, pos: { x, y } } })`.
+- [ ] **Step 1: 실패 테스트** `tests/unit/core/move.test.ts` — 모든 입력 상태는 `stateWith`(깊은 동결)로 만든다. `const c = testContent()`, `at`은 fixture의 헬퍼.
 
 ```ts
 it("moves one tile and advances the turn by the terrain cost", () => {
@@ -979,10 +989,27 @@ it("rejoining never duplicates a companion", () => {
   expect(twice.state.party).toEqual(["npc.ally"]); expect(twice.events).toEqual([])
 })
 it("party holds at most three companions", () => {
-  // npc.c1..c3 동행 중, npc.ally 영입 시도 → 무시
+  const ally = c.npcs["npc.ally"]!
+  const crowd = { ...c, npcs: { ...c.npcs, "npc.c1": ally, "npc.c2": ally, "npc.c3": ally } }
+  const full = withAlly({ facts: ["fact.secret"], party: ["npc.c1", "npc.c2", "npc.c3"], joinedAt: { "npc.c1": 0, "npc.c2": 0, "npc.c3": 0 } })
+  expect(canRecruit(full, crowd, "npc.ally")).toBe(false)
+  expect(step(full, { type: "recruit", npcId: "npc.ally" }, crowd).events).toEqual([])
 })
 it("a choice deed goes through recordDeed", () => {
-  // Task 7의 opt.lie 흐름을 동료 동행 상태에서 두 번(excludeFlags를 비운 변형 content) → companionLeft
+  const sage = c.npcs["npc.sage"]!
+  const repeatable = { ...c, npcs: { ...c.npcs, "npc.sage": { ...sage, topics: { ...sage.topics,
+    "word.decoy": [{ textKey: "sage.ask", choice: sage.topics["word.decoy"]![0]!.choice! }] } } } }
+  const s = deepFreeze({ ...stateWith({ facts: ["word.decoy"], party: ["npc.ally"], joinedAt: { "npc.ally": 0 } }), dialogue: { npcId: "npc.sage", pendingChoice: null } })
+  const lie = [{ type: "ask", topic: "word.decoy" }, { type: "choose", optionId: "opt.lie" }] as const
+  let st: GameState = s; const events: GameEvent[] = []
+  for (const cmd of [...lie, ...lie]) { const r = step(st, cmd, repeatable); st = r.state; events.push(...r.events) }
+  expect(events).toContainEqual({ type: "companionLeft", npcId: "npc.ally" })
+  expect(st.party).toEqual([]); expect(st.departed).toEqual(["npc.ally"])
+})
+it("a party member is hidden from the map and does not block", () => {
+  const s = stateWith({ mapId: "map.b", player: { ...stateWith({}).player, pos: { x: 1, y: 1 } }, party: ["npc.ally"], joinedAt: { "npc.ally": 0 } })
+  expect(npcAt(s, c, { x: 2, y: 1 })).toBeNull()
+  expect(step(s, { type: "move", dir: "e" }, c).state.player.pos).toEqual({ x: 2, y: 1 })
 })
 ```
 
@@ -1052,44 +1079,104 @@ it("resolving needs a dialogue with the crisis NPC", () => {
 7. **설득**: 대상 생물이 `evil false` ∧ 플레이어가 `lore` 단서를 알면 `gone "retreated"`. 아니면 효과 없이 차례 소비.
 8. **도주**: 활성 유닛이 격자 가장자리(x=0, y=0, x=w-1, y=h-1)일 때만 → 전투 종료 `fled`. 아니면 무시.
 9. **적 단계**: 모든 살아 있는 아군이 `acted`면, `units` 순서로 살아 있는 적마다 `intents[id]` 실행 — `moveTo`가 지금 비어 있으면 그 칸으로, 그 뒤 `attack` 대상이 살아 있고 맨해튼 1이면 공격(규칙 4와 같은 피해, 아군 hp ≤ 0 → `gone "dead"`). 그다음 `round += 1`, 아군 `moved/acted/defending` 초기화, 새 `intents = computeIntents`, `active` 재계산.
-10. **예고 계산** `computeIntents`: 살아 있는 적마다, 살아 있는 아군 중 BFS 거리가 가장 짧은 대상(동점이면 `units` 순서 앞). 이미 인접이면 `moveTo = 현재 위치`. 아니면 그 대상까지 경로(다른 유닛 칸 막힘, 대상 칸은 목적지 인접 칸 중 경로가 가장 짧은 칸)를 따라 최대 3칸 간 칸. `attack = moveTo가 대상과 맨해튼 1이면 대상 id, 아니면 null`. 경로가 없으면 `moveTo = 현재 위치, attack null`. 앞의 적이 예약한 `moveTo`는 뒤 적에게 막힌 칸.
+10. **예고 계산** `computeIntents`: 살아 있는 적마다, 살아 있는 아군 중 BFS 거리가 가장 짧은 대상(동점이면 `units` 순서 앞). 이미 인접이면 `moveTo = 현재 위치`. 아니면 대상의 옆 칸(대상 기준 `n, e, s, w` 순서) 중 경로가 가장 짧은 첫 칸을 목적지로 정하고(다른 유닛 칸 막힘), 그 경로를 따라 최대 3칸 간 칸. `attack = moveTo가 대상과 맨해튼 1이면 대상 id, 아니면 null`. 경로가 없으면 `moveTo = 현재 위치, attack null`. 앞의 적이 예약한 `moveTo`는 뒤 적에게 막힌 칸.
 11. **종료**: 매 명령 처리 뒤 — 살아 있는 적 없음 → `victory`: `clearedEncounters`에 추가, `player.hp = 플레이어 유닛 hp`(≥1). 살아 있는 아군 없음 → `defeat`: `mapId/pos = content.start`, `hp = 1`, 조우는 cleared 아님. `fled` → `pos = returnPos`, `player.hp = 플레이어 유닛 hp`. 셋 다 `combat = null`, 이벤트 `combatEnded`, `music(현재 지도 music)`.
 
 - [ ] **Step 1: 실패 테스트** `tests/unit/core/combat.test.ts` — 헬퍼 `combatState(units: Partial<CombatUnit>[] & { id; pos }[], patch?)`: `enc.a`의 5×5 격자로 `CombatState`를 직접 만든 `GameState`(기본 hp/attack은 생물·플레이어 값). `act = (s, action) => step(s, { type: "combat", action }, c)`.
 
 ```ts
+// 헬퍼(이 파일 안): 유닛 기본값 + 교전 상태. mapId "map.a", 플레이어 위치 (1,3)(조우 칸), returnPos (1,2).
+const P = (x: number, y: number, patch: Partial<CombatUnit> = {}) => ({ id: "player", side: "ally", creature: null, pos: { x, y }, hp: 10, attack: 3, ...patch }) as const
+const S = (x: number, y: number, patch: Partial<CombatUnit> = {}) => ({ id: "creature.slime#0", side: "enemy", creature: "creature.slime", pos: { x, y }, hp: 4, attack: 2, ...patch }) as const
+const B = (x: number, y: number, patch: Partial<CombatUnit> = {}) => ({ id: "creature.bandit#1", side: "enemy", creature: "creature.bandit", pos: { x, y }, hp: 3, attack: 4, ...patch }) as const
+// combatState(units, patch?) — 각 유닛에 defending/moved/acted false, gone null을 채우고, intents = computeIntents, active = 규칙 1, round 1, grid = enc.a 격자.
+const act = (s: GameState, action: CombatAction) => step(s, { type: "combat", action }, c)
+const unit = (s: GameState, id: string) => s.combat!.units.find((u) => u.id === id)!
+
 it("starting an encounter computes intents toward the nearest ally", () => {
-  const s = step(at(1, 2), { type: "move", dir: "s" }, c).state           // Task 5 경로로 실제 시작
+  const s = step(at(1, 2), { type: "move", dir: "s" }, c).state                // 실제 시작: player (2,4), slime (2,0), bandit (4,1)
   expect(s.combat?.intents["creature.slime#0"]).toEqual({ moveTo: { x: 2, y: 3 }, attack: "player" })
 })
 it("intents are shown before the enemy acts and enemies follow them", () => {
-  // player (2,4), slime (2,0): slime 예고 moveTo (2,3)? 거리 4 → 3칸 이동 → (2,3), 인접 → attack "player"
-  // player endTurn → slime이 (2,3)으로 가서 player hp 10 → 8
+  const s = combatState([P(2, 4), S(2, 0)])
+  expect(s.combat?.intents["creature.slime#0"]).toEqual({ moveTo: { x: 2, y: 3 }, attack: "player" })
+  const r = act(s, { kind: "endTurn" })
+  expect(unit(r.state, "creature.slime#0").pos).toEqual({ x: 2, y: 3 })
+  expect(unit(r.state, "player").hp).toBe(8)
+  expect(r.state.combat?.round).toBe(2)
+  expect(r.state.combat?.intents["creature.slime#0"]).toEqual({ moveTo: { x: 2, y: 3 }, attack: "player" })
 })
 it("defending halves damage rounding up", () => {
-  // bandit(attack 4) 인접, player defend → hp 10 → 8 (ceil(4/2)=2); 다음 라운드 시작 때 defending false
+  const r = act(combatState([P(2, 4), B(2, 3)]), { kind: "defend" })
+  expect(unit(r.state, "player").hp).toBe(8)                                     // ceil(4 / 2) = 2
+  expect(unit(r.state, "player").defending).toBe(false)                          // 다음 차례 시작 때 풀림
 })
 it("pushing an enemy off the grid makes it retreat, not die", () => {
-  // player (2,1), slime (2,0) → push "n" → slime gone "retreated", deeds 없음
+  const r = act(combatState([P(2, 1), S(2, 0), B(0, 4)]), { kind: "push", dir: "n" })
+  expect(unit(r.state, "creature.slime#0").gone).toBe("retreated")
+  expect(r.state.deeds).toEqual([])
+  expect(r.events).toContainEqual({ type: "sfx", name: "push" })
 })
-it("pushing into a wall or unit deals 1 damage and stays", () => {})
+it("pushing into a wall or unit deals 1 damage and stays", () => {
+  const r = act(combatState([P(2, 2), S(2, 1), B(2, 0)]), { kind: "push", dir: "n" })
+  expect(unit(r.state, "creature.slime#0").pos).toEqual({ x: 2, y: 1 })
+  expect(unit(r.state, "creature.slime#0").hp).toBe(3)
+})
 it("killing a non-evil creature records a compassion deed", () => {
-  // slime hp 3, player attack 3 → dead → deeds [{ compassion, deed.kill-innocent }]; bandit 처치는 기록 없음
+  const r = act(combatState([P(2, 1), S(2, 0, { hp: 3 }), B(4, 4)]), { kind: "attack", dir: "n" })
+  expect(unit(r.state, "creature.slime#0").gone).toBe("dead")
+  expect(r.state.deeds).toEqual([{ virtue: "compassion", deed: "deed.kill-innocent", turn: 0 }])
+  const evil = act(combatState([P(2, 1), B(2, 0), S(4, 4)]), { kind: "attack", dir: "n" })
+  expect(unit(evil.state, "creature.bandit#1").gone).toBe("dead")
+  expect(evil.state.deeds).toEqual([])
 })
 it("persuade works only on a non-evil creature whose lore fact is known", () => {
-  // 모름 → 효과 없음 + acted true; fact.slime-lore 앎 → retreated; bandit은 lore 알아도 실패
+  const unknown = act(combatState([P(2, 1), S(2, 0), B(4, 4)]), { kind: "persuade", dir: "n" })
+  expect(unit(unknown.state, "creature.slime#0").gone).toBeNull()
+  expect(unknown.state.combat?.round).toBe(2)                                    // 차례는 썼다
+  const known = act(combatState([P(2, 1), S(2, 0), B(4, 4)], { facts: ["fact.slime-lore"] }), { kind: "persuade", dir: "n" })
+  expect(unit(known.state, "creature.slime#0").gone).toBe("retreated")
+  const evil = act(combatState([P(2, 1), B(2, 0), S(4, 4)], { facts: ["fact.bandit-lore"] }), { kind: "persuade", dir: "n" })
+  expect(unit(evil.state, "creature.bandit#1").gone).toBeNull()
 })
 it("flee works only from an edge tile", () => {
-  // player (2,2) flee → 무시(acted false); (0,2) flee → combatEnded fled, pos = returnPos
+  const inner = combatState([P(2, 2), S(4, 4)])
+  const stay = act(inner, { kind: "flee" })
+  expect(stay.state).toBe(inner); expect(stay.events).toEqual([])
+  const r = act(combatState([P(0, 2), S(4, 4)]), { kind: "flee" })
+  expect(r.events).toContainEqual({ type: "combatEnded", outcome: "fled" })
+  expect(r.state.combat).toBeNull(); expect(r.state.player.pos).toEqual({ x: 1, y: 2 })
+  expect(r.state.clearedEncounters).toEqual([])
 })
-it("combat ends in victory when no enemy remains, adds the encounter to clearedEncounters", () => {})
+it("combat ends in victory when no enemy remains, adds the encounter to clearedEncounters", () => {
+  const r = act(combatState([P(2, 1), S(2, 0, { hp: 3 })]), { kind: "attack", dir: "n" })
+  expect(r.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
+  expect(r.events.at(-1)).toEqual({ type: "music", track: "music.a" })
+  expect(r.state.combat).toBeNull(); expect(r.state.clearedEncounters).toEqual(["enc.a"])
+  expect(r.state.player.pos).toEqual({ x: 1, y: 3 }); expect(r.state.player.hp).toBe(10)
+})
 it("combat ends in defeat when every ally is gone", () => {
-  // player hp 1, bandit 인접, endTurn → defeat, mapId start.map, pos start.pos, hp 1, cleared에 없음
+  const r = act(combatState([P(2, 1, { hp: 1 }), B(2, 0)]), { kind: "endTurn" })
+  expect(r.events).toContainEqual({ type: "combatEnded", outcome: "defeat" })
+  expect(r.state.mapId).toBe("map.a"); expect(r.state.player.pos).toEqual({ x: 1, y: 1 }); expect(r.state.player.hp).toBe(1)
+  expect(r.state.clearedEncounters).toEqual([])
 })
-it("a moved unit cannot move again but can still act", () => {})
+it("a moved unit cannot move again but can still act", () => {
+  const moved = act(combatState([P(2, 4), S(0, 0)]), { kind: "move", to: { x: 2, y: 2 } }).state
+  expect(unit(moved, "player")).toMatchObject({ pos: { x: 2, y: 2 }, moved: true, acted: false })
+  expect(moved.combat?.active).toBe("player")
+  expect(act(moved, { kind: "move", to: { x: 2, y: 1 } }).state).toBe(moved)
+  expect(act(moved, { kind: "move", to: { x: 2, y: 0 } }).state).toBe(moved)   // 이미 이동함(거리와 무관)
+  expect(act(moved, { kind: "defend" }).state.combat?.round).toBe(2)
+})
+it("a move farther than three tiles or onto a unit is ignored", () => {
+  const s = combatState([P(2, 4), S(2, 0)])
+  expect(act(s, { kind: "move", to: { x: 2, y: 0 } }).state).toBe(s)
+  expect(act(s, { kind: "move", to: { x: 0, y: 1 } }).state).toBe(s)            // 거리 5
+})
 ```
 
-  각 테스트는 주석의 좌표·수치를 `expect`로 그대로 고정한다(첫 테스트처럼 `toEqual`). `combatState` 헬퍼는 유닛을 놓은 뒤 `intents = computeIntents(…)`로 채우고 `active`를 규칙 1로 계산한다(직접 만든 상태도 실제 시작과 같은 불변식을 가진다). 위 수치의 근거: slime (2,0) → player (2,4)까지 인접 칸 (2,3)이 3칸이므로 한 라운드에 도착해 공격 2, bandit 공격 4 → 방어 시 2.
+  수치 근거: slime (2,0) → player (2,4)의 옆 칸 (2,3)까지 3칸 → 한 라운드에 도착해 공격 2(hp 10 → 8). bandit 공격 4 → 방어 시 2. 규칙 10의 동점 처리: 대상 옆 칸은 대상 기준 `n, e, s, w` 순서로 보고 경로 길이가 가장 짧은 첫 칸을 고른다(경로 자체는 BFS 이웃 순서 `n, e, s, w`로 결정적).
 
 - [ ] **Step 2: RED** → **Step 3: 구현** → **Step 4: GREEN** — Run: `npx vitest run tests/unit/core` → 전부 passed.
 - [ ] **Step 5: 커밋** `feat(core): telegraphed grid combat with push, persuade and flee`
@@ -1205,7 +1292,18 @@ it("screenToTile inverts the viewport", () => {
 it.each([["ArrowUp", "n"], ["w", "n"], ["D", "e"], ["ArrowDown", "s"], ["a", "w"]])("%s moves %s in explore", (k, d) => {
   expect(keyToCommand(k, "explore")).toEqual({ type: "move", dir: d })
 })
-it("Enter and Space interact; Escape opens the menu; Tab opens the notebook", () => {})   // 표 그대로
+it("Enter and Space interact; Escape opens the menu; Tab opens the notebook", () => {
+  expect(keyToCommand("Enter", "explore")).toEqual({ type: "interact" })
+  expect(keyToCommand(" ", "explore")).toEqual({ type: "interact" })
+  expect(keyToCommand("Escape", "explore")).toEqual({ ui: "menu" })
+  expect(keyToCommand("Escape", "combat")).toEqual({ ui: "menu" })
+  for (const m of ["explore", "dialogue", "combat"] as const) expect(keyToCommand("Tab", m)).toEqual({ ui: "notebook" })
+  expect(keyToCommand("ArrowUp", "combat")).toBeNull(); expect(keyToCommand("q", "explore")).toBeNull()
+})
+it("combat mode turns a tap into a combat move", () => {
+  const s = step(at(1, 2), { type: "move", dir: "s" }, c).state
+  expect(pointerToCommand({ x: 2, y: 2 }, s, c)).toEqual({ type: "combat", action: { kind: "move", to: { x: 2, y: 2 } } })
+})
 it("arrow keys do nothing in dialogue mode", () => { expect(keyToCommand("ArrowUp", "dialogue")).toBeNull() })
 it("Escape ends the talk in dialogue mode", () => { expect(keyToCommand("Escape", "dialogue")).toEqual({ type: "endTalk" }) })
 it("tapping an adjacent NPC interacts", () => {
@@ -1478,6 +1576,27 @@ it("same params give identical samples", () => { expect(renderSfx(SFX.hit, 22050
     - (b) 늑대 하나를 공격으로 죽이면 `deeds`에 `{ virtue: "compassion", deed: "deed.kill-innocent" }`, 밀어내 격자 밖으로 보내면 기록 없음.
     - (c) 직조공 `word.ledger` → 엘린 영입 → 서고 다녀오기 → 고백관 `option.confess-no` → (토비 증언 후) 고발관장 `option.deny-warden` → `companionLeft npc.kalas.elin`. 니아 `word.ledger`(토비 증언 뒤) → 엘린 다시 영입 → `party` = `["npc.kalas.elin"]`.
     - (d) 명령 목록 앞 절반 실행 → `serialize` → `deserialize` → 뒤 절반 실행한 결과가 한 번에 실행한 결과와 `toEqual`.
+  기대값을 코드로:
+```ts
+// kalas-truth.test.ts
+const { state } = play(content, truthCommands)
+expect(state.crises["crisis.kalas.trial"]).toBe("option.truth")
+expect(state.flags).toContain("flag.kalas.ledger-kept")
+expect(state.deeds).toEqual([])
+// kalas-lantern.test.ts
+const { state } = play(content, lanternCommands)
+expect(state.crises["crisis.kalas.trial"]).toBe("option.lantern")
+expect(state.flags).toContain("flag.kalas.ledger-burned")
+expect(state.abilities).toContain("ability.see-lies")
+expect(state.clearedEncounters).toContain("enc.archive.robbers")
+// kalas-rules.test.ts (d)
+const half = Math.floor(commands.length / 2)
+const first = play(content, commands.slice(0, half)).state
+const back = deserialize(serialize(first)); if (!back.ok) throw new Error(back.reason)
+let s = back.state; for (const cmd of commands.slice(half)) s = step(s, cmd, content).state
+expect(s).toEqual(play(content, commands).state)
+```
+  명령 목록은 `walkTo`·`talk`·전투 명령으로 조립한다(좌표는 Task 15의 실제 지도에서). 시나리오가 실패하면 먼저 콘텐츠 배치(경로 막힘, 조건 단서 누락)를 의심하고, 고친 곳을 보고서에 적는다.
 - [ ] **Step 2: `main.ts` 연결**
   - 부팅: `virtual:content`, `virtual:credits`, 시트 이미지(`import.meta.glob("../assets/tiles/*.png", { query: "?url", import: "default", eager: true })`), `createIndexedDbSlotStore(indexedDB)`, `loadSlot(store, AUTO_SLOT)`가 `ok`면 그 상태, 아니면 `createInitialState(content, Date.now() >>> 0)`. 실패한 불러오기는 `log.log("load-failed", reason)`만 하고 새 게임.
   - 루프: `dispatch(cmd)` → `UiAction`이면 `panels.toggle`, `Command`면 `step` → 상태 교체 → 이벤트 처리(`said` → 대화 로그, `sfx`/`moved`/`bumped`/`factLearned`/`deductionConfirmed` → `SFX` 재생, `music` → `player.play(content.music[track])`, `combatEnded`·`endTalk` 후 로그 비움) → `requestAnimationFrame`으로 `drawFrame` + `panels.render`.
