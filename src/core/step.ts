@@ -1,5 +1,6 @@
 import type { GameContent } from "../content/types.ts"
 import type { Command, GameState, StepResult } from "./types.ts"
+import { fillSlot } from "./knowledge/notebook.ts"
 import { move, moveTo } from "./world/move.ts"
 
 /**
@@ -25,8 +26,9 @@ export function step(state: GameState, command: Command, content: GameContent): 
       case "endTalk":
       case "resolveCrisis":
       case "recruit":
+        return ignored                                              // Task 7–9, 11
       case "fillSlot":
-        return ignored                                              // Task 6–9, 11
+        return fillSlot(state, command.deductionId, command.slot, command.word, content)
       default:
         return ignored
     }
@@ -37,9 +39,10 @@ export function step(state: GameState, command: Command, content: GameContent): 
       return move(state, command.dir, content)
     case "moveTo":
       return moveTo(state, command.target, content)
-    case "interact":
     case "fillSlot":
-      return ignored                                                // Task 6, 8
+      return fillSlot(state, command.deductionId, command.slot, command.word, content)
+    case "interact":
+      return ignored                                                // Task 7
     default:
       return ignored
   }

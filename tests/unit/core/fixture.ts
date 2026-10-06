@@ -148,7 +148,7 @@ export function run(state: GameState, commands: readonly Command[]): { state: Ga
   let current = state
   for (const command of commands) {
     const r = step(current, command, content)
-    current = r.state
+    current = deepFreeze(r.state)
     events.push(...r.events)
   }
   return { state: current, events }
