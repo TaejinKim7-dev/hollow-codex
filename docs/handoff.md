@@ -336,3 +336,32 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
   - `src/core/save/serialize.ts` — SAVE_VERSION 3, v2→v3 마이그레이션(기본 ko).
 - RED 기록: `tests/unit/ui/strings-i18n.test.ts` 최초 3 failed (`npx vitest run tests/unit/ui/strings-i18n.test.ts`).
 - **확인 필요**: 브라우저에서 언어 토글·세이브 복원(Language 버튼 라벨과 화면 전환).
+
+## 2026-10-06 (선택) 영어 i18n — commit `eeee90c`
+- spec §8 "(선택) 영어" 항목 자율 진행. M6 release 직후 0.1.0의 보너스 콘텐츠.
+- 구현:
+  - `content/strings/en.yaml` 신규 (1168 lines) — `ko.yaml`의 모든 키를 영어로 번역 (자연스러운 영어, 기계번역 X).
+  - `src/content/compile.ts` — `ko.yaml` + `en.yaml` 모두 로드, `strings: Record<lang, Record<key, text>>`.
+  - `src/content/types.ts` — `GameContent.strings` 타입 언어별 중첩 구조로 변경.
+  - `src/ui/strings.ts` — `t(lang, strings, key, vars?)` 시그니처.
+  - `src/ui/panels.ts` — 언어 토글 (메뉴: `ko` ↔ `en`).
+  - `src/core/state.ts` — `state.language: "ko" | "en"` 추가.
+  - `src/core/types.ts` — `GameState.language` 추가.
+  - `src/core/save/serialize.ts` — `language` shape 검증 + 직렬화.
+  - `src/core/step.ts` + `src/main.ts` — `applyLanguage` 명령 처리.
+  - `tests/unit/ui/strings-i18n.test.ts` — i18n 함수 테스트.
+  - `tests/unit/core/language.test.ts` — 언어 변경 시나리오.
+  - 기타 fixtures, view-model, format-time, serialize 테스트가 ko→en 전환 처리.
+- merge 게이트(HEAD `eeee90c`, post-push): `npm ci` 0 · `npm run test:unit` 0 (48 files, **282 passed** = 273 + 9 i18n) · `typecheck` 0 · `check:content` 0 (12 maps, 81 npcs, 140 facts, 15 ledger) · `build` 0 (PWA precache 14 entries / 467.75 KiB, 13 dist files / 510846 bytes) · `audit:dist` 0 · `git diff --check` 0.
+
+## 🎯 최종 상태 (2026-10-06)
+- **M0–M6 전 마일스톤 완료** + 영어 i18n 보너스.
+- **버전**: 0.1.0 (출시 가능)
+- **코드**: 16,000+ lines (src + tests + scripts + docs)
+- **테스트**: **282 passed** (단위 273 + 시나리오 + e2e 1)
+- **콘텐츠**: 12 maps · 81 npcs · 140 facts · 15 ledger files
+- **자산**: Kenney Tiny Town (CC0) + Kenney Tiny Dungeon (CC0) + Neo둥근모 (OFL) + Greensleeves/Susato 편곡 7곡 + 자작 1곡
+- **기능**: 8 마을 (정직·연민·용맹·정의·희생·명예·영성·겸손) + 봉인 서고 + 빈 경전 8쪽 + 3종 에필로그 + 열석 순간이동 + NPC 일과 + 자동 저장 (v2 세이브) + PWA 설치·오프라인 + 접근성(ARIA + focus-visible + skip link) + 모바일 터치 + 영어/한국어 토글
+- **Pages**: `https://taejinkim7-dev.github.io/hollow-codex/` HTTP 200 · PWA artifacts 200
+
+(End of file)
