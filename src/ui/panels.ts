@@ -3,7 +3,7 @@
 import "./panels.css"
 import type { LedgerRow } from "../content/ledger.ts"
 import type { FactKind, GameContent } from "../content/types.ts"
-import type { CombatAction, Command, Dir, GameState, Id, Pos } from "../core/types.ts"
+import type { CombatAction, Command, Dir, GameState, Id, Pos, TimeState } from "../core/types.ts"
 import type { UiAction } from "../input/commands.ts"
 import { computeViewport, screenToTile } from "../render/viewport.ts"
 import { offset } from "../core/world/path.ts"
@@ -43,9 +43,14 @@ const dirFromOffset = (from: Pos, to: Pos): Dir | null => {
   return null
 }
 
+/** 게임 시간 표시 문자열. {day}일차 {hour}시 형태로 ui.day-hour 키를 치환한다. */
+export function formatTime(strings: Readonly<Record<string, string>>, time: TimeState): string {
+  return t(strings, "ui.day-hour", { day: String(time.day), hour: String(time.hour) })
+}
+
 export interface MountedPanels {
   render(state: GameState, log: readonly SaidLine[]): void
-  toggle(panel: "notebook" | "menu"): void
+  toggle(panel: "notebook" | "menu" | "rings"): void
   onMenu(handler: (action: "save" | "load" | "new") => void): void
 }
 
@@ -64,16 +69,20 @@ export function mountPanels(
 
   /** 화면 구석 버튼(generic Chrome)이 가려져야 하는지. */
   const syncChrome = (): void => {
-    const covered = !dialogue.hidden || !notebook.hidden || !menu.hidden
+    const covered = !dialogue.hidden || !notebook.hidden || !menu.hidden || !ringsMenu.hidden
     openNotebook.hidden = covered
+    openRings.hidden = covered
     openMenu.hidden = covered
   }
 
   // ── 화면 오른쪽 위 버튼 ────────────────
   const openNotebook = make("button", "open-notebook", t(s, "ui.notebook"))
   openNotebook.addEventListener("click", () => toggle("notebook"))
+  const openRings = make("button", "open-rings", t(s, "ui.open-rings"))
+  openRings.addEventListener("click", () => toggle("rings"))
   const openMenu = make("button", "open-menu", t(s, "ui.menu"))
   openMenu.addEventListener("click", () => toggle("menu"))
+  const timeIndicator = make("div", "time-indicator")
 
   // ── 대화 패널 ─────────────────────────
   const dialogue = make("section", "dialogue")
@@ -430,17 +439,52 @@ export function mountPanels(
 
   menu.append(menuHeader, slots, menuSave, menuLoad, menuNew, creditsBox)
 
-  // ── 조립 ──────────────────────────────
-  root.append(openNotebook, openMenu, dialogue, notebook, hud, menu)
+  // ── 열석 고리 메뉴 ────────────────────
+  const ringsMenu = make("section", "rings-menu")
+  ringsMenu.hidden = true
+  const ringsHeader = make("header")
+  ringsHeader.appendChild(make("span", "title", t(s, "ui.open-rings")))
+  const ringsClose = make("button", "close", t(s, "ui.close"))
+  ringsClose.addEventListener("click", () => {
+    ringsMenu.hidden = true
+    syncChrome()
+  })
+  ringsHeader.appendChild(ringsClose)
+  const ringsList = make("div", "rings")
+  ringsMenu.append(ringsHeader, ringsList)
 
-  const toggle = (panel: "notebook" | "menu"): void => {
-    if (panel === "notebook") {
-      menu.hidden = true
-      notebook.hidden = !notebook.hidden
-    } else {
-      notebook.hidden = true
-      menu.hidden = !menu.hidden
+  /** state.rings.knownFacts로 열린 고리(songKey 아는 고리)를 나열한다. 없으면 안내 문구. */
+  const renderRings = (next: GameState): void => {
+    const available = Object.entries(content.moongates).filter(([, g]) =>
+      next.rings.knownFacts.includes(g.fact)
+    )
+    ringsList.replaceChildren()
+    if (available.length === 0) {
+      ringsList.appendChild(make("p", "empty", t(s, "ui.no-rings")))
+      return
     }
+    for (const [ringId, gate] of available) {
+      const row = make("div", "ring")
+      row.appendChild(make("span", "name", t(s, gate.nameKey)))
+      row.appendChild(make("span", "song", t(s, gate.songKey)))
+      const go = make("button", "travel", t(s, "ui.ring-travel"))
+      go.addEventListener("click", () => {
+        dispatch({ type: "ringStep", at: ringId })
+        ringsMenu.hidden = true
+        syncChrome()
+      })
+      row.appendChild(go)
+      ringsList.appendChild(row)
+    }
+  }
+
+  // ── 조립 ──────────────────────────────
+  root.append(openNotebook, openRings, openMenu, timeIndicator, dialogue, notebook, hud, menu, ringsMenu)
+
+  const toggle = (panel: "notebook" | "menu" | "rings"): void => {
+    notebook.hidden = panel !== "notebook" ? true : !notebook.hidden
+    menu.hidden = panel !== "menu" ? true : !menu.hidden
+    ringsMenu.hidden = panel !== "rings" ? true : !ringsMenu.hidden
     aim = null
     syncChrome()
   }
@@ -455,9 +499,11 @@ export function mountPanels(
     render(nextState, lines) {
       state = nextState
       log = lines
+      timeIndicator.textContent = formatTime(s, nextState.time)
       renderDialogue(nextState)
       renderNotebook(nextState)
       renderCombat(nextState)
+      renderRings(nextState)
     },
     toggle,
     onMenu

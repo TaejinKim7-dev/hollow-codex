@@ -47,15 +47,30 @@
 
 /* ── 오른쪽 위 화면 버튼 ─────────────── */
 .open-notebook,
-.open-menu {
+.open-menu,
+.open-rings {
   position: absolute;
   top: 8px;
   right: 8px;
   z-index: 30;
 }
 
-.open-notebook {
+.open-rings {
   right: 96px;
+}
+
+.open-notebook {
+  right: 184px;
+}
+
+.time-indicator {
+  position: absolute;
+  top: 14px;
+  right: 272px;
+  z-index: 30;
+  color: var(--text-muted);
+  font-size: 0.9em;
+  white-space: nowrap;
 }
 
 /* ── 대화 패널 ───────────────────────── */
@@ -74,7 +89,8 @@
 
 .dialogue header,
 .notebook header,
-.menu header {
+.menu header,
+.rings-menu header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -85,7 +101,8 @@
 
 .dialogue .npc-name,
 .menu .title,
-.notebook .title {
+.notebook .title,
+.rings-menu .title {
   color: var(--accent);
   font-weight: bold;
 }
@@ -147,9 +164,10 @@
   }
 }
 
-/* ── 수첩 / 메뉴 전체 덮개 ───────────── */
+/* ── 수첩 / 메뉴 / 고리 전체 덮개 ────── */
 .notebook,
-.menu {
+.menu,
+.rings-menu {
   position: absolute;
   inset: 0;
   display: flex;
@@ -303,4 +321,33 @@
   .menu .slots {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* ── 열석 고리 메뉴 ──────────────────── */
+.rings-menu .rings {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 12px;
+}
+
+.rings-menu .empty {
+  color: var(--text-muted);
+}
+
+.rings-menu .ring {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.rings-menu .ring .name {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.rings-menu .ring .song {
+  flex: 1;
+  color: var(--text-muted);
 }

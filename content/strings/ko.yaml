@@ -170,6 +170,12 @@ ui.combat.endTurn: 턴 넘기기
 ui.evil: 악하다
 ui.not-evil: 악하지 않다
 ui.unknown-nature: 성격 불명
+ui.day: 일
+ui.hour: 시
+ui.day-hour: "{day}일차 {hour}시"
+ui.open-rings: 고리
+ui.no-rings: 아직 고리를 모릅니다.
+ui.ring-travel: 이동
 # --- 열석 고리 (M2, Task 22) ---
 ring.honesty.name: 빛샘의 고리
 ring.honesty.song: 빛샘의 노래
