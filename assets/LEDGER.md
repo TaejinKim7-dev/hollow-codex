@@ -13,3 +13,4 @@
 | content/music/overworld.yaml | original | TaejinKim7-dev | CC-BY-SA-4.0 |
 | content/music/compassion.yaml | original pastoral chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
 | content/music/valor.yaml | original heroic chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
+| content/music/justice.yaml | original measured chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |

@@ -1,0 +1,283 @@
+# 셀레스(정의) NPC 10명. 대사는 전부 content/strings/ko.yaml의 justice.npc.* 키로 참조한다.
+- id: npc.justice.judge
+  map: map.town.justice
+  pos: [8, 10]
+  schedule:
+    "0": [8, 10]
+    "6": [7, 10]
+    "12": [8, 10]
+    "18": [9, 10]
+  name: justice.npc.judge.name
+  greet: justice.npc.judge.greet
+  sprite: [town, 86]
+  topics:
+    name:
+      - text: justice.npc.judge.name.t
+    job:
+      - text: justice.npc.judge.job.t
+        grants: [word.law, fact.seles.court]
+    word.law:
+      - text: justice.npc.judge.law.t
+        grants: [word.punishment, fact.seles.harsh-punishment]
+    word.punishment:
+      - text: justice.npc.judge.punishment.t
+        grants: [fact.seles.harsh-punishment]
+    word.compassion:
+      - text: justice.npc.judge.compassion.t
+    fact.seles.mourning-lullaby:
+      - text: justice.npc.judge.lullaby.t
+    fact.creature.justice-mourner:
+      - text: justice.npc.judge.mourner.t
+        lie: true
+- id: npc.justice.clerk
+  map: map.town.justice
+  pos: [6, 9]
+  schedule:
+    "0": [6, 9]
+    "6": [6, 10]
+    "12": [6, 9]
+    "18": [7, 9]
+  name: justice.npc.clerk.name
+  greet: justice.npc.clerk.greet
+  sprite: [town, 87]
+  topics:
+    name:
+      - text: justice.npc.clerk.name.t
+    job:
+      - text: justice.npc.clerk.job.t
+        grants: [fact.seles.judge, fact.seles.court]
+    word.law:
+      - text: justice.npc.clerk.law.t
+        grants: [word.law]
+    word.punishment:
+      - text: justice.npc.clerk.punishment.t
+        grants: [word.punishment]
+    fact.seles.harsh-punishment:
+      - text: justice.npc.clerk.harsh.t
+        grants: [word.punishment, fact.seles.harsh-punishment]
+    fact.seles.prisoner:
+      - text: justice.npc.clerk.prisoner.t
+        grants: [word.truth]
+- id: npc.justice.widow
+  map: map.town.justice
+  pos: [13, 16]
+  schedule:
+    "0": [13, 16]
+    "6": [14, 16]
+    "12": [13, 16]
+    "18": [12, 16]
+  name: justice.npc.widow.name
+  greet: justice.npc.widow.greet
+  sprite: [town, 94]
+  topics:
+    name:
+      - text: justice.npc.widow.name.t
+    job:
+      - text: justice.npc.widow.job.t
+        grants: [word.compassion, fact.seles.graveyard]
+    word.compassion:
+      - text: justice.npc.widow.compassion.t
+        grants: [word.compassion]
+    fact.seles.mourning-lullaby:
+      - text: justice.npc.widow.lullaby.t
+        grants: [fact.seles.mourning-lullaby, word.love]
+    fact.seles.prisoner:
+      - text: justice.npc.widow.prisoner.t
+        grants: [fact.seles.prisoner, word.fairness]
+    word.truth:
+      - text: justice.npc.widow.truth.t
+        grants: [word.truth]
+    fact.seles.mourning-duty:
+      - text: justice.npc.widow.mourning-duty.t
+        grants: [fact.seles.mourning-duty]
+- id: npc.justice.prisoner
+  map: map.town.justice
+  pos: [20, 10]
+  schedule:
+    "0": [20, 10]
+    "6": [21, 10]
+    "12": [20, 10]
+    "18": [20, 11]
+  name: justice.npc.prisoner.name
+  greet: justice.npc.prisoner.greet
+  sprite: [town, 85]
+  topics:
+    name:
+      - text: justice.npc.prisoner.name.t
+    job:
+      - text: justice.npc.prisoner.job.t
+        grants: [word.truth]
+    word.truth:
+      - text: justice.npc.prisoner.truth.t
+        grants: [word.truth, word.fairness]
+    word.fairness:
+      - text: justice.npc.prisoner.fairness.t
+        grants: [word.fairness]
+    fact.seles.widow:
+      - text: justice.npc.prisoner.widow.t
+        grants: [fact.seles.widow, fact.seles.mourning-lullaby]
+    fact.creature.justice-mourner:
+      - text: justice.npc.prisoner.mourner.t
+        grants: [fact.creature.justice-mourner]
+- id: npc.justice.witness
+  map: map.town.justice
+  pos: [11, 9]
+  schedule:
+    "0": [11, 9]
+    "6": [11, 10]
+    "12": [11, 9]
+    "18": [10, 9]
+  name: justice.npc.witness.name
+  greet: justice.npc.witness.greet
+  sprite: [town, 89]
+  topics:
+    name:
+      - text: justice.npc.witness.name.t
+    job:
+      - text: justice.npc.witness.job.t
+        grants: [fact.seles.witness, word.law]
+    word.law:
+      - text: justice.npc.witness.law.t
+        grants: [word.law]
+    word.punishment:
+      - text: justice.npc.witness.punishment.t
+        grants: [word.punishment]
+    fact.creature.justice-mourner:
+      - text: justice.npc.witness.mourner.t
+        grants: [fact.seles.prisoner]
+- id: npc.justice.child
+  map: map.town.justice
+  pos: [9, 14]
+  schedule:
+    "0": [9, 14]
+    "6": [10, 14]
+    "12": [9, 14]
+    "18": [8, 14]
+  name: justice.npc.child.name
+  greet: justice.npc.child.greet
+  sprite: [town, 88]
+  topics:
+    name:
+      - text: justice.npc.child.name.t
+    job:
+      - text: justice.npc.child.job.t
+        grants: [word.compassion]
+    fact.seles.mourning-lullaby:
+      - text: justice.npc.child.lullaby.t
+        grants: [fact.seles.mourning-lullaby, word.love]
+    word.love:
+      - text: justice.npc.child.love.t
+        grants: [word.love]
+    fact.seles.widow:
+      - text: justice.npc.child.widow.t
+        grants: [fact.seles.widow]
+- id: npc.justice.priest
+  map: map.town.justice
+  pos: [5, 3]
+  schedule:
+    "0": [5, 3]
+    "6": [5, 4]
+    "12": [5, 3]
+    "18": [6, 3]
+  name: justice.npc.priest.name
+  greet: justice.npc.priest.greet
+  sprite: [town, 90]
+  topics:
+    name:
+      - text: justice.npc.priest.name.t
+    job:
+      - text: justice.npc.priest.job.t
+        grants: [fact.seles.mourning-duty, word.law]
+    fact.seles.mourning-duty:
+      - text: justice.npc.priest.mourning-duty.t
+        grants: [fact.seles.comfort-widow, word.compassion]
+    fact.seles.comfort-widow:
+      - text: justice.npc.priest.comfort-widow.t
+        grants: [word.love, fact.seles.comfort-widow]
+    word.compassion:
+      - text: justice.npc.priest.compassion.t
+        grants: [word.compassion]
+    fact.seles.harsh-punishment:
+      - text: justice.npc.priest.harsh.t
+        grants: [fact.seles.harsh-punishment]
+- id: npc.justice.mason
+  map: map.town.justice
+  pos: [12, 17]
+  schedule:
+    "0": [12, 17]
+    "6": [13, 17]
+    "12": [12, 17]
+    "18": [11, 17]
+  name: justice.npc.mason.name
+  greet: justice.npc.mason.greet
+  sprite: [town, 91]
+  topics:
+    name:
+      - text: justice.npc.mason.name.t
+    job:
+      - text: justice.npc.mason.job.t
+        grants: [fact.seles.mason, fact.seles.graveyard]
+    word.law:
+      - text: justice.npc.mason.law.t
+        grants: [word.law]
+    fact.seles.harsh-punishment:
+      - text: justice.npc.mason.harsh.t
+        grants: [fact.seles.harsh-punishment, word.punishment]
+    fact.seles.comfort-widow:
+      - text: justice.npc.mason.comfort-widow.t
+        grants: [fact.seles.comfort-widow]
+- id: npc.justice.scribe
+  map: map.town.justice
+  pos: [20, 3]
+  schedule:
+    "0": [20, 3]
+    "6": [19, 3]
+    "12": [20, 3]
+    "18": [20, 4]
+  name: justice.npc.scribe.name
+  greet: justice.npc.scribe.greet
+  sprite: [town, 92]
+  topics:
+    name:
+      - text: justice.npc.scribe.name.t
+    job:
+      - text: justice.npc.scribe.job.t
+        grants: [word.law, word.punishment]
+    word.truth:
+      - text: justice.npc.scribe.truth.t
+        grants: [word.truth]
+    fact.seles.prisoner:
+      - text: justice.npc.scribe.prisoner.t
+        grants: [word.truth, word.fairness]
+    fact.seles.harsh-punishment:
+      - text: justice.npc.scribe.harsh.t
+        grants: [fact.seles.harsh-punishment, word.punishment]
+- id: npc.justice.gravedigger
+  map: map.town.justice
+  pos: [21, 17]
+  schedule:
+    "0": [21, 17]
+    "6": [21, 16]
+    "12": [21, 17]
+    "18": [22, 17]
+  name: justice.npc.gravedigger.name
+  greet: justice.npc.gravedigger.greet
+  sprite: [town, 93]
+  topics:
+    name:
+      - text: justice.npc.gravedigger.name.t
+    job:
+      - text: justice.npc.gravedigger.job.t
+        grants: [fact.seles.graveyard, fact.creature.justice-mourner]
+    fact.creature.justice-mourner:
+      - text: justice.npc.gravedigger.mourner.t
+        grants: [fact.creature.justice-mourner]
+    word.compassion:
+      - text: justice.npc.gravedigger.compassion.t
+        grants: [word.love]
+    fact.seles.mourning-lullaby:
+      - text: justice.npc.gravedigger.lullaby.t
+        grants: [fact.seles.mourning-lullaby]
+    fact.seles.prisoner:
+      - text: justice.npc.gravedigger.prisoner.t
+        grants: [fact.seles.prisoner, word.fairness]

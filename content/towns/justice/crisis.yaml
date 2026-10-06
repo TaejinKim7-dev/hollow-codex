@@ -1,0 +1,16 @@
+- id: crisis.justice.mourning
+  npc: npc.justice.judge
+  text: justice.crisis.mourning.text
+  options:
+    option.comfort-widow:
+      requires: [fact.seles.mourning-lullaby]
+      requiresDeductions: [deduction.justice]
+      setsFlags: [flag.justice.mourning-lifted]
+      label: justice.option.comfort-widow.label
+      text: justice.option.comfort-widow.text
+    option.strict-law:
+      requires: [fact.seles.harsh-punishment]
+      requiresDeductions: []
+      setsFlags: [flag.justice.law-enforced]
+      label: justice.option.strict-law.label
+      text: justice.option.strict-law.text

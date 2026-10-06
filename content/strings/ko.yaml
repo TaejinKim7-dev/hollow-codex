@@ -443,3 +443,142 @@ valor.option.duel-honor.text: 그대가 창을 들어 결투를 청한다. 무�
 # --- 솔강 능력·생물 ---
 valor.ability.shield.name: 방패 들기
 valor.creature.duelist.name: 떠돌이 결투가
+
+# --- 정의의 마을 셀레스 (M3 Task 35) ---
+town.seles.name: 셀레스
+justice.music.title: 셀레스의 판결
+
+justice.npc.judge.name: 재판관 아르벤
+justice.npc.judge.greet: 셀레스의 법정이다. 한 줄로 서라. 관례는 예외를 두지 않는다.
+justice.npc.judge.name.t: 나는 아르벤. 삼십 년 동안 이 법정의 판결을 내려 왔다. 셀레스에서는 살아 있는 자의 이름보다 무덤 앞의 관례가 먼저다.
+justice.npc.judge.job.t: 내 일은 관례를 지키고 벌을 내리는 것이다. 조문의 달에는 노래를 부르지 못하고, 어긴 자는 매를 맞는다. 관례가 마을을 지킨다. 그것이 정의다.
+justice.npc.judge.law.t: 법은 관례에 뿌리를 둔다. 조문 기간에 노래를 부르면 매질. 무덤 앞에서 물건을 꺼내면 추방. 우리 법에는 감정이라는 항목이 없다.
+justice.npc.judge.punishment.t: 형벌은 사람이 관례를 기억하게 하는 불이다. 매질은 사십 대로, 어떤 벌도 감면하지 않는다. 그게 셀레스가 정의라고 부르는 방식이다.
+justice.npc.judge.compassion.t: 연민은 법정에 어울리지 않는 말이다. 벌을 줄이면 모두가 관례를 흔들려 할 것이다. 나는 그 흔들림을 막는 자다.
+justice.npc.judge.lullaby.t: 자장가라니. 조문 기간에 노래라니. 그것은 관례에 대한 모독이다. 과부 셀레는 벌을 피할 수 없다.
+justice.npc.judge.mourner.t: 무덤에서 본 젊은이는 도둑이다. 증인이 이미 섰다. 벌은 정해져 있다.
+
+justice.npc.clerk.name: 법정 서기 레온
+justice.npc.clerk.greet: 증언은 기록으로 남는다. 조용히, 그리고 정확히.
+justice.npc.clerk.name.t: 나는 법정의 서기 레온이라 한다. 판결문과 죄명을 옮겨 적는 사람이다.
+justice.npc.clerk.job.t: 재판 기록을 쓰는 일을 한다. 오늘 판결문도 세 장을 썼다. 모두 매질 또는 추방이지. 나는 글자를 쓰는 일을 자랑으로 여겼는데, 요즘은 글자로 형벌을 세는 것이 두렵다.
+justice.npc.clerk.law.t: 법은 이미 적혀 있다. 조문 관례 금지 조항, 형벌 표, 면죄 불가 조항. 재판관은 기록을 읽을 뿐이라고 말하지만, 기록을 쓰는 자가 말해 주지. 기록은 그리 간단하지 않아.
+justice.npc.clerk.punishment.t: 형벌의 종류는 셋이다. 매질, 추방, 그리고 무덤 앞에 무릎 꿇기. 무릎 꿇기는 가장 가벼운 벌이다. ……아이들은 그 벌을 돌아서기라고 부르는데, 그 별명이 마음에 걸린다.
+justice.npc.clerk.harsh.t: 이 기록들을 보게. 지난달에 조문을 어긴 사람이 여섯 명. 모두 사십 대의 매를 맞았어. 노래를 부른 사람에게도, 무덤에 꽃을 두고 온 사람에게도 말이지. 나는 그 숫자를 적을 때마다 손이 떨려.
+justice.npc.clerk.prisoner.t: ……갇힌 청년이라. 그의 이름은 기록하지 않았어. 재판관이 도둑이라고만 부르라고 했거든. 도둑이라는 기록이 진실보다 먼저 판결을 내린다. 그것은 처음 겪는 일이라.
+
+justice.npc.widow.name: 과부 셀레
+justice.npc.widow.greet: ……자장가를 들으셨나요? 미안해요, 조문 중에는 부르지 말아야 하는데. 밤마다 저도 모르게 입에서 새어 나와요.
+justice.npc.widow.name.t: 셀레라고 해요. 이제 한 달 전에 남편을 묻은 과부예요. 셀레스 사람들은 나를 노래하는 과부라 부르지요.
+justice.npc.widow.job.t: 남편이 살아 있을 때는 실을 엮어 옷감을 만들었어요. 지금은…… 매일 무덤에 가서 풀을 뽑고 돌을 만져요. 그것이 내 일이에요. 조문은 일이 아니라 몸이 되는 거예요.
+justice.npc.widow.compassion.t: 사람들은 연민을 달램이라고 부르지 않아요. 연민을 느끼는 것 자체가 조문을 어기는 것이라고요. 그래서 아무도 우는 사람을 붙잡지 않아요. 조문의 달에는 노래도, 위로도, 눈물도 금지예요.
+justice.npc.widow.lullaby.t: 그 노래는 남편이 살아 있을 때 우리 둘만 부르던 자장가예요. 아이를 달랠 때, 어른이라도 두려울 때 부르는 노래. 죽은 뒤에도 그 노래가 나를 지키는 것 같아서, 무덤 앞에서 부르고 말았어요. ……매를 맞아도 좋아요. 노래를 부르지 않는 밤이 더 두려워요.
+justice.npc.widow.prisoner.t: 내 아들 이야기를 하셨군요. 아들은 아버지의 무덤에 밤마다 갔어요. 남편이 숨겨 둔 나의 목걸이를 무덤 쪽에서 찾아서, 그것을 닦고 있었나 봐요. 그걸 본 목격자가 아들을 도둑이라 했어요. 아들은 진실을 말하지만, 관례가 진실보다 먼저야요.
+justice.npc.widow.truth.t: 진실은…… 남편이 죽은 밤에 나는 울지 않았어요. 상례에 따라 아무 말도 하지 않았지요. 그런데 노래를 부르는 지금의 나는, 그날 밤보다 진실해져 있어요. 조문이 진실을 가두었으니까요.
+justice.npc.widow.mourning-duty.t: 예전의 조문은 백 일 동안 문을 닫고 지내는 때였다고 해요. 그런데 언제부터인가 조문이 금지가 되었어요. 울지 말고, 부르지 말고, 무덤 앞에 무릎만 꿇으라고. 누구의 벌로 그렇게 되었는지 아무도 몰라요.
+
+justice.npc.prisoner.name: 갇힌 청년 이렌
+justice.npc.prisoner.greet: ……죄송해요, 무슨 말이라도 하면 도둑의 말로 기록될까 봐 무서워요.
+justice.npc.prisoner.name.t: 이렌이에요. 어머니는 셀레, 아버지는 석공이었어요. ……아버지가 갑자기 돌아가시면서, 무덤 앞에는 저만 남았어요.
+justice.npc.prisoner.job.t: 아버지의 공방에서 돌을 다루는 일을 배웠어요. 지금은 이 감옥에서 혼자 있을 뿐이지요. 돌을 만지면 진실이 보인다고 아버지가 말씀하셨어요.
+justice.npc.prisoner.truth.t: 나는 무덤에 있던 그 밤의 일을 진실 그대로 말했어요. 어머니의 목걸이를 찾아, 새끼 새가 다친 것을 보고 늦었고, 무덤 옆에서 그 목걸이를 닦고 있었을 뿐이라고요. 하지만 재판관은 도둑이라는 기록을 먼저 만들었어요.
+justice.npc.prisoner.fairness.t: 공정이라면 아버지의 일도, 어머니의 노래도 같은 저울에 올려져야 해요. 그런데 셀레스의 저울은 먼저 벌을 내리고 나서 무게를 재요.
+justice.npc.prisoner.widow.t: 어머니는 밤마다 무덤 앞에서 자장가를 부르세요. 상례가 노래를 금한 뒤로도, 목이 쉴 때까지요. 나는 그 노래를 들으며 자랐어요. 그 노래가 나를 지켜요.
+justice.npc.prisoner.mourner.t: 그 조문객을 아세요? 아버지의 벗이에요. 무덤을 지키려고 밤마다 서성이다가, 낯선 이를 도둑으로 오인한 거예요. 슬픔이 사람을 그렇게 만드나 봐요.
+
+justice.npc.witness.name: 목격자 카인
+justice.npc.witness.greet: 내 두 눈은 팔아도 된다. 그날 밤을 똑똑히 봤으니.
+justice.npc.witness.name.t: 나는 카인이라 한다. 이 마을의 구둣방 주인이지. 법정에 증인으로 서는 일이 이제는 잦아졌어.
+justice.npc.witness.job.t: 구두를 만들고, 밤에는 마을을 지켜봐. 무덤 쪽으로 가는 사람은 다 기록해 두지. ……그게 언제부터 내 일이 되었는지는 모르겠다.
+justice.npc.witness.law.t: 법이 있으니 증인이 있는 것이야. 나는 본 것을 말할 뿐이지. 조문 기간에 노래를 부르는 소리, 무덤에 드나드는 그림자. 법이 그것들을 눈여겨보라고 했어.
+justice.npc.witness.punishment.t: 벌은 무서운 것이 아니야, 질서야. 매질을 맞고 나면 다들 관례를 기억하지. 나는 벌이 사람을 고친다고 믿어.
+justice.npc.witness.mourner.t: 청년 이렌이 무덤에서 무언가 번득이는 것을 들고 있더군. 도둑이 아니고서야 무덤에서 무엇을 찾을까. ……그런데 지금 생각하면, 그게 목걸이처럼 보이기도 했어. 어머니의 목걸이였다면?
+
+justice.npc.child.name: 광장 아이 리네
+justice.npc.child.greet: 어른들이 조용히라고만 해서 노래를 못 불러. 근데 넌 괜찮아 보이는데?
+justice.npc.child.name.t: 나는 리네야. 이 마을에서 태어난 아이야. 내가 아는 노래가 셀레스에서 제일 많아.
+justice.npc.child.job.t: 내 일은 노래 기억하기! 광장에서, 무덤 가까이에서, 어른들이 목을 축이는 소리를 듣고 다 외워. ……하지만 요즘은 어른들이 노래를 금지해서, 노래의 주인은 나야.
+justice.npc.child.lullaby.t: 과부 아주머니의 자장가? 나도 알아! 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 아주머니는 밤마다 무덤 앞에서 불러. 판사 아저씨한테 걸리면 안 되는데…… 나는 그 노래가 좋아.
+justice.npc.child.love.t: 사랑? 그건…… 무덤 앞에서 노래하는 거지. 어머니가 나를 재울 때 부르는 것도, 과부 아주머니가 남편에게 부르는 것도 같은 노래야. 금지돼도 부르는 것. 그게 사랑이야?
+justice.npc.child.widow.t: 과부 아주머니는 착한데 왜 벌을 받아야 해? 노래를 부른 게 죄라면 나도 죄인인데, 나는 누가 벌을 안 줘. 아주머니는 어른이라서 자꾸 벌을 받아.
+
+justice.npc.priest.name: 사제 세르노
+justice.npc.priest.greet: 평안하십시오. 이 예배소는 무덤보다 이른 곳이지만, 조문의 규칙은 나도 따르며 삽니다.
+justice.npc.priest.name.t: 나는 세르노라 한다. 이 마을의 예배소를 지키는 사제로서, 옛 조문의 기록을 보관하는 사람이기도 하지.
+justice.npc.priest.job.t: 옛 기록을 다듬고, 조문 예식의 말씀을 준비하는 일을 하네. ……그런데 어느 해부터인가 기록에 금지라는 낱말이 늘어났어. 울지 말 것, 부르지 말 것, 어기지 말 것.
+justice.npc.priest.mourning-duty.t: 옛 조문 기록에는 형벌이 없었네. 조문의 달은 백 일 동안 문을 닫고, 이웃이 밥을 가져다주고, 밤이면 함께 앉아 이야기를 나누는 때였어. 벌을 세우는 자리가 아니었지.
+justice.npc.priest.comfort-widow.t: 위로는 가르치는 것이 아니야. 무덤 앞에 함께 앉아, 부르는 노래를 같이 들어 주는 것이지. 그대가 그 노래를 듣고 함께 앉으면, 그 벌은 힘을 잃을 걸세.
+justice.npc.priest.compassion.t: 연민은 벌을 줄이는 것이라 여겨지지만, 사실은 함께 아파하는 것이지. 옛 기록은 말하네. 정의가 저울이라면, 연민은 그 저울을 잡는 손이라고.
+justice.npc.priest.harsh.t: 벌이 관례보다 무거워진 것은 최근의 일일세. 사십 대의 매는 옛날이라면 감옥에 갇힐 일조차 아니었어. 그 벌이 사람을 두렵게 만들어, 이제 아무도 무덤 앞에서 울지 않네.
+
+justice.npc.mason.name: 석공 두만
+justice.npc.mason.greet: 묘비를 세우는 사람이야. 돌에는 거짓을 새길 수 없어서, 이 마을에서 내 일이 버티고 있지.
+justice.npc.mason.name.t: 두만이라 한다. 이 마을의 묘비와 집터의 돌을 다루는 석공일세.
+justice.npc.mason.job.t: 산 자의 이름을 새기는 일을 했는데, 이제는 죽은 자의 형벌까지 새기는구려. 조문을 어긴 자라는 글귀를 비석에 새기는 것이 말이지. 돌 위의 이름이 늘어나는 속도가 나를 겁먹게 해.
+justice.npc.mason.law.t: 법이라는 것이…… 돌과 같아야 하는데. 무게가 있고, 버티고, 거짓이 없어야지. 지금의 법은 돌이 아니라 흙이야. 비가 오면 모양이 바뀌어.
+justice.npc.mason.harsh.t: 지난달에 내가 새긴 비문이 여섯 개야. 모두 노래를 부른 자였지. 보게, 노래를 부른 자를 위해 묘비를 새기는 법이 언제 생겼는지. ……이 마을은 죽은 자를 위한 돌을, 살아 있는 자를 벌하는 데 쓰고 있어.
+justice.npc.mason.comfort-widow.t: 그래도 아직 희망이 있어. 과부 셀레의 남편 묘비는 내가 새겼는데, 그 돌만은 여기 잠들다로 남았어. 아들의 손이 그 비석을 매일 닦지. 돌이 참고 있으니 저울도 언젠가 균형을 찾겠지.
+
+justice.npc.scribe.name: 필경사 벨라
+justice.npc.scribe.greet: 판결문을 쓰는 사람입니다. ……문서와 말, 어느 쪽이 진실인지 이제 알 수 없게 되었네요.
+justice.npc.scribe.name.t: 벨라입니다. 이 마을의 판결문과 조문 기록을 옮겨 적는 필경사지요.
+justice.npc.scribe.job.t: 매일 벌칙 기록을 정리합니다. 어제는 노래 한 곡에 매질 사십 대. 오늘은 무덤 앞에 머문 것만으로 하나 더. 숫자는 정직한데, 숫자를 정하는 법이 정직하지 않습니다.
+justice.npc.scribe.truth.t: 기록은 진실을 담는다고 배웠습니다. 그런데 이제 기록이 진실을 만들어 내요. 도둑이라고 적으면 도둑이 되고, 상주라고 적으면 달라지지요. 같은 밤, 같은 무덤, 같은 청년. 낱말 하나가 사람을 갈라요.
+justice.npc.scribe.prisoner.t: 청년의 기록을 다시 읽어 봤습니다. 목격자의 말, 밤의 시각, 무덤의 위치. 어디에도 도둑질은 적혀 있지 않았어요. 다만 무덤 앞에 있었음만. 그 한 줄이 그를 이 감옥으로 데려왔습니다.
+justice.npc.scribe.harsh.t: 형벌 표의 숫자가 해마다 늘어납니다. 조문 어김에 매질, 무덤 출입에 추방. 숫자가 쌓일수록 마을 사람들은 더 조용해지고, 저는 숫자를 쓰는 것이 더 두려워집니다.
+
+justice.npc.gravedigger.name: 묘지기 고르노
+justice.npc.gravedigger.greet: 여기는 죽은 사람들이 사는 곳이야. 살아 있는 사람에게는 더 조용히, 더 진실하게.
+justice.npc.gravedigger.name.t: 고르노라 한다. 이 묘지 땅을 파고 지키는 묘지기일세.
+justice.npc.gravedigger.job.t: 무덤을 파고, 초를 밝히고, 밤마다 순찰을 돌아. ……그런데 요즘은 살아 있는 이들이 밤에 더 자주 오는구먼. 벌을 두려워해서 죽은 이들처럼 조용해졌어.
+justice.npc.gravedigger.mourner.t: 저 조문객…… 저이는 매일 밤 무덤 앞에서 웁니다. 낯선 사람을 보면 도둑이라며 막아서지. 슬픔이 사람을 그렇게 눈멀게 하는 법이야. 악한 게 아니라, 애도에 잠긴 사람이지.
+justice.npc.gravedigger.compassion.t: 연민이라는 것을 나는 이렇게 배웠어. 무덤을 파러 갔는데 곡하는 사람을 보면, 내가 도리어 웃어 주어야 한다는 것. 죽은 자가 누워 있는데도 위로가 필요한 것은 산 자니까.
+justice.npc.gravedigger.lullaby.t: 그 자장가…… 나는 밤마다 듣지. 무덤 사이로 울려 퍼지는 소리. 판사가 금지했다지만, 내가 보기에 저 노래는 누구에게도 해롭지 않아. 오히려 그 노래가 나를 지켜.
+justice.npc.gravedigger.prisoner.t: 청년 이렌은 도둑이 아니야. 나는 밤마다 봤어. 무덤 앞에 무릎 꿇고, 비석을 닦고, 자장가를 듣고 있었어. 그 목걸이는 죽은 이가 아내에게 남긴 것이고, 아들은 그것을 찾아 어머니에게 돌려주려던 것이지.
+
+# --- 셀레스 단서 ---
+justice.word.fairness.label: 공정
+justice.word.fairness.hint: 모든 이를 같은 저울에 올리는 일. 셀레스의 법은 벌을 먼저 내리고 무게를 잰다.
+justice.word.law.label: 법
+justice.word.law.hint: 관례에 뿌리를 둔 조문 금지와 형벌 조항. 감정이라는 항목은 없다.
+justice.word.punishment.label: 형벌
+justice.word.punishment.hint: 매질과 추방, 무덤 앞 무릎 꿇기. 관례를 기억시키는 불.
+justice.word.compassion.label: 연민
+justice.word.compassion.hint: 사람들이 달램 대신 금지한 것. 조문이 연민을 벌한다.
+justice.fact.seles.judge.label: 재판관 아르벤
+justice.fact.seles.judge.hint: 삼십 년간 판결을 내려 온 셀레스의 재판관. 관례가 곧 정의라 믿는다.
+justice.fact.seles.widow.label: 과부 셀레
+justice.fact.seles.widow.hint: 남편을 묻은 지 한 달. 밤마다 무덤 앞에서 금지된 자장가를 부른다.
+justice.fact.seles.prisoner.label: 갇힌 청년 이렌
+justice.fact.seles.prisoner.hint: 셀레의 아들. 무덤에서 어머니의 목걸이를 찾았다가 도둑으로 몰렸다.
+justice.fact.seles.witness.label: 목격자 카인
+justice.fact.seles.witness.hint: 무덤에서 번득이는 것을 본 증인. 본 것을 말할 뿐, 판단은 법에 맡긴다.
+justice.fact.seles.mason.label: 석공 두만
+justice.fact.seles.mason.hint: 묘비와 집터의 돌을 다루는 사람. 이제는 조문을 어긴 자라는 비문을 새긴다.
+justice.fact.seles.court.label: 셀레스 법정
+justice.fact.seles.court.hint: 벌이 기록보다 먼저 내려지는 곳. 판결문이 매일 세 장씩 쌓인다.
+justice.fact.seles.graveyard.label: 공동묘지
+justice.fact.seles.graveyard.hint: 밤마다 자장가가 울려 퍼지는 무덤. 벌을 두려워한 산 자가 죽은 자처럼 조용해졌다.
+justice.fact.seles.mourning-lullaby.label: 상주 자장가
+justice.fact.seles.mourning-lullaby.hint: 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 셀레가 남편에게 남겨 둔 노래.
+justice.fact.seles.mourning-duty.label: 사라진 조문의 달
+justice.fact.seles.mourning-duty.hint: 옛 기록의 백 일. 형벌이 아니라 이웃이 밥을 가져다주고 함께 앉는 때였다.
+justice.fact.seles.harsh-punishment.label: 가혹한 형벌
+justice.fact.seles.harsh-punishment.hint: 노래 한 곡에 사십 대. 무덤 출입에 추방. 형벌 표의 숫자가 해마다 늘어난다.
+justice.fact.seles.comfort-widow.label: 위로의 손길
+justice.fact.seles.comfort-widow.hint: 무덤 앞에 함께 앉아 노래를 들어 주는 일. 벌보다 먼저 위로가 서면 저울이 균형을 찾는다.
+justice.fact.creature.justice-mourner.label: 슬픔에 잠긴 조문객
+justice.fact.creature.justice-mourner.hint: 악하지 않다. 낯선 이를 도둑으로 오인하는 것은 슬픔 때문이다. 애도에 잠긴 사람이다.
+
+# --- 셀레스 추론·위기 ---
+justice.deduction.justice.sentence: 정의는 {1}(이)라 {2}을 막는 것이 아니라 {3}(으)로 다스리는 것이다
+justice.deduction.justice.hint: 재판관의 법은 형벌로 관례를 지킨다. 셀레스가 잃어버린 것은 저울의 균형. 진실로 저울을 세우고 사랑으로 다스릴 때 비로소 정의를 이룬다.
+justice.crisis.mourning.text: 법정 앞에 달빛이 서늘하다. 조문 기간에 노래를 부른 과부 셀레와, 무덤에서 목걸이를 찾은 청년 이렌이 재판관 앞에 끌려 나왔다. 재판관이 판결문을 펼친다. 노래는 관례를 어겼고, 무덤은 도둑을 냈다. 벌은 정해져 있다. 관중은 숨을 죽인다. 아이가 고개를 숙이고, 묘지기가 무덤 쪽을 바라본다. 이제 그대가 나설 차례다.
+justice.option.comfort-widow.label: 자장가를 불러 진실과 위로를 보인다
+justice.option.comfort-widow.text: 그대가 법정 앞에서 떨리는 목소리로 자장가를 부른다. 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 관중이 숨을 멈춘다. 목격자가 고개를 숙이고, 사제가 옛 기록을 꺼내 읽는다. 조문의 달은 형벌이 아니라 함께하는 때였다. 재판관은 긴 침묵 끝에 판결문을 접는다. 셀레스의 저울이 처음으로 진실과 사랑을 올려놓고 균형을 찾는다. 형벌 대신 위로가 내려진다.
+justice.option.strict-law.label: 형벌 조항을 낭독해 법대로 다스린다
+justice.option.strict-law.text: 그대가 형벌 표를 펼쳐 법대로 읽는다. 노래는 사십 대, 무덤 출입은 추방. 재판관은 고개를 끄덕이고, 매질이 집행된다. 사람들은 더 조용해지지만, 어딘가에서 아이의 자장가가 낮게 이어진다. 셀레스는 관례를 지켰다. 그러나 무덤 앞에는 아무도 서지 않게 되었다.
+
+# --- 셀레스 능력·생물 ---
+justice.ability.eye.name: 정의의 눈
+justice.creature.mourner.name: 슬픔에 잠긴 조문객

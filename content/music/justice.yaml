@@ -1,0 +1,42 @@
+# 셀레스(정의) 마을 테마 — original measured chip tune.
+# D 도리안, 4/4, 100bpm, 4채널, 12마디(48박 ≈ 29초) 루프.
+# 저울처럼 오르내리는 선율 위에, 예외 없는 박자를 얹어 규율의 마을을 그린다.
+tempo: 100
+loop: true
+channels:
+  - wave: square50
+    volume: 0.40
+    notes: >-
+      D5/4 F5/4 A5/4 F5/4 D5/4 C5/4 B4/4 C5/4
+      D5/4 E5/4 F5/4 A5/4 G5/4 F5/4 E5/4 D5/4
+      A4/4 C5/4 E5/4 C5/4 A4/4 G4/4 A4/4 B4/4
+      C5/4 D5/4 E5/4 G5/4 E5/4 D5/4 C5/4 B4/4
+      A4/4 B4/4 C5/4 A4/4 F5/4 E5/4 D5/4 C5/4
+      D5/4 F5/4 E5/4 C5/4 D5/2 r/2
+  - wave: square25
+    volume: 0.24
+    notes: >-
+      F4/2 D4/2 A3/2 F4/2
+      A4/2 C4/2 F4/2 A4/2
+      C4/2 A3/2 E4/2 C4/2
+      G4/2 E4/2 C4/2 G4/2
+      A3/2 C4/2 F4/2 A4/2
+      A3/2 E4/2 D4/2 D4/2
+  - wave: triangle
+    volume: 0.45
+    notes: >-
+      D2/2 D3/2 D2/2 D3/2
+      F2/2 C3/2 F2/2 C3/2
+      A2/2 E3/2 A2/2 E3/2
+      C3/2 G2/2 C3/2 G2/2
+      F2/2 C3/2 D3/2 A2/2
+      A2/2 E3/2 D3/2 D3/2
+  - wave: noise
+    volume: 0.16
+    notes: >-
+      r/4 x/4 r/4 x/4 r/4 x/4 r/4 x/4
+      r/4 x/4 r/4 x/4 r/4 x/4 r/4 x/4
+      r/4 x/4 r/4 x/4 r/4 x/4 r/4 x/4
+      r/4 x/4 r/4 x/4 r/4 x/4 r/4 x/4
+      r/4 x/4 r/4 x/4 r/4 x/4 r/4 x/4
+      r/4 x/4 r/4 x/4 x/8 x/8 r/4 r/4

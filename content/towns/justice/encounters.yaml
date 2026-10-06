@@ -1,0 +1,12 @@
+- id: enc.justice.mourner
+  map: map.town.justice
+  grid:
+    - "T.....T"
+    - "......."
+    - "......."
+    - "......."
+    - "T.....T"
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.justice-mourner, at: [3, 1] }
+  music: music.battle
