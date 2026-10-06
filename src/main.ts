@@ -6,7 +6,7 @@ import { renderSfx, SFX } from "./audio/sfx.ts"
 import type { SfxParams } from "./audio/sfx.ts"
 import { createInitialState } from "./core/state.ts"
 import { step } from "./core/step.ts"
-import type { Command, GameEvent, GameState, Pos } from "./core/types.ts"
+import type { Command, GameEvent, GameState, Id, Pos, TimeState } from "./core/types.ts"
 import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
 import type { UiAction } from "./input/commands.ts"
 import { drawFrame } from "./render/canvas.ts"
@@ -101,10 +101,35 @@ function resize(): void {
 new ResizeObserver(resize).observe(canvas)
 
 // ── 대화 로그와 자동 저장 ───────────────────────────────
+/** 로드 결과에 time/rings가 없으면(예: 구형 세이브) 메모리에서 기본값을 채운다. 로드 실패로 만들지 않는다. */
+function ensureM2State(s: GameState): GameState {
+  const raw = s as unknown as {
+    readonly time?: TimeState
+    readonly rings?: { readonly visited?: readonly Id[]; readonly knownFacts?: readonly Id[] }
+  }
+  const time = raw.time
+  const rings = raw.rings
+  const okTime = time !== undefined && typeof time.hour === "number" && typeof time.day === "number"
+  const okRings = rings !== undefined && Array.isArray(rings.visited) && Array.isArray(rings.knownFacts)
+  if (okTime && okRings) return s
+  log.log("m2-defaults", { time: okTime, rings: okRings })
+  const safeTime: TimeState =
+    time !== undefined && typeof time.hour === "number" && typeof time.day === "number"
+      ? time
+      : { hour: 8, day: 1 }
+  const safeRings =
+    rings !== undefined && Array.isArray(rings.visited) && Array.isArray(rings.knownFacts)
+      ? { visited: rings.visited, knownFacts: rings.knownFacts }
+      : { visited: [] as readonly Id[], knownFacts: [] as readonly Id[] }
+  return { ...s, time: safeTime, rings: safeRings }
+}
+
 function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
   const triggered =
     next.turn - lastAutoTurn >= 50 ||
-    events.some((e) => e.type === "mapChanged" || e.type === "crisisResolved" || e.type === "combatEnded")
+    events.some((e) =>
+      e.type === "mapChanged" || e.type === "crisisResolved" || e.type === "combatEnded" || e.type === "dayPassed"
+    )
   if (triggered) {
     lastAutoTurn = next.turn
     void saveToSlot(store, AUTO_SLOT, "auto", next, Date.now())
@@ -140,6 +165,14 @@ function handleEvents(events: readonly GameEvent[]): void {
       }
       case "combatEnded":
         dialogueLog = []
+        break
+      case "timePassed":
+      case "dayPassed":
+      case "ringTraveled":
+      case "ringUnlocked":
+      case "companionJoinRejected":
+        // M2 진행 이벤트: UI/세이브는 apply에서 처리, 여기선 디버그 기록만.
+        log.log("event-m2", e)
         break
       default:
         break
@@ -221,8 +254,12 @@ async function main(): Promise<void> {
     log.log("load-failed", loaded.reason)
     s = createInitialState(content, Date.now() >>> 0)
   }
+  s = ensureM2State(s)
   state = s
   lastAutoTurn = s.turn
+  ;(window as unknown as { __hollowCodex__?: { state(): GameState | null } }).__hollowCodex__ = {
+    state: () => state
+  }
 
   panels = mountPanels(document.getElementById("ui")!, content, dispatch, credits)
   panels.onMenu((action) => {
