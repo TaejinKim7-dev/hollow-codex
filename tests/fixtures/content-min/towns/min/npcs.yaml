@@ -1,0 +1,9 @@
+- id: npc.min.sage
+  map: map.min
+  pos: [2, 1]
+  name: npc.min.sage.name
+  greet: npc.min.sage.greet
+  sprite: [test, 3]
+  topics:
+    name: { text: npc.min.sage.name.t, grants: [fact.min.person] }
+    job: { text: npc.min.sage.job.t, grants: [word.min.answer] }

@@ -1,0 +1,2 @@
+# 자리표시 한 음. Task 15가 교체한다.
+{ tempo: 120, loop: true, channels: [{ wave: square50, volume: 0.5, notes: "A4/4" }] }

@@ -1,0 +1,2 @@
+- { id: fact.min.person, kind: person, label: fact.min.person.label, hint: fact.min.person.hint }
+- { id: word.min.answer, kind: word, label: word.min.answer.label, hint: word.min.answer.hint }

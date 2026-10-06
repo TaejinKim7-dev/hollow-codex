@@ -1,0 +1,75 @@
+# spec §2.2의 금지 목록. 이 파일 자체는 검사 대상이 아니다. 1음절·일반 낱말이 되는 한글 음역은 뺐다(D4).
+latin:
+  - ultima
+  - britannia
+  - sosaria
+  - lord british
+  - avatar
+  - moongate
+  - trammel
+  - felucca
+  - codex of ultimate wisdom
+  - stygian abyss
+  - hawkwind
+  - mondain
+  - minax
+  - exodus
+  - britain
+  - yew
+  - minoc
+  - trinsic
+  - jhelom
+  - skara brae
+  - moonglow
+  - magincia
+  - vesper
+  - cove
+  - paws
+  - buccaneer's den
+  - serpent's hold
+  - empath abbey
+  - lycaeum
+  - ahm
+  - mu
+  - ra
+  - beh
+  - cah
+  - summ
+  - om
+  - lum
+  - rune of honesty
+  - bell of courage
+  - book of truth
+  - candle of love
+  - three part key
+hangul:
+  - 울티마
+  - 브리타니아
+  - 소사리아
+  - 로드 브리티시
+  - 로드브리티시
+  - 아바타
+  - 문게이트
+  - 트래멀
+  - 펠루카
+  - 궁극적 지혜의 경전
+  - 궁극의 지혜
+  - 심연
+  - 호크윈드
+  - 몬데인
+  - 미낙스
+  - 엑소더스
+  - 브리튼
+  - 미녹
+  - 트린식
+  - 젤롬
+  - 스카라 브레
+  - 스카라브레
+  - 문글로우
+  - 마진시아
+  - 베스퍼
+  - 코브
+  - 버커니어
+  - 서펜트 홀드
+  - 엠패스 애비
+  - 라이시움

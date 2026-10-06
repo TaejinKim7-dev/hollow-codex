@@ -1,0 +1,6 @@
+sheets:
+  test: { file: test.png, columns: 4 }
+tiles:
+  ".": { sprite: [test, 0], walk: 1 }
+  "#": { sprite: [test, 1], walk: null }
+player: [test, 2]

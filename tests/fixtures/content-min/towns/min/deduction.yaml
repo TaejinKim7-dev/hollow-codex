@@ -1,0 +1,5 @@
+- id: deduction.min
+  sentence: deduction.min.sentence
+  hint: deduction.min.hint
+  answer: [word.min.answer, word.min.answer, word.min.answer]
+  unlocks: [ability.min]

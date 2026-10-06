@@ -1,0 +1,14 @@
+npc.default.unknown: 잘 모르겠소.
+topic.name: 이름
+topic.job: 하는 일
+ability.min.name: 시험 능력
+fact.min.person.label: 현자
+fact.min.person.hint: 현자에게 물어보라.
+word.min.answer.label: 정답
+word.min.answer.hint: 현자가 하는 일을 물어보라.
+deduction.min.sentence: ___ ___ ___
+deduction.min.hint: 정답을 세 번 넣어라.
+npc.min.sage.name: 현자
+npc.min.sage.greet: 어서 오시오.
+npc.min.sage.name.t: 나는 현자요.
+npc.min.sage.job.t: 나는 정답을 지키오.

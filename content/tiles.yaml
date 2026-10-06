@@ -1,0 +1,7 @@
+# 자리표시 인덱스. Task 15가 실제 그림에 맞춰 고친다.
+sheets:
+  town: { file: kenney-tiny-town.png, columns: 12 }
+tiles:
+  ".": { sprite: [town, 0], walk: 1 }
+  "#": { sprite: [town, 1], walk: null }
+player: [town, 84]
