@@ -1,7 +1,7 @@
 import type { GameContent, SpriteRef } from "../content/types.ts"
 import type { GameState, Id, Pos } from "../core/types.ts"
 import { npcPositionAt } from "../core/dialogue/talk.ts"
-import { computeViewport, TILE, VIEW_H, VIEW_W, type Viewport } from "./viewport.ts"
+import { frameViewport, TILE, VIEW_H, VIEW_W, type Viewport } from "./viewport.ts"
 
 /**
  * 프레임을 하나 그린다. 테스트 없음(사용자 확인).
@@ -66,9 +66,8 @@ export function npcsToDraw(state: GameState, content: GameContent): { readonly i
 function drawCombat(ctx: CanvasRenderingContext2D, sheets: Readonly<Record<string, HTMLImageElement>>, content: GameContent, state: GameState): void {
   const combat = state.combat
   if (!combat) return
-  const mapSize = { w: combat.grid[0]?.length ?? 0, h: combat.grid.length }
   const active = combat.units.find((u) => u.id === combat.active)
-  const vp = computeViewport({ w: ctx.canvas.width, h: ctx.canvas.height }, 1, mapSize, active?.pos ?? { x: 0, y: 0 })
+  const vp = frameViewport(state, content, { w: ctx.canvas.width, h: ctx.canvas.height })
   const size = TILE * vp.scale
   for (let gy = 0; gy < combat.grid.length; gy++) {
     const row = combat.grid[gy]

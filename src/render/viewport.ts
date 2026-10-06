@@ -1,4 +1,5 @@
-import type { Pos } from "../core/types.ts"
+import type { GameContent } from "../content/types.ts"
+import type { GameState, Pos } from "../core/types.ts"
 
 export const VIEW_W = 15
 export const VIEW_H = 11
@@ -45,4 +46,24 @@ export function screenToTile(px: Pos, vp: Viewport): Pos {
     x: Math.floor((px.x - vp.offsetPx.x) / step) + vp.originTile.x,
     y: Math.floor((px.y - vp.offsetPx.y) / step) + vp.originTile.y
   }
+}
+
+/**
+ * The viewport a frame is drawn with (device pixels, dpr already applied by the caller's canvas size):
+ * in combat the encounter grid centred on the active unit, otherwise the map centred on the player.
+ * drawFrame, the canvas tap handler and the combat aim handler all use this, so a tap hits the drawn cell.
+ */
+export function frameViewport(state: GameState, content: GameContent, canvasPx: { readonly w: number; readonly h: number }): Viewport {
+  const combat = state.combat
+  if (combat !== null) {
+    const active = combat.units.find((u) => u.id === combat.active)
+    return computeViewport(canvasPx, 1, { w: combat.grid[0]?.length ?? 0, h: combat.grid.length }, active?.pos ?? { x: 0, y: 0 })
+  }
+  const map = content.maps[state.mapId]
+  return computeViewport(canvasPx, 1, { w: map?.rows[0]?.length ?? 0, h: map?.rows.length ?? 0 }, state.player.pos)
+}
+
+/** Canvas device-pixel point → tile (combat grid cell in combat, map tile otherwise). */
+export function tileAtPointer(state: GameState, content: GameContent, canvasPx: { readonly w: number; readonly h: number }, px: Pos): Pos {
+  return screenToTile(px, frameViewport(state, content, canvasPx))
 }

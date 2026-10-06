@@ -9,7 +9,7 @@ import type { Command, GameEvent, GameState, Pos } from "./core/types.ts"
 import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
 import type { UiAction } from "./input/commands.ts"
 import { drawFrame } from "./render/canvas.ts"
-import { computeViewport, screenToTile } from "./render/viewport.ts"
+import { frameViewport, tileAtPointer } from "./render/viewport.ts"
 import { createIndexedDbSlotStore } from "./save/slot-store.ts"
 import { createSession } from "./save/session.ts"
 import type { SessionNotice } from "./save/session.ts"
@@ -86,16 +86,16 @@ function playSfx(name: string): void {
 }
 
 // ── 그리기와 리사이즈 ───────────────────────────────────
-let cssSize = { w: 0, h: 0 }
 let frameQueued = false
 function draw(): void {
   const s = state
   const ui = panels
   if (s === null || ui === null) return
-  const map = content.maps[s.mapId]
-  if (map === undefined) return
-  const mapSize = { w: map.rows[0]?.length ?? 0, h: map.rows.length }
-  const vp = computeViewport(cssSize, devicePixelRatio, mapSize, s.player.pos)
+  if (content.maps[s.mapId] === undefined) {
+    log.log("unknown-map", s.mapId)
+    return
+  }
+  const vp = frameViewport(s, content, { w: canvas.width, h: canvas.height })
   drawFrame(canvas2d, sheets, s, content, vp)
   ui.render(s, dialogueLog)
 }
@@ -109,7 +109,6 @@ function scheduleFrame(): void {
 }
 function resize(): void {
   const rect = canvas.getBoundingClientRect()
-  cssSize = { w: rect.width, h: rect.height }
   canvas.width = Math.max(1, Math.round(rect.width * devicePixelRatio))
   canvas.height = Math.max(1, Math.round(rect.height * devicePixelRatio))
   scheduleFrame()
@@ -344,15 +343,13 @@ async function main(): Promise<void> {
     showTouchHintOnce()
     const rect = canvas.getBoundingClientRect()
     if (rect.width === 0 || rect.height === 0) return
-    const map = content.maps[st.mapId]
-    if (map === undefined) return
-    const mapSize = { w: map.rows[0]?.length ?? 0, h: map.rows.length }
-    const vp = computeViewport({ w: canvas.width, h: canvas.height }, 1, mapSize, st.player.pos)
+    if (content.maps[st.mapId] === undefined) return
     const px = {
       x: (event.clientX - rect.left) * (canvas.width / rect.width),
       y: (event.clientY - rect.top) * (canvas.height / rect.height)
     }
-    const cmd = pointerToCommand(screenToTile(px, vp), st, content)
+    // 전투 중에는 전투 격자 뷰포트로(그려진 칸과 같은 칸), 탐험 중에는 지도 뷰포트로 타일을 구한다.
+    const cmd = pointerToCommand(tileAtPointer(st, content, { w: canvas.width, h: canvas.height }, px), st, content)
     if (cmd === null) return
     dispatch(cmd)
   })

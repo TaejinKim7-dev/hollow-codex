@@ -6,7 +6,7 @@ import type { LedgerRow } from "../content/ledger.ts"
 import type { FactKind, GameContent } from "../content/types.ts"
 import type { CombatAction, Command, Dir, GameState, Id, Pos, TimeState } from "../core/types.ts"
 import type { UiAction } from "../input/commands.ts"
-import { computeViewport, screenToTile } from "../render/viewport.ts"
+import { tileAtPointer } from "../render/viewport.ts"
 import { offset } from "../core/world/path.ts"
 import { t } from "./strings.ts"
 import { combatView, codexView, dialogueView, notebookView, ringsView, type NotebookView, type SaidLine } from "./view-model.ts"
@@ -347,16 +347,13 @@ export function mountPanels(
   /** 캔버스 클릭 위치를 전투 격자 타일로. drawCombat과 같은 뷰포트 계산을 따른다. */
   const canvasToGrid = (event: PointerEvent): Pos | null => {
     if (canvas === null) return null
-    const combat = state?.combat
-    if (combat === null || combat === undefined) return null
+    const current = state
+    if (current === null || current.combat === null) return null
     const rect = canvas.getBoundingClientRect()
     if (rect.width === 0 || rect.height === 0) return null
-    const mapSize = { w: combat.grid[0]?.length ?? 0, h: combat.grid.length }
-    const actor = combat.units.find((u) => u.id === combat.active)
-    const vp = computeViewport({ w: canvas.width, h: canvas.height }, 1, mapSize, actor?.pos ?? { x: 0, y: 0 })
     const px = (event.clientX - rect.left) * (canvas.width / rect.width)
     const py = (event.clientY - rect.top) * (canvas.height / rect.height)
-    return screenToTile({ x: px, y: py }, vp)
+    return tileAtPointer(current, content, { w: canvas.width, h: canvas.height }, { x: px, y: py })
   }
 
   const onActionClick = (kind: CombatAction["kind"]): void => {
