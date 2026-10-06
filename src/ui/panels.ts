@@ -590,7 +590,7 @@ export function mountPanels(
       } else {
         const select = make("select", "word")
         select.setAttribute("aria-label", tr("ui.aria.codex-page", { name: page.title }))
-        select.disabled = view.finalOpen
+        select.disabled = view.finalOpen || !page.confirmed
         select.appendChild(make("option"))
         for (const word of page.words) {
           const opt = make("option", undefined, word.label)
@@ -599,7 +599,8 @@ export function mountPanels(
         }
         const write = make("button", "write", tr("archive.alcove.write"))
         write.setAttribute("aria-label", tr("ui.aria.codex-write", { name: page.title }))
-        write.disabled = view.finalOpen
+        write.disabled = view.finalOpen || !page.confirmed
+        if (!page.confirmed) row.appendChild(make("p", "locked", tr("archive.page-locked")))
         write.addEventListener("click", () => {
           if (select.value !== "") dispatch({ type: "writeCodex", deductionId: page.deductionId, word: select.value })
         })

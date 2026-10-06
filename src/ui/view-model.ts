@@ -35,7 +35,8 @@ export interface CombatView {
 
 /** 빈 경전 인터페이스 (M5 Task 42). 8쪽 슬롯 + 마지막 장 + 에필로그 화면. */
 export interface CodexView {
-  pages: { deductionId: Id; virtue: Virtue; title: string; answer: string | null; words: { id: Id; label: string }[] }[]
+  /** confirmed = the virtue's deduction is confirmed; only then can the page be written (D11). */
+  pages: { deductionId: Id; virtue: Virtue; title: string; answer: string | null; confirmed: boolean; words: { id: Id; label: string }[] }[]
   finalOpen: boolean
   finalWord: string | null
   finalChoices: { id: Id; label: string }[]
@@ -181,6 +182,7 @@ export function codexView(state: GameState, content: GameContent): CodexView {
       virtue,
       title: t(lang, s, `archive.alcove.${virtue}.title`),
       answer: written === null ? null : t(lang, s, content.facts[written]?.labelKey ?? written),
+      confirmed: state.deductions[deductionId]?.confirmed === true,
       words
     }
   })

@@ -3,3 +3,4 @@
   hint: sacrifice.deduction.sacrifice.hint
   answer: [word.devotion, word.love, word.courage]
   unlocks: [ability.sacrifice-meaning]
+  codexWord: word.devotion

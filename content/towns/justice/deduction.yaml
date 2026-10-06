@@ -3,3 +3,4 @@
   hint: justice.deduction.justice.hint
   answer: [word.truth, word.fairness, word.love]
   unlocks: [ability.justice-eye]
+  codexWord: word.truth

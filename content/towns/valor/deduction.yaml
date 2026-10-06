@@ -3,3 +3,4 @@
   hint: valor.deduction.valor.hint
   answer: [word.courage, word.retreat, word.shield]
   unlocks: [ability.valor-shield]
+  codexWord: word.courage

@@ -1141,6 +1141,7 @@ archive.alcove.spirituality.title: Page of Spirituality
 archive.alcove.humility.title: Page of Humility
 archive.alcove.locked: Still sealed.
 archive.alcove.write: Write on this page
+archive.page-locked: Confirm this virtue's deduction before writing on this page.
 archive.final-page.title: The Last Page
 archive.final-page.prompt: Truth, love, courage — which is the one that unites the three principles?
 archive.epilogue.title: Epilogue

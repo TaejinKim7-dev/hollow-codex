@@ -59,7 +59,10 @@ export interface GameContent {
   readonly maps: Readonly<Record<Id, MapDef>>
   readonly npcs: Readonly<Record<Id, NpcDef>>
   readonly facts: Readonly<Record<Id, { readonly kind: FactKind; readonly labelKey: string; readonly hintKey: string }>>
-  readonly deductions: Readonly<Record<Id, { readonly sentenceKey: string; readonly hintKey: string; readonly answer: readonly [Id, Id, Id]; readonly unlocks: readonly Id[] }>>
+  readonly deductions: Readonly<Record<Id, {
+    readonly sentenceKey: string; readonly hintKey: string; readonly answer: readonly [Id, Id, Id]; readonly unlocks: readonly Id[]
+    readonly codexWord?: Id   // M5: the one word this virtue's codex page takes; must be one of answer
+  }>>
   readonly crises: Readonly<Record<Id, { readonly npc: Id; readonly textKey: string; readonly options: Readonly<Record<Id, CrisisOptionDef>> }>>
   readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id }>>
   readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id }>>

@@ -4,3 +4,4 @@
   hint: honor.deduction.honor.hint
   answer: [word.truth, word.courage, word.honor]
   unlocks: [ability.honor-truth]
+  codexWord: word.honor

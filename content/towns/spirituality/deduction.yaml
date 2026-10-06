@@ -4,3 +4,4 @@
   hint: spirituality.deduction.spirituality.hint
   answer: [word.truth, word.love, word.courage]
   unlocks: [ability.spirituality-mind]
+  codexWord: word.truth

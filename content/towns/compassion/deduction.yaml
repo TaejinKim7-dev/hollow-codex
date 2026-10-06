@@ -3,3 +3,4 @@
   hint: compassion.deduction.compassion.hint
   answer: [word.sharing, word.gift, word.love]
   unlocks: [ability.compassion-persuade]
+  codexWord: word.love

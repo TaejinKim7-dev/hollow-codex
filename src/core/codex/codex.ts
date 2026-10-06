@@ -27,16 +27,9 @@ export const CODEX_PAGES: readonly { readonly deductionId: Id; readonly virtue: 
 /** 빈 경전이 쓰는 8개 추론 id (선언적). */
 export const CODEX_DEDUCTION_IDS: readonly Id[] = CODEX_PAGES.map((p) => p.deductionId)
 
-/** 각 쪽의 정답 단어 (선언적). 미덕의 첫 단어와 결속한다 (D3, §4 매트릭스). */
-export const CODEX_ANSWER_BY_DEDUCTION: Readonly<Record<Id, Id>> = {
-  "deduction.honesty": "word.truth",
-  "deduction.compassion": "word.love",
-  "deduction.valor": "word.courage",
-  "deduction.justice": "word.truth",
-  "deduction.sacrifice": "word.devotion",
-  "deduction.honor": "word.honor",
-  "deduction.spirituality": "word.truth",
-  "deduction.humility": "word.silence"
+/** 한 쪽이 받는 단어. content(deduction.yaml의 codexWord)에서 온다. 컴파일러가 정답 단어 중 하나인지 확인한다. */
+export function codexWordOf(content: GameContent, deductionId: Id): Id | null {
+  return content.deductions[deductionId]?.codexWord ?? null
 }
 
 /** 마지막 장의 답 → 에필로그 종류 (§4 매트릭스). */
@@ -65,13 +58,18 @@ export function enterSealedArchive(
 }
 
 /**
- * 빈 경전 한 쪽을 적는다. 정답 단어와 다르면 무시(같은 state, 이벤트 0).
+ * 빈 경전 한 쪽을 적는다(D11: 이미 추론 확정한 것). 다음을 모두 만족할 때만 적고, 아니면 무시(같은 state, 이벤트 0):
+ * 봉인 서고 안이다 · 그 미덕의 추론을 확정했다 · 그 단어를 안다 · 그 쪽의 codexWord(content)와 같다.
  * 이미 적힌 쪽, 모든 쪽이 적힌 뒤, 마지막 장을 고른 뒤에도 무시한다.
  */
-export function writeCodex(state: GameState, deductionId: Id, word: Id, _content: GameContent): StepResult {
+export function writeCodex(state: GameState, deductionId: Id, word: Id, content: GameContent): StepResult {
   const ignored: StepResult = { state, events: [] }
   if (state.codex.finalWord !== null) return ignored
-  if (CODEX_ANSWER_BY_DEDUCTION[deductionId] !== word) return ignored
+  if (state.mapId !== ARCHIVE_MAP) return ignored
+  if (!CODEX_DEDUCTION_IDS.includes(deductionId)) return ignored
+  if (state.deductions[deductionId]?.confirmed !== true) return ignored
+  if (!state.facts.includes(word)) return ignored
+  if (codexWordOf(content, deductionId) !== word) return ignored
   if (state.codex.answers[deductionId] !== undefined) return ignored
   if (CODEX_DEDUCTION_IDS.every((id) => state.codex.answers[id] !== undefined)) return ignored
   const answers = { ...state.codex.answers, [deductionId]: word }

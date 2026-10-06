@@ -5,8 +5,8 @@ import { describe, expect, it } from "vitest"
 import { createInitialState } from "../../src/core/state.ts"
 import { step } from "../../src/core/step.ts"
 import {
-  CODEX_ANSWER_BY_DEDUCTION,
   CODEX_PAGES,
+  codexWordOf,
   EPILOGUE_BY_WORD,
   SEAL_CELL
 } from "../../src/core/codex/codex.ts"
@@ -27,14 +27,22 @@ const ALCOVES: readonly Pos[] = [
   { x: 13, y: 16 }
 ]
 
-/** 열석 고리 7개를 이미 밟은(봉인 해제) 상태로 대륙 오버월드 칼라스 입구 앞에 선다. */
+/**
+ * 열석 고리 7개를 이미 밟은(봉인 해제) 상태로 대륙 오버월드 칼라스 입구 앞에 선다.
+ * 여덟 마을의 추론은 확정했고 그 답 단어를 안다 — 각 마을 시나리오(kalas-*, m3-*, m4-*)가 실제 플레이로
+ * 확정까지 가는 것을 보이고, 여기서는 그 결과를 주입한다. 경전 쪽은 확정한 추론이 없으면 적히지 않는다.
+ */
 function unlockedOverworld(): GameState {
   const base = createInitialState(content, 1)
   const visited = Object.keys(content.moongates).slice(0, 7)
+  const deductions = Object.fromEntries(Object.entries(content.deductions).map(([id, d]) => [id, { slots: [...d.answer], confirmed: true }]))
+  const facts = [...new Set(Object.values(content.deductions).flatMap((d) => d.answer))].sort()
   return {
     ...base,
     mapId: "map.over",
     player: { ...base.player, pos: { x: 14, y: 23 } },
+    deductions,
+    facts,
     rings: { ...base.rings, visited }
   }
 }
@@ -59,7 +67,7 @@ function runArchive(word: Id): Run {
   for (let i = 0; i < CODEX_PAGES.length; i++) {
     const page = CODEX_PAGES[i]!
     push(walkTo(content, state, "map.sealed-archive", ALCOVES[i]!))
-    push([{ type: "writeCodex", deductionId: page.deductionId, word: CODEX_ANSWER_BY_DEDUCTION[page.deductionId]! }])
+    push([{ type: "writeCodex", deductionId: page.deductionId, word: codexWordOf(content, page.deductionId)! }])
   }
   // 마지막 장 "세 원리를 아우르는 하나".
   push([{ type: "writeFinal", word }])
@@ -102,7 +110,7 @@ describe("m5 sealed archive traversal", () => {
     const { state } = run("word.truth")
     expect(Object.keys(state.codex.answers)).toHaveLength(8)
     for (const page of CODEX_PAGES) {
-      expect(state.codex.answers[page.deductionId]).toBe(CODEX_ANSWER_BY_DEDUCTION[page.deductionId])
+      expect(state.codex.answers[page.deductionId]).toBe(codexWordOf(content, page.deductionId))
     }
     expect(state.codex.finalOpen).toBe(true)
   })

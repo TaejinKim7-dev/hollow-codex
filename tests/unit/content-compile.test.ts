@@ -31,6 +31,16 @@ describe("compileContent", () => {
     expect(content?.start).toEqual({ map: "map.min", pos: { x: 1, y: 1 }, hp: 10, attack: 3 })
   })
 
+  it("reads codexWord and rejects one that is not among the deduction's answer words", () => {
+    const ded = (codexWord: string) => [{ ...structuredClone((raw()["towns/min/deduction.yaml"] as Obj[])[0] as Obj), codexWord }]
+    const ok = compileContent(withFile("towns/min/deduction.yaml", ded("word.min.answer")))
+    expect(ok.errors).toEqual([])
+    expect(ok.content?.deductions["deduction.min"]?.codexWord).toBe("word.min.answer")
+    const bad = compileContent(withFile("towns/min/deduction.yaml", ded("word.min.decoy")))
+    expect(bad.content).toBeNull()
+    expect(bad.errors.some((e) => e.includes("deduction.min.codexWord"))).toBe(true)
+  })
+
   it("reports a topic that grants an unknown fact", () => {
     const npcs = npcsWith((n) => { (topicsOf(n)["job"] as Obj)["grants"] = ["word.min.answer", "fact.missing"] })
     const { content, errors } = compileContent(withFile("towns/min/npcs.yaml", npcs))

@@ -3,3 +3,4 @@
   hint: deduction.honesty.hint
   answer: [word.truth, word.weapon, word.lantern]
   unlocks: [ability.see-lies]
+  codexWord: word.truth

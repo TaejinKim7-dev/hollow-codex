@@ -264,9 +264,10 @@ function readFacts(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
 function readDeductions(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
     const before = r.errors.length
-    const ded: Deduction = {
+    const ded: Mutable<Deduction> = {
       sentenceKey: r.str(o, "sentence", w), hintKey: r.str(o, "hint", w), answer: r.strList(o, "answer", w), unlocks: r.strListOr(o, "unlocks", w)
     }
+    if (o["codexWord"] !== undefined) ded.codexWord = r.str(o, "codexWord", w)
     if (r.errors.length === before) put(ctx, d.deductions, "deduction", r.file, id, ded)
   })
 }
@@ -416,6 +417,7 @@ function checkReferences(d: Draft, out: string[]): void {
   for (const [id, ded] of Object.entries(d.deductions.items)) {
     const f = d.deductions.file[id] ?? ""
     refs(f, `${id}.answer`, "fact", ded.answer, facts)
+    if (ded.codexWord !== undefined) ref(f, `${id}.codexWord`, "fact", ded.codexWord, facts)
     refs(f, `${id}.unlocks`, "ability", ded.unlocks, d.abilities.items)
   }
   for (const [id, c] of Object.entries(d.crises.items)) {
@@ -581,6 +583,9 @@ function checkAnswers(d: Draft, out: string[]): void {
     for (const w of new Set(ded.answer)) {
       const fact = d.facts.items[w]
       if (fact !== undefined && fact.kind !== "word") out.push(`${f}: ${id}.answer: "${w}" has kind ${fact.kind}, expected word`)
+    }
+    if (ded.codexWord !== undefined && !ded.answer.includes(ded.codexWord)) {
+      out.push(`${f}: ${id}.codexWord: "${ded.codexWord}" is not one of the answer words`)
     }
   }
 }
