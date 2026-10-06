@@ -1,5 +1,5 @@
 // Task 44 — M5 봉인 서고 traversal + 빈 경전 8쪽 + 마지막 장 + 에필로그 시나리오.
-// 실제 content/ 로 대륙에서 칼라스 들판의 봉인석을 밟아 서고에 들어가, 8개 알코브를 돌며
+// 실제 content/ 로 대륙에서 칼라스 들판의 봉인석을 밟아 서고에 들어가, 8개 벽감를 돌며
 // 미덕 정답 단어를 적고, 마지막 장에 진실·사랑·용기를 골라 각 에필로그 이벤트가 나는지 검증한다.
 import { describe, expect, it } from "vitest"
 import { createInitialState } from "../../src/core/state.ts"
@@ -15,7 +15,7 @@ import { loadRealContent, walkTo } from "./play.ts"
 
 const content = loadRealContent()
 
-/** 봉인 서고 8쪽 알코브의 `>` 셀. 서고 maps.yaml의 위·아래 4개씩 (Task 42). */
+/** 봉인 서고 8쪽 벽감의 `>` 셀. 서고 maps.yaml의 위·아래 4개씩 (Task 42). */
 const ALCOVES: readonly Pos[] = [
   { x: 2, y: 2 },
   { x: 6, y: 2 },
@@ -55,7 +55,7 @@ function runArchive(word: Id): Run {
   // 대륙 → 칼라스 들판 → 고리 안쪽 봉인석 [7,7]. 밟는 즉시 서고로 mapChanged.
   push(walkTo(content, state, "map.field", SEAL_CELL))
   const entered = state
-  // 8개 알코브를 차례로 걸어가 정답 한 단어를 적는다.
+  // 8개 벽감를 차례로 걸어가 정답 한 단어를 적는다.
   for (let i = 0; i < CODEX_PAGES.length; i++) {
     const page = CODEX_PAGES[i]!
     push(walkTo(content, state, "map.sealed-archive", ALCOVES[i]!))

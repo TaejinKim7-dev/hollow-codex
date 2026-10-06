@@ -12,7 +12,7 @@ export const SEAL_MAP: Id = "map.field"
 export const ARCHIVE_MAP: Id = "map.sealed-archive"
 export const ARCHIVE_ARRIVE: Pos = { x: 8, y: 1 }
 
-/** 빈 경전의 8쪽 = 여덟 미덕. 순서가 곧 알코브 순서 (D10, D11). */
+/** 빈 경전의 8쪽 = 여덟 미덕. 순서가 곧 벽감 순서 (D10, D11). */
 export const CODEX_PAGES: readonly { readonly deductionId: Id; readonly virtue: Virtue }[] = [
   { deductionId: "deduction.honesty", virtue: "honesty" },
   { deductionId: "deduction.compassion", virtue: "compassion" },

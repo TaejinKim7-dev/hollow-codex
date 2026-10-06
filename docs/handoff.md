@@ -361,7 +361,13 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - **테스트**: **282 passed** (단위 273 + 시나리오 + e2e 1)
 - **콘텐츠**: 12 maps · 81 npcs · 140 facts · 15 ledger files
 - **자산**: Kenney Tiny Town (CC0) + Kenney Tiny Dungeon (CC0) + Neo둥근모 (OFL) + Greensleeves/Susato 편곡 7곡 + 자작 1곡
-- **기능**: 8 마을 (정직·연민·용맹·정의·희생·명예·영성·겸손) + 봉인 서고 + 빈 경전 8쪽 + 3종 에필로그 + 열석 순간이동 + NPC 일과 + 자동 저장 (v2 세이브) + PWA 설치·오프라인 + 접근성(ARIA + focus-visible + skip link) + 모바일 터치 + 영어/한국어 토글
+- **기능**: 8 마을 (정직·연민·용맹·정의·희생·명예·영성·겸손) + 봉인 서고 + 빈 경전 8쪽 + 3종 에필로그 + 열석 순간이동 + NPC 일과 + 자동 저장 (v3 세이브) + PWA 설치·오프라인 + 접근성(ARIA + focus-visible + skip link) + 모바일 터치 + 영어/한국어 토글
 - **Pages**: `https://taejinkim7-dev.github.io/hollow-codex/` HTTP 200 · PWA artifacts 200
 
 (End of file)
+
+## 2026-10-06 점검 기록 (새 세션에서 산출물 재확인)
+- 재확인(Haiku 게이트, HEAD `1d3f8b2`): `npm ci` 0 · `test:unit` 0 (282 passed, 48 files) · `typecheck` 0 · `check:content` 0 (12 maps, 81 npcs, 140 facts, 15 ledger files) · `build` 0 · `audit:dist` 0 (13 files, 510846 bytes) · `git diff --check` 0. 라이브 사이트와 PWA 파일 5개 HTTP 200, Actions success.
+- `npm audit --omit=dev` → 0건. 취약점 6건은 개발 도구(devDependencies)에만 있고 배포 번들에 들어가지 않는다.
+- 고친 것: 최종 상태 표의 "v2 세이브" → 실제 `SAVE_VERSION = 3`. 주석 속 "알코브"는 금지 목록의 "코브"(원작 지명 음역)와 글자가 겹쳐 "벽감"으로 바꿈(빌드에는 영향 없었음).
+- **아직 안 된 것**: (1) M1 사용자 플레이 판정(계속/방향 수정/중단)이 기록되지 않았다. M2–M6은 이 판정 없이 자율 진행됐다. (2) 타일 인덱스·La Mourisque 편곡은 PNG·소리를 직접 확인하지 못한 채 추정한 값이라 사람의 눈·귀 확인이 필요하다. (3) 이름 재확인은 검색 기반일 뿐 정식 상표 조사가 아니다. (4) M1~M6 코드는 Task별 독립 검토 없이 만들어져 전체 검토를 따로 돌렸다(`.superpowers/sdd/.../final-review.md`).
