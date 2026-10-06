@@ -1,5 +1,6 @@
 import type { GameContent } from "../content/types.ts"
 import type { Command, GameState, StepResult } from "./types.ts"
+import { resolveCrisis } from "./crisis/crisis.ts"
 import { ask, choose, endTalk, interact } from "./dialogue/talk.ts"
 import { fillSlot } from "./knowledge/notebook.ts"
 import { recruit } from "./virtue/conduct.ts"
@@ -30,7 +31,7 @@ export function step(state: GameState, command: Command, content: GameContent): 
       case "endTalk":
         return endTalk(state)
       case "resolveCrisis":
-        return ignored                                              // Task 9
+        return resolveCrisis(state, command.crisisId, command.optionId, content)
       case "recruit":
         return recruit(state, command.npcId, content)
       case "fillSlot":

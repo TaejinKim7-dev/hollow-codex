@@ -1,5 +1,6 @@
 import type { GameContent } from "../../content/types.ts"
 import type { GameEvent, GameState, Id, StepResult } from "../types.ts"
+import { crisisOptions } from "../crisis/crisis.ts"
 import { addSorted } from "../state.ts"
 
 /** 모르는 단서만 수첩에 더한다(정렬 유지). 새로 배운 것마다 factLearned(입력 순서). */
@@ -44,14 +45,10 @@ export function fillSlot(state: GameState, deductionId: Id, slot: number, word: 
 export function openHints(state: GameState, content: GameContent): { targetId: Id; missing: Id[] }[] {
   const hints: { targetId: Id; missing: Id[] }[] = []
 
-  for (const [crisisId, crisis] of Object.entries(content.crises)) {
+  for (const crisisId of Object.keys(content.crises)) {
     if (state.crises[crisisId] !== undefined) continue
-    for (const [optionId, option] of Object.entries(crisis.options)) {
-      const missing = [
-        ...option.requires.filter((id) => !state.facts.includes(id)),
-        ...option.requiresDeductions.filter((id) => state.deductions[id]?.confirmed !== true)
-      ]
-      if (missing.length > 0) hints.push({ targetId: optionId, missing: missing.sort() })
+    for (const { optionId, missing } of crisisOptions(state, content, crisisId)) {
+      if (missing.length > 0) hints.push({ targetId: optionId, missing })
     }
   }
 
