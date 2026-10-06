@@ -318,8 +318,16 @@ export async function boot(): Promise<void> {
   state = s
   lastAutoTurn = s.turn
   canvas.setAttribute("aria-label", t(s.language, content.strings, "ui.aria.canvas"))
-  ;(window as unknown as { __hollowCodex__?: { state(): GameState | null } }).__hollowCodex__ = {
-    state: () => state
+  ;(window as unknown as {
+    __hollowCodex__?: {
+      state(): GameState | null
+      dispatch(cmd: Command | UiAction): void
+      handleMenu(action: "save" | "load" | "new", slotId: string): Promise<void>
+    }
+  }).__hollowCodex__ = {
+    state: () => state,
+    dispatch,
+    handleMenu
   }
 
   panels = mountPanels(document.getElementById("ui")!, content, dispatch, credits)
