@@ -56,3 +56,11 @@ claude                                             # 새 세션: CLAUDE.md → H
 - merge 게이트(Haiku, HEAD `859cca5`): `npm ci` 0 · `npm run test:unit` 0 (11 passed) · `npm run typecheck` 0 · `npm run check:content` 0 (자리표시) · `npm run build` 0 · `npm run audit:dist` 0 · `git diff --check` 0.
 - `todo-1-skeleton` → `main` ff-merge·push. Actions run `37400128555`: build success, deploy success.
 - `https://taejinkim7-dev.github.io/hollow-codex/` → HTTP 200.
+
+## 2026-10-06 M0 완료 (Task 3–4)
+- Task 3 콘텐츠 컴파일러·금지어 검사(`fd6146b`, 검토 수정 `df3c37c`), 요구사항 문서 `docs/requirements/2026-10-06-m0-m1-requirements.md`와 계획 보강(`54dfb68`), Task 4 장부·글꼴·크레딧(`df01f21`).
+- merge 게이트(Haiku, HEAD `df01f21`): `npm ci` 0 · `test:unit` 0 (39 passed) · `typecheck` 0 · `check:content` 0 (`ok (1 maps, 0 npcs, 0 facts, 2 ledger files)`) · `build` 0 · `audit:dist` 0 (`ok (4 files, 46855 bytes)`) · `git diff --check` 0.
+- main push → Actions run `37401645931` build·deploy success, Pages HTTP 200.
+- **사용자 확인 요청**: https://taejinkim7-dev.github.io/hollow-codex/ 에서 제목 "빈 경전"이 Neo둥근모 글꼴로 보이는지.
+- 참고: `npm ci`가 dev 의존성 취약점 6건을 알린다(배포 번들에는 들어가지 않는 개발 도구). 아직 조사하지 않았다.
+- 다음: M1(Task 5–16)을 `todo-2-kalas` 브랜치에서.
