@@ -1106,3 +1106,35 @@ archive.final-page.prompt: 진실·사랑·용기 — 세 원리를 아우르는
 archive.epilogue.title: 에필로그
 archive.epilogue.placeholder: 경전은 비어 있지만, 그대의 말이 남았다.
 ui.open-codex: 경전
+
+# --- 에필로그 변형 (M5 Task 43) ---
+epilogue.truth.title: 진실의 빈 경전
+epilogue.truth.prologue: 여덟 미덕의 답을 적고 마지막 장에 '진실'을 골랐다. 경전은 여전히 비어 있지만, 마을들은 이제 서로의 진실을 마주하기 시작한다.
+epilogue.truth.honesty.text: 칼라스의 고발청 문이 열려 있었다. 장부는 더 이상 이웃을 가두는 벽이 아니라, 서로가 서로에게 사실을 말하는 자리가 되었다.
+epilogue.truth.compassion.text: 리오나의 거리에서 구걸하는 이의 이름이 처음으로 불렸다. 연민은 감추는 일이 아니라, 있는 그대로를 알아봐 주는 일이었다.
+epilogue.truth.valor.text: 솔강의 투기장은 조용했다. 두려움을 이기는 일은 이제 남을 누르는 힘이 아니라, 자기 앞의 사실을 인정하는 일로 여겨졌다.
+epilogue.truth.justice.text: 셀레스의 법정이 무덤이 아니라 산 자의 자리로 돌아왔다. 정의는 덮는 것이 아니라, 저울 위에 사실을 올려놓는 일이었다.
+epilogue.truth.sacrifice.text: 디오네의 제단이 비었다. 무엇을 바치든, 먼저 자신에게 남은 것을 사실대로 말하는 일이 시작이었다.
+epilogue.truth.honor.text: 아르곤의 가문 문장은 벗겨졌다. 명예는 이름을 지키는 일이 아니라, 이름 뒤에 숨은 것을 드러내는 일이었다.
+epilogue.truth.spirituality.text: 엘리아의 명상 면허가 사라졌다. 영성은 허락받는 것이 아니라, 지금 숨 쉬는 것을 사실대로 마주하는 일이었다.
+epilogue.truth.humility.text: 헤론의 침묵 법이 풀렸다. 겸손은 입을 닫는 일이 아니라, 자기 이름을 사실대로 말할 수 있는 자리였다.
+epilogue.love.title: 사랑의 빈 경전
+epilogue.love.prologue: 마지막 장에 '사랑'을 골랐다. 빈 경전은 채워지지 않았지만, 마을들은 서로를 돌보는 일에서 미덕의 뿌리를 찾는다.
+epilogue.love.honesty.text: 칼라스의 고발청은 쉼터가 되었다. 사실을 말하는 일은 이제 서로를 다치게 하려는 것이 아니라, 곁에 있으려는 방식이 되었다.
+epilogue.love.compassion.text: 리오나의 밥그릇이 커졌다. 연민은 나누는 일이었고, 나누는 동안 아무도 혼자가 아니었다.
+epilogue.love.valor.text: 솔강의 결투가 멈추고 서로를 일으켜 세우는 손이 되었다. 용기는 혼자 버티는 일이 아니라, 함께 다시 서는 일이었다.
+epilogue.love.justice.text: 셀레스의 판결 뒤에 위로가 따랐다. 정의는 벌하는 일이 아니라, 다시 살게 하는 일이었다.
+epilogue.love.sacrifice.text: 디오네의 제단에 아무것도 남지 않았다. 희생은 잃는 일이 아니라, 남은 것을 함께 쓰는 일이었다.
+epilogue.love.honor.text: 아르곤의 가문들이 서로의 문을 두드렸다. 명예는 홀로 빛나는 문장이 아니라, 이웃과 나눈 이름이었다.
+epilogue.love.spirituality.text: 엘리아의 명상은 함께 숨 쉬는 일이 되었다. 영성은 홀로 깨닫는 것이 아니라, 곁의 숨을 들을 줄 아는 일이었다.
+epilogue.love.humility.text: 헤론의 사람들이 서로의 이름을 불렀다. 겸손은 자신을 지우는 일이 아니라, 다른 이름을 들을 자리를 내주는 일이었다.
+epilogue.courage.title: 용기의 빈 경전
+epilogue.courage.prologue: 마지막 장에 '용기'를 골랐다. 빈 경전에 남은 것은 한 걸음의 기록 — 마을들은 두려움을 넘어 다시 걷기 시작한다.
+epilogue.courage.honesty.text: 칼라스의 사람들이 장부를 스스로 펼쳤다. 두려운 것은 기록이 아니라, 기록을 덮고 살아온 세월이었다.
+epilogue.courage.compassion.text: 리오나의 구걸하는 이가 먼저 손을 내밀었다. 연민도 내미는 용기가 있어야 시작된다.
+epilogue.courage.valor.text: 솔강의 격투가들은 무기를 내려놓고 밭으로 갔다. 참된 용기는 싸우는 것이 아니라, 멈출 줄 아는 일이었다.
+epilogue.courage.justice.text: 셀레스의 법정이 오래된 관례를 스스로 고쳤다. 정의는 남을 재판하는 일이 아니라, 스스로를 바꾸는 용기였다.
+epilogue.courage.sacrifice.text: 디오네의 사제가 제단 앞에서 먼저 무릎을 폈다. 희생은 무언가를 잃는 일이 아니라, 잃는 것을 두려워하지 않는 일이었다.
+epilogue.courage.honor.text: 아르곤의 후계자가 낡은 문장을 태웠다. 명예는 지키는 용기가 아니라, 버릴 줄 아는 용기였다.
+epilogue.courage.spirituality.text: 엘리아의 사람들이 면허 없이 명상에 들었다. 영성은 허락을 기다리는 일이 아니라, 홀로 서는 용기였다.
+epilogue.courage.humility.text: 헤론의 장로가 먼저 자기 이름을 말했다. 겸손은 숨는 일이 아니라, 낮은 자리에서도 나서는 용기였다.
