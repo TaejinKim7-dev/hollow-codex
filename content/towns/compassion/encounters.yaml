@@ -1,0 +1,13 @@
+- id: enc.compassion.robbers
+  map: map.town.compassion
+  grid:
+    - "T.....T"
+    - "......."
+    - "......."
+    - "......."
+    - "T.....T"
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.robber, at: [1, 0] }
+    - { creature: creature.robber, at: [5, 0] }
+  music: music.battle

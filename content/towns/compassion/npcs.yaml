@@ -1,0 +1,221 @@
+# 리오나(연민) NPC 10명. 대사는 전부 content/strings/ko.yaml의 compassion.npc.* 키로 참조한다.
+- id: npc.compassion.almoner
+  map: map.town.compassion
+  pos: [14, 4]
+  schedule:
+    "0": [14, 4]
+    "6": [15, 4]
+    "12": [14, 4]
+    "18": [13, 5]
+  name: compassion.npc.almoner.name
+  greet: compassion.npc.almoner.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.almoner.name.t
+    job:
+      - text: compassion.npc.almoner.job.t
+        grants: [word.charity, fact.reona.almoner]
+    word.charity:
+      - text: compassion.npc.almoner.charity.t
+        grants: [word.dependence]
+    fact.reona.open-pantry:
+      - text: compassion.npc.almoner.pantry.t
+        lie: true
+    fact.reona.relief-tax:
+      - text: compassion.npc.almoner.tax.t
+- id: npc.compassion.baker
+  map: map.town.compassion
+  pos: [9, 10]
+  schedule:
+    "0": [9, 10]
+    "6": [9, 11]
+    "12": [9, 10]
+    "18": [8, 10]
+  name: compassion.npc.baker.name
+  greet: compassion.npc.baker.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.baker.name.t
+    job:
+      - text: compassion.npc.baker.job.t
+        grants: [fact.reona.bakery, word.hunger]
+    word.hunger:
+      - text: compassion.npc.baker.hunger.t
+        grants: [word.sharing]
+    fact.creature.compassion-beggar:
+      - text: compassion.npc.baker.beggar.t
+        grants: [fact.creature.compassion-beggar]
+- id: npc.compassion.child
+  map: map.town.compassion
+  pos: [8, 14]
+  schedule:
+    "0": [8, 14]
+    "6": [8, 14]
+    "12": [8, 14]
+    "18": [10, 14]
+  name: compassion.npc.child.name
+  greet: compassion.npc.child.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.child.name.t
+    job:
+      - text: compassion.npc.child.job.t
+        grants: [word.sharing]
+    fact.reona.song:
+      - text: compassion.npc.child.song.t
+        grants: [fact.reona.song]
+- id: npc.compassion.beggar
+  map: map.town.compassion
+  pos: [5, 17]
+  schedule:
+    "0": [5, 17]
+    "6": [6, 17]
+    "12": [5, 17]
+    "18": [5, 16]
+  name: compassion.npc.beggar.name
+  greet: compassion.npc.beggar.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.beggar.name.t
+    job:
+      - text: compassion.npc.beggar.job.t
+        grants: [word.gift, fact.creature.compassion-beggar]
+    word.gift:
+      - text: compassion.npc.beggar.gift.t
+        grants: [word.love]
+    fact.reona.song:
+      - text: compassion.npc.beggar.song.t
+- id: npc.compassion.priest
+  map: map.town.compassion
+  pos: [21, 10]
+  schedule:
+    "0": [21, 10]
+    "6": [21, 10]
+    "12": [21, 10]
+    "18": [22, 10]
+  name: compassion.npc.priest.name
+  greet: compassion.npc.priest.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.priest.name.t
+    job:
+      - text: compassion.npc.priest.job.t
+        grants: [fact.reona.chapel, word.love]
+    fact.reona.open-pantry:
+      - text: compassion.npc.priest.pantry.t
+        grants: [fact.reona.open-pantry]
+    word.love:
+      - text: compassion.npc.priest.love.t
+- id: npc.compassion.wanderer
+  map: map.town.compassion
+  pos: [12, 7]
+  schedule:
+    "0": [12, 7]
+    "6": [16, 13]
+    "12": [12, 7]
+    "18": [6, 14]
+  name: compassion.npc.wanderer.name
+  greet: compassion.npc.wanderer.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.wanderer.name.t
+    job:
+      - text: compassion.npc.wanderer.job.t
+        grants: [fact.reona.wanderer, fact.reona.song]
+    fact.reona.song:
+      - text: compassion.npc.wanderer.song.t
+        grants: [word.gift, word.love]
+    word.sharing:
+      - text: compassion.npc.wanderer.sharing.t
+        grants: [word.sharing]
+- id: npc.compassion.miller
+  map: map.town.compassion
+  pos: [4, 7]
+  schedule:
+    "0": [4, 7]
+    "6": [4, 8]
+    "12": [4, 7]
+    "18": [5, 7]
+  name: compassion.npc.miller.name
+  greet: compassion.npc.miller.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.miller.name.t
+    job:
+      - text: compassion.npc.miller.job.t
+        grants: [word.dependence]
+    fact.reona.relief-tax:
+      - text: compassion.npc.miller.tax.t
+        grants: [fact.reona.relief-tax]
+- id: npc.compassion.seamstress
+  map: map.town.compassion
+  pos: [24, 14]
+  schedule:
+    "0": [24, 14]
+    "6": [24, 14]
+    "12": [24, 14]
+    "18": [23, 15]
+  name: compassion.npc.seamstress.name
+  greet: compassion.npc.seamstress.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.seamstress.name.t
+    job:
+      - text: compassion.npc.seamstress.job.t
+        grants: [fact.reona.plaza]
+    fact.reona.bakery:
+      - text: compassion.npc.seamstress.bakery.t
+        grants: [fact.reona.bakery]
+- id: npc.compassion.scribe
+  map: map.town.compassion
+  pos: [13, 7]
+  schedule:
+    "0": [13, 7]
+    "6": [13, 7]
+    "12": [13, 7]
+    "18": [14, 7]
+  name: compassion.npc.scribe.name
+  greet: compassion.npc.scribe.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.scribe.name.t
+    job:
+      - text: compassion.npc.scribe.job.t
+        grants: [fact.reona.almoner]
+    word.charity:
+      - text: compassion.npc.scribe.charity.t
+        grants: [word.charity]
+    fact.reona.relief-tax:
+      - text: compassion.npc.scribe.tax.t
+- id: npc.compassion.grandmother
+  map: map.town.compassion
+  pos: [10, 15]
+  schedule:
+    "0": [10, 15]
+    "6": [10, 15]
+    "12": [10, 15]
+    "18": [11, 14]
+  name: compassion.npc.grandmother.name
+  greet: compassion.npc.grandmother.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: compassion.npc.grandmother.name.t
+    job:
+      - text: compassion.npc.grandmother.job.t
+        grants: [fact.reona.plaza]
+    fact.reona.song:
+      - text: compassion.npc.grandmother.song.t
+        grants: [fact.reona.song, word.gift]
+    word.love:
+      - text: compassion.npc.grandmother.love.t
+        grants: [word.love]

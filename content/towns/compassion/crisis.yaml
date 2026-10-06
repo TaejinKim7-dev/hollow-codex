@@ -1,0 +1,16 @@
+- id: crisis.compassion.hoard
+  npc: npc.compassion.almoner
+  text: compassion.crisis.hoard.text
+  options:
+    option.open-pantry:
+      requires: [fact.reona.song]
+      requiresDeductions: [deduction.compassion]
+      setsFlags: [flag.compassion.pantry-open]
+      label: compassion.option.open-pantry.label
+      text: compassion.option.open-pantry.text
+    option.relief-tax:
+      requires: [fact.reona.relief-tax]
+      requiresDeductions: []
+      setsFlags: [flag.compassion.tax-public]
+      label: compassion.option.relief-tax.label
+      text: compassion.option.relief-tax.text

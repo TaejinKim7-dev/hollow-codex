@@ -210,3 +210,122 @@ fact.ring.spirituality.label: 고요샘의 고리
 fact.ring.spirituality.hint: 남서 습지, 샘물이 돌을 스치는 소리로 읊는 노래.
 fact.ring.humility.label: 낮은꽃의 고리
 fact.ring.humility.hint: 남쪽 평원, 풀잎 사이로 꽃잎이 떨어지는 노래.
+
+# --- 연민의 마을 리오나 (M3 Task 33) ---
+town.reona.name: 리오나
+compassion.music.title: 리오나의 자선가
+
+compassion.npc.almoner.name: 자선 관장
+compassion.npc.almoner.greet: 리오나에 오신 것을 환영합니다. 굶는 이는 없습니다. 다만…… 우리가 정한 방식대로 배급받을 뿐이지요.
+compassion.npc.almoner.name.t: 저는 자선을 맡은 관장이라 합니다. 이 마을에서는 이름보다 몇 몫을 받는가가 먼저 오르지요.
+compassion.npc.almoner.job.t: 제 일은 곳간을 지키고 배급을 정하는 것입니다. 누구에게 얼마를 줄지, 누가 아직 자격이 되는지를요. ……자선은 거두는 것으로 시작해 나누는 것으로 끝납니다.
+compassion.npc.almoner.charity.t: 자선이란, 줄 수 있는 자가 줄 수 없는 자를 돌보는 질서입니다. 그 질서가 흔들리면 모두가 굶게 됩니다. 그러니 받는 이는 감사해야 하고, 주는 이는 계속 주어야 하지요.
+compassion.npc.almoner.pantry.t: 열린 곳간이요? 옛날이야기일 뿐입니다. 누구나 들어가 마음껏 가져갔다니, 그런 무질서가 어디 있겠습니까. 우리는 질서 있게 나눕니다.
+compassion.npc.almoner.tax.t: 세금 개혁이라……. 곳간을 열어 세금을 낮추자는 말이 돌았지요. 하지만 그러면 자선할 몫이 줄어듭니다. 저는 반대했습니다. 그래야 가난한 이들이 계속 도움을 받으니까요.
+
+compassion.npc.baker.name: 빵집 주인
+compassion.npc.baker.greet: 빵 냄새를 맡고 오셨습니까? 미안하지만 오늘 몫은 아직 나오지 않았습니다.
+compassion.npc.baker.name.t: 빵집 주인입니다. 아침마다 굽고, 저녁마다 관장의 곳간으로 보내지요.
+compassion.npc.baker.job.t: 제 일은 빵을 굽는 겁니다. 그런데 이 빵이 어디로 가는지 아십니까? 절반은 곳간으로, 절반은…… 어디로 가는지 저도 모릅니다.
+compassion.npc.baker.hunger.t: 배고픔은 소리가 없습니다. 골목 끝에서 조용히 줄어들다가, 어느 날 아예 사라지지요. 저는 그 소리 없는 줄어듦을 매일 봅니다.
+compassion.npc.baker.beggar.t: 골목에 사는 이를 아십니까? 관장은 그를 게으른 손이라 부르지만, 저는 압니다. 그는 밤마다 빵 냄새를 맡으며 잠이 듭니다.
+
+compassion.npc.child.name: 골목 아이 피리
+compassion.npc.child.greet: 이방인이다! 리오나 사람은 다 빵 받으러 가는데, 넌 왜 안 가?
+compassion.npc.child.name.t: 난 피리라고 불려. 진짜 이름은 있는데, 아무도 안 물어봐서 잊어버렸어.
+compassion.npc.child.job.t: 내 일은 놀이! 근데 요즘은 놀이보다 줄 서는 일이 더 많아. 아침부터 곳간 앞에 줄을 서. 엄마가 내 몫을 받아 오래.
+compassion.npc.child.song.t: 떠돌이 아저씨가 부르는 노래 알아? 손을 펴면 빵이 오고, 손을 접으면 아무도 모른다는 노래. 나 그거 좋아해.
+
+compassion.npc.beggar.name: 거지 할브
+compassion.npc.beggar.greet: ……죄송합니다, 지금은 아무것도 드릴 게 없어서요. 받기만 하는 몸이라.
+compassion.npc.beggar.name.t: 이름은…… 오래전에 잃었습니다. 사람들이 그냥 거지라고 부르니, 저도 그렇게 부릅니다.
+compassion.npc.beggar.job.t: 제 일은 줄을 서는 것입니다. 아침에 곳간 앞에 서고, 저녁에 다시 서지요. 그 사이에는 아무 일도 없습니다. ……가끔은 빵 대신 노래를 받습니다.
+compassion.npc.beggar.gift.t: 예전에 한 아이가 자기 빵을 반으로 쪼개 저에게 주더군요. 그건 배급이 아니었습니다. 그건…… 선물이었어요. 배급은 위에서 아래로 오지만, 선물은 옆에서 옵니다.
+compassion.npc.beggar.song.t: 떠돌이 노래꾼이 부르는 노래를 들으셨습니까? 나누는 손은 빈손이 아니라고 하지요. 저는 그 구절에서 자주 웁니다.
+
+compassion.npc.priest.name: 예배당 사제 리엔
+compassion.npc.priest.greet: 평온하시길. 이 예배당은 누구에게나 열려 있습니다. ……곳간은 그렇지 않지만요.
+compassion.npc.priest.name.t: 저는 이 예배당을 지키는 사제입니다. 리오나 사람들은 저를 기록하는 사제라 부르지요.
+compassion.npc.priest.job.t: 예전에는 이 마을의 옛 관습을 기록하는 일을 했습니다. 돌아가신 어른들에게서 들은 이야기를 한 줄씩 적어 두었지요. 그 기록이 요즘 자꾸 관장의 눈 밖에 나 있습니다.
+compassion.npc.priest.pantry.t: 기록에 따르면, 리오나의 곳간은 원래 문이 없었습니다. 배고픈 이가 들어가 마음껏 가져가도, 아무도 그를 나무라지 않았다고 합니다. 주는 것이 곧 함께 있는 일이었으니까요.
+compassion.npc.priest.love.t: 사랑은 위에서 내려오지 않습니다. 사랑은 나란히 앉는 것입니다. 자선이 고개를 숙이게 한다면, 사랑은 고개를 나란히 맞춥니다.
+
+compassion.npc.wanderer.name: 떠돌이 노래꾼 셀
+compassion.npc.wanderer.greet: 먼 길을 걸어 여기까지 왔습니다. 이 마을은 노래가 잘 들리는 곳이군요. ……좋은 뜻으로는요.
+compassion.npc.wanderer.name.t: 이름은 셀이라 합니다. 마을마다 노래를 하나씩 두고 오는 떠돌이지요.
+compassion.npc.wanderer.job.t: 제 일은 걷고 부르는 것입니다. 길에서 배운 노래를 다음 마을에 전하지요. 리오나에는 아직 못 다 부른 노래가 하나 있습니다.
+compassion.npc.wanderer.song.t: 이 노래를 들어 보십시오. 연민은 나눔 위에 선물을 얹는 것이 아니라, 사랑으로 함께하는 것이다. ……이 마을 사람들은 이 노래를 반쯤만 알고 있습니다.
+compassion.npc.wanderer.sharing.t: 나눔은 좋은 일입니다. 하지만 나눔만 있으면, 나누는 자와 받는 자가 영영 갈라집니다. 그래서 노래는 나눔 위에가 아니라 나눔 곁에 서라고 합니다.
+
+compassion.npc.miller.name: 방앗간 주인 마레
+compassion.npc.miller.greet: 밀가루 냄새가 나는 곳입니다. 곡식을 가는 소리가 시끄러워도 양해해 주시게.
+compassion.npc.miller.name.t: 마레라고 합니다. 이 방앗간에서 곡식을 갈아 온 지 삼십 년입니다.
+compassion.npc.miller.job.t: 곡식을 가는 일이지요. 그런데 요즘은 가는 것보다 세는 일이 더 많습니다. 관장의 곳간에 몇 가마가 들어가는지, 누가 얼마를 내는지…….
+compassion.npc.miller.tax.t: 몇 해 전에 젊은 기록관이 세금을 낮추자고 했습니다. 곳간을 백성에게 열자는 말이었지요. 관장이 그걸 막았습니다. 주는 사람이 있어야 받는 사람도 있다는 이유였습니다. 그 뒤로 마을은 더 가난해졌습니다.
+
+compassion.npc.seamstress.name: 바느질꾼 유나
+compassion.npc.seamstress.greet: 천이 부족해서 옷은 못 지어 드려도, 이야기는 넉넉히 있지요.
+compassion.npc.seamstress.name.t: 유나라고 합니다. 광장 남쪽에서 바느질을 합니다.
+compassion.npc.seamstress.job.t: 옷을 짓고 기웁니다. 관장의 옷도 제가 지었지요. 그 옷자락이 얼마나 무거운지, 저는 압니다.
+compassion.npc.seamstress.bakery.t: 빵집 이야기를 하시는군요. 저 빵집 굴뚝에서는 밤에도 연기가 납니다. 아침에 구운 빵이 어디로 가는지, 굴뚝이 다 알고 있는 셈이지요.
+
+compassion.npc.scribe.name: 기록관 테오
+compassion.npc.scribe.greet: 기록관입니다. ……말씀을 남기시겠습니까, 아니면 물으시겠습니까?
+compassion.npc.scribe.name.t: 테오라고 합니다. 이 마을의 기록을 맡고 있습니다.
+compassion.npc.scribe.job.t: 장부와 문서를 정리합니다. 자선 배급 장부도 제가 씁니다. ……숫자는 정직한데, 숫자를 쓰는 사람은 그렇지 못하네요.
+compassion.npc.scribe.charity.t: 자선이라는 낱말은 장부에서 늘 지출 칸에 적힙니다. 어느 해에는 투자라고도 적혀 있었지요. 사람을 투자로 적는 순간, 그 사람은 영영 갚아야 하는 몸이 됩니다.
+compassion.npc.scribe.tax.t: 세금 개혁 문서는 아직 제 서랍에 있습니다. 관장이 폐기하라 했지만, 저는 버리지 못했습니다. 언젠가 누군가 읽어야 할 것 같아서요.
+
+compassion.npc.grandmother.name: 늙은 어머니 한나
+compassion.npc.grandmother.greet: 어서 오게. 앉아서 좀 쉬어. 여기 앉으면 곳간 앞 줄이 잘 보여.
+compassion.npc.grandmother.name.t: 한나라고 부르게. 이 마을에서 여든 해를 살았어.
+compassion.npc.grandmother.job.t: 내 일은 이제 앉아 있는 것뿐이야. ……아니, 하나 더 있지. 어릴 적 노래를 기억하는 일이야.
+compassion.npc.grandmother.song.t: 노래를 하나 들려주지. 손을 펴면 빵이 오고, 손을 접으면 아무도 모른다. 그런데 옛 가사는 달랐어. 손을 펴면 빵이 오고, 손을 마주 잡으면 모두가 배부르다. ……언제 이 가사가 바뀌었는지, 나도 모르겠어.
+compassion.npc.grandmother.love.t: 사랑이 뭐냐고? 밥상에 앉는 거야. 누가 먼저 먹든, 다 같이 앉아서 먹는 거. 그게 사랑이지. 위에서 내려주는 건 사랑이 아니라, 시혜야.
+
+# --- 리오나 단서 ---
+compassion.word.sharing.label: 나눔
+compassion.word.sharing.hint: 자선의 질서가 나눔이라 부르는 그것. 나누는 자와 받는 자를 영영 갈라놓는다.
+compassion.word.gift.label: 선물
+compassion.word.gift.hint: 배급은 위에서 아래로 오지만, 선물은 옆에서 온다. 거지가 아이에게 받은 반쪽 빵.
+compassion.word.love.label: 사랑
+compassion.word.love.hint: 연민의 참된 원리. 위에서 내려주는 시혜가 아니라, 나란히 앉아 함께 먹는 일.
+compassion.word.charity.label: 자선
+compassion.word.charity.hint: 이 마을이 질서라 부르는 것. 주는 자와 받는 자를 굳게 나눈다.
+compassion.word.dependence.label: 의존
+compassion.word.dependence.hint: 자선이 만들어 낸 관계. 받는 이는 감사해야 하고, 영영 갚아야 한다.
+compassion.word.hunger.label: 굶주림
+compassion.word.hunger.hint: 소리 없이 줄어들다 사라지는 것. 골목 끝에서 아무도 모르게.
+compassion.fact.reona.almoner.label: 자선 관장
+compassion.fact.reona.almoner.hint: 리오나의 곳간을 지키고 배급을 정하는 관리. 자선이 질서라 믿는다.
+compassion.fact.reona.baker.label: 빵집 주인
+compassion.fact.reona.baker.hint: 매일 빵을 구워 절반을 곳간으로 보내는 사람. 나머지 절반의 행선지는 모른다.
+compassion.fact.reona.wanderer.label: 떠돌이 노래꾼
+compassion.fact.reona.wanderer.hint: 마을마다 노래를 하나씩 두고 오는 나그네. 리오나에는 못 다 부른 노래가 있다.
+compassion.fact.reona.bakery.label: 리오나 빵집
+compassion.fact.reona.bakery.hint: 밤에도 굴뚝에서 연기가 나는 곳. 구운 빵의 절반이 어디로 가는지 굴뚝이 안다.
+compassion.fact.reona.plaza.label: 광장
+compassion.fact.reona.plaza.hint: 곳간 앞에 사람들이 줄을 서는 곳. 아침마다 같은 자리에 같은 그림자가 선다.
+compassion.fact.reona.chapel.label: 예배당
+compassion.fact.reona.chapel.hint: 옛 관습을 적은 기록이 남아 있는 곳. 곳간에는 원래 문이 없었다고 적혀 있다.
+compassion.fact.reona.song.label: 떠돌이의 노래
+compassion.fact.reona.song.hint: 연민은 나눔 위에 선물을 얹는 것이 아니라, 사랑으로 함께하는 것이다. 리오나 사람들은 이 노래를 반쯤만 안다.
+compassion.fact.reona.open-pantry.label: 열린 곳간의 옛 관습
+compassion.fact.reona.open-pantry.hint: 리오나의 곳간에는 원래 문이 없었다. 배고픈 이가 들어가 가져가도 나무라지 않았다.
+compassion.fact.reona.relief-tax.label: 실패한 세금 개혁
+compassion.fact.reona.relief-tax.hint: 곳간을 백성에게 열고 세금을 낮추려던 시도. 관장이 막았고, 마을은 더 가난해졌다.
+compassion.fact.creature.compassion-beggar.label: 굶주린 거지
+compassion.fact.creature.compassion-beggar.hint: 악하지 않다. 굶주렸을 뿐이다. 그의 손은 게으르지 않고, 다만 빈손일 뿐이다.
+
+# --- 리오나 추론·위기 ---
+compassion.deduction.compassion.sentence: 연민은 {1} 위에 {2}을 얹는 것이 아니라 {3}(으)로 함께하는 것이다
+compassion.deduction.compassion.hint: 자선의 질서가 나눔을 앞세운다. 떠돌이의 노래는 그 반대쪽에서 사랑을 부른다.
+compassion.crisis.hoard.text: 곳간 앞에 사람들이 모였다. 자선 관장이 빵을 나누려다가, 한 아이가 넘어져도 아무도 손을 잡지 않는다. 관장이 말한다. 질서가 흐트러지면 아무도 받지 못합니다, 줄을 서십시오. 그때 떠돌이의 노래가 광장 저편에서 들린다. 이제 그대가 나설 차례다.
+compassion.option.open-pantry.label: 곳간의 문을 열어 모두 함께 나누게 한다
+compassion.option.open-pantry.text: 그대가 떠돌이의 노래를 따라 부르고, 옛 기록을 꺼내 읽는다. 곳간에는 원래 문이 없었다. 관장의 곳간 문이 열리고, 사람들이 서로 빵을 나눠 든다. 주는 자와 받는 자의 자리가 사라진 광장에서 모두가 배부르다. 연민은 나눔 위에 얹는 것이 아니라 사랑으로 함께하는 것임을 마을이 알았다.
+compassion.option.relief-tax.label: 세금 개혁 문서를 공개한다
+compassion.option.relief-tax.text: 그대가 기록관의 서랍에서 세금 개혁 문서를 꺼내 공개한다. 곳간을 백성에게 돌리고 세금을 낮추자는 오래된 약속. 관장은 고개를 떨군다. 마을은 스스로를 먹이는 법을 다시 배운다. 시혜가 끝난 자리에서 사람들은 서로의 이름을 부르기 시작했다.
+
+# --- 리오나 능력·생물 ---
+compassion.ability.persuade.name: 공감으로 풀어주기
+compassion.creature.beggar.name: 굶주린 거지

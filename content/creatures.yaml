@@ -1,2 +1,3 @@
 - { id: creature.wolf, name: creature.wolf.name, evil: false, hp: 4, attack: 2, sprite: [dungeon, 61], lore: fact.creature.wolf-hungry }
 - { id: creature.robber, name: creature.robber.name, evil: true, hp: 5, attack: 3, sprite: [dungeon, 85], lore: fact.creature.robber-greed }
+- { id: creature.compassion-beggar, name: compassion.creature.beggar.name, evil: false, hp: 3, attack: 1, sprite: [town, 84], lore: fact.creature.compassion-beggar }

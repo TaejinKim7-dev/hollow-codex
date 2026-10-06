@@ -1,0 +1,5 @@
+- id: deduction.compassion
+  sentence: compassion.deduction.compassion.sentence
+  hint: compassion.deduction.compassion.hint
+  answer: [word.sharing, word.gift, word.love]
+  unlocks: [ability.compassion-persuade]

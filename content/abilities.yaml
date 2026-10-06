@@ -1,1 +1,2 @@
 - { id: ability.see-lies, name: ability.see-lies.name }
+- { id: ability.compassion-persuade, name: compassion.ability.persuade.name }
