@@ -287,3 +287,30 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 회귀 발견: **없음**.
 - **M6 완료 — 출시 가능.**
 - 다음(오케스트레이터): `todo-7-release` → `main` ff-merge·push → Actions 배포 성공·Pages HTTP 200 확인.
+
+## 2026-10-06 M6 완료 (Task 45–48) — 출시 가능
+- 구현은 `todo-7-release`에서 5커밋(서브에이전트 3개 동시):
+  - `8fe049f` T45 PWA — vite-plugin-pwa 도입 + manifest.webmanifest + 192/512 아이콘 + Workbox 오프라인 + Workbox warning URL allow-list + e2e 매니페스트 확인
+  - `2fb2f7e` T46 접근성 — 23개 aria-label + focus-visible + skip link + 키보드 nav (Esc→overlay close + focus return)
+  - `2e82028` T47 README 개편 + 크레딧 그룹화(fonts/tiles/music/code) + 모바일 터치힌트 + portrait single-column 메뉴 + 이름 재확인(no conflict) + 0.1.0 버전
+  - `eee1297` (handoff) M6 Task 47 기록
+  - `855d42a` T48 통합 — CHANGELOG.md 0.1.0 + handoff M6 확인
+- merge 게이트(HEAD `855d42a`): `npm ci` 0 · `npm run test:unit` 0 (46 files, **273 passed**) · `typecheck` 0 · `check:content` 0 (`ok (12 maps, 81 npcs, 140 facts, 15 ledger files)`) · `build` 0 (13 files, 384787 bytes, PWA 14 precache 344.64 KiB) · `audit:dist` 0 · `git diff --check` 0. **e2e 1 passed**.
+- main push → Actions run `37427024069` build·deploy success.
+- **PWA 산출물 라이브 확인**: `https://taejinkim7-dev.github.io/hollow-codex/` HTTP 200 · `manifest.webmanifest` 200 · `sw.js` 200 · `icon-192.png` 200. PWA 설치 가능 + 오프라인 캐시 동작.
+- **M6 완료 기준 충족**: PWA 설치 + 모바일 터치 + 키보드 a11y + README/크레딧 + 이름 재확인 모두 통과. 버전 **0.1.0**.
+- **🎯 M0–M6 전 마일스톤 완료. 출시 준비 완료.**
+- 다음: 사용자 플레이 검증 후 M7(영어 i18n) 또는 신규 프로젝트 가능. 더 이상 코드 작업은 사용자 요청 시에만.
+
+### M6 Task별 누적 기록
+
+| Task | 커밋 | 작업 |
+|---|---|---|
+| (계획) | `9bb4595` | docs(plan): M6 출시 준비 — PWA, a11y, README, credits |
+| 45 | `8fe049f` | feat(pwa): vite-plugin-pwa v1.3.0 + manifest + 192/512 아이콘 + Workbox 오프라인 + dist-rules에 Workbox warning URL allow-list + e2e 매니페스트 확인 |
+| 46 | `2fb2f7e` | feat(ui): 23개 aria-label + focus-visible outline + skip link + Esc 키보드 nav |
+| 47 | `2e82028` | docs: README 개편 + credits 그룹화(fonts/tiles/music/code) + 모바일 터치힌트 + portrait 메뉴 + 이름 재확인 + 0.1.0 |
+| 47 | `eee1297` | docs(handoff): M6 Task 47 기록 |
+| 48 | `855d42a` | docs: M6 최종 통합 (CHANGELOG.md + handoff 확인 절) |
+
+(End of file)
