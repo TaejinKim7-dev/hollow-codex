@@ -212,3 +212,25 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 다음: M5 (봉인 서고 + 빈 경전 엔딩 + 에필로그 + 난이도 조정) 진행 — Task 42·43 병렬, Task 44 통합.
 
 (End of file)
+
+## 2026-10-06 M5 완료 (Task 42–44)
+- 구현은 `todo-6-archive`에서 4커밋(서브에이전트 2개 동시):
+  - `71b7410` T42 봉인 서고 — 맵 + CodexState + writeCodex/writeFinal + 8쪽 알코브 + 마지막 장 UI + v2 세이브 마이그레이션
+  - `8ba22e6` T43 에필로그 — 3종 variants × 8 마을 메시지 + 적 hp -1
+  - `db80970` T44 시나리오 — 봉인 서고 traversal + 8쪽 쓰기 + 3종 final + main.ts 이벤트 연결
+- merge 게이트(HEAD `db80970`): `npm ci` 0 · `npm run test:unit` 0 (46 files, **272 passed** = 238 + 34 codex/epilogue/scenario) · `typecheck` 0 · `check:content` 0 (`ok (12 maps, 81 npcs, 140 facts, 15 ledger files)`) · `build` 0 (6 files, 345882 bytes) · `audit:dist` 0 · `git diff --check` 0.
+- main push → Actions run `37425247562` build·deploy success.
+- `https://taejinkim7-dev.github.io/hollow-codex/` → HTTP 200.
+- **M5 완료 기준 충족**: 봉인석 진입(7고리 방문 후) → 8쪽 쓰기 → 마지막 장 → 진실·사랑·용기 3종 에필로그 모두 시나리오 통과.
+- 다음: M6 (출시 준비 — PWA, 모바일 조정, 접근성, 이름 재확인, 크레딧) 진행.
+
+### M5 Task별 기록 (백필 추가)
+
+| Task | 커밋 | 작업 |
+|---|---|---|
+| (계획) | `a3ff1ce` | docs(plan): M5 봉인 서고 + 빈 경전 엔딩 |
+| 42 | `71b7410` | feat(archive): 봉인 서고 맵 + codex 페이지 + 마지막 장 + 세이브 마이그레이션 + UI 오버레이 |
+| 43 | `8ba22e6` | feat(epilogue): 3종 에필로그 + 30개 마을 메시지 + 적 hp -1 |
+| 44 | `db80970` | test(scenario): 봉인 서고 traversal + 8쪽 + 3종 final + main.ts 이벤트 |
+
+(End of file)
