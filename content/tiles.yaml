@@ -1,7 +1,20 @@
-# 자리표시 인덱스. Task 15가 실제 그림에 맞춰 고친다.
+# 타일 시트: Kenney Tiny Town/Tiny Dungeon (CC0), 192×176 → 16×16 타일 12열.
 sheets:
   town: { file: kenney-tiny-town.png, columns: 12 }
+  dungeon: { file: kenney-tiny-dungeon.png, columns: 12 }
 tiles:
-  ".": { sprite: [town, 0], walk: 1 }
-  "#": { sprite: [town, 1], walk: null }
+  ".": { sprite: [town, 1], walk: 1 }
+  ",": { sprite: [town, 4], walk: 2 }
+  ":": { sprite: [town, 25], walk: 1 }
+  "=": { sprite: [town, 65], walk: 1 }
+  "~": { sprite: [town, 77], walk: null }
+  T: { sprite: [town, 5], walk: null }
+  "#": { sprite: [town, 45], walk: null }
+  "+": { sprite: [town, 47], walk: 1 }
+  o: { sprite: [town, 93], walk: null }
+  L: { sprite: [town, 115], walk: null }
+  "_": { sprite: [dungeon, 48], walk: 1 }
+  "%": { sprite: [dungeon, 43], walk: null }
+  ">": { sprite: [dungeon, 56], walk: 1 }
+  "<": { sprite: [dungeon, 56], walk: 1 }
 player: [town, 84]

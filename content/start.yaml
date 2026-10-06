@@ -1,1 +1,1 @@
-{ map: map.field, pos: [2, 2], hp: 12, attack: 3 }
+{ map: map.field, pos: [7, 7], hp: 12, attack: 3 }

@@ -1,0 +1,16 @@
+- id: crisis.kalas.trial
+  npc: npc.kalas.warden
+  text: crisis.kalas.trial.text
+  options:
+    option.truth:
+      requires: [fact.kalas.brother-witness, fact.kalas.lantern-shard]
+      requiresDeductions: []
+      setsFlags: [flag.kalas.ledger-kept]
+      label: option.truth.label
+      text: option.truth.text
+    option.lantern:
+      requires: [fact.kalas.pilgrim-letter]
+      requiresDeductions: [deduction.honesty]
+      setsFlags: [flag.kalas.ledger-burned]
+      label: option.lantern.label
+      text: option.lantern.text

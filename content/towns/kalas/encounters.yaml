@@ -1,0 +1,29 @@
+- id: enc.field.wolves
+  map: map.field
+  grid:
+    - "......."
+    - "......."
+    - "...T..."
+    - "......."
+    - "...T..."
+    - "......."
+    - "......."
+  allyStart: [[3, 6], [2, 6], [4, 6]]
+  enemies:
+    - { creature: creature.wolf, at: [1, 0] }
+    - { creature: creature.wolf, at: [3, 0] }
+    - { creature: creature.wolf, at: [5, 0] }
+  music: music.battle
+- id: enc.archive.robbers
+  map: map.archive
+  grid:
+    - "_%_%___"
+    - "_______"
+    - "_______"
+    - "_______"
+    - "_______"
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.robber, at: [2, 0] }
+    - { creature: creature.robber, at: [4, 0] }
+  music: music.battle

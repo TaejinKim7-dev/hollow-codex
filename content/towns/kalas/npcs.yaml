@@ -1,0 +1,187 @@
+# 칼라스 NPC 11명. 대사는 전부 content/strings/ko.yaml의 키로 참조한다.
+- id: npc.field.gatekeeper
+  map: map.field
+  pos: [4, 7]
+  name: npc.field.gatekeeper.name
+  greet: npc.field.gatekeeper.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.field.gatekeeper.name.t
+    job:
+      - text: npc.field.gatekeeper.job.t
+        grants: [word.pilgrim]
+    word.pilgrim:
+      - text: npc.field.gatekeeper.pilgrim.t
+        grants: [word.truth]
+    fact.kalas.archive:
+      - text: npc.field.gatekeeper.archive.t
+- id: npc.field.hunter
+  map: map.field
+  pos: [4, 3]
+  name: npc.field.hunter.name
+  greet: npc.field.hunter.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.field.hunter.name.t
+    job:
+      - text: npc.field.hunter.job.t
+        grants: [fact.creature.wolf-hungry]
+- id: npc.kalas.confessor
+  map: map.kalas
+  pos: [3, 12]
+  name: npc.kalas.confessor.name
+  greet: npc.kalas.confessor.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.confessor.name.t
+    job:
+      - text: npc.kalas.confessor.job.guilty.t
+        requiresFlags: [flag.visited-archive]
+        excludeFlags: [flag.kalas.archive-asked]
+        choice:
+          - { id: option.confess-yes, label: option.confess-yes.label, text: option.confess-yes.text, setsFlags: [flag.kalas.archive-asked] }
+          - { id: option.confess-no, label: option.confess-no.label, text: option.confess-no.text, deed: { virtue: honesty, deed: deed.lie }, setsFlags: [flag.kalas.archive-asked] }
+      - text: npc.kalas.confessor.job.t
+        grants: [word.confession, word.duty]
+- id: npc.kalas.warden
+  map: map.kalas
+  pos: [16, 4]
+  name: npc.kalas.warden.name
+  greet: npc.kalas.warden.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.warden.name.t
+    job:
+      - text: npc.kalas.warden.job.t
+        grants: [word.ledger, word.trial]
+    word.lantern:
+      - text: npc.kalas.warden.lantern.t
+        lie: true
+    word.trial:
+      - text: npc.kalas.warden.trial.witness.t
+        requires: [fact.kalas.brother-witness]
+        excludeFlags: [flag.kalas.warden-asked]
+        choice:
+          - { id: option.tell-warden, label: option.tell-warden.label, text: option.tell-warden.text, setsFlags: [flag.kalas.warden-asked] }
+          - { id: option.deny-warden, label: option.deny-warden.label, text: option.deny-warden.text, deed: { virtue: honesty, deed: deed.lie }, setsFlags: [flag.kalas.warden-asked] }
+      - text: npc.kalas.warden.trial.t
+- id: npc.kalas.elin
+  map: map.kalas
+  pos: [18, 4]
+  name: npc.kalas.elin.name
+  greet: npc.kalas.elin.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.elin.name.t
+    job:
+      - text: npc.kalas.elin.job.t
+    word.ledger:
+      - text: npc.kalas.elin.ledger.t
+        grants: [word.weapon]
+  companion:
+    virtue: honesty
+    joinRequires: [fact.kalas.ledger-doubt]
+    leaveAfterDeeds: 2
+    rejoinRequires: [fact.kalas.elin-forgiven]
+    hp: 8
+    attack: 2
+- id: npc.kalas.nia
+  map: map.kalas
+  pos: [10, 4]
+  name: npc.kalas.nia.name
+  greet: npc.kalas.nia.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.nia.name.t
+        grants: [fact.kalas.nia]
+    job:
+      - text: npc.kalas.nia.job.t
+        grants: [word.silence]
+    word.lantern:
+      - text: npc.kalas.nia.lantern.t
+        lie: true
+    word.ledger:
+      - text: npc.kalas.nia.ledger.t
+        requires: [fact.kalas.brother-witness]
+        grants: [fact.kalas.elin-forgiven]
+- id: npc.kalas.tobi
+  map: map.kalas
+  pos: [7, 19]
+  name: npc.kalas.tobi.name
+  greet: npc.kalas.tobi.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.tobi.name.t
+        grants: [fact.kalas.tobi]
+    fact.kalas.nia:
+      - text: npc.kalas.tobi.nia.t
+    word.lantern:
+      - text: npc.kalas.tobi.lantern.t
+        requires: [fact.kalas.lantern-shard]
+        grants: [fact.kalas.brother-witness]
+- id: npc.kalas.mira
+  map: map.kalas
+  pos: [15, 16]
+  name: npc.kalas.mira.name
+  greet: npc.kalas.mira.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.mira.name.t
+    job:
+      - text: npc.kalas.mira.job.t
+    word.lantern:
+      - text: npc.kalas.mira.lantern.t
+        grants: [fact.kalas.lantern-shard]
+    word.ledger:
+      - text: npc.kalas.mira.ledger.t
+        grants: [fact.kalas.ledger-doubt]
+- id: npc.kalas.child
+  map: map.kalas
+  pos: [17, 13]
+  name: npc.kalas.child.name
+  greet: npc.kalas.child.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.child.name.t
+    job:
+      - text: npc.kalas.child.job.t
+        grants: [fact.song.lantern-song, word.lantern]
+- id: npc.kalas.innkeeper
+  map: map.kalas
+  pos: [24, 11]
+  name: npc.kalas.innkeeper.name
+  greet: npc.kalas.innkeeper.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.innkeeper.name.t
+    job:
+      - text: npc.kalas.innkeeper.job.t
+        grants: [fact.kalas.nia, word.trial]
+    word.trial:
+      - text: npc.kalas.innkeeper.trial.t
+        grants: [fact.kalas.archive]
+- id: npc.kalas.librarian
+  map: map.archive
+  pos: [6, 3]
+  name: npc.kalas.librarian.name
+  greet: npc.kalas.librarian.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: npc.kalas.librarian.name.t
+    word.pilgrim:
+      - text: npc.kalas.librarian.pilgrim.t
+        grants: [fact.kalas.pilgrim-letter]
+    job:
+      - text: npc.kalas.librarian.job.t
+        grants: [fact.creature.robber-greed]

@@ -1,0 +1,5 @@
+- id: deduction.honesty
+  sentence: deduction.honesty.sentence
+  hint: deduction.honesty.hint
+  answer: [word.truth, word.weapon, word.lantern]
+  unlocks: [ability.see-lies]

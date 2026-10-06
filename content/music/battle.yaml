@@ -1,0 +1,33 @@
+# 자작 전투 테마. E 단조, 4/4, 152bpm, 8마디(32비트) 4채널. 짧은 루프.
+tempo: 152
+loop: true
+channels:
+  - wave: square50
+    volume: 0.5
+    notes: >-
+      E5/8 G5/8 E5/8 G5/8 B5/8 G5/8 E5/8 r/8
+      D5/8 F#5/8 D5/8 F#5/8 A5/8 F#5/8 D5/8 r/8
+      E5/8 G5/8 E5/8 G5/8 B5/8 D6/8 B5/8 G5/8
+      D5/8 F#5/8 A5/8 F#5/8 D5/8 D5/8 D5/4
+      C5/8 E5/8 C5/8 E5/8 A5/8 E5/8 C5/8 r/8
+      B4/8 D5/8 B4/8 D5/8 G5/8 D5/8 B4/8 r/8
+      A5/8 B5/8 A5/8 G5/8 F#5/8 E5/8 F#5/8 D5/8
+      E5/2 G5/8 E5/8 D5/8 r/8
+  - wave: square25
+    volume: 0.3
+    notes: >-
+      B4/2 G4/2 A4/2 F#4/2 B4/2 G4/2 A4/2 F#4/2
+      A4/2 E4/2 G4/2 D4/2 F#4/2 D4/2 E4/2 B4/2
+  - wave: triangle
+    volume: 0.5
+    notes: >-
+      E2/4 E2/4 E2/4 E2/4 D2/4 D2/4 D2/4 D2/4 C3/4 C3/4 C3/4 C3/4
+      B2/4 B2/4 B2/4 B2/4 A2/4 A2/4 E3/4 E3/4 G2/4 G2/4 D3/4 D3/4
+      A2/4 A2/4 B2/4 B2/4 E2/2 E2/4 E2/4
+  - wave: noise
+    volume: 0.28
+    notes: >-
+      x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8
+      x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8
+      x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8
+      x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8 x/8
