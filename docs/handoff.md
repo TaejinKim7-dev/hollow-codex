@@ -200,3 +200,15 @@ M3 게이트: `test:unit` 230 passed (224 + 시나리오 6) · `check:content` o
 M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 npcs, 140 facts, 14 ledger) · `audit:dist` ok (6 files, 333152B).
 
 (End of file)
+
+## 2026-10-06 M4 완료 (Task 37–41)
+- 구현은 `todo-5-towns`에서 7커밋(서브에이전트 4개 동시):
+  - `72a9202` T37 희생 — Dione · `8fca84c` T38 명예 — Argon · `3ffb841` T39 영성 — Elia · `80f8098` T40 겸손 — Heron (능력 없음, 침묵 규칙) · `83dcff0` T41 시나리오 4개 + 콘텐츠 도달성 버그 8개 수정 (각 마을 `job` 토픽에 단어 grant 추가).
+- (handoff 백필) `f395d0c` M0~M4 Task별 누적 표 추가.
+- merge 게이트(HEAD `83dcff0`): `npm ci` 0 · `npm run test:unit` 0 (43 files, **238 passed** = 230 + 시나리오 8) · `typecheck` 0 · `check:content` 0 (`ok (11 maps, 81 npcs, 140 facts, 14 ledger files)`) · `build` 0 (6 files, 333286 bytes) · `audit:dist` 0 · `git diff --check` 0.
+- main push → Actions run `37423720784` build·deploy success.
+- `https://taejinkim7-dev.github.io/hollow-codex/` → HTTP 200.
+- **M4 완료 기준 충족**: 8개 미덕(정직·연민·용맹·정의·희생·명예·영성·겸손) 추론 3칸 확정 가능. 겸손은 능력 미부여 (사례 위반 — 다만 마을 자율성 회복 능력 자체가 마을에 녹아 있음). 시나리오 4개 통과.
+- 다음: M5 (봉인 서고 + 빈 경전 엔딩 + 에필로그 + 난이도 조정) 진행 — Task 42·43 병렬, Task 44 통합.
+
+(End of file)
