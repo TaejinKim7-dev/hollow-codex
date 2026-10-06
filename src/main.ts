@@ -17,6 +17,7 @@ import type { SaidLine } from "./ui/view-model.ts"
 import { createDebugLog, debugEnabledFromUrl } from "./debug-log.ts"
 import { mountPanels } from "./ui/panels.ts"
 import type { MountedPanels } from "./ui/panels.ts"
+import { t } from "./ui/strings.ts"
 
 const log = createDebugLog({ enabled: debugEnabledFromUrl(location.href) })
 log.log("boot")
@@ -26,6 +27,7 @@ log.log("credits", { files: credits.length })
 const screen = document.getElementById("screen") as HTMLCanvasElement | null
 if (screen === null) throw new Error("missing #screen")
 const canvas = screen
+canvas.setAttribute("aria-label", t(content.strings, "ui.aria.canvas"))
 const ctx = canvas.getContext("2d")
 if (ctx === null) throw new Error("canvas 2d unavailable")
 const canvas2d = ctx

@@ -176,6 +176,25 @@ ui.day-hour: "{day}일차 {hour}시"
 ui.open-rings: 고리
 ui.no-rings: 아직 고리를 모릅니다.
 ui.ring-travel: 이동
+
+# --- 접근성 (M6 Task 46) ---
+ui.skip-to-content: 본문으로 건너뛰기
+ui.aria.canvas: 게임 화면
+ui.aria.open-notebook: 수첩
+ui.aria.open-menu: 메뉴
+ui.aria.open-rings: 열석 고리
+ui.aria.open-codex: 빈 경전
+ui.aria.time: "현재 시간 {time}"
+ui.aria.save-slot: "저장 슬롯 {slot}"
+ui.aria.travel: "{name}으로 이동"
+ui.aria.ask-topic: "{topic}에 대해 묻기"
+ui.aria.choose-option: "{option} 선택"
+ui.aria.recruit: 동료 합류
+ui.aria.tab: "{tab} 탭"
+ui.aria.deduction-slot: "추론 빈칸 {n}"
+ui.aria.codex-page: "{name} 페이지"
+ui.aria.codex-write: "{name}에 적기"
+ui.aria.final: "{name} 선택"
 # --- 열석 고리 (M2, Task 22) ---
 ring.honesty.name: 빛샘의 고리
 ring.honesty.song: 빛샘의 노래

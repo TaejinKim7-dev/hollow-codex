@@ -405,3 +405,31 @@
   flex: 1;
   color: var(--text-muted);
 }
+
+/* ── 키보드 접근성 (M6 Task 46) ────────── */
+/* :focus-visible만 표시 — 마우스 클릭에는 나타나지 않는다. */
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #ffcc00;
+  outline-offset: 2px;
+}
+
+/* 본문 건너뛰기 링크: 평소엔 화면 밖, 키보드 포커스 때만 보인다. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 8px 12px;
+  color: #111;
+  background: #ffcc00;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
+}

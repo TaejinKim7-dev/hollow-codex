@@ -78,12 +78,16 @@ export function mountPanels(
 
   // ── 화면 오른쪽 위 버튼 ────────────────
   const openNotebook = make("button", "open-notebook", t(s, "ui.notebook"))
+  openNotebook.setAttribute("aria-label", t(s, "ui.aria.open-notebook"))
   openNotebook.addEventListener("click", () => toggle("notebook"))
   const openRings = make("button", "open-rings", t(s, "ui.open-rings"))
+  openRings.setAttribute("aria-label", t(s, "ui.aria.open-rings"))
   openRings.addEventListener("click", () => toggle("rings"))
   const openMenu = make("button", "open-menu", t(s, "ui.menu"))
+  openMenu.setAttribute("aria-label", t(s, "ui.aria.open-menu"))
   openMenu.addEventListener("click", () => toggle("menu"))
   const openCodex = make("button", "open-codex", t(s, "ui.open-codex"))
+  openCodex.setAttribute("aria-label", t(s, "ui.aria.open-codex"))
   openCodex.hidden = true
   openCodex.addEventListener("click", () => {
     codex.hidden = !codex.hidden
@@ -102,6 +106,7 @@ export function mountPanels(
   const dlgHeader = make("header")
   const dlgName = make("span", "npc-name")
   const dlgClose = make("button", "close", t(s, "ui.close"))
+  dlgClose.setAttribute("aria-label", t(s, "ui.close"))
   dlgClose.addEventListener("click", () => dispatch({ type: "endTalk" }))
   dlgHeader.append(dlgName, dlgClose)
   const dlgLog = make("div", "log")
@@ -109,12 +114,14 @@ export function mountPanels(
   const dlgChoices = make("div", "choices")
   const dlgCrisis = make("div", "crisis")
   const dlgRecruit = make("button", "recruit", t(s, "ui.recruit"))
+  dlgRecruit.setAttribute("aria-label", t(s, "ui.aria.recruit"))
   dlgRecruit.hidden = true
   dlgRecruit.addEventListener("click", () => {
     const npcId = state?.dialogue?.npcId
     if (npcId !== undefined) dispatch({ type: "recruit", npcId })
   })
   const dlgEndTalk = make("button", "end-talk", t(s, "ui.end-talk"))
+  dlgEndTalk.setAttribute("aria-label", t(s, "ui.end-talk"))
   dlgEndTalk.addEventListener("click", () => dispatch({ type: "endTalk" }))
   dialogue.append(dlgHeader, dlgLog, dlgChips, dlgChoices, dlgCrisis, dlgRecruit, dlgEndTalk)
 
@@ -151,6 +158,7 @@ export function mountPanels(
     dlgChips.replaceChildren()
     for (const chip of view.chips) {
       const b = make("button", "chip", chip.label)
+      b.setAttribute("aria-label", t(s, "ui.aria.ask-topic", { topic: chip.label }))
       b.addEventListener("click", () => dispatch({ type: "ask", topic: chip.topic }))
       dlgChips.appendChild(b)
     }
@@ -158,6 +166,7 @@ export function mountPanels(
     dlgChoices.replaceChildren()
     for (const choice of view.choices) {
       const b = make("button", "choice", choice.label)
+      b.setAttribute("aria-label", t(s, "ui.aria.choose-option", { option: choice.label }))
       b.addEventListener("click", () => dispatch({ type: "choose", optionId: choice.optionId }))
       dlgChoices.appendChild(b)
     }
@@ -167,6 +176,7 @@ export function mountPanels(
       for (const row of view.crisis) {
         const wrap = make("div", "crisis-option")
         const b = make("button", "crisis", row.label)
+        b.setAttribute("aria-label", t(s, "ui.aria.choose-option", { option: row.label }))
         b.disabled = !row.available
         b.addEventListener("click", () => {
           const crisisId = crisisIdForOption(row.optionId)
@@ -192,6 +202,7 @@ export function mountPanels(
   const noteHeader = make("header")
   noteHeader.appendChild(make("span", "title", t(s, "ui.notebook")))
   const noteClose = make("button", "close", t(s, "ui.close"))
+  noteClose.setAttribute("aria-label", t(s, "ui.close"))
   noteClose.addEventListener("click", () => {
     notebook.hidden = true
     syncChrome()
@@ -201,6 +212,9 @@ export function mountPanels(
     facts: make("button", "tab-button active", t(s, "ui.tab.facts")),
     deductions: make("button", "tab-button", t(s, "ui.tab.deductions")),
     hints: make("button", "tab-button", t(s, "ui.tab.hints"))
+  }
+  for (const [name, btn] of Object.entries(tabButtons) as [TabName, HTMLButtonElement][]) {
+    btn.setAttribute("aria-label", t(s, "ui.aria.tab", { tab: t(s, `ui.tab.${name}`) }))
   }
   const tabs = make("nav", "tabs")
   tabs.append(tabButtons.facts, tabButtons.deductions, tabButtons.hints)
@@ -233,6 +247,7 @@ export function mountPanels(
       if (part === "1" || part === "2" || part === "3") {
         const slot = Number(part) - 1
         const select = make("select", "slot")
+        select.setAttribute("aria-label", t(s, "ui.aria.deduction-slot", { n: String(slot + 1) }))
         select.disabled = ded.confirmed
         select.appendChild(make("option"))
         for (const word of ded.words) {
@@ -359,6 +374,7 @@ export function mountPanels(
     hudActions.replaceChildren()
     for (const kind of view.actions) {
       const b = make("button", `action ${kind}`, t(s, `ui.combat.${kind}`))
+      b.setAttribute("aria-label", t(s, `ui.combat.${kind}`))
       if (aim !== null && aim.kind === kind) b.classList.add("aiming")
       b.addEventListener("click", () => onActionClick(kind))
       hudActions.appendChild(b)
@@ -417,6 +433,7 @@ export function mountPanels(
   const menuHeader = make("header")
   menuHeader.appendChild(make("span", "title", t(s, "ui.menu")))
   const menuClose = make("button", "close", t(s, "ui.close"))
+  menuClose.setAttribute("aria-label", t(s, "ui.close"))
   menuClose.addEventListener("click", () => {
     menu.hidden = true
     syncChrome()
@@ -427,6 +444,7 @@ export function mountPanels(
   const slotButtons = new Map<string, HTMLButtonElement>()
   for (const id of SLOT_IDS) {
     const b = make("button", "slot", `${t(s, "ui.save")} ${SLOT_SUFFIX[id] ?? id}`)
+    b.setAttribute("aria-label", t(s, "ui.aria.save-slot", { slot: SLOT_SUFFIX[id] ?? id }))
     b.dataset["slot"] = id
     b.addEventListener("click", () => {
       for (const [slotId, btn] of slotButtons) btn.classList.toggle("selected", slotId === id)
@@ -435,14 +453,19 @@ export function mountPanels(
     slots.appendChild(b)
   }
   const menuSave = make("button", "menu-action save", t(s, "ui.save"))
+  menuSave.setAttribute("aria-label", t(s, "ui.save"))
   menuSave.addEventListener("click", () => menuAction?.("save"))
   const menuLoad = make("button", "menu-action load", t(s, "ui.load"))
+  menuLoad.setAttribute("aria-label", t(s, "ui.load"))
   menuLoad.addEventListener("click", () => menuAction?.("load"))
   const menuNew = make("button", "menu-action new", t(s, "ui.new"))
+  menuNew.setAttribute("aria-label", t(s, "ui.new"))
   menuNew.addEventListener("click", () => menuAction?.("new"))
 
   const creditsBox = make("details", "credits")
-  creditsBox.appendChild(make("summary", undefined, t(s, "ui.credits")))
+  const creditsSummary = make("summary", undefined, t(s, "ui.credits"))
+  creditsSummary.setAttribute("aria-label", t(s, "ui.credits"))
+  creditsBox.appendChild(creditsSummary)
   const creditsList = make("ul", "list")
   for (const row of credits) {
     creditsList.appendChild(make("li", undefined, `${row.path} · ${row.author} · ${row.license} · ${row.source}`))
@@ -457,6 +480,7 @@ export function mountPanels(
   const ringsHeader = make("header")
   ringsHeader.appendChild(make("span", "title", t(s, "ui.open-rings")))
   const ringsClose = make("button", "close", t(s, "ui.close"))
+  ringsClose.setAttribute("aria-label", t(s, "ui.close"))
   ringsClose.addEventListener("click", () => {
     ringsMenu.hidden = true
     syncChrome()
@@ -480,6 +504,7 @@ export function mountPanels(
       row.appendChild(make("span", "name", t(s, gate.nameKey)))
       row.appendChild(make("span", "song", t(s, gate.songKey)))
       const go = make("button", "travel", t(s, "ui.ring-travel"))
+      go.setAttribute("aria-label", t(s, "ui.aria.travel", { name: t(s, gate.nameKey) }))
       go.addEventListener("click", () => {
         dispatch({ type: "ringStep", at: ringId })
         ringsMenu.hidden = true
@@ -496,6 +521,7 @@ export function mountPanels(
   const codexHeader = make("header")
   codexHeader.appendChild(make("span", "title", t(s, "archive.name")))
   const codexClose = make("button", "close", t(s, "ui.close"))
+  codexClose.setAttribute("aria-label", t(s, "ui.close"))
   codexClose.addEventListener("click", () => {
     codex.hidden = true
     syncChrome()
@@ -519,6 +545,7 @@ export function mountPanels(
         row.appendChild(make("p", "answer", page.answer))
       } else {
         const select = make("select", "word")
+        select.setAttribute("aria-label", t(s, "ui.aria.codex-page", { name: page.title }))
         select.disabled = view.finalOpen
         select.appendChild(make("option"))
         for (const word of page.words) {
@@ -527,6 +554,7 @@ export function mountPanels(
           select.appendChild(opt)
         }
         const write = make("button", "write", t(s, "archive.alcove.write"))
+        write.setAttribute("aria-label", t(s, "ui.aria.codex-write", { name: page.title }))
         write.disabled = view.finalOpen
         write.addEventListener("click", () => {
           if (select.value !== "") dispatch({ type: "writeCodex", deductionId: page.deductionId, word: select.value })
@@ -542,6 +570,7 @@ export function mountPanels(
       codexFinal.appendChild(make("p", "prompt", t(s, "archive.final-page.prompt")))
       for (const choice of view.finalChoices) {
         const b = make("button", "final", choice.label)
+        b.setAttribute("aria-label", t(s, "ui.aria.final", { name: choice.label }))
         b.addEventListener("click", () => dispatch({ type: "writeFinal", word: choice.id }))
         codexFinal.appendChild(b)
       }
@@ -562,6 +591,33 @@ export function mountPanels(
   // ── 조립 ──────────────────────────────
   root.append(openNotebook, openRings, openMenu, openCodex, timeIndicator, dialogue, notebook, hud, menu, ringsMenu, codex)
 
+  /** Escape로 열린 덮개를 닫고 연 버튼으로 초점을 돌린다. 연 덮개가 없으면 기본 입력(Escape→메뉴)에 맡긴다. */
+  const onEscape = (event: KeyboardEvent): void => {
+    if (event.key !== "Escape") return
+    let trigger: HTMLButtonElement | null = null
+    if (!codex.hidden) {
+      codex.hidden = true
+      trigger = openCodex
+    } else if (!notebook.hidden) {
+      notebook.hidden = true
+      trigger = openNotebook
+    } else if (!menu.hidden) {
+      menu.hidden = true
+      trigger = openMenu
+    } else if (!ringsMenu.hidden) {
+      ringsMenu.hidden = true
+      trigger = openRings
+    } else {
+      return
+    }
+    aim = null
+    syncChrome()
+    trigger.focus()
+    event.preventDefault()
+    event.stopImmediatePropagation()
+  }
+  window.addEventListener("keydown", onEscape)
+
   const toggle = (panel: "notebook" | "menu" | "rings"): void => {
     notebook.hidden = panel !== "notebook" ? true : !notebook.hidden
     menu.hidden = panel !== "menu" ? true : !menu.hidden
@@ -581,7 +637,9 @@ export function mountPanels(
     render(nextState, lines) {
       state = nextState
       log = lines
-      timeIndicator.textContent = formatTime(s, nextState.time)
+      const timeText = formatTime(s, nextState.time)
+      timeIndicator.textContent = timeText
+      timeIndicator.setAttribute("aria-label", t(s, "ui.aria.time", { time: timeText }))
       renderDialogue(nextState)
       renderNotebook(nextState)
       renderCombat(nextState)
