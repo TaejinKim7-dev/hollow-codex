@@ -1,0 +1,22 @@
+# 헤론(겸손) 마을 테마 — original near-silent chip tune.
+# 4/4, 40bpm, 2채널, 20박(≈30초) 루프. 거의 침묵에 가까운 희미한 울림.
+# "이름 없는 마을의 숨소리" — 대부분 텅 빈 쉼표 위에 아주 드물게 한 음만 떠돈다.
+tempo: 40
+loop: true
+channels:
+  - wave: square50
+    volume: 0.16
+    notes: >-
+      r/4 r/4 r/4 A4/4
+      r/4 r/4 E5/4 r/4
+      r/4 r/4 r/4 G4/4
+      r/2 r/4 D5/4
+      r/4 r/4 r/4 A4/4
+  - wave: triangle
+    volume: 0.12
+    notes: >-
+      r/4 r/4 D3/4 r/4
+      r/4 r/4 r/4 D3/4
+      r/4 A2/4 r/4 r/4
+      r/4 r/4 r/4 A2/4
+      D3/2 r/4 r/4

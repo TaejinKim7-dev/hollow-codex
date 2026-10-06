@@ -974,3 +974,116 @@ spirituality.option.exile-monk.text: 그대가 서기관 세온의 기록을 꺼
 # --- 엘리아 능력·생물 ---
 spirituality.ability.mind.name: 고요한 마음
 spirituality.creature.fake-monk.name: 헌납을 요구하는 가짜 스님
+
+# --- 겸손의 마을 헤론 (M4 Task 40) ---
+town.heron.name: 헤론
+humility.music.title: 헤론의 숨결
+
+humility.npc.silent-elder.name: 침묵하는 장로
+humility.npc.silent-elder.greet: ……침묵.
+humility.npc.silent-elder.name.t: 이름을 묻지 않는다. ……잠시 후. 그대의 이름을 말하여라. 그 이름이 그대를 찾아 주리라.
+humility.npc.silent-elder.job.t: 침묵을 지킨다.
+humility.npc.silent-elder.silence.t: 침묵은 소리가 아닌 자리다.
+humility.npc.silent-elder.wordname.t: 이름은 말하는 것이 아니라 지키는 것이다. ……그대는 그 이름을 아는가.
+humility.npc.silent-elder.chapel.t: 예배당이다. 말없이 세워진.
+
+humility.npc.listener.name: 듣는 이
+humility.npc.listener.greet: ……듣겠다.
+humility.npc.listener.job.t: 듣는 일을 한다.
+humility.npc.listener.listening.t: 듣는 것은 채우는 것이 아니라 비우는 것이다.
+humility.npc.listener.three.t: 비우면 셋이 들린다.
+humility.npc.listener.silence.t: 조용히.
+
+humility.npc.wellkeeper.name: 우물지기
+humility.npc.wellkeeper.greet: 우물은 말이 없다.
+humility.npc.wellkeeper.job.t: 우물을 지킨다.
+humility.npc.wellkeeper.wordname.t: 물에는 이름이 없다.
+humility.npc.wellkeeper.silence-rule.t: 이름을 대지 못하는 규칙이다. 물이 이름을 몰라도 차오르듯.
+
+humility.npc.child.name: 마을 아이
+humility.npc.child.greet: ……나도 조용히 하래요.
+humility.npc.child.job.t: 노래를 외워요. 소리 내지 않고.
+humility.npc.child.listening.t: 귀를 기울이면 들려요.
+humility.npc.child.silent-chant.t: 숨으로 부르는 노래요. 들리지 않아도 불려요.
+
+humility.npc.librarian.name: 서고지기
+humility.npc.librarian.greet: 책은 말이 없다. ……들이오게.
+humility.npc.librarian.job.t: 빈 페이지를 모은다.
+humility.npc.librarian.three.t: 셋을 적은 쪽이 있다. 진실, 사랑, 용기.
+humility.npc.librarian.listening.t: 읽기보다 듣기다.
+
+humility.npc.gardener.name: 숲지기
+humility.npc.gardener.greet: 나무는 이름을 부르지 않는다.
+humility.npc.gardener.job.t: 숲을 가꾼다.
+humility.npc.gardener.listening.t: 숲의 말은 소리가 아니라 숨이다.
+humility.npc.gardener.wordname.t: 이름을 붙이면 잎이 진다.
+
+humility.npc.cook.name: 밥하는 이
+humility.npc.cook.greet: ……밥처럼 조용히.
+humility.npc.cook.job.t: 밥을 짓는다. 소리 없이.
+humility.npc.cook.silence.t: 뜨거운 솥도 소리가 없다.
+
+humility.npc.novice.name: 수련 중인 이
+humility.npc.novice.greet: ……아직 수련 중이라.
+humility.npc.novice.job.t: 침묵을 배운다.
+humility.npc.novice.silence.t: 입을 다물면 귀가 열린다.
+humility.npc.novice.wordname.t: 이름을 잊어야 한다고 배웠다.
+
+humility.npc.hermit.name: 은자
+humility.npc.hermit.greet: ……조용히. 그 소리, 들리지 않는가.
+humility.npc.hermit.job.t: 숨어서 숨을 센다.
+humility.npc.hermit.silence.t: 침묵은 공허가 아니라 자리다.
+humility.npc.hermit.three.t: 셋이 다 비워진 것이 겸손이다.
+humility.npc.hermit.listening.t: 숲 끝에 고요한 파수꾼이 있다. 악하지 않으나 소리를 막는다.
+
+humility.npc.widow.name: 과부
+humility.npc.widow.greet: ……남편의 이름도 잊었다.
+humility.npc.widow.job.t: 잊은 이름을 지킨다.
+humility.npc.widow.wordname.t: 이름은 무덤에 묻었다.
+humility.npc.widow.listening.t: 조용히 들어 준다.
+
+# --- 헤론 단서 ---
+humility.word.listening.label: 듣기
+humility.word.listening.hint: 채우지 않고 비우는 일. 침묵 속에서 귀가 열릴 때 비로소 들리는 것.
+humility.word.three.label: 셋
+humility.word.three.hint: 진실과 사랑과 용기. 겸손은 그 셋을 비워 둔 자리에서 시작한다.
+humility.word.name.label: 이름
+humility.word.name.hint: 헤론이 금지한 것. 이름을 지키지 않는 자는 침묵에 갇힌다.
+humility.fact.heron.silent-elder.label: 침묵하는 장로
+humility.fact.heron.silent-elder.hint: 헤론의 침묵 법을 지키는 장로. 이름을 묻지 않고, 이름을 요구한다.
+humility.fact.heron.listener.label: 듣는 이
+humility.fact.heron.listener.hint: 광장 한쪽에서 아무 말 없이 앉아 있는 이. 헤론에서 가장 오래 들은 이를 아는 사람.
+humility.fact.heron.novice.label: 수련 중인 이
+humility.fact.heron.novice.hint: 침묵의 수련을 배우는 젊은이. 이름을 잊는 법을 배우고 있다.
+humility.fact.heron.hermit.label: 은자
+humility.fact.heron.hermit.hint: 마을 끝 숲에 숨어 사는 은자. 침묵을 '자리'라고 부르는 유일한 이.
+humility.fact.heron.chapel-of-silence.label: 침묵 예배당
+humility.fact.heron.chapel-of-silence.hint: 말없이 세워진 예배당. 장로가 지키는 헤론의 중심.
+humility.fact.heron.library.label: 빈 서고
+humility.fact.heron.library.hint: 빈 페이지를 모은 서고. 그중 한쪽에 셋이 적혀 있다.
+humility.fact.heron.well.label: 말없는 우물
+humility.fact.heron.well.hint: 이름이 없어도 차오르는 우물. 헤론의 숨은 법칙을 보여 준다.
+humility.fact.heron.grove.label: 이름 없는 숲
+humility.fact.heron.grove.hint: 이름을 붙이면 잎이 진다는 숲. 나무는 부르지 않아도 서로 안다.
+humility.fact.heron.silent-chant.label: 숨의 노래
+humility.fact.heron.silent-chant.hint: 소리 내지 않고 부르는 노래. 아이와 은자가 아는 유일한 노래.
+humility.fact.heron.breathing-rhythm.label: 숨결의 박자
+humility.fact.heron.breathing-rhythm.hint: 헤론이 세는 유일한 박자. 들이쉬고, 머무르고, 내쉰다.
+humility.fact.heron.silence-rule.label: 침묵의 규칙
+humility.fact.heron.silence-rule.hint: 헤론의 법. 아무도 자기 이름을 대지 못한다. 침묵이 모든 말을 삼킨다.
+humility.fact.heron.real-name.label: 잃어버린 내 이름
+humility.fact.heron.real-name.hint: 장로가 묻는다. 그대의 이름은 무엇인가. 이름을 지켜야 침묵을 열 수 있다.
+humility.fact.creature.humility-silencer.label: 침묵의 파수꾼
+humility.fact.creature.humility-silencer.hint: 악하지 않다. 소리를 막는 존재일 뿐. 침묵을 지키는 것이 그 일이다.
+
+# --- 헤론 추론·위기 ---
+humility.deduction.humility.sentence: 겸손은 {1} 앞에 자신을 비우고 {2}(으)로 {3}을 들을 수 있는 자리다
+humility.deduction.humility.hint: 헤론은 세 원리를 모두 비워 둔 마을. 침묵 앞에서 그대는 무엇으로 무엇을 들을 수 있는가. 이름을 지켰다면 뒤에 남는 것은 비움이다.
+humility.crisis.name.text: 침묵 예배당 앞에 마을 사람들이 모였다. 장로가 이름 없는 지팡이를 짚고 선다. "이제 이 마을의 마지막 법을 거두려 한다. 이름을 잠근 지 오래. 그러나 잠근 쪽이 우리를 더 가두었다. 그대, 이방인. 그대의 이름을 말하여라. 그러면 헤론의 침묵이 시작이 아닌 끝이 된다." 모두가 숨을 죽인다. 이제 그대가 입을 열 차례다.
+humility.option.speak-name.label: 스스로의 이름을 말해 침묵의 법을 거둔다
+humility.option.speak-name.text: 그대가 앞으로 나서 이름을 말한다. 예배당이 그 이름을 울린다. 사람들이 조용히 그 이름을 따라 부른다. 장로가 지팡이를 내려놓는다. "이름은 채우려는 것이 아니라 서로를 부르는 것이다." 헤론의 침묵은 입을 여는 예법으로 다시 태어난다. 겸손은 셋을 비워 두는 자리이되, 비워 둔 뒤 다시 이름을 부르는 자리다.
+humility.option.stay-silent.label: 침묵을 지키며 이름을 삼킨다
+humility.option.stay-silent.text: 그대는 이름을 삼키고 고개를 숙인다. 장로가 오래도록 그대를 바라본다. "……그대의 침묵도 진실하다. 그러나 그 침묵이 이름을 가두는 한, 헤론은 여전히 비어 있지 않다." 마을은 조용히 흩어진다. 법은 남지만, 은자의 숨의 노래만은 소리 없이 마을을 돈다.
+
+# --- 헤론 생물 ---
+humility.creature.silencer.name: 침묵의 파수꾼

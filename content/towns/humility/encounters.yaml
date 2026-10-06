@@ -1,0 +1,13 @@
+# 헤론(겸손) 조우 — 침묵을 지키는 파수꾼. 악하지 않으나 길을 막는다. 밀쳐 내는 것이 바람직하다.
+- id: enc.humility.silencer
+  map: map.town.humility
+  grid:
+    - "T.....T"
+    - "......."
+    - "......."
+    - "......."
+    - "T.....T"
+  allyStart: [[3, 4], [2, 4], [4, 4]]
+  enemies:
+    - { creature: creature.humility-silencer, at: [3, 1] }
+  music: music.battle

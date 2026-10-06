@@ -1,0 +1,18 @@
+# 헤론(겸손) 위기 — 침묵하는 장로가 마을의 침묵 법을 거두게 하려 한다.
+# 특이 사항: 겸손의 위기는 "이름"을 스스로 말하는 것이 풀이. 침묵을 깨는 것은 곧 스스로를 서는 것이다.
+- id: crisis.humility.name
+  npc: npc.humility.silent-elder
+  text: humility.crisis.name.text
+  options:
+    option.speak-name:
+      requires: [fact.heron.real-name]
+      requiresDeductions: [deduction.humility]
+      setsFlags: [flag.humility.name-spoken]
+      label: humility.option.speak-name.label
+      text: humility.option.speak-name.text
+    option.stay-silent:
+      requires: [fact.heron.silence-rule]
+      requiresDeductions: []
+      setsFlags: [flag.humility.silence-kept]
+      label: humility.option.stay-silent.label
+      text: humility.option.stay-silent.text

@@ -1,0 +1,219 @@
+# 헤론(겸손) NPC 10명. 대사는 전부 content/strings/ko.yaml의 humility.npc.* 키로 참조한다.
+# 침묵의 규칙 — 모든 대사는 1~2문장 이내로 짧게. `name` 칭호 응답은 npc.default.unknown(침묵)을 쓴다.
+- id: npc.humility.silent-elder
+  map: map.town.humility
+  pos: [8, 4]
+  schedule:
+    "0": [8, 4]
+    "6": [8, 5]
+    "12": [9, 4]
+    "18": [6, 4]
+  name: humility.npc.silent-elder.name
+  greet: humility.npc.silent-elder.greet
+  sprite: [town, 89]
+  topics:
+    name:
+      - text: humility.npc.silent-elder.name.t
+        grants: [fact.heron.real-name]
+    job:
+      - text: humility.npc.silent-elder.job.t
+        grants: [fact.heron.silent-elder, fact.heron.silence-rule]
+    word.silence:
+      - text: humility.npc.silent-elder.silence.t
+    word.name:
+      - text: humility.npc.silent-elder.wordname.t
+    fact.heron.chapel-of-silence:
+      - text: humility.npc.silent-elder.chapel.t
+- id: npc.humility.listener
+  map: map.town.humility
+  pos: [12, 9]
+  schedule:
+    "0": [12, 9]
+    "6": [11, 9]
+    "12": [12, 9]
+    "18": [11, 10]
+  name: humility.npc.listener.name
+  greet: humility.npc.listener.greet
+  sprite: [town, 90]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.listener.job.t
+        grants: [word.listening, fact.heron.listener]
+    word.listening:
+      - text: humility.npc.listener.listening.t
+    word.three:
+      - text: humility.npc.listener.three.t
+    word.silence:
+      - text: humility.npc.listener.silence.t
+- id: npc.humility.wellkeeper
+  map: map.town.humility
+  pos: [10, 9]
+  schedule:
+    "0": [10, 9]
+    "6": [9, 9]
+    "12": [10, 9]
+    "18": [10, 8]
+  name: humility.npc.wellkeeper.name
+  greet: humility.npc.wellkeeper.greet
+  sprite: [town, 91]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.wellkeeper.job.t
+        grants: [fact.heron.well]
+    word.name:
+      - text: humility.npc.wellkeeper.wordname.t
+    fact.heron.silence-rule:
+      - text: humility.npc.wellkeeper.silence-rule.t
+- id: npc.humility.child
+  map: map.town.humility
+  pos: [17, 8]
+  schedule:
+    "0": [17, 8]
+    "6": [18, 8]
+    "12": [17, 8]
+    "18": [18, 9]
+  name: humility.npc.child.name
+  greet: humility.npc.child.greet
+  sprite: [town, 93]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.child.job.t
+        grants: [fact.heron.breathing-rhythm]
+    word.listening:
+      - text: humility.npc.child.listening.t
+    fact.heron.silent-chant:
+      - text: humility.npc.child.silent-chant.t
+        grants: [fact.heron.silent-chant]
+- id: npc.humility.librarian
+  map: map.town.humility
+  pos: [20, 4]
+  schedule:
+    "0": [20, 4]
+    "6": [21, 5]
+    "12": [20, 4]
+    "18": [20, 3]
+  name: humility.npc.librarian.name
+  greet: humility.npc.librarian.greet
+  sprite: [town, 92]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.librarian.job.t
+        grants: [fact.heron.library, word.three]
+    word.three:
+      - text: humility.npc.librarian.three.t
+    word.listening:
+      - text: humility.npc.librarian.listening.t
+- id: npc.humility.gardener
+  map: map.town.humility
+  pos: [20, 15]
+  schedule:
+    "0": [20, 15]
+    "6": [19, 14]
+    "12": [20, 15]
+    "18": [20, 16]
+  name: humility.npc.gardener.name
+  greet: humility.npc.gardener.greet
+  sprite: [town, 94]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.gardener.job.t
+        grants: [fact.heron.grove]
+    word.listening:
+      - text: humility.npc.gardener.listening.t
+    word.name:
+      - text: humility.npc.gardener.wordname.t
+- id: npc.humility.cook
+  map: map.town.humility
+  pos: [8, 15]
+  schedule:
+    "0": [8, 15]
+    "6": [7, 14]
+    "12": [8, 15]
+    "18": [9, 15]
+  name: humility.npc.cook.name
+  greet: humility.npc.cook.greet
+  sprite: [town, 95]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.cook.job.t
+        grants: [fact.heron.silence-rule, word.name]
+    word.silence:
+      - text: humility.npc.cook.silence.t
+- id: npc.humility.novice
+  map: map.town.humility
+  pos: [5, 4]
+  schedule:
+    "0": [5, 4]
+    "6": [6, 4]
+    "12": [5, 4]
+    "18": [5, 5]
+  name: humility.npc.novice.name
+  greet: humility.npc.novice.greet
+  sprite: [town, 86]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.novice.job.t
+        grants: [fact.heron.novice, fact.heron.chapel-of-silence]
+    word.silence:
+      - text: humility.npc.novice.silence.t
+    word.name:
+      - text: humility.npc.novice.wordname.t
+- id: npc.humility.hermit
+  map: map.town.humility
+  pos: [6, 8]
+  schedule:
+    "0": [6, 8]
+    "6": [6, 9]
+    "12": [6, 10]
+    "18": [5, 8]
+  name: humility.npc.hermit.name
+  greet: humility.npc.hermit.greet
+  sprite: [town, 85]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.hermit.job.t
+        grants: [fact.heron.hermit, fact.heron.silent-chant]
+    word.silence:
+      - text: humility.npc.hermit.silence.t
+    word.three:
+      - text: humility.npc.hermit.three.t
+    word.listening:
+      - text: humility.npc.hermit.listening.t
+        grants: [fact.creature.humility-silencer]
+- id: npc.humility.widow
+  map: map.town.humility
+  pos: [15, 8]
+  schedule:
+    "0": [15, 8]
+    "6": [16, 8]
+    "12": [15, 8]
+    "18": [15, 9]
+  name: humility.npc.widow.name
+  greet: humility.npc.widow.greet
+  sprite: [town, 88]
+  topics:
+    name:
+      - text: npc.default.unknown
+    job:
+      - text: humility.npc.widow.job.t
+        grants: [word.name, fact.heron.silence-rule]
+    word.name:
+      - text: humility.npc.widow.wordname.t
+    word.listening:
+      - text: humility.npc.widow.listening.t
