@@ -85,3 +85,45 @@ describe("session boot and the unreadable-slot guard", () => {
     expect(boot.state).toEqual(createInitialState(content, 7))
   })
 })
+
+/** A store whose every call rejects, like IndexedDB when storage is blocked. */
+function brokenStore(): SlotStore {
+  const fail = (): Promise<never> => Promise.reject(new Error("indexedDB blocked"))
+  return { list: fail, get: fail, put: fail, remove: fail, getActive: fail, setActive: fail }
+}
+
+describe("session when storage fails", () => {
+  it("boots a new game on a memory store when the store rejects", async () => {
+    const session = createSession(opts(brokenStore()))
+    const boot = await session.boot()
+    expect(boot.notices).toEqual(["storage-unavailable"])
+    expect(boot.state).toEqual(createInitialState(content, 7))
+    // the memory fallback really stores: a later load sees the autosave
+    await expect(session.autosave({ ...boot.state, turn: 4 })).resolves.toBeNull()
+    expect((await session.load(AUTO_SLOT)).state?.turn).toBe(4)
+  })
+
+  it("boots on a memory store when there is no store at all (no indexedDB global)", async () => {
+    const session = createSession({ ...opts(createMemorySlotStore()), store: null })
+    const boot = await session.boot()
+    expect(boot.notices).toEqual(["storage-unavailable"])
+    expect(boot.state.turn).toBe(0)
+  })
+
+  it("autosave never rejects; it reports the first failure once until a save succeeds", async () => {
+    let failing = true
+    const memory = createMemorySlotStore()
+    const flaky: SlotStore = {
+      ...memory,
+      put: (r) => (failing ? Promise.reject(new Error("quota")) : memory.put(r))
+    }
+    const session = createSession(opts(flaky))
+    const boot = await session.boot()
+    await expect(session.autosave(boot.state)).resolves.toBe("autosave-failed")
+    await expect(session.autosave(boot.state)).resolves.toBeNull()
+    failing = false
+    await expect(session.autosave(boot.state)).resolves.toBeNull()
+    failing = true
+    await expect(session.autosave(boot.state)).resolves.toBe("autosave-failed")
+  })
+})

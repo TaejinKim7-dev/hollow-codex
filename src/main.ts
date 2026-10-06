@@ -49,9 +49,17 @@ for (const [id, sheet] of Object.entries(content.sheets)) {
 }
 
 // ── 저장소와 오디오 ─────────────────────────────────────
-const store = createIndexedDbSlotStore(indexedDB)
+/** IndexedDB가 없거나 막힌 브라우저에서도 부팅한다. 없으면 session이 메모리 저장소(이 탭 한정)를 쓴다. */
+function openStore(): ReturnType<typeof createIndexedDbSlotStore> | null {
+  try {
+    return typeof indexedDB === "undefined" ? null : createIndexedDbSlotStore(indexedDB)
+  } catch (error) {
+    log.log("storage-unavailable", String(error))
+    return null
+  }
+}
 const session = createSession({
-  store,
+  store: openStore(),
   content,
   now: () => Date.now(),
   seed: () => Date.now() >>> 0,
@@ -127,7 +135,9 @@ function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
     )
   if (triggered) {
     lastAutoTurn = next.turn
-    void session.autosave(next)
+    session.autosave(next)
+      .then((notice) => { if (notice !== null) showNotice(notice) })
+      .catch((error: unknown) => log.log("autosave-error", String(error)))
   }
 }
 
@@ -315,4 +325,6 @@ async function main(): Promise<void> {
   log.log("ready", { map: s.mapId, turn: s.turn })
 }
 
-void main()
+main().catch((error: unknown) => {
+  log.log("boot-failed", String(error))
+})
