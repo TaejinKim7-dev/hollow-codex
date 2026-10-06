@@ -42,7 +42,7 @@
       - text: sacrifice.npc.widow.name.t
     job:
       - text: sacrifice.npc.widow.job.t
-        grants: [fact.dione.widow, fact.dione.widow-song]
+        grants: [fact.dione.widow, fact.dione.widow-song, word.love]
     word.love:
       - text: sacrifice.npc.widow.love.t
         grants: [word.love]
@@ -178,7 +178,7 @@
       - text: sacrifice.npc.mason.name.t
     job:
       - text: sacrifice.npc.mason.job.t
-        grants: [fact.dione.altar]
+        grants: [fact.dione.altar, word.courage]
     fact.dione.altar:
       - text: sacrifice.npc.mason.altar.t
         grants: [fact.dione.living-love]

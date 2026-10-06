@@ -91,7 +91,7 @@
       - text: spirituality.npc.healer.name.t
     job:
       - text: spirituality.npc.healer.job.t
-        grants: [fact.elia.healer, word.breath]
+        grants: [fact.elia.healer, word.breath, word.courage]
     word.breath:
       - text: spirituality.npc.healer.breath.t
         grants: [word.breath]
@@ -117,7 +117,7 @@
       - text: spirituality.npc.hermit.name.t
     job:
       - text: spirituality.npc.hermit.job.t
-        grants: [fact.elia.hermit, fact.elia.silent-chant]
+        grants: [fact.elia.hermit, fact.elia.silent-chant, word.truth]
     word.spirit:
       - text: spirituality.npc.hermit.spirit.t
         grants: [word.spirit]
@@ -146,7 +146,7 @@
       - text: spirituality.npc.gardener.name.t
     job:
       - text: spirituality.npc.gardener.job.t
-        grants: [fact.elia.courtyard, word.breath]
+        grants: [fact.elia.courtyard, word.breath, word.love]
     word.breath:
       - text: spirituality.npc.gardener.breath.t
         grants: [word.breath]

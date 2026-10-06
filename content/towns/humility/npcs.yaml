@@ -40,7 +40,7 @@
       - text: npc.default.unknown
     job:
       - text: humility.npc.listener.job.t
-        grants: [word.listening, fact.heron.listener]
+        grants: [word.listening, word.silence, fact.heron.listener]
     word.listening:
       - text: humility.npc.listener.listening.t
     word.three:

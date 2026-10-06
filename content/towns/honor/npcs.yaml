@@ -15,7 +15,7 @@
       - text: honor.npc.elder.name.t
     job:
       - text: honor.npc.elder.job.t
-        grants: [fact.argon.elder, word.face]
+        grants: [fact.argon.elder, word.face, word.honor]
     word.honor:
       - text: honor.npc.elder.honor.t
         grants: [word.honor]
@@ -43,7 +43,7 @@
       - text: honor.npc.heir.name.t
     job:
       - text: honor.npc.heir.job.t
-        grants: [fact.argon.heir, word.shame]
+        grants: [fact.argon.heir, fact.argon.lineage-song, word.truth, word.shame]
     fact.argon.lineage-song:
       - text: honor.npc.heir.song.t
         grants: [fact.argon.lineage-song, word.truth]
