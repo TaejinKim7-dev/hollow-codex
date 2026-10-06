@@ -87,3 +87,14 @@ claude                                             # 새 세션: CLAUDE.md → H
 - 다음: 사용자 플레이 판정 후 M2 계획 작성.
 
 (End of file)
+
+## 2026-10-06 M2 완료 (Task 17–32)
+- 구현은 `todo-3-world`에서 14커밋(서브에이전트 5–8개 동시):
+  - `ad330ee` T17 시간·고리기반 · `e57d959` T18 NPC일과 · `4c32ae2`+`a8cc8e3` T19 컴파일·경로 · `59ca33c` T20 오버월드 진입 · `e7e8343` T22 대륙 지도+8마을 입구+7열석+악보+장부 · `a56588f` T23 마을 스텁 분리 · `a7b9e76` T25 자동 열석 해금 · `2858172` T27 파티 상한 · `4eb209d` T28 일간 표시+열석 메뉴 · `6bdb8b4` T30 v2 세이브·M1 마이그레이션 · `068a94b` T31 시나리오 3개(대륙traversal/ring/party) · `5ed4b8f` T32 main.ts 통합·e2e.
+- merge 게이트(HEAD `5ed4b8f`, 메인 직접): `npm ci` 0 · `npm run test:unit` 0 (36 files, **224 passed**) · `typecheck` 0 · `check:content` 0 (`ok (11 maps, 11 npcs, 28 facts, 7 ledger files)`) · `build` 0 (6 files, 149787 bytes) · `audit:dist` 0 · `git diff --check` 0. e2e 1 passed.
+- main push → Actions run `37415215258` build·deploy success.
+- `https://taejinkim7-dev.github.io/hollow-codex/` → HTTP 200.
+- **M2 완료 기준 충족**: 대륙 64×48 오버월드 + 8 마을 입구 + 7 마을 스텁 + 8 열석 + 시간 시스템 + NPC 일과 + 동료 상한 + v2 세이브. 시나리오 테스트는 출발→칼라스→7 미덕 마을 한 바퀴→열석 이동 검증 통과.
+- 다음: M3 (마을 2~4 콘텐츠: 연민·용맹·정의) 진행 — Task 33·34·35 병렬.
+
+(End of file)
