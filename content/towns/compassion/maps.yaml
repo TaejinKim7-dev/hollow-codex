@@ -29,5 +29,5 @@
   music: music.compassion
   encounters:
     - { at: [17, 17], id: enc.compassion.robbers }
-  enterFlags: []
+  enterFlags: [flag.town.compassion]
   heals: true

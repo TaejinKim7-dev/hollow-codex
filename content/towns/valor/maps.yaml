@@ -29,5 +29,5 @@
   music: music.valor
   encounters:
     - { at: [25, 18], id: enc.valor.duelist }
-  enterFlags: []
+  enterFlags: [flag.town.valor]
   heals: true

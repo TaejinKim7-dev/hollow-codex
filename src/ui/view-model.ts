@@ -25,7 +25,7 @@ export interface DialogueView {
 export interface NotebookView {
   facts: Record<FactKind, { id: Id; label: string }[]>  // 6 kind 키 모두 존재, 각 목록은 label 정렬
   deductions: { id: Id; sentence: string; slots: (string | null)[]; confirmed: boolean; words: { id: Id; label: string }[] }[]
-  hints: string[]                                       // openHints의 missing → hintKey, 중복 제거·정렬
+  hints: string[]                                       // 들른 마을의 openHints missing → hintKey 문구, 중복 제거·정렬
 }
 
 export interface CombatView {
@@ -101,6 +101,7 @@ export function dialogueView(
       available,
       hints: missing.map((id) => content.facts[id]?.hintKey ?? content.deductions[id]?.hintKey)
         .filter((key): key is string => key !== undefined)
+        .map((key) => t(lang, s, key))
     }))
     crisis = crisis === null ? rows : [...crisis, ...rows]
   }
@@ -117,6 +118,20 @@ export function dialogueView(
 
 const byLabel = (a: { readonly label: string }, b: { readonly label: string }): number =>
   a.label < b.label ? -1 : a.label > b.label ? 1 : 0
+
+/**
+ * 소문 힌트는 플레이어가 들른 마을 것만 보인다. 힌트 대상(위기 선택지 id 또는 "npcId:topic")의 NPC가 선 지도의
+ * flag.town.<마을> enterFlag를 state.flags에 가졌으면 들른 것이다. 마을 깃발이 없는 지도의 힌트는 그대로 보인다.
+ */
+function hintTownVisited(state: GameState, content: GameContent, targetId: Id): boolean {
+  let npcId: Id | undefined = targetId.includes(":") ? targetId.slice(0, targetId.indexOf(":")) : undefined
+  if (npcId === undefined) {
+    npcId = Object.values(content.crises).find((c) => c.options[targetId] !== undefined)?.npc
+  }
+  const map = npcId === undefined ? undefined : content.maps[content.npcs[npcId]?.map ?? ""]
+  const townFlags = (map?.enterFlags ?? []).filter((f) => f.startsWith("flag.town."))
+  return townFlags.length === 0 || townFlags.some((f) => state.flags.includes(f))
+}
 
 export function notebookView(state: GameState, content: GameContent): NotebookView {
   const s = content.strings
@@ -153,11 +168,12 @@ export function notebookView(state: GameState, content: GameContent): NotebookVi
   const seen = new Set<string>()
   const hintStrings: string[] = []
   for (const hint of openHints(state, content)) {
+    if (!hintTownVisited(state, content, hint.targetId)) continue
     for (const id of hint.missing) {
       const key = content.facts[id]?.hintKey ?? content.deductions[id]?.hintKey
       if (key !== undefined && !seen.has(key)) {
         seen.add(key)
-        hintStrings.push(key)
+        hintStrings.push(t(lang, s, key))
       }
     }
   }

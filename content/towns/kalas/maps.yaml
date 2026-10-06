@@ -25,7 +25,7 @@
   music: music.field
   encounters:
     - { at: [15, 8], id: enc.field.wolves }
-  enterFlags: []
+  enterFlags: [flag.town.kalas]
   heals: false
 - id: map.kalas
   rows:
@@ -58,7 +58,7 @@
     - { at: [28, 4], to: map.archive, arrive: [2, 6] }
   music: music.kalas
   encounters: []
-  enterFlags: []
+  enterFlags: [flag.town.kalas]
   heals: true
 - id: map.archive
   rows:
@@ -78,5 +78,6 @@
   encounters:
     - { at: [5, 6], id: enc.archive.robbers }
   enterFlags:
+    - flag.town.kalas
     - flag.visited-archive
   heals: false

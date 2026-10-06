@@ -29,5 +29,5 @@
   music: music.justice
   encounters:
     - { at: [17, 17], id: enc.justice.mourner }
-  enterFlags: []
+  enterFlags: [flag.town.justice]
   heals: true

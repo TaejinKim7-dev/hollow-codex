@@ -29,5 +29,5 @@
   music: music.spirituality
   encounters:
     - { at: [25, 18], id: enc.spirituality.fake-monk }
-  enterFlags: []
+  enterFlags: [flag.town.spirituality]
   heals: true

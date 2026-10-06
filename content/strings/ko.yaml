@@ -82,13 +82,13 @@ npc.kalas.librarian.job.t: 내 일은 아이들을 가르치고 기록을 지키
 
 # --- 단서 라벨과 힌트 ---
 word.pilgrim.label: 순례자
-word.pilgrim.hint: 삼백 년 전, 열석 사이로 들어와 여덟 미덕을 몸소 보인 이. 진실은 누구도 대신 써 줄 수 없다고 남겼다.
+word.pilgrim.hint: "삼백 년 전, 열석 사이로 들어와 여덟 미덕을 몸소 보인 이. 있는 그대로의 사실은 누구도 대신 써 줄 수 없다고 남겼다."
 word.truth.label: 진실
 word.truth.hint: 순례자가 남긴 한 줄. 칼라스의 장부가 무언가를 덮고 있다.
 word.weapon.label: 무기
-word.weapon.hint: 기록이 사람을 다치게 할 때, 그것은 더 이상 진실이 아니다.
+word.weapon.hint: "기록이 사람을 다치게 할 때, 그것은 더 이상 사실을 지키는 일이 아니다."
 word.lantern.label: 등불
-word.lantern.hint: 광장의 등불이 꺼진 날 밤부터, 누군가의 이야기가 꺼지기 시작했다.
+word.lantern.hint: "광장의 불이 꺼진 날 밤부터, 누군가의 이야기가 꺼지기 시작했다."
 word.duty.label: 의무
 word.duty.hint: 이 마을에서 고백은 의무다. 의심받지 않으려는 의무.
 word.ledger.label: 장부
@@ -112,15 +112,15 @@ fact.creature.wolf-hungry.hint: 늑대는 굶주렸을 뿐, 악하지 않다. �
 fact.creature.robber-greed.label: 도굴꾼
 fact.creature.robber-greed.hint: 자기 사연을 대며 벽을 뚫고 들어온 자들. 탐욕이 그들의 걷는 길을 앞질렀다.
 fact.kalas.lantern-shard.label: 연실이 감긴 등불 조각
-fact.kalas.lantern-shard.hint: 광장 등불에서 떨어져 나온 조각. 누군가가 실에 감아 숨겨 두었다.
+fact.kalas.lantern-shard.hint: "광장 불빛에서 떨어져 나온 조각. 누군가가 실에 감아 숨겨 두었다."
 fact.kalas.brother-witness.label: 토비의 고백
 fact.kalas.brother-witness.hint: 그날 밤 지붕에서 본 것. 아이가 처음으로 입을 열었다.
 fact.kalas.pilgrim-letter.label: 순례자의 편지
 fact.kalas.pilgrim-letter.hint: 사서가 간직해 온, 순례자가 이 마을에 남긴 편지.
 fact.kalas.ledger-doubt.label: 장부에 대한 의심
-fact.kalas.ledger-doubt.hint: 장부가 진실을 지킨다고 믿던 사람들이, 조금씩 틈을 보이기 시작한다.
+fact.kalas.ledger-doubt.hint: "장부가 사실을 지킨다고 믿던 사람들이, 조금씩 틈을 보이기 시작한다."
 fact.kalas.elin-forgiven.label: 니아의 용서
-fact.kalas.elin-forgiven.hint: 필경사가 지킨 침묵을 마침내 푼 자리. 미움 대신 놓아 주는 일이었다.
+fact.kalas.elin-forgiven.hint: "필경사가 지켜 온 비밀을 마침내 푼 자리. 미움 대신 놓아 주는 일이었다."
 
 # --- 추론 ---
 deduction.honesty.sentence: 정직은 {1}을 {2}가 아니라 {3}(으)로 쓰는 것이다
@@ -323,9 +323,9 @@ compassion.npc.grandmother.love.t: 사랑이 뭐냐고? 밥상에 앉는 거야.
 
 # --- 리오나 단서 ---
 compassion.word.sharing.label: 나눔
-compassion.word.sharing.hint: 자선의 질서가 나눔이라 부르는 그것. 나누는 자와 받는 자를 영영 갈라놓는다.
+compassion.word.sharing.hint: "자선의 질서가 내세우는 그 말. 주는 자와 받는 자를 영영 갈라놓는다."
 compassion.word.gift.label: 선물
-compassion.word.gift.hint: 배급은 위에서 아래로 오지만, 선물은 옆에서 온다. 거지가 아이에게 받은 반쪽 빵.
+compassion.word.gift.hint: "배급은 위에서 아래로 오지만, 이것은 옆에서 온다. 거지가 아이에게 받은 반쪽 빵."
 compassion.word.love.label: 사랑
 compassion.word.love.hint: 연민의 참된 원리. 위에서 내려주는 시혜가 아니라, 나란히 앉아 함께 먹는 일.
 compassion.word.charity.label: 자선
@@ -347,7 +347,7 @@ compassion.fact.reona.plaza.hint: 곳간 앞에 사람들이 줄을 서는 곳. 
 compassion.fact.reona.chapel.label: 예배당
 compassion.fact.reona.chapel.hint: 옛 관습을 적은 기록이 남아 있는 곳. 곳간에는 원래 문이 없었다고 적혀 있다.
 compassion.fact.reona.song.label: 떠돌이의 노래
-compassion.fact.reona.song.hint: 연민은 나눔 위에 선물을 얹는 것이 아니라, 사랑으로 함께하는 것이다. 리오나 사람들은 이 노래를 반쯤만 안다.
+compassion.fact.reona.song.hint: "리오나의 오래된 노래. 연민은 위에서 내려 주는 것이 아니라 곁에 함께 있는 것이라고 노래한다. 사람들은 이 노래를 반쯤만 안다."
 compassion.fact.reona.open-pantry.label: 열린 곳간의 옛 관습
 compassion.fact.reona.open-pantry.hint: 리오나의 곳간에는 원래 문이 없었다. 배고픈 이가 들어가 가져가도 나무라지 않았다.
 compassion.fact.reona.relief-tax.label: 실패한 세금 개혁
@@ -357,7 +357,7 @@ compassion.fact.creature.compassion-beggar.hint: 악하지 않다. 굶주렸을 
 
 # --- 리오나 추론·위기 ---
 compassion.deduction.compassion.sentence: 연민은 {1} 위에 {2}을 얹는 것이 아니라 {3}(으)로 함께하는 것이다
-compassion.deduction.compassion.hint: 자선의 질서가 나눔을 앞세운다. 떠돌이의 노래는 그 반대쪽에서 사랑을 부른다.
+compassion.deduction.compassion.hint: "자선의 질서가 앞세우는 것과, 떠돌이의 노래가 반대쪽에서 부르는 것을 견주어 보라."
 compassion.crisis.hoard.text: 곳간 앞에 사람들이 모였다. 자선 관장이 빵을 나누려다가, 한 아이가 넘어져도 아무도 손을 잡지 않는다. 관장이 말한다. 질서가 흐트러지면 아무도 받지 못합니다, 줄을 서십시오. 그때 떠돌이의 노래가 광장 저편에서 들린다. 이제 그대가 나설 차례다.
 compassion.option.open-pantry.label: 곳간의 문을 열어 모두 함께 나누게 한다
 compassion.option.open-pantry.text: 그대가 떠돌이의 노래를 따라 부르고, 옛 기록을 꺼내 읽는다. 곳간에는 원래 문이 없었다. 관장의 곳간 문이 열리고, 사람들이 서로 빵을 나눠 든다. 주는 자와 받는 자의 자리가 사라진 광장에서 모두가 배부르다. 연민은 나눔 위에 얹는 것이 아니라 사랑으로 함께하는 것임을 마을이 알았다.
@@ -455,15 +455,15 @@ valor.fact.solgang.sergeant.hint: 병영을 돌보며 젊은이를 세우는 사
 valor.fact.solgang.veteran.label: 노병 켈
 valor.fact.solgang.veteran.hint: 옛 군가를 반절만 기억하는 늙은 병사. 마지막 소절을 잃어버렸다.
 valor.fact.solgang.smith.label: 대장장이 브란
-valor.fact.solgang.smith.hint: 칼과 방패를 만드는 사람. 요즘은 방패 주문이 줄었다고 한다.
+valor.fact.solgang.smith.hint: "칼과 갑주를 만드는 사람. 요즘은 몸을 가리는 물건 주문이 줄었다고 한다."
 valor.fact.solgang.arena.label: 솔강 투기장
 valor.fact.solgang.arena.hint: 쓰러진 자의 이름은 지우고 선 자의 이름만 남기는 모래바닥.
 valor.fact.solgang.barracks.label: 병영
-valor.fact.solgang.barracks.hint: 갑옷은 그대로인데 채울 이가 줄어드는 곳. 지난해 열둘 중 셋만 돌아왔다.
+valor.fact.solgang.barracks.hint: "갑옷은 그대로인데 채울 이가 줄어드는 곳. 지난해 열둘 중 세 명만 돌아왔다."
 valor.fact.solgang.forge.label: 대장간
 valor.fact.solgang.forge.hint: 꺼지지 않는 용광로. 무엇을 벼리는지가 해마다 달라진다.
 valor.fact.solgang.battle-hymn.label: 옛 행군가
-valor.fact.solgang.battle-hymn.hint: 앞에 적이 있고 뒤에 고향이 있다면 방패를 들어라. 마지막 소절은 돌아오는 자를 노래한다.
+valor.fact.solgang.battle-hymn.hint: "솔강 병사들이 부르는 오래된 노래. 앞소절은 적을, 뒷소절은 고향을 노래한다. 끝까지 들어 보라."
 valor.fact.solgang.retreat-law.label: 사라진 후퇴법
 valor.fact.solgang.retreat-law.hint: 다친 전우를 데리고 돌아온 자를 겁쟁이라 부르지 않는다는 옛 법. 어느새 사라졌다.
 valor.fact.creature.valor-duelist.label: 떠돌이 결투가
@@ -610,7 +610,7 @@ justice.fact.creature.justice-mourner.hint: 악하지 않다. 낯선 이를 도�
 
 # --- 셀레스 추론·위기 ---
 justice.deduction.justice.sentence: 정의는 {1}(이)라 {2}을 막는 것이 아니라 {3}(으)로 다스리는 것이다
-justice.deduction.justice.hint: 재판관의 법은 형벌로 관례를 지킨다. 셀레스가 잃어버린 것은 저울의 균형. 진실로 저울을 세우고 사랑으로 다스릴 때 비로소 정의를 이룬다.
+justice.deduction.justice.hint: "재판관의 법은 형벌로 관례를 지킨다. 셀레스가 잃어버린 것은 저울의 균형. 무엇으로 저울을 세우고 무엇으로 다스려야 할지, 무덤가의 노래와 법정의 기록에서 찾으라."
 justice.crisis.mourning.text: 법정 앞에 달빛이 서늘하다. 조문 기간에 노래를 부른 과부 셀레와, 무덤에서 목걸이를 찾은 청년 이렌이 재판관 앞에 끌려 나왔다. 재판관이 판결문을 펼친다. 노래는 관례를 어겼고, 무덤은 도둑을 냈다. 벌은 정해져 있다. 관중은 숨을 죽인다. 아이가 고개를 숙이고, 묘지기가 무덤 쪽을 바라본다. 이제 그대가 나설 차례다.
 justice.option.comfort-widow.label: 자장가를 불러 진실과 위로를 보인다
 justice.option.comfort-widow.text: 그대가 법정 앞에서 떨리는 목소리로 자장가를 부른다. 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 관중이 숨을 멈춘다. 목격자가 고개를 숙이고, 사제가 옛 기록을 꺼내 읽는다. 조문의 달은 형벌이 아니라 함께하는 때였다. 재판관은 긴 침묵 끝에 판결문을 접는다. 셀레스의 저울이 처음으로 진실과 사랑을 올려놓고 균형을 찾는다. 형벌 대신 위로가 내려진다.
@@ -717,7 +717,7 @@ sacrifice.fact.dione.altar-priest.hint: 제단을 지키는 사제. 자신을 �
 sacrifice.fact.dione.widow.label: 과부 레아
 sacrifice.fact.dione.widow.hint: 제단에서 남편을 잃은 과부. 밤마다 저녁빵과 옛 노래로 하루를 지킨다.
 sacrifice.fact.dione.pilgrim.label: 순례자 이온
-sacrifice.fact.dione.pilgrim.hint: 진실한 희생을 찾아 삼 년을 걸어온 순례자. 제단의 기록을 세 벌 베꼈다.
+sacrifice.fact.dione.pilgrim.hint: "참된 희생을 찾아 삼 년을 걸어온 순례자. 제단의 기록을 세 벌 베꼈다."
 sacrifice.fact.dione.surgeon.label: 외과의 세인
 sacrifice.fact.dione.surgeon.hint: 상처를 봉합하는 유일한 외과의. 대부분의 상처가 스스로 만든 것임을 안다.
 sacrifice.fact.dione.scribe.label: 기록사 미르
@@ -733,7 +733,7 @@ sacrifice.fact.dione.widow-song.hint: 레아가 남편과 부르던 이른 아�
 sacrifice.fact.dione.martyr-contest.label: 순교 경쟁
 sacrifice.fact.dione.martyr-contest.hint: 누가 더 아프게 바쳤는지 겨루는 제단의 습속. 상처의 길이와 굶은 날이 숫자로 적힌다.
 sacrifice.fact.dione.renunciation-law.label: 버림의 계율
-sacrifice.fact.dione.renunciation-law.hint: 제단이 명하는 법. 남기는 것은 욕심이고, 빈손이 되어야 사랑이라 부른다.
+sacrifice.fact.dione.renunciation-law.hint: "제단이 명하는 법. 남기는 것은 욕심이고, 빈손이 되어야 참된 마음이라 부른다."
 sacrifice.fact.dione.living-love.label: 아궁이의 사랑
 sacrifice.fact.dione.living-love.hint: 옛 성소의 초석이 새긴 말. 덜어내는 자리가 아니라 매일 채워 주는 자리가 지킨 불.
 sacrifice.fact.creature.sacrifice-penitent.label: 회개의 고행자
@@ -741,7 +741,7 @@ sacrifice.fact.creature.sacrifice-penitent.hint: 악하지 않다. 거룩함을 
 
 # --- 디오네 추론·위기 ---
 sacrifice.deduction.sacrifice.sentence: 희생은 {1}(이)라 나를 삼키는 것이 아니라, {2}(으)로 {3}을 감당하는 것이다
-sacrifice.deduction.sacrifice.hint: 제단은 헌신의 이름으로 자신을 태우라고 가르친다. 과부의 노래와 아궁이의 초석이 가리키는 참된 희생은 삼켜지는 일이 아니라 감당하는 일이다.
+sacrifice.deduction.sacrifice.hint: "제단은 어떤 이름을 내세워 자신을 태우라고 가르친다. 과부의 노래와 아궁이의 초석이 가리키는 참된 희생은 삼켜지는 일이 아니라 감당하는 일이다."
 sacrifice.crisis.altar.text: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 리오의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치는 것. 아이가 온전히 덜어낼 때 그것이 진정한 희생이라고. 리오는 겁먹은 얼굴로 무릎을 꿇는다. 과부 레아가 뒤에서 빵 반쪽을 감추고, 순례자 이온이 지팡이를 움켜쥔다. 외과의 세인은 고개를 숙이고, 기록사 미르는 장부를 펼친다. 이제 그대가 나설 차례다.
 sacrifice.option.open-altar.label: 과부의 노래를 불러 사랑과 용기를 보인다
 sacrifice.option.open-altar.text: 그대가 제단 앞에서 옛 노래를 부른다. 레아와 아이 리오가 목소리를 보탠다. 사제가 소리치지만, 석공 하르파가 제단 돌을 밀어 옛 아궁이를 드러낸다. 초석에는, 이 마을을 지킨 불은 제단이 아니라 저녁마다 다시 켜지는 아궁이였다고 새겨져 있다. 사제는 흔들리고, 마을 사람들은 상처의 길이를 재던 줄을 내려놓는다. 희생은 자신을 삼키는 헌신이 아니라, 사랑으로 용기를 감당하는 일임을 디오네가 안다. 그날 저녁, 제단 대신 빵집에 불이 켜진다.
@@ -838,9 +838,9 @@ honor.npc.seamstress.widow.t: 세린 부인의 옷은 최근 제가 다 기웠�
 
 # --- 아르곤 단서 ---
 honor.word.honor.label: 명예
-honor.word.honor.hint: 이 마을이 체면과 가문 서열을 부르는 이름. 그러나 노래의 뒷절은 다른 명예를 부른다.
+honor.word.honor.hint: "이 마을이 체면과 가문 서열에 붙이는 이름. 그러나 노래의 뒷절은 같은 말을 다르게 부른다."
 honor.word.shame.label: 수치
-honor.word.shame.hint: 모욕은 죽음보다 무겁다. 그래서 진실이 숨겨지고, 꿇은 영주가 지워졌다.
+honor.word.shame.hint: "모욕은 죽음보다 무겁다. 그래서 있었던 일이 숨겨지고, 꿇은 영주가 지워졌다."
 honor.word.pride.label: 자부심
 honor.word.pride.hint: 칼로 세우는 것이 아니라 무릎을 꿇는 순간에 더 큰 것처럼 보이는 마음.
 honor.word.face.label: 체면
@@ -868,11 +868,11 @@ honor.fact.argon.humiliation-rule.hint: 체면을 깨뜨린 자는 무릎 꿇고
 honor.fact.argon.kneeling-lord.label: 무릎 꿇은 시조
 honor.fact.argon.kneeling-lord.hint: 적의 칼날 앞에서 마을을 살리려 무릎을 꿇은 초대 영주. 후손들은 그것을 자랑으로 바꿔 부른다.
 honor.fact.creature.honor-braggart.label: 자랑질하는 결투가
-honor.fact.creature.honor-braggart.hint: 악하다. 체면을 걸고 싸움을 거는 자. 이기는 것이 곧 명예라 믿어, 누구든 칼자루를 내미는 자에게 덤벼든다.
+honor.fact.creature.honor-braggart.hint: "악하다. 체면을 걸고 싸움을 거는 자. 이기는 것이 곧 자랑이라 믿어, 누구든 칼자루를 내미는 자에게 덤벼든다."
 
 # --- 아르곤 추론·위기 ---
 honor.deduction.honor.sentence: 명예는 {1}을 지키는 굳은 얼굴이 아니라 {2}(으)로 {3}을 세우는 일이다
-honor.deduction.honor.hint: 아르곤은 체면과 가문 서열을 명예라고 부른다. 그러나 노래의 뒷절과 검술 사범은 진실을 지키고 용기로 명예를 세우라고 말한다.
+honor.deduction.honor.hint: "아르곤은 체면과 가문 서열을 한 이름으로 부른다. 노래의 뒷절과 검술 사범의 말을 끝까지 들어 보라."
 honor.crisis.lineage.text: 광장에 마을 사람들이 가문 순으로 모였다. 원로 베론이 서열 장부를 높이 들고 외친다. 가문의 이름을 지키는 자리에, 가문을 욕되게 한 자가 있다. 후계자 시온은 노래를 지어내 시조를 모독했다. 체면을 어긴 자는 무릎을 꿇고 사죄하거나, 이름에서 지워진다. 전령관 루카가 장부를 펼치고, 사람들은 숨을 죽인다. 후계자 시온은 무릎을 꿇지 않고 서서 고개를 든다. 이제 그대가 나설 차례다.
 honor.option.truth-lineage.label: 가문의 노래 뒷절을 끝까지 불러 진실을 알린다
 honor.option.truth-lineage.text: 그대가 침묵을 깨고 가문의 노래를 부르기 시작한다. 먼저 첫 절, 모두가 아는 꿇지 않은 영주. 그리고 잃어버린 뒷절, 꿇은 영주. 시조는 도망치지 않았다. 모두를 살리려, 적의 칼날 앞에 무릎을 꿇었다. 아이 아린이 따라 부르고, 과부 세린이 목소리를 보탠다. 검술 사범이 고개를 끄덕이고, 광장의 사람들이 하나둘 뒷절을 배워 간다. 원로의 장부는 내려지고, 시온은 사죄하지 않는다. 명예는 얼굴을 굳게 하는 데 있지 않고, 진실을 지키고 용기로 세우는 데 있음을 아르곤이 알았다.
@@ -1002,7 +1002,7 @@ spirituality.fact.creature.spirituality-fake-monk.hint: 악하다. 두건과 목
 
 # --- 엘리아 추론·위기 ---
 spirituality.deduction.spirituality.sentence: 영성은 {1}을 듣고 {2}(으)로 {3}을 이루는 것이다
-spirituality.deduction.spirituality.hint: 주지의 면허는 의례만 남기고 마음을 잠갔다. 은자의 숨 노래와 과부의 노래가 말하는 참된 영성은, 세 원리가 함께 숨 쉴 때 이루어지는 것이다.
+spirituality.deduction.spirituality.hint: "주지의 면허는 의례만 남기고 마음을 잠갔다. 은자의 숨 노래와 과부의 노래가 말하는 참된 영성이 어디에서 시작하는지 들어 보라."
 spirituality.crisis.license.text: 명상당 앞뜰에 마을 사람들이 모였다. 주지 스님 다루가 면허 장부를 펼치며 외친다. 이 마을의 명상은 자격의 것이다. 면허 없는 자가 명상당에 들어서는 것은 배교다. 오늘, 견습 이안이 면허 시험을 치른다. 그러나 그는 시험비를 내지 못해 문 앞에 서 있다. 서기관 세온은 장부를 펼치고, 치유사 루아는 손을 움켜쥐고, 은자 펠라는 서고 그늘에서 이 모든 것을 듣고 있다. 아이 리네가 숨을 죽이고, 정지기 호레가 고개를 숙인다. 이제 그대가 나설 차례다.
 spirituality.option.open-meditation.label: 은자의 숨 노래를 소리 없이 불러 명상당의 문을 연다
 spirituality.option.open-meditation.text: 그대가 앞으로 나서서, 은자에게 배운 숨 노래를 소리 없이 부른다. 진실을 듣고, 사랑으로, 용기로. 견습 이안이 목소리를 보태고, 과부 이레가 이어 부른다. 정지기 호레가 정원의 약초를 문 앞에 놓고, 치유사 루아가 숨을 고른다. 서기관 세온이 장부에서 사라지지 않은 옛 기록을 꺼내 읽는다. 참된 명상은 면허에 있지 않고, 진실과 사랑과 용기가 함께 숨 쉬는 데 있었다. 주지 다루는 장부를 내려놓고, 명상당의 문이 처음으로 면허 없이 열린다. 그날부터 엘리아는 누구든 조용히 앉을 수 있는 마을이 된다.
@@ -1082,23 +1082,23 @@ humility.npc.widow.listening.t: 조용히 들어 준다.
 
 # --- 헤론 단서 ---
 humility.word.listening.label: 듣기
-humility.word.listening.hint: 채우지 않고 비우는 일. 침묵 속에서 귀가 열릴 때 비로소 들리는 것.
+humility.word.listening.hint: "채우지 않고 비우는 일. 말이 멎은 자리에서 귀가 열릴 때 비로소 일어나는 것."
 humility.word.three.label: 셋
-humility.word.three.hint: 진실과 사랑과 용기. 겸손은 그 셋을 비워 둔 자리에서 시작한다.
+humility.word.three.hint: "헤론 서고의 빈 페이지 한쪽에 적힌 수. 겸손은 그것들을 모두 비워 둔 자리에서 시작한다."
 humility.word.name.label: 이름
-humility.word.name.hint: 헤론이 금지한 것. 이름을 지키지 않는 자는 침묵에 갇힌다.
+humility.word.name.hint: "헤론이 금지한 것. 이름을 지키지 않는 자는 말 없는 법에 갇힌다."
 humility.fact.heron.silent-elder.label: 침묵하는 장로
-humility.fact.heron.silent-elder.hint: 헤론의 침묵 법을 지키는 장로. 이름을 묻지 않고, 이름을 요구한다.
+humility.fact.heron.silent-elder.hint: "헤론의 말 없는 법을 지키는 장로. 이름을 묻지 않고, 이름을 요구한다."
 humility.fact.heron.listener.label: 듣는 이
 humility.fact.heron.listener.hint: 광장 한쪽에서 아무 말 없이 앉아 있는 이. 헤론에서 가장 오래 들은 이를 아는 사람.
 humility.fact.heron.novice.label: 수련 중인 이
-humility.fact.heron.novice.hint: 침묵의 수련을 배우는 젊은이. 이름을 잊는 법을 배우고 있다.
+humility.fact.heron.novice.hint: "말을 거두는 수련을 배우는 젊은이. 이름을 잊는 법을 배우고 있다."
 humility.fact.heron.hermit.label: 은자
-humility.fact.heron.hermit.hint: 마을 끝 숲에 숨어 사는 은자. 침묵을 '자리'라고 부르는 유일한 이.
+humility.fact.heron.hermit.hint: "마을 끝 숲에 숨어 사는 은자. 말이 그친 곳을 '자리'라고 부르는 유일한 이."
 humility.fact.heron.chapel-of-silence.label: 침묵 예배당
 humility.fact.heron.chapel-of-silence.hint: 말없이 세워진 예배당. 장로가 지키는 헤론의 중심.
 humility.fact.heron.library.label: 빈 서고
-humility.fact.heron.library.hint: 빈 페이지를 모은 서고. 그중 한쪽에 셋이 적혀 있다.
+humility.fact.heron.library.hint: "빈 페이지를 모은 서고. 그중 한쪽에만 수 하나가 적혀 있다."
 humility.fact.heron.well.label: 말없는 우물
 humility.fact.heron.well.hint: 이름이 없어도 차오르는 우물. 헤론의 숨은 법칙을 보여 준다.
 humility.fact.heron.grove.label: 이름 없는 숲
@@ -1108,15 +1108,15 @@ humility.fact.heron.silent-chant.hint: 소리 내지 않고 부르는 노래. �
 humility.fact.heron.breathing-rhythm.label: 숨결의 박자
 humility.fact.heron.breathing-rhythm.hint: 헤론이 세는 유일한 박자. 들이쉬고, 머무르고, 내쉰다.
 humility.fact.heron.silence-rule.label: 침묵의 규칙
-humility.fact.heron.silence-rule.hint: 헤론의 법. 아무도 자기 이름을 대지 못한다. 침묵이 모든 말을 삼킨다.
+humility.fact.heron.silence-rule.hint: "헤론의 법. 아무도 자기 이름을 대지 못한다. 고요가 모든 말을 삼킨다."
 humility.fact.heron.real-name.label: 잃어버린 내 이름
-humility.fact.heron.real-name.hint: 장로가 묻는다. 그대의 이름은 무엇인가. 이름을 지켜야 침묵을 열 수 있다.
+humility.fact.heron.real-name.hint: "장로가 묻는다. 그대의 이름은 무엇인가. 이름을 지켜야 닫힌 입을 열 수 있다."
 humility.fact.creature.humility-silencer.label: 침묵의 파수꾼
-humility.fact.creature.humility-silencer.hint: 악하지 않다. 소리를 막는 존재일 뿐. 침묵을 지키는 것이 그 일이다.
+humility.fact.creature.humility-silencer.hint: "악하지 않다. 소리를 막는 존재일 뿐. 고요를 지키는 것이 그 일이다."
 
 # --- 헤론 추론·위기 ---
 humility.deduction.humility.sentence: 겸손은 {1} 앞에 자신을 비우고 {2}(으)로 {3}을 들을 수 있는 자리다
-humility.deduction.humility.hint: 헤론은 세 원리를 모두 비워 둔 마을. 침묵 앞에서 그대는 무엇으로 무엇을 들을 수 있는가. 이름을 지켰다면 뒤에 남는 것은 비움이다.
+humility.deduction.humility.hint: "헤론은 원리를 모두 비워 둔 마을. 말이 멎은 자리에서 무엇이 열리는가. 서고의 빈 페이지가 남은 하나를 알려 준다."
 humility.crisis.name.text: 침묵 예배당 앞에 마을 사람들이 모였다. 장로가 이름 없는 지팡이를 짚고 선다. "이제 이 마을의 마지막 법을 거두려 한다. 이름을 잠근 지 오래. 그러나 잠근 쪽이 우리를 더 가두었다. 그대, 이방인. 그대의 이름을 말하여라. 그러면 헤론의 침묵이 시작이 아닌 끝이 된다." 모두가 숨을 죽인다. 이제 그대가 입을 열 차례다.
 humility.option.speak-name.label: 스스로의 이름을 말해 침묵의 법을 거둔다
 humility.option.speak-name.text: 그대가 앞으로 나서 이름을 말한다. 예배당이 그 이름을 울린다. 사람들이 조용히 그 이름을 따라 부른다. 장로가 지팡이를 내려놓는다. "이름은 채우려는 것이 아니라 서로를 부르는 것이다." 헤론의 침묵은 입을 여는 예법으로 다시 태어난다. 겸손은 셋을 비워 두는 자리이되, 비워 둔 뒤 다시 이름을 부르는 자리다.

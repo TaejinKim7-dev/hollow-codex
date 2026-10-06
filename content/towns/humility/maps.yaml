@@ -29,5 +29,5 @@
   music: music.humility
   encounters:
     - { at: [25, 18], id: enc.humility.silencer }
-  enterFlags: []
+  enterFlags: [flag.town.humility]
   heals: true

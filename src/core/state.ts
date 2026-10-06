@@ -21,7 +21,7 @@ export function createInitialState(content: GameContent, seed: number): GameStat
     departed: [],
     joinedAt: {},
     crises: {},
-    flags: [],
+    flags: addSorted([], content.maps[start.map]?.enterFlags ?? []),   // 시작 지도에 "들어온" 것으로 친다
     dialogue: null,
     combat: null,
     clearedEncounters: []

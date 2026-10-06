@@ -84,13 +84,13 @@ npc.kalas.librarian.job.t: My work was teaching the children and keeping the rec
 
 # --- Clue labels and hints ---
 word.pilgrim.label: Pilgrim
-word.pilgrim.hint: The one who came in among the stones three hundred years ago and lived all eight virtues. He left behind that no one can write the truth for another.
+word.pilgrim.hint: "The one who came in among the stones three hundred years ago and lived all eight virtues. He left behind that no one can write what is real for another."
 word.truth.label: Truth
 word.truth.hint: A single line left by the pilgrim. Kalas's ledger is covering something.
 word.weapon.label: Weapon
-word.weapon.hint: When records hurt people, they are no longer truth.
+word.weapon.hint: "When records hurt people, they no longer keep what is real."
 word.lantern.label: Lantern
-word.lantern.hint: Since the night the square's lantern went out, someone's story has begun to go out too.
+word.lantern.hint: "Since the night the square's light went out, someone's story has begun to go out too."
 word.duty.label: Duty
 word.duty.hint: In this village confession is a duty. The duty of not being suspected.
 word.ledger.label: Ledger
@@ -114,15 +114,15 @@ fact.creature.wolf-hungry.hint: The wolf is only hungry, never evil. A frightene
 fact.creature.robber-greed.label: The Grave Robber
 fact.creature.robber-greed.hint: Those who broke through the wall with their own tales. Greed ran ahead of their walking.
 fact.kalas.lantern-shard.label: Thread-Wound Lantern Shard
-fact.kalas.lantern-shard.hint: A piece fallen from the square's lantern. Someone wound it in thread to hide it.
+fact.kalas.lantern-shard.hint: "A piece fallen from the square's lamp. Someone wound it in thread to hide it."
 fact.kalas.brother-witness.label: Tobi's Confession
 fact.kalas.brother-witness.hint: What he saw from the roof that night. The child opened his mouth for the first time.
 fact.kalas.pilgrim-letter.label: The Pilgrim's Letter
 fact.kalas.pilgrim-letter.hint: The letter the pilgrim left for this village, kept all along by the librarian.
 fact.kalas.ledger-doubt.label: Doubting the Ledger
-fact.kalas.ledger-doubt.hint: Those who believed the ledger kept the truth are beginning, little by little, to show their cracks.
+fact.kalas.ledger-doubt.hint: "Those who believed the ledger kept the facts are beginning, little by little, to show their cracks."
 fact.kalas.elin-forgiven.label: Nia's Forgiveness
-fact.kalas.elin-forgiven.hint: The place where the scribe at last unbound the silence she kept. It was a letting-go instead of hatred.
+fact.kalas.elin-forgiven.hint: "The place where the scribe at last let go of the secret she kept. It was a letting-go instead of hatred."
 
 # --- Deduction ---
 deduction.honesty.sentence: Honesty is writing {1} not as {2} but as {3}
@@ -325,9 +325,9 @@ compassion.npc.grandmother.love.t: What is love? Sitting at the table. Whoever e
 
 # --- Reona clues ---
 compassion.word.sharing.label: Sharing
-compassion.word.sharing.hint: What the order of charity calls sharing. It keeps the giver and the receiver parted forever.
+compassion.word.sharing.hint: "The word the order of charity puts on its banners. It keeps the giver and the receiver parted forever."
 compassion.word.gift.label: Gift
-compassion.word.gift.hint: Rations come from above; gifts come from beside. The half-loaf a beggar received from a child.
+compassion.word.gift.hint: "Rations come from above; this comes from beside. The half-loaf a beggar received from a child."
 compassion.word.love.label: Love
 compassion.word.love.hint: The true principle of compassion. Not alms handed down from above, but sitting side by side and eating together.
 compassion.word.charity.label: Charity
@@ -349,7 +349,7 @@ compassion.fact.reona.plaza.hint: Where people line up before the storehouse. Ev
 compassion.fact.reona.chapel.label: The Chapel
 compassion.fact.reona.chapel.hint: Where the records of the old customs remain. It is written that the storehouse once had no door.
 compassion.fact.reona.song.label: The Wanderer's Song
-compassion.fact.reona.song.hint: Compassion does not lay a gift on top of sharing; it is being together in love. The people of Reona know only half of it.
+compassion.fact.reona.song.hint: "Reona's old song. It sings that compassion is not handed down from above but is staying beside one another. The people of Reona know only half of it."
 compassion.fact.reona.open-pantry.label: The Old Custom of the Open Storehouse
 compassion.fact.reona.open-pantry.hint: Reona's storehouse once had no door. The hungry walked in and took, and no one reproached them.
 compassion.fact.reona.relief-tax.label: The Failed Tax Reform
@@ -359,7 +359,7 @@ compassion.fact.creature.compassion-beggar.hint: Not evil — only hungry. His h
 
 # --- Reona deduction and crisis ---
 compassion.deduction.compassion.sentence: Compassion is not laying {2} on top of {1}, but being together through {3}
-compassion.deduction.compassion.hint: The order of charity puts sharing first. The wanderer's song sings love from the other side.
+compassion.deduction.compassion.hint: "Compare what the order of charity puts first with what the wanderer's song sings from the other side."
 compassion.crisis.hoard.text: People gather before the storehouse. The almoner begins sharing out bread, and when a child falls, no one reaches for them. The almoner speaks. If the order wavers no one receives anything; stand in line. Then, from far across the square, the wanderer's song is heard. Now it is your turn to step forward.
 compassion.option.open-pantry.label: Open the storehouse door and let everyone share together
 compassion.option.open-pantry.text: You sing along with the wanderer's song and read from the old record. The storehouse once had no door. The almoner's door opens, and people pass the bread among themselves. In a square where no seat of giver or receiver remains, everyone is full. The village learns that compassion is not laid on top of sharing, but kept together in love.
@@ -457,7 +457,7 @@ valor.fact.solgang.sergeant.hint: One who tends the barracks and makes the young
 valor.fact.solgang.veteran.label: Kel the Old Soldier
 valor.fact.solgang.veteran.hint: An old soldier who remembers only half of an old marching song. He lost the last line.
 valor.fact.solgang.smith.label: Bran the Blacksmith
-valor.fact.solgang.smith.hint: A maker of swords and shields. They say shield orders have dwindled of late.
+valor.fact.solgang.smith.hint: "A maker of swords and armor. They say orders for anything that guards the body have dwindled of late."
 valor.fact.solgang.arena.label: Solgang's Arena
 valor.fact.solgang.arena.hint: A sand floor that erases the names of the fallen and keeps only the name of the one standing.
 valor.fact.solgang.barracks.label: The Barracks
@@ -465,7 +465,7 @@ valor.fact.solgang.barracks.hint: Where the armor stays but the ones to fill it 
 valor.fact.solgang.forge.label: The Forge
 valor.fact.solgang.forge.hint: A furnace that never dies. What is forged there changes year by year.
 valor.fact.solgang.battle-hymn.label: The Old Marching Song
-valor.fact.solgang.battle-hymn.hint: If the enemy is ahead and your home behind, raise your shield. The last line sings of those who return.
+valor.fact.solgang.battle-hymn.hint: "An old song the soldiers of Solgang sing. The first lines sing of the enemy, the last of home. Hear it to the end."
 valor.fact.solgang.retreat-law.label: The Vanished Retreat Law
 valor.fact.solgang.retreat-law.hint: An old law that did not call a man a coward for bringing a wounded comrade home. It vanished somewhere along the way.
 valor.fact.creature.valor-duelist.label: The Wandering Duelist
@@ -606,13 +606,13 @@ justice.fact.seles.mourning-duty.hint: The hundred days of the old records. Not 
 justice.fact.seles.harsh-punishment.label: The Harsh Punishment
 justice.fact.seles.harsh-punishment.hint: Forty lashes for one song. Exile for entering the graves. The table's numbers grow every year.
 justice.fact.seles.comfort-widow.label: The Hand of Comfort
-justice.fact.seles.comfort-widow.hint: Sitting by the grave and listening to the song. When comfort stands before punishment, the scale finds its balance.
+justice.fact.seles.comfort-widow.hint: "Sitting by the grave and hearing the song out. When comfort stands before punishment, the scale finds its balance."
 justice.fact.creature.justice-mourner.label: The Grief-Stricken Mourner
 justice.fact.creature.justice-mourner.hint: Not evil. It is grief that makes him mistake a stranger for a thief. He is a person swallowed in mourning.
 
 # --- Seles deduction and crisis ---
 justice.deduction.justice.sentence: Justice is not blocking {2} in the name of {1}, but ruling through {3}
-justice.deduction.justice.hint: The judge's law keeps custom with punishment. What Seles lost is the balance of the scale. Set the scale with truth and rule with love, and justice is at last achieved.
+justice.deduction.justice.hint: "The judge's law keeps custom with punishment. What Seles lost is the balance of the scale. Look in the graveside song and the court records for what should set the scale and what should rule."
 justice.crisis.mourning.text: Moonlight runs cold before the courthouse. The widow Cele, who sang during mourning, and the youth Iren, who found a necklace at the grave, are dragged before the judge. The judge unfurls the verdict. The song broke custom; the grave yielded a thief. The punishment is fixed. The crowd holds its breath. A child bows her head, and the gravedigger looks toward the graves. Now it is your turn to step forward.
 justice.option.comfort-widow.label: Sing the lullaby to show the truth and offer comfort
 justice.option.comfort-widow.text: Before the courthouse, you sing the lullaby in a trembling voice. The moon lights the grave, and I sing your lullaby. The crowd stops breathing. The witness bows his head, and the priest takes out the old records and reads them. The month of mourning was not punishment but a time of being together. After a long silence, the judge folds the verdict. For the first time, Seles's scale takes up truth and love and finds its balance. Comfort is handed down instead of punishment.
@@ -735,7 +735,7 @@ sacrifice.fact.dione.widow-song.hint: The dawn song Leah sang with her husband. 
 sacrifice.fact.dione.martyr-contest.label: The Martyr Contest
 sacrifice.fact.dione.martyr-contest.hint: The altar's custom of competing over who offered more painfully. Wound lengths and fasting days are written as numbers.
 sacrifice.fact.dione.renunciation-law.label: The Law of Renunciation
-sacrifice.fact.dione.renunciation-law.hint: The law the altar commands. What you keep is greed; only empty hands are called love.
+sacrifice.fact.dione.renunciation-law.hint: "The law the altar commands. What you keep is greed; only empty hands are called a true heart."
 sacrifice.fact.dione.living-love.label: The Hearth's Love
 sacrifice.fact.dione.living-love.hint: Words carved into the old foundation. The fire was kept not by the place that stripped away, but by the place that filled every day.
 sacrifice.fact.creature.sacrifice-penitent.label: The Penitent of Repentance
@@ -743,7 +743,7 @@ sacrifice.fact.creature.sacrifice-penitent.hint: Not evil. One taught that holin
 
 # --- Dione deduction and crisis ---
 sacrifice.deduction.sacrifice.sentence: Sacrifice is not a {1} that swallows the self, but bearing {3} through {2}
-sacrifice.deduction.sacrifice.hint: The altar teaches burning the self in the name of devotion. The widow's song and the hearth's foundation point to a true sacrifice that is borne, not swallowed.
+sacrifice.deduction.sacrifice.hint: "The altar teaches burning the self in the name of something. The widow's song and the hearth's foundation point to a true sacrifice that is borne, not swallowed."
 sacrifice.crisis.altar.text: Villagers gather before the altar. Priest Kreon lifts little Rio's hand and cries out. Love is giving without reserve; only when the child is emptied entirely is it true sacrifice. Rio kneels with a frightened face. Behind them, widow Leah hides a half-loaf, and the pilgrim Ion grips his staff. Sane the surgeon bows his head, and Mir the recorder unrolls the ledger. Now it is your turn to step forward.
 sacrifice.option.open-altar.label: Sing the widow's song to show love and courage
 sacrifice.option.open-altar.text: "You sing the old song before the altar. Leah and little Rio add their voices. The priest shouts, but Harpa the mason pushes the altar stone aside to reveal the old hearth. On the foundation is carved: the fire that kept this village was not the altar but the hearth relit every evening. The priest wavers, and the villagers put down the cords they used to measure wounds. Dione learns that sacrifice is not devotion swallowing the self, but bearing courage in love. That evening, the fire is lit in the bakery instead of at the altar."
@@ -840,9 +840,9 @@ honor.npc.seamstress.widow.t: I have mended all of Lady Serin's clothes of late 
 
 # --- Argon clues ---
 honor.word.honor.label: Honor
-honor.word.honor.hint: What this village calls face and family rank. But the song's second verse sings a different honor.
+honor.word.honor.hint: "The name this village gives to face and family rank. But the song's second verse sings that same word another way."
 honor.word.shame.label: Shame
-honor.word.shame.hint: An insult weighs more than death. So the truth is hidden, and the kneeling lord was erased.
+honor.word.shame.hint: "An insult weighs more than death. So what really happened is hidden, and the kneeling lord was erased."
 honor.word.pride.label: Pride
 honor.word.pride.hint: A heart that seems greater not when raised by the sword but in the moment of kneeling.
 honor.word.face.label: Face
@@ -870,11 +870,11 @@ honor.fact.argon.humiliation-rule.hint: One who breaks face must kneel in apolog
 honor.fact.argon.kneeling-lord.label: The Kneeling Founder
 honor.fact.argon.kneeling-lord.hint: The first lord who knelt before an enemy's blade to save the village. The descendants sing of it turned into a boast.
 honor.fact.creature.honor-braggart.label: The Braggart Duelist
-honor.fact.creature.honor-braggart.hint: Evil. One who picks fights over face. Believing winning is honor, he lunges at anyone who offers a hilt.
+honor.fact.creature.honor-braggart.hint: "Evil. One who picks fights over face. Believing that winning is glory, he lunges at anyone who offers a hilt."
 
 # --- Argon deduction and crisis ---
 honor.deduction.honor.sentence: Honor is not a hardened face guarding {1}, but building {3} through {2}
-honor.deduction.honor.hint: "Argon calls face and family rank honor. But the song's second verse and the swordmaster say: keep the truth, and build honor with courage."
+honor.deduction.honor.hint: "Argon gives face and family rank one name. Hear the song's second verse and the swordmaster out to the end."
 honor.crisis.lineage.text: People of the square gather, ordered by house. Elder Beron raises the rank ledger high and cries out. In a seat meant to keep the house's name sits one who dishonored it. The heir Sion invented a song and insulted the founder. One who breaks face must kneel in apology or be struck from the name. Herald Luka unrolls the ledger, and the people hold their breath. The heir Sion does not kneel — he stands and lifts his head. Now it is your turn to step forward.
 honor.option.truth-lineage.label: Sing the second verse of the house song to the end and reveal the truth
 honor.option.truth-lineage.text: You break the silence and begin to sing the house song. First the first verse, the lord who never knelt that everyone knows. Then the lost second verse, the kneeling lord. The founder did not flee. To save everyone, he knelt before the enemy's blade. The child Arin joins in, and the widow Serin adds her voice. The swordmaster nods, and one by one the people of the square learn the second verse. The elder's ledger is lowered, and Sion does not apologize. Argon learns that honor lies not in hardening one's face, but in keeping the truth and building with courage.
@@ -1004,7 +1004,7 @@ spirituality.fact.creature.spirituality-fake-monk.hint: Evil. One who sells medi
 
 # --- Elia deduction and crisis ---
 spirituality.deduction.spirituality.sentence: Spirituality is hearing {1} and achieving {3} through {2}
-spirituality.deduction.spirituality.hint: The abbot's license left only the ritual and locked the mind. The true spirituality the hermit's breath song and the widow's song speak of is achieved when the three principles breathe together.
+spirituality.deduction.spirituality.hint: "The abbot's license left only the ritual and locked the mind. Hear the hermit's breath song and the widow's song for where true spirituality begins."
 spirituality.crisis.license.text: Villagers gather in the hall's front courtyard. Abbot Daru unfurls the license ledger and cries out. This village's meditation belongs to the credentialed. One who steps into the hall without a license commits apostasy. Today, the novice Ian takes the license exam. But he cannot pay the exam fee and stands before the door. Clerk Seon unrolls the ledger, healer Rua clenches her hands, and the hermit Pella hears all of it from the archive's shadow. The child Rine holds her breath, and gardener Hore bows his head. Now it is your turn to step forward.
 spirituality.option.open-meditation.label: Sing the hermit's breath song in silence and open the hall's door
 spirituality.option.open-meditation.text: You step forward and sing, without sound, the breath song you learned from the hermit. Hear the truth, in love, in courage. The novice Ian adds his voice, and the widow Ire continues it. Gardener Hore lays the garden herbs before the door, and healer Rua levels her breath. Clerk Seon draws out the old record that never left the ledger and reads it. True meditation was not in the license but in truth, love, and courage breathing together. Abbot Daru lowers the ledger, and the hall's door opens for the first time without a license. From that day, Elia is a village where anyone may sit quietly.
@@ -1084,19 +1084,19 @@ humility.npc.widow.listening.t: I listen quietly.
 
 # --- Heron clues ---
 humility.word.listening.label: Listening
-humility.word.listening.hint: Emptying rather than filling. Heard only when the ears open in silence.
+humility.word.listening.hint: "Emptying rather than filling. What happens only when the ears open where words have stopped."
 humility.word.three.label: The Three
-humility.word.three.hint: Truth, love, and courage. Humility begins in a place where those three are left empty.
+humility.word.three.hint: "A number written on one empty page in Heron's library. Humility begins in a place where all of them are left empty."
 humility.word.name.label: Name
-humility.word.name.hint: What Heron forbade. One who does not keep a name is imprisoned in the silence.
+humility.word.name.hint: "What Heron forbade. One who does not keep a name is imprisoned by the law of no words."
 humility.fact.heron.silent-elder.label: The Silent Elder
-humility.fact.heron.silent-elder.hint: The elder who keeps Heron's law of silence. He asks no names, and he demands names.
+humility.fact.heron.silent-elder.hint: "The elder who keeps Heron's wordless law. He asks no names, and he demands names."
 humility.fact.heron.listener.label: The Listener
 humility.fact.heron.listener.hint: One who sits wordless at the side of the square. The one in Heron who has heard the longest.
 humility.fact.heron.novice.label: The Novice
-humility.fact.heron.novice.hint: A youth learning the discipline of silence. Learning the way to forget names.
+humility.fact.heron.novice.hint: "A youth learning the discipline of holding words back. Learning the way to forget names."
 humility.fact.heron.hermit.label: The Hermit
-humility.fact.heron.hermit.hint: A hermit hidden in the woods at the village's edge. The only one who calls silence a 'place.'
+humility.fact.heron.hermit.hint: "A hermit hidden in the woods at the village's edge. The only one who calls the place where words end a 'place.'"
 humility.fact.heron.chapel-of-silence.label: The Chapel of Silence
 humility.fact.heron.chapel-of-silence.hint: A chapel built without words. Heron's center, kept by the elder.
 humility.fact.heron.library.label: The Empty Archive
@@ -1110,15 +1110,15 @@ humility.fact.heron.silent-chant.hint: A song sung without sounding it. The only
 humility.fact.heron.breathing-rhythm.label: The Rhythm of the Breath
 humility.fact.heron.breathing-rhythm.hint: The only rhythm Heron counts. Breathe in, hold, breathe out.
 humility.fact.heron.silence-rule.label: The Rule of Silence
-humility.fact.heron.silence-rule.hint: Heron's law. No one may speak their own name. The silence swallows all words.
+humility.fact.heron.silence-rule.hint: "Heron's law. No one may speak their own name. The hush swallows all words."
 humility.fact.heron.real-name.label: My Lost Name
-humility.fact.heron.real-name.hint: "The elder asks: what is your name? Only keeping the name can open the silence."
+humility.fact.heron.real-name.hint: "The elder asks: what is your name? Only keeping the name can open the closed mouths."
 humility.fact.creature.humility-silencer.label: The Warden of Silence
-humility.fact.creature.humility-silencer.hint: Not evil. A being that merely silences sound. Keeping the silence is its work.
+humility.fact.creature.humility-silencer.hint: "Not evil. A being that merely muffles sound. Keeping the hush is its work."
 
 # --- Heron deduction and crisis ---
 humility.deduction.humility.sentence: Humility is a place where you empty yourself before {1} and hear {3} through {2}
-humility.deduction.humility.hint: Heron is a village that left all three principles empty. Before the silence, with what can you hear what? If you kept your name, what remains behind is the emptying.
+humility.deduction.humility.hint: "Heron is a village that left every principle empty. Where words stop, what opens? The empty pages of the library tell the last one."
 humility.crisis.name.text: Villagers gather before the Chapel of Silence. The elder stands leaning on a nameless staff. 'I would now take away this village's last law. Long has a lock been kept on names. But the locking imprisoned us more. You, stranger. Speak your name. Then Heron's silence becomes an end, not a beginning.' Everyone holds their breath. Now it is your turn to open your mouth.
 humility.option.speak-name.label: Speak your own name and lift the law of silence
 humility.option.speak-name.text: You step forward and speak your name. The chapel echoes it. One by one, quietly, the people sing it back. The elder lays down his staff. 'A name is not for holding — it is for calling each other.' Heron's silence is reborn as a courtesy of opening the mouth. Humility is a place where the three are left empty, and after the emptying, a place where names are called again.

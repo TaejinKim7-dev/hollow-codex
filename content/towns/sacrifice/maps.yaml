@@ -29,5 +29,5 @@
   music: music.sacrifice
   encounters:
     - { at: [23, 17], id: enc.sacrifice.martyr }
-  enterFlags: []
+  enterFlags: [flag.town.sacrifice]
   heals: true
