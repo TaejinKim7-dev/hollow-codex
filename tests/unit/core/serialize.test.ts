@@ -105,8 +105,12 @@ describe("save format", () => {
       }
     })
     expect(deserialize(bad)).toEqual({ ok: false, reason: "corrupt" })
+    // A v2 save from M2-M4 has no codex at all: that is a real historical shape, so it migrates
+    // to the default codex instead of being rejected (fix wave item 1; was the data-loss bug).
     const missing = JSON.parse(bad) as { state: Record<string, unknown> }
     delete missing.state["codex"]
-    expect(deserialize(JSON.stringify(missing))).toEqual({ ok: false, reason: "corrupt" })
+    const migrated = deserialize(JSON.stringify(missing))
+    expect(migrated.ok).toBe(true)
+    if (migrated.ok) expect(migrated.state.codex).toEqual({ answers: {}, finalWord: null, finalOpen: false })
   })
 })

@@ -154,6 +154,8 @@ ui.credits.group.tiles: 타일
 ui.credits.group.music: 음악
 ui.credits.group.code: 코드
 ui.touch-hint: 터치로 이동
+ui.notice.load-failed: 저장을 읽지 못해 새로 시작합니다. 읽지 못한 저장은 덮어쓰지 않습니다.
+ui.notice.loaded: 불러왔습니다.
 ui.close: 닫기
 ui.recruit: 함께 가기
 ui.end-talk: 대화 끝내기

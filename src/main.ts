@@ -4,15 +4,15 @@ import credits from "virtual:credits"
 import { createChipPlayer } from "./audio/synth.ts"
 import { renderSfx, SFX } from "./audio/sfx.ts"
 import type { SfxParams } from "./audio/sfx.ts"
-import { createInitialState } from "./core/state.ts"
 import { step } from "./core/step.ts"
-import type { Command, GameEvent, GameState, Id, Pos, TimeState } from "./core/types.ts"
+import type { Command, GameEvent, GameState, Pos } from "./core/types.ts"
 import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
 import type { UiAction } from "./input/commands.ts"
 import { drawFrame } from "./render/canvas.ts"
 import { computeViewport, screenToTile } from "./render/viewport.ts"
 import { createIndexedDbSlotStore } from "./save/slot-store.ts"
-import { AUTO_SLOT, loadSlot, saveToSlot } from "./save/slots.ts"
+import { createSession } from "./save/session.ts"
+import type { SessionNotice } from "./save/session.ts"
 import type { SaidLine } from "./ui/view-model.ts"
 import { createDebugLog, debugEnabledFromUrl } from "./debug-log.ts"
 import { mountPanels } from "./ui/panels.ts"
@@ -50,6 +50,13 @@ for (const [id, sheet] of Object.entries(content.sheets)) {
 
 // ── 저장소와 오디오 ─────────────────────────────────────
 const store = createIndexedDbSlotStore(indexedDB)
+const session = createSession({
+  store,
+  content,
+  now: () => Date.now(),
+  seed: () => Date.now() >>> 0,
+  log: (event, data) => log.log(event, data)
+})
 const audio = new AudioContext()
 const player = createChipPlayer(audio)
 
@@ -102,27 +109,14 @@ function resize(): void {
 new ResizeObserver(resize).observe(canvas)
 
 // ── 대화 로그와 자동 저장 ───────────────────────────────
-/** 로드 결과에 time/rings가 없으면(예: 구형 세이브) 메모리에서 기본값을 채운다. 로드 실패로 만들지 않는다. */
-function ensureM2State(s: GameState): GameState {
-  const raw = s as unknown as {
-    readonly time?: TimeState
-    readonly rings?: { readonly visited?: readonly Id[]; readonly knownFacts?: readonly Id[] }
-  }
-  const time = raw.time
-  const rings = raw.rings
-  const okTime = time !== undefined && typeof time.hour === "number" && typeof time.day === "number"
-  const okRings = rings !== undefined && Array.isArray(rings.visited) && Array.isArray(rings.knownFacts)
-  if (okTime && okRings) return s
-  log.log("m2-defaults", { time: okTime, rings: okRings })
-  const safeTime: TimeState =
-    time !== undefined && typeof time.hour === "number" && typeof time.day === "number"
-      ? time
-      : { hour: 8, day: 1 }
-  const safeRings =
-    rings !== undefined && Array.isArray(rings.visited) && Array.isArray(rings.knownFacts)
-      ? { visited: rings.visited, knownFacts: rings.knownFacts }
-      : { visited: [] as readonly Id[], knownFacts: [] as readonly Id[] }
-  return { ...s, time: safeTime, rings: safeRings }
+/** 화면을 막지 않는 짧은 안내. 문구는 ui.notice.<name> 키다. */
+function showNotice(name: SessionNotice): void {
+  const node = document.createElement("div")
+  node.className = "notice"
+  node.setAttribute("role", "status")
+  node.textContent = t(state?.language ?? "ko", content.strings, `ui.notice.${name}`)
+  document.body.appendChild(node)
+  window.setTimeout(() => node.remove(), 4000)
 }
 
 function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
@@ -133,7 +127,7 @@ function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
     )
   if (triggered) {
     lastAutoTurn = next.turn
-    void saveToSlot(store, AUTO_SLOT, "auto", next, Date.now())
+    void session.autosave(next)
   }
 }
 
@@ -265,19 +259,9 @@ function dispatch(cmd: Command | UiAction): void {
 
 // ── 부팅 ────────────────────────────────────────────────
 async function main(): Promise<void> {
-  let s: GameState
-  const loaded = await loadSlot(store, AUTO_SLOT)
-  if (loaded === null) {
-    s = createInitialState(content, Date.now() >>> 0)
-    log.log("new-game", { map: s.mapId })
-  } else if (loaded.ok) {
-    s = loaded.state
-    log.log("load-auto", { map: s.mapId, turn: s.turn })
-  } else {
-    log.log("load-failed", loaded.reason)
-    s = createInitialState(content, Date.now() >>> 0)
-  }
-  s = ensureM2State(s)
+  const boot = await session.boot()
+  const s = boot.state
+  log.log("boot-state", { map: s.mapId, turn: s.turn, notices: boot.notices })
   state = s
   lastAutoTurn = s.turn
   canvas.setAttribute("aria-label", t(s.language, content.strings, "ui.aria.canvas"))
@@ -327,6 +311,7 @@ async function main(): Promise<void> {
   document.getElementById("boot-title")?.remove()
   resize()
   scheduleFrame()
+  for (const notice of boot.notices) showNotice(notice)
   log.log("ready", { map: s.mapId, turn: s.turn })
 }
 

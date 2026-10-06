@@ -469,3 +469,18 @@ summary:focus-visible {
   left: 8px;
   top: 8px;
 }
+/* 저장·불러오기 안내: 화면을 막지 않고 잠깐 떠 있다가 사라진다. */
+.notice {
+  position: fixed;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  z-index: 70;
+  max-width: min(92vw, 520px);
+  padding: 8px 14px;
+  color: #eceaf2;
+  background: rgb(8 8 12 / 0.9);
+  border: 1px solid #6a5f3a;
+  border-radius: 4px;
+  pointer-events: none;
+}

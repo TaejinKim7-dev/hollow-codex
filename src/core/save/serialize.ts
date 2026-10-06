@@ -23,25 +23,27 @@ function defaultCodex(): { answers: Record<string, string>; finalWord: null; fin
   return { answers: {}, finalWord: null, finalOpen: false }
 }
 
-/** M1 저장에는 time/rings/codex가 없다. 기본값을 붙여 현재 모양으로 만든다. */
-export function migrateV1ToV2(state: unknown): unknown {
+/**
+ * 이전 형식에 없던 필드를 모두 기본값으로 채운다. 버전과 무관하게 여러 번 불러도 같다(idempotent).
+ * - v1(M1): time, rings, codex, language가 없다.
+ * - v2(M2–M4): codex, language가 없다. v2(M5–M6): language가 없다.
+ * 새 필드를 GameState에 더하면 여기에도 기본값을 더한다.
+ */
+export function fillMissingFields(state: unknown): unknown {
   if (!isObject(state)) return state
   return {
     ...state,
     time: state["time"] === undefined ? defaultTime() : state["time"],
     rings: state["rings"] === undefined ? defaultRings() : state["rings"],
-    codex: state["codex"] === undefined ? defaultCodex() : state["codex"]
-  }
-}
-
-/** v2 저장에는 language가 없다. 기본값 ko를 붙인다 (영문 i18n 추가). */
-export function migrateV2ToV3(state: unknown): unknown {
-  if (!isObject(state)) return state
-  return {
-    ...state,
+    codex: state["codex"] === undefined ? defaultCodex() : state["codex"],
     language: state["language"] === undefined ? "ko" : state["language"]
   }
 }
+
+/** v1 → v2. 빠진 필드를 모두 채운다. */
+export const migrateV1ToV2 = fillMissingFields
+/** v2 → v3. 빠진 필드를 모두 채운다(M2–M4 v2 저장에는 codex도 없다). */
+export const migrateV2ToV3 = fillMissingFields
 
 /** 저장 형식이 올라갈 때마다 이전 버전의 state를 다음 버전으로 바꾸는 함수를 여기에 등록한다. */
 export const MIGRATIONS: Readonly<Record<number, (s: unknown) => unknown>> = { 1: migrateV1ToV2, 2: migrateV2ToV3 }
