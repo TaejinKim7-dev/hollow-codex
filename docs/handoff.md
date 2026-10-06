@@ -64,3 +64,26 @@ claude                                             # 새 세션: CLAUDE.md → H
 - **사용자 확인 요청**: https://taejinkim7-dev.github.io/hollow-codex/ 에서 제목 "빈 경전"이 Neo둥근모 글꼴로 보이는지.
 - 참고: `npm ci`가 dev 의존성 취약점 6건을 알린다(배포 번들에는 들어가지 않는 개발 도구). 아직 조사하지 않았다.
 - 다음: M1(Task 5–16)을 `todo-2-kalas` 브랜치에서.
+
+## 2026-10-06 M1 완료 (Task 5–16)
+- 구현은 `todo-2-kalas`에서 7커밋으로 진행(서브에이전트 병렬):
+  - `b31c3f9`·`90b33b0`·`2513b1d`·`09615b8`·`624e085`·`53effb2` (Task 5–10, core)
+  - `2f0a470` Task 11 saves · `b8506ea` Task 12 render+input · `5e5e84e` Task 13a UI view-model · `7dcd11d` Task 14 audio · `ad9825d` Task 15 Kalas 콘텐츠 · `a1bf7b0` Task 13b UI 패널 마운트 · `9f5d190` Task 16 통합·시나리오·e2e.
+- merge 게이트(HEAD `9f5d190`, 메인 직접): `npm run test:unit` 0 (24 files, **160 passed**) · `typecheck` 0 · `check:content` 0 (`ok (3 maps, 11 npcs, 20 facts, 6 ledger files)`) · `build` 0 (6 files, 132597 bytes) · `audit:dist` 0 · `git diff --check` 0. e2e 1 passed.
+- main push → Actions run `37408364502` build·deploy success.
+- `https://taejinkim7-dev.github.io/hollow-codex/` → HTTP 200, `<title>빈 경전</title>`.
+- **사용자 확인 요청 (M1 §8.1 9개 체크리스트)**: dev 서버 `http://localhost:5173/hollow-codex/` 또는 위 Pages URL에서 PC·모바일로 **칼라스 두 갈래(truth / lantern)를 끝까지 플레이**.
+  - [ ] 부팅 후 로딩·콘솔 에러 0
+  - [ ] 시야·타일 스케일·Neo둥근모 글꼴
+  - [ ] 필드 이동·다리에서 늑대 전투(밀어/공격 모두 동작)
+  - [ ] 칼라스 도착·NPC 대화·선택지·위기 선택
+  - [ ] 추론 3칸 확정·능력 "거짓을 보는 눈" 해금
+  - [ ] 옛 서고·도굴꾼 전투 승리
+  - [ ] 저장/자동저장(브라우저 IndexedDB) 동작
+  - [ ] 음악·효과음(브라우저 첫 클릭/키 입력 후)
+  - [ ] 모바일 터치로 한 갈래 끝까지
+- 판정(계속 / 방향 수정 / 중단)을 회신해 주면, 그에 맞춰 M2 계획을 작성한다.
+- **알려진 주의**: 타일 인덱스(특히 풀·나무·문·계단)와 La Mourisque 편곡은 모델이 PNG를 직접 보지 못해 색·셰이프 분석으로 추정했다. 화면에서 어색하면 `content/tiles.yaml` 한 줄씩 인덱스 보정 필요.
+- 다음: 사용자 플레이 판정 후 M2 계획 작성.
+
+(End of file)
