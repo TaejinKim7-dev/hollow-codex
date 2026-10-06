@@ -37,9 +37,15 @@ export function canRecruit(state: GameState, content: GameContent, npcId: Id): b
   return needs.every((id) => state.facts.includes(id))
 }
 
-/** recruit 명령: 그 NPC와 대화 중이고 canRecruit일 때만. 아니면 무시. */
+/** recruit 명령: 그 NPC와 대화 중이고 canRecruit일 때만. 아니면 무시. 파티가 가득 차면(D5) 거부한다. */
 export function recruit(state: GameState, npcId: Id, content: GameContent): StepResult {
-  if (state.dialogue?.npcId !== npcId || !canRecruit(state, content, npcId)) return { state, events: [] }
+  if (state.dialogue?.npcId !== npcId) return { state, events: [] }
+  if (content.npcs[npcId]?.companion === undefined) return { state, events: [] }
+  if (state.party.includes(npcId)) return { state, events: [] }
+  if (state.party.length >= MAX_PARTY) {
+    return { state, events: [{ type: "companionJoinRejected", npcId }] }
+  }
+  if (!canRecruit(state, content, npcId)) return { state, events: [] }
   return {
     state: {
       ...state,

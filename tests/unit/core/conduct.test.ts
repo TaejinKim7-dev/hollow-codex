@@ -46,7 +46,9 @@ describe("conduct and companions", () => {
     const crowd = { ...c, npcs: { ...c.npcs, "npc.c1": ally, "npc.c2": ally, "npc.c3": ally } }
     const full = withAlly({ facts: ["fact.secret"], party: ["npc.c1", "npc.c2", "npc.c3"], joinedAt: { "npc.c1": 0, "npc.c2": 0, "npc.c3": 0 } })
     expect(canRecruit(full, crowd, "npc.ally")).toBe(false)
-    expect(step(full, { type: "recruit", npcId: "npc.ally" }, crowd).events).toEqual([])
+    const rejected = step(full, { type: "recruit", npcId: "npc.ally" }, crowd)
+    expect(rejected.events).toEqual([{ type: "companionJoinRejected", npcId: "npc.ally" }])
+    expect(rejected.state).toBe(full)
   })
   it("a choice deed goes through recordDeed", () => {
     const sage = c.npcs["npc.sage"]!
