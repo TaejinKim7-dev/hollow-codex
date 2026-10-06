@@ -358,7 +358,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - **M0–M6 전 마일스톤 완료** + 영어 i18n 보너스.
 - **버전**: 0.1.0 (출시 가능)
 - **코드**: 16,000+ lines (src + tests + scripts + docs)
-- **테스트**: **282 passed** (단위 273 + 시나리오 + e2e 1)
+- **테스트**: **282 passed** (단위 273 + 시나리오 + e2e 1) — 수정 웨이브 뒤 현재 값은 맨 아래 "수정 웨이브" 절(350 passed)을 본다.
 - **콘텐츠**: 12 maps · 81 npcs · 140 facts · 15 ledger files
 - **자산**: Kenney Tiny Town (CC0) + Kenney Tiny Dungeon (CC0) + Neo둥근모 (OFL) + Greensleeves/Susato 편곡 7곡 + 자작 1곡
 - **기능**: 8 마을 (정직·연민·용맹·정의·희생·명예·영성·겸손) + 봉인 서고 + 빈 경전 8쪽 + 3종 에필로그 + 열석 순간이동 + NPC 일과 + 자동 저장 (v3 세이브) + PWA 설치·오프라인 + 접근성(ARIA + focus-visible + skip link) + 모바일 터치 + 영어/한국어 토글
@@ -381,21 +381,22 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 | 1 | 옛 저장(v1, M2–M4 v2, M5 v2)의 빠진 필드를 모두 채운다. 불러온 상태에 content의 추론 페이지를 더한다(`normalizeLoaded`). 읽지 못한 슬롯은 `auto-unreadable-<ts>`로 복사하고, 새 게임이나 불러오기 성공 전까지 자동 저장이 덮어쓰지 않는다. 화면 안내 `ui.notice.load-failed` | `2e2e508` |
 | 2 | IndexedDB가 없거나 거부되면 메모리 저장소와 새 게임으로 부팅한다(안내 표시). 자동 저장 실패는 처리되지 않은 rejection을 남기지 않는다 | `752aa83` |
 | 3 | 메뉴 저장·불러오기·새 시작이 동작한다(auto와 슬롯 1–3, 새 시작은 확인을 받는다) | `81260cc` |
-| 4 | 고리 이동: `ringStep { to }`. 고리 위(또는 통행 불가 고리 돌 옆)에서만, 알려진 다른 고리로만 간다. 지도가 바뀌면 `mapChanged`와 `music`을 낸다 | `d55f10c` |
+| 4 | 고리 이동: `ringStep { to }`. 고리 위(또는 통행 불가 고리 돌 옆)에서만, 알려진 다른 고리로만 간다. 지도가 바뀌면 `mapChanged`와 `music`을 낸다. 고리 위(옆)에 걸어가 서기만 해도 발자국(`visited`)이 남는다 — 콘텐츠에 고리 단서를 주는 NPC가 없어서, 이것이 없으면 봉인 서고에 실제 플레이로 갈 수 없었다(시나리오 `m5-seal-on-foot`로 확인) | `d55f10c`, `039c939` |
 | 5 | 경전 쪽은 서고 안에서, 확정한 추론의 아는 단어로만 적는다. 쪽마다 받는 단어는 content의 `codexWord`(컴파일러 검증)로 옮겼다 | `d116d50` |
 | 6 | 에필로그 화면이 고른 단어의 제목·머리말·마을 메시지 8개를 보여 준다 | `3d6ced8` |
 | 7 | NPC 일과(`schedule`)를 컴파일하고 검증한다(칸, 출구·조우 칸, 같은 시간대 겹침). 그리기와 막힘·대화가 일과를 따른다. 시나리오 헬퍼를 시간에 맞게 고쳤다. 희생 마을 치유사의 18시 칸이 외과의와 겹쳐 고쳤다 | `c71f61f` |
-| 8 | 힌트 탭: 들른 마을(`flag.town.<마을>`)의 힌트만, 키가 아니라 문구로 보인다. 정답 단어를 말하던 힌트 ko 31개·en 32개와 영성 추론 힌트를 고쳐 썼다 | `5599461` |
+| 8 | 힌트 탭: 들른 마을(`flag.town.<마을>`)의 힌트만, 키가 아니라 문구로 보인다. 정답 단어를 말하던 힌트를 고쳐 썼다 — ko 33개(걸린 32개 + 영성 추론 힌트), en 31개(영성 추론 힌트 포함). 커밋 `5599461` 메시지의 "31 ko / 32 en"은 순서가 뒤바뀐 오기다. 옛 저장은 아는 단서·푼 위기로 들른 마을 깃발을 추정한다 | `5599461`, `0b3f04b` |
 | 9 | 전투 중 탭은 전투 격자 뷰포트로 칸을 구한다(`frameViewport`·`tileAtPointer`) | `0ecf707` |
 | 10 | 금지어: 라틴 항목의 복수·소유격 꼴을 잡고, `src/`·`tests/`·`scripts/`의 파일 이름과 내용을 검사한다. 걸린 고리 콘텐츠 파일·타입 이름을 `content/rings.yaml`·`GameContent.rings`·`RingDef`로 바꿨다. 동작은 같다 | `dae9a24` |
 
-- 최종 게이트(HEAD `dae9a24` + 이 문서 커밋 전, 직접 실행): `npm run test:unit` 0 (57 files, **345 passed**) · `npm run typecheck` 0 · `npm run check:content` 0 (`ok (12 maps, 81 npcs, 140 facts, 15 ledger files, 116 src/tests/scripts files scanned)`) · `npm run build` 0 (precache 14 entries / 481.93 KiB) · `npm run audit:dist` 0 (`ok (13 files, 525371 bytes)`) · `git diff --check` 0. `npm ci`는 이번에 돌리지 않았다. e2e는 정책대로 돌리지 않았다.
+- 최종 게이트(HEAD `0b3f04b`, 직접 실행): `npm run test:unit` 0 (58 files, **350 passed**) · `npm run typecheck` 0 · `npm run check:content` 0 (`ok (12 maps, 81 npcs, 140 facts, 15 ledger files, 117 src/tests/scripts files scanned)`) · `npm run build` 0 (precache 14 entries / 482.69 KiB) · `npm run audit:dist` 0 (`ok (13 files, 526147 bytes)`) · `git diff --check` 0. `npm ci`는 이번에 돌리지 않았다. e2e는 정책대로 돌리지 않았다.
 - **알려진 한계 (이번 웨이브에서 손대지 않음, 코드로 확인함)**:
   - 동료는 콘텐츠에 칼라스의 1명(엘린)뿐이다(설계는 8명). `m2-party` 시나리오는 동료가 아닌 NPC로 파티를 채운다.
   - 열리는 능력 7개 중 효과가 있는 것은 `ability.see-lies` 하나다. 능력 목록 화면도 없다.
   - 에필로그는 마지막 장 단어로만 정해지고, 마을 위기 선택은 반영되지 않는다.
-  - 경전 쪽은 정해진 한 단어만 받고, 틀린 단어에는 안내가 없다. 봉인 해제 조건은 여전히 "고리 7개 방문"이다(이제 실제로 고리에 서서 이동해야 쌓인다).
+  - 경전 쪽은 정해진 한 단어만 받고, 틀린 단어에는 안내가 없다. 봉인 해제 조건은 여전히 "고리 7개 방문(발자국)"이다.
+  - 고리 단서(`fact.ring.*`)를 주는 NPC 대사가 콘텐츠에 없다. 그래서 고리 순간이동은 실제 플레이에서 열리지 않는다(걸어서 고리를 밟는 것은 된다).
   - 일과 때문에 칼라스 고발청 안의 엘린은 18–23시에 닿을 수 없다(고발관장이 문 안쪽 칸에 선다). 시간대가 바뀔 때 NPC가 플레이어가 선 칸으로 옮겨 겹쳐 보일 수 있다. 컴파일러는 모르는 YAML 키를 아직 거부하지 않는다.
-  - IndexedDB가 안 되면 저장은 그 탭 안에서만 남는다. `AudioContext`는 여전히 모듈을 읽을 때 만든다.
+  - IndexedDB가 안 되면 저장은 그 탭 안에서만 남는다. `indexedDB.open`이 끝나지 않고 멈추는 경우(`onblocked`, 시간 제한 없음)는 다루지 않았다. `AudioContext`는 여전히 모듈을 읽을 때 만든다.
   - M1 사용자 플레이 판정은 여전히 기록되지 않았다.
 - **확인 필요(사람)**: 브라우저에서 메뉴 저장·불러오기·새 시작, 고리 메뉴(고리 위/밖), 전투 탭, 에필로그 화면, NPC가 시간대마다 옮겨 서는 모습.
