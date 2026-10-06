@@ -194,6 +194,8 @@ ui.day-hour: "{day} day, {hour}:00"
 ui.open-rings: Rings
 ui.no-rings: You don't know any rings yet.
 ui.ring-travel: Travel
+ui.ring-not-here: Stand on a ring (or right next to its stone) to travel.
+ui.ring-here: "You stand at {name}."
 ui.language: Language
 
 # --- Accessibility (M6 Task 46) ---

@@ -131,7 +131,7 @@ function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
   const triggered =
     next.turn - lastAutoTurn >= 50 ||
     events.some((e) =>
-      e.type === "mapChanged" || e.type === "crisisResolved" || e.type === "combatEnded" || e.type === "dayPassed"
+      e.type === "mapChanged" || e.type === "ringTraveled" || e.type === "crisisResolved" || e.type === "combatEnded" || e.type === "dayPassed"
     )
   if (triggered) {
     lastAutoTurn = next.turn

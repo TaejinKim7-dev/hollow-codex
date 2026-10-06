@@ -56,7 +56,7 @@ export function step(state: GameState, command: Command, content: GameContent): 
     case "moveTo":
       return moveTo(state, command.target, content)
     case "ringStep":
-      return ringTravel(state, command.at, content)
+      return ringTravel(state, command.to, content)
     case "fillSlot":
       return fillSlot(state, command.deductionId, command.slot, command.word, content)
     case "writeCodex":

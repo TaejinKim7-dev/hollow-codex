@@ -1,31 +1,75 @@
 import type { GameContent } from "../../content/types.ts"
-import type { GameState, Id, StepResult } from "../types.ts"
-import { addSorted } from "../state.ts"
+import type { GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
+import { addSorted, samePos } from "../state.ts"
+import { DIRS, offset, tileAt } from "./path.ts"
+
+const adjacent = (a: Pos, b: Pos): boolean => Math.abs(a.x - b.x) + Math.abs(a.y - b.y) === 1
 
 /**
- * 열석 고리 사용 (D9, D10). 고리 칸에서 실행되는 ringStep 명령을 처리한다.
- * - 알려진 fact가 하나라도 있으면 현재 고리를 visited(정렬·중복 없음)에 기록한다.
- * - 도착 후보 = 현재 고리와 다르고, 도착 fact를 아는 고리. 결정적으로 첫 후보를 고른다.
- * - 알려진 fact가 없거나 후보가 없으면 이동하지 않는다.
- * - 모르는 고리 id는 무시(같은 state, 이벤트 0).
+ * 플레이어가 서 있는 고리(D9). 고리 칸 위, 또는 고리 돌이 통행 불가일 때 그 바로 옆(상하좌우)이면 그 고리다.
+ * 고리 칸 위가 옆보다 우선이고, 같은 순위면 content 순서상 처음 것. 같은 지도(onOverworld)만 본다.
  */
-export function ringTravel(state: GameState, ringId: Id, content: GameContent): StepResult {
-  const gate = content.moongates[ringId]
-  if (gate === undefined || state.rings.knownFacts.length === 0) return { state, events: [] }
-  const visited = addSorted(state.rings.visited, [ringId])
-  const candidates = Object.entries(content.moongates).filter(([id, g]) =>
-    id !== ringId && state.rings.knownFacts.includes(g.fact)
-  )
-  const first = candidates[0]
-  if (first === undefined) return { state: { ...state, rings: { ...state.rings, visited } }, events: [] }
-  const [toId, toGate] = first
-  return {
-    state: {
-      ...state,
-      mapId: toGate.onOverworld,
-      player: { ...state.player, pos: toGate.at },
-      rings: { ...state.rings, visited }
-    },
-    events: [{ type: "ringTraveled", from: ringId, to: toId }]
+export function ringHere(state: GameState, content: GameContent): Id | null {
+  const here = Object.entries(content.moongates).filter(([, g]) => g.onOverworld === state.mapId)
+  const on = here.find(([, g]) => samePos(g.at, state.player.pos))
+  if (on !== undefined) return on[0]
+  const next = here.find(([, g]) => tileAt(content, g.onOverworld, g.at)?.walk === null && adjacent(g.at, state.player.pos))
+  return next === undefined ? null : next[0]
+}
+
+/** 도착 칸: 고리 칸이 걸을 수 있으면 그 칸, 아니면 걸을 수 있고 출구·조우·NPC가 없는 첫 이웃(n, e, s, w). */
+function arrivalCell(content: GameContent, mapId: Id, at: Pos): Pos | null {
+  const map = content.maps[mapId]
+  if (map === undefined) return null
+  const walkable = (p: Pos): boolean => {
+    const tile = tileAt(content, mapId, p)
+    return tile !== null && tile.walk !== null
   }
+  const free = (p: Pos): boolean =>
+    walkable(p) &&
+    !map.exits.some((e) => samePos(e.at, p)) &&
+    !map.encounters.some((e) => samePos(e.at, p)) &&
+    !Object.values(content.npcs).some((n) => n.map === mapId && samePos(n.pos, p))
+  if (walkable(at)) return at
+  for (const dir of DIRS) {
+    const p = offset(at, dir)
+    if (free(p)) return p
+  }
+  return null
+}
+
+/**
+ * 열석 고리로 이동한다 (D9, D10). `toId` = 고른 도착 고리.
+ * - 플레이어가 고리 위(또는 고리 돌 옆)에 서 있어야 한다. 아니면 무시.
+ * - 도착 고리는 content에 있고, 지금 고리와 다르고, 그 fact를 알아야 한다. 아니면 무시(같은 state, 이벤트 0).
+ * - 출발·도착 고리를 visited(정렬·중복 없음)에 기록한다.
+ * - 지도가 바뀌면 mapChanged·music을 내고, 도착 지도의 enterFlags·heals를 적용한다(출구로 들어갈 때와 같다).
+ */
+export function ringTravel(state: GameState, toId: Id, content: GameContent): StepResult {
+  const ignored: StepResult = { state, events: [] }
+  const fromId = ringHere(state, content)
+  const dest = content.moongates[toId]
+  if (fromId === null || dest === undefined || fromId === toId) return ignored
+  if (!state.rings.knownFacts.includes(dest.fact)) return ignored
+  const destMap = content.maps[dest.onOverworld]
+  const pos = arrivalCell(content, dest.onOverworld, dest.at)
+  if (destMap === undefined || pos === null) return ignored
+
+  const visited = addSorted(state.rings.visited, [fromId, toId])
+  const events: GameEvent[] = [{ type: "ringTraveled", from: fromId, to: toId }]
+  let next: GameState = {
+    ...state,
+    player: { ...state.player, pos },
+    rings: { ...state.rings, visited }
+  }
+  if (dest.onOverworld !== state.mapId) {
+    next = {
+      ...next,
+      mapId: dest.onOverworld,
+      player: { ...next.player, hp: destMap.heals ? next.player.maxHp : next.player.hp },
+      flags: addSorted(state.flags, destMap.enterFlags)
+    }
+    events.push({ type: "mapChanged", mapId: dest.onOverworld }, { type: "music", track: destMap.music })
+  }
+  return { state: next, events }
 }

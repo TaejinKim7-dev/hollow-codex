@@ -192,6 +192,8 @@ ui.day-hour: "{day}일차 {hour}시"
 ui.open-rings: 고리
 ui.no-rings: 아직 고리를 모릅니다.
 ui.ring-travel: 이동
+ui.ring-not-here: 고리 위(또는 고리 돌 바로 옆)에 서야 이동할 수 있습니다.
+ui.ring-here: "지금 {name} 위에 서 있습니다."
 ui.language: 언어
 
 # --- 접근성 (M6 Task 46) ---

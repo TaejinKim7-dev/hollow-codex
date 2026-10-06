@@ -6,6 +6,7 @@ import { crisisOptions } from "../core/crisis/crisis.ts"
 import { CODEX_PAGES } from "../core/codex/codex.ts"
 import { openHints } from "../core/knowledge/notebook.ts"
 import { canRecruit } from "../core/virtue/conduct.ts"
+import { ringHere } from "../core/world/ring.ts"
 import { t } from "./strings.ts"
 
 /** 대화 기록 한 줄. 상태에 없으므로 UI가 said 이벤트를 모아 log로 가진다. */
@@ -38,6 +39,23 @@ export interface CodexView {
   finalOpen: boolean
   finalWord: string | null
   finalChoices: { id: Id; label: string }[]
+}
+
+/** 열석 고리 메뉴. here = 지금 서 있는 고리 이름(아니면 null). 이동은 고리 위에서만, 지금 고리는 목록에서 빠진다. */
+export interface RingsView {
+  here: string | null
+  rings: { id: Id; name: string; song: string; canTravel: boolean }[]
+}
+
+export function ringsView(state: GameState, content: GameContent): RingsView {
+  const s = content.strings
+  const lang = state.language
+  const hereId = ringHere(state, content)
+  const here = hereId === null ? null : t(lang, s, content.moongates[hereId]?.nameKey ?? hereId)
+  const rings = Object.entries(content.moongates)
+    .filter(([id, g]) => id !== hereId && state.rings.knownFacts.includes(g.fact))
+    .map(([id, g]) => ({ id, name: t(lang, s, g.nameKey), song: t(lang, s, g.songKey), canTravel: hereId !== null }))
+  return { here, rings }
 }
 
 const FINAL_WORD_IDS: readonly Id[] = ["word.truth", "word.love", "word.courage"]

@@ -9,7 +9,7 @@ import type { UiAction } from "../input/commands.ts"
 import { computeViewport, screenToTile } from "../render/viewport.ts"
 import { offset } from "../core/world/path.ts"
 import { t } from "./strings.ts"
-import { combatView, codexView, dialogueView, notebookView, type NotebookView, type SaidLine } from "./view-model.ts"
+import { combatView, codexView, dialogueView, notebookView, ringsView, type NotebookView, type SaidLine } from "./view-model.ts"
 
 type TabName = "facts" | "deductions" | "hints"
 /** 방향 대기 상태(panels 안의 지역 상태). move는 칸 대기, 나머지는 방향 대기. */
@@ -533,24 +533,24 @@ export function mountPanels(
   const ringsList = make("div", "rings")
   ringsMenu.append(ringsHeader, ringsList)
 
-  /** state.rings.knownFacts로 열린 고리(songKey 아는 고리)를 나열한다. 없으면 안내 문구. */
+  /** 알려진 고리(fact를 아는 고리)를 나열한다. 고리 위에 서 있을 때만 이동 버튼이 켜진다. */
   const renderRings = (next: GameState): void => {
-    const available = Object.entries(content.moongates).filter(([, g]) =>
-      next.rings.knownFacts.includes(g.fact)
-    )
+    const view = ringsView(next, content)
     ringsList.replaceChildren()
-    if (available.length === 0) {
+    ringsList.appendChild(make("p", "here", view.here === null ? tr("ui.ring-not-here") : tr("ui.ring-here", { name: view.here })))
+    if (view.rings.length === 0) {
       ringsList.appendChild(make("p", "empty", tr("ui.no-rings")))
       return
     }
-    for (const [ringId, gate] of available) {
+    for (const ring of view.rings) {
       const row = make("div", "ring")
-      row.appendChild(make("span", "name", tr(gate.nameKey)))
-      row.appendChild(make("span", "song", tr(gate.songKey)))
+      row.appendChild(make("span", "name", ring.name))
+      row.appendChild(make("span", "song", ring.song))
       const go = make("button", "travel", tr("ui.ring-travel"))
-      go.setAttribute("aria-label", tr("ui.aria.travel", { name: tr(gate.nameKey) }))
+      go.setAttribute("aria-label", tr("ui.aria.travel", { name: ring.name }))
+      go.disabled = !ring.canTravel
       go.addEventListener("click", () => {
-        dispatch({ type: "ringStep", at: ringId })
+        dispatch({ type: "ringStep", to: ring.id })
         ringsMenu.hidden = true
         syncChrome()
       })

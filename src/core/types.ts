@@ -24,7 +24,7 @@ export type Command =
   | { type: "fillSlot"; deductionId: Id; slot: number; word: Id | null }
   | { type: "resolveCrisis"; crisisId: Id; optionId: Id } | { type: "recruit"; npcId: Id }
   | { type: "combat"; action: CombatAction }
-  | { type: "ringStep"; at: Id }
+  | { type: "ringStep"; to: Id }
   | { type: "setLanguage"; language: "ko" | "en" }
   | { type: "writeCodex"; deductionId: Id; word: Id }
   | { type: "writeFinal"; word: Id }
