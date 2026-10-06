@@ -67,7 +67,7 @@ export function ask(state: GameState, topic: string, content: GameContent): Step
   if (variant === null) return { state, events: [said(npcId, UNKNOWN_KEY, false)] }
 
   const flagged = { ...state, flags: addSorted(state.flags, variant.setsFlags ?? []) }
-  const learned = learn(flagged, variant.grants ?? [])
+  const learned = learn(flagged, variant.grants ?? [], content)
   const next = variant.choice !== undefined
     ? { ...learned.state, dialogue: { npcId, pendingChoice: topic } }
     : learned.state
@@ -86,7 +86,7 @@ export function choose(state: GameState, optionId: Id, content: GameContent): St
   if (option === undefined) return ignored
 
   const flagged = { ...state, flags: addSorted(state.flags, option.setsFlags ?? []) }
-  const learned = learn(flagged, option.grants ?? [])
+  const learned = learn(flagged, option.grants ?? [], content)
   const events: GameEvent[] = [said(npcId, option.textKey, false), ...learned.events]
   let next: GameState = { ...learned.state, dialogue: { npcId, pendingChoice: null } }
   if (option.deed !== undefined) {

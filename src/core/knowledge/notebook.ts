@@ -3,14 +3,27 @@ import type { GameEvent, GameState, Id, StepResult } from "../types.ts"
 import { crisisOptions } from "../crisis/crisis.ts"
 import { addSorted } from "../state.ts"
 
-/** 모르는 단서만 수첩에 더한다(정렬 유지). 새로 배운 것마다 factLearned(입력 순서). */
-export function learn(state: GameState, ids: readonly Id[]): StepResult {
+/**
+ * 모르는 단서만 수첩에 더한다(정렬 유지). 새로 배운 것마다 factLearned(입력 순서).
+ * 그 단서를 fact로 쓰는 열석 고리(content.moongates 첫 일치)가 있으면 knownFacts에 자동 추가하고 ringUnlocked를 낸다.
+ * 이미 아는 단서는 다시 배울 수 없다(변화 없음 → 이벤트 없음).
+ */
+export function learn(state: GameState, ids: readonly Id[], content: GameContent): StepResult {
   const fresh = [...new Set(ids)].filter((id) => !state.facts.includes(id))
   if (fresh.length === 0) return { state, events: [] }
-  return {
-    state: { ...state, facts: addSorted(state.facts, fresh) },
-    events: fresh.map((id): GameEvent => ({ type: "factLearned", id }))
+
+  const events: GameEvent[] = []
+  let knownFacts = state.rings.knownFacts
+  for (const id of fresh) {
+    events.push({ type: "factLearned", id })
+    const gate = Object.entries(content.moongates).find(([, g]) => g.fact === id)
+    if (gate !== undefined && !knownFacts.includes(id)) {
+      knownFacts = addSorted(knownFacts, [id])
+      events.push({ type: "ringUnlocked", ringId: gate[0], fact: id })
+    }
   }
+  const rings = knownFacts === state.rings.knownFacts ? state.rings : { ...state.rings, knownFacts }
+  return { state: { ...state, facts: addSorted(state.facts, fresh), rings }, events }
 }
 
 /** 추론 페이지의 한 칸을 바꾼다. 세 칸이 정답과 순서대로 모두 같을 때만 확정한다(맞은 개수 신호 없음). */

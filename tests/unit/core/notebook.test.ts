@@ -11,16 +11,16 @@ const knowing = stateWith({ facts: [...words].sort() })
 
 describe("notebook", () => {
   it("learning a fact twice emits one factLearned", () => {
-    const once = learn(stateWith({}), ["word.alpha"])
+    const once = learn(stateWith({}), ["word.alpha"], c)
     expect(once.events).toEqual([{ type: "factLearned", id: "word.alpha" }])
-    expect(learn(once.state, ["word.alpha"]).events).toEqual([])
+    expect(learn(once.state, ["word.alpha"], c).events).toEqual([])
   })
   it("learn keeps facts sorted and returns the same state when nothing is new", () => {
-    const r = learn(stateWith({ facts: ["word.beta"] }), ["word.gamma", "word.alpha", "word.gamma"])
+    const r = learn(stateWith({ facts: ["word.beta"] }), ["word.gamma", "word.alpha", "word.gamma"], c)
     expect(r.state.facts).toEqual(["word.alpha", "word.beta", "word.gamma"])
     expect(r.events).toEqual([{ type: "factLearned", id: "word.gamma" }, { type: "factLearned", id: "word.alpha" }])
     const s = stateWith({ facts: ["word.alpha"] })
-    expect(learn(s, ["word.alpha"]).state).toBe(s)
+    expect(learn(s, ["word.alpha"], c).state).toBe(s)
   })
   it("a deduction confirms only when all three slots match the answer", () => {
     const r = run(knowing, [0, 1, 2].map((i) => ({ type: "fillSlot", deductionId: "deduction.test", slot: i, word: ["word.alpha", "word.beta", "word.gamma"][i]! })))

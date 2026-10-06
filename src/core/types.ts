@@ -38,6 +38,7 @@ export type GameEvent =
   | { type: "sfx"; name: string } | { type: "music"; track: Id }
   | { type: "timePassed"; hour: number; day: number } | { type: "dayPassed"; day: number }
   | { type: "ringTraveled"; from: Id; to: Id }
+  | { type: "ringUnlocked"; ringId: Id; fact: Id }
   | { type: "companionJoinRejected"; npcId: Id }
 
 export interface TimeState { readonly hour: number; readonly day: number }
