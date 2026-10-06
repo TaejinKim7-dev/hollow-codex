@@ -7,7 +7,11 @@ export interface DistFile {
 }
 
 export const BUNDLE_BUDGET_BYTES = 5 * 1024 * 1024
-export const ALLOWED_ORIGINS: readonly string[] = []
+
+// Workbox's precache runtime embeds this documentation link in an unconditional
+// `console.warn` string. It is never fetched, so it is inert and allowed.
+export const WORKBOX_WARNING_URL = "https://bit.ly/wb-precache"
+export const ALLOWED_ORIGINS: readonly string[] = [WORKBOX_WARNING_URL]
 
 const SVG_NS_PREFIX = "http://www.w3.org/"
 const BANNED_NAMES: readonly string[] = ["u4-alt-manual.pdf", "origin.txt"]

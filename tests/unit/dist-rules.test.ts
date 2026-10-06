@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { auditFiles, BUNDLE_BUDGET_BYTES } from "../../src/audit/dist-rules.ts"
+import { auditFiles, BUNDLE_BUDGET_BYTES, WORKBOX_WARNING_URL } from "../../src/audit/dist-rules.ts"
 
 const js = (path: string, text: string) => ({ path, text, size: text.length })
 
@@ -10,6 +10,10 @@ describe("dist audit", () => {
   })
   it("allows the SVG namespace", () => {
     expect(auditFiles([js("assets/a.js", 'createElementNS("http://www.w3.org/2000/svg","svg")')])).toEqual([])
+  })
+  it("allows the inert Workbox precache warning URL", () => {
+    const out = auditFiles([js("workbox-abc.js", `console.warn("Learn more at ${WORKBOX_WARNING_URL}")`)])
+    expect(out).toEqual([])
   })
   it("flags source maps", () => {
     expect(auditFiles([{ path: "assets/a.js.map", text: "{}", size: 2 }])).toHaveLength(1)

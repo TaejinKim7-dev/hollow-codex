@@ -9,6 +9,7 @@ test("boots: #screen visible and no console errors in 2s", async ({ page }) => {
 
   await page.goto("/hollow-codex/")
   await expect(page.locator("#screen")).toBeVisible()
+  await expect(page.locator('link[rel="manifest"]')).toHaveAttribute("href", "/hollow-codex/manifest.webmanifest")
 
   await page.waitForTimeout(2000)
   expect(errors).toEqual([])
