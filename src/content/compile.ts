@@ -26,7 +26,7 @@ type Deduction = Omit<GameContent["deductions"][string], "answer"> & { readonly 
 type Crisis = GameContent["crises"][string]
 type Creature = GameContent["creatures"][string]
 type Encounter = GameContent["encounters"][string]
-type Moongate = GameContent["moongates"][string]
+type Ring = GameContent["rings"][string]
 
 /** Compiled entries of one kind plus the file each id came from. */
 interface Table<T> { readonly items: Record<Id, T>; readonly file: Record<Id, string> }
@@ -45,7 +45,7 @@ interface Draft {
   encounters: Table<Encounter>
   abilities: Table<{ readonly nameKey: string }>
   music: Table<Score>
-  moongates: Table<Moongate>
+  rings: Table<Ring>
   strings: Record<string, Record<string, string>>   // 언어 → 키 → 문구
   start: GameContent["start"] | null
 }
@@ -313,17 +313,17 @@ function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   })
 }
 
-function readMoongates(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
+function readRings(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
     const before = r.errors.length
-    const mg: Moongate = {
+    const mg: Ring = {
       at: r.pos(o["at"], `${w}.at`),
       nameKey: r.str(o, "name", w),
       songKey: r.str(o, "song", w),
       fact: r.str(o, "fact", w),
       onOverworld: r.str(o, "onOverworld", w)
     }
-    if (r.errors.length === before) put(ctx, d.moongates, "moongate", r.file, id, mg)
+    if (r.errors.length === before) put(ctx, d.rings, "ring", r.file, id, mg)
   })
 }
 
@@ -344,7 +344,7 @@ function checkDenylistShape(r: Reader, v: unknown): void {
 function readAll(raw: RawContent, ctx: Ctx): Draft {
   const d: Draft = {
     sheets: {}, tiles: {}, playerSprite: null, maps: table(), npcs: table(), facts: table(), deductions: table(),
-    crises: table(), creatures: table(), encounters: table(), abilities: table(), music: table(), moongates: table(), strings: {}, start: null
+    crises: table(), creatures: table(), encounters: table(), abilities: table(), music: table(), rings: table(), strings: {}, start: null
   }
   if (!("tiles.yaml" in raw)) ctx.shape.push("tiles.yaml: missing required file")
   if (!("start.yaml" in raw)) ctx.shape.push("start.yaml: missing required file")
@@ -361,7 +361,7 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
       readStrings(r, v, d, STRINGS_FILE_RE.exec(file)?.[1] ?? "ko")
     }
     else if (file === "creatures.yaml") readCreatures(r, v, d, ctx)
-    else if (file === "moongates.yaml") readMoongates(r, v, d, ctx)
+    else if (file === "rings.yaml") readRings(r, v, d, ctx)
     else if (music !== null) {
       if (v !== null && v !== undefined) readMusic(r, v, d, ctx, `music.${music[1] ?? ""}`)
     } else if (town !== null) {
@@ -450,8 +450,8 @@ function checkReferences(d: Draft, out: string[]): void {
     ref(f, `${id}.music`, "music", e.music, d.music.items)
     e.enemies.forEach((en, i) => ref(f, `${id}.enemies[${i}].creature`, "creature", en.creature, d.creatures.items))
   }
-  for (const [id, mg] of Object.entries(d.moongates.items)) {
-    const f = d.moongates.file[id] ?? ""
+  for (const [id, mg] of Object.entries(d.rings.items)) {
+    const f = d.rings.file[id] ?? ""
     ref(f, `${id}.fact`, "fact", mg.fact, facts)
     ref(f, `${id}.onOverworld`, "map", mg.onOverworld, d.maps.items)
   }
@@ -634,7 +634,7 @@ function checkDenied(raw: RawContent, d: Draft, out: string[]): void {
     }
   }
   for (const id of Object.keys(d.sheets)) add(`tiles.yaml: sheet id ${id}`, id)
-  const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.music, d.moongates]
+  const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.music, d.rings]
   for (const t of tables) for (const [id, f] of Object.entries(t.file)) add(`${f}: id ${id}`, id)
   const flags = (file: string, where: string, ids: readonly Id[] | undefined): void => {
     for (const x of ids ?? []) add(`${file}: ${where} flag ${x}`, x)
@@ -687,7 +687,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
     deductions: d.deductions.items as GameContent["deductions"],   // answer length checked in group 7
     crises: d.crises.items, creatures: d.creatures.items, encounters: d.encounters.items,
     abilities: d.abilities.items, music: d.music.items, strings: d.strings, start: d.start,
-    moongates: d.moongates.items
+    rings: d.rings.items
   }
   return { content, errors }
 }

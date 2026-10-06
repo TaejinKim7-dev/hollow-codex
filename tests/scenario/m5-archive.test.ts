@@ -34,7 +34,7 @@ const ALCOVES: readonly Pos[] = [
  */
 function unlockedOverworld(): GameState {
   const base = createInitialState(content, 1)
-  const visited = Object.keys(content.moongates).slice(0, 7)
+  const visited = Object.keys(content.rings).slice(0, 7)
   const deductions = Object.fromEntries(Object.entries(content.deductions).map(([id, d]) => [id, { slots: [...d.answer], confirmed: true }]))
   const facts = [...new Set(Object.values(content.deductions).flatMap((d) => d.answer))].sort()
   return {

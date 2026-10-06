@@ -8,7 +8,7 @@ import { loadRealContent, walkTo } from "./play.ts"
 
 const content = loadRealContent()
 
-describe("m2 moongate travel", () => {
+describe("m2 ring travel", () => {
   /** Walks next to ring.valor's stone at (4,20) on the continent, with the given ring facts known. */
   function besideValor(facts: readonly string[]) {
     const base = createInitialState(content, 1)
@@ -37,7 +37,7 @@ describe("m2 moongate travel", () => {
     for (const to of ["ring.justice", "ring.humility", "ring.honesty"]) {
       const r = step(learned.state, { type: "ringStep", to }, content)
       expect(r.events).toContainEqual({ type: "ringTraveled", from: "ring.valor", to })
-      const gate = content.moongates[to]!
+      const gate = content.rings[to]!
       expect(r.state.mapId).toBe(gate.onOverworld)
       const d = Math.abs(r.state.player.pos.x - gate.at.x) + Math.abs(r.state.player.pos.y - gate.at.y)
       expect(d).toBeLessThanOrEqual(1)   // on the ring cell, or beside an impassable ring stone

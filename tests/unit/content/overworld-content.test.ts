@@ -20,10 +20,10 @@ describe("overworld content", () => {
     expect(content!.maps["map.over"]!.exits.length).toBeGreaterThanOrEqual(7)
   })
 
-  it("moongates reference the overworld map", () => {
+  it("rings reference the overworld map", () => {
     const raw = loadContentDir(resolve(projectRoot, "content"))
     const { content } = compileContent(raw)
-    const overworldRings = Object.values(content!.moongates).filter(g => g.onOverworld === "map.over")
+    const overworldRings = Object.values(content!.rings).filter(g => g.onOverworld === "map.over")
     expect(overworldRings.length).toBeGreaterThanOrEqual(7)
   })
 })

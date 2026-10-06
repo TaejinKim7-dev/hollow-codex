@@ -11,7 +11,7 @@ const adjacent = (a: Pos, b: Pos): boolean => Math.abs(a.x - b.x) + Math.abs(a.y
  * 고리 칸 위가 옆보다 우선이고, 같은 순위면 content 순서상 처음 것. 같은 지도(onOverworld)만 본다.
  */
 export function ringHere(state: GameState, content: GameContent): Id | null {
-  const here = Object.entries(content.moongates).filter(([, g]) => g.onOverworld === state.mapId)
+  const here = Object.entries(content.rings).filter(([, g]) => g.onOverworld === state.mapId)
   const on = here.find(([, g]) => samePos(g.at, state.player.pos))
   if (on !== undefined) return on[0]
   const next = here.find(([, g]) => tileAt(content, g.onOverworld, g.at)?.walk === null && adjacent(g.at, state.player.pos))
@@ -49,7 +49,7 @@ function arrivalCell(content: GameContent, mapId: Id, at: Pos, hour: number): Po
 export function ringTravel(state: GameState, toId: Id, content: GameContent): StepResult {
   const ignored: StepResult = { state, events: [] }
   const fromId = ringHere(state, content)
-  const dest = content.moongates[toId]
+  const dest = content.rings[toId]
   if (fromId === null || dest === undefined || fromId === toId) return ignored
   if (!state.rings.knownFacts.includes(dest.fact)) return ignored
   const destMap = content.maps[dest.onOverworld]

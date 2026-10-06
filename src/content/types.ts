@@ -41,7 +41,7 @@ export interface NpcDef {
   readonly companion?: CompanionDef
   readonly schedule?: Readonly<Record<string, Pos>>                // D13 — 키: "0" | "6" | "12" | "18"
 }
-export interface MoongateDef {
+export interface RingDef {
   readonly at: Pos
   readonly nameKey: string
   readonly songKey: string
@@ -69,7 +69,7 @@ export interface GameContent {
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
   readonly music: Readonly<Record<Id, Score>>
   readonly strings: Readonly<Record<string, Readonly<Record<string, string>>>>   // 언어 코드 → 키 → 문구
-  readonly moongates: Readonly<Record<Id, MoongateDef>>   // D14
+  readonly rings: Readonly<Record<Id, RingDef>>   // D14
   readonly start: { readonly map: Id; readonly pos: Pos; readonly hp: number; readonly attack: number }
 }
 

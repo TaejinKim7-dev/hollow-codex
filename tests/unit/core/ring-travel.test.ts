@@ -8,7 +8,7 @@ import { run, stateWith, testContent } from "./fixture.ts"
 const ring = (at: Pos, fact: string, onOverworld: string) => ({ at, nameKey: "n", songKey: "s", fact, onOverworld })
 const c = (): GameContent => ({
   ...testContent(),
-  moongates: {
+  rings: {
     "ring.a": ring({ x: 1, y: 1 }, "fact.alpha", "map.a"),
     "ring.b": ring({ x: 2, y: 1 }, "fact.beta", "map.b"),
     "ring.c": ring({ x: 4, y: 1 }, "fact.gamma", "map.a"),

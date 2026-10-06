@@ -5,7 +5,7 @@ import { addSorted } from "../state.ts"
 
 /**
  * 모르는 단서만 수첩에 더한다(정렬 유지). 새로 배운 것마다 factLearned(입력 순서).
- * 그 단서를 fact로 쓰는 열석 고리(content.moongates 첫 일치)가 있으면 knownFacts에 자동 추가하고 ringUnlocked를 낸다.
+ * 그 단서를 fact로 쓰는 열석 고리(content.rings 첫 일치)가 있으면 knownFacts에 자동 추가하고 ringUnlocked를 낸다.
  * 이미 아는 단서는 다시 배울 수 없다(변화 없음 → 이벤트 없음).
  */
 export function learn(state: GameState, ids: readonly Id[], content: GameContent): StepResult {
@@ -16,7 +16,7 @@ export function learn(state: GameState, ids: readonly Id[], content: GameContent
   let knownFacts = state.rings.knownFacts
   for (const id of fresh) {
     events.push({ type: "factLearned", id })
-    const gate = Object.entries(content.moongates).find(([, g]) => g.fact === id)
+    const gate = Object.entries(content.rings).find(([, g]) => g.fact === id)
     if (gate !== undefined && !knownFacts.includes(id)) {
       knownFacts = addSorted(knownFacts, [id])
       events.push({ type: "ringUnlocked", ringId: gate[0], fact: id })

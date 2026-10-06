@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { findDenied, parseDenylist } from "../../src/content/denylist.ts"
+import { findDenied, parseDenylist, scanRepoText } from "../../src/content/denylist.ts"
 
 // Stand-in terms: the real list may only appear in content/ip-denylist.yaml.
 const deny = { latin: ["zorvania", "nook", "lord zorvan"], hangul: ["조르바니아"] }
@@ -16,7 +16,13 @@ describe("findDenied", () => {
     expect(findDenied([{ where: "w", text: "npc.lord_zorvan" }, { where: "v", text: "Lord-Zorvan" }], deny)).toHaveLength(2)
   })
   it("does not flag a denied term inside a longer word", () => {
-    expect(findDenied([{ where: "w", text: "they played snooker in the nooks" }], deny)).toEqual([])
+    // "nooks" used to be here; plurals are now caught on purpose (see the next test)
+    expect(findDenied([{ where: "w", text: "they played snooker by the nookery" }], deny)).toEqual([])
+  })
+  it("catches English plural and possessive endings of a Latin term", () => {
+    for (const text of ["the zorvanias", "two nooks", "Lord Zorvan's hall", "many nookes", "content.zorvanias"]) {
+      expect(findDenied([{ where: "w", text }], deny), text).toHaveLength(1)
+    }
   })
   it("ignores clean text", () => {
     expect(findDenied([{ where: "w", text: "칼라스의 등불" }], deny)).toEqual([])
@@ -29,5 +35,19 @@ describe("parseDenylist", () => {
   })
   it("treats a missing file as empty lists", () => {
     expect(parseDenylist(undefined)).toEqual({ latin: [], hangul: [] })
+  })
+})
+
+describe("scanRepoText", () => {
+  it("reports denied terms in file names and in file lines, with line numbers", () => {
+    const files = [
+      { path: "src/zorvania-gate.ts", text: "export const a = 1\n" },
+      { path: "tests/x.test.ts", text: "ok line\n// the nooks of the hall\n" },
+      { path: "scripts/clean.ts", text: "nothing here\n" }
+    ]
+    expect(scanRepoText(files, deny)).toEqual([
+      'src/zorvania-gate.ts: path: denied term "zorvania"',
+      'tests/x.test.ts:2: denied term "nook"'
+    ])
   })
 })

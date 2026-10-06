@@ -5,7 +5,7 @@ import type { GameContent } from "../../../src/content/types.ts"
 
 const c = (): GameContent => ({
   ...testContent(),
-  moongates: {
+  rings: {
     "ring.alpha": { at: { x: 0, y: 0 }, nameKey: "ring.alpha.name", songKey: "ring.alpha.song", fact: "fact.alpha", onOverworld: "map.a" },
     "ring.beta": { at: { x: 5, y: 5 }, nameKey: "ring.beta.name", songKey: "ring.beta.song", fact: "fact.beta", onOverworld: "map.a" },
     "ring.alt": { at: { x: 2, y: 2 }, nameKey: "ring.alt.name", songKey: "ring.alt.song", fact: "fact.alpha", onOverworld: "map.a" }  // shares fact

@@ -9,7 +9,7 @@ const ring = (at: Pos, fact: string, key: string) => ({ at, nameKey: `${key}.nam
 const base = testContent()
 const c: GameContent = {
   ...base,
-  moongates: { "ring.a": ring({ x: 1, y: 1 }, "fact.alpha", "word.alpha"), "ring.c": ring({ x: 4, y: 1 }, "fact.gamma", "word.gamma") },
+  rings: { "ring.a": ring({ x: 1, y: 1 }, "fact.alpha", "word.alpha"), "ring.c": ring({ x: 4, y: 1 }, "fact.gamma", "word.gamma") },
   strings: { ko: { ...base.strings["ko"], "word.alpha.name": "A", "word.alpha.song": "a-song", "word.gamma.name": "C", "word.gamma.song": "c-song" } }
 }
 const at = (pos: Pos, knownFacts: string[]) => stateWith({ player: { ...stateWith({}).player, pos }, rings: { visited: [], knownFacts } })

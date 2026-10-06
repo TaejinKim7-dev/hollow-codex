@@ -72,7 +72,7 @@ describe("findPath on overworld", () => {
   })
 })
 
-describe("compile overworld and moongate validation", () => {
+describe("compile overworld and ring validation", () => {
   const raw = () => loadContentDir("tests/fixtures/content-min")
   const withFile = (path: string, value: unknown) => ({ ...raw(), [path]: value })
   type Obj = Record<string, unknown>
@@ -81,14 +81,14 @@ describe("compile overworld and moongate validation", () => {
     exits: [{ at: [0, 0], to: "map.min", arrive: [1, 1] }], music: "music.min", ...patch
   })
   const mapsWith = (extra: Obj[]): Obj[] => [...(raw()["towns/min/maps.yaml"] as Obj[]), ...extra]
-  const moongates = (patch: Obj = {}): Obj[] => [
+  const rings = (patch: Obj = {}): Obj[] => [
     { id: "ring.a", at: [0, 0], name: "ring.a.name", song: "ring.a.song", fact: "fact.min.person", onOverworld: "map.min", ...patch }
   ]
 
-  it("compiles a valid moongate", () => {
-    const { content, errors } = compileContent(withFile("moongates.yaml", moongates()))
+  it("compiles a valid ring", () => {
+    const { content, errors } = compileContent(withFile("rings.yaml", rings()))
     expect(errors).toEqual([])
-    expect(content?.moongates["ring.a"]).toEqual({
+    expect(content?.rings["ring.a"]).toEqual({
       at: { x: 0, y: 0 }, nameKey: "ring.a.name", songKey: "ring.a.song", fact: "fact.min.person", onOverworld: "map.min"
     })
   })
@@ -109,13 +109,13 @@ describe("compile overworld and moongate validation", () => {
     expect(content).toBeNull()
     expect(errors.some((e) => e.includes("terrainCost") && e.includes("ASCII"))).toBe(true)
   })
-  it("rejects a moongate with an unknown onOverworld map", () => {
-    const { content, errors } = compileContent(withFile("moongates.yaml", moongates({ onOverworld: "map.nonexistent" })))
+  it("rejects a ring with an unknown onOverworld map", () => {
+    const { content, errors } = compileContent(withFile("rings.yaml", rings({ onOverworld: "map.nonexistent" })))
     expect(content).toBeNull()
     expect(errors.some((e) => e.includes("ring.a") && e.includes("map.nonexistent"))).toBe(true)
   })
-  it("rejects a moongate whose fact is not in content", () => {
-    const { content, errors } = compileContent(withFile("moongates.yaml", moongates({ fact: "fact.missing" })))
+  it("rejects a ring whose fact is not in content", () => {
+    const { content, errors } = compileContent(withFile("rings.yaml", rings({ fact: "fact.missing" })))
     expect(content).toBeNull()
     expect(errors.some((e) => e.includes("ring.a") && e.includes("fact.missing"))).toBe(true)
   })

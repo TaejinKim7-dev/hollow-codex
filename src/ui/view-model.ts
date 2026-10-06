@@ -55,8 +55,8 @@ export function ringsView(state: GameState, content: GameContent): RingsView {
   const s = content.strings
   const lang = state.language
   const hereId = ringHere(state, content)
-  const here = hereId === null ? null : t(lang, s, content.moongates[hereId]?.nameKey ?? hereId)
-  const rings = Object.entries(content.moongates)
+  const here = hereId === null ? null : t(lang, s, content.rings[hereId]?.nameKey ?? hereId)
+  const rings = Object.entries(content.rings)
     .filter(([id, g]) => id !== hereId && state.rings.knownFacts.includes(g.fact))
     .map(([id, g]) => ({ id, name: t(lang, s, g.nameKey), song: t(lang, s, g.songKey), canTravel: hereId !== null }))
   return { here, rings }
