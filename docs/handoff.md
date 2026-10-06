@@ -109,3 +109,94 @@ claude                                             # 새 세션: CLAUDE.md → H
 - 다음: M4 (마을 5~8 + 던전: 희생·명예·영성·겸默) 진행.
 
 (End of file)
+
+---
+
+## Task별 누적 기록 (2026-10-06)
+
+### M0 골격 — `todo-1-skeleton` → main, 6커밋
+
+| Task | 커밋 | 작업 |
+|---|---|---|
+| (스켈레톤) | `58f9773` | project skeleton + AGENTS + LICENSE + README |
+| (계획) | `8949f5b` | docs(plan): M0+M1 implementation plan |
+| 2 | `859cca5` | ci: Pages workflow and dist audit (Actions 배포 게이트) |
+| 2 | `bcac0df` | docs: record first Pages deploy |
+| 3 | `fd6146b` | feat(content): YAML 컴파일러 + 참조·금지어 검사 |
+| 3 | `df3c37c` | fix(content): typed virtual module, fail-closed denylist |
+| (요구사항) | `54dfb68` | docs: M0+M1 requirements; refine plan tests |
+| 4 | `df01f21` | feat(assets): 자산 장부 검사 + Neo둥근모 글꼴 + 크레딧 |
+| 1 | `3aa3a0d` | docs: record M0 completion |
+
+M0 게이트: `test:unit` 11 passed · `check:content` 자리표시 · `audit:dist` ok (4 files, 46855B).
+
+### M1 칼라스 수직 슬라이스 — `todo-2-kalas`, 13커밋
+
+| Task | 커밋 | 작업 |
+|---|---|---|
+| 5 | `53effb2` | core: state + 결정적 step + 이동 + 경로찾기 (state.ts, move.ts, path.ts, rng.ts) |
+| 6 | `624e085` | core: 수첩 fact + 3슬롯 추론 + 소문힌트 (notebook.ts) |
+| 7 | `09615b8` | core: 키워드 대화 + 조건·거짓말·선택 (talk.ts) |
+| 8 | `2513b1d` | core: 행실 + 동료 합류·이별·재합류 (conduct.ts) |
+| 9 | `90b33b0` | core: 마을 위기 옵션 + 해결 (crisis.ts) |
+| 10 | `b31c3f9` | core: 예고 격자 전투 + 밀어·설득·도주 (combat/grid.ts, intents.ts) |
+| 11 | `2f0a470` | core: 버전된 세이브 형식 (serialize.ts, slots.ts, slot-store.ts) |
+| 12 | `b8506ea` | render+input: 정수 스케일 뷰포트 + 명령 통합 |
+| 13a | `5e5e84e` | ui: 대화·수첩·전투 view-model (view-model.ts, strings.ts) |
+| 14 | `7dcd11d` | audio: 텍스트 악보 + 칩 합성기 + 생성 sfx (score.ts, synth.ts, sfx.ts) |
+| 15 | `ad9825d` | content(kalas): 칼라스 타운 + 자산(Kenney) + 음악 |
+| 13b | `a1bf7b0` | ui: DOM 패널 + 메뉴 (panels.ts, panels.css, main.ts 마운트) |
+| 16 | `9f5d190` | 통합: 시나리오 3 + main 루프 + e2e (play.ts, kalas-*.test.ts, boot.spec.ts) |
+
+M1 게이트: `test:unit` 160 passed · `check:content` ok (3 maps, 11 npcs, 20 facts, 6 ledger) · `audit:dist` ok (4 files, 132597B) · e2e 1 passed.
+
+### M2 세계 골격 — `todo-3-world`, 14커밋
+
+| Task | 커밋 | 작업 |
+|---|---|---|
+| (계획) | `5265528` | docs(plan): M2 세계 골격 — 16 Task |
+| 17 | `ad330ee` | core: 시간 시스템 + 고리 + M2 타입 기반 (types.ts, state.ts, move.ts, ring.ts, step.ts) |
+| 18 | `e57d959` | dialogue: NPC 일과 (talk.ts `npcPositionAt` + npcs.yaml `schedule:`) |
+| 19 | `4c32ae2` | content: moongates 스키마 + 오버월드 검증 (compile.ts) |
+| 19 | `a8cc8e3` | world: `terrainCost` 인지 `findPath` (path.ts Dijkstra) |
+| 20 | `59ca33c` | world: 오버월드 마을 진입 트리거 (overworld.ts, move.ts) |
+| 22 | `e7e8343` | content(overworld): 64×48 대륙 + 8 입구 + 7 고리 + 7 마을 스텁 + 음악 (한 task에서 Task 22+23+24 일부 선행) |
+| 23 | `a56588f` | content(towns): 7 마을 스텁을 별도 파일로 분리 (compassion/valor/justice/sacrifice/spirituality/humility) |
+| 25 | `a7b9e76` | world: 사실 학습 → 고리 자동 해금 (notebook.ts, types.ts `ringUnlocked`) |
+| 27 | `2858172` | conduct: 4번째 동료 거부 (`companionJoinRejected`) |
+| 28 | `4eb209d` | ui: 일간 표시 + 열석 메뉴 (panels.ts, format-time) |
+| 30 | `6bdb8b4` | save: v2 형식 + M1 마이그레이션 + time/rings shape 검사 |
+| 31 | `068a94b` | test(scenario): M2 continent traversal + ring + party (4개 시나리오 + `map.field → map.over` 출구 추가) |
+| 32 | `5ed4b8f` | main: M2 부팅·이벤트 처리·자동저장(dayPassed 트리거 추가) + e2e |
+| (handoff) | `0e9a67c` | docs(handoff): M2 완료 |
+
+M2 게이트: `test:unit` 224 passed · `check:content` ok (11 maps, 11 npcs, 28 facts, 7 ledger) · `audit:dist` ok (6 files, 149787B) · e2e 1 passed.
+
+### M3 마을 2~4 — `todo-4-content`, 5커밋
+
+| Task | 커밋 | 작업 |
+|---|---|---|
+| (계획) | `e35064b` | docs(plan): M3 마을 2~4 — compassion·용맹·정의 |
+| 33 | `81ce8d5` | content(compassion): Reona (10 NPC, 16 fact, deduction, crisis, encounter, 능력, 음악) |
+| 34 | `486b714` | content(valor): Solgang (10 NPC, 16 fact, deduction, crisis, encounter, 능력, 음악) |
+| 35 | `d6ea67e` | content(justice): Seles (10 NPC, 16 fact, deduction, crisis, encounter, 능력, 음악) |
+| 36 | `ff8c2bb` | test(scenario): M3 3 시나리오 (compassion·valor·justice) + 2 콘텐츠 도달성 버그 수정 (widow `job`→mourning-lullaby, miller `job`→relief-tax) + `play.ts` `approachCell`/`stallToSafe` 추가 |
+| (handoff) | `6355485` | docs(handoff): M3 완료 |
+
+M3 게이트: `test:unit` 230 passed (224 + 시나리오 6) · `check:content` ok (11 maps, 41 npcs, 76 facts, 10 ledger) · `audit:dist` ok (6 files, 226644B).
+
+### M4 마을 5~8 — `todo-5-towns` (진행 중, 5커밋)
+
+| Task | 커밋 | 작업 |
+|---|---|---|
+| (계획) | `d6c5be5` | docs(plan): M4 마을 5~8 — sacrifice·honor·spirituality·humility |
+| 37 | `72a9202` | content(sacrifice): Dione (10 NPC, 16 fact, deduction, crisis, encounter, 능력, 음악) |
+| 38 | `8fca84c` | content(honor): Argon (10 NPC, 16 fact, deduction, crisis, encounter, 능력, 음악) |
+| 39 | `3ffb841` | content(spirituality): Elia (10 NPC, 16 fact, deduction, crisis, encounter, 능력, 음악) |
+| 40 | `80f8098` | content(humility): Heron (10 NPC, 16 fact, deduction, crisis, encounter, 음악) — 능력 없음(D5), 침묵 규칙으로 대사 단축 |
+| 41 | (진행 중) | test(scenario): M4 4 시나리오 + 통합 + 머지 |
+| (handoff) | (예정) | docs(handoff): M4 완료 |
+
+M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 npcs, 140 facts, 14 ledger) · `audit:dist` ok (6 files, 333152B).
+
+(End of file)
