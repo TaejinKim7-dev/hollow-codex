@@ -237,6 +237,19 @@ function startTouchRepeat(target: Pos): void {
   }, 120)
 }
 
+// ── 첫 터치 안내 (Task 47) ──────────────────────────────
+let touchHintShown = false
+/** 첫 터치에만 "터치로 이동" 안내를 잠깐 띄운다. 이후 터치에는 뜨지 않는다. */
+function showTouchHintOnce(): void {
+  if (touchHintShown) return
+  touchHintShown = true
+  const hint = document.createElement("div")
+  hint.className = "touch-hint"
+  hint.textContent = t(content.strings, "ui.touch-hint")
+  document.body.appendChild(hint)
+  window.setTimeout(() => hint.remove(), 1600)
+}
+
 /** 입력 진입점. 다른 입력이 터치 반복을 끊는다. */
 function dispatch(cmd: Command | UiAction): void {
   stopTouchRepeat()
@@ -289,6 +302,7 @@ async function main(): Promise<void> {
   canvas.addEventListener("pointerdown", (event) => {
     const st = state
     if (st === null) return
+    showTouchHintOnce()
     const rect = canvas.getBoundingClientRect()
     if (rect.width === 0 || rect.height === 0) return
     const map = content.maps[st.mapId]

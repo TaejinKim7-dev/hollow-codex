@@ -366,15 +366,51 @@
   color: var(--text-muted);
 }
 
+.menu .credits .intro {
+  margin: 6px 0 10px;
+}
+
+.menu .credits .group-title {
+  margin: 10px 0 2px;
+  color: var(--accent);
+  font-size: 0.95em;
+}
+
 .menu .credits .list {
   margin: 4px 0 0;
   padding-left: 20px;
+}
+
+.menu .credits .credit {
+  word-break: break-word;
 }
 
 @media (max-width: 480px) {
   .menu .slots {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* 모바일 세로 모드: 메뉴 버튼을 한 줄로 쌓아 손가락으로 누르기 쉽게 한다. */
+@media (orientation: portrait) and (max-width: 640px) {
+  .menu .slots {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 첫 터치 안내: 잠깐 나타났다 사라진다. body에 붙으므로 CSS 변수를 직접 갖는다. */
+.touch-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 14%;
+  transform: translateX(-50%);
+  z-index: 60;
+  padding: 8px 14px;
+  color: #eceaf2;
+  background: rgb(8 8 12 / 0.86);
+  border: 1px solid #3d3a4e;
+  border-radius: 4px;
+  pointer-events: none;
 }
 
 /* ── 열석 고리 메뉴 ──────────────────── */

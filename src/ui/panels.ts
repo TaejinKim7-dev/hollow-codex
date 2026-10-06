@@ -43,6 +43,33 @@ const dirFromOffset = (from: Pos, to: Pos): Dir | null => {
   return null
 }
 
+/** 크레딧 분류. 순서는 화면 표시 순서다. LEDGER에 'code' 행이 없으면 그 묶음은 그리지 않는다. */
+type CreditCategory = "fonts" | "tiles" | "music" | "code"
+const CREDIT_CATEGORIES: readonly CreditCategory[] = ["fonts", "tiles", "music", "code"]
+
+/** 자산 경로로 크레딧 묶음을 정한다. 알 수 없는 경로는 code로 모은다. */
+function creditCategory(path: string): CreditCategory {
+  if (path.startsWith("assets/fonts/")) return "fonts"
+  if (path.startsWith("assets/tiles/")) return "tiles"
+  if (path.startsWith("content/music/")) return "music"
+  return "code"
+}
+
+/** 원래 순서를 유지하며 경로 기준으로 묶는다. 빈 묶음은 돌려주지 않는다. */
+function groupCredits(rows: readonly LedgerRow[]): readonly [CreditCategory, readonly LedgerRow[]][] {
+  const groups = new Map<CreditCategory, LedgerRow[]>()
+  for (const row of rows) {
+    const category = creditCategory(row.path)
+    const list = groups.get(category)
+    if (list === undefined) groups.set(category, [row])
+    else list.push(row)
+  }
+  return CREDIT_CATEGORIES.flatMap((category) => {
+    const list = groups.get(category)
+    return list === undefined ? [] : [[category, list] as const]
+  })
+}
+
 /** 게임 시간 표시 문자열. {day}일차 {hour}시 형태로 ui.day-hour 키를 치환한다. */
 export function formatTime(strings: Readonly<Record<string, string>>, time: TimeState): string {
   return t(strings, "ui.day-hour", { day: String(time.day), hour: String(time.hour) })
@@ -466,11 +493,17 @@ export function mountPanels(
   const creditsSummary = make("summary", undefined, t(s, "ui.credits"))
   creditsSummary.setAttribute("aria-label", t(s, "ui.credits"))
   creditsBox.appendChild(creditsSummary)
-  const creditsList = make("ul", "list")
-  for (const row of credits) {
-    creditsList.appendChild(make("li", undefined, `${row.path} · ${row.author} · ${row.license} · ${row.source}`))
+  creditsBox.appendChild(make("p", "intro", t(s, "ui.credits-intro")))
+  for (const [category, rows] of groupCredits(credits)) {
+    const group = make("section", `credits-group ${category}`)
+    group.appendChild(make("h4", "group-title", t(s, `ui.credits.group.${category}`)))
+    const list = make("ul", "list")
+    for (const row of rows) {
+      list.appendChild(make("li", "credit", `${row.author} · ${row.license} · ${row.source}`))
+    }
+    group.appendChild(list)
+    creditsBox.appendChild(group)
   }
-  creditsBox.appendChild(creditsList)
 
   menu.append(menuHeader, slots, menuSave, menuLoad, menuNew, creditsBox)
 
