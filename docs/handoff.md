@@ -234,3 +234,33 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 | 44 | `db80970` | test(scenario): 봉인 서고 traversal + 8쪽 + 3종 final + main.ts 이벤트 |
 
 (End of file)
+
+## 2026-10-06 M6 Task 47 — README + 크레딧 + 모바일 미세 조정 (완료)
+
+- 브랜치 `todo-7-release`. SHA 범위: `2fb2f7e..2e82028` (Task 47 커밋 `2e82028`, 그 뒤 handoff 커밋).
+- 작업:
+  - `README.md` 전면 개편(118줄) — 소개·플레이·설치/실행(Pages URL + PWA)·기술·빌드 검증(7단계 게이트)·라이선스·기여·원작과의 경계·연락.
+  - `src/ui/panels.ts` 크레딧 강화 — `groupCredits()`로 경로 기준 fonts/tiles/music/code 묶음. 비어 있는 묶음은 그리지 않음(LEDGER에 code 행 없음). 각 행은 `작가 · 라이선스 · 출처`(프로토콜 제거 상태, dist 외부 출처 감사 통과를 위해 텍스트로만 표시).
+  - `content/strings/ko.yaml` — `ui.credits-intro`, `ui.credits.group.{fonts,tiles,music,code}`, `ui.touch-hint` 추가.
+  - `src/main.ts` — 첫 캔버스 터치에만 "터치로 이동" 안내를 1.6초 표시(`showTouchHintOnce`).
+  - `src/ui/panels.css` — 크레딧 묶음 스타일, 첫 터치 안내 스타일, 모바일 세로 모드(`orientation: portrait and max-width: 640px`)에서 메뉴 슬롯 1열 스택.
+  - `package.json` — `0.0.0` → `0.1.0` (M1~M6 첫 플레이어블 릴리스).
+  - `assets/LEDGER.md` — 수정 없음. 15행 전부 허용 라이선스(CC0/CC-BY/CC-BY-SA/OFL)로 유효, `check:content` 통과.
+- **merge 게이트 (HEAD `2e82028`)** — 전부 exit 0:
+  - `npm ci` 0 (기존 node_modules 사용, lockfile 변경 없음)
+  - `npm run test:unit` 0 — 46 files, **273 passed**
+  - `npm run typecheck` 0
+  - `npm run check:content` 0 — `ok (12 maps, 81 npcs, 140 facts, 15 ledger files)`
+  - `npm run build` 0 — 13 dist 파일, 384787 bytes
+  - `npm run audit:dist` 0 — `ok (13 files, 384787 bytes)`
+  - `git diff --check` 0
+- **최종 상태**: 12 maps, 81 npcs, 140 facts, 15 ledger files.
+- 다음: Task 48 (M6 e2e 선택 + 최종 merge/handoff).
+
+### 이름 재확인 — "Hollow Codex" (Task 47 D)
+
+- 결과: **충돌 없음(비상표 조사). BLOCKED 아님.**
+- 일반 웹 검색: "Hollow Codex"라는 제목의 게임을 찾지 못했다. 검색 결과는 "Hollow"(Steam/itch.io 다수), "RPG Codex"(큐레이션 사이트), "Dark Hollow RPG"(Steam 예정) 등으로, 제목이 정확히 "Hollow Codex"인 게임은 없었다.
+- GitHub 저장소 검색(API `q=hollow codex`): 총 4건. 그중 이 프로젝트 `TaejinKim7-dev/hollow-codex`만 정확히 일치하며, 나머지 3건은 두 낱말이 우연히 함께 나온 무관 저장소(문구/QA 도구).
+- 가장 가까운 겹침: *Eternal Strands*의 게임 내 도감 항목 이름("Glintwood Hollow Codex", spec §2.4 기록) — 제품 제목이 아니라 게임 내 오브젝트 이름이다.
+- 한계: 정식 상표 조사가 아니므로 검색 기반 확인이며, 공개 후 상표 이슈가 생기면 재검토한다.
