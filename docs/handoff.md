@@ -411,3 +411,17 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 
 - 헤론 수련생(`npc.humility.novice`)은 6–11시에 장로가 집 문 안쪽 (8,5)에 서서 닿을 수 없다. 다른 시각에는 말 걸 수 있고 정답 단어를 주지 않아 가드에 걸리지 않는다. 콘텐츠는 그대로 둔다.
 - 게이트(HEAD `9c663ea`, 직접 실행): `npm run test:unit` 0 (59 files, **358 passed**) · `typecheck` 0 · `check:content` 0 (`ok (12 maps, 81 npcs, 140 facts, 15 ledger files, 118 src/tests/scripts files scanned)`) · `build` 0 (precache 14 entries / 482.89 KiB) · `audit:dist` 0 (`ok (13 files, 526352 bytes)`) · `git diff --check` 0.
+
+## 2026-10-06 단계 B — 안전망 보강 (B-1 ~ B-4)
+
+브랜치 `todo-9-safeguards` (main HEAD `90f39fd`).
+4개 항목 + 4커밋 + 게이트 7/7 통과 (npm ci 0 · test:unit 0 · check:content 0 · typecheck 0 · build 0 · audit:dist 0 · git diff --check 0). e2e는 §4에 따라 merge 게이트 제외, 작성자 검증(Playwright로 부팅·저장·재로드 확인).
+
+- `1a0828e` B-1: 화면 연결 통합 테스트 4종 (jsdom) — menu-save-load / ring-travel / epilogue-screen / combat-tap. vitest plugins hollowContent + src/main.ts boot/dispatch/handleMenu export. `tests/integration/` 신설.
+- `8db3eaf` B-2: 스모크 e2e (Playwright) — 새 게임→칼라스 들판 문지기 대화→이동→slot-1 저장→page.reload→slot-1 불러오기 후 mapId/pos/time/turn/facts 비교. `window.__hollowCodex__`에 dispatch/handleMenu 노출.
+- `eccb564` B-3: 옛 저장 fixture 3종 + 마이그레이션 회귀 3 tests — `tests/fixtures/saves/{v1,v2,v3}.json`. v1=M1(time/rings/codex/language 빠짐), v2=M5(codex/language 빠짐), v3=현재.
+- `0cce8eb` B-4: 미뤄 둔 결함 6종 — (a) denylist camelCase 합성어·y→ies 복수형, (b) 용맹·헤론 힌트 6키 × 2언어(ko/en) 정정(대사 추가 없음), (c) ring.ts arrivalCell × NPC 일과 컴파일 검사, (d) indexedDB open 3초 타임아웃 + onblocked/onversionchange + 메모리 폴백, (e) src/main.ts AudioContext lazy 싱글톤(첫 keydown/pointerdown 후), (f) src/content/compile.ts YAML 키 화이트리스트 + 모르는 키 빌드 실패.
+
+최종: test:unit **384 passed** (66 files; 기존 358 + B-1 통합 14 + B-3 회귀 3 + B-4 신규 9). 12 maps · 81 npcs · 140 facts · 15 ledger files · 130 src/tests/scripts files scanned. check:content 빌드 통과.
+
+**변경 한계 (단계 B 후 남은 것)**: (1) M1 사용자 플레이 판정(계속/방향 수정/중단)이 기록되지 않음. (2) 동료 1명(엘린)·능력 1개(거짓을 보는 눈)·에필로그는 마지막 단어만·경전은 한 단어만·고리 단서 없음(걸어서 고리 밟기는 됨)·엘린 18–23시 도달 제한·헤론 수련생 6–11시 도달 제한(콘텐츠 그대로)·틀린 단어 안내 없음 — 모두 단계 C 이후. (3) B-4 (e)로 모듈 로드 시 AudioContext 생성은 막았으나, 첫 입력 전 음악·효과음은 무음 no-op. (4) (d) 인덱스드DB 정지 시 "storage-unavailable" 안내 대신 메모리 저장소로 조용히 폴백(요청된 동작).
