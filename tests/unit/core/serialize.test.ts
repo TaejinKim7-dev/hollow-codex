@@ -40,6 +40,7 @@ describe("save format", () => {
     if (result.ok) {
       expect(result.state.time).toEqual({ hour: 8, day: 1 })
       expect(result.state.rings).toEqual({ visited: [], knownFacts: [] })
+      expect(result.state.codex).toEqual({ answers: {}, finalWord: null, finalOpen: false })
     }
   })
   it("rejects future version (> 2)", () => {
@@ -75,5 +76,24 @@ describe("save format", () => {
       }
     })
     expect(deserialize(bad)).toEqual({ ok: false, reason: "corrupt" })
+  })
+  it("rejects a save with a malformed codex field", () => {
+    const bad = JSON.stringify({
+      format: "hollow-codex-save", version: 2,
+      state: {
+        version: 2, rng: 1, turn: 0, mapId: "map.a",
+        player: { pos: { x: 1, y: 1 }, facing: "s", hp: 10, maxHp: 10, attack: 3 },
+        facts: [], deductions: {}, abilities: [], deeds: [],
+        party: [], departed: [], joinedAt: {}, crises: {}, flags: [],
+        dialogue: null, combat: null, clearedEncounters: [],
+        time: { hour: 8, day: 1 },
+        rings: { visited: [], knownFacts: [] },
+        codex: { answers: {}, finalWord: 3, finalOpen: false }
+      }
+    })
+    expect(deserialize(bad)).toEqual({ ok: false, reason: "corrupt" })
+    const missing = JSON.parse(bad) as { state: Record<string, unknown> }
+    delete missing.state["codex"]
+    expect(deserialize(JSON.stringify(missing))).toEqual({ ok: false, reason: "corrupt" })
   })
 })

@@ -1,8 +1,9 @@
 // UI 표시 전용 뷰 모델 (Task 13 PART A). DOM·렌더링 부수 효과 없음.
 import type { FactKind, GameContent } from "../content/types.ts"
-import type { CombatAction, GameState, Id, Pos } from "../core/types.ts"
+import type { CombatAction, GameState, Id, Pos, Virtue } from "../core/types.ts"
 import { availableTopics, pickVariant } from "../core/dialogue/talk.ts"
 import { crisisOptions } from "../core/crisis/crisis.ts"
+import { CODEX_PAGES } from "../core/codex/codex.ts"
 import { openHints } from "../core/knowledge/notebook.ts"
 import { canRecruit } from "../core/virtue/conduct.ts"
 import { t } from "./strings.ts"
@@ -30,6 +31,16 @@ export interface CombatView {
   actions: CombatAction["kind"][]                       // moved면 move 빠짐, flee는 가장자리만, 항상 endTurn
   units: { id: Id; name: string; hp: number; side: "ally" | "enemy"; evilKnown: boolean | null }[]
 }
+
+/** 빈 경전 인터페이스 (M5 Task 42). 8쪽 슬롯 + 마지막 장 + 에필로그 화면. */
+export interface CodexView {
+  pages: { deductionId: Id; virtue: Virtue; title: string; answer: string | null; words: { id: Id; label: string }[] }[]
+  finalOpen: boolean
+  finalWord: string | null
+  finalChoices: { id: Id; label: string }[]
+}
+
+const FINAL_WORD_IDS: readonly Id[] = ["word.truth", "word.love", "word.courage"]
 
 export function dialogueView(
   state: GameState,
@@ -134,6 +145,30 @@ export function notebookView(state: GameState, content: GameContent): NotebookVi
 const onEdge = (grid: readonly string[], p: Pos): boolean => {
   const width = grid[0]?.length ?? 0
   return p.x === 0 || p.y === 0 || p.x === width - 1 || p.y === grid.length - 1
+}
+
+export function codexView(state: GameState, content: GameContent): CodexView {
+  const s = content.strings
+  const words = state.facts
+    .filter((id) => content.facts[id]?.kind === "word")
+    .map((id) => ({ id, label: t(s, content.facts[id]?.labelKey ?? id) }))
+    .sort(byLabel)
+  const pages = CODEX_PAGES.map(({ deductionId, virtue }) => {
+    const written = state.codex.answers[deductionId] ?? null
+    return {
+      deductionId,
+      virtue,
+      title: t(s, `archive.alcove.${virtue}.title`),
+      answer: written === null ? null : t(s, content.facts[written]?.labelKey ?? written),
+      words
+    }
+  })
+  const finalChoices = FINAL_WORD_IDS
+    .filter((id) => content.facts[id] !== undefined)
+    .map((id) => ({ id, label: t(s, content.facts[id]?.labelKey ?? id) }))
+  const finalWord =
+    state.codex.finalWord === null ? null : t(s, content.facts[state.codex.finalWord]?.labelKey ?? state.codex.finalWord)
+  return { pages, finalOpen: state.codex.finalOpen, finalWord, finalChoices }
 }
 
 export function combatView(state: GameState, content: GameContent): CombatView | null {

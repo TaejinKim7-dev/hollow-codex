@@ -8,7 +8,7 @@ import type { UiAction } from "../input/commands.ts"
 import { computeViewport, screenToTile } from "../render/viewport.ts"
 import { offset } from "../core/world/path.ts"
 import { t } from "./strings.ts"
-import { combatView, dialogueView, notebookView, type NotebookView, type SaidLine } from "./view-model.ts"
+import { combatView, codexView, dialogueView, notebookView, type NotebookView, type SaidLine } from "./view-model.ts"
 
 type TabName = "facts" | "deductions" | "hints"
 /** 방향 대기 상태(panels 안의 지역 상태). move는 칸 대기, 나머지는 방향 대기. */
@@ -69,10 +69,11 @@ export function mountPanels(
 
   /** 화면 구석 버튼(generic Chrome)이 가려져야 하는지. */
   const syncChrome = (): void => {
-    const covered = !dialogue.hidden || !notebook.hidden || !menu.hidden || !ringsMenu.hidden
+    const covered = !dialogue.hidden || !notebook.hidden || !menu.hidden || !ringsMenu.hidden || !codex.hidden
     openNotebook.hidden = covered
     openRings.hidden = covered
     openMenu.hidden = covered
+    openCodex.hidden = covered || state?.mapId !== "map.sealed-archive"
   }
 
   // ── 화면 오른쪽 위 버튼 ────────────────
@@ -82,6 +83,17 @@ export function mountPanels(
   openRings.addEventListener("click", () => toggle("rings"))
   const openMenu = make("button", "open-menu", t(s, "ui.menu"))
   openMenu.addEventListener("click", () => toggle("menu"))
+  const openCodex = make("button", "open-codex", t(s, "ui.open-codex"))
+  openCodex.hidden = true
+  openCodex.addEventListener("click", () => {
+    codex.hidden = !codex.hidden
+    if (!codex.hidden) {
+      notebook.hidden = true
+      menu.hidden = true
+      ringsMenu.hidden = true
+    }
+    syncChrome()
+  })
   const timeIndicator = make("div", "time-indicator")
 
   // ── 대화 패널 ─────────────────────────
@@ -478,13 +490,83 @@ export function mountPanels(
     }
   }
 
+  // ── 빈 경전 (M5 Task 42) ───────────────
+  const codex = make("section", "codex")
+  codex.hidden = true
+  const codexHeader = make("header")
+  codexHeader.appendChild(make("span", "title", t(s, "archive.name")))
+  const codexClose = make("button", "close", t(s, "ui.close"))
+  codexClose.addEventListener("click", () => {
+    codex.hidden = true
+    syncChrome()
+  })
+  codexHeader.appendChild(codexClose)
+  const codexPages = make("div", "pages")
+  const codexFinal = make("div", "final-page")
+  const codexEpilogue = make("section", "epilogue")
+  codex.append(codexHeader, codexPages, codexFinal, codexEpilogue)
+
+  /** 8쪽 슬롯과 마지막 장·에필로그 화면. 서고(map.sealed-archive)에 있을 때만 버튼이 보인다. */
+  const renderCodex = (next: GameState): void => {
+    const view = codexView(next, content)
+
+    codexPages.replaceChildren()
+    for (const page of view.pages) {
+      const row = make("div", "page")
+      row.appendChild(make("h3", "page-title", page.title))
+      if (page.answer !== null) {
+        row.classList.add("written")
+        row.appendChild(make("p", "answer", page.answer))
+      } else {
+        const select = make("select", "word")
+        select.disabled = view.finalOpen
+        select.appendChild(make("option"))
+        for (const word of page.words) {
+          const opt = make("option", undefined, word.label)
+          opt.value = word.id
+          select.appendChild(opt)
+        }
+        const write = make("button", "write", t(s, "archive.alcove.write"))
+        write.disabled = view.finalOpen
+        write.addEventListener("click", () => {
+          if (select.value !== "") dispatch({ type: "writeCodex", deductionId: page.deductionId, word: select.value })
+        })
+        row.append(select, write)
+      }
+      codexPages.appendChild(row)
+    }
+
+    codexFinal.replaceChildren()
+    if (view.finalOpen && view.finalWord === null) {
+      codexFinal.appendChild(make("h3", "final-title", t(s, "archive.final-page.title")))
+      codexFinal.appendChild(make("p", "prompt", t(s, "archive.final-page.prompt")))
+      for (const choice of view.finalChoices) {
+        const b = make("button", "final", choice.label)
+        b.addEventListener("click", () => dispatch({ type: "writeFinal", word: choice.id }))
+        codexFinal.appendChild(b)
+      }
+    }
+
+    codexEpilogue.replaceChildren()
+    codexEpilogue.hidden = view.finalWord === null
+    if (view.finalWord !== null) {
+      codexEpilogue.appendChild(make("h3", "epilogue-title", t(s, "archive.epilogue.title")))
+      codexEpilogue.appendChild(make("p", "word", view.finalWord))
+      codexEpilogue.appendChild(make("p", "placeholder", t(s, "archive.epilogue.placeholder")))
+    }
+
+    if (next.mapId !== "map.sealed-archive") codex.hidden = true
+    syncChrome()
+  }
+
   // ── 조립 ──────────────────────────────
-  root.append(openNotebook, openRings, openMenu, timeIndicator, dialogue, notebook, hud, menu, ringsMenu)
+  root.append(openNotebook, openRings, openMenu, openCodex, timeIndicator, dialogue, notebook, hud, menu, ringsMenu, codex)
 
   const toggle = (panel: "notebook" | "menu" | "rings"): void => {
     notebook.hidden = panel !== "notebook" ? true : !notebook.hidden
     menu.hidden = panel !== "menu" ? true : !menu.hidden
     ringsMenu.hidden = panel !== "rings" ? true : !ringsMenu.hidden
+    codex.hidden = true
     aim = null
     syncChrome()
   }
@@ -504,6 +586,7 @@ export function mountPanels(
       renderNotebook(nextState)
       renderCombat(nextState)
       renderRings(nextState)
+      renderCodex(nextState)
     },
     toggle,
     onMenu

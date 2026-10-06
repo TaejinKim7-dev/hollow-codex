@@ -19,13 +19,18 @@ function defaultRings(): { visited: string[]; knownFacts: string[] } {
   return { visited: [], knownFacts: [] }
 }
 
-/** M1 저장에는 time/rings가 없다. 기본값을 붙여 M2 모양으로 만든다. */
+function defaultCodex(): { answers: Record<string, string>; finalWord: null; finalOpen: boolean } {
+  return { answers: {}, finalWord: null, finalOpen: false }
+}
+
+/** M1 저장에는 time/rings/codex가 없다. 기본값을 붙여 현재 모양으로 만든다. */
 export function migrateV1ToV2(state: unknown): unknown {
   if (!isObject(state)) return state
   return {
     ...state,
     time: state["time"] === undefined ? defaultTime() : state["time"],
-    rings: state["rings"] === undefined ? defaultRings() : state["rings"]
+    rings: state["rings"] === undefined ? defaultRings() : state["rings"],
+    codex: state["codex"] === undefined ? defaultCodex() : state["codex"]
   }
 }
 
@@ -51,6 +56,14 @@ function isMinimalState(value: unknown): value is GameState {
   ) return false
   const rings = value["rings"]
   if (!isObject(rings) || !Array.isArray(rings["visited"]) || !Array.isArray(rings["knownFacts"])) return false
+  const codex = value["codex"]
+  if (!isObject(codex)) return false
+  const answers = codex["answers"]
+  if (!isObject(answers) || Array.isArray(answers)) return false
+  if (!Object.values(answers).every((w) => typeof w === "string")) return false
+  const finalWord = codex["finalWord"]
+  if (finalWord !== null && typeof finalWord !== "string") return false
+  if (typeof codex["finalOpen"] !== "boolean") return false
   return (
     typeof value["mapId"] === "string" &&
     typeof value["turn"] === "number" &&

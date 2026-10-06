@@ -2,6 +2,7 @@ import type { GameContent } from "../../content/types.ts"
 import type { Dir, GameEvent, GameState, Id, Pos, StepResult, TimeState } from "../types.ts"
 import { startCombat } from "../combat/grid.ts"
 import { addSorted, samePos } from "../state.ts"
+import { enterSealedArchive } from "../codex/codex.ts"
 import { npcPositionAt } from "../dialogue/talk.ts"
 import { findPath, offset, tileAt } from "./path.ts"
 import { enterOverworldTarget } from "./overworld.ts"
@@ -39,8 +40,9 @@ export function move(state: GameState, dir: Dir, content: GameContent): StepResu
   const map = content.maps[state.mapId]
   if (!map) throw new Error(`unknown map: ${state.mapId}`)
 
-  // 오버월드 마을 입구 (D8): 입구 타일은 발이 닿는 즉시 마을 내부로 이동한다.
+  // 오버월드 마을 입구 (D8) 또는 칼라스 봉인석(봉인 해제 시, M5): 발이 닿는 즉시 도착지로 이동한다.
   const entry = enterOverworldTarget(state, content, target, state.mapId)
+    ?? enterSealedArchive(state, content, target, state.mapId)
   if (entry !== null) {
     const dest = content.maps[entry.mapId]
     if (!dest) throw new Error(`unknown map: ${entry.mapId}`)

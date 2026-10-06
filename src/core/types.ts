@@ -25,6 +25,8 @@ export type Command =
   | { type: "resolveCrisis"; crisisId: Id; optionId: Id } | { type: "recruit"; npcId: Id }
   | { type: "combat"; action: CombatAction }
   | { type: "ringStep"; at: Id }
+  | { type: "writeCodex"; deductionId: Id; word: Id }
+  | { type: "writeFinal"; word: Id }
 
 export type GameEvent =
   | { type: "moved"; pos: Pos } | { type: "bumped" } | { type: "mapChanged"; mapId: Id }
@@ -40,8 +42,18 @@ export type GameEvent =
   | { type: "ringTraveled"; from: Id; to: Id }
   | { type: "ringUnlocked"; ringId: Id; fact: Id }
   | { type: "companionJoinRejected"; npcId: Id }
+  | { type: "codexWritten"; deductionId: Id; word: Id }
+  | { type: "codexFinalChosen"; word: Id }
+  | { type: "epilogue"; kind: "truth" | "love" | "courage" }
 
 export interface TimeState { readonly hour: number; readonly day: number }
+
+/** 봉인 서고의 빈 경전 8쪽과 마지막 장 (M5, D11–D14). */
+export interface CodexState {
+  readonly answers: Readonly<Record<Id, Id>>   // deductionId → wordId (그 쪽에 적은 한 단어)
+  readonly finalWord: Id | null                  // 마지막 장에 고른 단어
+  readonly finalOpen: boolean                    // 8쪽이 모두 적히면 true
+}
 
 export interface GameState {
   readonly version: 1
@@ -49,6 +61,7 @@ export interface GameState {
   readonly turn: number
   readonly time: TimeState                                    // D12 — move 1회당 1시간
   readonly rings: { readonly visited: readonly Id[]; readonly knownFacts: readonly Id[] }   // D15
+  readonly codex: CodexState                                  // M5 — 빈 경전
   readonly mapId: Id
   readonly player: { readonly pos: Pos; readonly facing: Dir; readonly hp: number; readonly maxHp: number; readonly attack: number }
   readonly facts: readonly Id[]                                  // 정렬·중복 없음

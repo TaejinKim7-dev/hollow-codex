@@ -1087,3 +1087,22 @@ humility.option.stay-silent.text: 그대는 이름을 삼키고 고개를 숙인
 
 # --- 헤론 생물 ---
 humility.creature.silencer.name: 침묵의 파수꾼
+
+# --- 봉인 서고 · 빈 경전 (M5 Task 42) ---
+archive.name: 봉인 서고
+archive.unlock-message: 봉인이 풀렸다.
+archive.alcove.honesty.title: 정직의 빈 페이지
+archive.alcove.compassion.title: 연민의 빈 페이지
+archive.alcove.valor.title: 용맹의 빈 페이지
+archive.alcove.justice.title: 정의의 빈 페이지
+archive.alcove.sacrifice.title: 희생의 빈 페이지
+archive.alcove.honor.title: 명예의 빈 페이지
+archive.alcove.spirituality.title: 영성의 빈 페이지
+archive.alcove.humility.title: 겸손의 빈 페이지
+archive.alcove.locked: 아직 봉인되어 있다.
+archive.alcove.write: 이 쪽에 적기
+archive.final-page.title: 마지막 장
+archive.final-page.prompt: 진실·사랑·용기 — 세 원리를 아우르는 하나는?
+archive.epilogue.title: 에필로그
+archive.epilogue.placeholder: 경전은 비어 있지만, 그대의 말이 남았다.
+ui.open-codex: 경전

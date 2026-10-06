@@ -18,3 +18,4 @@
 | content/music/honor.yaml | original proud martial chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
 | content/music/spirituality.yaml | original meditative chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
 | content/music/humility.yaml | original near-silent chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
+| content/music/archive.yaml | original quiet chapel chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |

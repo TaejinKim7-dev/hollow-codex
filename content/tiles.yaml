@@ -14,6 +14,7 @@ tiles:
   "+": { sprite: [town, 47], walk: 1 }
   o: { sprite: [town, 93], walk: null }
   L: { sprite: [town, 115], walk: null }
+  S: { sprite: [town, 93], walk: 1 }
   "_": { sprite: [dungeon, 48], walk: 1 }
   "%": { sprite: [dungeon, 43], walk: null }
   ">": { sprite: [dungeon, 56], walk: 1 }

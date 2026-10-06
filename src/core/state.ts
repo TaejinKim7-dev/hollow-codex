@@ -9,6 +9,7 @@ export function createInitialState(content: GameContent, seed: number): GameStat
     turn: 0,
     time: { hour: 8, day: 1 },           // 오전 8시 시작 (D12)
     rings: { visited: [], knownFacts: [] },
+    codex: { answers: {}, finalWord: null, finalOpen: false },
     mapId: start.map,
     player: { pos: start.pos, facing: "s", hp: start.hp, maxHp: start.hp, attack: start.attack },
     facts: [],
