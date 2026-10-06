@@ -2,6 +2,7 @@ import type { GameContent } from "../../content/types.ts"
 import type { Dir, GameEvent, GameState, Id, Pos, StepResult, TimeState } from "../types.ts"
 import { startCombat } from "../combat/grid.ts"
 import { addSorted, samePos } from "../state.ts"
+import { npcPositionAt } from "../dialogue/talk.ts"
 import { findPath, offset, tileAt } from "./path.ts"
 
 export { tileAt } from "./path.ts"
@@ -16,10 +17,10 @@ function advanceTime(time: TimeState): { state: TimeState; events: GameEvent[] }
   return { state: { hour: 0, day }, events: [{ type: "timePassed", hour: 0, day }, { type: "dayPassed", day }] }
 }
 
-/** state.mapId 지도에서 p에 선 NPC. 동행 중(party)인 NPC는 지도에서 빠진다(D19). */
+/** state.mapId 지도에서 p에 서 있는 NPC. 일과(schedule)를 반영한다(D13). 동행 중(party)인 NPC는 지도에서 빠진다(D19). */
 export function npcAt(state: GameState, content: GameContent, p: Pos): Id | null {
   for (const [id, npc] of Object.entries(content.npcs)) {
-    if (npc.map === state.mapId && samePos(npc.pos, p) && !state.party.includes(id)) return id
+    if (npc.map === state.mapId && samePos(npcPositionAt(npc, state.time.hour), p) && !state.party.includes(id)) return id
   }
   return null
 }

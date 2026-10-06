@@ -1,4 +1,4 @@
-import type { GameContent, Topic } from "../../content/types.ts"
+import type { GameContent, NpcDef, Topic } from "../../content/types.ts"
 import type { Dir, GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
 import { learn } from "../knowledge/notebook.ts"
 import { addSorted, samePos } from "../state.ts"
@@ -9,6 +9,12 @@ import { offset } from "../world/path.ts"
 const DIRS: readonly Dir[] = ["n", "e", "s", "w"]
 const UNKNOWN_KEY = "npc.default.unknown"
 const CHIP_KINDS = new Set(["word", "person", "place"])
+
+/** NPC의 현재 시간대(0·6·12·18 버킷) 위치를 고른다. schedule이 없거나 버킷 키가 없으면 npc.pos (M1 호환). */
+export function npcPositionAt(npc: NpcDef, hour: number): Pos {
+  const bucket = String(Math.floor(hour / 6) * 6)
+  return npc.schedule?.[bucket] ?? npc.pos
+}
 
 /** 대화 칩(D8): name, job, 아는 word·person·place 단서(id 정렬). npcId는 시그니처 호환용. */
 export function availableTopics(state: GameState, content: GameContent, _npcId: Id): string[] {

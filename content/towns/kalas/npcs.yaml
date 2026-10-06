@@ -2,6 +2,11 @@
 - id: npc.field.gatekeeper
   map: map.field
   pos: [4, 7]
+  schedule:
+    "0": [4, 7]
+    "6": [4, 8]
+    "12": [4, 7]
+    "18": [3, 7]
   name: npc.field.gatekeeper.name
   greet: npc.field.gatekeeper.greet
   sprite: [town, 84]
@@ -19,6 +24,11 @@
 - id: npc.field.hunter
   map: map.field
   pos: [4, 3]
+  schedule:
+    "0": [4, 2]
+    "6": [4, 3]
+    "12": [4, 3]
+    "18": [4, 4]
   name: npc.field.hunter.name
   greet: npc.field.hunter.greet
   sprite: [town, 84]
@@ -31,6 +41,11 @@
 - id: npc.kalas.confessor
   map: map.kalas
   pos: [3, 12]
+  schedule:
+    "0": [3, 11]
+    "6": [3, 12]
+    "12": [3, 12]
+    "18": [4, 12]
   name: npc.kalas.confessor.name
   greet: npc.kalas.confessor.greet
   sprite: [town, 84]
@@ -49,6 +64,11 @@
 - id: npc.kalas.warden
   map: map.kalas
   pos: [16, 4]
+  schedule:
+    "0": [15, 5]
+    "6": [16, 4]
+    "12": [16, 4]
+    "18": [16, 5]
   name: npc.kalas.warden.name
   greet: npc.kalas.warden.greet
   sprite: [town, 84]
@@ -72,6 +92,11 @@
 - id: npc.kalas.elin
   map: map.kalas
   pos: [18, 4]
+  schedule:
+    "0": [19, 4]
+    "6": [18, 4]
+    "12": [18, 4]
+    "18": [17, 5]
   name: npc.kalas.elin.name
   greet: npc.kalas.elin.greet
   sprite: [town, 84]
@@ -93,6 +118,11 @@
 - id: npc.kalas.nia
   map: map.kalas
   pos: [10, 4]
+  schedule:
+    "0": [9, 6]
+    "6": [10, 4]
+    "12": [10, 4]
+    "18": [10, 8]
   name: npc.kalas.nia.name
   greet: npc.kalas.nia.greet
   sprite: [town, 84]
@@ -113,6 +143,11 @@
 - id: npc.kalas.tobi
   map: map.kalas
   pos: [7, 19]
+  schedule:
+    "0": [10, 21]
+    "6": [7, 19]
+    "12": [7, 19]
+    "18": [10, 18]
   name: npc.kalas.tobi.name
   greet: npc.kalas.tobi.greet
   sprite: [town, 84]
@@ -129,6 +164,11 @@
 - id: npc.kalas.mira
   map: map.kalas
   pos: [15, 16]
+  schedule:
+    "0": [19, 17]
+    "6": [15, 16]
+    "12": [15, 16]
+    "18": [18, 15]
   name: npc.kalas.mira.name
   greet: npc.kalas.mira.greet
   sprite: [town, 84]
@@ -146,6 +186,11 @@
 - id: npc.kalas.child
   map: map.kalas
   pos: [17, 13]
+  schedule:
+    "0": [17, 14]
+    "6": [17, 14]
+    "12": [17, 13]
+    "18": [17, 14]
   name: npc.kalas.child.name
   greet: npc.kalas.child.greet
   sprite: [town, 84]
@@ -158,6 +203,11 @@
 - id: npc.kalas.innkeeper
   map: map.kalas
   pos: [24, 11]
+  schedule:
+    "0": [24, 12]
+    "6": [24, 11]
+    "12": [24, 11]
+    "18": [24, 12]
   name: npc.kalas.innkeeper.name
   greet: npc.kalas.innkeeper.greet
   sprite: [town, 84]
@@ -173,6 +223,11 @@
 - id: npc.kalas.librarian
   map: map.archive
   pos: [6, 3]
+  schedule:
+    "0": [6, 3]
+    "6": [6, 3]
+    "12": [6, 3]
+    "18": [6, 4]
   name: npc.kalas.librarian.name
   greet: npc.kalas.librarian.greet
   sprite: [town, 84]
