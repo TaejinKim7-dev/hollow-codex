@@ -2,7 +2,7 @@
 // 고발관장에게 진실 선택지로 위기를 푼다. 행실 없이 마쳐야 한다.
 import { describe, expect, it } from "vitest"
 import type { Command } from "../../src/core/types.ts"
-import { makeScript, play, talk, talkWith, walkTo } from "./play.ts"
+import { makeScript, play, walkTo } from "./play.ts"
 import { loadRealContent } from "./play.ts"
 import { WOLF_PUSH_WIN } from "./plans.ts"
 
@@ -13,16 +13,16 @@ function truthCommands(): Command[] {
   const w = makeScript(content)
   w.push(walkTo(content, w.state(), "map.field", { x: 15, y: 8 })) // 다리 입구 → 늑대 조우
   w.push(WOLF_PUSH_WIN)                                            // 밀어내 전멸, 행실 없음
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 17, y: 14 })) // 아이
-  w.push(talk("npc.kalas.child", ["job"]))                          // word.lantern
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 16, y: 16 })) // 직조공
-  w.push(talk("npc.kalas.mira", ["word.lantern"]))                  // fact.kalas.lantern-shard
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 7, y: 20 }))  // 토비
-  w.push(talk("npc.kalas.tobi", ["word.lantern"]))                  // fact.kalas.brother-witness
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 16, y: 3 }))  // 고발관장
-  w.push(talkWith("npc.kalas.warden", [
+  w.meet("map.kalas", "npc.kalas.child") // 아이
+  w.talk("npc.kalas.child", ["job"])                          // word.lantern
+  w.meet("map.kalas", "npc.kalas.mira") // 직조공
+  w.talk("npc.kalas.mira", ["word.lantern"])                  // fact.kalas.lantern-shard
+  w.meet("map.kalas", "npc.kalas.tobi")  // 토비
+  w.talk("npc.kalas.tobi", ["word.lantern"])                  // fact.kalas.brother-witness
+  w.meet("map.kalas", "npc.kalas.warden")  // 고발관장
+  w.talkWith("npc.kalas.warden", [
     { type: "resolveCrisis", crisisId: "crisis.kalas.trial", optionId: "option.truth" }
-  ]))
+  ])
   return w.cmds()
 }
 

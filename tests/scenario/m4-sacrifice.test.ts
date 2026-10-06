@@ -3,19 +3,16 @@
 // 제단 사제의 위기(crisis.sacrifice.altar)를 제단을 여는 선택지로 푼다. 실제 content/ 를 사용한다.
 import { describe, expect, it } from "vitest"
 import type { Command } from "../../src/core/types.ts"
-import { approachCell, makeScript, play, stallToSafe, talk, talkWith, walkTo } from "./play.ts"
+import { makeScript, play, walkTo } from "./play.ts"
 import { loadRealContent } from "./play.ts"
 
 const content = loadRealContent()
 const TOWN = "map.town.sacrifice"
-const HUBS = [{ x: 10, y: 10 }, { x: 11, y: 10 }] as const
 
-/** NPC pos 근처 통행 가능 셀로 걸어가 대화한다. 시간대는 매번 안전 버킷(0–5·12–17)에서 시작한다. */
+/** NPC의 지금 일과 자리 옆으로 걸어가 대화한다(시간대가 바뀌면 걸음마다 다시 맞춘다). */
 function visit(w: ReturnType<typeof makeScript>, npcId: string, topics: string[]): void {
-  stallToSafe(content, w, TOWN, HUBS)
-  const cell = approachCell(content, w.state(), TOWN, npcId)
-  w.push(walkTo(content, w.state(), TOWN, cell))
-  w.push(talk(npcId, topics))
+  w.meet(TOWN, npcId)
+  w.talk(npcId, topics)
 }
 
 function commands(): Command[] {
@@ -33,12 +30,10 @@ function commands(): Command[] {
     { type: "fillSlot", deductionId: "deduction.sacrifice", slot: 2, word: "word.courage" }
   ])
   // 4. 제단 사제의 위기 — 제단 열기
-  stallToSafe(content, w, TOWN, HUBS)
-  const priest = approachCell(content, w.state(), TOWN, "npc.sacrifice.altar-priest")
-  w.push(walkTo(content, w.state(), TOWN, priest))
-  w.push(talkWith("npc.sacrifice.altar-priest", [
+  w.meet(TOWN, "npc.sacrifice.altar-priest")
+  w.talkWith("npc.sacrifice.altar-priest", [
     { type: "resolveCrisis", crisisId: "crisis.sacrifice.altar", optionId: "option.open-altar" }
-  ]))
+  ])
   return w.cmds()
 }
 

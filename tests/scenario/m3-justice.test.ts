@@ -4,19 +4,16 @@
 // 선택지로 푼다. 실제 content/ 를 사용한다.
 import { describe, expect, it } from "vitest"
 import type { Command } from "../../src/core/types.ts"
-import { approachCell, makeScript, play, stallToSafe, talk, talkWith, walkTo } from "./play.ts"
+import { makeScript, play, walkTo } from "./play.ts"
 import { loadRealContent } from "./play.ts"
 
 const content = loadRealContent()
 const TOWN = "map.town.justice"
-const HUBS = [{ x: 14, y: 14 }, { x: 20, y: 14 }] as const
 
-/** NPC pos 근처 통행 가능 셀로 걸어가 대화한다. 시간대는 매번 안전 버킷(0–5·12–17)에서 시작한다. */
+/** NPC의 지금 일과 자리 옆으로 걸어가 대화한다(시간대가 바뀌면 걸음마다 다시 맞춘다). */
 function visit(w: ReturnType<typeof makeScript>, npcId: string, topics: string[]): void {
-  stallToSafe(content, w, TOWN, HUBS)
-  const cell = approachCell(content, w.state(), TOWN, npcId)
-  w.push(walkTo(content, w.state(), TOWN, cell))
-  w.push(talk(npcId, topics))
+  w.meet(TOWN, npcId)
+  w.talk(npcId, topics)
 }
 
 function commands(): Command[] {
@@ -34,12 +31,10 @@ function commands(): Command[] {
     { type: "fillSlot", deductionId: "deduction.justice", slot: 2, word: "word.love" }
   ])
   // 4. 재판관(judge)의 위기 — 미망인 위로
-  stallToSafe(content, w, TOWN, HUBS)
-  const judge = approachCell(content, w.state(), TOWN, "npc.justice.judge")
-  w.push(walkTo(content, w.state(), TOWN, judge))
-  w.push(talkWith("npc.justice.judge", [
+  w.meet(TOWN, "npc.justice.judge")
+  w.talkWith("npc.justice.judge", [
     { type: "resolveCrisis", crisisId: "crisis.justice.mourning", optionId: "option.comfort-widow" }
-  ]))
+  ])
   return w.cmds()
 }
 

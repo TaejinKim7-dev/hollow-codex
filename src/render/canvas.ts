@@ -1,5 +1,6 @@
 import type { GameContent, SpriteRef } from "../content/types.ts"
-import type { GameState, Pos } from "../core/types.ts"
+import type { GameState, Id, Pos } from "../core/types.ts"
+import { npcPositionAt } from "../core/dialogue/talk.ts"
 import { computeViewport, TILE, VIEW_H, VIEW_W, type Viewport } from "./viewport.ts"
 
 /**
@@ -47,13 +48,19 @@ function drawMap(ctx: CanvasRenderingContext2D, sheets: Readonly<Record<string, 
       drawSprite(ctx, sheets, content, tile.sprite, screenX(vp, x, size), screenY(vp, y, size), size)
     }
   }
-  for (const [id, npc] of Object.entries(content.npcs)) {
-    if (npc.map !== state.mapId || state.party.includes(id)) continue
+  for (const npc of npcsToDraw(state, content)) {
     if (npc.pos.x < vp.originTile.x || npc.pos.x >= vp.originTile.x + VIEW_W) continue
     if (npc.pos.y < vp.originTile.y || npc.pos.y >= vp.originTile.y + VIEW_H) continue
     drawSprite(ctx, sheets, content, npc.sprite, screenX(vp, npc.pos.x, size), screenY(vp, npc.pos.y, size), size)
   }
   drawSprite(ctx, sheets, content, content.playerSprite, screenX(vp, state.player.pos.x, size), screenY(vp, state.player.pos.y, size), size)
+}
+
+/** 지금 지도에 그릴 NPC와 위치. 일과(schedule)를 시간대로 반영한다(npcAt과 같은 규칙). 동행 중인 NPC는 빠진다. */
+export function npcsToDraw(state: GameState, content: GameContent): { readonly id: Id; readonly pos: Pos; readonly sprite: SpriteRef }[] {
+  return Object.entries(content.npcs)
+    .filter(([id, npc]) => npc.map === state.mapId && !state.party.includes(id))
+    .map(([id, npc]) => ({ id, pos: npcPositionAt(npc, state.time.hour), sprite: npc.sprite }))
 }
 
 function drawCombat(ctx: CanvasRenderingContext2D, sheets: Readonly<Record<string, HTMLImageElement>>, content: GameContent, state: GameState): void {

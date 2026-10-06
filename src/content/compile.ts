@@ -11,6 +11,8 @@ import type {
 
 const VIRTUES: readonly Virtue[] = ["honesty", "compassion", "valor", "justice", "sacrifice", "honor", "spirituality", "humility"]
 const FACT_KINDS: readonly FactKind[] = ["person", "place", "word", "song", "meaning", "creature"]
+/** NPC 일과 버킷(D13): 0–5, 6–11, 12–17, 18–23시. */
+const SCHEDULE_BUCKETS: readonly string[] = ["0", "6", "12", "18"]
 const WAVES: readonly string[] = ["square50", "square25", "triangle", "noise"]
 const ALWAYS_REQUIRED_STRINGS: readonly string[] = ["npc.default.unknown", "topic.name", "topic.job"]
 const DENYLIST_FILE = "ip-denylist.yaml"
@@ -234,6 +236,15 @@ function readNpcs(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
     const npc: Mutable<NpcDef> = {
       map: r.str(o, "map", w), pos: r.pos(o["pos"], `${w}.pos`), nameKey: r.str(o, "name", w), greetKey: r.str(o, "greet", w),
       sprite: r.sprite(o["sprite"], `${w}.sprite`), topics
+    }
+    if (o["schedule"] !== undefined) {
+      const sw = `${w}.schedule`
+      const schedule: Record<string, Pos> = {}
+      for (const [bucket, p] of Object.entries(r.obj(o["schedule"], sw))) {
+        if (!SCHEDULE_BUCKETS.includes(bucket)) r.fail(`${sw}."${bucket}"`, `schedule keys must be one of ${SCHEDULE_BUCKETS.join(", ")}`)
+        else schedule[bucket] = r.pos(p, `${sw}."${bucket}"`)
+      }
+      npc.schedule = schedule
     }
     const npcOk = r.errors.length === before
     if (o["companion"] !== undefined) {
@@ -528,7 +539,26 @@ function checkGeometry(d: Draft, out: string[]): void {
   }
   for (const [id, n] of Object.entries(d.npcs.items)) {
     const m = d.maps.items[n.map]
-    if (m !== undefined) cell(d.npcs.file[id] ?? "", `${id}.pos`, m.rows, n.pos)
+    if (m === undefined) continue
+    const f = d.npcs.file[id] ?? ""
+    cell(f, `${id}.pos`, m.rows, n.pos)
+    for (const [bucket, p] of Object.entries(n.schedule ?? {})) {
+      const where = `${id}.schedule."${bucket}"`
+      cell(f, where, m.rows, p)
+      if (m.exits.some((e) => e.at.x === p.x && e.at.y === p.y)) out.push(`${f}: ${where}: [${p.x}, ${p.y}] is an exit cell`)
+      if (m.encounters.some((e) => e.at.x === p.x && e.at.y === p.y)) out.push(`${f}: ${where}: [${p.x}, ${p.y}] is an encounter cell`)
+    }
+  }
+  // 같은 시간대(버킷)에 같은 지도의 같은 칸에 두 NPC가 서지 않는다. 버킷이 없으면 pos에 선다(npcPositionAt과 같다).
+  for (const bucket of SCHEDULE_BUCKETS) {
+    const seen = new Map<string, Id>()
+    for (const [id, n] of Object.entries(d.npcs.items)) {
+      const p = n.schedule?.[bucket] ?? n.pos
+      const key = `${n.map}@${p.x},${p.y}`
+      const other = seen.get(key)
+      if (other !== undefined) out.push(`${d.npcs.file[id] ?? ""}: ${id}: stands on the same cell [${p.x}, ${p.y}] as ${other} in hour bucket ${bucket}`)
+      else seen.set(key, id)
+    }
   }
   if (d.start !== null) {
     const m = d.maps.items[d.start.map]

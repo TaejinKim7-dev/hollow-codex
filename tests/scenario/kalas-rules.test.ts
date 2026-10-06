@@ -4,7 +4,7 @@ import type { Command } from "../../src/core/types.ts"
 import { createInitialState } from "../../src/core/state.ts"
 import { deserialize, serialize } from "../../src/core/save/serialize.ts"
 import { step } from "../../src/core/step.ts"
-import { makeScript, play, talk, talkWith, walkTo } from "./play.ts"
+import { makeScript, play, walkTo } from "./play.ts"
 import { loadRealContent } from "./play.ts"
 import { WOLF_KILL, WOLF_PUSH_WIN } from "./plans.ts"
 
@@ -13,16 +13,16 @@ const content = loadRealContent()
 // ── (a) 가짜 정답: [word.truth, word.weapon, word.duty] → 미확정 ──────────────
 function wrongWordsCommands(): Command[] {
   const w = makeScript(content)
-  w.push(walkTo(content, w.state(), "map.field", { x: 3, y: 7 })) // 문지기
-  w.push(talk("npc.field.gatekeeper", ["job", "word.pilgrim"]))   // word.truth
+  w.meet("map.field", "npc.field.gatekeeper") // 문지기
+  w.talk("npc.field.gatekeeper", ["job", "word.pilgrim"])   // word.truth
   w.push(walkTo(content, w.state(), "map.field", { x: 15, y: 8 })) // 다리
   w.push(WOLF_PUSH_WIN)
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 16, y: 3 })) // 고발관장
-  w.push(talk("npc.kalas.warden", ["job"]))                        // word.ledger
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 18, y: 3 })) // 엘린
-  w.push(talk("npc.kalas.elin", ["word.ledger"]))                  // word.weapon
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 3, y: 11 })) // 고백관
-  w.push(talk("npc.kalas.confessor", ["job"]))                     // word.duty
+  w.meet("map.kalas", "npc.kalas.warden") // 고발관장
+  w.talk("npc.kalas.warden", ["job"])                        // word.ledger
+  w.meet("map.kalas", "npc.kalas.elin") // 엘린
+  w.talk("npc.kalas.elin", ["word.ledger"])                  // word.weapon
+  w.meet("map.kalas", "npc.kalas.confessor") // 고백관
+  w.talk("npc.kalas.confessor", ["job"])                     // word.duty
   w.push([
     { type: "fillSlot", deductionId: "deduction.honesty", slot: 0, word: "word.truth" },
     { type: "fillSlot", deductionId: "deduction.honesty", slot: 1, word: "word.weapon" },
@@ -36,34 +36,34 @@ function companionCommands(): Command[] {
   const w = makeScript(content)
   w.push(walkTo(content, w.state(), "map.field", { x: 15, y: 8 }))  // 다리
   w.push(WOLF_PUSH_WIN)
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 16, y: 3 }))  // 고발관장
-  w.push(talk("npc.kalas.warden", ["job"]))                         // word.ledger
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 16, y: 16 })) // 직조공
-  w.push(talk("npc.kalas.mira", ["word.ledger"]))                   // fact.kalas.ledger-doubt
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 18, y: 3 }))  // 엘린
-  w.push(talkWith("npc.kalas.elin", [{ type: "recruit", npcId: "npc.kalas.elin" }])) // 합류
+  w.meet("map.kalas", "npc.kalas.warden")  // 고발관장
+  w.talk("npc.kalas.warden", ["job"])                         // word.ledger
+  w.meet("map.kalas", "npc.kalas.mira") // 직조공
+  w.talk("npc.kalas.mira", ["word.ledger"])                   // fact.kalas.ledger-doubt
+  w.meet("map.kalas", "npc.kalas.elin")  // 엘린
+  w.talkWith("npc.kalas.elin", [{ type: "recruit", npcId: "npc.kalas.elin" }]) // 합류
   w.push(walkTo(content, w.state(), "map.kalas", { x: 28, y: 4 }))  // 서고 다녀오기
   w.push(walkTo(content, w.state(), "map.kalas", { x: 28, y: 3 }))  // flag.visited-archive 획득
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 3, y: 11 }))  // 고백관
-  w.push(talkWith("npc.kalas.confessor", [
+  w.meet("map.kalas", "npc.kalas.confessor")  // 고백관
+  w.talkWith("npc.kalas.confessor", [
     { type: "ask", topic: "job" },
     { type: "choose", optionId: "option.confess-no" }               // honesty 행실 1
-  ]))
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 17, y: 14 })) // 아이
-  w.push(talk("npc.kalas.child", ["job"]))                          // word.lantern
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 16, y: 16 })) // 직조공
-  w.push(talk("npc.kalas.mira", ["word.lantern"]))                  // fact.kalas.lantern-shard
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 7, y: 20 }))  // 토비
-  w.push(talk("npc.kalas.tobi", ["word.lantern"]))                  // fact.kalas.brother-witness
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 16, y: 3 }))  // 고발관장
-  w.push(talkWith("npc.kalas.warden", [
+  ])
+  w.meet("map.kalas", "npc.kalas.child") // 아이
+  w.talk("npc.kalas.child", ["job"])                          // word.lantern
+  w.meet("map.kalas", "npc.kalas.mira") // 직조공
+  w.talk("npc.kalas.mira", ["word.lantern"])                  // fact.kalas.lantern-shard
+  w.meet("map.kalas", "npc.kalas.tobi")  // 토비
+  w.talk("npc.kalas.tobi", ["word.lantern"])                  // fact.kalas.brother-witness
+  w.meet("map.kalas", "npc.kalas.warden")  // 고발관장
+  w.talkWith("npc.kalas.warden", [
     { type: "ask", topic: "word.trial" },
     { type: "choose", optionId: "option.deny-warden" }              // honesty 행실 2 → 엘린 이탈
-  ]))
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 11, y: 4 }))  // 니아
-  w.push(talk("npc.kalas.nia", ["word.ledger"]))                    // fact.kalas.elin-forgiven
-  w.push(walkTo(content, w.state(), "map.kalas", { x: 18, y: 3 }))  // 엘린
-  w.push(talkWith("npc.kalas.elin", [{ type: "recruit", npcId: "npc.kalas.elin" }])) // 재합류
+  ])
+  w.meet("map.kalas", "npc.kalas.nia")  // 니아
+  w.talk("npc.kalas.nia", ["word.ledger"])                    // fact.kalas.elin-forgiven
+  w.meet("map.kalas", "npc.kalas.elin")  // 엘린
+  w.talkWith("npc.kalas.elin", [{ type: "recruit", npcId: "npc.kalas.elin" }]) // 재합류
   return w.cmds()
 }
 

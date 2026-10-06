@@ -1,6 +1,7 @@
 import type { GameContent } from "../../content/types.ts"
 import type { GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
 import { addSorted, samePos } from "../state.ts"
+import { npcPositionAt } from "../dialogue/talk.ts"
 import { DIRS, offset, tileAt } from "./path.ts"
 
 const adjacent = (a: Pos, b: Pos): boolean => Math.abs(a.x - b.x) + Math.abs(a.y - b.y) === 1
@@ -18,7 +19,7 @@ export function ringHere(state: GameState, content: GameContent): Id | null {
 }
 
 /** 도착 칸: 고리 칸이 걸을 수 있으면 그 칸, 아니면 걸을 수 있고 출구·조우·NPC가 없는 첫 이웃(n, e, s, w). */
-function arrivalCell(content: GameContent, mapId: Id, at: Pos): Pos | null {
+function arrivalCell(content: GameContent, mapId: Id, at: Pos, hour: number): Pos | null {
   const map = content.maps[mapId]
   if (map === undefined) return null
   const walkable = (p: Pos): boolean => {
@@ -29,7 +30,7 @@ function arrivalCell(content: GameContent, mapId: Id, at: Pos): Pos | null {
     walkable(p) &&
     !map.exits.some((e) => samePos(e.at, p)) &&
     !map.encounters.some((e) => samePos(e.at, p)) &&
-    !Object.values(content.npcs).some((n) => n.map === mapId && samePos(n.pos, p))
+    !Object.values(content.npcs).some((n) => n.map === mapId && samePos(npcPositionAt(n, hour), p))
   if (walkable(at)) return at
   for (const dir of DIRS) {
     const p = offset(at, dir)
@@ -52,7 +53,7 @@ export function ringTravel(state: GameState, toId: Id, content: GameContent): St
   if (fromId === null || dest === undefined || fromId === toId) return ignored
   if (!state.rings.knownFacts.includes(dest.fact)) return ignored
   const destMap = content.maps[dest.onOverworld]
-  const pos = arrivalCell(content, dest.onOverworld, dest.at)
+  const pos = arrivalCell(content, dest.onOverworld, dest.at, state.time.hour)
   if (destMap === undefined || pos === null) return ignored
 
   const visited = addSorted(state.rings.visited, [fromId, toId])

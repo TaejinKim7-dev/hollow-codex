@@ -4,19 +4,16 @@
 // 장로의 위기(crisis.humility.name)를 스스로 이름을 말하는 선택지로 푼다.
 import { describe, expect, it } from "vitest"
 import type { Command } from "../../src/core/types.ts"
-import { approachCell, makeScript, play, stallToSafe, talk, talkWith, walkTo } from "./play.ts"
+import { makeScript, play, walkTo } from "./play.ts"
 import { loadRealContent } from "./play.ts"
 
 const content = loadRealContent()
 const TOWN = "map.town.humility"
-const HUBS = [{ x: 12, y: 10 }, { x: 13, y: 10 }] as const
 
-/** NPC pos 근처 통행 가능 셀로 걸어가 대화한다. 시간대는 매번 안전 버킷(0–5·12–17)에서 시작한다. */
+/** NPC의 지금 일과 자리 옆으로 걸어가 대화한다(시간대가 바뀌면 걸음마다 다시 맞춘다). */
 function visit(w: ReturnType<typeof makeScript>, npcId: string, topics: string[]): void {
-  stallToSafe(content, w, TOWN, HUBS)
-  const cell = approachCell(content, w.state(), TOWN, npcId)
-  w.push(walkTo(content, w.state(), TOWN, cell))
-  w.push(talk(npcId, topics))
+  w.meet(TOWN, npcId)
+  w.talk(npcId, topics)
 }
 
 function commands(): Command[] {
@@ -34,12 +31,10 @@ function commands(): Command[] {
     { type: "fillSlot", deductionId: "deduction.humility", slot: 2, word: "word.three" }
   ])
   // 4. 조용한 장로의 위기 — 스스로 이름을 말하기
-  stallToSafe(content, w, TOWN, HUBS)
-  const elder = approachCell(content, w.state(), TOWN, "npc.humility.silent-elder")
-  w.push(walkTo(content, w.state(), TOWN, elder))
-  w.push(talkWith("npc.humility.silent-elder", [
+  w.meet(TOWN, "npc.humility.silent-elder")
+  w.talkWith("npc.humility.silent-elder", [
     { type: "resolveCrisis", crisisId: "crisis.humility.name", optionId: "option.speak-name" }
-  ]))
+  ])
   return w.cmds()
 }
 
