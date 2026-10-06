@@ -51,3 +51,8 @@ claude                                             # 새 세션: CLAUDE.md → H
 
 ## 2026-10-06 Task 1
 골격·규칙 문서 작성, 게이트 결과는 아래.
+
+## 2026-10-06 Task 2 — 첫 Pages 배포
+- merge 게이트(Haiku, HEAD `859cca5`): `npm ci` 0 · `npm run test:unit` 0 (11 passed) · `npm run typecheck` 0 · `npm run check:content` 0 (자리표시) · `npm run build` 0 · `npm run audit:dist` 0 · `git diff --check` 0.
+- `todo-1-skeleton` → `main` ff-merge·push. Actions run `37400128555`: build success, deploy success.
+- `https://taejinkim7-dev.github.io/hollow-codex/` → HTTP 200.
