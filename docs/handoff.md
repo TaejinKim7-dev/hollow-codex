@@ -400,3 +400,14 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
   - IndexedDB가 안 되면 저장은 그 탭 안에서만 남는다. `indexedDB.open`이 끝나지 않고 멈추는 경우(`onblocked`, 시간 제한 없음)는 다루지 않았다. `AudioContext`는 여전히 모듈을 읽을 때 만든다.
   - M1 사용자 플레이 판정은 여전히 기록되지 않았다.
 - **확인 필요(사람)**: 브라우저에서 메뉴 저장·불러오기·새 시작, 고리 메뉴(고리 위/밖), 전투 탭, 에필로그 화면, NPC가 시간대마다 옮겨 서는 모습.
+
+### 재검토 수정 1차 (`.superpowers/sdd/2026-10-06-m0-m1-kalas-slice/rereview.md`)
+
+| # | 고친 것 | 커밋 |
+|---|---|---|
+| 1 | 디오네(희생 마을) (14,18)에서 6–11시에 정원사가 유일한 빈 이웃 (15,18)에 서서 플레이어가 갇히던 문제(부딪힘은 시간을 보내지 않음). 정원사 6시 칸을 (17,17)로 옮겼다. 일반 가드 `tests/unit/content/schedule-traps.test.ts`: 모든 지도의 (칸, 시각) 상태를 모든 진입점에서 탐색해, 움직일 수 없는 상태 0개, 모든 상태에서 출구에 닿을 수 있음, 일과 없이 말 걸 수 있던 NPC는 어느 시각엔가 말 걸 수 있음을 요구한다. 지형만으로 막힌 칸은 닿을 수 없으므로 걸리지 않는다 | `ba1cbfa` |
+| 2 | README: 고리 순간이동은 `fact.ring.*`를 주는 대화가 없어 실제 플레이에서 열리지 않는다고 적고(코드·콘텐츠 확인), 밤낮 도달 제한(엘린 18–23시, 헤론 수련생 6–11시)을 알려진 한계에 더했다 | `e52ae33` |
+| 3 | 메뉴 불러오기 실패는 `ui.notice.load-failed-kept`("지금 진행은 그대로")로 알린다. "새로 시작" 문구(`load-failed`)는 부팅 실패에만 쓴다 | `9c663ea` |
+
+- 헤론 수련생(`npc.humility.novice`)은 6–11시에 장로가 집 문 안쪽 (8,5)에 서서 닿을 수 없다. 다른 시각에는 말 걸 수 있고 정답 단어를 주지 않아 가드에 걸리지 않는다. 콘텐츠는 그대로 둔다.
+- 게이트(HEAD `9c663ea`, 직접 실행): `npm run test:unit` 0 (59 files, **358 passed**) · `typecheck` 0 · `check:content` 0 (`ok (12 maps, 81 npcs, 140 facts, 15 ledger files, 118 src/tests/scripts files scanned)`) · `build` 0 (precache 14 entries / 482.89 KiB) · `audit:dist` 0 (`ok (13 files, 526352 bytes)`) · `git diff --check` 0.
