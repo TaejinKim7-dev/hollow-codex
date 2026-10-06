@@ -97,3 +97,21 @@ describe("historical saves load into the current shape", () => {
     expect(normalizeLoaded(s, content)).toBe(s)
   })
 })
+
+describe("old saves get town flags for towns already visited", () => {
+  it("knowing a fact that a town's NPC grants marks that town visited (hints tab scope)", () => {
+    const grantsOf = (n: (typeof content.npcs)[string]) => Object.values(n.topics).flat().flatMap((t) => t.grants ?? [])
+    const here = Object.values(content.npcs).filter((n) => n.map === "map.town.compassion").flatMap(grantsOf)
+    const elsewhere = new Set(Object.values(content.npcs).filter((n) => n.map !== "map.town.compassion").flatMap(grantsOf))
+    const fact = here.find((f) => !elsewhere.has(f))!
+    const s = loadOk(save(2, { ...m5State, facts: [...m5State.facts, fact].sort() }))
+    expect(s.flags).toContain("flag.town.compassion")
+    expect(s.flags).not.toContain("flag.town.valor")
+  })
+  it("a resolved crisis marks its town visited", () => {
+    const [crisisId, crisis] = Object.entries(content.crises).find(([, c]) => content.npcs[c.npc]?.map === "map.town.valor")!
+    const optionId = Object.keys(crisis.options)[0]!
+    const s = loadOk(save(2, { ...m5State, crises: { [crisisId]: optionId } }))
+    expect(s.flags).toContain("flag.town.valor")
+  })
+})
