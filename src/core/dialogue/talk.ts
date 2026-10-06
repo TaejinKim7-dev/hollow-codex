@@ -2,6 +2,7 @@ import type { GameContent, Topic } from "../../content/types.ts"
 import type { Dir, GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
 import { learn } from "../knowledge/notebook.ts"
 import { addSorted, samePos } from "../state.ts"
+import { recordDeed } from "../virtue/conduct.ts"
 import { npcAt } from "../world/move.ts"
 import { offset } from "../world/path.ts"
 
@@ -81,11 +82,11 @@ export function choose(state: GameState, optionId: Id, content: GameContent): St
   const flagged = { ...state, flags: addSorted(state.flags, option.setsFlags ?? []) }
   const learned = learn(flagged, option.grants ?? [])
   const events: GameEvent[] = [said(npcId, option.textKey, false), ...learned.events]
-  let next = { ...learned.state, dialogue: { npcId, pendingChoice: null } }
+  let next: GameState = { ...learned.state, dialogue: { npcId, pendingChoice: null } }
   if (option.deed !== undefined) {
-    const { virtue, deed } = option.deed
-    next = { ...next, deeds: [...next.deeds, { virtue, deed, turn: state.turn }] }   // D7: Task 8이 recordDeed로 바꾼다
-    events.push({ type: "deed", virtue, deed })
+    const recorded = recordDeed(next, content, option.deed.virtue, option.deed.deed)
+    next = recorded.state
+    events.push(...recorded.events)
   }
   return { state: next, events }
 }
