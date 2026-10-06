@@ -1,0 +1,40 @@
+{
+  "format": "hollow-codex-save",
+  "version": 2,
+  "state": {
+    "version": 1,
+    "rng": 777,
+    "turn": 900,
+    "time": { "hour": 14, "day": 5 },
+    "rings": { "visited": [], "knownFacts": ["fact.ring.honesty"] },
+    "mapId": "map.over",
+    "player": {
+      "pos": { "x": 14, "y": 23 },
+      "facing": "e",
+      "hp": 9,
+      "maxHp": 12,
+      "attack": 3
+    },
+    "facts": ["fact.ring.honesty", "word.truth"],
+    "deductions": {
+      "deduction.honesty": { "slots": [null, null, null], "confirmed": false },
+      "deduction.compassion": { "slots": [null, null, null], "confirmed": false },
+      "deduction.valor": { "slots": [null, null, null], "confirmed": false },
+      "deduction.justice": { "slots": [null, null, null], "confirmed": false },
+      "deduction.sacrifice": { "slots": [null, null, null], "confirmed": false },
+      "deduction.honor": { "slots": [null, null, null], "confirmed": false },
+      "deduction.spirituality": { "slots": [null, null, null], "confirmed": false },
+      "deduction.humility": { "slots": [null, null, null], "confirmed": false }
+    },
+    "abilities": [],
+    "deeds": [],
+    "party": [],
+    "departed": [],
+    "joinedAt": {},
+    "crises": {},
+    "flags": ["flag.town.compassion", "flag.visited-archive"],
+    "dialogue": null,
+    "combat": null,
+    "clearedEncounters": ["enc.field.wolves"]
+  }
+}

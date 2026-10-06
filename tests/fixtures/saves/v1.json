@@ -1,0 +1,31 @@
+{
+  "format": "hollow-codex-save",
+  "version": 1,
+  "state": {
+    "version": 1,
+    "rng": 12345,
+    "turn": 40,
+    "mapId": "map.kalas",
+    "player": {
+      "pos": { "x": 10, "y": 10 },
+      "facing": "s",
+      "hp": 12,
+      "maxHp": 12,
+      "attack": 3
+    },
+    "facts": ["word.lantern", "word.truth"],
+    "deductions": {
+      "deduction.honesty": { "slots": ["word.truth", null, null], "confirmed": false }
+    },
+    "abilities": [],
+    "deeds": [],
+    "party": [],
+    "departed": [],
+    "joinedAt": {},
+    "crises": {},
+    "flags": [],
+    "dialogue": null,
+    "combat": null,
+    "clearedEncounters": []
+  }
+}

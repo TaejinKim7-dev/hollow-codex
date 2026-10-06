@@ -1,0 +1,46 @@
+{
+  "format": "hollow-codex-save",
+  "version": 3,
+  "state": {
+    "version": 1,
+    "rng": 424242,
+    "turn": 1234,
+    "language": "en",
+    "time": { "hour": 20, "day": 7 },
+    "rings": { "visited": ["ring.honesty"], "knownFacts": ["fact.ring.honesty"] },
+    "codex": {
+      "answers": { "deduction.honesty": "word.truth" },
+      "finalWord": "word.truth",
+      "finalOpen": true
+    },
+    "mapId": "map.sealed-archive",
+    "player": {
+      "pos": { "x": 8, "y": 1 },
+      "facing": "s",
+      "hp": 10,
+      "maxHp": 12,
+      "attack": 3
+    },
+    "facts": ["word.lantern", "word.truth"],
+    "deductions": {
+      "deduction.honesty": { "slots": ["word.truth", null, null], "confirmed": true },
+      "deduction.compassion": { "slots": [null, null, null], "confirmed": false },
+      "deduction.valor": { "slots": [null, null, null], "confirmed": false },
+      "deduction.justice": { "slots": [null, null, null], "confirmed": false },
+      "deduction.sacrifice": { "slots": [null, null, null], "confirmed": false },
+      "deduction.honor": { "slots": [null, null, null], "confirmed": false },
+      "deduction.spirituality": { "slots": [null, null, null], "confirmed": false },
+      "deduction.humility": { "slots": [null, null, null], "confirmed": false }
+    },
+    "abilities": ["ability.see-lies"],
+    "deeds": [{ "virtue": "honesty", "deed": "deed.lie", "turn": 100 }],
+    "party": [],
+    "departed": [],
+    "joinedAt": {},
+    "crises": {},
+    "flags": ["flag.sealed-archive-opened", "flag.town.kalas"],
+    "dialogue": null,
+    "combat": null,
+    "clearedEncounters": []
+  }
+}
