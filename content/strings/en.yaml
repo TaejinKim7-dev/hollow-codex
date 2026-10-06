@@ -157,6 +157,7 @@ ui.credits.group.music: Music
 ui.credits.group.code: Code
 ui.touch-hint: Touch to move
 ui.notice.load-failed: "Could not read the save, so a new game started. The unreadable save will not be overwritten."
+ui.notice.load-failed-kept: "Could not read that slot. Your current game is unchanged."
 ui.notice.loaded: Loaded.
 ui.notice.storage-unavailable: "Storage is not available in this browser. Progress will be lost when this tab closes."
 ui.notice.autosave-failed: "Autosave failed. Please check your browser storage."

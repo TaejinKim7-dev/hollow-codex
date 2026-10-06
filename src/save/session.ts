@@ -9,9 +9,13 @@ import { createMemorySlotStore } from "./slot-store.ts"
 import type { SlotStore } from "./slot-store.ts"
 import { AUTO_SLOT, MENU_SLOTS, loadSlot, saveToSlot } from "./slots.ts"
 
-/** Messages for the player. main.ts shows each one as `ui.notice.<name>`. */
+/**
+ * Messages for the player. main.ts shows each one as `ui.notice.<name>`.
+ * load-failed = boot could not read the auto slot and started a new game;
+ * load-failed-kept = a menu load failed and the current game is kept.
+ */
 export type SessionNotice =
-  | "load-failed" | "loaded" | "slot-empty" | "saved" | "save-failed" | "storage-unavailable" | "autosave-failed"
+  | "load-failed" | "load-failed-kept" | "loaded" | "slot-empty" | "saved" | "save-failed" | "storage-unavailable" | "autosave-failed"
 
 export interface SessionOptions {
   /** null when the browser has no usable storage (no indexedDB global); a memory store is used then. */
@@ -99,12 +103,12 @@ export function createSession(options: SessionOptions): Session {
         loaded = await loadSlot(store, slotId)
       } catch (error) {
         log("load-failed", String(error))
-        return { state: null, notice: "load-failed" }
+        return { state: null, notice: "load-failed-kept" }
       }
       if (loaded === null) return { state: null, notice: "slot-empty" }
       if (!loaded.ok) {
         log("load-failed", loaded.reason)
-        return { state: null, notice: "load-failed" }
+        return { state: null, notice: "load-failed-kept" }
       }
       autoBlocked = false
       return { state: normalizeLoaded(loaded.state, content), notice: "loaded" }

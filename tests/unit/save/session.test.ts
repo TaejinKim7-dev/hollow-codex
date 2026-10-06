@@ -151,7 +151,7 @@ describe("menu save / load / new game", () => {
     await store.put(raw("slot-1", "{also broken"))
     const session = createSession(opts(store))
     await session.boot()
-    expect(await session.load("slot-1")).toEqual({ state: null, notice: "load-failed" })
+    expect(await session.load("slot-1")).toEqual({ state: null, notice: "load-failed-kept" })
     expect(session.autosaveBlocked()).toBe(true)
   })
 
@@ -178,5 +178,25 @@ describe("menu save / load / new game", () => {
     expect(slots.map((s) => s.id)).toEqual(["auto", "slot-1", "slot-2", "slot-3"])
     expect(slots.find((s) => s.id === "slot-1")?.updatedAt).toBe(4242)
     expect(slots.find((s) => s.id === "slot-2")?.updatedAt).toBeNull()
+  })
+})
+
+describe("failed menu load keeps the current game and says so", () => {
+  it("a store that throws on load reports load-failed-kept, not the boot notice", async () => {
+    let throwing = false
+    const memory = createMemorySlotStore()
+    const store: SlotStore = { ...memory, get: (id) => (throwing ? Promise.reject(new Error("io")) : memory.get(id)) }
+    const session = createSession(opts(store))
+    await session.boot()
+    throwing = true
+    expect(await session.load("slot-1")).toEqual({ state: null, notice: "load-failed-kept" })
+  })
+  it("the boot notice talks about a new game; the menu notice says the current game is kept (ko and en)", () => {
+    const ko = content.strings["ko"]!
+    const en = content.strings["en"]!
+    expect(ko["ui.notice.load-failed-kept"]).toBeDefined()
+    expect(en["ui.notice.load-failed-kept"]).toBeDefined()
+    expect(ko["ui.notice.load-failed-kept"]).not.toContain("새로 시작")
+    expect(en["ui.notice.load-failed-kept"]).not.toMatch(/new game/i)
   })
 })
