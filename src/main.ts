@@ -197,7 +197,7 @@ function handleEvents(events: readonly GameEvent[]): void {
 }
 
 /** 핵심 실행: step → 상태 교체 → 이벤트 처리 → 그리기 예약. return 이벤트 목록(터치 반복 판정용). */
-function apply(cmd: Command): readonly GameEvent[] {
+export function apply(cmd: Command): readonly GameEvent[] {
   const s = state
   if (s === null) return []
   log.log("cmd", cmd.type)
@@ -256,7 +256,7 @@ function showTouchHintOnce(): void {
 }
 
 /** 입력 진입점. 다른 입력이 터치 반복을 끊는다. */
-function dispatch(cmd: Command | UiAction): void {
+export function dispatch(cmd: Command | UiAction): void {
   stopTouchRepeat()
   if ("ui" in cmd) {
     panels?.toggle(cmd.ui)
@@ -291,7 +291,7 @@ function replaceState(next: GameState): void {
   scheduleFrame()
 }
 
-async function handleMenu(action: "save" | "load" | "new", slotId: string): Promise<void> {
+export async function handleMenu(action: "save" | "load" | "new", slotId: string): Promise<void> {
   const s = state
   if (s === null) return
   if (action === "save") {
@@ -310,7 +310,8 @@ async function handleMenu(action: "save" | "load" | "new", slotId: string): Prom
 }
 
 // ── 부팅 ────────────────────────────────────────────────
-async function main(): Promise<void> {
+/** 부팅 진입점. 브라우저에서는 모듈을 읽을 때 자동 실행되고, 테스트는 이 함수를 직접 부른다. */
+export async function boot(): Promise<void> {
   const boot = await session.boot()
   const s = boot.state
   log.log("boot-state", { map: s.mapId, turn: s.turn, notices: boot.notices })
@@ -367,6 +368,10 @@ async function main(): Promise<void> {
   log.log("ready", { map: s.mapId, turn: s.turn })
 }
 
-main().catch((error: unknown) => {
-  log.log("boot-failed", String(error))
-})
+// 통합 테스트(vitest)는 모듈을 import만 하고 boot()를 직접 부른다. 브라우저에서는 기존처럼 즉시 부팅한다.
+const runningInTests = typeof process !== "undefined" && process.env["VITEST"] === "true"
+if (!runningInTests) {
+  boot().catch((error: unknown) => {
+    log.log("boot-failed", String(error))
+  })
+}
