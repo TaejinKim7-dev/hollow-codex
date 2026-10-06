@@ -79,7 +79,12 @@ export function formatTime(lang: string, strings: GameContent["strings"], time: 
 export interface MountedPanels {
   render(state: GameState, log: readonly SaidLine[]): void
   toggle(panel: "notebook" | "menu" | "rings"): void
-  onMenu(handler: (action: "save" | "load" | "new") => void): void
+  /** Menu Save / Load / New Game. slotId is the selected slot (default slot-1). */
+  onMenu(handler: (action: "save" | "load" | "new", slotId: string) => void): void
+  /** Shows each menu slot's last save time; null = empty. */
+  setSlotInfo(info: readonly { readonly id: string; readonly updatedAt: number | null }[]): void
+  /** Closes every overlay (after load / new game). */
+  closeOverlays(): void
 }
 
 export function mountPanels(
@@ -93,7 +98,9 @@ export function mountPanels(
   let log: readonly SaidLine[] = []
   let aim: Aim | null = null
   let lang: "ko" | "en" = "ko"
-  let menuAction: ((action: "save" | "load" | "new") => void) | null = null
+  let menuAction: ((action: "save" | "load" | "new", slotId: string) => void) | null = null
+  let selectedSlot = "slot-1"
+  let slotInfo: readonly { readonly id: string; readonly updatedAt: number | null }[] = []
   const canvas = document.getElementById("screen") as HTMLCanvasElement | null
 
   /** 현재 언어로 문자열을 조회한다. 언어는 render가 state.language로 갱신한다. */
@@ -467,18 +474,24 @@ export function mountPanels(
   for (const id of SLOT_IDS) {
     const b = make("button", "slot")
     b.dataset["slot"] = id
+    b.classList.toggle("selected", id === selectedSlot)
+    b.setAttribute("aria-pressed", String(id === selectedSlot))
     b.addEventListener("click", () => {
-      for (const [slotId, btn] of slotButtons) btn.classList.toggle("selected", slotId === id)
+      selectedSlot = id
+      for (const [slotId, btn] of slotButtons) {
+        btn.classList.toggle("selected", slotId === id)
+        btn.setAttribute("aria-pressed", String(slotId === id))
+      }
     })
     slotButtons.set(id, b)
     slots.appendChild(b)
   }
   const menuSave = make("button", "menu-action save")
-  menuSave.addEventListener("click", () => menuAction?.("save"))
+  menuSave.addEventListener("click", () => menuAction?.("save", selectedSlot))
   const menuLoad = make("button", "menu-action load")
-  menuLoad.addEventListener("click", () => menuAction?.("load"))
+  menuLoad.addEventListener("click", () => menuAction?.("load", selectedSlot))
   const menuNew = make("button", "menu-action new")
-  menuNew.addEventListener("click", () => menuAction?.("new"))
+  menuNew.addEventListener("click", () => menuAction?.("new", selectedSlot))
   const langButton = make("button", "menu-action language")
   langButton.addEventListener("click", () => {
     dispatch({ type: "setLanguage", language: lang === "ko" ? "en" : "ko" })
@@ -680,7 +693,9 @@ export function mountPanels(
     for (const id of SLOT_IDS) {
       const b = slotButtons.get(id)
       if (b === undefined) continue
-      b.textContent = `${tr("ui.save")} ${SLOT_SUFFIX[id] ?? id}`
+      const updatedAt = slotInfo.find((x) => x.id === id)?.updatedAt ?? null
+      const when = updatedAt === null ? tr("ui.slot-empty") : new Date(updatedAt).toLocaleString(lang)
+      b.textContent = `${tr("ui.slot")} ${SLOT_SUFFIX[id] ?? id} · ${when}`
       b.setAttribute("aria-label", tr("ui.aria.save-slot", { slot: SLOT_SUFFIX[id] ?? id }))
     }
     menuSave.textContent = tr("ui.save")
@@ -712,8 +727,22 @@ export function mountPanels(
     syncChrome()
   }
 
-  const onMenu = (handler: (action: "save" | "load" | "new") => void): void => {
+  const onMenu = (handler: (action: "save" | "load" | "new", slotId: string) => void): void => {
     menuAction = handler
+  }
+
+  const setSlotInfo = (info: readonly { readonly id: string; readonly updatedAt: number | null }[]): void => {
+    slotInfo = info
+    refreshStatics()
+  }
+
+  const closeOverlays = (): void => {
+    notebook.hidden = true
+    menu.hidden = true
+    ringsMenu.hidden = true
+    codex.hidden = true
+    aim = null
+    syncChrome()
   }
 
   refreshStatics()
@@ -737,6 +766,8 @@ export function mountPanels(
       renderCodex(nextState)
     },
     toggle,
-    onMenu
+    onMenu,
+    setSlotInfo,
+    closeOverlays
   }
 }

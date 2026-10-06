@@ -160,6 +160,12 @@ ui.notice.load-failed: "Could not read the save, so a new game started. The unre
 ui.notice.loaded: Loaded.
 ui.notice.storage-unavailable: "Storage is not available in this browser. Progress will be lost when this tab closes."
 ui.notice.autosave-failed: "Autosave failed. Please check your browser storage."
+ui.notice.slot-empty: That slot is empty.
+ui.notice.saved: Saved.
+ui.notice.save-failed: Saving failed.
+ui.confirm-new: "Abandon this game and start a new one? (Saved slots are kept.)"
+ui.slot: Slot
+ui.slot-empty: empty
 ui.close: Close
 ui.recruit: Recruit
 ui.end-talk: End Talk

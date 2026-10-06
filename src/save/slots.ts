@@ -4,6 +4,8 @@ import type { SlotStore } from "./slot-store.ts"
 
 export const AUTO_SLOT = "auto"
 export const STATE_FILE = "state.json"
+/** Slots the menu offers: the autosave slot plus three manual slots. */
+export const MENU_SLOTS: readonly string[] = [AUTO_SLOT, "slot-1", "slot-2", "slot-3"]
 
 export async function saveToSlot(store: SlotStore, slotId: string, name: string, state: GameState, now: number): Promise<void> {
   const existing = await store.get(slotId)

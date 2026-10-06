@@ -136,7 +136,10 @@ function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
   if (triggered) {
     lastAutoTurn = next.turn
     session.autosave(next)
-      .then((notice) => { if (notice !== null) showNotice(notice) })
+      .then((notice) => {
+        if (notice !== null) showNotice(notice)
+        refreshSlotInfo()
+      })
       .catch((error: unknown) => log.log("autosave-error", String(error)))
   }
 }
@@ -267,6 +270,46 @@ function dispatch(cmd: Command | UiAction): void {
   }
 }
 
+// ── 메뉴: 저장 / 불러오기 / 새 시작 ─────────────────────
+function refreshSlotInfo(): void {
+  session.slots()
+    .then((info) => panels?.setSlotInfo(info))
+    .catch((error: unknown) => log.log("slots-error", String(error)))
+}
+
+/** 불러오기·새 시작 뒤 상태를 통째로 바꾼다. 대화 로그·자동 저장 기준·터치 반복·음악을 새 상태에 맞춘다. */
+function replaceState(next: GameState): void {
+  stopTouchRepeat()
+  state = next
+  dialogueLog = []
+  lastAutoTurn = next.turn
+  const track = next.combat !== null
+    ? content.encounters[next.combat.encounterId]?.music
+    : content.maps[next.mapId]?.music
+  const score = track === undefined ? undefined : content.music[track]
+  if (score !== undefined) player.play(score)
+  panels?.closeOverlays()
+  scheduleFrame()
+}
+
+async function handleMenu(action: "save" | "load" | "new", slotId: string): Promise<void> {
+  const s = state
+  if (s === null) return
+  if (action === "save") {
+    showNotice(await session.save(slotId, s))
+    refreshSlotInfo()
+    return
+  }
+  if (action === "load") {
+    const result = await session.load(slotId)
+    if (result.state !== null) replaceState(result.state)
+    showNotice(result.notice)
+    return
+  }
+  if (!window.confirm(t(s.language, content.strings, "ui.confirm-new"))) return
+  replaceState(session.newGame())
+}
+
 // ── 부팅 ────────────────────────────────────────────────
 async function main(): Promise<void> {
   const boot = await session.boot()
@@ -280,9 +323,11 @@ async function main(): Promise<void> {
   }
 
   panels = mountPanels(document.getElementById("ui")!, content, dispatch, credits)
-  panels.onMenu((action) => {
-    log.log("menu", action)
+  panels.onMenu((action, slotId) => {
+    log.log("menu", { action, slotId })
+    handleMenu(action, slotId).catch((error: unknown) => log.log("menu-error", String(error)))
   })
+  refreshSlotInfo()
 
   window.addEventListener("keydown", (event) => {
     const st = state

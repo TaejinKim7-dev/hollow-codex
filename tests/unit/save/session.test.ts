@@ -127,3 +127,56 @@ describe("session when storage fails", () => {
     await expect(session.autosave(boot.state)).resolves.toBe("autosave-failed")
   })
 })
+
+describe("menu save / load / new game", () => {
+  it("saves to a manual slot and loads it back (normalized, same state)", async () => {
+    const store = createMemorySlotStore()
+    const session = createSession(opts(store))
+    const boot = await session.boot()
+    const played = { ...boot.state, turn: 33, facts: ["word.truth"] }
+    expect(await session.save("slot-2", played)).toBe("saved")
+    const back = await session.load("slot-2")
+    expect(back).toEqual({ state: played, notice: "loaded" })
+  })
+
+  it("loading an empty slot changes nothing and says so", async () => {
+    const session = createSession(opts(createMemorySlotStore()))
+    await session.boot()
+    expect(await session.load("slot-3")).toEqual({ state: null, notice: "slot-empty" })
+  })
+
+  it("loading an unreadable manual slot fails without lifting the auto guard", async () => {
+    const store = createMemorySlotStore()
+    await store.put(raw(AUTO_SLOT, "{broken"))
+    await store.put(raw("slot-1", "{also broken"))
+    const session = createSession(opts(store))
+    await session.boot()
+    expect(await session.load("slot-1")).toEqual({ state: null, notice: "load-failed" })
+    expect(session.autosaveBlocked()).toBe(true)
+  })
+
+  it("a failing manual save reports save-failed and does not reject", async () => {
+    const memory = createMemorySlotStore()
+    const store: SlotStore = { ...memory, put: () => Promise.reject(new Error("quota")) }
+    const session = createSession(opts(store))
+    const boot = await session.boot()
+    await expect(session.save("slot-1", boot.state)).resolves.toBe("save-failed")
+  })
+
+  it("new game returns the initial state from content", async () => {
+    const session = createSession(opts(createMemorySlotStore()))
+    await session.boot()
+    expect(session.newGame()).toEqual(createInitialState(content, 7))
+  })
+
+  it("lists the four menu slots with their last update time", async () => {
+    const store = createMemorySlotStore()
+    const session = createSession({ ...opts(store), now: () => 4242 })
+    const boot = await session.boot()
+    await session.save("slot-1", boot.state)
+    const slots = await session.slots()
+    expect(slots.map((s) => s.id)).toEqual(["auto", "slot-1", "slot-2", "slot-3"])
+    expect(slots.find((s) => s.id === "slot-1")?.updatedAt).toBe(4242)
+    expect(slots.find((s) => s.id === "slot-2")?.updatedAt).toBeNull()
+  })
+})

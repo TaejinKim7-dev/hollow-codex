@@ -7,10 +7,11 @@ import { createInitialState } from "../core/state.ts"
 import type { GameState } from "../core/types.ts"
 import { createMemorySlotStore } from "./slot-store.ts"
 import type { SlotStore } from "./slot-store.ts"
-import { AUTO_SLOT, loadSlot, saveToSlot } from "./slots.ts"
+import { AUTO_SLOT, MENU_SLOTS, loadSlot, saveToSlot } from "./slots.ts"
 
 /** Messages for the player. main.ts shows each one as `ui.notice.<name>`. */
-export type SessionNotice = "load-failed" | "loaded" | "storage-unavailable" | "autosave-failed"
+export type SessionNotice =
+  | "load-failed" | "loaded" | "slot-empty" | "saved" | "save-failed" | "storage-unavailable" | "autosave-failed"
 
 export interface SessionOptions {
   /** null when the browser has no usable storage (no indexedDB global); a memory store is used then. */
@@ -25,7 +26,12 @@ export interface Session {
   boot(): Promise<{ readonly state: GameState; readonly notices: readonly SessionNotice[] }>
   /** Writes the auto slot unless it is guarded. Never rejects; returns a notice only for the first failure in a row. */
   autosave(state: GameState): Promise<SessionNotice | null>
+  /** Loads a slot. On failure the current game is kept (state null) and the auto guard is left as it was. */
   load(slotId: string): Promise<{ readonly state: GameState | null; readonly notice: SessionNotice }>
+  /** Explicit save from the menu. Never rejects. Saving into the guarded auto slot is the player's choice and lifts the guard. */
+  save(slotId: string, state: GameState): Promise<SessionNotice>
+  /** The menu slots with their last update time (null = empty or unreadable store). */
+  slots(): Promise<readonly { readonly id: string; readonly updatedAt: number | null }[]>
   newGame(): GameState
   autosaveBlocked(): boolean
 }
@@ -95,12 +101,34 @@ export function createSession(options: SessionOptions): Session {
         log("load-failed", String(error))
         return { state: null, notice: "load-failed" }
       }
-      if (loaded === null || !loaded.ok) {
-        log("load-failed", loaded === null ? "empty" : loaded.reason)
+      if (loaded === null) return { state: null, notice: "slot-empty" }
+      if (!loaded.ok) {
+        log("load-failed", loaded.reason)
         return { state: null, notice: "load-failed" }
       }
       autoBlocked = false
       return { state: normalizeLoaded(loaded.state, content), notice: "loaded" }
+    },
+
+    async save(slotId, state) {
+      try {
+        await saveToSlot(store, slotId, slotId, state, now())
+      } catch (error) {
+        log("save-failed", String(error))
+        return "save-failed"
+      }
+      if (slotId === AUTO_SLOT) autoBlocked = false
+      return "saved"
+    },
+
+    async slots() {
+      let records: Awaited<ReturnType<SlotStore["list"]>> = []
+      try {
+        records = await store.list()
+      } catch (error) {
+        log("list-failed", String(error))
+      }
+      return MENU_SLOTS.map((id) => ({ id, updatedAt: records.find((r) => r.id === id)?.updatedAt ?? null }))
     },
 
     newGame() {
