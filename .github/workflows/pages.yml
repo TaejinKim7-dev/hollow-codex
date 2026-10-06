@@ -1,0 +1,86 @@
+# Hollow Codex -- GitHub Pages release workflow.
+#
+# Expected Pages URL: https://taejinkim7-dev.github.io/hollow-codex/
+#
+# One-time setup: repository Pages source must be "GitHub Actions"
+# (build_type=workflow), otherwise the `deploy` job fails even though
+# `build` succeeds.
+#
+# Pushing (or merging a PR) to `main` runs `build` + `deploy`; pushes and
+# PRs against other branches only run `build`. The build job gates deploy:
+# typecheck, unit tests, content check, production build and the dist audit
+# (no external origins, no source maps, no reference files, size budget)
+# must all pass. Deployment uses the official OIDC-based Pages actions.
+
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.23.3"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Check content
+        run: npm run check:content
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit the dist artifact
+        run: npm run audit:dist
+
+      - name: Add .nojekyll
+        run: touch dist/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+          include-hidden-files: "true"
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
