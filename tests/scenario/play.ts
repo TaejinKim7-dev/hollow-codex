@@ -6,7 +6,7 @@ import type { GameContent } from "../../src/content/types.ts"
 import type { Command, GameEvent, GameState, Id, Pos } from "../../src/core/types.ts"
 import { createInitialState } from "../../src/core/state.ts"
 import { step } from "../../src/core/step.ts"
-import { findPath, offset } from "../../src/core/world/path.ts"
+import { DIRS, findPath, offset, tileAt } from "../../src/core/world/path.ts"
 import type { Dir } from "../../src/core/types.ts"
 import { npcAt } from "../../src/core/world/move.ts"
 
@@ -108,6 +108,46 @@ export function npcPos(npcId: Id): Pos {
   const npc = loadedContent().npcs[npcId]
   if (npc === undefined) throw new Error(`npcPos: unknown npc ${npcId}`)
   return npc.pos
+}
+
+/** makeScript가 돌려주는 조립기 타입. */
+export type Script = ReturnType<typeof makeScript>
+
+/**
+ * NPC의 pos 칸은 그 위에 NPC가 서 있으므로 walkTo의 blocked 검사에 걸려 직접 목적지로 쓸 수 없다.
+ * pos 주변 4방향 중 통행 가능하고(NPC·출구·미해결 조우가 아닌) 셀을 골라 돌려준다. 없으면 throw.
+ */
+export function approachCell(content: GameContent, state: GameState, mapId: Id, npcId: Id): Pos {
+  const target = npcPos(npcId)
+  const map = content.maps[mapId]
+  const exits = map?.exits ?? []
+  const encounters = map?.encounters ?? []
+  for (const dir of DIRS) {
+    const cell = offset(target, dir)
+    const tile = tileAt(content, mapId, cell)
+    if (tile === null || tile.walk === null) continue
+    if (npcAt(state, content, cell) !== null) continue
+    if (exits.some((e) => e.at.x === cell.x && e.at.y === cell.y)) continue
+    if (encounters.some((e) => e.at.x === cell.x && e.at.y === cell.y && !state.clearedEncounters.includes(e.id))) continue
+    return cell
+  }
+  throw new Error(`approachCell: no walkable neighbor for ${npcId} at ${target.x},${target.y}`)
+}
+
+/**
+ * 순회에서 NPC가 npc.pos(스케줄 12·0 버킷)에 서 있는 시간대가 되도록 광장 왕복으로 시간을 보낸다.
+ * hour가 0–5 또는 12–17이 될 때까지 hubs의 셀을 번갈아 왔다갔다 한다(hub는 어떤 시간대에도 NPC가 없는 셀).
+ * 테스트는 모두 시간 결정적이라 정확히 한 번으로 수렴한다.
+ */
+export function stallToSafe(content: GameContent, w: Script, mapId: Id, hubs: readonly Pos[]): void {
+  const safe = (h: number): boolean => (h >= 0 && h < 6) || (h >= 12 && h < 18)
+  for (let i = 0; i < 16 && !safe(w.state().time.hour); i++) {
+    const p = w.state().player.pos
+    const hub = hubs[i % hubs.length]!
+    w.push(walkTo(content, w.state(), mapId, hub))
+    w.push(walkTo(content, w.state(), mapId, p))
+  }
+  if (!safe(w.state().time.hour)) throw new Error(`stallToSafe: hour ${w.state().time.hour} still unsafe`)
 }
 
 /**

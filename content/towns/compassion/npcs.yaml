@@ -150,7 +150,7 @@
       - text: compassion.npc.miller.name.t
     job:
       - text: compassion.npc.miller.job.t
-        grants: [word.dependence]
+        grants: [word.dependence, fact.reona.relief-tax]
     fact.reona.relief-tax:
       - text: compassion.npc.miller.tax.t
         grants: [fact.reona.relief-tax]

@@ -74,7 +74,7 @@
       - text: justice.npc.widow.name.t
     job:
       - text: justice.npc.widow.job.t
-        grants: [word.compassion, fact.seles.graveyard]
+        grants: [word.compassion, fact.seles.graveyard, fact.seles.mourning-lullaby]
     word.compassion:
       - text: justice.npc.widow.compassion.t
         grants: [word.compassion]
