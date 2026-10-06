@@ -1,16 +1,271 @@
 import "./ui/fonts.css"
 import content from "virtual:content"
 import credits from "virtual:credits"
+import { createChipPlayer } from "./audio/synth.ts"
+import { renderSfx, SFX } from "./audio/sfx.ts"
+import type { SfxParams } from "./audio/sfx.ts"
+import { createInitialState } from "./core/state.ts"
+import { step } from "./core/step.ts"
+import type { Command, GameEvent, GameState, Pos } from "./core/types.ts"
+import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
+import type { UiAction } from "./input/commands.ts"
+import { drawFrame } from "./render/canvas.ts"
+import { computeViewport, screenToTile } from "./render/viewport.ts"
+import { createIndexedDbSlotStore } from "./save/slot-store.ts"
+import { AUTO_SLOT, loadSlot, saveToSlot } from "./save/slots.ts"
+import type { SaidLine } from "./ui/view-model.ts"
 import { createDebugLog, debugEnabledFromUrl } from "./debug-log.ts"
 import { mountPanels } from "./ui/panels.ts"
-import type { Command } from "./core/types.ts"
-import type { UiAction } from "./input/commands.ts"
+import type { MountedPanels } from "./ui/panels.ts"
 
 const log = createDebugLog({ enabled: debugEnabledFromUrl(location.href) })
 log.log("boot")
 log.log("content", { maps: Object.keys(content.maps).length })
 log.log("credits", { files: credits.length })
 
-// Task 16이 core.step에 연결한다. 지금은 no-op.
-const dispatch = (_cmd: Command | UiAction): void => { /* Task 16 wires this */ }
-mountPanels(document.getElementById("ui")!, content, dispatch, credits)
+const screen = document.getElementById("screen") as HTMLCanvasElement | null
+if (screen === null) throw new Error("missing #screen")
+const canvas = screen
+const ctx = canvas.getContext("2d")
+if (ctx === null) throw new Error("canvas 2d unavailable")
+const canvas2d = ctx
+screen.style.position = "fixed"
+screen.style.inset = "0"
+screen.style.width = "100vw"
+screen.style.height = "100vh"
+screen.style.imageRendering = "pixelated"
+
+// ── 시트 이미지 ─────────────────────────────────────────
+const imageUrls = import.meta.glob<string>("../assets/tiles/*.png", { query: "?url", import: "default", eager: true })
+const sheets: Record<string, HTMLImageElement> = {}
+for (const [id, sheet] of Object.entries(content.sheets)) {
+  const key = Object.keys(imageUrls).find((k) => k.endsWith(`/${sheet.file}`))
+  const img = new Image()
+  if (key === undefined) log.log("sheet-missing", { id, file: sheet.file })
+  else img.src = imageUrls[key] ?? ""
+  if (img.src === "") log.log("sheet-missing", { id, file: sheet.file })
+  sheets[id] = img
+}
+
+// ── 저장소와 오디오 ─────────────────────────────────────
+const store = createIndexedDbSlotStore(indexedDB)
+const audio = new AudioContext()
+const player = createChipPlayer(audio)
+
+let state: GameState | null = null
+let panels: MountedPanels | null = null
+let dialogueLog: SaidLine[] = []
+let lastAutoTurn = 0
+
+// ── 효과음 ──────────────────────────────────────────────
+function playSfx(name: string): void {
+  const params = (SFX as Record<string, SfxParams | undefined>)[name]
+  if (params === undefined) return
+  const buffer = audio.createBuffer(1, Math.round((params.ms * audio.sampleRate) / 1000), audio.sampleRate)
+  buffer.copyToChannel(renderSfx(params, audio.sampleRate), 0)
+  const src = audio.createBufferSource()
+  src.buffer = buffer
+  src.connect(audio.destination)
+  src.start()
+}
+
+// ── 그리기와 리사이즈 ───────────────────────────────────
+let cssSize = { w: 0, h: 0 }
+let frameQueued = false
+function draw(): void {
+  const s = state
+  const ui = panels
+  if (s === null || ui === null) return
+  const map = content.maps[s.mapId]
+  if (map === undefined) return
+  const mapSize = { w: map.rows[0]?.length ?? 0, h: map.rows.length }
+  const vp = computeViewport(cssSize, devicePixelRatio, mapSize, s.player.pos)
+  drawFrame(canvas2d, sheets, s, content, vp)
+  ui.render(s, dialogueLog)
+}
+function scheduleFrame(): void {
+  if (frameQueued) return
+  frameQueued = true
+  requestAnimationFrame(() => {
+    frameQueued = false
+    draw()
+  })
+}
+function resize(): void {
+  const rect = canvas.getBoundingClientRect()
+  cssSize = { w: rect.width, h: rect.height }
+  canvas.width = Math.max(1, Math.round(rect.width * devicePixelRatio))
+  canvas.height = Math.max(1, Math.round(rect.height * devicePixelRatio))
+  scheduleFrame()
+}
+new ResizeObserver(resize).observe(canvas)
+
+// ── 대화 로그와 자동 저장 ───────────────────────────────
+function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
+  const triggered =
+    next.turn - lastAutoTurn >= 50 ||
+    events.some((e) => e.type === "mapChanged" || e.type === "crisisResolved" || e.type === "combatEnded")
+  if (triggered) {
+    lastAutoTurn = next.turn
+    void saveToSlot(store, AUTO_SLOT, "auto", next, Date.now())
+  }
+}
+
+// ── 이벤트 처리 / 명령 실행 ─────────────────────────────
+function handleEvents(events: readonly GameEvent[]): void {
+  for (const e of events) {
+    switch (e.type) {
+      case "said":
+        dialogueLog.push({ textKey: e.textKey, lie: e.lie })
+        break
+      case "moved":
+        playSfx("step")
+        break
+      case "bumped":
+        playSfx("bump")
+        break
+      case "factLearned":
+        playSfx("learn")
+        break
+      case "deductionConfirmed":
+        playSfx("confirm")
+        break
+      case "sfx":
+        playSfx(e.name)
+        break
+      case "music": {
+        const score = content.music[e.track]
+        if (score !== undefined) player.play(score)
+        break
+      }
+      case "combatEnded":
+        dialogueLog = []
+        break
+      default:
+        break
+    }
+  }
+}
+
+/** 핵심 실행: step → 상태 교체 → 이벤트 처리 → 그리기 예약. return 이벤트 목록(터치 반복 판정용). */
+function apply(cmd: Command): readonly GameEvent[] {
+  const s = state
+  if (s === null) return []
+  log.log("cmd", cmd.type)
+  const { state: next, events } = step(s, cmd, content)
+  state = next
+  for (const e of events) log.log("event", e.type)
+  if (cmd.type === "endTalk") dialogueLog = []
+  handleEvents(events)
+  maybeAutoSave(next, events)
+  scheduleFrame()
+  return events
+}
+
+// ── 터치 이동: moveTo 탭을 120ms마다 반복 ────────────────
+let touchTimer: ReturnType<typeof setInterval> | null = null
+let touchTarget: Pos | null = null
+function stopTouchRepeat(): void {
+  if (touchTimer !== null) {
+    clearInterval(touchTimer)
+    touchTimer = null
+  }
+  touchTarget = null
+}
+function startTouchRepeat(target: Pos): void {
+  stopTouchRepeat()
+  touchTarget = target
+  touchTimer = setInterval(() => {
+    if (touchTarget === null) return
+    const s = state
+    if (s === null) return
+    if (modeOf(s) !== "explore") {
+      stopTouchRepeat()
+      return
+    }
+    if (s.player.pos.x === touchTarget.x && s.player.pos.y === touchTarget.y) {
+      stopTouchRepeat()
+      return
+    }
+    const events = apply({ type: "moveTo", target: touchTarget })
+    if (events.length === 0) stopTouchRepeat()
+    else if (events.some((e) => e.type === "mapChanged" || e.type === "combatStarted")) stopTouchRepeat()
+  }, 120)
+}
+
+/** 입력 진입점. 다른 입력이 터치 반복을 끊는다. */
+function dispatch(cmd: Command | UiAction): void {
+  stopTouchRepeat()
+  if ("ui" in cmd) {
+    panels?.toggle(cmd.ui)
+    return
+  }
+  const events = apply(cmd)
+  const s = state
+  if (cmd.type === "moveTo" && s !== null && modeOf(s) === "explore" && events.length > 0) {
+    startTouchRepeat(cmd.target)
+  }
+}
+
+// ── 부팅 ────────────────────────────────────────────────
+async function main(): Promise<void> {
+  let s: GameState
+  const loaded = await loadSlot(store, AUTO_SLOT)
+  if (loaded === null) {
+    s = createInitialState(content, Date.now() >>> 0)
+    log.log("new-game", { map: s.mapId })
+  } else if (loaded.ok) {
+    s = loaded.state
+    log.log("load-auto", { map: s.mapId, turn: s.turn })
+  } else {
+    log.log("load-failed", loaded.reason)
+    s = createInitialState(content, Date.now() >>> 0)
+  }
+  state = s
+  lastAutoTurn = s.turn
+
+  panels = mountPanels(document.getElementById("ui")!, content, dispatch, credits)
+  panels.onMenu((action) => {
+    log.log("menu", action)
+  })
+
+  window.addEventListener("keydown", (event) => {
+    const st = state
+    if (st === null) return
+    const cmd = keyToCommand(event.key, modeOf(st))
+    if (cmd === null) return
+    event.preventDefault()
+    dispatch(cmd)
+  })
+
+  canvas.addEventListener("pointerdown", (event) => {
+    const st = state
+    if (st === null) return
+    const rect = canvas.getBoundingClientRect()
+    if (rect.width === 0 || rect.height === 0) return
+    const map = content.maps[st.mapId]
+    if (map === undefined) return
+    const mapSize = { w: map.rows[0]?.length ?? 0, h: map.rows.length }
+    const vp = computeViewport({ w: canvas.width, h: canvas.height }, 1, mapSize, st.player.pos)
+    const px = {
+      x: (event.clientX - rect.left) * (canvas.width / rect.width),
+      y: (event.clientY - rect.top) * (canvas.height / rect.height)
+    }
+    const cmd = pointerToCommand(screenToTile(px, vp), st, content)
+    if (cmd === null) return
+    dispatch(cmd)
+  })
+
+  const bootMusic = content.maps[s.mapId]?.music
+  if (bootMusic !== undefined) {
+    const score = content.music[bootMusic]
+    if (score !== undefined) player.play(score)
+  }
+
+  document.getElementById("boot-title")?.remove()
+  resize()
+  scheduleFrame()
+  log.log("ready", { map: s.mapId, turn: s.turn })
+}
+
+void main()
