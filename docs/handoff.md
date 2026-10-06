@@ -264,3 +264,26 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - GitHub 저장소 검색(API `q=hollow codex`): 총 4건. 그중 이 프로젝트 `TaejinKim7-dev/hollow-codex`만 정확히 일치하며, 나머지 3건은 두 낱말이 우연히 함께 나온 무관 저장소(문구/QA 도구).
 - 가장 가까운 겹침: *Eternal Strands*의 게임 내 도감 항목 이름("Glintwood Hollow Codex", spec §2.4 기록) — 제품 제목이 아니라 게임 내 오브젝트 이름이다.
 - 한계: 정식 상표 조사가 아니므로 검색 기반 확인이며, 공개 후 상표 이슈가 생기면 재검토한다.
+
+## 2026-10-06 M6 최종 통합 확인 (Task 48) — M6 완료, 출시 가능
+
+- 브랜치 `todo-7-release`. M6 커밋 SHA:
+  - `8fe049f` T45 PWA (vite-plugin-pwa, manifest, sw.js, 아이콘)
+  - `2fb2f7e` T46 접근성 (aria-label, focus-visible, skip link, 키보드 이동)
+  - `2e82028` T47 README 전면 개편 + 크레딧 묶음 + 모바일 미세 조정 + version 0.1.0
+  - `eee1297` T47 handoff 기록
+- **통합 확인: M6 ready for main merge.**
+- **최종 merge 게이트 (Task 48, HEAD `eee1297`)** — 전부 exit 0:
+  - `npm ci` 0 (dev 의존성 취약점 경고만, 배포 번들 무관)
+  - `npm run test:unit` 0 — 46 files, **273 passed**
+  - `npm run typecheck` 0
+  - `npm run check:content` 0 — `ok (12 maps, 81 npcs, 140 facts, 15 ledger files)`
+  - `npm run build` 0 — dist 13 파일, 384787 bytes (PWA precache 14 entries / 344.64 KiB, `sw.js`·`workbox-9c191d2f.js` 생성)
+  - `npm run audit:dist` 0 — `ok (13 files, 384787 bytes)`
+  - `git diff --check` 0
+- **e2e**: `npm run test:e2e` 0 — chromium 1 passed (`boots: #screen visible and no console errors in 2s`).
+- **dist 최종 구성**: `index.html`, `assets/`, `icon-192.png`, `icon-512.png`, `favicon.ico`, `manifest.webmanifest`, `sw.js`, `workbox-*.js`, `registerSW.js` — 전부 존재.
+- **최종 상태**: 12 maps, 81 npcs, 140 facts, 15 ledger files, version **0.1.0**, 273 단위 테스트.
+- 회귀 발견: **없음**.
+- **M6 완료 — 출시 가능.**
+- 다음(오케스트레이터): `todo-7-release` → `main` ff-merge·push → Actions 배포 성공·Pages HTTP 200 확인.
