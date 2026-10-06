@@ -4,6 +4,7 @@ import { startCombat } from "../combat/grid.ts"
 import { addSorted, samePos } from "../state.ts"
 import { npcPositionAt } from "../dialogue/talk.ts"
 import { findPath, offset, tileAt } from "./path.ts"
+import { enterOverworldTarget } from "./overworld.ts"
 
 export { tileAt } from "./path.ts"
 
@@ -38,18 +39,36 @@ export function move(state: GameState, dir: Dir, content: GameContent): StepResu
   const map = content.maps[state.mapId]
   if (!map) throw new Error(`unknown map: ${state.mapId}`)
 
-  const exit = map.exits.find((e) => samePos(e.at, target))
-  if (exit) {
-    const dest = content.maps[exit.to]
-    if (!dest) throw new Error(`unknown map: ${exit.to}`)
+  // 오버월드 마을 입구 (D8): 입구 타일은 발이 닿는 즉시 마을 내부로 이동한다.
+  const entry = enterOverworldTarget(state, content, target, state.mapId)
+  if (entry !== null) {
+    const dest = content.maps[entry.mapId]
+    if (!dest) throw new Error(`unknown map: ${entry.mapId}`)
     next = {
       ...next,
-      mapId: exit.to,
-      player: { ...next.player, pos: exit.arrive, hp: dest.heals ? next.player.maxHp : next.player.hp },
+      mapId: entry.mapId,
+      player: { ...next.player, pos: entry.pos, hp: dest.heals ? next.player.maxHp : next.player.hp },
       flags: addSorted(next.flags, dest.enterFlags)
     }
-    events.push({ type: "mapChanged", mapId: exit.to }, { type: "music", track: dest.music })
+    events.push({ type: "mapChanged", mapId: entry.mapId }, { type: "music", track: dest.music })
     return { state: next, events }
+  }
+
+  // 비오버월드 지도의 내부 출구 (M1). 오버월드 출구는 위의 enterOverworldTarget이 처리한다.
+  if (!map.isOverworld) {
+    const exit = map.exits.find((e) => samePos(e.at, target))
+    if (exit) {
+      const dest = content.maps[exit.to]
+      if (!dest) throw new Error(`unknown map: ${exit.to}`)
+      next = {
+        ...next,
+        mapId: exit.to,
+        player: { ...next.player, pos: exit.arrive, hp: dest.heals ? next.player.maxHp : next.player.hp },
+        flags: addSorted(next.flags, dest.enterFlags)
+      }
+      events.push({ type: "mapChanged", mapId: exit.to }, { type: "music", track: dest.music })
+      return { state: next, events }
+    }
   }
 
   const encounter = map.encounters.find((e) => samePos(e.at, target) && !state.clearedEncounters.includes(e.id))
