@@ -1,0 +1,169 @@
+// UI 표시 전용 뷰 모델 (Task 13 PART A). DOM·렌더링 부수 효과 없음.
+import type { FactKind, GameContent } from "../content/types.ts"
+import type { CombatAction, GameState, Id, Pos } from "../core/types.ts"
+import { availableTopics, pickVariant } from "../core/dialogue/talk.ts"
+import { crisisOptions } from "../core/crisis/crisis.ts"
+import { openHints } from "../core/knowledge/notebook.ts"
+import { canRecruit } from "../core/virtue/conduct.ts"
+import { t } from "./strings.ts"
+
+/** 대화 기록 한 줄. 상태에 없으므로 UI가 said 이벤트를 모아 log로 가진다. */
+export interface SaidLine { readonly textKey: string; readonly lie: boolean }
+
+export interface DialogueView {
+  npcName: string
+  lines: { text: string; lieMark: boolean }[]          // lieMark = lie ∧ ability.see-lies 보유
+  chips: { topic: string; label: string }[]            // availableTopics, 라벨 = topic.name/job/fact.labelKey
+  choices: { optionId: Id; label: string }[]           // pendingChoice가 있을 때만
+  crisis: { optionId: Id; label: string; available: boolean; hints: string[] }[] | null
+  canRecruit: boolean
+}
+
+export interface NotebookView {
+  facts: Record<FactKind, { id: Id; label: string }[]>  // 6 kind 키 모두 존재, 각 목록은 label 정렬
+  deductions: { id: Id; sentence: string; slots: (string | null)[]; confirmed: boolean; words: { id: Id; label: string }[] }[]
+  hints: string[]                                       // openHints의 missing → hintKey, 중복 제거·정렬
+}
+
+export interface CombatView {
+  active: string                                        // 활성 유닛 이름(플레이어 = t("player.name"))
+  actions: CombatAction["kind"][]                       // moved면 move 빠짐, flee는 가장자리만, 항상 endTurn
+  units: { id: Id; name: string; hp: number; side: "ally" | "enemy"; evilKnown: boolean | null }[]
+}
+
+export function dialogueView(
+  state: GameState,
+  content: GameContent,
+  log: readonly SaidLine[]
+): DialogueView | null {
+  const dialogue = state.dialogue
+  const npc = dialogue === null ? undefined : content.npcs[dialogue.npcId]
+  if (dialogue === null || npc === undefined) return null
+  const s = content.strings
+
+  const seeLies = state.abilities.includes("ability.see-lies")
+  const lines = log.map((line) => ({ text: t(s, line.textKey), lieMark: line.lie && seeLies }))
+
+  const chips = availableTopics(state, content, dialogue.npcId).map((topic) => ({
+    topic,
+    label: t(s, topic === "name" ? "topic.name" : topic === "job" ? "topic.job" : `${topic}.label`)
+  }))
+
+  let choices: DialogueView["choices"] = []
+  if (dialogue.pendingChoice !== null) {
+    const variants = content.npcs[dialogue.npcId]?.topics[dialogue.pendingChoice]
+    const variant = variants === undefined ? null : pickVariant(state, variants)
+    for (const option of variant?.choice ?? []) {
+      choices = [...choices, { optionId: option.optionId, label: t(s, option.labelKey) }]
+    }
+  }
+
+  let crisis: DialogueView["crisis"] = null
+  for (const [crisisId, def] of Object.entries(content.crises)) {
+    if (def.npc !== dialogue.npcId || state.crises[crisisId] !== undefined) continue
+    const rows = crisisOptions(state, content, crisisId).map(({ optionId, available, missing }) => ({
+      optionId,
+      label: t(s, def.options[optionId]?.labelKey ?? optionId),
+      available,
+      hints: missing.map((id) => content.facts[id]?.hintKey ?? content.deductions[id]?.hintKey)
+        .filter((key): key is string => key !== undefined)
+    }))
+    crisis = crisis === null ? rows : [...crisis, ...rows]
+  }
+
+  return {
+    npcName: t(s, npc.nameKey),
+    lines,
+    chips,
+    choices,
+    crisis,
+    canRecruit: canRecruit(state, content, dialogue.npcId)
+  }
+}
+
+const byLabel = (a: { readonly label: string }, b: { readonly label: string }): number =>
+  a.label < b.label ? -1 : a.label > b.label ? 1 : 0
+
+export function notebookView(state: GameState, content: GameContent): NotebookView {
+  const s = content.strings
+  const knownOf = (kind: FactKind): { id: Id; label: string }[] =>
+    state.facts
+      .filter((id) => content.facts[id]?.kind === kind)
+      .map((id) => ({ id, label: t(s, content.facts[id]?.labelKey ?? id) }))
+      .sort(byLabel)
+
+  const facts = {
+    person: knownOf("person"),
+    place: knownOf("place"),
+    word: knownOf("word"),
+    song: knownOf("song"),
+    meaning: knownOf("meaning"),
+    creature: knownOf("creature")
+  } satisfies Record<FactKind, { id: Id; label: string }[]>
+
+  const deductions = Object.entries(content.deductions).map(([id, def]) => {
+    const page = state.deductions[id]
+    const slots = (page?.slots ?? [null, null, null]).map((w) =>
+      w === null ? null : t(s, content.facts[w]?.labelKey ?? w)
+    )
+    return {
+      id,
+      sentence: t(s, def.sentenceKey),
+      slots,
+      confirmed: page?.confirmed ?? false,
+      words: knownOf("word")
+    }
+  })
+
+  const seen = new Set<string>()
+  const hintStrings: string[] = []
+  for (const hint of openHints(state, content)) {
+    for (const id of hint.missing) {
+      const key = content.facts[id]?.hintKey ?? content.deductions[id]?.hintKey
+      if (key !== undefined && !seen.has(key)) {
+        seen.add(key)
+        hintStrings.push(key)
+      }
+    }
+  }
+  hintStrings.sort()
+
+  return { facts, deductions, hints: hintStrings }
+}
+
+const onEdge = (grid: readonly string[], p: Pos): boolean => {
+  const width = grid[0]?.length ?? 0
+  return p.x === 0 || p.y === 0 || p.x === width - 1 || p.y === grid.length - 1
+}
+
+export function combatView(state: GameState, content: GameContent): CombatView | null {
+  const combat = state.combat
+  if (combat === null) return null
+  const s = content.strings
+  const actor = combat.units.find((u) => u.id === combat.active)
+
+  const actions: CombatAction["kind"][] = ["attack", "push", "persuade", "defend"]
+  if (actor !== undefined && !actor.moved) actions.push("move")
+  if (actor !== undefined && onEdge(combat.grid, actor.pos)) actions.push("flee")
+  actions.push("endTurn")
+
+  const active = combat.active === "player"
+    ? t(s, "player.name")
+    : t(s, content.npcs[combat.active]?.nameKey ?? combat.active)
+
+  const units = combat.units.map((u): CombatView["units"][number] => {
+    const name = u.side === "ally"
+      ? u.id === "player"
+        ? t(s, "player.name")
+        : t(s, content.npcs[u.id]?.nameKey ?? u.id)
+      : t(s, u.creature === null ? u.id : content.creatures[u.creature]?.nameKey ?? u.creature)
+    let evilKnown: boolean | null = null
+    if (u.side === "enemy" && u.creature !== null) {
+      const creature = content.creatures[u.creature]
+      if (creature !== undefined && state.facts.includes(creature.lore)) evilKnown = creature.evil
+    }
+    return { id: u.id, name, hp: u.hp, side: u.side, evilKnown }
+  })
+
+  return { active, actions, units }
+}
