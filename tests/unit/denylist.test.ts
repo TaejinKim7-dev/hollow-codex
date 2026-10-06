@@ -29,6 +29,24 @@ describe("findDenied", () => {
   })
 })
 
+describe("camelCase and y→ies variants", () => {
+  it("catches a denied term as a camelCase compound part", () => {
+    for (const text of ["openZorvaniaGate", "myLordZorvanHall", "ZorvaniaHub"]) {
+      expect(findDenied([{ where: "w", text }], deny), text).toHaveLength(1)
+    }
+  })
+  it("catches the -ies plural of a term ending in y", () => {
+    const y = { latin: ["fazolmy"], hangul: [] }
+    for (const text of ["fazolmy", "two fazolmies", "the fazolmies"]) {
+      expect(findDenied([{ where: "w", text }], y), text).toHaveLength(1)
+    }
+  })
+  it("scanRepoText catches a camelCase file name", () => {
+    const out = scanRepoText([{ path: "src/zorvaniaGate.ts", text: "ok\n" }], deny)
+    expect(out).toEqual(['src/zorvaniaGate.ts: path: denied term "zorvania"'])
+  })
+})
+
 describe("parseDenylist", () => {
   it("reads latin and hangul lists, lower-casing latin", () => {
     expect(parseDenylist({ latin: ["Zorvania"], hangul: ["조르바니아"] })).toEqual({ latin: ["zorvania"], hangul: ["조르바니아"] })

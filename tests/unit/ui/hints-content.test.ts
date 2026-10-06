@@ -97,3 +97,22 @@ describe("no hint names a deduction answer word", () => {
     expect(text("en", "spirituality.deduction.spirituality.hint")).not.toMatch(/three principles/i)
   })
 })
+
+describe("valor and humility hints do not paraphrase the answer words", () => {
+  // Each entry is a hint that used to spell the answer out in plain words (a label synonym),
+  // which the literal-label guard above cannot see. The phrase must be gone in both languages.
+  const leaks: readonly { readonly key: string; readonly ko: string; readonly en: RegExp }[] = [
+    { key: "valor.deduction.valor.hint", ko: "물러섬", en: /stepping back/i },
+    { key: "valor.word.courage.hint", ko: "돌아오는 것", en: /coming back/i },
+    { key: "valor.word.retreat.hint", ko: "도망이라 부르는", en: /calls fleeing/i },
+    { key: "valor.word.shield.hint", ko: "등을 막는", en: /blocks your back/i },
+    { key: "humility.deduction.humility.hint", ko: "남은 하나", en: /the last one/i },
+    { key: "humility.word.three.hint", ko: "적힌 수", en: /a number written/i }
+  ]
+  it("removes the answer-revealing paraphrase from each hint", () => {
+    for (const { key, ko, en } of leaks) {
+      expect(text("ko", key), key).not.toContain(ko)
+      expect(text("en", key), key).not.toMatch(en)
+    }
+  })
+})

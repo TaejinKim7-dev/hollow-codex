@@ -438,11 +438,11 @@ valor.npc.widow.retreat-law.t: 남편이 떠나기 전에 이런 법이 있었�
 
 # --- 솔강 단서 ---
 valor.word.courage.label: 용기
-valor.word.courage.hint: 물러서지 않는 것이 아니라 돌아오는 것. 노래의 마지막 소절이 이 낱말을 부른다.
+valor.word.courage.hint: 노래의 마지막 소절이 이 낱말을 부른다.
 valor.word.retreat.label: 후퇴
-valor.word.retreat.hint: 이 마을이 도망이라 부르는 것. 그러나 옛 법과 옛 노래는 다르게 부른다.
+valor.word.retreat.hint: 옛 법과 옛 노래가 이 낱말을 다르게 부른다.
 valor.word.shield.label: 방패
-valor.word.shield.hint: 등을 막는 물건이 아니라 이쪽을 지키려 드는 것. 돌아온 자가 다시 드는 것.
+valor.word.shield.hint: 돌아온 자가 다시 드는 것.
 valor.word.battle.label: 전투
 valor.word.battle.hint: 무패의 투사가 서 있는 곳. 그가 물러서지 않는 이유.
 valor.word.blood.label: 피
@@ -472,7 +472,7 @@ valor.fact.creature.valor-duelist.hint: 악하지 않다. 이기려 싸우지 �
 
 # --- 솔강 추론·위기 ---
 valor.deduction.valor.sentence: 참된 용맹은 {1}을 뽐내는 데 있지 않고, {2}해 돌아와 {3}을 다시 드는 데 있다
-valor.deduction.valor.hint: 무패의 투기장은 물러섬을 모른다. 노병의 옛 군가와 과부의 옛 법이 다른 결말을 가리킨다.
+valor.deduction.valor.hint: 무패의 투기장. 노병의 옛 군가와 과부의 옛 법이 서로 다른 곳을 가리킨다.
 valor.crisis.challenge.text: 투기장에 사람들이 모였다. 젊은 도전자가 피를 흘리며 무릎을 꿇었는데, 무패의 투사가 물러서지 말라며 창을 겨눈다. 도전자는 숨을 몰아쉬며 일어서려다 다시 쓰러진다. 관중은 숨을 죽이고, 훈련관은 고개를 돌린다. 그때 노병이 낮게 노래를 부르기 시작한다. 이제 그대가 나설 차례다.
 valor.option.allow-retreat.label: 옛 군가를 따라 불러 물러남도 용기임을 알린다
 valor.option.allow-retreat.text: 그대가 노병의 노래를 따라 부른다. 앞에 적이 있고 뒤에 고향이 있다면 방패를 들어라. 그리고 잃어버린 마지막 소절을 잇는다. 방패를 들고 돌아오는 자가 용기다. 관중이 하나둘 따라 부르고, 무패의 투사는 겨눈 창을 천천히 내린다. 도전자는 끌려 나가지 않고 스스로 걸어 나온다. 투기장의 모래 위에 처음으로 돌아온 자의 이름이 적힌다. 용기는 물러서지 않는 데 있지 않고 돌아와 다시 서는 데 있음을 솔강이 알았다.
@@ -1085,7 +1085,7 @@ humility.npc.widow.listening.t: 조용히 들어 준다.
 humility.word.listening.label: 듣기
 humility.word.listening.hint: "채우지 않고 비우는 일. 말이 멎은 자리에서 귀가 열릴 때 비로소 일어나는 것."
 humility.word.three.label: 셋
-humility.word.three.hint: "헤론 서고의 빈 페이지 한쪽에 적힌 수. 겸손은 그것들을 모두 비워 둔 자리에서 시작한다."
+humility.word.three.hint: "헤론 서고의 빈 페이지가 가리키는 것. 겸손은 그것들을 모두 비워 둔 자리에서 시작한다."
 humility.word.name.label: 이름
 humility.word.name.hint: "헤론이 금지한 것. 이름을 지키지 않는 자는 말 없는 법에 갇힌다."
 humility.fact.heron.silent-elder.label: 침묵하는 장로
@@ -1117,7 +1117,7 @@ humility.fact.creature.humility-silencer.hint: "악하지 않다. 소리를 막�
 
 # --- 헤론 추론·위기 ---
 humility.deduction.humility.sentence: 겸손은 {1} 앞에 자신을 비우고 {2}(으)로 {3}을 들을 수 있는 자리다
-humility.deduction.humility.hint: "헤론은 원리를 모두 비워 둔 마을. 말이 멎은 자리에서 무엇이 열리는가. 서고의 빈 페이지가 남은 하나를 알려 준다."
+humility.deduction.humility.hint: "헤론은 원리를 모두 비워 둔 마을. 말이 멎은 자리에서 무엇이 열리는가. 서고의 빈 페이지가 단서가 된다."
 humility.crisis.name.text: 침묵 예배당 앞에 마을 사람들이 모였다. 장로가 이름 없는 지팡이를 짚고 선다. "이제 이 마을의 마지막 법을 거두려 한다. 이름을 잠근 지 오래. 그러나 잠근 쪽이 우리를 더 가두었다. 그대, 이방인. 그대의 이름을 말하여라. 그러면 헤론의 침묵이 시작이 아닌 끝이 된다." 모두가 숨을 죽인다. 이제 그대가 입을 열 차례다.
 humility.option.speak-name.label: 스스로의 이름을 말해 침묵의 법을 거둔다
 humility.option.speak-name.text: 그대가 앞으로 나서 이름을 말한다. 예배당이 그 이름을 울린다. 사람들이 조용히 그 이름을 따라 부른다. 장로가 지팡이를 내려놓는다. "이름은 채우려는 것이 아니라 서로를 부르는 것이다." 헤론의 침묵은 입을 여는 예법으로 다시 태어난다. 겸손은 셋을 비워 두는 자리이되, 비워 둔 뒤 다시 이름을 부르는 자리다.

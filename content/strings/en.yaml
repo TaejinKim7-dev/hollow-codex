@@ -440,11 +440,11 @@ valor.npc.widow.retreat-law.t: Before my husband left, I heard there was such a 
 
 # --- Solgang clues ---
 valor.word.courage.label: Courage
-valor.word.courage.hint: Not refusing to step back, but coming back. The song's last line sings this word.
+valor.word.courage.hint: The song's last line sings this word.
 valor.word.retreat.label: Retreat
-valor.word.retreat.hint: What this village calls fleeing. But the old law and the old song call it differently.
+valor.word.retreat.hint: The old law and the old song call this word differently.
 valor.word.shield.label: Shield
-valor.word.shield.hint: Not a thing that blocks your back, but one raised to guard this side. What those who returned take up again.
+valor.word.shield.hint: What those who returned take up again.
 valor.word.battle.label: Battle
 valor.word.battle.hint: Where the undefeated champion stands. The reason he never steps back.
 valor.word.blood.label: Blood
@@ -474,7 +474,7 @@ valor.fact.creature.valor-duelist.hint: Not evil. He fights not to win, but to s
 
 # --- Solgang deduction and crisis ---
 valor.deduction.valor.sentence: True valor is not in flaunting {1}, but in {2} and coming home to raise {3} again
-valor.deduction.valor.hint: The undefeated arena knows no stepping back. The old soldier's marching song and the widow's old law point to a different ending.
+valor.deduction.valor.hint: The undefeated arena. The old soldier's marching song and the widow's old law point in different directions.
 valor.crisis.challenge.text: People gather in the arena. A young challenger kneels bleeding, and the undefeated champion levels his spear, shouting not to step back. The challenger gasps, tries to rise, and falls again. The crowd holds its breath; the drillmaster turns his head. Then the old soldier begins to sing, low. Now it is your turn to step forward.
 valor.option.allow-retreat.label: Sing the old marching song and declare that retreat is also courage
 valor.option.allow-retreat.text: You sing the old soldier's song. If the enemy is ahead and your home behind, raise your shield. Then you take up the lost last line. The one who lifts a shield and comes home is the brave one. One by one the crowd joins in, and the undefeated champion slowly lowers his spear. The challenger walks out on his own feet, not dragged. For the first time, the name of one who returned is written in the arena sand. Solgang learns that valor lies not in refusing to step back, but in coming home and standing again.
@@ -1087,7 +1087,7 @@ humility.npc.widow.listening.t: I listen quietly.
 humility.word.listening.label: Listening
 humility.word.listening.hint: "Emptying rather than filling. What happens only when the ears open where words have stopped."
 humility.word.three.label: The Three
-humility.word.three.hint: "A number written on one empty page in Heron's library. Humility begins in a place where all of them are left empty."
+humility.word.three.hint: "What the empty page in Heron's library points to. Humility begins in a place where all of them are left empty."
 humility.word.name.label: Name
 humility.word.name.hint: "What Heron forbade. One who does not keep a name is imprisoned by the law of no words."
 humility.fact.heron.silent-elder.label: The Silent Elder
@@ -1119,7 +1119,7 @@ humility.fact.creature.humility-silencer.hint: "Not evil. A being that merely mu
 
 # --- Heron deduction and crisis ---
 humility.deduction.humility.sentence: Humility is a place where you empty yourself before {1} and hear {3} through {2}
-humility.deduction.humility.hint: "Heron is a village that left every principle empty. Where words stop, what opens? The empty pages of the library tell the last one."
+humility.deduction.humility.hint: "Heron is a village that left every principle empty. Where words stop, what opens? The empty pages of the library hold a clue."
 humility.crisis.name.text: Villagers gather before the Chapel of Silence. The elder stands leaning on a nameless staff. 'I would now take away this village's last law. Long has a lock been kept on names. But the locking imprisoned us more. You, stranger. Speak your name. Then Heron's silence becomes an end, not a beginning.' Everyone holds their breath. Now it is your turn to open your mouth.
 humility.option.speak-name.label: Speak your own name and lift the law of silence
 humility.option.speak-name.text: You step forward and speak your name. The chapel echoes it. One by one, quietly, the people sing it back. The elder lays down his staff. 'A name is not for holding — it is for calling each other.' Heron's silence is reborn as a courtesy of opening the mouth. Humility is a place where the three are left empty, and after the emptying, a place where names are called again.

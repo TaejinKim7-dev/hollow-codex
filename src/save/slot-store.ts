@@ -49,6 +49,8 @@ const DB_NAME = "hollow-codex-save-slots"
 const SLOTS = "slots"
 const META = "meta"
 const ACTIVE_KEY = "active"
+/** A stalled or blocked upgrade must not hang boot forever; fall back to memory after this. */
+const OPEN_TIMEOUT_MS = 3000
 
 function isRecord(value: unknown): value is SlotRecord {
   if (typeof value !== "object" || value === null) return false
@@ -62,17 +64,50 @@ function isRecord(value: unknown): value is SlotRecord {
   )
 }
 
-/** IndexedDB-backed store. Never touches localStorage/sessionStorage (audit:dist forbids them). */
+/**
+ * IndexedDB-backed store. Never touches localStorage/sessionStorage (audit:dist forbids them).
+ * If open times out, is blocked or fails, every later call uses the in-memory store instead, so a
+ * broken/blocked IndexedDB degrades to "this tab only" saves instead of hanging or rejecting.
+ */
 export function createIndexedDbSlotStore(factory: IDBFactory): SlotStore {
+  const memory = createMemorySlotStore()
+  let fellBack = false
+
   function open(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
-      const request = factory.open(DB_NAME, 1)
+      let settled = false
+      let timer: ReturnType<typeof setTimeout>
+      const fail = (error: Error): void => {
+        if (settled) return
+        settled = true
+        clearTimeout(timer)
+        reject(error)
+      }
+      timer = setTimeout(() => fail(new Error("indexedDB open timed out")), OPEN_TIMEOUT_MS)
+      let request: IDBOpenDBRequest
+      try {
+        request = factory.open(DB_NAME, 1)
+      } catch (error) {
+        fail(error instanceof Error ? error : new Error(String(error)))
+        return
+      }
       request.onupgradeneeded = () => {
         request.result.createObjectStore(SLOTS, { keyPath: "id" })
         request.result.createObjectStore(META)
       }
-      request.onsuccess = () => resolve(request.result)
-      request.onerror = () => reject(request.error ?? new Error("indexedDB open failed"))
+      request.onsuccess = () => {
+        if (settled) {
+          request.result.close()
+          return
+        }
+        settled = true
+        clearTimeout(timer)
+        const db = request.result
+        db.onversionchange = () => db.close()
+        resolve(db)
+      }
+      request.onerror = () => fail(request.error ?? new Error("indexedDB open failed"))
+      request.onblocked = () => fail(new Error("indexedDB open blocked"))
     })
   }
 
@@ -89,31 +124,57 @@ export function createIndexedDbSlotStore(factory: IDBFactory): SlotStore {
     }
   }
 
+  /** Runs against IndexedDB until it fails once, then against the memory store for good. */
+  async function viaDb<T>(indexed: () => Promise<T>, fromMemory: () => Promise<T>): Promise<T> {
+    if (fellBack) return fromMemory()
+    try {
+      return await indexed()
+    } catch {
+      fellBack = true
+      return fromMemory()
+    }
+  }
+
   return {
-    async list() {
-      const all = (await run(SLOTS, "readonly", (store) => store.getAll())) as unknown[]
-      return all.filter(isRecord)
+    list() {
+      return viaDb(
+        () => run(SLOTS, "readonly", (store) => store.getAll()).then((all) => (all as unknown[]).filter(isRecord)),
+        () => memory.list()
+      )
     },
-    async get(id) {
-      const value = await run(SLOTS, "readonly", (store) => store.get(id))
-      return isRecord(value) ? value : null
+    get(id) {
+      return viaDb(
+        () => run(SLOTS, "readonly", (store) => store.get(id)).then((value) => (isRecord(value) ? value : null)),
+        () => memory.get(id)
+      )
     },
-    async put(record) {
-      await run(SLOTS, "readwrite", (store) => store.put(record))
+    put(record) {
+      return viaDb(
+        () => run(SLOTS, "readwrite", (store) => store.put(record)).then(() => undefined),
+        () => memory.put(record)
+      )
     },
-    async remove(id) {
-      await run(SLOTS, "readwrite", (store) => store.delete(id))
+    remove(id) {
+      return viaDb(
+        () => run(SLOTS, "readwrite", (store) => store.delete(id)).then(() => undefined),
+        () => memory.remove(id)
+      )
     },
-    async getActive() {
-      const value = await run(META, "readonly", (store) => store.get(ACTIVE_KEY))
-      return typeof value === "string" ? value : null
+    getActive() {
+      return viaDb(
+        () => run(META, "readonly", (store) => store.get(ACTIVE_KEY)).then((value) => (typeof value === "string" ? value : null)),
+        () => memory.getActive()
+      )
     },
-    async setActive(id) {
-      if (id === null) {
-        await run(META, "readwrite", (store) => store.delete(ACTIVE_KEY))
-      } else {
-        await run(META, "readwrite", (store) => store.put(id, ACTIVE_KEY))
-      }
+    setActive(id) {
+      return viaDb(
+        () =>
+          (id === null
+            ? run(META, "readwrite", (store) => store.delete(ACTIVE_KEY))
+            : run(META, "readwrite", (store) => store.put(id, ACTIVE_KEY))
+          ).then(() => undefined),
+        () => memory.setActive(id)
+      )
     }
   }
 }

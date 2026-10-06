@@ -127,6 +127,20 @@ describe("compileContent", () => {
     expect(content).toBeNull()
     expect(errors).toContain('towns/min/facts.yaml: id fact.forbiddenland: denied term "forbiddenland"')
   })
+
+  it("rejects an unknown key in a data file entry", () => {
+    const npcs = npcsWith((n) => { n["nickname"] = "x" })
+    const { content, errors } = compileContent(withFile("towns/min/npcs.yaml", npcs))
+    expect(content).toBeNull()
+    expect(errors.some((e) => e.includes("towns/min/npcs.yaml") && e.includes('unknown key "nickname"'))).toBe(true)
+  })
+
+  it("rejects a ring whose arrival cell is where an NPC stands", () => {
+    const rings = [{ id: "ring.min", at: [2, 1], name: "ability.min.name", song: "ability.min.name", fact: "fact.min.person", onOverworld: "map.min" }]
+    const { content, errors } = compileContent(withFile("rings.yaml", rings))
+    expect(content).toBeNull()
+    expect(errors.some((e) => e.includes("ring.min") && e.includes("arrival cell"))).toBe(true)
+  })
 })
 
 describe("parseYamlFile", () => {

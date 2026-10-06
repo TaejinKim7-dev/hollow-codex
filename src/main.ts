@@ -2,10 +2,11 @@ import "./ui/fonts.css"
 import content from "virtual:content"
 import credits from "virtual:credits"
 import { createChipPlayer } from "./audio/synth.ts"
+import type { ChipPlayer } from "./audio/synth.ts"
 import { renderSfx, SFX } from "./audio/sfx.ts"
 import type { SfxParams } from "./audio/sfx.ts"
 import { step } from "./core/step.ts"
-import type { Command, GameEvent, GameState, Pos } from "./core/types.ts"
+import type { Command, GameEvent, GameState, Id, Pos } from "./core/types.ts"
 import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
 import type { UiAction } from "./input/commands.ts"
 import { drawFrame } from "./render/canvas.ts"
@@ -65,8 +66,30 @@ const session = createSession({
   seed: () => Date.now() >>> 0,
   log: (event, data) => log.log(event, data)
 })
-const audio = new AudioContext()
-const player = createChipPlayer(audio)
+let audio: AudioContext | null = null
+let player: ChipPlayer | null = null
+let pendingTrack: Id | null = null
+
+/** 오디오 그래프는 첫 사용자 입력에서 만든다(브라우저는 제스처 뒤에만 소리를 허용한다). 그전엔 무음. */
+function ensureAudio(): ChipPlayer {
+  if (player === null) {
+    audio = new AudioContext()
+    player = createChipPlayer(audio)
+    if (pendingTrack !== null) {
+      const score = content.music[pendingTrack]
+      if (score !== undefined) player.play(score)
+    }
+  }
+  return player
+}
+
+/** 지금 재생하거나, 아직 오디오가 없으면 첫 입력 때 시작하도록 기억한다. */
+function playTrack(track: Id): void {
+  pendingTrack = track
+  if (player === null) return
+  const score = content.music[track]
+  if (score !== undefined) player.play(score)
+}
 
 let state: GameState | null = null
 let panels: MountedPanels | null = null
@@ -75,6 +98,7 @@ let lastAutoTurn = 0
 
 // ── 효과음 ──────────────────────────────────────────────
 function playSfx(name: string): void {
+  if (audio === null) return
   const params = (SFX as Record<string, SfxParams | undefined>)[name]
   if (params === undefined) return
   const buffer = audio.createBuffer(1, Math.round((params.ms * audio.sampleRate) / 1000), audio.sampleRate)
@@ -166,8 +190,7 @@ function handleEvents(events: readonly GameEvent[]): void {
         playSfx(e.name)
         break
       case "music": {
-        const score = content.music[e.track]
-        if (score !== undefined) player.play(score)
+        playTrack(e.track)
         break
       }
       case "combatEnded":
@@ -285,8 +308,7 @@ function replaceState(next: GameState): void {
   const track = next.combat !== null
     ? content.encounters[next.combat.encounterId]?.music
     : content.maps[next.mapId]?.music
-  const score = track === undefined ? undefined : content.music[track]
-  if (score !== undefined) player.play(score)
+  if (track !== undefined) playTrack(track)
   panels?.closeOverlays()
   scheduleFrame()
 }
@@ -338,6 +360,7 @@ export async function boot(): Promise<void> {
   refreshSlotInfo()
 
   window.addEventListener("keydown", (event) => {
+    ensureAudio()
     const st = state
     if (st === null) return
     const cmd = keyToCommand(event.key, modeOf(st))
@@ -347,6 +370,7 @@ export async function boot(): Promise<void> {
   })
 
   canvas.addEventListener("pointerdown", (event) => {
+    ensureAudio()
     const st = state
     if (st === null) return
     showTouchHintOnce()
@@ -364,10 +388,7 @@ export async function boot(): Promise<void> {
   })
 
   const bootMusic = content.maps[s.mapId]?.music
-  if (bootMusic !== undefined) {
-    const score = content.music[bootMusic]
-    if (score !== undefined) player.play(score)
-  }
+  if (bootMusic !== undefined) playTrack(bootMusic)
 
   document.getElementById("boot-title")?.remove()
   resize()

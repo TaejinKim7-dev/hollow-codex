@@ -3,6 +3,7 @@
 // 5 map/grid geometry, 6 grant paths, 7 deduction answers, 8 denied terms.
 import type { Id, Pos, Virtue } from "../core/types.ts"
 import { findDenied, parseDenylist } from "./denylist.ts"
+import { arrivalCell } from "../core/world/ring.ts"
 import { isObj, makeReader } from "./shape.ts"
 import type { Obj, Reader } from "./shape.ts"
 import type {
@@ -27,6 +28,34 @@ type Crisis = GameContent["crises"][string]
 type Creature = GameContent["creatures"][string]
 type Encounter = GameContent["encounters"][string]
 type Ring = GameContent["rings"][string]
+
+/** Every key each YAML object may carry. An unknown key is a build error (B-4f), not silently ignored. */
+const KEYS = {
+  tiles: ["sheets", "tiles", "player"],
+  sheet: ["file", "columns"],
+  tile: ["sprite", "walk"],
+  start: ["map", "pos", "hp", "attack"],
+  ability: ["id", "name"],
+  creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
+  music: ["tempo", "loop", "channels"],
+  channel: ["wave", "volume", "notes"],
+  map: ["id", "rows", "exits", "music", "encounters", "enterFlags", "heals", "isOverworld", "terrainCost"],
+  exit: ["at", "to", "arrive"],
+  mapEncounter: ["at", "id"],
+  choice: ["id", "label", "text", "deed", "grants", "setsFlags"],
+  deed: ["virtue", "deed"],
+  topic: ["text", "requires", "requiresFlags", "excludeFlags", "grants", "setsFlags", "lie", "choice"],
+  npc: ["id", "map", "pos", "name", "greet", "sprite", "topics", "schedule", "companion"],
+  companion: ["virtue", "joinRequires", "leaveAfterDeeds", "rejoinRequires", "hp", "attack"],
+  fact: ["id", "kind", "label", "hint"],
+  deduction: ["id", "sentence", "hint", "answer", "unlocks", "codexWord"],
+  crisis: ["id", "npc", "text", "options"],
+  crisisOption: ["requires", "requiresDeductions", "setsFlags", "label", "text"],
+  encounter: ["id", "map", "grid", "allyStart", "enemies", "music"],
+  enemy: ["creature", "at"],
+  ring: ["id", "at", "name", "song", "fact", "onOverworld"],
+  denylist: ["latin", "hangul"]
+} as const
 
 /** Compiled entries of one kind plus the file each id came from. */
 interface Table<T> { readonly items: Record<Id, T>; readonly file: Record<Id, string> }
@@ -73,6 +102,13 @@ function eachEntry(r: Reader, value: unknown, read: (o: Obj, id: Id, where: stri
   })
 }
 
+/** Reports every key of `o` outside `allowed`. An unknown YAML key is a build error (B-4f). */
+function onlyKeys(r: Reader, o: Obj, where: string, allowed: readonly string[]): void {
+  for (const key of Object.keys(o)) {
+    if (!allowed.includes(key)) r.fail(where === "" ? key : `${where}.${key}`, `unknown key "${key}"`)
+  }
+}
+
 // ---------- group 1+2: shape and duplicates ----------
 
 function readTiles(r: Reader, v: unknown, d: Draft): void {
@@ -81,9 +117,11 @@ function readTiles(r: Reader, v: unknown, d: Draft): void {
     return
   }
   const o = r.obj(v, "")
+  onlyKeys(r, o, "", KEYS.tiles)
   for (const [id, s] of Object.entries(o["sheets"] === undefined ? {} : r.obj(o["sheets"], "sheets"))) {
     const before = r.errors.length
     const so = r.obj(s, `sheets.${id}`)
+    onlyKeys(r, so, `sheets.${id}`, KEYS.sheet)
     const file = r.str(so, "file", `sheets.${id}`)
     const columns = r.num(so, "columns", `sheets.${id}`)
     if (r.errors.length === before && (!Number.isInteger(columns) || columns <= 0)) r.fail(`sheets.${id}.columns`, "expected a positive integer")
@@ -93,6 +131,7 @@ function readTiles(r: Reader, v: unknown, d: Draft): void {
     const before = r.errors.length
     if (ch.length !== 1) r.fail(`tiles."${ch}"`, "tile key must be exactly one character")
     const to = r.obj(t, `tiles."${ch}"`)
+    onlyKeys(r, to, `tiles."${ch}"`, KEYS.tile)
     const sprite = r.sprite(to["sprite"], `tiles."${ch}".sprite`)
     const walk = to["walk"]
     if (walk !== null && !(typeof walk === "number" && Number.isFinite(walk))) r.fail(`tiles."${ch}".walk`, "expected a number or null")
@@ -109,6 +148,7 @@ function readStart(r: Reader, v: unknown, d: Draft): void {
     return
   }
   const o = r.obj(v, "")
+  onlyKeys(r, o, "", KEYS.start)
   const before = r.errors.length
   const start = { map: r.str(o, "map", ""), pos: r.pos(o["pos"], "pos"), hp: r.num(o, "hp", ""), attack: r.num(o, "attack", "") }
   if (r.errors.length === before) d.start = start
@@ -116,6 +156,7 @@ function readStart(r: Reader, v: unknown, d: Draft): void {
 
 function readAbilities(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.ability)
     const before = r.errors.length
     const nameKey = r.str(o, "name", w)
     if (r.errors.length === before) put(ctx, d.abilities, "ability", r.file, id, { nameKey })
@@ -134,6 +175,7 @@ function readStrings(r: Reader, v: unknown, d: Draft, lang: string): void {
 
 function readCreatures(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.creature)
     const before = r.errors.length
     const c: Creature = {
       nameKey: r.str(o, "name", w), evil: r.bool(o, "evil", w), hp: r.num(o, "hp", w), attack: r.num(o, "attack", w),
@@ -145,9 +187,11 @@ function readCreatures(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
 
 function readMusic(r: Reader, v: unknown, d: Draft, ctx: Ctx, id: Id): void {
   const o = r.obj(v, "")
+  onlyKeys(r, o, "", KEYS.music)
   const before = r.errors.length
   const channels = r.arr(o["channels"], "channels").map((c, i) => {
     const co = r.obj(c, `channels[${i}]`)
+    onlyKeys(r, co, `channels[${i}]`, KEYS.channel)
     const wave = r.str(co, "wave", `channels[${i}]`)
     if (wave !== "" && !WAVES.includes(wave)) r.fail(`channels[${i}].wave`, `unknown wave "${wave}"`)
     return { wave: wave as Score["channels"][number]["wave"], volume: r.num(co, "volume", `channels[${i}]`), notes: r.str(co, "notes", `channels[${i}]`) }
@@ -158,13 +202,16 @@ function readMusic(r: Reader, v: unknown, d: Draft, ctx: Ctx, id: Id): void {
 
 function readMaps(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.map)
     const before = r.errors.length
     const exits = r.arr(o["exits"] ?? [], `${w}.exits`).map((e, i) => {
       const eo = r.obj(e, `${w}.exits[${i}]`)
+      onlyKeys(r, eo, `${w}.exits[${i}]`, KEYS.exit)
       return { at: r.pos(eo["at"], `${w}.exits[${i}].at`), to: r.str(eo, "to", `${w}.exits[${i}]`), arrive: r.pos(eo["arrive"], `${w}.exits[${i}].arrive`) }
     })
     const encounters = r.arr(o["encounters"] ?? [], `${w}.encounters`).map((e, i) => {
       const eo = r.obj(e, `${w}.encounters[${i}]`)
+      onlyKeys(r, eo, `${w}.encounters[${i}]`, KEYS.mapEncounter)
       return { at: r.pos(eo["at"], `${w}.encounters[${i}].at`), id: r.str(eo, "id", `${w}.encounters[${i}]`) }
     })
     const m: Mutable<MapDef> = {
@@ -196,9 +243,11 @@ function readChoice(r: Reader, v: unknown, w: string): ChoiceOption[] {
   return r.arr(v, w).map((c, i) => {
     const cw = `${w}[${i}]`
     const co = r.obj(c, cw)
+    onlyKeys(r, co, cw, KEYS.choice)
     const opt: Mutable<ChoiceOption> = { optionId: r.str(co, "id", cw), labelKey: r.str(co, "label", cw), textKey: r.str(co, "text", cw) }
     if (co["deed"] !== undefined) {
       const dd = r.obj(co["deed"], `${cw}.deed`)
+      onlyKeys(r, dd, `${cw}.deed`, KEYS.deed)
       opt.deed = { virtue: r.str(dd, "virtue", `${cw}.deed`) as Virtue, deed: r.str(dd, "deed", `${cw}.deed`) }
     }
     const grants = r.optStrList(co, "grants", cw)
@@ -211,6 +260,7 @@ function readChoice(r: Reader, v: unknown, w: string): ChoiceOption[] {
 
 function readTopic(r: Reader, v: unknown, w: string): Topic {
   const o = r.obj(v, w)
+  onlyKeys(r, o, w, KEYS.topic)
   const t: Mutable<Topic> = { textKey: r.str(o, "text", w) }
   for (const key of ["requires", "requiresFlags", "excludeFlags", "grants", "setsFlags"] as const) {
     const list = r.optStrList(o, key, w)
@@ -224,6 +274,7 @@ function readTopic(r: Reader, v: unknown, w: string): Topic {
 
 function readNpcs(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.npc)
     // A malformed topic or companion drops only itself, so the NPC's other checks still run.
     const topics: Record<string, readonly Topic[]> = {}
     for (const [key, tv] of Object.entries(r.obj(o["topics"] ?? {}, `${w}.topics`))) {
@@ -251,6 +302,7 @@ function readNpcs(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
       const cw = `${w}.companion`
       const cb = r.errors.length
       const co = r.obj(o["companion"], cw)
+      onlyKeys(r, co, cw, KEYS.companion)
       const comp: CompanionDef = {
         virtue: r.str(co, "virtue", cw) as Virtue, joinRequires: r.strListOr(co, "joinRequires", cw),
         leaveAfterDeeds: r.num(co, "leaveAfterDeeds", cw), rejoinRequires: r.strListOr(co, "rejoinRequires", cw),
@@ -264,6 +316,7 @@ function readNpcs(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
 
 function readFacts(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.fact)
     const before = r.errors.length
     const kind = r.str(o, "kind", w)
     if (kind !== "" && !FACT_KINDS.includes(kind as FactKind)) r.fail(`${w}.kind`, `unknown fact kind "${kind}"`)
@@ -274,6 +327,7 @@ function readFacts(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
 
 function readDeductions(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.deduction)
     const before = r.errors.length
     const ded: Mutable<Deduction> = {
       sentenceKey: r.str(o, "sentence", w), hintKey: r.str(o, "hint", w), answer: r.strList(o, "answer", w), unlocks: r.strListOr(o, "unlocks", w)
@@ -285,11 +339,13 @@ function readDeductions(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
 
 function readCrises(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.crisis)
     const before = r.errors.length
     const options: Record<Id, CrisisOptionDef> = {}
     for (const [optId, ov] of Object.entries(r.obj(o["options"], `${w}.options`))) {
       const ow = `${w}.options.${optId}`
       const oo = r.obj(ov, ow)
+      onlyKeys(r, oo, ow, KEYS.crisisOption)
       options[optId] = {
         requires: r.strListOr(oo, "requires", ow), requiresDeductions: r.strListOr(oo, "requiresDeductions", ow),
         setsFlags: r.strListOr(oo, "setsFlags", ow), labelKey: r.str(oo, "label", ow), textKey: r.str(oo, "text", ow)
@@ -302,10 +358,12 @@ function readCrises(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
 
 function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.encounter)
     const before = r.errors.length
     const allyStart = r.arr(o["allyStart"], `${w}.allyStart`).map((p, i) => r.pos(p, `${w}.allyStart[${i}]`))
     const enemies = r.arr(o["enemies"], `${w}.enemies`).map((e, i) => {
       const eo = r.obj(e, `${w}.enemies[${i}]`)
+      onlyKeys(r, eo, `${w}.enemies[${i}]`, KEYS.enemy)
       return { creature: r.str(eo, "creature", `${w}.enemies[${i}]`), at: r.pos(eo["at"], `${w}.enemies[${i}].at`) }
     })
     const enc: Encounter = { map: r.str(o, "map", w), grid: r.strList(o, "grid", w), allyStart, enemies, music: r.str(o, "music", w) }
@@ -315,6 +373,7 @@ function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
 
 function readRings(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.ring)
     const before = r.errors.length
     const mg: Ring = {
       at: r.pos(o["at"], `${w}.at`),
@@ -333,6 +392,7 @@ function checkDenylistShape(r: Reader, v: unknown): void {
     r.fail("", "expected a mapping with latin and hangul string lists")
     return
   }
+  onlyKeys(r, v, "", KEYS.denylist)
   for (const key of ["latin", "hangul"]) {
     const list = v[key]
     if (!Array.isArray(list) || !list.every((x) => typeof x === "string" && x.trim() !== "")) {
@@ -585,8 +645,38 @@ function checkOverworld(d: Draft, out: string[]): void {
   }
 }
 
-// ---------- group 6: grant paths ----------
+// ---------- group 5++: ring arrival cells vs NPC schedules (B-4c) ----------
 
+/**
+ * A ring the player travels to must not land them on top of an NPC. `arrivalCell` returns the ring
+ * cell itself whenever it is walkable, without looking at NPCs, so a scheduled NPC standing there
+ * would be walked onto. Check every ring against the NPC schedule buckets.
+ */
+function checkRingArrivals(d: Draft, out: string[]): void {
+  if (Object.keys(d.rings.items).length === 0) return
+  const probe = {
+    maps: d.maps.items, tiles: d.tiles, npcs: d.npcs.items, encounters: d.encounters.items,
+    rings: d.rings.items, facts: d.facts.items, deductions: d.deductions.items, crises: d.crises.items,
+    creatures: d.creatures.items, abilities: d.abilities.items, music: d.music.items,
+    sheets: d.sheets, playerSprite: d.playerSprite, strings: d.strings, start: d.start
+  } as unknown as GameContent
+  for (const [id, ring] of Object.entries(d.rings.items)) {
+    const file = d.rings.file[id] ?? ""
+    for (const bucket of SCHEDULE_BUCKETS) {
+      const cell = arrivalCell(probe, ring.onOverworld, ring.at, Number(bucket))
+      if (cell === null) continue
+      for (const [npcId, npc] of Object.entries(d.npcs.items)) {
+        if (npc.map !== ring.onOverworld) continue
+        const p = npc.schedule?.[bucket] ?? npc.pos
+        if (p.x === cell.x && p.y === cell.y) {
+          out.push(`${file}: ${id}: arrival cell [${cell.x}, ${cell.y}] is where ${npcId} stands in hour bucket ${bucket}`)
+        }
+      }
+    }
+  }
+}
+
+// ---------- group 6: grant paths ----------
 function checkGrantPaths(d: Draft, out: string[]): void {
   const granted = new Set<Id>()
   for (const n of Object.values(d.npcs.items)) {
@@ -675,6 +765,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
   checkStringKeys(d, errors)
   checkGeometry(d, errors)
   checkOverworld(d, errors)
+  checkRingArrivals(d, errors)
   checkGrantPaths(d, errors)
   checkAnswers(d, errors)
   checkDenied(raw, d, errors)

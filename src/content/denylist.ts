@@ -1,5 +1,7 @@
 // Denied-term matching (plan D4). Latin terms: case-insensitive, whole word plus an optional
 // English ending (s, es, 's), inner spaces match any run of spaces/underscores/hyphens.
+// camelCase / PascalCase compounds are split at the case boundary first, so a term that is one
+// part of a compound ("openZorvaniaGate") is still caught as a whole word.
 // Hangul terms: substring.
 
 export interface Denylist { readonly latin: readonly string[]; readonly hangul: readonly string[] }
@@ -19,8 +21,23 @@ export function parseDenylist(value: unknown): { latin: string[]; hangul: string
 
 const escape = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 
+/** Inserts a space at camelCase/PascalCase boundaries so the word-boundary pattern sees each part. */
+export function splitCamelCase(text: string): string {
+  return text
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+}
+
 function latinPattern(term: string): RegExp {
-  const body = term.split(/[\s_-]+/).map(escape).join("[\\s_-]+")
+  const words = term.split(/[\s_-]+/)
+  const last = words.length - 1
+  let body = words.map(escape).join("[\\s_-]+")
+  // A term ending in y also matches its -ies plural: "fazolmy" → "fazolmies".
+  if (term.endsWith("y") && words[last] !== undefined) {
+    const plural = [...words]
+    plural[last] = `${plural[last]!.slice(0, -1)}ies`
+    body = `(?:${body}|${plural.map(escape).join("[\\s_-]+")})`
+  }
   return new RegExp(`(?<![a-z0-9])${body}(?:s|es|'s)?(?![a-z0-9])`, "i")
 }
 
@@ -31,7 +48,8 @@ export function findDenied(
   const latin = deny.latin.map((term) => ({ term, re: latinPattern(term) }))
   const out: string[] = []
   for (const { where, text } of texts) {
-    for (const { term, re } of latin) if (re.test(text)) out.push(`${where}: denied term "${term}"`)
+    const latinText = splitCamelCase(text)
+    for (const { term, re } of latin) if (re.test(latinText)) out.push(`${where}: denied term "${term}"`)
     for (const term of deny.hangul) if (text.includes(term)) out.push(`${where}: denied term "${term}"`)
   }
   return out

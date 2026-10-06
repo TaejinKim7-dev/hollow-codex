@@ -19,7 +19,7 @@ export function ringHere(state: GameState, content: GameContent): Id | null {
 }
 
 /** 도착 칸: 고리 칸이 걸을 수 있으면 그 칸, 아니면 걸을 수 있고 출구·조우·NPC가 없는 첫 이웃(n, e, s, w). */
-function arrivalCell(content: GameContent, mapId: Id, at: Pos, hour: number): Pos | null {
+export function arrivalCell(content: GameContent, mapId: Id, at: Pos, hour: number): Pos | null {
   const map = content.maps[mapId]
   if (map === undefined) return null
   const walkable = (p: Pos): boolean => {

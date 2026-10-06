@@ -43,7 +43,7 @@ class FakeOscillator extends FakeSource {
 }
 
 /** Web Audio 대역. 부팅은 master gain 하나만 만들고, 침묵 콘텐츠라 재생은 일어나지 않는다. */
-class FakeAudioContext {
+export class FakeAudioContext {
   readonly sampleRate = 44100
   currentTime = 0
   state = "running"
