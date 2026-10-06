@@ -1145,7 +1145,6 @@ archive.page-locked: Confirm this virtue's deduction before writing on this page
 archive.final-page.title: The Last Page
 archive.final-page.prompt: Truth, love, courage — which is the one that unites the three principles?
 archive.epilogue.title: Epilogue
-archive.epilogue.placeholder: The codex is empty, but your words remain.
 ui.open-codex: Codex
 
 # --- Epilogue variants (M5 Task 43) ---

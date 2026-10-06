@@ -622,11 +622,14 @@ export function mountPanels(
     }
 
     codexEpilogue.replaceChildren()
-    codexEpilogue.hidden = view.finalWord === null
-    if (view.finalWord !== null) {
-      codexEpilogue.appendChild(make("h3", "epilogue-title", tr("archive.epilogue.title")))
-      codexEpilogue.appendChild(make("p", "word", view.finalWord))
-      codexEpilogue.appendChild(make("p", "placeholder", tr("archive.epilogue.placeholder")))
+    codexEpilogue.hidden = view.epilogue === null
+    if (view.epilogue !== null) {
+      codexEpilogue.appendChild(make("h3", "epilogue-title", view.epilogue.title))
+      if (view.finalWord !== null) codexEpilogue.appendChild(make("p", "word", view.finalWord))
+      codexEpilogue.appendChild(make("p", "prologue", view.epilogue.prologue))
+      const towns = make("ul", "towns")
+      for (const message of view.epilogue.messages) towns.appendChild(make("li", "town-message", message))
+      codexEpilogue.appendChild(towns)
     }
 
     if (next.mapId !== "map.sealed-archive") codex.hidden = true

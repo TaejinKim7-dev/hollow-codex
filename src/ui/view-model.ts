@@ -4,6 +4,7 @@ import type { CombatAction, GameState, Id, Pos, Virtue } from "../core/types.ts"
 import { availableTopics, pickVariant } from "../core/dialogue/talk.ts"
 import { crisisOptions } from "../core/crisis/crisis.ts"
 import { CODEX_PAGES } from "../core/codex/codex.ts"
+import { getEpilogue } from "../core/epilogue/epilogue.ts"
 import { openHints } from "../core/knowledge/notebook.ts"
 import { canRecruit } from "../core/virtue/conduct.ts"
 import { ringHere } from "../core/world/ring.ts"
@@ -40,6 +41,8 @@ export interface CodexView {
   finalOpen: boolean
   finalWord: string | null
   finalChoices: { id: Id; label: string }[]
+  /** After the final chapter: the chosen word's epilogue (title, prologue, one message per town). */
+  epilogue: { title: string; prologue: string; messages: string[] } | null
 }
 
 /** 열석 고리 메뉴. here = 지금 서 있는 고리 이름(아니면 null). 이동은 고리 위에서만, 지금 고리는 목록에서 빠진다. */
@@ -191,7 +194,16 @@ export function codexView(state: GameState, content: GameContent): CodexView {
     .map((id) => ({ id, label: t(lang, s, content.facts[id]?.labelKey ?? id) }))
   const finalWord =
     state.codex.finalWord === null ? null : t(lang, s, content.facts[state.codex.finalWord]?.labelKey ?? state.codex.finalWord)
-  return { pages, finalOpen: state.codex.finalOpen, finalWord, finalChoices }
+  let epilogue: CodexView["epilogue"] = null
+  if (state.codex.finalWord !== null) {
+    const entry = getEpilogue(state.codex.finalWord)
+    epilogue = {
+      title: t(lang, s, entry.titleKey),
+      prologue: t(lang, s, entry.prologueKey),
+      messages: entry.townMessages.map((m) => t(lang, s, m.messageKey))
+    }
+  }
+  return { pages, finalOpen: state.codex.finalOpen, finalWord, finalChoices, epilogue }
 }
 
 export function combatView(state: GameState, content: GameContent): CombatView | null {
