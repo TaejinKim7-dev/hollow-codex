@@ -1,5 +1,6 @@
 import type { GameContent } from "../content/types.ts"
 import type { Command, GameState, StepResult } from "./types.ts"
+import { combatStep } from "./combat/grid.ts"
 import { resolveCrisis } from "./crisis/crisis.ts"
 import { ask, choose, endTalk, interact } from "./dialogue/talk.ts"
 import { fillSlot } from "./knowledge/notebook.ts"
@@ -16,7 +17,7 @@ export function step(state: GameState, command: Command, content: GameContent): 
   if (state.combat !== null) {
     switch (command.type) {
       case "combat":
-        return ignored                                              // Task 10
+        return combatStep(state, command.action, content)
       default:
         return ignored
     }
