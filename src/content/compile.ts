@@ -22,6 +22,7 @@ type Deduction = Omit<GameContent["deductions"][string], "answer"> & { readonly 
 type Crisis = GameContent["crises"][string]
 type Creature = GameContent["creatures"][string]
 type Encounter = GameContent["encounters"][string]
+type Moongate = GameContent["moongates"][string]
 
 /** Compiled entries of one kind plus the file each id came from. */
 interface Table<T> { readonly items: Record<Id, T>; readonly file: Record<Id, string> }
@@ -40,6 +41,7 @@ interface Draft {
   encounters: Table<Encounter>
   abilities: Table<{ readonly nameKey: string }>
   music: Table<Score>
+  moongates: Table<Moongate>
   strings: Record<string, string>
   start: GameContent["start"] | null
 }
@@ -159,9 +161,26 @@ function readMaps(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
       const eo = r.obj(e, `${w}.encounters[${i}]`)
       return { at: r.pos(eo["at"], `${w}.encounters[${i}].at`), id: r.str(eo, "id", `${w}.encounters[${i}]`) }
     })
-    const m: MapDef = {
+    const m: Mutable<MapDef> = {
       rows: r.strList(o, "rows", w), exits, music: r.str(o, "music", w), encounters,
       enterFlags: r.strListOr(o, "enterFlags", w), heals: r.bool(o, "heals", w, false)
+    }
+    if (o["isOverworld"] !== undefined) m.isOverworld = r.bool(o, "isOverworld", w)
+    if (o["terrainCost"] !== undefined) {
+      const tco = r.obj(o["terrainCost"], `${w}.terrainCost`)
+      const costs: Record<string, number | null> = {}
+      for (const [glyph, cost] of Object.entries(tco)) {
+        if (glyph.length !== 1 || glyph.charCodeAt(0) > 127) {
+          r.fail(`${w}.terrainCost."${glyph}"`, `terrainCost glyphs must be single ASCII characters, got "${glyph}"`)
+          continue
+        }
+        if (cost !== null && !(typeof cost === "number" && Number.isFinite(cost))) {
+          r.fail(`${w}.terrainCost."${glyph}"`, "expected a number or null")
+        } else {
+          costs[glyph] = cost as number | null
+        }
+      }
+      m.terrainCost = costs
     }
     if (r.errors.length === before) put(ctx, d.maps, "map", r.file, id, m)
   })
@@ -278,6 +297,20 @@ function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   })
 }
 
+function readMoongates(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
+  eachEntry(r, v, (o, id, w) => {
+    const before = r.errors.length
+    const mg: Moongate = {
+      at: r.pos(o["at"], `${w}.at`),
+      nameKey: r.str(o, "name", w),
+      songKey: r.str(o, "song", w),
+      fact: r.str(o, "fact", w),
+      onOverworld: r.str(o, "onOverworld", w)
+    }
+    if (r.errors.length === before) put(ctx, d.moongates, "moongate", r.file, id, mg)
+  })
+}
+
 /** The IP guard must fail closed: a missing or malformed list is an error, never an empty list. */
 function checkDenylistShape(r: Reader, v: unknown): void {
   if (!isObj(v)) {
@@ -295,7 +328,7 @@ function checkDenylistShape(r: Reader, v: unknown): void {
 function readAll(raw: RawContent, ctx: Ctx): Draft {
   const d: Draft = {
     sheets: {}, tiles: {}, playerSprite: null, maps: table(), npcs: table(), facts: table(), deductions: table(),
-    crises: table(), creatures: table(), encounters: table(), abilities: table(), music: table(), strings: {}, start: null
+    crises: table(), creatures: table(), encounters: table(), abilities: table(), music: table(), moongates: table(), strings: {}, start: null
   }
   if (!("tiles.yaml" in raw)) ctx.shape.push("tiles.yaml: missing required file")
   if (!("start.yaml" in raw)) ctx.shape.push("start.yaml: missing required file")
@@ -310,6 +343,7 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
     else if (file === "abilities.yaml") readAbilities(r, v, d, ctx)
     else if (file === STRINGS_FILE) readStrings(r, v, d)
     else if (file === "creatures.yaml") readCreatures(r, v, d, ctx)
+    else if (file === "moongates.yaml") readMoongates(r, v, d, ctx)
     else if (music !== null) {
       if (v !== null && v !== undefined) readMusic(r, v, d, ctx, `music.${music[1] ?? ""}`)
     } else if (town !== null) {
@@ -396,6 +430,11 @@ function checkReferences(d: Draft, out: string[]): void {
     ref(f, `${id}.map`, "map", e.map, d.maps.items)
     ref(f, `${id}.music`, "music", e.music, d.music.items)
     e.enemies.forEach((en, i) => ref(f, `${id}.enemies[${i}].creature`, "creature", en.creature, d.creatures.items))
+  }
+  for (const [id, mg] of Object.entries(d.moongates.items)) {
+    const f = d.moongates.file[id] ?? ""
+    ref(f, `${id}.fact`, "fact", mg.fact, facts)
+    ref(f, `${id}.onOverworld`, "map", mg.onOverworld, d.maps.items)
   }
 }
 
@@ -484,6 +523,19 @@ function checkGeometry(d: Draft, out: string[]): void {
   }
 }
 
+// ---------- group 5+: overworld maps (D20) ----------
+
+function checkOverworld(d: Draft, out: string[]): void {
+  for (const [id, m] of Object.entries(d.maps.items)) {
+    if (m.isOverworld !== true) continue
+    const f = d.maps.file[id] ?? ""
+    if (m.exits.length === 0) out.push(`${f}: ${id}: isOverworld maps must define at least one exits entry`)
+    if (m.terrainCost === undefined || Object.keys(m.terrainCost).length === 0) {
+      out.push(`${f}: ${id}: isOverworld maps must define a non-empty terrainCost`)
+    }
+  }
+}
+
 // ---------- group 6: grant paths ----------
 
 function checkGrantPaths(d: Draft, out: string[]): void {
@@ -528,7 +580,7 @@ function checkDenied(raw: RawContent, d: Draft, out: string[]): void {
     add(`${STRINGS_FILE}: ${k}`, s)
   }
   for (const id of Object.keys(d.sheets)) add(`tiles.yaml: sheet id ${id}`, id)
-  const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.music]
+  const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.music, d.moongates]
   for (const t of tables) for (const [id, f] of Object.entries(t.file)) add(`${f}: id ${id}`, id)
   const flags = (file: string, where: string, ids: readonly Id[] | undefined): void => {
     for (const x of ids ?? []) add(`${file}: ${where} flag ${x}`, x)
@@ -568,6 +620,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
   checkReferences(d, errors)
   checkStringKeys(d, errors)
   checkGeometry(d, errors)
+  checkOverworld(d, errors)
   checkGrantPaths(d, errors)
   checkAnswers(d, errors)
   checkDenied(raw, d, errors)
@@ -580,7 +633,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
     deductions: d.deductions.items as GameContent["deductions"],   // answer length checked in group 7
     crises: d.crises.items, creatures: d.creatures.items, encounters: d.encounters.items,
     abilities: d.abilities.items, music: d.music.items, strings: d.strings, start: d.start,
-    moongates: {}   // D14 — M2 Task 19·24가 콘텐츠 파싱/검증을 추가한다
+    moongates: d.moongates.items
   }
   return { content, errors }
 }

@@ -33,7 +33,7 @@ export interface MapDef {
   readonly enterFlags: readonly Id[]
   readonly heals: boolean
   readonly isOverworld?: boolean                                  // D20 — M2 신규
-  readonly terrainCost?: Readonly<Record<string, number>>        // D20 — 글리프 → 이동 비용
+  readonly terrainCost?: Readonly<Record<string, number | null>>  // D20 — 글리프 → 이동 비용(null = 통행 불가)
 }
 export interface NpcDef {
   readonly map: Id; readonly pos: Pos; readonly nameKey: string; readonly greetKey: string; readonly sprite: SpriteRef
