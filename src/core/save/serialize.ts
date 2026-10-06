@@ -1,21 +1,39 @@
 import type { GameState } from "../types.ts"
 
 export const SAVE_FORMAT = "hollow-codex-save"
-export const SAVE_VERSION = 1
+export const SAVE_VERSION = 2
 
 export type DeserializeResult =
   | { ok: true; state: GameState }
   | { ok: false; reason: "corrupt" | "format" | "future-version" }
 
+function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null
+}
+
+function defaultTime(): { hour: number; day: number } {
+  return { hour: 8, day: 1 }
+}
+
+function defaultRings(): { visited: string[]; knownFacts: string[] } {
+  return { visited: [], knownFacts: [] }
+}
+
+/** M1 저장에는 time/rings가 없다. 기본값을 붙여 M2 모양으로 만든다. */
+export function migrateV1ToV2(state: unknown): unknown {
+  if (!isObject(state)) return state
+  return {
+    ...state,
+    time: state["time"] === undefined ? defaultTime() : state["time"],
+    rings: state["rings"] === undefined ? defaultRings() : state["rings"]
+  }
+}
+
 /** 저장 형식이 올라갈 때마다 이전 버전의 state를 다음 버전으로 바꾸는 함수를 여기에 등록한다. */
-export const MIGRATIONS: Readonly<Record<number, (s: unknown) => unknown>> = {}
+export const MIGRATIONS: Readonly<Record<number, (s: unknown) => unknown>> = { 1: migrateV1ToV2 }
 
 export function serialize(state: GameState): string {
   return JSON.stringify({ format: SAVE_FORMAT, version: SAVE_VERSION, state })
-}
-
-function isObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null
 }
 
 /** 최소 state 모양 검사(필드별 타입). 완전한 GameState인지까지는 보장하지 않는다. */
@@ -25,6 +43,14 @@ function isMinimalState(value: unknown): value is GameState {
   if (!isObject(player)) return false
   const pos = player["pos"]
   if (!isObject(pos)) return false
+  const time = value["time"]
+  if (
+    !isObject(time) ||
+    typeof time["hour"] !== "number" || !Number.isFinite(time["hour"]) || time["hour"] < 0 || time["hour"] > 23 ||
+    typeof time["day"] !== "number" || !Number.isFinite(time["day"]) || time["day"] < 1
+  ) return false
+  const rings = value["rings"]
+  if (!isObject(rings) || !Array.isArray(rings["visited"]) || !Array.isArray(rings["knownFacts"])) return false
   return (
     typeof value["mapId"] === "string" &&
     typeof value["turn"] === "number" &&
