@@ -80,3 +80,17 @@ describe("ringStep { to }", () => {
     expect(to.state.player.pos).toEqual({ x: 4, y: 3 })
   })
 })
+
+describe("walking to a ring leaves a footprint (visited, D6)", () => {
+  it("stepping onto a ring cell or beside an impassable ring stone marks it visited", () => {
+    const onto = run(standing({ x: 2, y: 1 }, []), [{ type: "move", dir: "w" }], c())   // (1,1) = ring.a
+    expect(onto.state.rings.visited).toEqual(["ring.a"])
+    const beside = run(standing({ x: 4, y: 2 }, []), [{ type: "move", dir: "s" }], c())  // (4,3) is next to the ring.stone wall
+    expect(beside.state.rings.visited).toEqual(["ring.stone"])
+  })
+  it("an ordinary step does not touch visited", () => {
+    const s = standing({ x: 2, y: 2 }, [])
+    const r = run(s, [{ type: "move", dir: "e" }], c())
+    expect(r.state.rings).toBe(s.rings)
+  })
+})

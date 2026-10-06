@@ -91,11 +91,22 @@ export function walkTo(
     s = step(s, { type: "move", dir }, content).state
     cmds.push({ type: "move", dir })
   }
-  /** One step towards `goal`; if NPCs wall it off at this hour, step to a free neighbour instead (time passes). */
+  /**
+   * One step towards `goal` along a cached plan. The plan is recomputed when it runs out or its next cell is
+   * blocked at this hour. If NPCs wall the goal off, step to a free neighbour instead (time passes).
+   */
+  let plan: Dir[] = []
+  let planGoal: Pos | null = null
   const advance = (goal: Pos, blocked: (p: Pos) => boolean, what: string): void => {
-    const path = findPath(content, s.mapId, s.player.pos, goal, blocked)
-    if (path !== null && path.length > 0) return go(path[0]!)
-    if (path !== null) throw new Error(`walkTo: already at ${what} but map did not change`)
+    const sameGoal = planGoal !== null && planGoal.x === goal.x && planGoal.y === goal.y
+    if (!sameGoal || plan.length === 0 || blocked(offset(s.player.pos, plan[0]!))) {
+      plan = findPath(content, s.mapId, s.player.pos, goal, blocked) ?? []
+      planGoal = goal
+      if (plan.length === 0 && s.player.pos.x === goal.x && s.player.pos.y === goal.y) throw new Error(`walkTo: already at ${what} but map did not change`)
+    }
+    const next = plan.shift()
+    if (next !== undefined) return go(next)
+    planGoal = null
     const wait = DIRS.find((d) => {
       const q = offset(s.player.pos, d)
       const tile = tileAt(content, s.mapId, q)

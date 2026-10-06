@@ -6,6 +6,7 @@ import { enterSealedArchive } from "../codex/codex.ts"
 import { npcPositionAt } from "../dialogue/talk.ts"
 import { findPath, offset, tileAt } from "./path.ts"
 import { enterOverworldTarget } from "./overworld.ts"
+import { ringHere } from "./ring.ts"
 
 export { tileAt } from "./path.ts"
 
@@ -71,6 +72,12 @@ export function move(state: GameState, dir: Dir, content: GameContent): StepResu
       events.push({ type: "mapChanged", mapId: exit.to }, { type: "music", track: dest.music })
       return { state: next, events }
     }
+  }
+
+  // 고리 위(또는 통행 불가 고리 돌 옆)에 서면 발자국을 남긴다(D6: 봉인은 고리 7개의 발자국으로 풀린다).
+  const ring = ringHere(next, content)
+  if (ring !== null && !next.rings.visited.includes(ring)) {
+    next = { ...next, rings: { ...next.rings, visited: addSorted(next.rings.visited, [ring]) } }
   }
 
   const encounter = map.encounters.find((e) => samePos(e.at, target) && !state.clearedEncounters.includes(e.id))
