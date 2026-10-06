@@ -98,3 +98,14 @@ claude                                             # 새 세션: CLAUDE.md → H
 - 다음: M3 (마을 2~4 콘텐츠: 연민·용맹·정의) 진행 — Task 33·34·35 병렬.
 
 (End of file)
+
+## 2026-10-06 M3 완료 (Task 33–36)
+- 구현은 `todo-4-content`에서 5커밋(서브에이전트 4개 동시):
+  - `81ce8d5` T33 연민 — Reona · `486b714` T34 용맹 — Solgang · `d6ea67e` T35 정의 — Seles · `ff8c2bb` T36 시나리오 3개 + 통합 (Task 36이 2개의 콘텐츠 도달성 버그 수정도 동봉: `justice.npcs.yaml` widow의 `job`이 `fact.seles.mourning-lullaby` 부여, `compassion.npcs.yaml` miller의 `job`이 `fact.reona.relief-tax` 부여).
+- merge 게이트(HEAD `ff8c2bb`): `npm ci` 0 · `npm run test:unit` 0 (39 files, **230 passed** = 기존 224 + 시나리오 6) · `typecheck` 0 · `check:content` 0 (`ok (11 maps, 41 npcs, 76 facts, 10 ledger files)`) · `build` 0 (6 files, 226644 bytes) · `audit:dist` 0 · `git diff --check` 0.
+- main push → Actions run `37417351066` build·deploy success.
+- `https://taejinkim7-dev.github.io/hollow-codex/` → HTTP 200.
+- **M3 완료 기준 충족**: 4개 미덕(정직·연민·용맹·정의) 추론 3칸 확정 가능. 시나리오 3개 통과.
+- 다음: M4 (마을 5~8 + 던전: 희생·명예·영성·겸默) 진행.
+
+(End of file)
