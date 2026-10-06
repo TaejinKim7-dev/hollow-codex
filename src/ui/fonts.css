@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "NeoDunggeunmo";
+  src: url("../../assets/fonts/neodgm.woff2") format("woff2");
+  font-display: swap;
+}
+
+body {
+  font-family: "NeoDunggeunmo", monospace;
+}
