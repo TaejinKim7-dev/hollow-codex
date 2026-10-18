@@ -2,27 +2,21 @@
 
 > 규칙: 이 파일은 **짧게, 항상 최신으로** 유지한다(60줄 이내). 작업을 시작할 때 "진행 중"에 이름을 올리고, 끝날 때 결과를 반영해 덮어쓴다. 자세한 기록은 `docs/handoff.md` 끝에 추가한다.
 
-최종 갱신: 2026-10-18 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정")
+최종 갱신: 2026-10-19 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
 
 ## 지금 단계
-R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B(순례 코트+가방)** 사용자 선택, 4방향 걷기 완료. 결과·배운 것: `docs/research/art-generation-trial.md`.
+R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-BY-SA 공개 음원만(사용자 결정 2026-10-19, ElevenLabs 안 씀).
+확정: 플레이어 **이방인 B-navy**, 동료 **엘린 B**(4방향 걷기), 땅 **풀↔흙길 v3**·**풀↔물**, **긴 다리**, **효과음 14종**(`assets/audio/sfx/`).
 
 ## 다음 할 일 (위에서부터)
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
-| ✅ | 플레이어 = **`stranger-B-navy`**, 풀↔흙길 = **v3** (사용자 결정 2026-10-18) | — | 결정됨 |
-| 🧑 | 그림 제작 계획 확인(`docs/research/art-production-plan.md` §6). 요금: **하루 보너스로 진행(결정)** | 문서 의견란 | 대기 |
-| R-1a | 풀↔물+다리 | `tilesets/grass-water/`, `objects/bridge/bridge-long.png`, 목업 `docs/screenshots/2026-10-18-R1-scene-river-b.png` | 완료 — 🧑 확인 대기 |
-| R-1b0 | 엘린 = **elin-B** (사용자 결정) 4방향 걷기 | `characters/elin-B/`, 영상 `docs/screenshots/2026-10-18-R1-party-walk.webm` | 완료 — 🧑 확인 대기 |
-| R-1b | 칼라스 시범 나머지(늑대·니아·고발관장·고백석·집 ≈5회) | `assets/sprites/` | 체험 횟수 소진 → 다음 날 보너스(+5)로 |
-| R-1c | 칼라스 광장 목업 스크린샷 → 🧑 화풍 판정 | `docs/screenshots/` | R-1a·b 뒤 |
-| 🧑 | R-0 아트 방향 의견(`docs/research/art-direction.md` §5) — 규격 48px 캔버스는 시범으로 확인됨 | 문서 의견란 | 대기 |
-| 🧑 | 생성 그림 라이선스: 추천안 **CC-BY-SA-4.0 + AI 생성 표기**로 장부 기록함. 다르게 하려면 알려 주기 | `assets/LEDGER.md` | 추천안 적용 |
-| R-2a | 효과음 14종 확정(사용자 선택, Kenney CC0) | `assets/audio/sfx/` + `sfx.json` | 완료 |
-| R-2b | 배경음악 12곡 후보(CC0/CC-BY/CC-BY-SA만, 사용자 지시) → 실험실에서 청취 | `assets-private/preview/bgm/` | 조사 중 |
-| 🧑 | 소리 방향(`audio-assets.md` §6): 추천 = 저장소엔 A·B등급만, 음악 MIDI + VSCO 2 CE(CC0) 연주, 효과음 Kenney·Freesound CC0, ElevenLabs 무료는 `assets-private/` 시안만 | 문서 의견란 | 대기 |
-| S | 그래픽·소리 재설계 문서 | `docs/superpowers/specs/` | R 끝난 뒤 |
-| R-0 / A-1 | 아트 방향 제안 / 그림 인벤토리 | `art-direction.md` / `pixel-art-plan.md` | 완료 |
+| R-2b | 배경음악 12곡 후보(들판·마을 8·서고·전투·엔딩). CC0/CC-BY/CC-BY-SA만, 곡마다 원문 라이선스 인용 → `assets-private/preview/bgm/` + `bgm.json` → 실험실 청취 | `docs/research/bgm-candidates.md` | 다음 (2026-10-19 조사 에이전트는 결과 없이 중단) |
+| R-1b | 칼라스 나머지 그림: 늑대·니아·고발관장·고백석+깨진 등불·칼라스 집(≈5회) | `assets/sprites/` | PixelLab 체험 0 → 하루 보너스(+5/일) |
+| R-1c | 칼라스 광장 목업 → 🧑 화풍 판정 | `docs/screenshots/` | R-1b 뒤 |
+| 🧑 | 확인 대기: 그림 제작 계획 §6(`art-production-plan.md`), 아트 방향 §5(`art-direction.md`), 강·다리 목업, 엘린 걷기 영상 | 문서 의견란 | 대기 |
+| S | 그래픽·소리 재설계(층 렌더링, Wang 자동 타일, 걷기, 소리 id→파일, 배포 용량) | `docs/superpowers/specs/` | R 끝난 뒤 |
+| 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |
 
 ## 진행 중
 - R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
@@ -31,22 +25,20 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 - 끝나면 이 줄을 지우고 위 표의 상태를 "완료(<커밋>)"로 바꾼다.
 - 중간에 끊긴 작업: 줄을 남기고 `⚠ 중단: <어디까지 했는지>`를 붙인다.
 
-## PixelLab 사용 메모
-- 연결: 사용자 설정(`claude mcp get pixellab` → User config). 새 세션에서 도구가 안 보이면 `/mcp`에서 다시 연결.
-- 요금: 체험판 남은 22회 + 하루 보너스(+5/일, 최대 20, 남은 횟수 0일 때만 사용). 유료 안 씀(사용자 결정).
-- 체험판: **동시 1작업** → 방향마다 따로 요청. `get_balance`·`wait_for_jobs`는 무료. 생성 전 남은 횟수 확인.
-- 토큰은 저장소에 두지 않는다(`key.txt`는 `.gitignore`; 파일 삭제 권장).
-- 생성물은 저장 → 장부(`assets/LEDGER.md`) → 프롬프트(`assets/generated/prompts/`) 순으로 기록.
-
-## ElevenLabs (2026-10-19 연결)
-- CLI `@elevenlabs/cli` 1.6.1(`~/.npm-global/bin`), OAuth 로그인(사용자 설정 `~/.config`, 저장소 밖). 스킬 `~/.agents/skills/`(music, sound-effects 등). 요금제 free, 월 10,000 크레딧.
-- 약관 https://elevenlabs.io/terms-of-use : 출력물 권리는 사용자(§4(c)(ii)), 단 무료 사용자는 비상업 목적만(§1(c)(i)), ElevenLabs가 Content에 영구 라이선스 보유(§4(d)).
+## 생성 도구 메모
+- **PixelLab**: 사용자 설정 MCP. 체험 40회 소진 → 하루 보너스(+5, 최대 20). **동시 1작업**. `get_balance`·`wait_for_jobs` 무료. 화풍 고정값·프롬프트 `assets/generated/prompts/2026-10-18-R1-trial.md`. 손에 소품 든 인물은 `skeleton-v3` 걷기(3회/방향) → `scripts/visual/crop-canvas.mjs 48`.
+- **ElevenLabs**: CLI 로그인됨(free). 무료는 비상업 전용 → 이 프로젝트 소리에는 쓰지 않음.
+- 토큰·로그인 정보는 저장소에 두지 않는다(`key.txt`는 `.gitignore`, 파일 삭제 권장).
 
 ## 자산 실험실
-- `npm run dev` → http://localhost:5173/hollow-codex/lab/ — 그림+효과음+배경음악을 한 화면에서 시험(방향키 걷기). 후보 소리는 `assets-private/preview/`(git 제외). 검사: `node scripts/visual/lab-check.mjs <out-prefix>`.
+- `npm run dev` → http://localhost:5173/hollow-codex/lab/ (개발 전용). 방향키 걷기, 바닥별 발걸음, 효과음·배경음악 청취·선택("선택 결과 복사"). 후보 소리는 `assets-private/preview/`(git 제외). 검사 `node scripts/visual/lab-check.mjs <out-prefix>`.
 
 ## 화면 확인 (AGENTS.md §9.1)
-- 이미지·영상은 **최종 파일 자체**를 검사하고 열어 본 뒤 보여 준다. 영상: `node scripts/visual/verify-video.mjs <영상> --out <폴더>`. 데모 녹화: `scripts/visual/walk-demo.mjs`.
+- 이미지·영상은 **최종 파일 자체**를 검사하고 열어 본 뒤 보여 준다. 도구 `scripts/visual/`(verify-video, scene-preview, tileset-preview, character-sheet, walk-strip, party-demo, recolor, crop-canvas, drop-specks, lab-check).
+
+## ⚠ 같은 폴더 여러 에이전트
+- 2026-10-18 Codex가 이 작업 폴더에서 `todo-1-walk-review`로 checkout한 뒤, 다른 에이전트(Claude)가 그 사실을 모르고 커밋 12개를 그 브랜치에 쌓고 `git push origin main`만 해서 원격에 안 올라감 → 2026-10-19 fast-forward로 main에 반영(e97a1d7).
+- **규칙**: 커밋 전 `git branch --show-current` 확인. 푸시는 `git push origin HEAD:<브랜치>`로 현재 브랜치를 명시. 다른 에이전트와 동시에 작업하면 각자 `git worktree`를 쓴다.
 
 ## 알려진 한계 (0.1.0)
 - 그래픽: 검은 사각형, 추정 타일 번호, 16×16 → 0.2.0에서 교체. 소리: 단음 칩 합성 → 녹음 음원으로 교체.
@@ -54,4 +46,4 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 
 ## 마지막 게이트
 main `b17ee6d`: npm ci 0 · test:unit 0 (384 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
-main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
+main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. 이후 커밋은 문서·자산·lab·scripts/visual만(매번 check:content 0).

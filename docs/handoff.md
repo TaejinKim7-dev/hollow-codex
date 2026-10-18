@@ -477,3 +477,4 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - **결정**: 그림 생성 PixelLab·하루 보너스로만(유료 없음), 소리는 CC0/CC-BY/CC-BY-SA만(ElevenLabs 안 씀), 생성 그림 장부 표기 CC-BY-SA-4.0 + AI 생성 표기.
 - **끊긴 것**: 배경음악 후보 조사 에이전트를 사용자 지시로 중단(결과 파일 없음) → R-2b를 처음부터 다시. 조건은 `docs/research/audio-assets.md` §1·§2, 곡 슬롯 12개는 status.md R-2b.
 - **PixelLab 남은 횟수 0**. 다음 날 보너스로 R-1b(늑대·니아·고발관장·고백석·집).
+- ⚠ 브랜치 사고(2026-10-19 발견): Codex가 같은 작업 폴더에서 `todo-1-walk-review`를 checkout(eee3c0c "claim walking demo review")한 뒤, Claude가 커밋 171c223..e97a1d7(12개)을 그 브랜치에 만들고 `git push origin main`만 실행 → 원격 main은 751fe91에 머묾. Claude가 그동안 "push함"이라고 보고한 것은 사실과 달랐다. 조치: main이 그 브랜치의 조상임을 확인하고 `git push origin todo-1-walk-review:main`으로 fast-forward. 작업 폴더의 checkout 브랜치는 Codex 작업 보호를 위해 그대로 둠. 재발 방지 규칙은 status.md "같은 폴더 여러 에이전트".
