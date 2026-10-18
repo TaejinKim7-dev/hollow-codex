@@ -10,8 +10,10 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 ## 다음 할 일 (위에서부터)
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
-| R-1a | 풀↔흙길 타일셋 재생성(차분한 팔레트, 테두리 완화) → 풀↔물+다리 | `assets/sprites/tilesets/` | 다음 |
-| R-1b | 칼라스 시범 나머지(우선: 엘린·니아·늑대·고백석·집, 남은 약 25회) | `assets/sprites/` | 대기 |
+| 🧑 | 풀↔흙길 타일셋 선택(추천 v3) — `docs/screenshots/2026-10-18-R1-tileset-candidates.png` | 채팅 | 대기 |
+| 🧑 | 그림 제작 계획 확인(`docs/research/art-production-plan.md` §6: 사람 나누기, 크리처 표현, 순서, **유료 요금제**, 초상화) | 문서 의견란 | 대기 |
+| R-1a | 풀↔물+다리(같은 풀로 연결) | `assets/sprites/tilesets/` | 타일셋 선택 뒤 |
+| R-1b | 칼라스 시범 나머지(계획 §5: 엘린+걷기·늑대·니아·고발관장·고백석·집 ≈10회, 남은 22회) | `assets/sprites/` | 대기 |
 | R-1c | 칼라스 광장 목업 스크린샷 → 🧑 화풍 판정 | `docs/screenshots/` | R-1a·b 뒤 |
 | 🧑 | R-0 아트 방향 의견(`docs/research/art-direction.md` §5) — 규격 48px 캔버스는 시범으로 확인됨 | 문서 의견란 | 대기 |
 | 🧑 | 생성 그림 라이선스: 추천안 **CC-BY-SA-4.0 + AI 생성 표기**로 장부 기록함. 다르게 하려면 알려 주기 | `assets/LEDGER.md` | 추천안 적용 |

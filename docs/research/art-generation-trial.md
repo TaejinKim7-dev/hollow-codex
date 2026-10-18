@@ -5,7 +5,7 @@
 
 ## 연결과 요금
 - MCP: `pixellab` (HTTP, `https://api.pixellab.ai/mcp`, 사용자 설정 `-s user`; 토큰은 저장소에 없음). Claude Code 2.1.302.
-- 요금제: 체험판 40회. 2026-10-18 기준 약 15회 사용, 약 25회 남음. 남은 횟수는 `get_balance`(무료)로 확인.
+- 요금제: 체험판 40회. 2026-10-18 기준 약 18회 사용, 22회 남음. 남은 횟수는 `get_balance`(무료)로 확인.
 - 제약: **동시 작업 1개** → 걷기 애니메이션은 방향마다 따로 요청(`animation_group_id`로 묶음). 작업 대기는 `wait_for_jobs`(무료).
 - 다운로드: 결과 URL은 인증 없이 받을 수 있음(UUID가 열쇠). 타일셋은 `/mcp/tilesets/{id}/image?inline=true`, `/metadata`.
 
@@ -23,7 +23,9 @@
 | 이방인 A (두건 망토) | 55556722… | `assets/sprites/characters/stranger/` | 후보(미선택) |
 | **이방인 B (순례 코트+가방)** | e318585f… | `assets/sprites/characters/stranger-B/` (4방향 + 걷기 4×4) | **사용자 선택 2026-10-18** |
 | 이방인 C (등불 망토, v3 8방향) | 7365832e… | `assets/sprites/characters/stranger-C/` (4방향만 저장) | 후보(미선택) |
-| 풀↔흙길 타일셋 | 5e6ffa24… | `assets/sprites/tilesets/grass-path/` | **불합격**: 형광 초록 단색, 흙 무늬 반복, 거친 검은 테두리. 연결은 정상 |
+| 풀↔흙길 타일셋 v1 | 5e6ffa24… | `assets/sprites/tilesets/grass-path/` | **불합격**: 형광 초록 단색, 흙 무늬 반복, 거친 검은 테두리. 연결은 정상 |
+| 풀↔흙길 v2 | ae2d9e94… | `…/grass-path-v2/` | 풀색 개선, 길이 분홍 벽돌 격자 — 보류 |
+| **풀↔흙길 v3** (round 경계) | 655f8b62… | `…/grass-path-v3/` | **추천**: 차분한 올리브 풀, 구불거리는 부드러운 경계. 비교: `docs/screenshots/2026-10-18-R1-tileset-candidates.png` — 🧑 선택 대기 |
 
 후처리: B의 `walk-east/3.png`에만 지팡이(노란 머리)가 그려져 걸을 때 번쩍임 → 지팡이·손 픽셀을 지움(생성 0회). B는 프롬프트의 지팡이를 대부분 그리지 않았다.
 
@@ -35,6 +37,7 @@
 - 타일셋은 색 지시가 약하다 → 다음 시도는 `mode=pro` + `palette`(R-0 팔레트) 또는 `max_colors`로 색을 묶는다(pro는 15회라 체험판에서는 1번이 한계).
 
 ## 다음
-1. 풀↔흙길 타일셋 재생성(차분한 초록·흙 팔레트, 테두리 완화). 이어서 풀↔물(+다리).
+1. 풀↔흙길 v3 확정(🧑) → 같은 풀(`upper_base_tile_id`=v3 풀 42c76fdc…)로 풀↔물(+다리)을 이어 만든다.
+   - 다음 그릴 목록과 스토리 기준 제작 계획: `docs/research/art-production-plan.md`.
 2. 칼라스 시범 나머지(`art-direction.md` §4): 니아, 고발관장, 엘린, 토비, 늑대, 열석 고리, 고백석+깨진 등불, 집, 나무·덤불. 남은 약 25회로는 전부 어렵다 → 우선순위: 엘린·니아·늑대·고백석·집.
 3. 목업 스크린샷(칼라스 광장) → 🧑 화풍 판정.
