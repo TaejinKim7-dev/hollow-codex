@@ -461,3 +461,4 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 타일셋 재생성(2026-10-18): v2(디테일↑)·v3(round 경계, boundary_amplitude 0.15) 생성, 약 5회. v3가 가장 자연스러움(추천), 사용자 선택 대기. 비교 도구 `scripts/visual/tileset-preview.mjs`(빈 Wang 칸이 있으면 실패). 그림 제작 계획 `docs/research/art-production-plan.md` 작성(핵심 인물 22 + 기본형 12 + 마을색 변형, 크리처 9종 표현 원칙, 물결 4단계, 전체 약 200회+초상화 → 유료 여부 사용자 결정). 남은 체험 횟수 22.
 - 이방인 색(2026-10-18): 사용자 "v3에서 이방인이 잘 안 보인다, 색감 바꿔" → 코트 황토색(hue 25–42)만 색 이동(생성 0회, `scripts/visual/recolor.mjs`, 피부·가방 유지)으로 navy/wine/teal/slate 4안. 비교 `docs/screenshots/2026-10-18-R1-stranger-colors.png`(길·풀 위 각각). 추천 navy(올리브·흙과 보색). 사용자 결정: **유료 없이 하루 보너스로 진행**.
 - 결정(2026-10-18): 플레이어 스프라이트 = stranger-B-navy, 풀↔흙길 = v3.
+- 풀↔물+다리(2026-10-18): 풀↔물을 v3 풀 base tile로 이어 생성, 다리 2안(짧은 것 보류, 160×64 사용). 층 분리 장면 목업 스크립트 `scripts/visual/scene-preview.mjs` 추가, 목업 `2026-10-18-R1-scene-river-b.png` 직접 확인(다리가 양쪽 길을 잇고 navy 이방인이 길·다리 위에서 또렷함).

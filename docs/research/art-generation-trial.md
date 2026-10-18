@@ -28,6 +28,11 @@
 | **풀↔흙길 v3** (round 경계) | 655f8b62… | `…/grass-path-v3/` | **확정(사용자 2026-10-18)**: 차분한 올리브 풀, 구불거리는 부드러운 경계. 비교: `docs/screenshots/2026-10-18-R1-tileset-candidates.png` |
 | **이방인 B-navy** | (B 색 변경) | `assets/sprites/characters/stranger-B-navy/` | **플레이어 확정(사용자 2026-10-18)**: v3 위에서 가장 또렷함. 비교 `2026-10-18-R1-stranger-colors.png` |
 
+| 풀↔물 | 2cddcbe0… | `…/grass-water/` | v3 풀과 연결됨. 물가 자갈 자줏빛·물속 주황 점 반복은 아쉬움 |
+| 다리 | f0238faf… | `assets/sprites/objects/bridge/bridge-long.png` (160×64) | 사용. 짧은 96×48 판은 길과 안 닿아 보류 |
+
+장면 목업: `scripts/visual/scene-preview.mjs`(땅 층 → 물건 층 → 캐릭터 층). 두 Wang 세트는 한 칸에 흙길과 물을 함께 둘 수 없어 사이에 풀 한 줄이 생긴다 → 다리를 5칸으로 길게 만들어 덮음. 장면 정의: `docs/screenshots/scenes/2026-10-18-R1-scene-river.json`.
+
 후처리: B의 `walk-east/3.png`에만 지팡이(노란 머리)가 그려져 걸을 때 번쩍임 → 지팡이·손 픽셀을 지움(생성 0회). B는 프롬프트의 지팡이를 대부분 그리지 않았다.
 
 화면 확인(AGENTS.md §9.1): `docs/screenshots/2026-10-18-R1-candidates.png`(후보 비교), `2026-10-18-R1-walk-demo.webm`(15×11칸 ×2 배율, 십자 길을 걷는 B) — `scripts/visual/verify-video.mjs` 통과, 5초 프레임 직접 확인: 캐릭터가 길 위를 걷고 타일이 이어짐.
