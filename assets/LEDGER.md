@@ -170,3 +170,18 @@
 | assets/sprites/characters/elin-B/walk-west/1.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-18 (animate_character skeleton-v3, cropped 64→48, specks removed); prompts: assets/generated/prompts/2026-10-18-R1-trial.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |
 | assets/sprites/characters/elin-B/walk-west/2.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-18 (animate_character skeleton-v3, cropped 64→48, specks removed); prompts: assets/generated/prompts/2026-10-18-R1-trial.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |
 | assets/sprites/characters/elin-B/walk-west/3.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-18 (animate_character skeleton-v3, cropped 64→48, specks removed); prompts: assets/generated/prompts/2026-10-18-R1-trial.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |
+| assets/audio/sfx/footstep.ogg | https://kenney.nl/assets/impact-sounds (footstep_grass_000.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/click.ogg | https://kenney.nl/assets/interface-sounds (click_001.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/page.ogg | https://kenney.nl/assets/rpg-audio (bookOpen.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/clue.ogg | https://kenney.nl/assets/interface-sounds (glass_002.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/confirm.ogg | https://kenney.nl/assets/interface-sounds (confirmation_003.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/wrong.ogg | https://kenney.nl/assets/interface-sounds (error_004.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/hit.ogg | https://kenney.nl/assets/impact-sounds (impactPunch_medium_000.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/push.ogg | https://kenney.nl/assets/impact-sounds (impactPlank_medium_003.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/door.ogg | https://kenney.nl/assets/rpg-audio (doorOpen_1.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/teleport.ogg | https://kenney.nl/assets/impact-sounds (impactBell_heavy_000.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/coins.ogg | https://kenney.nl/assets/rpg-audio (handleCoins2.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/footstep_stone.ogg | https://kenney.nl/assets/impact-sounds (footstep_concrete_000.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/bump.ogg | https://kenney.nl/assets/impact-sounds (impactSoft_medium_000.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/footstep_wood.ogg | https://kenney.nl/assets/impact-sounds (footstep_wood_000.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/sfx.json | original (sound id → file manifest) | TaejinKim7-dev | CC-BY-SA-4.0 |
