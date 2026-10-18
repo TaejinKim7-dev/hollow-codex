@@ -1,0 +1,19 @@
+COMMAND: npm ci
+HEAD: 6bdbf187a1d02cc203f704135612c54c3ca40638
+START: 2026-10-18T08:49:45.725890+00:00
+
+npm warn deprecated glob@11.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+
+added 408 packages, and audited 409 packages in 11s
+
+119 packages are looking for funding
+  run `npm fund` for details
+
+6 vulnerabilities (1 moderate, 3 high, 2 critical)
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+EXIT_CODE: 0

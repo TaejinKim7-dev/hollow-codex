@@ -432,3 +432,9 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 자산 조사 2회는 에이전트 사용량 한도(HTTP 429)로 결과 없이 끝났다. R-1·R-2(`docs/status.md`)로 다시 한다.
 - 인계 규칙 정리: `AGENTS.md` §1(읽는 순서·파일 역할), §5(작업 시작·끝·끊김 절차), §9(화면·소리는 보고 들은 것만 완료), §10(사용자 결정). 현재 상태 파일 `docs/status.md` 신설, `docs/research/`, `docs/screenshots/` 신설.
 - 코드 변경 없음. 확인: `git diff --check` 0, `npm run check:content` 0(아래 커밋에서 직접 실행).
+
+## 2026-10-18 그래픽 생성 도구 결정
+- 사용자 결정: 픽셀 아트를 직접 그리지 않고, 생성 MCP를 붙여 최신 화풍으로 만든다. `docs/plan.md` §0·§2 R-1·§3 갱신.
+- 확인한 도구: PixelLab 공식 MCP(`https://api.pixellab.ai/mcp`, github.com/pixellab-code/pixellab-mcp, 캐릭터 4/8방향·애니메이션·Wang 타일셋, 약관상 결과물 소유·배포 자유, 단 다른 모델 학습 금지). Retro Diffusion MCP(`https://mcp.retrodiffusion.ai/mcp`)는 약관 원문 미확인.
+- 미확인: 두 도구의 가격·크레딧 한도(가격 페이지가 동적으로 불러와져 읽지 못함).
+- AGENTS.md: 생성 도구 토큰을 저장소에 쓰지 않는 규칙, 생성 그림의 장부·프롬프트 기록 규칙 추가.

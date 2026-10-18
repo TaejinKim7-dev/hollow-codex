@@ -1,0 +1,11 @@
+COMMAND: npm run audit:dist
+HEAD: 6bdbf187a1d02cc203f704135612c54c3ca40638
+START: 2026-10-18T08:50:06.866534+00:00
+
+
+> hollow-codex@0.1.0 audit:dist
+> node scripts/audit-dist.ts
+
+audit:dist: ok (13 files, 526763 bytes)
+
+EXIT_CODE: 0

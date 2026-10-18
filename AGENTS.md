@@ -26,7 +26,7 @@
 
 - 원작의 데이터와 참고 문서(`u4-alt-manual.pdf`, `origin.txt`)를 저장소에 넣지 않는다.
 - `/home/taejin/ultima`의 번역문을 가져오지 않는다.
-- secret(OAuth 클라이언트 비밀, 토큰 등)을 커밋하지 않는다.
+- secret(OAuth 클라이언트 비밀, API 토큰 등)을 커밋하지 않는다. 생성 도구(MCP) 토큰은 사용자 설정에만 두고 저장소 파일(`.mcp.json` 등)에 쓰지 않는다.
 - spec §2.2 금지 목록(`content/ip-denylist.yaml`)의 이름·문장을 `content/`, `src/`, `scripts/`, `tests/`에 쓰지 않는다. 주석도 포함한다.
 - 실패 테스트를 삭제하거나 약화해서 green으로 만들지 않는다.
 
@@ -36,7 +36,7 @@
 - core 순수성: `src/core/**`는 `document`, `window`, `HTMLElement`, `CanvasRenderingContext2D`, `AudioContext`, `Math.random`을 참조하지 않는다. 난수는 `state.rng`의 시드로만 쓴다. core 함수는 입력 `GameState`를 바꾸지 않고 새 객체를 돌려준다(바뀐 게 없으면 같은 객체도 된다).
 - 노드 타입 제거 호환: `scripts/*.ts`를 `node`로 직접 실행하므로, `src/`·`scripts/`·`tests/`의 모든 상대 import는 `.ts` 확장자를 붙이고(`import { x } from "./a.ts"`), 타입만 쓰는 import는 `import type`을 쓴다. `enum`, `namespace`, 생성자 매개변수 프로퍼티, `import x = require()`는 쓰지 않는다.
 - 화면 문자열은 `content/strings/ko.yaml`의 키로 꺼낸다. 코드에 한국어 화면 문구를 하드코딩하지 않는다.
-- 외부 자산은 라이선스 원문을 직접 읽고 고르며 `assets/LEDGER.md`에 기록한다. 기본 허용은 CC0 / CC-BY / CC-BY-SA / OFL. 그 밖의 라이선스(유료 묶음, 공개 저장소 재배포 금지 등)는 `docs/plan.md` §3에 사용자 결정이 있을 때만 쓴다.
+- 외부 자산은 라이선스 원문을 직접 읽고 고르며 `assets/LEDGER.md`에 기록한다. 기본 허용은 CC0 / CC-BY / CC-BY-SA / OFL. 그 밖의 라이선스(유료 묶음, 공개 저장소 재배포 금지 등)는 `docs/plan.md` §3에 사용자 결정이 있을 때만 쓴다. 생성 도구로 만든 그림은 장부에 도구·약관 URL·생성 날짜를 적고, 다시 만들 수 있게 프롬프트·설정을 `assets/generated/prompts/`에 남긴다.
 
 ## 4. 테스트 실행
 

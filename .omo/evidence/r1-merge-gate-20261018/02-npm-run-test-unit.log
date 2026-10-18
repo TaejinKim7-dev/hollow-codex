@@ -1,0 +1,88 @@
+COMMAND: npm run test:unit
+HEAD: 6bdbf187a1d02cc203f704135612c54c3ca40638
+START: 2026-10-18T08:49:56.697067+00:00
+
+
+> hollow-codex@0.1.0 test:unit
+> vitest run --passWithNoTests=false
+
+
+ RUN  v3.1.3 /home/taejin/hollow-codex
+
+ ✓ tests/unit/core/talk.test.ts (15 tests) 9ms
+ ✓ tests/unit/core/codex.test.ts (16 tests) 12ms
+ ✓ tests/unit/core/combat.test.ts (12 tests) 15ms
+ ✓ tests/unit/core/notebook.test.ts (16 tests) 10ms
+ ✓ tests/unit/content-compile.test.ts (17 tests) 208ms
+ ✓ tests/unit/core/serialize.test.ts (10 tests) 12ms
+ ✓ tests/unit/save/session.test.ts (18 tests) 15ms
+ ✓ tests/unit/core/save-history.test.ts (8 tests) 8ms
+ ✓ tests/unit/ui/hints-content.test.ts (9 tests) 46ms
+ ✓ tests/unit/core/path-overworld.test.ts (10 tests) 90ms
+ ✓ tests/unit/save/etlas-fixtures.test.ts (3 tests) 14ms
+ ✓ tests/unit/core/conduct.test.ts (8 tests) 5ms
+ ✓ tests/unit/core/ring-travel.test.ts (11 tests) 13ms
+ ✓ tests/scenario/m5-archive.test.ts (6 tests) 65ms
+ ✓ tests/unit/core/overworld-step.test.ts (8 tests) 8ms
+ ✓ tests/unit/core/ring-state.test.ts (7 tests) 9ms
+ ✓ tests/unit/core/schedule.test.ts (8 tests) 7ms
+ ✓ tests/unit/core/move.test.ts (8 tests) 11ms
+ ✓ tests/scenario/kalas-rules.test.ts (5 tests) 39ms
+ ✓ tests/unit/content/schedule-content.test.ts (8 tests) 44ms
+ ✓ tests/unit/core/codex-gating.test.ts (5 tests) 5ms
+ ✓ tests/scenario/m2-rings.test.ts (5 tests) 8ms
+ ✓ tests/unit/denylist.test.ts (12 tests) 6ms
+ ✓ tests/scenario/m2-traversal.test.ts (3 tests) 4ms
+ ✓ tests/unit/content/schedule-traps.test.ts (6 tests) 9ms
+ ✓ tests/unit/core/crisis.test.ts (7 tests) 8ms
+ ✓ tests/scenario/m4-humility.test.ts (2 tests) 7ms
+ ✓ tests/scenario/m4-spirituality.test.ts (2 tests) 13ms
+ ✓ tests/scenario/m3-justice.test.ts (2 tests) 15ms
+ ✓ tests/scenario/m3-compassion.test.ts (2 tests) 15ms
+ ✓ tests/scenario/kalas-lantern.test.ts (1 test) 11ms
+ ✓ tests/unit/ui/view-model.test.ts (7 tests) 6ms
+ ✓ tests/unit/core/epilogue.test.ts (11 tests) 5ms
+ ✓ tests/unit/core/party-cap.test.ts (4 tests) 14ms
+ ✓ tests/scenario/m4-sacrifice.test.ts (2 tests) 12ms
+ ✓ tests/unit/input/commands.test.ts (12 tests) 10ms
+ ✓ tests/scenario/m4-honor.test.ts (2 tests) 6ms
+ ✓ tests/unit/ui/codex-view.test.ts (5 tests) 5ms
+ ✓ tests/scenario/m3-valor.test.ts (2 tests) 11ms
+ ✓ tests/unit/debug-log.test.ts (5 tests) 8ms
+ ✓ tests/unit/save/slot-store.test.ts (2 tests) 11ms
+ ✓ tests/unit/ledger.test.ts (7 tests) 7ms
+ ✓ tests/unit/ui/rings-view.test.ts (3 tests) 5ms
+ ✓ tests/scenario/kalas-truth.test.ts (1 test) 10ms
+ ✓ tests/unit/ui/strings-i18n.test.ts (4 tests) 347ms
+   ✓ i18n > keeps en.yaml at exact key parity with ko.yaml and compiles  340ms
+ ✓ tests/unit/render/pointer.test.ts (2 tests) 8ms
+ ✓ tests/unit/dist-rules.test.ts (7 tests) 5ms
+ ✓ tests/unit/audio/score.test.ts (7 tests) 6ms
+ ✓ tests/unit/render/viewport.test.ts (7 tests) 5ms
+ ✓ tests/unit/core/purity.test.ts (2 tests) 8ms
+ ✓ tests/scenario/m2-party.test.ts (2 tests) 5ms
+ ✓ tests/unit/content/town-stubs.test.ts (3 tests) 674ms
+   ✓ M2 town stub separation > compiles cleanly after stub separation  307ms
+ ✓ tests/scenario/m5-seal-on-foot.test.ts (1 test) 584ms
+   ✓ m5 seal reached on foot > walking to the 7 continent rings, then onto the seal, enters the sealed archive  582ms
+ ✓ tests/unit/save/slots.test.ts (2 tests) 5ms
+ ✓ tests/unit/core/language.test.ts (3 tests) 5ms
+ ✓ tests/unit/core/time.test.ts (3 tests) 5ms
+ ✓ tests/unit/core/path.test.ts (4 tests) 3ms
+ ✓ tests/unit/core/rng.test.ts (1 test) 41ms
+ ✓ tests/unit/ui/format-time.test.ts (2 tests) 3ms
+ ✓ tests/unit/audio/sfx.test.ts (3 tests) 37ms
+ ✓ tests/unit/content/overworld-content.test.ts (3 tests) 640ms
+ ✓ tests/integration/ring-travel.spec.ts (4 tests) 6ms
+ ✓ tests/integration/audio-lazy.spec.ts (1 test) 100ms
+ ✓ tests/integration/combat-tap.spec.ts (2 tests) 219ms
+ ✓ tests/integration/menu-save-load.spec.ts (4 tests) 225ms
+ ✓ tests/integration/epilogue-screen.spec.ts (4 tests) 64ms
+
+ Test Files  66 passed (66)
+      Tests  384 passed (384)
+   Start at  17:49:56
+   Duration  5.77s (transform 1.46s, setup 0ms, collect 18.29s, tests 3.84s, environment 2.50s, prepare 4.24s)
+
+
+EXIT_CODE: 0

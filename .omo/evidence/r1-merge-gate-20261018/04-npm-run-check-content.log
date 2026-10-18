@@ -1,0 +1,11 @@
+COMMAND: npm run check:content
+HEAD: 6bdbf187a1d02cc203f704135612c54c3ca40638
+START: 2026-10-18T08:50:04.610399+00:00
+
+
+> hollow-codex@0.1.0 check:content
+> node scripts/check-content.ts
+
+check:content: ok (12 maps, 81 npcs, 140 facts, 15 ledger files, 130 src/tests/scripts files scanned)
+
+EXIT_CODE: 0

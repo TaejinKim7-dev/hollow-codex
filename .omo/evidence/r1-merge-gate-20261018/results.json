@@ -1,0 +1,40 @@
+{
+  "head": "6bdbf187a1d02cc203f704135612c54c3ca40638",
+  "results": [
+    {
+      "command": "npm ci",
+      "exit_code": 0,
+      "artifact": "/home/taejin/hollow-codex/.omo/evidence/r1-merge-gate-20261018/01-npm-ci.log"
+    },
+    {
+      "command": "npm run test:unit",
+      "exit_code": 0,
+      "artifact": "/home/taejin/hollow-codex/.omo/evidence/r1-merge-gate-20261018/02-npm-run-test-unit.log"
+    },
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "artifact": "/home/taejin/hollow-codex/.omo/evidence/r1-merge-gate-20261018/03-npm-run-typecheck.log"
+    },
+    {
+      "command": "npm run check:content",
+      "exit_code": 0,
+      "artifact": "/home/taejin/hollow-codex/.omo/evidence/r1-merge-gate-20261018/04-npm-run-check-content.log"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "artifact": "/home/taejin/hollow-codex/.omo/evidence/r1-merge-gate-20261018/05-npm-run-build.log"
+    },
+    {
+      "command": "npm run audit:dist",
+      "exit_code": 0,
+      "artifact": "/home/taejin/hollow-codex/.omo/evidence/r1-merge-gate-20261018/06-npm-run-audit-dist.log"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "artifact": "/home/taejin/hollow-codex/.omo/evidence/r1-merge-gate-20261018/07-git-diff---check.log"
+    }
+  ]
+}
