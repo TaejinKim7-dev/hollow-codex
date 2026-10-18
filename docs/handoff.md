@@ -469,3 +469,11 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - R-2 조사(2026-10-19): 원문 확인 — VSCO 2 CE LICENSE "CC0 1.0 Universal", GeneralUser GS "private or commercial"(샘플 출처 불확실 경고), Kenney 묶음 "Creative Commons CC0", Freesound·OpenGameArt FAQ, incompetech CC BY 4.0. Musopen·Sonniss는 403으로 원문 못 봄(2차 자료만). 결론·등급표(A/B/C/D) `docs/research/audio-assets.md`. 개인 시험용 `assets-private/`를 .gitignore에 추가.
 - 자산 실험실(2026-10-19): `lab/index.html`(개발 서버 전용, build 입력 아님) — 생성 타일·다리·이방인 navy·엘린을 층으로 그리고 방향키로 걷기, 바닥별 발걸음·부딪힘 연결, 효과음 후보(Kenney CC0 14상황 45개, `assets-private/preview/sfx/` — Kenney rpg-audio·interface-sounds·impact-sounds·ui-audio·music-jingles zip에서 복사, git 제외)와 배경음악 목록(`assets-private/preview/bgm/bgm.json`, 조사 중) 청취·선택(localStorage, 결과 복사). 자동 검사 `scripts/visual/lab-check.mjs` 통과(오류 0, (2,5)→(9,5) 다리 위 이동, 스크린샷 확인).
 - 효과음 확정(2026-10-19, 사용자 선택): footstep A, footstep_stone A, bump A, click A, page C(bookOpen), clue D(interface glass_002), confirm B(confirmation_003), wrong A(error_004), hit A(impactPunch_medium_000), push B(impactPlank_medium_003), door A(doorOpen_1), teleport A(impactBell_heavy_000), coins B(handleCoins2). footstep_wood는 사용자가 고르지 않아 기본 A. → `assets/audio/sfx/<id>.ogg` + `sfx.json`(id→파일·출처·라이선스), 모두 Kenney CC0. 게임 연결은 S 설계 뒤.
+
+## 2026-10-18~19 마무리 요약 (다음 세션은 여기부터)
+- **확정 자산**: 이방인 `characters/stranger-B-navy`(B를 코트 색 변경), 엘린 `characters/elin-B`(skeleton-v3 걷기), 땅 `tilesets/grass-path-v3`·`tilesets/grass-water`, 다리 `objects/bridge/bridge-long.png`, 효과음 `assets/audio/sfx/`(14, Kenney CC0, `sfx.json`).
+- **후보로만 남은 것**: 이방인 A·B·C 원본·다른 색 4안, 엘린 A·C, 타일셋 v1·v2, 짧은 다리. 최종 사용 전 정리할지 S에서 정한다.
+- **도구**: `lab/index.html`(그림+소리 실험실), `scripts/visual/*`(검사·미리보기·후처리). 규칙 AGENTS.md §9.1(최종 파일 검사).
+- **결정**: 그림 생성 PixelLab·하루 보너스로만(유료 없음), 소리는 CC0/CC-BY/CC-BY-SA만(ElevenLabs 안 씀), 생성 그림 장부 표기 CC-BY-SA-4.0 + AI 생성 표기.
+- **끊긴 것**: 배경음악 후보 조사 에이전트를 사용자 지시로 중단(결과 파일 없음) → R-2b를 처음부터 다시. 조건은 `docs/research/audio-assets.md` §1·§2, 곡 슬롯 12개는 status.md R-2b.
+- **PixelLab 남은 횟수 0**. 다음 날 보너스로 R-1b(늑대·니아·고발관장·고백석·집).
