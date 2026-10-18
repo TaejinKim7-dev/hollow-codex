@@ -18,7 +18,8 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 | R-1c | 칼라스 광장 목업 스크린샷 → 🧑 화풍 판정 | `docs/screenshots/` | R-1a·b 뒤 |
 | 🧑 | R-0 아트 방향 의견(`docs/research/art-direction.md` §5) — 규격 48px 캔버스는 시범으로 확인됨 | 문서 의견란 | 대기 |
 | 🧑 | 생성 그림 라이선스: 추천안 **CC-BY-SA-4.0 + AI 생성 표기**로 장부 기록함. 다르게 하려면 알려 주기 | `assets/LEDGER.md` | 추천안 적용 |
-| R-2 | 실제 악기 녹음 공개 라이선스 음원·효과음 조사 | `docs/research/audio-assets.md` | 대기 |
+| R-2 | 실제 악기 녹음 공개 라이선스 음원·효과음 조사 (+ ElevenLabs 생성 비교) | `docs/research/audio-assets.md` | 대기 |
+| 🧑 | 소리를 ElevenLabs로 생성할지 결정. 무료 요금제는 약관 §1(c)(i) "free of charge → non-commercial purposes"만 허용 → 장부의 CC-BY-SA(상업 재사용 허용)와 충돌 가능 | 채팅 | 대기 |
 | S | 그래픽·소리 재설계 문서 | `docs/superpowers/specs/` | R 끝난 뒤 |
 | R-0 / A-1 | 아트 방향 제안 / 그림 인벤토리 | `art-direction.md` / `pixel-art-plan.md` | 완료 |
 
@@ -35,6 +36,10 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 - 체험판: **동시 1작업** → 방향마다 따로 요청. `get_balance`·`wait_for_jobs`는 무료. 생성 전 남은 횟수 확인.
 - 토큰은 저장소에 두지 않는다(`key.txt`는 `.gitignore`; 파일 삭제 권장).
 - 생성물은 저장 → 장부(`assets/LEDGER.md`) → 프롬프트(`assets/generated/prompts/`) 순으로 기록.
+
+## ElevenLabs (2026-10-19 연결)
+- CLI `@elevenlabs/cli` 1.6.1(`~/.npm-global/bin`), OAuth 로그인(사용자 설정 `~/.config`, 저장소 밖). 스킬 `~/.agents/skills/`(music, sound-effects 등). 요금제 free, 월 10,000 크레딧.
+- 약관 https://elevenlabs.io/terms-of-use : 출력물 권리는 사용자(§4(c)(ii)), 단 무료 사용자는 비상업 목적만(§1(c)(i)), ElevenLabs가 Content에 영구 라이선스 보유(§4(d)).
 
 ## 화면 확인 (AGENTS.md §9.1)
 - 이미지·영상은 **최종 파일 자체**를 검사하고 열어 본 뒤 보여 준다. 영상: `node scripts/visual/verify-video.mjs <영상> --out <폴더>`. 데모 녹화: `scripts/visual/walk-demo.mjs`.
