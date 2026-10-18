@@ -6,3 +6,5 @@ playwright-report/
 *.pdf
 origin.txt
 client_secret_*.json*
+key.txt
+*.token
