@@ -463,3 +463,5 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 결정(2026-10-18): 플레이어 스프라이트 = stranger-B-navy, 풀↔흙길 = v3.
 - 풀↔물+다리(2026-10-18): 풀↔물을 v3 풀 base tile로 이어 생성, 다리 2안(짧은 것 보류, 160×64 사용). 층 분리 장면 목업 스크립트 `scripts/visual/scene-preview.mjs` 추가, 목업 `2026-10-18-R1-scene-river-b.png` 직접 확인(다리가 양쪽 길을 잇고 navy 이방인이 길·다리 위에서 또렷함).
 - 엘린 후보 3안 생성(3회, 남은 16): A 청회색(이방인 navy와 겹침), B 숯빛 관복+장부(고발청 견습에 가장 맞음, 추천), C 자두색 로브+두루마리 통. 비교 도구 `scripts/visual/character-sheet.mjs` 추가. 사용자 선택 대기.
+- 결정(2026-10-18): 동료 엘린 = elin-B(숯빛 관복). 걷기 생성 시작.
+- 엘린 B 걷기(2026-10-18): 템플릿 걷기는 장부 깜빡임(남3·동4·서2 프레임 소실, 북쪽 손 바뀜, 동쪽 눈 색 변화) → skeleton-v3로 4방향 재생성(12회). 장부가 모든 프레임에 남음. 일행 걷기 영상 `docs/screenshots/2026-10-18-R1-party-walk.webm`(이방인 navy + 엘린) — verify-video OK, 5.4초·8.1초 프레임 직접 확인(둘 다 길 위, 엘린이 뒤따름). 새 도구: `walk-strip.mjs`, `crop-canvas.mjs`, `drop-specks.mjs`, `party-demo.mjs`. **체험 횟수 소진(0)** → 다음은 하루 보너스.

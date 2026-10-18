@@ -13,8 +13,8 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 | ✅ | 플레이어 = **`stranger-B-navy`**, 풀↔흙길 = **v3** (사용자 결정 2026-10-18) | — | 결정됨 |
 | 🧑 | 그림 제작 계획 확인(`docs/research/art-production-plan.md` §6). 요금: **하루 보너스로 진행(결정)** | 문서 의견란 | 대기 |
 | R-1a | 풀↔물+다리 | `tilesets/grass-water/`, `objects/bridge/bridge-long.png`, 목업 `docs/screenshots/2026-10-18-R1-scene-river-b.png` | 완료 — 🧑 확인 대기 |
-| 🧑 | 엘린 후보 선택(A 청회색·B 숯빛 관복·C 자두색) — `docs/screenshots/2026-10-18-R1-elin-candidates.png`, `…-elin-on-map.png`. 추천 B | 채팅 | 대기 |
-| R-1b | 칼라스 시범 나머지(계획 §5: 엘린+걷기·늑대·니아·고발관장·고백석·집 ≈10회, 남은 22회) | `assets/sprites/` | 대기 |
+| R-1b0 | 엘린 = **elin-B** (사용자 결정) 4방향 걷기 | `characters/elin-B/`, 영상 `docs/screenshots/2026-10-18-R1-party-walk.webm` | 완료 — 🧑 확인 대기 |
+| R-1b | 칼라스 시범 나머지(늑대·니아·고발관장·고백석·집 ≈5회) | `assets/sprites/` | 체험 횟수 소진 → 다음 날 보너스(+5)로 |
 | R-1c | 칼라스 광장 목업 스크린샷 → 🧑 화풍 판정 | `docs/screenshots/` | R-1a·b 뒤 |
 | 🧑 | R-0 아트 방향 의견(`docs/research/art-direction.md` §5) — 규격 48px 캔버스는 시범으로 확인됨 | 문서 의견란 | 대기 |
 | 🧑 | 생성 그림 라이선스: 추천안 **CC-BY-SA-4.0 + AI 생성 표기**로 장부 기록함. 다르게 하려면 알려 주기 | `assets/LEDGER.md` | 추천안 적용 |
