@@ -25,7 +25,8 @@
 | 이방인 C (등불 망토, v3 8방향) | 7365832e… | `assets/sprites/characters/stranger-C/` (4방향만 저장) | 후보(미선택) |
 | 풀↔흙길 타일셋 v1 | 5e6ffa24… | `assets/sprites/tilesets/grass-path/` | **불합격**: 형광 초록 단색, 흙 무늬 반복, 거친 검은 테두리. 연결은 정상 |
 | 풀↔흙길 v2 | ae2d9e94… | `…/grass-path-v2/` | 풀색 개선, 길이 분홍 벽돌 격자 — 보류 |
-| **풀↔흙길 v3** (round 경계) | 655f8b62… | `…/grass-path-v3/` | **추천**: 차분한 올리브 풀, 구불거리는 부드러운 경계. 비교: `docs/screenshots/2026-10-18-R1-tileset-candidates.png` — 🧑 선택 대기 |
+| **풀↔흙길 v3** (round 경계) | 655f8b62… | `…/grass-path-v3/` | **확정(사용자 2026-10-18)**: 차분한 올리브 풀, 구불거리는 부드러운 경계. 비교: `docs/screenshots/2026-10-18-R1-tileset-candidates.png` |
+| **이방인 B-navy** | (B 색 변경) | `assets/sprites/characters/stranger-B-navy/` | **플레이어 확정(사용자 2026-10-18)**: v3 위에서 가장 또렷함. 비교 `2026-10-18-R1-stranger-colors.png` |
 
 후처리: B의 `walk-east/3.png`에만 지팡이(노란 머리)가 그려져 걸을 때 번쩍임 → 지팡이·손 픽셀을 지움(생성 0회). B는 프롬프트의 지팡이를 대부분 그리지 않았다.
 
