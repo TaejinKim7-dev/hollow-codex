@@ -18,8 +18,8 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 | R-1c | 칼라스 광장 목업 스크린샷 → 🧑 화풍 판정 | `docs/screenshots/` | R-1a·b 뒤 |
 | 🧑 | R-0 아트 방향 의견(`docs/research/art-direction.md` §5) — 규격 48px 캔버스는 시범으로 확인됨 | 문서 의견란 | 대기 |
 | 🧑 | 생성 그림 라이선스: 추천안 **CC-BY-SA-4.0 + AI 생성 표기**로 장부 기록함. 다르게 하려면 알려 주기 | `assets/LEDGER.md` | 추천안 적용 |
-| R-2 | 실제 악기 녹음 공개 라이선스 음원·효과음 조사 (+ ElevenLabs 생성 비교) | `docs/research/audio-assets.md` | 대기 |
-| 🧑 | 소리를 ElevenLabs로 생성할지 결정. 무료 요금제는 약관 §1(c)(i) "free of charge → non-commercial purposes"만 허용 → 장부의 CC-BY-SA(상업 재사용 허용)와 충돌 가능 | 채팅 | 대기 |
+| R-2 | 소리 조사: 개인 개발 + 나중 상용까지 안전한 방안 | `docs/research/audio-assets.md` | 완료(초안) — 🧑 §6 확인 대기 |
+| 🧑 | 소리 방향(`audio-assets.md` §6): 추천 = 저장소엔 A·B등급만, 음악 MIDI + VSCO 2 CE(CC0) 연주, 효과음 Kenney·Freesound CC0, ElevenLabs 무료는 `assets-private/` 시안만 | 문서 의견란 | 대기 |
 | S | 그래픽·소리 재설계 문서 | `docs/superpowers/specs/` | R 끝난 뒤 |
 | R-0 / A-1 | 아트 방향 제안 / 그림 인벤토리 | `art-direction.md` / `pixel-art-plan.md` | 완료 |
 
