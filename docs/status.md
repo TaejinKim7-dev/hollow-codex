@@ -41,6 +41,9 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 - CLI `@elevenlabs/cli` 1.6.1(`~/.npm-global/bin`), OAuth 로그인(사용자 설정 `~/.config`, 저장소 밖). 스킬 `~/.agents/skills/`(music, sound-effects 등). 요금제 free, 월 10,000 크레딧.
 - 약관 https://elevenlabs.io/terms-of-use : 출력물 권리는 사용자(§4(c)(ii)), 단 무료 사용자는 비상업 목적만(§1(c)(i)), ElevenLabs가 Content에 영구 라이선스 보유(§4(d)).
 
+## 자산 실험실
+- `npm run dev` → http://localhost:5173/hollow-codex/lab/ — 그림+효과음+배경음악을 한 화면에서 시험(방향키 걷기). 후보 소리는 `assets-private/preview/`(git 제외). 검사: `node scripts/visual/lab-check.mjs <out-prefix>`.
+
 ## 화면 확인 (AGENTS.md §9.1)
 - 이미지·영상은 **최종 파일 자체**를 검사하고 열어 본 뒤 보여 준다. 영상: `node scripts/visual/verify-video.mjs <영상> --out <폴더>`. 데모 녹화: `scripts/visual/walk-demo.mjs`.
 

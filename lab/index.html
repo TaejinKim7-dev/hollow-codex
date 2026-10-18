@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>자산 실험실</title>
+<!--
+  자산 실험실 (개발 서버 전용, 배포본에 들어가지 않음: vite build 입력은 루트 index.html뿐).
+  열기: npm run dev → http://localhost:5173/hollow-codex/lab/
+  - 장면: 생성 타일셋(땅 층) → 다리(물건 층) → 이방인·엘린(캐릭터 층). 방향키/WASD로 걷기.
+  - 효과음: assets-private/preview/sfx/slots.json 의 후보를 상황별로 듣고 고른다. 발걸음·부딪힘은 걷기에 바로 연결된다.
+  - 배경음악: assets-private/preview/bgm/bgm.json 이 있으면 목록을 띄운다(없으면 안내만).
+  - 고른 결과는 이 브라우저(localStorage)에만 저장되고 "선택 결과 복사"로 꺼낸다.
+-->
+<style>
+  :root { --bg:#16181b; --panel:#22262b; --line:#353b42; --text:#e6e2da; --muted:#9aa2a9; --accent:#d9a441; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.5 system-ui, sans-serif; }
+  header { padding:10px 16px; border-bottom:1px solid var(--line); display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0; }
+  header .hint { color:var(--muted); }
+  main { display:grid; grid-template-columns:minmax(0,960px) minmax(280px,1fr); gap:16px; padding:16px; }
+  @media (max-width:1100px){ main { grid-template-columns:1fr; } }
+  canvas { width:100%; max-width:960px; image-rendering:pixelated; display:block; border:1px solid var(--line); }
+  section { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:10px 12px; margin-bottom:12px; }
+  section h2 { font-size:14px; margin:0 0 8px; }
+  .slot { padding:6px 0; border-top:1px solid var(--line); }
+  .slot:first-of-type { border-top:0; }
+  .slot b { display:block; margin-bottom:4px; }
+  button { background:#2d3238; color:var(--text); border:1px solid var(--line); border-radius:4px; padding:4px 9px; cursor:pointer; font:inherit; }
+  button:hover { border-color:var(--accent); }
+  button.on { background:var(--accent); color:#1a1a1a; border-color:var(--accent); }
+  .row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .small { color:var(--muted); font-size:12px; }
+  #start { position:fixed; inset:0; background:rgba(0,0,0,.75); display:flex; align-items:center; justify-content:center; z-index:9; }
+  #start button { font-size:18px; padding:12px 24px; }
+  #err { color:#ff8a80; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+<div id="start"><button id="startBtn">클릭해서 시작 (소리 켜기)</button></div>
+<header>
+  <h1>자산 실험실</h1>
+  <span class="hint">방향키·WASD로 이방인을 움직이세요. 풀·흙길·다리 위 발걸음이 다르고, 물에 막히면 부딪힘 소리가 납니다.</span>
+</header>
+<main>
+  <div>
+    <canvas id="c" width="480" height="352"></canvas>
+    <div class="row" style="margin-top:8px">
+      <span class="small">배율</span>
+      <button data-scale="2" class="on">×2</button><button data-scale="3">×3</button>
+      <span class="small" id="pos"></span>
+    </div>
+    <div id="err"></div>
+  </div>
+  <div>
+    <section id="bgm"><h2>배경음악</h2><div id="bgmList" class="small">불러오는 중…</div>
+      <div class="row" style="margin-top:6px"><span class="small">음량</span><input id="vol" type="range" min="0" max="1" step="0.05" value="0.5"></div></section>
+    <section><h2>효과음 후보 <span class="small">(숫자 = 후보, 고른 것이 걷기·게임에 쓰임)</span></h2><div id="sfx">불러오는 중…</div></section>
+    <section><h2>선택 결과</h2><button id="copy">선택 결과 복사</button> <span class="small" id="copied"></span></section>
+  </div>
+</main>
+<script type="module">
+const T = 32, W = 15, H = 11;
+const SPR = "../assets/sprites/";
+const PRIV = "../assets-private/preview/";
+const err = m => { document.getElementById("err").textContent += m + "\n"; };
+window.addEventListener("error", e => err("오류: " + e.message));
+
+// ---------- 지도: 꼭짓점 . 풀 / , 흙길 / ~ 물 (16×12) ----------
+const V = [];
+for (let y = 0; y <= H; y++) { let r = ""; for (let x = 0; x <= W; x++) {
+  let c = ".";
+  if (x === 9 || x === 10) c = "~";
+  else if ((y === 5 || y === 6) && ((x >= 1 && x <= 7) || (x >= 12 && x <= 14))) c = ",";
+  else if (x === 4 && y >= 1 && y <= 5) c = ",";
+  r += c; } V.push(r); }
+const BRIDGE = { x: 7, y: 5, w: 5, h: 1, img: SPR + "objects/bridge/bridge-long.png", px: 224, py: 160 };
+const onBridge = (tx, ty) => ty === BRIDGE.y && tx >= BRIDGE.x && tx < BRIDGE.x + BRIDGE.w;
+const corners = (tx, ty) => [V[ty][tx], V[ty][tx + 1], V[ty + 1][tx], V[ty + 1][tx + 1]];
+const ground = (tx, ty) => { if (onBridge(tx, ty)) return "wood"; const k = corners(tx, ty); if (k.includes("~")) return "water"; return k.filter(c => c === ",").length >= 2 ? "path" : "grass"; };
+const walkable = (tx, ty) => tx >= 0 && ty >= 0 && tx < W && ty < H && ground(tx, ty) !== "water";
+
+// ---------- 불러오기 ----------
+const img = s => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => no(new Error("그림을 못 읽음: " + s)); i.src = s; });
+const json = async s => { const r = await fetch(s); if (!r.ok) throw new Error(s + " → " + r.status); return r.json(); };
+async function tileset(dir) { const [sheet, meta] = await Promise.all([img(SPR + dir + "/sheet.png"), json(SPR + dir + "/metadata.json")]); return { sheet, tiles: meta.tileset_data.tiles.map(t => ({ c: t.corners, b: t.bounding_box })) }; }
+const DIRS = ["south", "east", "north", "west"];
+async function actor(dir) { const o = { rot: {}, walk: {} }; for (const d of DIRS) { o.rot[d] = await img(`${SPR}characters/${dir}/rot-${d}.png`); o.walk[d] = []; for (let i = 0; i < 4; i++) o.walk[d].push(await img(`${SPR}characters/${dir}/walk-${d}/${i}.png`)); } return o; }
+
+const [PATH, WATER, bridgeImg, hero, elin] = await Promise.all([tileset("tilesets/grass-path-v3"), tileset("tilesets/grass-water"), img(BRIDGE.img), actor("stranger-B-navy"), actor("elin-B")]);
+
+// 땅 층은 한 번만 그려 둔다
+const groundLayer = document.createElement("canvas"); groundLayer.width = W * T; groundLayer.height = H * T;
+{ const g = groundLayer.getContext("2d");
+  for (let ty = 0; ty < H; ty++) for (let tx = 0; tx < W; tx++) {
+    const k = corners(tx, ty), w = k.includes("~"), set = w ? WATER : PATH, low = w ? "~" : ",", m = c => c === low ? "lower" : "upper";
+    const t = set.tiles.find(t => t.c.NW === m(k[0]) && t.c.NE === m(k[1]) && t.c.SW === m(k[2]) && t.c.SE === m(k[3]));
+    if (!t) { err(`타일 없음 (${tx},${ty})`); continue; }
+    g.drawImage(set.sheet, t.b.x, t.b.y, T, T, tx * T, ty * T, T, T); } }
+
+// ---------- 소리 ----------
+let actx = null, master = null;
+const buffers = new Map();
+async function buf(url) { if (!buffers.has(url)) buffers.set(url, fetch(url).then(r => { if (!r.ok) throw new Error(url + " → " + r.status); return r.arrayBuffer(); }).then(a => actx.decodeAudioData(a))); return buffers.get(url); }
+async function play(url, gain = 1) { if (!actx) return; try { const b = await buf(url), s = actx.createBufferSource(), g = actx.createGain(); g.gain.value = gain; s.buffer = b; s.connect(g).connect(master); s.start(); } catch (e) { err(e.message); } }
+
+const STORE = "hc-lab-choice";
+let choice = {}; try { choice = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch {}
+const save = () => { try { localStorage.setItem(STORE, JSON.stringify(choice)); } catch {} };
+let SLOTS = [];
+const pick = id => { const s = SLOTS.find(s => s.id === id); if (!s) return null; const k = choice["sfx." + id] || s.items[0].key; return PRIV + "sfx/" + s.items.find(i => i.key === k).src; };
+
+async function loadSfx() {
+  const box = document.getElementById("sfx");
+  try { SLOTS = await json(PRIV + "sfx/slots.json"); } catch (e) { box.textContent = "효과음 후보 없음 (assets-private/preview/sfx/slots.json)"; return; }
+  box.innerHTML = "";
+  for (const s of SLOTS) {
+    const d = document.createElement("div"); d.className = "slot"; d.innerHTML = `<b>${s.label} <span class="small">${s.id}</span></b>`;
+    const row = document.createElement("div"); row.className = "row";
+    for (const it of s.items) {
+      const b = document.createElement("button"); b.textContent = it.key; b.title = it.from;
+      const sel = () => row.querySelectorAll("button").forEach(x => x.classList.toggle("on", x.textContent === (choice["sfx." + s.id] || s.items[0].key)));
+      b.onclick = () => { choice["sfx." + s.id] = it.key; save(); sel(); play(PRIV + "sfx/" + it.src); };
+      row.appendChild(b); setTimeout(sel);
+    }
+    const src = document.createElement("div"); src.className = "small"; src.textContent = s.items.map(i => i.key + ": " + i.from).join(" · ");
+    d.append(row, src); box.appendChild(d);
+  }
+}
+
+let bgmEl = null;
+async function loadBgm() {
+  const box = document.getElementById("bgmList");
+  let list; try { list = await json(PRIV + "bgm/bgm.json"); } catch { box.textContent = "배경음악 후보 준비 중 (assets-private/preview/bgm/bgm.json)"; return; }
+  box.innerHTML = "";
+  for (const slot of list) {
+    const d = document.createElement("div"); d.className = "slot"; d.innerHTML = `<b>${slot.label}</b>`; const row = document.createElement("div"); row.className = "row";
+    for (const t of slot.items) {
+      const b = document.createElement("button"); b.textContent = t.key + " ▶"; b.title = `${t.title} — ${t.artist} (${t.license})`;
+      b.onclick = () => {
+        if (bgmEl) bgmEl.pause();
+        document.querySelectorAll("#bgmList button").forEach(x => x.classList.remove("on"));
+        if (bgmEl && bgmEl.dataset.src === t.src && !bgmEl.ended && bgmEl.dataset.playing === "1") { bgmEl.dataset.playing = "0"; return; }
+        bgmEl = new Audio(PRIV + "bgm/" + t.src); bgmEl.loop = true; bgmEl.volume = +document.getElementById("vol").value; bgmEl.dataset.src = t.src; bgmEl.dataset.playing = "1";
+        bgmEl.play().catch(e => err("음악 재생 실패: " + e.message)); b.classList.add("on"); choice["bgm." + slot.id] = t.key; save();
+      };
+      row.appendChild(b);
+    }
+    const info = document.createElement("div"); info.className = "small"; info.textContent = slot.items.map(t => `${t.key}: ${t.title} — ${t.artist}, ${t.license}`).join(" · ");
+    d.append(row, info); box.appendChild(d);
+  }
+}
+document.getElementById("vol").oninput = e => { if (bgmEl) bgmEl.volume = +e.target.value; };
+
+document.getElementById("copy").onclick = async () => { const s = JSON.stringify(choice, null, 1); try { await navigator.clipboard.writeText(s); document.getElementById("copied").textContent = "복사됨 — 채팅에 붙여 넣어 주세요"; } catch { document.getElementById("copied").textContent = s; } };
+document.querySelectorAll("[data-scale]").forEach(b => b.onclick = () => { document.querySelectorAll("[data-scale]").forEach(x => x.classList.toggle("on", x === b)); document.getElementById("c").style.width = (W * T * +b.dataset.scale) + "px"; });
+document.getElementById("c").style.width = (W * T * 2) + "px";
+
+document.getElementById("startBtn").onclick = async () => {
+  actx = new AudioContext(); master = actx.createGain(); master.gain.value = 0.8; master.connect(actx.destination);
+  document.getElementById("start").remove();
+};
+loadSfx(); loadBgm();
+
+// ---------- 걷기 ----------
+const P = { tx: 2, ty: 5, x: 2, y: 5, dir: "east", moving: false, t: 0 };
+const trail = [{ tx: 1, ty: 5 }];
+const E = { tx: 1, ty: 5, x: 1, y: 5, dir: "east", moving: false };
+const held = new Set();
+const KEYS = { ArrowUp: "north", w: "north", ArrowDown: "south", s: "south", ArrowLeft: "west", a: "west", ArrowRight: "east", d: "east" };
+addEventListener("keydown", e => { const d = KEYS[e.key]; if (d) { held.add(d); e.preventDefault(); } });
+addEventListener("keyup", e => { const d = KEYS[e.key]; if (d) held.delete(d); });
+const STEP = { north: [0, -1], south: [0, 1], west: [-1, 0], east: [1, 0] };
+const SPEED = 4.5; // 칸/초
+let lastBump = 0;
+function tryMove(now) {
+  if (P.moving) return; const d = [...held].pop(); if (!d) return;
+  P.dir = d; const [dx, dy] = STEP[d], nx = P.tx + dx, ny = P.ty + dy;
+  if (!walkable(nx, ny)) { if (now - lastBump > 350) { lastBump = now; const u = pick("bump"); if (u) play(u, 0.7); } return; }
+  trail.unshift({ tx: P.tx, ty: P.ty }); trail.length = 1;
+  E.dir = E.tx < P.tx ? "east" : E.tx > P.tx ? "west" : E.ty < P.ty ? "south" : "north";
+  E.from = { x: E.tx, y: E.ty }; E.tx = P.tx; E.ty = P.ty; E.moving = true;
+  P.from = { x: P.tx, y: P.ty }; P.tx = nx; P.ty = ny; P.moving = true; P.t = 0;
+  const g = ground(nx, ny), id = g === "wood" ? "footstep_wood" : "footstep"; const u = pick(id); if (u) play(u, 0.55);
+}
+const cx = document.getElementById("c").getContext("2d"); cx.imageSmoothingEnabled = false;
+const t0 = performance.now(); let last = t0;
+function frame(now) {
+  const dt = Math.min(0.05, Math.max(0, now - last) / 1000); last = now;
+  tryMove(now);
+  if (P.moving) { P.t = Math.min(1, P.t + dt * SPEED);
+    P.x = P.from.x + (P.tx - P.from.x) * P.t; P.y = P.from.y + (P.ty - P.from.y) * P.t;
+    E.x = E.from.x + (E.tx - E.from.x) * P.t; E.y = E.from.y + (E.ty - E.from.y) * P.t;
+    if (P.t >= 1) { P.moving = false; E.moving = false; } }
+  cx.drawImage(groundLayer, 0, 0);
+  cx.drawImage(bridgeImg, BRIDGE.px, BRIDGE.py);
+  const f = Math.floor(Math.max(0, now - t0) / 140) % 4;
+  for (const a of [E, P].sort((a, b) => a.y - b.y)) {
+    const spr = a === P ? hero : elin, im = (P.moving || held.size) ? spr.walk[a.dir][f] : spr.rot[a.dir];
+    if (!im) { err("프레임 없음 " + a.dir + "/" + f); continue; }
+    const px = (a.x + 0.5) * T, py = (a.y + 0.5) * T;
+    cx.fillStyle = "rgba(0,0,0,.28)"; cx.beginPath(); cx.ellipse(px, py + 10, 10, 4, 0, 0, 7); cx.fill();
+    cx.drawImage(im, Math.round(px - 24), Math.round(py - 38));
+  }
+  document.getElementById("pos").textContent = `칸 (${P.tx},${P.ty}) · 바닥: ${ground(P.tx, P.ty)}`;
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
