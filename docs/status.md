@@ -41,4 +41,4 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 
 ## 마지막 게이트
 main `b17ee6d`: npm ci 0 · test:unit 0 (384 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
-2026-10-18 이번 저장: check:content 0 · git diff --check 0 (아래 커밋에서 Haiku 게이트 결과로 갱신).
+main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
