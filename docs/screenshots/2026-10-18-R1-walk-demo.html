@@ -18,7 +18,7 @@ function frame(now){
  if(dist<=step){pos={x:tg[0],y:tg[1]};seg=(seg+1)%(route.length-1);if(seg==0)pos={x:route[0][0],y:route[0][1]};}
  else{pos.x+=dx/dist*step;pos.y+=dy/dist*step;dir=Math.abs(dx)>Math.abs(dy)?(dx>0?"east":"west"):(dy>0?"south":"north");}
  for(let y=0;y<H;y++)for(let x=0;x<W;x++){const t=pick(x,y);if(t)cx.drawImage(sheet,t.b.x,t.b.y,32,32,x*T,y*T,32,32);}
- const moving=true,f=Math.floor((now-t0)/140)%4;const im=moving?FI[dir][f]:II[dir];
+ const moving=true,f=Math.floor(Math.max(0,now-t0)/140)%4;const im=moving?FI[dir][f]:II[dir];
  cx.fillStyle="rgba(0,0,0,.25)";cx.beginPath();cx.ellipse(pos.x*T,pos.y*T+10,10,4,0,0,7);cx.fill();
  cx.drawImage(im,Math.round(pos.x*T-24),Math.round(pos.y*T-40));
  requestAnimationFrame(frame)}

@@ -11,8 +11,9 @@
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
 | 🧑 | 사용자: R-0 아트 방향 의견(`docs/research/art-direction.md` §5 체크) | 문서 의견란 또는 채팅 | 대기 |
-| 🧑 | 사용자: PixelLab 계정·토큰 발급 → 아래 "MCP 연결" | 연결 확인 | R-0 의견과 병렬 |
-| R-1 | 생성 시범(두 도구 같은 프롬프트 → 목업) | `docs/research/art-generation-trial.md` + `docs/screenshots/` | R-0 확정 + MCP 연결 뒤 |
+| 🧑 | PixelLab 연결 | `claude mcp list` ✔ | 완료(2026-10-18) |
+| 🧑 | 사용자: 생성 그림 라이선스 표기(추천 CC-BY-SA-4.0 + AI 생성 표기) → 결정 뒤 `assets/sprites/` 커밋 | 장부 | 대기 |
+| R-1 | 생성 시범: 이방인 B 확정·걷기 완료, 타일셋 재생성, 칼라스 나머지 | `assets/sprites/`(로컬) + `docs/screenshots/2026-10-18-R1-*` | 진행 중 |
 | R-2 | 실제 악기 녹음 공개 라이선스 음원·효과음 조사 | `docs/research/audio-assets.md` | 대기(음원도 생성할지 사용자 확인 필요) |
 | A-1 | 시나리오 근거 그림 인벤토리(R-0 부록) | `docs/research/pixel-art-plan.md` | 완료 |
 | R-0 | 아트 방향 제안(규격·화풍·목록) | `docs/research/art-direction.md` | 완료(f348935) |
