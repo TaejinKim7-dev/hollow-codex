@@ -10,8 +10,8 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 ## 다음 할 일 (위에서부터)
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
-| 🧑 | 풀↔흙길 타일셋 선택(추천 v3) — `docs/screenshots/2026-10-18-R1-tileset-candidates.png` | 채팅 | 대기 |
-| 🧑 | 그림 제작 계획 확인(`docs/research/art-production-plan.md` §6: 사람 나누기, 크리처 표현, 순서, **유료 요금제**, 초상화) | 문서 의견란 | 대기 |
+| 🧑 | 이방인 코트 색 선택(추천 navy) — `docs/screenshots/2026-10-18-R1-stranger-colors.png`. 풀↔흙길은 v3 사용(사용자: 이방인이 잘 안 보인다 → 색 변경 지시) | 채팅 | 대기 |
+| 🧑 | 그림 제작 계획 확인(`docs/research/art-production-plan.md` §6). 요금: **하루 보너스로 진행(결정)** | 문서 의견란 | 대기 |
 | R-1a | 풀↔물+다리(같은 풀로 연결) | `assets/sprites/tilesets/` | 타일셋 선택 뒤 |
 | R-1b | 칼라스 시범 나머지(계획 §5: 엘린+걷기·늑대·니아·고발관장·고백석·집 ≈10회, 남은 22회) | `assets/sprites/` | 대기 |
 | R-1c | 칼라스 광장 목업 스크린샷 → 🧑 화풍 판정 | `docs/screenshots/` | R-1a·b 뒤 |
@@ -30,6 +30,7 @@ R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B
 
 ## PixelLab 사용 메모
 - 연결: 사용자 설정(`claude mcp get pixellab` → User config). 새 세션에서 도구가 안 보이면 `/mcp`에서 다시 연결.
+- 요금: 체험판 남은 22회 + 하루 보너스(+5/일, 최대 20, 남은 횟수 0일 때만 사용). 유료 안 씀(사용자 결정).
 - 체험판: **동시 1작업** → 방향마다 따로 요청. `get_balance`·`wait_for_jobs`는 무료. 생성 전 남은 횟수 확인.
 - 토큰은 저장소에 두지 않는다(`key.txt`는 `.gitignore`; 파일 삭제 권장).
 - 생성물은 저장 → 장부(`assets/LEDGER.md`) → 프롬프트(`assets/generated/prompts/`) 순으로 기록.
