@@ -457,3 +457,4 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 풀↔흙길 타일셋: 자동 타일 연결은 정상, 색(형광 초록)·반복 무늬·거친 테두리로 불합격 → 재생성 필요.
 - **사고**: 다시 녹화한 데모 영상에 캐릭터가 없었는데 확인 없이 보고함. 원인은 rAF 시각이 시작 시각보다 앞서 프레임 번호 -1 → `drawImage(undefined)`로 그리기 중단. 수정 후 `scripts/visual/verify-video.mjs`로 최종 영상 검사 통과, 5초 프레임을 직접 열어 캐릭터 확인. 재발 방지 규칙 AGENTS.md §9.1.
 - `assets/sprites/`는 커밋 보류: `check:content` 허용 라이선스에 PixelLab 약관이 없음. 사용자 결정 대기(추천: CC-BY-SA-4.0 + AI 생성 표기).
+- 저장(2026-10-18): 생성 그림 34개를 장부에 **CC-BY-SA-4.0 + AI 생성 표기**(추천안, 사용자가 "저장해"라고 지시)로 기록하고 `assets/sprites/` 커밋. 앞 커밋 `6526821`에서 프롬프트 기록 파일이 장부에 없어 `check:content`가 깨져 있던 것도 함께 바로잡음. R-1 결과 문서 `docs/research/art-generation-trial.md` 작성. 다음: 타일셋 재생성 → 칼라스 나머지 → 목업.

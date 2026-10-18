@@ -5,20 +5,19 @@
 최종 갱신: 2026-10-18 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정")
 
 ## 지금 단계
-`docs/plan.md` §3 결정(2026-10-18): 그래픽은 **생성 MCP(PixelLab)로 자체 제작**. R-0 아트 방향 제안이 사용자 의견을 기다린다.
+R-1 생성 시범 진행 중(PixelLab MCP 연결됨). 플레이어 **이방인 B(순례 코트+가방)** 사용자 선택, 4방향 걷기 완료. 결과·배운 것: `docs/research/art-generation-trial.md`.
 
 ## 다음 할 일 (위에서부터)
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
-| 🧑 | 사용자: R-0 아트 방향 의견(`docs/research/art-direction.md` §5 체크) | 문서 의견란 또는 채팅 | 대기 |
-| 🧑 | PixelLab 연결 | `claude mcp list` ✔ | 완료(2026-10-18) |
-| 🧑 | 사용자: 생성 그림 라이선스 표기(추천 CC-BY-SA-4.0 + AI 생성 표기) → 결정 뒤 `assets/sprites/` 커밋 | 장부 | 대기 |
-| R-1 | 생성 시범: 이방인 B 확정·걷기 완료, 타일셋 재생성, 칼라스 나머지 | `assets/sprites/`(로컬) + `docs/screenshots/2026-10-18-R1-*` | 진행 중 |
-| R-2 | 실제 악기 녹음 공개 라이선스 음원·효과음 조사 | `docs/research/audio-assets.md` | 대기(음원도 생성할지 사용자 확인 필요) |
-| A-1 | 시나리오 근거 그림 인벤토리(R-0 부록) | `docs/research/pixel-art-plan.md` | 완료 |
-| R-0 | 아트 방향 제안(규격·화풍·목록) | `docs/research/art-direction.md` | 완료(f348935) |
-| R-1旧 | 공개 라이선스 픽셀 아트 조사 | `docs/research/art-assets.md` | 완료(6bdbf18) — 생성 방향으로 대체, 화풍 참고용 |
-| S | 그래픽·소리 재설계 문서 | `docs/superpowers/specs/` | 사용자 확정 뒤 |
+| R-1a | 풀↔흙길 타일셋 재생성(차분한 팔레트, 테두리 완화) → 풀↔물+다리 | `assets/sprites/tilesets/` | 다음 |
+| R-1b | 칼라스 시범 나머지(우선: 엘린·니아·늑대·고백석·집, 남은 약 25회) | `assets/sprites/` | 대기 |
+| R-1c | 칼라스 광장 목업 스크린샷 → 🧑 화풍 판정 | `docs/screenshots/` | R-1a·b 뒤 |
+| 🧑 | R-0 아트 방향 의견(`docs/research/art-direction.md` §5) — 규격 48px 캔버스는 시범으로 확인됨 | 문서 의견란 | 대기 |
+| 🧑 | 생성 그림 라이선스: 추천안 **CC-BY-SA-4.0 + AI 생성 표기**로 장부 기록함. 다르게 하려면 알려 주기 | `assets/LEDGER.md` | 추천안 적용 |
+| R-2 | 실제 악기 녹음 공개 라이선스 음원·효과음 조사 | `docs/research/audio-assets.md` | 대기 |
+| S | 그래픽·소리 재설계 문서 | `docs/superpowers/specs/` | R 끝난 뒤 |
+| R-0 / A-1 | 아트 방향 제안 / 그림 인벤토리 | `art-direction.md` / `pixel-art-plan.md` | 완료 |
 
 ## 진행 중
 (없음)
@@ -27,19 +26,19 @@
 - 끝나면 이 줄을 지우고 위 표의 상태를 "완료(<커밋>)"로 바꾼다.
 - 중간에 끊긴 작업: 줄을 남기고 `⚠ 중단: <어디까지 했는지>`를 붙인다.
 
-## MCP 연결 (사용자가 한 번만)
-- PixelLab: `claude mcp add --transport http pixellab https://api.pixellab.ai/mcp --header "Authorization: Bearer <토큰>"` (토큰: https://www.pixellab.ai/vibe-coding). 다른 에이전트는 각자의 MCP 설정 방법으로 같은 주소·헤더를 넣는다.
-- 토큰이 든 설정은 사용자 설정에만 둔다. 저장소의 `.mcp.json`에 토큰을 넣지 않는다.
-- 연결 확인: 에이전트가 PixelLab 도구 목록(`create_character` 등)을 볼 수 있으면 됨.
+## PixelLab 사용 메모
+- 연결: 사용자 설정(`claude mcp get pixellab` → User config). 새 세션에서 도구가 안 보이면 `/mcp`에서 다시 연결.
+- 체험판: **동시 1작업** → 방향마다 따로 요청. `get_balance`·`wait_for_jobs`는 무료. 생성 전 남은 횟수 확인.
+- 토큰은 저장소에 두지 않는다(`key.txt`는 `.gitignore`; 파일 삭제 권장).
+- 생성물은 저장 → 장부(`assets/LEDGER.md`) → 프롬프트(`assets/generated/prompts/`) 순으로 기록.
 
-## 막힌 것 / 사용자 확인 필요
-- 사용자가 직접 보고 들은 판정 없이는 그래픽·소리 작업을 완료로 적지 않는다.
-- 이전 조사 시도 2회는 에이전트 사용량 한도(HTTP 429)로 결과 없이 끝났으나, 세 번째 시도(Codex)에서 R-1 완료(6bdbf18). R-2는 미착수.
+## 화면 확인 (AGENTS.md §9.1)
+- 이미지·영상은 **최종 파일 자체**를 검사하고 열어 본 뒤 보여 준다. 영상: `node scripts/visual/verify-video.mjs <영상> --out <폴더>`. 데모 녹화: `scripts/visual/walk-demo.mjs`.
 
-## 알려진 한계 (0.1.0, 자세한 내용은 README "알려진 한계")
-- 그래픽: 검은 사각형(땅 층 없음), 추정 타일 번호, 16×16 단순 화풍 → 0.2.0에서 교체.
-- 소리: 단음 칩 합성 → 0.2.0에서 녹음 음원으로 교체.
-- 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 8명 중 1명, 능력 7개 중 1개만 효과. 에필로그가 위기 풀이를 반영하지 않음.
+## 알려진 한계 (0.1.0)
+- 그래픽: 검은 사각형, 추정 타일 번호, 16×16 → 0.2.0에서 교체. 소리: 단음 칩 합성 → 녹음 음원으로 교체.
+- 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 1/8, 능력 1/7만 효과. 에필로그가 위기 풀이를 반영하지 않음.
 
 ## 마지막 게이트
-main `b17ee6d`: npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
+main `b17ee6d`: npm ci 0 · test:unit 0 (384 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
+2026-10-18 이번 저장: check:content 0 · git diff --check 0 (아래 커밋에서 Haiku 게이트 결과로 갱신).
