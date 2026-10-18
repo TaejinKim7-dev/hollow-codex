@@ -438,3 +438,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 확인한 도구: PixelLab 공식 MCP(`https://api.pixellab.ai/mcp`, github.com/pixellab-code/pixellab-mcp, 캐릭터 4/8방향·애니메이션·Wang 타일셋, 약관상 결과물 소유·배포 자유, 단 다른 모델 학습 금지). Retro Diffusion MCP(`https://mcp.retrodiffusion.ai/mcp`)는 약관 원문 미확인.
 - 미확인: 두 도구의 가격·크레딧 한도(가격 페이지가 동적으로 불러와져 읽지 못함).
 - AGENTS.md: 생성 도구 토큰을 저장소에 쓰지 않는 규칙, 생성 그림의 장부·프롬프트 기록 규칙 추가.
+
+## 2026-10-18 R-0 아트 방향 제안
+- 시나리오(마을 8곳의 위기·추론·인물 81명)를 실제 콘텐츠에서 뽑아 정리하고, 기기별 정수 배율을 계산해 픽셀 크기를 제안했다: 타일 32px, 캐릭터 48px 캔버스, 초상화 96px, 시야 가로 15×11 / 세로 11×9. `docs/research/art-direction.md`.
+- PixelLab MCP는 아직 연결 안 됨(`claude mcp list`에 없음). 그림 생성은 하지 않았다. 사용자 의견을 받은 뒤 1차 시범 12장을 만든다.
