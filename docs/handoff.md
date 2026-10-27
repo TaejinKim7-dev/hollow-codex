@@ -484,3 +484,5 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 아이(토비·마을 아이)는 size 26 → 캔버스 40×40으로 나옴 → `scripts/visual/pad-canvas.mjs 48 41`로 48×48에 발 끝 맞춤.
 - 교훈: 프롬프트에 "안경", "책을 가슴에 안음" 같은 정면 전용 특징을 쓰면 북쪽(뒷모습)이 정면으로 나온다(사서 v1 폐기). 뒷모습이 자연스러운 소품(망토, 팔에 낀 책)을 쓴다.
 - 브랜치: 작업 폴더가 `todo-1-walk-review`(Codex 작업 브랜치) 상태여서 푸시는 `git push origin HEAD:main` 후 `git ls-remote`로 확인.
+- 효과음 추가 후보(2026-10-27): 게임 이벤트(`src/core/types.ts` GameEvent) 중 소리 없는 14상황을 Kenney CC0(rpg-audio·interface-sounds·impact-sounds·music-jingles)에서 후보 53개로 `assets-private/preview/sfx/slots.json`에 추가(총 28슬롯 97파일). 실험실에서 청취·선택. 늑대 울음·악기 연주 같은 건 Kenney에 없음 → Freesound CC0에서 따로 찾아야 함. 현재 게임 코드는 step/bump/learn/confirm/hit/push만 소리를 내며 나머지 이벤트는 연결 안 됨(S 설계에서 id→파일 목록으로).
+- 정리: `scripts/visual/pad-canvas.mjs`가 커밋에서 빠져 있어 추가.
