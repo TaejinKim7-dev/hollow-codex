@@ -21,6 +21,12 @@ npc.field.hunter.name.t: A name… nothing comes when you call it anyway. Just c
 npc.field.hunter.job.t: I live out here beside the wolves of the field. At first I aimed arrows at them. Then I saw they were only starving, not evil.
 npc.field.hunter.wolf.t: There's one she-wolf, the thinnest of them. She won't touch her own share; it all goes to the pups. Could you aim at that? A frightened animal calms down once you hold your own breath first.
 npc.field.hunter.confession.t: Confession? I haven't crossed Kalas's gate in ages. In there you can't even breathe without owing a confession. Out here the wolves hear mine. They never answer, though.
+npc.field.peddler.name: Field Peddler
+npc.field.peddler.greet: Hey, traveler! Lighten your heart's load before you reach the gate. I can't carry it for you, but I've got candy.
+npc.field.peddler.name.t: I sold my name. Names sell well in Kalas. …Joking. Call me the peddler.
+npc.field.peddler.job.t: I carry goods from village to village, not rumors. Rumors are heavy and goods are light. At every village gate they ask the same thing — not your name, but whether you've something to confess.
+npc.field.peddler.confession.t: The people of Kalas buy and sell each other's confessions. Not with real money, of course. But there's no doubt a price is set. The worse the confession, the dearer it's counted.
+npc.field.peddler.ledger.t: They say this village is stripping a whole mountain bare to feed its ledgers with paper. I don't sell paper myself, but the ones who buy it know.
 
 npc.kalas.confessor.name: Gate Confessor
 npc.kalas.confessor.greet: Before you step past the gate, let me ask one thing first. What wrong have you done today?
@@ -116,6 +122,60 @@ npc.kalas.librarian.job.t: My work was teaching the children and keeping the rec
 npc.kalas.librarian.archive.t: This is the room left of the old archive. The shelves above were sealed by the Office, and the key was lost long ago. Only grave-robbers ever broke in. Those who came to steal the books and those who wished to hide them — I cannot say which did the archive more harm.
 npc.kalas.librarian.truth.t: I have always believed truth is not written in a ledger but read in a book. One person writes it, many read it, and so what is read is less lonely.
 npc.kalas.librarian.ledger.t: A ledger is a book in which one person writes down another. A book in the archive is one a person leaves for another. Both are paper, but they point in opposite directions.
+npc.kalas.jailer.name: Holding-Room Warder
+npc.kalas.jailer.greet: No visitors. …It's the rules. I'm sorry about it myself.
+npc.kalas.jailer.name.t: I'm the warder. My name is in the ledger. Here, that counts as a name.
+npc.kalas.jailer.job.t: I guard the holding room. Not for fear the prisoners will flee, but for fear someone from outside will come in. People who wish to confess always want to get inside.
+npc.kalas.jailer.nia.t: The scribe has never once made a fuss all day. Only at night she writes letters in the air with her finger. I would like to give her paper, but it isn't in the rules.
+npc.kalas.jailer.trial.t: On the day of the trial I will bring out two things — the scribe, and the key to this room. It is the first time the key has felt this heavy.
+npc.kalas.baker.name: Baker
+npc.kalas.baker.greet: Fresh out of the oven. Come before it cools. Bread costs money — custom only covers the roof.
+npc.kalas.baker.name.t: Just call me the bread lady. Names are for ledgers.
+npc.kalas.baker.job.t: I knead dough from three in the morning. Bread can't hide anything. Underbaked, the middle is raw; burnt, the crust turns black. I wish people were like that.
+npc.kalas.baker.tobi.t: That Tobi always folds a piece of bread to carry home for his sister. I don't charge him. I don't put it in the ledger either.
+npc.kalas.baker.silence.t: The quiet ones eat the most. They fill their mouths instead of speaking. Nia was like that. …These days she just walks past the bakery.
+npc.kalas.patrol-a.name: Young Patrol Guard
+npc.kalas.patrol-a.greet: Halt! …Ah, no, please stop there. This is a confession patrol. Do you have anything to confess?
+npc.kalas.patrol-a.name.t: Third year on patrol. My name… is still only one line in the ledger.
+npc.kalas.patrol-a.job.t: I walk the square and alleys to see that no one has left something unconfessed. If there is no one, my patrol succeeds; if there is… that, too, I was taught, is a success. Strange, isn't it.
+npc.kalas.patrol-a.confession.t: To those who have confessed, I show this armband. See? With it, you are safe for today. You must earn it again tomorrow, though.
+npc.kalas.patrol-a.lantern.t: That night wasn't my shift. It was my turn to patrol the square, but the chief said he'd stand in for me. He was strangely kind about it, so I remember.
+npc.kalas.patrol-b.name: Old Patrol Guard
+npc.kalas.patrol-b.greet: Hey, you. By the way you walk, that's the step of someone with plenty to confess. Joking. Half of it.
+npc.kalas.patrol-b.name.t: My name? Twenty years on patrol. It wore away in the meantime.
+npc.kalas.patrol-b.job.t: I keep watch over the night. At first it was to stop thieves. Now it's to stop words from leaking. More words leak than things get stolen.
+npc.kalas.patrol-b.ledger.t: My name is in the ledger twelve times. All trivial. Wearing mismatched shoes, that sort of thing. Still, twelve lines make a man doubted twelve times.
+npc.kalas.patrol-b.truth.t: You can't patrol truth away. It climbs over walls and leaks out of windows. My job has been pretending not to see it.
+npc.kalas.herbalist.name: Herb Seller
+npc.kalas.herbalist.greet: Welcome, welcome! Chickweed for a cough, mugwort for sleeplessness, and for the heart… for the heart there's no cure.
+npc.kalas.herbalist.name.t: My name? I remember a hundred herb names but forget my own sometimes. Just call me the herb seller.
+npc.kalas.herbalist.job.t: I pick herbs in the hills and fields, dry them and sell them. A plant says nothing, but its color and smell tell you everything. If only people were like plants, there'd be nothing to confess.
+npc.kalas.herbalist.truth.t: Truth is like an herb — dried and stored, only the bitterness is left. It heals only when used fresh from the stem.
+npc.kalas.herbalist.archive.t: There's one kind of plant at the foot of the old archive wall. It comes up in the same spot every year, even after the door was shut. People may forget, but plants seem not to.
+npc.kalas.bellringer.name: Bell-Ringer
+npc.kalas.bellringer.greet: Oh, did you hear it? I haven't rung yet today. …Still, there are days when your ears ring on their own.
+npc.kalas.bellringer.name.t: I'm just the bell-ringer. A bell doesn't ask for names. You strike it and it sounds, that's all.
+npc.kalas.bellringer.job.t: Three times a day, at confession hours, I ring the bell. When it sounds, people open their mouths; when it stops, they close them. I suppose I open and shut the village's mouth.
+npc.kalas.bellringer.lantern.t: I didn't ring the bell that night. The moon was too bright. …But in the dead of night I heard glass break. It was clearer than the bell.
+npc.kalas.bellringer.song.t: They say the first note of the lantern song was taken from the bell. So when the song starts, my hand goes to the rope on its own. At the empty name, even the bell stays still.
+npc.kalas.aspirant.name: Would-Be Pilgrim
+npc.kalas.aspirant.greet: Are you a pilgrim? You came past the standing stones, didn't you? I'm going to visit all eight villages!
+npc.kalas.aspirant.name.t: If I say my name it might go in the ledger… no, I'm joking. But maybe it really is better not to.
+npc.kalas.aspirant.job.t: I don't do anything yet. Pilgrimage is the job. I want to walk the way the pilgrim walked three hundred years ago.
+npc.kalas.aspirant.pilgrim.t: They say the pilgrim taught by deeds rather than words, and that's the hardest part for me. I always ask before I act. …How was it for you?
+npc.kalas.aspirant.truth.t: I came looking for truth, but in Kalas everyone writes the truth down first and then begins. How do you look for a truth that is already written?
+npc.kalas.neighbor.name: Nia's Old Neighbor
+npc.kalas.neighbor.greet: Goodness, a new face. Do you have business at Nia's house? There's no one there now.
+npc.kalas.neighbor.name.t: Just call me the old neighbor. I've lived next door since Nia was little, so that's older than my name.
+npc.kalas.neighbor.job.t: All my life I've done laundry and shelled beans in this alley. In between, Nia went from child to woman and Tobi was born. I raised those two as good as with my own hands.
+npc.kalas.neighbor.nia.t: Even as a child she couldn't lie. Even when her mother told her to say she was sick, her face spoke first. …That such a girl confessed — how did that mouth ever say it?
+npc.kalas.neighbor.ledger.t: They say my old man's name was in the ledger too. I only found out after he died. I never saw what sin it was. The ledger doesn't seem to erase even a dead man's name.
+npc.kalas.clerk.name: Office Clerk
+npc.kalas.clerk.greet: Ah, um… if you have business with the chief, he's over there. I'm only someone who copies things down.
+npc.kalas.clerk.name.t: I'm a clerk. A clerk doesn't write a name, he writes a line. I am line forty-one.
+npc.kalas.clerk.job.t: At night I copy over the ledgers written by day. One wrong letter and I start again from the top. So I'm confident about letters. About the people behind them… I'm not.
+npc.kalas.clerk.ledger.t: Copying last night I saw something odd. The writing on the square lantern entry differed from what I'd seen by day. My eyes must have been wrong. I decided to think so.
+npc.kalas.clerk.lantern.t: The morning after, the chief came in wearing gloves. He said he'd hurt his hand. …It wasn't mine to record, so I didn't write it down.
 
 # --- Clue labels and hints ---
 word.pilgrim.label: Pilgrim

@@ -14,7 +14,7 @@ for n in npcs:
     for key, entries in n.get("topics", {}).items():
         for e in entries:
             tag = ("⚠거짓 " if e.get("lie") else "") + (f"→단서 {', '.join(lab(g) for g in e['grants'])} " if e.get("grants") else "") + (f"(조건: {', '.join(lab(r) for r in e['requires'])}) " if e.get("requires") else "")
-            print(f"- **[{lab(key) if key not in ('name','job') else {'name':'이름','job':'하는 일'}[key]}]** {tag}\n  {ko[e['text']]}")
+            print(f"- **[{lab(key) if key not in ('name','job') else {'name':'이름','job':'하는 일'}[key]}]** {tag}".rstrip() + f"\n  {ko[e['text']]}")
             for c in e.get("choice", []):
                 print(f"  - 선택 「{ko[c['label']]}」 → {ko[c['text']]}")
     if n.get("companion"): print("- (동료로 합류할 수 있음)")

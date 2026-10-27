@@ -19,6 +19,12 @@ npc.field.hunter.name.t: 이름이라…… 부른다고 와 주는 것도 없�
 npc.field.hunter.job.t: 나는 들판의 늑대들 곁에서 사는 사람이야. 처음엔 화살을 겨눴지. 그런데 알고 보니 저놈들은 굶주렸을 뿐, 악한 게 아니었어.
 npc.field.hunter.wolf.t: 제일 마른 암늑대가 하나 있어. 새끼한테 먹이느라 제 몫은 입에도 안 대. 그런 놈한테 화살을 겨눌 수 있겠어? 겁먹은 짐승은 이쪽이 먼저 숨을 죽이면, 저쪽도 숨을 돌려.
 npc.field.hunter.confession.t: 고백? 나는 칼라스 성문을 안 넘은 지 오래야. 거기선 숨만 쉬어도 고백할 게 생기거든. 여기선 늑대가 내 고백을 들어 줘. 대답은 안 하지만.
+npc.field.peddler.name: 들판 행상인
+npc.field.peddler.greet: 어이, 길손! 성문 가기 전에 마음의 짐 좀 덜고 가. 짐 대신 들어 줄 건 못 되고, 사탕은 있지.
+npc.field.peddler.name.t: 이름은 팔았어. 칼라스에선 이름이 잘 팔리거든. ……농담이야. 행상인이라 해.
+npc.field.peddler.job.t: 마을에서 마을로 소문 말고 물건을 날라. 소문은 무겁고 물건은 가볍거든. 어느 마을이든 성문 앞에서 똑같이 물어. 이름이 아니라, 고백할 게 있느냐고.
+npc.field.peddler.confession.t: 칼라스 사람들은 서로의 고백을 사고팔아. 진짜로 돈을 주고받는 건 아니야. 하지만 값이 매겨지는 건 분명해. 나쁜 고백일수록 비싸게 치더라.
+npc.field.peddler.ledger.t: 장부 종이 대느라 이 마을이 산 하나를 다 벗겨 먹는다는 소문도 있어. 나는 종이를 팔지는 않지만, 산 사람은 알겠지.
 
 npc.kalas.confessor.name: 성문 고백관
 npc.kalas.confessor.greet: 성문을 나서기 전에, 한 가지 먼저 묻겠네. 그대는 오늘 무슨 죄를 지었나?
@@ -114,6 +120,60 @@ npc.kalas.librarian.job.t: 내 일은 아이들을 가르치고 기록을 지키
 npc.kalas.librarian.archive.t: 이곳은 옛 서고에 남은 방일세. 위쪽 서가는 고발청이 봉인했고, 열쇠는 오래전에 사라졌네. 벽을 뚫고 들어온 건 도굴꾼뿐이었지. 책을 훔치러 온 자들과 책을 숨기려는 자들, 어느 쪽이 서고를 더 해쳤는지는 모르겠네.
 npc.kalas.librarian.truth.t: 진실은 장부에 적히는 게 아니라 책에서 읽히는 것이라고 나는 믿어 왔네. 적는 사람은 하나지만 읽는 사람은 여럿이고, 그래서 읽히는 쪽이 덜 외롭지.
 npc.kalas.librarian.ledger.t: 장부는 한 사람이 다른 사람을 적는 책이고, 서고의 책은 사람이 사람에게 남기는 책일세. 둘 다 종이지만 쓰이는 방향이 정반대지.
+npc.kalas.jailer.name: 구금실 간수
+npc.kalas.jailer.greet: 면회는 안 됩니다. ……규정입니다. 저도 아쉽습니다만.
+npc.kalas.jailer.name.t: 간수입니다. 이름은 장부에 있습니다. 여기서는 그게 이름입니다.
+npc.kalas.jailer.job.t: 구금실을 지킵니다. 갇힌 사람이 달아날까 봐서가 아니라, 밖에서 누가 들어올까 봐서요. 고백하려는 사람은 늘 안으로 들어오고 싶어 하거든요.
+npc.kalas.jailer.nia.t: 필경사 님은 하루 종일 한 번도 소란을 피우지 않으십니다. 다만 밤마다 손가락으로 허공에 글자를 쓰십니다. 종이를 드리고 싶지만, 규정에 없는 일이라서요.
+npc.kalas.jailer.trial.t: 재판 날이 되면 저는 두 가지를 데리고 나갑니다. 필경사 님과, 이 구금실의 열쇠를요. 열쇠가 이렇게 무겁게 느껴지는 건 처음입니다.
+npc.kalas.baker.name: 제빵사
+npc.kalas.baker.greet: 갓 구웠어. 식기 전에 와. 빵은 값을 받아, 관례는 지붕까지만이거든.
+npc.kalas.baker.name.t: 빵집 아줌마라고 불러. 이름은 장부에서나 쓰는 거지.
+npc.kalas.baker.job.t: 새벽 세 시부터 반죽을 쳐. 빵은 속이길 못해. 덜 구우면 속이 설고, 태우면 겉이 까매져. 사람도 이랬으면 좋겠는데.
+npc.kalas.baker.tobi.t: 토비 걔는 빵 한 쪽을 꼭 접어서 누나 몫으로 챙겨 가. 그 애한테는 값 안 받아. 장부에도 안 적어.
+npc.kalas.baker.silence.t: 조용한 애들이 제일 많이 먹어. 말 대신 입에 뭘 넣어 두는 거지. 니아가 그랬어. ……요즘은 빵집 앞을 그냥 지나가기만 해.
+npc.kalas.patrol-a.name: 젊은 순찰 경비
+npc.kalas.patrol-a.greet: 정지! ……아, 아니, 거기 서 주십시오. 고백 순찰 중입니다. 혹시 고백하실 것이 있으십니까?
+npc.kalas.patrol-a.name.t: 순찰 3년 차입니다. 이름은…… 아직 장부에 한 줄밖에 없습니다.
+npc.kalas.patrol-a.job.t: 광장과 골목을 돌며 고백하지 않은 사람이 없는지 봅니다. 없으면 제 순찰은 성공이고, 있으면…… 그것도 성공이라고 배웠습니다. 이상하지요.
+npc.kalas.patrol-a.confession.t: 고백을 마친 분께는 이 완장을 보여 드립니다. 보이시지요? 이게 있으면 오늘은 안전합니다. 내일 다시 받아야 하지만요.
+npc.kalas.patrol-a.lantern.t: 그날 밤은 제 순번이 아니었습니다. 원래 제가 광장을 돌 차례였는데, 관장님이 대신 서 주겠다고 하셨습니다. 이상하게 친절하셔서 기억에 남습니다.
+npc.kalas.patrol-b.name: 늙은 순찰 경비
+npc.kalas.patrol-b.greet: 이봐, 거기. 걷는 걸 보니 고백할 게 많은 걸음이로군. 농담이야. 반쯤은.
+npc.kalas.patrol-b.name.t: 이름? 순찰 이십 년 차. 이름은 그동안 닳아 없어졌어.
+npc.kalas.patrol-b.job.t: 밤을 지키는 일이야. 처음엔 도둑을 막으려고 시작했지. 지금은 말 새는 걸 막는 일이 됐네. 도둑보다 말이 더 많이 새거든.
+npc.kalas.patrol-b.ledger.t: 내 이름도 장부에 열두 번 올랐어. 전부 사소한 거야. 신발을 짝짝이로 신었다든가. 그래도 열두 줄이면 열두 번 의심받은 사람이 되지.
+npc.kalas.patrol-b.truth.t: 진실은 순찰로 막을 수 없어. 담을 넘어 들어오고 창문으로 새어 나가지. 나는 그걸 못 본 척하는 게 일이었고.
+npc.kalas.herbalist.name: 약초 장수
+npc.kalas.herbalist.greet: 어서 와, 어서 와! 기침엔 별꽃, 불면엔 쑥, 마음엔…… 마음엔 약이 없어.
+npc.kalas.herbalist.name.t: 이름? 약초 이름은 백 개를 외우는데 내 이름은 가끔 까먹어. 그냥 약초 장수라 불러.
+npc.kalas.herbalist.job.t: 산과 들판에서 풀을 뜯어다 말려 팔지. 풀은 말은 안 해도 색과 냄새로 다 알려 줘. 사람이 풀만 같아도 고백할 일이 없을 텐데.
+npc.kalas.herbalist.truth.t: 진실도 약초 같아서, 말려 두면 쓴맛만 남아. 갓 딴 걸 바로 써야 약이 되는 법이야.
+npc.kalas.herbalist.archive.t: 옛 서고 담벼락 밑에 풀이 한 종류 있어. 서고 문이 닫힌 뒤로도 해마다 같은 자리에 나지. 사람은 잊어도 풀은 안 잊나 봐.
+npc.kalas.bellringer.name: 종지기
+npc.kalas.bellringer.greet: 아, 소리가 들리셨어요? 오늘은 아직 안 쳤는데. ……그래도 귀가 울리는 날이 있죠.
+npc.kalas.bellringer.name.t: 그냥 종지기예요. 종은 이름을 안 물어봐요. 치면 소리가 나는 것뿐이에요.
+npc.kalas.bellringer.job.t: 하루 세 번, 고백 시간에 종을 쳐요. 종소리가 나면 사람들이 입을 열고, 멈추면 입을 닫아요. 제가 마을의 입을 여닫는 셈이죠.
+npc.kalas.bellringer.lantern.t: 그날 밤엔 종을 안 쳤어요. 달이 너무 밝아서요. ……그런데 한밤중에 유리 깨지는 소리가 들렸어요. 종소리보다 맑았어요.
+npc.kalas.bellringer.song.t: 등불 노래의 첫 음은 종소리에서 따왔대요. 그래서 노래가 시작되면 저도 모르게 종줄을 만져요. 빈 이름 자리에서는 종도 가만히 있고요.
+npc.kalas.aspirant.name: 순례 지망생
+npc.kalas.aspirant.greet: 혹시 순례자세요? 열석을 지나 오셨죠? 저, 여덟 마을을 다 돌 거예요!
+npc.kalas.aspirant.name.t: 이름 말하면 장부에 올라갈까 봐…… 아니, 농담이에요. 근데 정말 안 말하는 게 좋을지도요.
+npc.kalas.aspirant.job.t: 아직 아무 일도 안 해요. 순례가 일이에요. 삼백 년 전 순례자가 어떻게 걸었는지, 그 걸음을 따라가 보려고요.
+npc.kalas.aspirant.pilgrim.t: 순례자는 말보다 행동으로 가르쳤다던데, 그게 제일 어려워요. 저는 행동하기 전에 먼저 물어봐 버리거든요. ……당신은 어땠어요?
+npc.kalas.aspirant.truth.t: 진실을 찾으러 왔는데, 칼라스에서는 다들 진실을 먼저 적어 두고 시작하더라고요. 이미 적힌 진실을 어떻게 찾아요?
+npc.kalas.neighbor.name: 니아네 이웃 할머니
+npc.kalas.neighbor.greet: 아이고, 낯선 얼굴이네. 니아네 집에 볼일이 있어요? 지금은 비었는데.
+npc.kalas.neighbor.name.t: 그냥 이웃 할멈이라고 해요. 니아 어릴 때부터 옆집이었으니, 이름보다 그게 더 길어요.
+npc.kalas.neighbor.job.t: 평생 이 골목에서 빨래하고 콩 까고 살았죠. 그 사이 니아가 아이였다가 어른이 되고, 토비가 태어났어요. 그 둘은 제 손으로 키운 거나 다름없어요.
+npc.kalas.neighbor.nia.t: 그 애는 어릴 때도 거짓말을 못 했어요. 엄마가 아프다고 거짓말하라고 시켜도 얼굴이 먼저 말했죠. ……그런 애가 자백을 했다니, 그 입이 어떻게 그런 말을 했을까.
+npc.kalas.neighbor.ledger.t: 장부에 우리 영감 이름도 있었대요. 죽고 나서야 알았죠. 무슨 죄인지는 끝내 못 봤고. 장부는 죽은 사람 이름도 안 지워 주나 봐요.
+npc.kalas.clerk.name: 고발청 서기
+npc.kalas.clerk.greet: 아, 저…… 관장님께 용건이시면 저쪽입니다. 저는 그냥 옮겨 적는 사람입니다.
+npc.kalas.clerk.name.t: 서기입니다. 서기는 이름을 쓰지 않고 줄을 씁니다. 저는 사십일 번째 줄입니다.
+npc.kalas.clerk.job.t: 낮에 쓰인 장부를 밤에 한 번 더 옮겨 적습니다. 틀린 글자가 하나라도 있으면 처음부터 다시요. 그래서 글자에는 자신이 있습니다. 글자 뒤의 사람은…… 자신이 없지만요.
+npc.kalas.clerk.ledger.t: 어젯밤 옮겨 적다가 이상한 걸 봤습니다. 광장 등불 건에 적힌 글씨가 낮에 본 것과 달랐습니다. 제 눈이 틀렸을 겁니다. 그렇게 생각하기로 했습니다.
+npc.kalas.clerk.lantern.t: 관장님은 그 다음 날 아침 장갑을 끼고 오셨습니다. 손에 상처가 나셨다고요. ……제가 기록할 일은 아니라서 적지 않았습니다.
 
 # --- 단서 라벨과 힌트 ---
 word.pilgrim.label: 순례자
