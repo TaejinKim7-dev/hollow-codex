@@ -26,6 +26,12 @@
     word.truth:
       - text: spirituality.npc.monk.truth.t
         lie: true
+    fact.elia.hermit:
+      - text: spirituality.npc.monk.hermit.t
+    fact.elia.novice:
+      - text: spirituality.npc.monk.novice.t
+    word.breath:
+      - text: spirituality.npc.monk.breath.t
 - id: npc.spirituality.novice
   map: map.town.spirituality
   pos: [8, 9]
@@ -50,6 +56,10 @@
         grants: [fact.elia.meditation-hall]
     fact.elia.silent-chant:
       - text: spirituality.npc.novice.silent-chant.t
+    fact.elia.monk:
+      - text: spirituality.npc.novice.monk.t
+    fact.elia.widow:
+      - text: spirituality.npc.novice.widow.t
 - id: npc.spirituality.scribe
   map: map.town.spirituality
   pos: [18, 4]
@@ -75,6 +85,12 @@
     fact.elia.library:
       - text: spirituality.npc.scribe.library.t
         grants: [fact.elia.library]
+    fact.elia.hermit:
+      - text: spirituality.npc.scribe.hermit.t
+    fact.elia.monk:
+      - text: spirituality.npc.scribe.monk.t
+    word.pilgrim:
+      - text: spirituality.npc.scribe.pilgrim.t
 - id: npc.spirituality.healer
   map: map.town.spirituality
   pos: [4, 3]
@@ -101,6 +117,10 @@
     word.courage:
       - text: spirituality.npc.healer.courage.t
         grants: [word.courage]
+    fact.elia.widow:
+      - text: spirituality.npc.healer.widow.t
+    word.ritual:
+      - text: spirituality.npc.healer.ritual.t
 - id: npc.spirituality.hermit
   map: map.town.spirituality
   pos: [23, 3]
@@ -130,6 +150,10 @@
     word.courage:
       - text: spirituality.npc.hermit.courage.t
         grants: [word.courage]
+    fact.elia.monk:
+      - text: spirituality.npc.hermit.monk.t
+    word.breath:
+      - text: spirituality.npc.hermit.breath.t
 - id: npc.spirituality.gardener
   map: map.town.spirituality
   pos: [14, 10]
@@ -155,6 +179,10 @@
         grants: [word.love]
     fact.elia.courtyard:
       - text: spirituality.npc.gardener.courtyard.t
+    fact.elia.hermit:
+      - text: spirituality.npc.gardener.hermit.t
+    word.prayer:
+      - text: spirituality.npc.gardener.prayer.t
 - id: npc.spirituality.child
   map: map.town.spirituality
   pos: [12, 12]
@@ -176,6 +204,10 @@
       - text: spirituality.npc.child.silent-chant.t
     word.prayer:
       - text: spirituality.npc.child.prayer.t
+    fact.elia.hermit:
+      - text: spirituality.npc.child.hermit.t
+    fact.elia.monk:
+      - text: spirituality.npc.child.monk.t
 - id: npc.spirituality.brewer
   map: map.town.spirituality
   pos: [21, 15]
@@ -199,6 +231,10 @@
     word.ritual:
       - text: spirituality.npc.brewer.ritual.t
         grants: [word.ritual]
+    fact.elia.monk:
+      - text: spirituality.npc.brewer.monk.t
+    fact.elia.novice:
+      - text: spirituality.npc.brewer.novice.t
 - id: npc.spirituality.gatekeeper
   map: map.town.spirituality
   pos: [2, 2]
@@ -221,6 +257,10 @@
         grants: [fact.creature.spirituality-fake-monk]
     fact.elia.courtyard:
       - text: spirituality.npc.gatekeeper.courtyard.t
+    fact.elia.monk:
+      - text: spirituality.npc.gatekeeper.monk.t
+    fact.elia.novice:
+      - text: spirituality.npc.gatekeeper.novice.t
 - id: npc.spirituality.widow
   map: map.town.spirituality
   pos: [23, 10]
@@ -247,3 +287,107 @@
     word.courage:
       - text: spirituality.npc.widow.courage.t
         grants: [word.courage]
+    fact.elia.healer:
+      - text: spirituality.npc.widow.healer.t
+    fact.elia.monk:
+      - text: spirituality.npc.widow.monk.t
+- id: npc.spirituality.cook
+  map: map.town.spirituality
+  pos: [18, 14]
+  schedule:
+    "0": [18, 14]
+    "6": [18, 14]
+    "12": [18, 14]
+    "18": [18, 14]
+  name: spirituality.npc.cook.name
+  greet: spirituality.npc.cook.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: spirituality.npc.cook.name.t
+    job:
+      - text: spirituality.npc.cook.job.t
+    fact.elia.monk:
+      - text: spirituality.npc.cook.monk.t
+    fact.elia.novice:
+      - text: spirituality.npc.cook.novice.t
+- id: npc.spirituality.incense
+  map: map.town.spirituality
+  pos: [5, 8]
+  schedule:
+    "0": [5, 8]
+    "6": [5, 8]
+    "12": [5, 8]
+    "18": [6, 5]
+  name: spirituality.npc.incense.name
+  greet: spirituality.npc.incense.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: spirituality.npc.incense.name.t
+    job:
+      - text: spirituality.npc.incense.job.t
+    fact.elia.monk:
+      - text: spirituality.npc.incense.monk.t
+    word.ritual:
+      - text: spirituality.npc.incense.ritual.t
+- id: npc.spirituality.clock
+  map: map.town.spirituality
+  pos: [12, 4]
+  schedule:
+    "0": [12, 4]
+    "6": [12, 4]
+    "12": [12, 4]
+    "18": [12, 4]
+  name: spirituality.npc.clock.name
+  greet: spirituality.npc.clock.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: spirituality.npc.clock.name.t
+    job:
+      - text: spirituality.npc.clock.job.t
+    word.breath:
+      - text: spirituality.npc.clock.breath.t
+    word.prayer:
+      - text: spirituality.npc.clock.prayer.t
+- id: npc.spirituality.carver
+  map: map.town.spirituality
+  pos: [5, 14]
+  schedule:
+    "0": [5, 14]
+    "6": [5, 14]
+    "12": [5, 14]
+    "18": [5, 14]
+  name: spirituality.npc.carver.name
+  greet: spirituality.npc.carver.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: spirituality.npc.carver.name.t
+    job:
+      - text: spirituality.npc.carver.job.t
+    fact.elia.hermit:
+      - text: spirituality.npc.carver.hermit.t
+    word.ritual:
+      - text: spirituality.npc.carver.ritual.t
+- id: npc.spirituality.licensee
+  map: map.town.spirituality
+  pos: [18, 11]
+  schedule:
+    "0": [18, 11]
+    "6": [18, 11]
+    "12": [18, 11]
+    "18": [18, 11]
+  name: spirituality.npc.licensee.name
+  greet: spirituality.npc.licensee.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: spirituality.npc.licensee.name.t
+    job:
+      - text: spirituality.npc.licensee.job.t
+    fact.elia.courtyard:
+      - text: spirituality.npc.licensee.courtyard.t
+    word.ritual:
+      - text: spirituality.npc.licensee.ritual.t

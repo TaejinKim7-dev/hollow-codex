@@ -1242,83 +1242,135 @@ town.elia.name: Elia
 spirituality.music.title: Elia's Breath
 
 spirituality.npc.monk.name: Abbot Daru
-spirituality.npc.monk.greet: A stranger seeking Elia? Do you wish to meditate? Then show me a license first. Meditation is not free.
-spirituality.npc.monk.name.t: I am the abbot of this meditation hall, Daru. In this village, a license number is remembered longer than a name.
-spirituality.npc.monk.job.t: My work is keeping the order of the mind. Meditation is not for everyone. Only the qualified enter the hall, and the qualification is proven by a license. If you are caught meditating without one, it is apostasy.
-spirituality.npc.monk.ritual.t: Ritual is form. And form must hold firm. Dawn prayers, afternoon sutras, evening incense. If this order wavers, the mind wavers too. So I cannot give a license to one who breaks procedure, however upright the mind.
-spirituality.npc.monk.prayer.t: Only license holders may pray. The first stage is the borrowed prayer, the next is the shared prayer, and the last is the solitary prayer. Each stage requires a license, and I sign them all.
+spirituality.npc.monk.greet: A stranger come to Elia? If you wish to meditate, show me your license first. Stillness is not given for nothing.
+spirituality.npc.monk.name.t: Daru. I have kept this hall for twenty-six years. I am the first to open its door at dawn and the last to close it at night.
+spirituality.npc.monk.job.t: I keep the order of the mind. Only those who know the procedure may sit in the meditation room, and the license is the proof. To sit without one is apostasy.
+spirituality.npc.monk.ritual.t: Ritual is form. Dawn prayers, afternoon sutras, evening incense — one who knows the order also knows where the breath must stop. I have seen what becomes of one who sits alone without knowing it.
+spirituality.npc.monk.prayer.t: Prayer has stages. The prayer you repeat, the prayer you share, the prayer you make alone. Each stage has its own license, and I sign every one.
 spirituality.npc.monk.silent-chant.t: A sacred song? I have heard of none. There is no such song in the meditation hall. If there is a song passing from mouth to mouth, it was invented by those without licenses.
-spirituality.npc.monk.truth.t: Truth? Hmph. What place has truth in meditation? Only procedure matters. Keep the procedure, and anyone can become holy. Do not seek truth. One who seeks truth loses their license.
+spirituality.npc.monk.truth.t: Truth? What the hall needs is not truth but procedure. Keep the procedure and anyone becomes holy. One who wanders after truth loses his own breath first.
+spirituality.npc.monk.hermit.t: Pella. …He was the one who first taught me to count my breath. His name is no longer in the ledger. Let that be enough.
+spirituality.npc.monk.novice.t: A boy who has scrubbed floors for three years. First he must learn not to hurry. I once carried a boy out of that room at dawn, one whose heart ran ahead of him and who sat alone.
+spirituality.npc.monk.breath.t: Even breath has an end. I cannot let anyone into that room who does not know where it is.
 
 spirituality.npc.novice.name: Ian the Novice
 spirituality.npc.novice.greet: Oh, did you come to take the license exam? I'm about to take mine soon too.
-spirituality.npc.novice.name.t: They call me Ian. I've been a novice monk for three years. Once I receive a license, I can finally step properly into the meditation hall.
-spirituality.npc.novice.job.t: Every morning I scrub the meditation hall floor. I can't meditate yet, but I can scrub beneath the feet of those who do. The abbot calls this work mercy too. I still don't know if it is mercy or license.
+spirituality.npc.novice.name.t: My name is Ian. I've been a novice for three years. Once I get my license, I can finally sit in the inner meditation room.
+spirituality.npc.novice.job.t: Every morning I scrub the floor of the hall's front room. I can't go into the meditation room yet, but I can scrub where the sitters' feet go. The abbot calls this practice too, though I still can't tell if it's practice or a test.
 spirituality.npc.novice.prayer.t: They say prayer can be learned only after receiving a license. But I have heard the hermit's song. It is a sound without a license, and strangely it felt most like prayer of all.
-spirituality.npc.novice.meditation-hall.t: The hall door is always locked. Show a license and it opens; without one, you stand before the door. I have stood before it for three years.
-spirituality.npc.novice.silent-chant.t: That song… I've heard it in secret too. The breath-like song the old hermit breathes out in the back garden. It would be trouble if the abbot heard of it. But after hearing it, the mind empties. The fear along with it.
+spirituality.npc.novice.meditation-hall.t: The door to the inner meditation room is always locked. Show a license and it opens; without one, you stand outside it. I've stood outside it for three years.
+spirituality.npc.novice.silent-chant.t: That song… I've heard it in secret too. The old hermit breathes it out under the wall behind the archive. It'd be trouble if the abbot heard, but after listening my mind empties out. Even the fear.
+spirituality.npc.novice.monk.t: Every dawn the abbot is the first to open the meditation room. It's empty, but he still goes seat by seat, touching each one, before he comes out.
+spirituality.npc.novice.widow.t: While I scrub the floor, Ire sits across the courtyard. She says she counts her breath to the sound of my mopping.
 
 spirituality.npc.scribe.name: Seon, the License Clerk
-spirituality.npc.scribe.greet: The license issuance records. Applications on Mondays, renewals at the start of each season. Meditation is by appointment.
+spirituality.npc.scribe.greet: License records. Applications on the first of the month, renewals each season. Seats in the meditation room go in the order of the ledger.
 spirituality.npc.scribe.name.t: They call me Seon. A clerk who issues and records licenses in the meditation hall's archive.
-spirituality.npc.scribe.job.t: This archive holds three hundred years of license records. Names, signatures, renewal dates. Everyone who meditates is written in this ledger. One who meditates outside the ledger — that is spirituality outside the book.
+spirituality.npc.scribe.job.t: This archive holds three hundred years of ledgers. For two hundred and ninety-seven years they recorded who sat and what they prayed; these last three years, license numbers and renewal dates. Meditation by anyone not in the ledger is spirituality outside the book.
 spirituality.npc.scribe.ritual.t: Ritual must be as exact as a ledger. If procedure goes awry, the license is withdrawn; when the license is withdrawn, meditation is prohibited. I am the one who records those withdrawals.
-spirituality.npc.scribe.prayer.t: In the old license records, the word 'prayer' appears from the first page. In the new records, the word 'license' appears from the first page. The same ledger, the words turned around.
-spirituality.npc.scribe.library.t: This archive is like the heart of the meditation hall. Three hundred years ago, a pilgrim left a sutra on this very spot. Now that sutra lies buried under the license ledgers.
+spirituality.npc.scribe.prayer.t: Open any page of the old ledgers and it begins with the word 'prayer.' The new ones begin with 'license.' The same shelf, the same paper — only the first word has changed.
+spirituality.npc.scribe.library.t: This archive is the heart of the hall. The oldest ledgers have worn so thin that, held to a lamp, three hundred years of names show through at once.
+spirituality.npc.scribe.hermit.t: There is no such name in the ledger. …Nor does the ledger mention that the archive's lamp oil runs a little lower each month.
+spirituality.npc.scribe.monk.t: Every night the abbot runs a finger down that day's ledger, checking that every name that went in has a time written beside it for coming out. Not one missed.
+spirituality.npc.scribe.pilgrim.t: The first line of the very first ledger has no name. A pilgrim, sat from sunrise to sunset, then left. Nothing more is written.
 
 spirituality.npc.healer.name: Rua the Healer
-spirituality.npc.healer.greet: The breath first, the credentials after. There is no law of asking the sick for a license.
-spirituality.npc.healer.name.t: They call me Rua. A healer who cares for the sick of this village. Because I teach how to rule the breath outside the hall, I have no license.
+spirituality.npc.healer.greet: Breath first, credentials after. No one asks the sick for a license.
+spirituality.npc.healer.name.t: I'm Rua. I look after the sick of this village. I borrow a corner of the hall's front room to lay them down, but I hold no license.
 spirituality.npc.healer.job.t: The sick do not hold out licenses. The one who cannot breathe, the one afflicted by sleeplessness, the one whose chest is tight. I listen to their breath first. That is my prayer.
 spirituality.npc.healer.breath.t: Breath needs no license. Breathe in, breathe out — that alone empties the mind. If you hold your breath waiting for a license, the mind only tightens more.
-spirituality.npc.healer.breath-song.t: I used to teach the children a breath song at the sick one's bedside. 'The breath lives, the trembling rests.' Now, they say, singing in the hall gets your license withdrawn. This village licenses even its songs.
-spirituality.npc.healer.courage.t: Courage is not presenting a license. Courage is taking the sick one's hand and singing one verse of a forbidden song. I want to summon that courage someday.
+spirituality.npc.healer.breath-song.t: I used to sing the breath song with the children at the bedsides of the sick. 'The breath lives, the trembling rests.' Now they say singing it in the hall gets your license taken away.
+spirituality.npc.healer.courage.t: Courage is not holding out a license. It's taking a sick person's hand and singing one line of a forbidden song. Someday I'll sing that line too.
+spirituality.npc.healer.widow.t: I was the one who listened to Ire's husband's breath to the very end last winter. He counted three and breathed out, right to the last. Ire is still counting those threes.
+spirituality.npc.healer.ritual.t: Ritual was probably medicine once. But even medicine turns to poison past the right dose.
 
 spirituality.npc.hermit.name: Pella the Hermit
-spirituality.npc.hermit.greet: …Shh. I am a person without a name. I erased it myself, so I would not be written into the license ledger. Even so, to one who comes speaking, I owe a quiet answer.
-spirituality.npc.hermit.name.t: Pella. Once I was a monk of this hall. There was a time I prayed with song instead of license. Now I live in the archive's shadow, my name erased.
-spirituality.npc.hermit.job.t: I meditate. Without a license, without dawn prayers, without ritual. I only count my breath and sing. Here in the archive's depths, where no one knows.
-spirituality.npc.hermit.spirit.t: Spirit is not a matter of tomorrow. When it is still, when the breath grows shallow, it comes to rest in the mind without your knowing. The license was a seat for that spirit. But somewhere along the way only the seat remained, and the spirit was driven out.
-spirituality.npc.hermit.silent-chant.t: You are listening. This song I do not let out of the mouth. Song is not sung by imitating — it is sung by being sung. One who can truly sing, sings without sound. Truth, love, and courage too vanish when sung aloud. They only come alive when they breathe together in the heart.
-spirituality.npc.hermit.truth.t: Truth. I am reluctant now even to let that word out of my mouth. One who speaks truth has their license withdrawn and is forced into silence. But truth cannot be withdrawn with a license. The license lives on paper; the truth lives in the breath.
-spirituality.npc.hermit.courage.t: Courage. The scarcest thing in this village. Meditating after throwing away the license, in an age when meditation requires one — that is the only courage I know.
+spirituality.npc.hermit.greet: …Shh. I struck my own name from the ledger with my own hand. Still, to one who speaks to me, I owe a quiet answer.
+spirituality.npc.hermit.name.t: Pella. I was a monk of this hall once. There was a time we prayed with song, not with licenses. Now I live nameless in the archive's shadow.
+spirituality.npc.hermit.job.t: I meditate. No license, no dawn prayers — I count my breath and sing the soundless song. There is a truth you can only hear when you make no sound.
+spirituality.npc.hermit.spirit.t: Spirit is not something you catch. When the breath grows thin, it comes and sits in the heart before you know it. The license was a ticket to hold that seat, but somewhere along the way only the ticket remained and the spirit was driven out.
+spirituality.npc.hermit.silent-chant.t: You're listening. This song never leaves the mouth. Truth, love, courage — shout them and they scatter; they live only when they breathe together in the heart.
+spirituality.npc.hermit.truth.t: Truth. I'm wary now of even saying the word. The license lives on paper, but truth lives in the breath — and no one breathes alone.
+spirituality.npc.hermit.courage.t: Courage. The thing this village lacks most. To set the license down and sit anyway, in a time when you can't sit without one — that's the only courage I know.
+spirituality.npc.hermit.monk.t: Daru is like a younger brother to me. I was the first to teach him to count his breath. He made that ledger because he couldn't bear to lose anyone. He only chose the wrong way to keep them.
+spirituality.npc.hermit.breath.t: Three is all breath needs. In, hold, out. In between, the heart finds a place to sit.
 
 spirituality.npc.gardener.name: Hore the Gardener
-spirituality.npc.gardener.greet: The garden needs no license. Bury a seed, and it grows without one.
-spirituality.npc.gardener.name.t: They call me Hore. A gardener who tends the herbs and flowers in the garden behind the hall. While the monks empty their minds, I empty the mind of the earth.
-spirituality.npc.gardener.job.t: This garden is older than the meditation hall. It is where the pilgrim planted herbs and left them. The breath that mends wounds, the worry worn into furrows — the plants that cure such things. Licenses do not grow here.
-spirituality.npc.gardener.breath.t: The breath is like a garden. Tended, it deepens; left alone, it dries up. In spring I level my breath with the hoe. That is my only ritual.
-spirituality.npc.gardener.love.t: Love is the garden's water. No one waters a license number. We water people, we water flowers, and sometimes we water a strange traveler too.
-spirituality.npc.gardener.courtyard.t: This courtyard runs all the way to the hall's door. Those coming to buy licenses, those who lost theirs — they pass along this path. The grass looks on them all alike.
+spirituality.npc.gardener.greet: The courtyard needs no license. Bury a seed, and it grows without one.
+spirituality.npc.gardener.name.t: Hore, they call me. I tend the herbs and flowers in the hall's courtyard. While the monks empty their minds, I loosen the soil.
+spirituality.npc.gardener.job.t: This courtyard is older than the hall. It's where the pilgrim planted herbs and moved on. Plants that soothe the short of breath and the sleepless with worry — but licenses don't grow here.
+spirituality.npc.gardener.breath.t: Breath is like a field. Tend it and it deepens; leave it and it dries. I take one breath for each stroke of the hoe. That is my only ritual.
+spirituality.npc.gardener.love.t: Love is the courtyard's water. No one waters a license number. We water people, and flowers, and now and then a passing stranger.
+spirituality.npc.gardener.courtyard.t: This courtyard runs right up to the hall's door. Those going to buy licenses and those coming out having lost them all walk this path. The grass looks on them all alike.
+spirituality.npc.gardener.hermit.t: Pella? He sits under the wall behind the archive every dawn. I know because the grass is flattened in just that one spot.
+spirituality.npc.gardener.prayer.t: Prayer, eh. When I bury a seed, I pat the soil three times. Nobody taught me, but the shoots come up better for it.
 
-spirituality.npc.child.name: Rine the Child
-spirituality.npc.child.greet: Shh, caught me! …No, I'm teasing. I was singing.
-spirituality.npc.child.name.t: I'm Rine! A child who lives in the garden behind the hall. The monks call me 'little noise,' but I grow quietest when I sing.
-spirituality.npc.child.job.t: My job is singing! When Grandfather Hore pulls the garden weeds, I sing the breath song. A song without a license — if the abbot hears, I'll be scolded. But singing it makes my heart flutter light.
-spirituality.npc.child.silent-chant.t: That's my song! The one the hermit breathes out in the back garden — I hide behind a tree and sing along. He says you mustn't make a sound, so I only mouth it silently. But mouthing it really does clear the mind. Isn't that strange?
-spirituality.npc.child.prayer.t: I've never learned to pray. They say you need a license to pray. But to me the breath song feels like prayer, and I don't yet know how to get a license.
+spirituality.npc.child.name: Somi the Child
+spirituality.npc.child.greet: Shh! …Phew, I thought you were a monk. I was in the middle of singing.
+spirituality.npc.child.name.t: I'm Somi! I live in the dormitory with the monks. They call me 'little racket.' But I'm quietest when I sing.
+spirituality.npc.child.job.t: My job is singing! When Grandpa Hore pulls weeds, I sing the soundless song beside him. Just moving my mouth. If the abbot catches me I'll get scolded, but afterward my heart feels light as a feather.
+spirituality.npc.child.silent-chant.t: That's my song! The hermit grandpa sings it under the wall behind the archive, and I hide behind a tree and copy him. He says you mustn't make a sound, so I only move my mouth. But it really clears your head. Strange, right?
+spirituality.npc.child.prayer.t: I've never learned to pray. They say you need a license to pray. But that song feels like praying to me. I still don't know how you get a license.
+spirituality.npc.child.hermit.t: The hermit grandpa only moves his mouth. But when he does, even the birds go quiet. It's true!
+spirituality.npc.child.monk.t: The abbot is scary. But once I dozed off in front of the hall, and when I woke up his robe was over me. It's a secret.
 
-spirituality.npc.brewer.name: Ion the Brewmaster
-spirituality.npc.brewer.greet: Want a cup of tea that never passed the hall? No, just joking. I'm the one who does the least holy work in this village.
-spirituality.npc.brewer.name.t: They call me Ion. A brewmaster who makes barley tea and medicinal wine at the tavern. The monks ask for a license for the tea, but I don't stick licenses on my kettle.
-spirituality.npc.brewer.job.t: My work is boiling water, steeping tea, and listening to the villagers' stories. Those worn out from buying licenses at the hall only catch their breath at my tavern.
-spirituality.npc.brewer.license-rule.t: The license system. It's been three years since the abbot started selling licenses at the hall door. Before that, anyone could enter the hall and sit quietly. Now, a price has been put on that quiet sitting.
+spirituality.npc.brewer.name: Doran the Teahouse Keeper
+spirituality.npc.brewer.greet: Care for a cup of tea blessed by the hall? Only joking. My kettle carries no blessing and no license.
+spirituality.npc.brewer.name.t: Doran, they call me. I serve barley tea and herb wine from a corner of the kitchen. I do the least holy work in this village.
+spirituality.npc.brewer.job.t: Boiling water, steeping tea, listening — that's my work. Until three years ago anyone could cross the courtyard into the hall, sit a while in quiet, and go. Now people worn out by license fees only catch their breath here.
+spirituality.npc.brewer.license-rule.t: The license law. It's been three years since the abbot began selling licenses at the hall door. Before that, anyone could go in and sit quietly. Now that quiet sitting has a price.
 spirituality.npc.brewer.ritual.t: Ritual. At dawn prayers, those without licenses cannot even light incense. But the old records say the pilgrim prayed without incense.
+spirituality.npc.brewer.monk.t: Daru used to drink barley tea in that very seat. Since the winter three years ago he hasn't come by. Says warm drinks make him drowsy at night.
+spirituality.npc.brewer.novice.t: Ian splits firewood here to save up for the exam fee. One coin a bundle. He hasn't saved half yet.
 
 spirituality.npc.gatekeeper.name: Gur the Gatekeeper
-spirituality.npc.gatekeeper.greet: Gatekeeper of the meditation hall. Without a license, you do not pass this door. …Of course, that door is not the only one in the hall.
-spirituality.npc.gatekeeper.name.t: Call me Gur. A gatekeeper who guards the village entrance and the hall's door. There are two gates, and I bar only one with a license.
-spirituality.npc.gatekeeper.job.t: I bar the hall door with a license and leave the village entrance open. But of late a false monk appears at the village gate, seizing people to sell them meditation. Without a license, even. That one is the real danger.
-spirituality.npc.gatekeeper.fake-monk.t: That false monk. In a cowl, rapping a wooden fish, telling people to donate for the grace of meditation. Open your purse, another donation; open it again, and he takes the bow and the name too. He is not in the license ledger. Real monks are evil in license; that one is evil in donations.
-spirituality.npc.gatekeeper.courtyard.t: If it's the hall's courtyard — as gatekeeper I have something to say. Inside the yard it is quiet; outside it has grown noisy. Those who once sat and leveled their breath without a license must now pay and take exams.
+spirituality.npc.gatekeeper.greet: I keep the meditation room's door. Without a license you don't pass it. …Though this village has more than one door, mind you.
+spirituality.npc.gatekeeper.name.t: Call me Gur. Warden of the village gate and the meditation room's door. Two doors, and only one of them barred by license.
+spirituality.npc.gatekeeper.job.t: The meditation room's door I bar by license; the village gate I leave open. But lately a false monk lurks at the southeast corner of the wall, waylaying passersby to sell them meditation. Without a license, even. That one is the real danger.
+spirituality.npc.gatekeeper.fake-monk.t: That false monk? Cowled, rapping a wooden fish, telling people to donate for the grace of meditation. Open your purse once, another donation; twice, and he writes down your name too. The abbot bars people with licenses — that one fleeces them.
+spirituality.npc.gatekeeper.courtyard.t: The hall's courtyard? Inside, it's as quiet as ever; outside, it's grown noisy. People who used to just sit and settle their breath without a license now have to pay and sit an exam.
+spirituality.npc.gatekeeper.monk.t: The abbot and I came to this village the same year. Back then he didn't tell me to guard the door — he told me to keep it open. People change.
+spirituality.npc.gatekeeper.novice.t: Every night the novice comes and grips the meditation room's door handle once before he goes. Knowing full well it's locked. I pretend not to see.
 
 spirituality.npc.widow.name: Ire the Widow
-spirituality.npc.widow.greet: I have no license, so I cannot enter the hall. And so I live counting my husband's breath outside the door.
-spirituality.npc.widow.name.t: They call me Ire. A widow who lives facing the hall door. My husband, trying to get a license, gave it up for me, who prayed beside him.
-spirituality.npc.widow.job.t: What my husband left behind is the breath song. In a village where even calling something prayer requires a license, I count my breath beside him every evening. Because the license is not recorded to the dead.
+spirituality.npc.widow.greet: I have no license, so I can't enter the meditation room. So I sit here where I can see its door across the courtyard, and count my breath the way he taught me.
+spirituality.npc.widow.name.t: I'm Ire. He could have earned his license, but he didn't take the last exam — he didn't want to leave me alone outside the door.
+spirituality.npc.widow.job.t: All he left me is a breath song. Since he passed last winter, I still count breaths for two every evening. His name isn't in the ledger, so someone has to count for him.
 spirituality.npc.widow.breath-song.t: The breath song is a song the women of old sang. 'The breath lives, the trembling rests.' Before the license system, this was the prayer. We meditated with this song.
-spirituality.npc.widow.love.t: Love holds out no license. My husband gave up his license so I would not be left outside meditation. Love lets you breathe deeper than meditation, even without being meditation.
-spirituality.npc.widow.courage.t: Courage… lately I want to sing that breath song aloud before the hall door. Let the license be withdrawn. Because what my husband taught me is that true meditation is becoming free of fear.
+spirituality.npc.widow.love.t: Love holds out no license. When he gave up the exam, it was so I wouldn't be left outside the door alone. Love isn't meditation, but it lets you breathe deeper than meditation does.
+spirituality.npc.widow.courage.t: Courage… lately I want to sing that breath song aloud at the hall door. Let them scold me. He taught me that true meditation is being set free from fear.
+spirituality.npc.widow.healer.t: Rua stayed by him to the end. On the last night the two of them sang the breath song softly. Two people without a license.
+spirituality.npc.widow.monk.t: The abbot came to his funeral. Without a word, he sat beside me in my spot for a long while, then left.
+spirituality.npc.cook.name: Omi the Temple Cook
+spirituality.npc.cook.greet: Sit down if you're hungry. Rice needs no license.
+spirituality.npc.cook.name.t: I'm Omi. I've cooked for the monks in this kitchen for over thirty years. I know who leaves rice in the bowl, and when.
+spirituality.npc.cook.job.t: I cook the dawn rice and the evening porridge, and in between I boil rice water. For three years the abbot has eaten only half his rice. A full stomach makes him drowsy at night, he says.
+spirituality.npc.cook.monk.t: One winter dawn three years ago, the abbot came in carrying a young monk wrapped in his own robe. He sat beside him until the sun was high, and a whole pot of rice water was gone. That spring, license numbers started appearing in the ledger.
+spirituality.npc.cook.novice.t: Ian? That boy has never left a grain. There was another young monk like him once, who sat alone in the meditation room for three days without touching a spoonful, until he could not get up. Once he'd recovered, he left Elia.
+spirituality.npc.incense.name: Nuri the Incense Maker
+spirituality.npc.incense.greet: Smell the pine resin on my hands? Every stick of evening incense in Elia passes through them.
+spirituality.npc.incense.name.t: I'm Nuri. I knead pine resin and dried mugwort into incense. At evening incense, my work goes as far as stepping into the hall and lighting it.
+spirituality.npc.incense.job.t: I make forty sticks a day for the license holders. But for three years not one has gone to the abbot. He only sits, alone, before the cold burner after the incense has burned out and everyone has gone.
+spirituality.npc.incense.monk.t: Once I went back in to clear the burner and saw him. His lips were moving without a sound. The very same shape as the child's when she mouths along in the courtyard.
+spirituality.npc.incense.ritual.t: Good incense burns slowly. But these days they only want incense that burns fast, right on time. The seat has to pass to the next person.
+spirituality.npc.clock.name: Tao the Water-Clock Keeper
+spirituality.npc.clock.greet: One drop is ten breaths. One license lets you sit for five hundred drops.
+spirituality.npc.clock.name.t: I am Tao. I keep the hall's water clock. No one knows more exactly than I how many drops fall in a day.
+spirituality.npc.clock.job.t: When the water runs out, I ring the bell and the seat is cleared. I'm told the clock was first set there to wake those who had sat too long. These days I ring it to let the next person in.
+spirituality.npc.clock.breath.t: I once tried to measure breath. Counting my own breaths through a single drop, some days it was eight, some days fourteen. Though the water is always the same.
+spirituality.npc.clock.prayer.t: Prayers have their drop counts too. A hundred for the prayer you repeat, two hundred for the prayer you share. No one has yet filled the count for the prayer made alone.
+spirituality.npc.carver.name: Kea the Carver
+spirituality.npc.carver.greet: Go on, tap it. It only sings if it's hollow inside.
+spirituality.npc.carver.name.t: Kea. I carve wooden fish in a corner of the dormitory. One goes to each monk who gets a license.
+spirituality.npc.carver.job.t: I spend three days hollowing out a block of apricot wood. Too little and it sounds dull; too much and it cracks. The monks these days press me to finish by the date they'll be written into the ledger, but wood knows nothing of dates.
+spirituality.npc.carver.hermit.t: Pella's wooden fish was carved by my teacher. It's probably still somewhere in the archive. It can't have been struck in three years.
+spirituality.npc.carver.ritual.t: A wooden fish is for keeping time. But nowadays people tell a monk from a non-monk by whether he carries one. Even the false monk has one — solid all the way through.
+spirituality.npc.licensee.name: Mion the License Holder
+spirituality.npc.licensee.greet: My eleventh renewal is next month. I'll get the stamp again. I have never once broken procedure.
+spirituality.npc.licensee.name.t: I am Mion. License number eleven. One of the first twelve in Elia to receive one.
+spirituality.npc.licensee.job.t: Dawn prayers, afternoon sutras, evening incense. For three years I have not missed a single sitting. …Strange, though. Nothing has come yet.
+spirituality.npc.licensee.courtyard.t: I've watched that child mouthing something in the courtyard. I don't know what she is doing, but her face is the face I have been waiting for in the meditation room.
+spirituality.npc.licensee.ritual.t: I know the procedure better than anyone. Wash the hands three times, bow three times, breathe three times. But no one ever wrote down what is supposed to lie between the threes.
 
 # --- Elia clues ---
 spirituality.word.spirit.label: Spirit
@@ -1332,36 +1384,36 @@ spirituality.word.ritual.hint: "The dawn prayers and sutra readings reduced to f
 spirituality.fact.elia.monk.label: Abbot Daru
 spirituality.fact.elia.monk.hint: The abbot who issues meditation licenses. Three years ago meditation became a matter of credentials.
 spirituality.fact.elia.novice.label: Ian the Novice
-spirituality.fact.elia.novice.hint: A novice preparing for the license exam for three years. He scrubs the hall floor but cannot step inside the door.
+spirituality.fact.elia.novice.hint: A novice who has been preparing for the license exam for three years. He scrubs the floor of the hall's front room but cannot step into the meditation room.
 spirituality.fact.elia.hermit.label: Pella the Hermit
-spirituality.fact.elia.hermit.hint: A former monk meditating without a license in the archive's shadow. The only one who knows the breath song.
+spirituality.fact.elia.hermit.hint: A former monk who meditates without a license in the archive's shadow. He knows the song that is sung without sound.
 spirituality.fact.elia.healer.label: Rua the Healer
-spirituality.fact.elia.healer.hint: A healer who teaches how to rule the breath. She does not ask the sick for licenses.
+spirituality.fact.elia.healer.hint: A healer who teaches how to steady the breath. She does not ask the sick for licenses.
 spirituality.fact.elia.widow.label: Ire the Widow
-spirituality.fact.elia.widow.hint: A widow counting her husband's breath outside the hall door, without a license. She remembers the old breath song.
+spirituality.fact.elia.widow.hint: A widow who, every evening, counts breaths for herself and her late husband where she can see the hall door. She remembers the old breath song.
 spirituality.fact.elia.meditation-hall.label: The Meditation Hall
-spirituality.fact.elia.meditation-hall.hint: The house at the village's center that you enter only by showing a license. Its door is always locked.
+spirituality.fact.elia.meditation-hall.hint: The house in Elia's northwest. Anyone may enter the front room, but the inner meditation room opens only to a license.
 spirituality.fact.elia.library.label: The Archive
-spirituality.fact.elia.library.hint: The hall's archive stacked with three hundred years of license records. The sutra the pilgrim left lies buried under ledgers.
+spirituality.fact.elia.library.hint: The hall's archive, stacked with three hundred years of ledgers. Its very first line records one day of a nameless pilgrim.
 spirituality.fact.elia.courtyard.label: The Hall's Courtyard
 spirituality.fact.elia.courtyard.hint: The herb garden and courtyard older than the hall itself. The old place where you leveled your breath without a license.
-spirituality.fact.elia.silent-chant.label: The Breath Song
-spirituality.fact.elia.silent-chant.hint: An old song sung without sounding it. The hermit breathes it out in the back garden, and the child sings along.
+spirituality.fact.elia.silent-chant.label: The Soundless Song
+spirituality.fact.elia.silent-chant.hint: The dawn breath song, sung without sound. The hermit sings it under the wall behind the archive, and the child follows by mouthing it.
 spirituality.fact.elia.breath-song.label: The Dawn Breath Song
 spirituality.fact.elia.breath-song.hint: The breath lives, the trembling rests. The early dawn song women sang before the license system.
 spirituality.fact.elia.license-rule.label: The Meditation License Law
-spirituality.fact.elia.license-rule.hint: Since three years ago meditation requires credentials. The prayers of those without licenses are withdrawn.
+spirituality.fact.elia.license-rule.hint: For three years now, meditation has required a license. Without one, you may neither sit in the meditation room nor pray aloud.
 spirituality.fact.creature.spirituality-fake-monk.label: The False Monk Demanding Donations
 spirituality.fact.creature.spirituality-fake-monk.hint: Evil. One who sells meditation without a license, with cowl and wooden fish. Each time the purse opens, he demands a larger donation.
 
 # --- Elia deduction and crisis ---
-spirituality.deduction.spirituality.sentence: Spirituality is hearing {1} and achieving {3} through {2}
-spirituality.deduction.spirituality.hint: "The abbot's license left only the ritual and locked the mind. Hear the hermit's breath song and the widow's song for where true spirituality begins."
-spirituality.crisis.license.text: Villagers gather in the hall's front courtyard. Abbot Daru unfurls the license ledger and cries out. This village's meditation belongs to the credentialed. One who steps into the hall without a license commits apostasy. Today, the novice Ian takes the license exam. But he cannot pay the exam fee and stands before the door. Clerk Seon unrolls the ledger, healer Rua clenches her hands, and the hermit Pella hears all of it from the archive's shadow. The child Rine holds her breath, and gardener Hore bows his head. Now it is your turn to step forward.
-spirituality.option.open-meditation.label: Sing the hermit's breath song in silence and open the hall's door
-spirituality.option.open-meditation.text: You step forward and sing, without sound, the breath song you learned from the hermit. Hear the truth, in love, in courage. The novice Ian adds his voice, and the widow Ire continues it. Gardener Hore lays the garden herbs before the door, and healer Rua levels her breath. Clerk Seon draws out the old record that never left the ledger and reads it. True meditation was not in the license but in truth, love, and courage breathing together. Abbot Daru lowers the ledger, and the hall's door opens for the first time without a license. From that day, Elia is a village where anyone may sit quietly.
+spirituality.deduction.spirituality.sentence: Spirituality is hearing {1}, holding it with {2}, and stepping forward with {3}
+spirituality.deduction.spirituality.hint: The abbot's license kept only the ritual and locked the heart. The hermit spoke of what you hear only when you make no sound, the gardener of the water we give people, the healer of one line of a forbidden song.
+spirituality.crisis.license.text: Villagers gather in the hall's courtyard. Abbot Daru opens the license ledger and proclaims that meditation in this village belongs to the qualified, and that entering the meditation room without a license is apostasy. Today the novice Ian is to sit his license exam, but he cannot pay the fee and stands outside the door. Clerk Seon opens the ledger, healer Rua clenches her hands, and the hermit Pella listens to it all from the archive's shadow. The child Somi holds her breath, and gardener Hore bows his head. Now it is your turn to step forward.
+spirituality.option.open-meditation.label: Sing the hermit's soundless song and open the hall's door
+spirituality.option.open-meditation.text: You step forward and sing, without sound, the song you learned from the hermit. A breath that hears the truth, holds it with love, and steps forward with courage. The novice Ian adds his breath, and the widow Ire carries it on. Gardener Hore lays herbs from the courtyard before the door, and healer Rua steadies her breath. Clerk Seon takes out the very first ledger and reads the line about a nameless pilgrim who sat from sunrise to sunset and left. True meditation was never in the license but in truth, love, and courage breathing together. Abbot Daru sets down the ledger, and his lips move without a sound. For the first time, the meditation room's door opens without a license. From that day, Elia is a village where anyone may sit in quiet.
 spirituality.option.exile-monk.label: Read out the ledger's withdrawal records and cast out the abbot
-spirituality.option.exile-monk.text: You take out clerk Seon's records and read them aloud. In three years the license fee tripled, and every prayer of the unlicensed was withdrawn. The ledger holds only names, signatures, and renewal dates — not a line of the prayers they offered. Abbot Daru has his licenses withdrawn and leaves the village. The hall's door opens, but the people still fear the song. Elia shed its licenses, but has not yet learned how to build true spirituality.
+spirituality.option.exile-monk.text: You take clerk Seon's ledger and read it aloud. In three years the license fee tripled, and every prayer of the unlicensed was forbidden. The new ledgers hold only names, signatures, and renewal dates — not a single line of the prayers people offered. Abbot Daru closes the ledger and leaves the village without a word. The hall's door opens, but the people still fear the song. Elia has shed its licenses, but has not yet learned how to build true spirituality.
 
 # --- Elia abilities and creatures ---
 spirituality.ability.mind.name: The Quiet Mind

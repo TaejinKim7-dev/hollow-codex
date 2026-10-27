@@ -84,3 +84,108 @@
 | `option.exile-monk.text` | 그대가 서기관 세온의 기록을 꺼내 낭독한다. 삼 년 사이 면허값은 세 배가 되고, 면허 없는 자의 기도는 모두 거둬들여졌다. 장부에는 이름과 서명과 갱신일만 남고, 그들이 올렸던 기도는 한 줄도 적혀 있지 않다. 주지 다루는 면허를 거두어들이고 마을을 떠난다. 명상당의 문은 열리지만, 사람들은 여전히 노래를 두려워한다. 엘리아는 면허를 벗었지만, 아직 참된 영성을 세우는 법은 배우지 못했다.<br>*You take out clerk Seon's records and read them aloud. In three years the license fee tripled, and every prayer of the unlicensed was withdrawn. The ledger holds only names, signatures, and renewal dates — not a line of the prayers they offered. Abbot Daru has his licenses withdrawn and leaves the village. The hall's door opens, but the people still fear the song. Elia shed its licenses, but has not yet learned how to build true spirituality.* | 그대가 서기관 세온의 장부를 꺼내 낭독한다. 삼 년 사이 면허값은 세 배가 되었고, 면허 없는 자의 기도는 모두 금지되었다. 새 장부에는 이름과 서명과 갱신일만 남고, 그들이 올린 기도는 한 줄도 적혀 있지 않다. 주지 다루는 장부를 덮고 말없이 마을을 떠난다. 명상당의 문은 열리지만, 사람들은 여전히 노래를 두려워한다. 엘리아는 면허를 벗었지만, 아직 참된 영성을 세우는 법은 배우지 못했다.<br>*You take clerk Seon's ledger and read it aloud. In three years the license fee tripled, and every prayer of the unlicensed was forbidden. The new ledgers hold only names, signatures, and renewal dates — not a single line of the prayers people offered. Abbot Daru closes the ledger and leaves the village without a word. The hall's door opens, but the people still fear the song. Elia has shed its licenses, but has not yet learned how to build true spirituality.* | '주지 다루는 면허를 거두어들이고'—주어·뜻 모호. en drift(has his licenses withdrawn) |
 | `novice.name.t` | 이안이라고 합니다. 삼 년째 견습 스님으로 지내는 중이에요. 면허를 받으면 드디어 명상당에 제대로 들어설 수 있어요.<br>*They call me Ian. I've been a novice monk for three years. Once I receive a license, I can finally step properly into the meditation hall.* | 이안이라고 해요. 삼 년째 견습으로 지내고 있어요. 면허를 받으면 드디어 안쪽 선방에 앉을 수 있어요.<br>*My name is Ian. I've been a novice for three years. Once I get my license, I can finally sit in the inner meditation room.* | 앞방/선방 구분. en 'They call me'→My name is(해요체 자기소개) |
 | `fact.elia.novice.hint` | 삼 년째 면허 시험을 준비하는 견습. 명상당 바닥은 닦지만, 문 안에는 들어서지 못한다.<br>*A novice preparing for the license exam for three years. He scrubs the hall floor but cannot step inside the door.* | 삼 년째 면허 시험을 준비하는 견습. 명상당 앞방 바닥은 닦지만, 안쪽 선방에는 들어서지 못한다.<br>*A novice who has been preparing for the license exam for three years. He scrubs the floor of the hall's front room but cannot step into the meditation room.* | '문 안에는 들어서지 못한다'—앞방은 닦음. 선방으로 |
+
+## 3. 정사(엘리아의 진실) — 대사는 이 설정을 어기지 않는다
+
+### 사건의 진실
+- **삼 년 전 겨울**, 젊은 스님 하나가 마음만 앞서 선방에 홀로 사흘을 앉았다. 밥을 한술도 뜨지 않았고, 누가 들어가고 나왔는지 아무도 세지 않던 때라 아무도 몰랐다. 새벽에 **주지 다루**가 그를 찾아 제 가사로 싸안고 공양간으로 옮겼다(공양주 오미가 본다). 그는 살아났지만 몸을 추스르고 엘리아를 떠났다.
+- **그해 봄**, 다루는 장부에 면허 번호를 붙였다. 원래 뜻은 하나 — *다시는 아무도 세지 않은 채 선방에 남겨지지 않게*. 시험은 "숨이 어디서 멈춰야 하는지"(절차)를 아는지 보는 것이고, 장부는 들어간 이름마다 나온 시각을 적는 것이며, 물시계는 너무 오래 앉은 사람을 깨우려고 놓았다. 다루는 지금도 밤마다 그날 장부를 손가락으로 짚어 내려가고, 새벽마다 빈 선방의 자리를 하나하나 짚는다.
+- **면허값**: 등잔 기름·물시계·밤 지킴에 들고, 다루가 일부러 높게 둔다 — 앉는 사람이 적어야 혼자서 모두를 셀 수 있기 때문이다. 두려움 하나가 생길 때마다 단계 하나와 면허 하나가 늘었고, 삼 년 사이 값이 세 배가 되었다. 마을 사람들 눈에는 "면허를 판다"로 보인다. 다루는 아무것도 갖지 않는다(밥을 반만 먹고, 제 몫의 향은 받지 않는다). 악인은 없다.
+- **소리 없는 노래**: 새벽 숨 노래("숨은 산다, 떨림은 쉰다")는 아낙네들이 소리 내어 부르던 옛 기도다. 펠라는 같은 가락을 소리 없이 부르는 법을 지켰고, 젊은 다루에게 숨 세는 법을 처음 가르친 것도 펠라다. 다루는 그 노래를 안다(그의 "그런 노래는 듣지 못했다"는 거짓, `lie: true`). 향을 치우러 들어간 누리가 불 꺼진 향로 앞에서 그의 입술이 소리 없이 움직이는 것을 본다.
+- 면허법이 서자 펠라는 면허를 거부하고 **장부에서 제 이름을 제 손으로 지웠다.** 서고 깊은 곳에 숨어 살고, 새벽에는 서고 뒤 담 밑에서 노래한다. 서기관 세온은 알면서 적지 않고 등잔 기름을 조금씩 더 채워 둔다. 다루도 알면서 들추지 않는다.
+- **해결**: 소리 없는 노래(진실을 듣고, 사랑으로 품고, 용기로 내딛는 숨)를 마을이 함께 부르면, 다루는 그것이 자기가 지키려던 것 — 사람이 혼자 남지 않는 것 — 과 같은 것임을 안다. 그는 장부를 내려놓는다. 내쫓는 길(`option.exile-monk`)은 장부의 숫자로 그를 이기지만, 그 숫자 뒤의 두려움은 마을에 그대로 남는다.
+
+### 인물
+| 인물 | 나이·처지 | 어체(하나) | 본심 | 비밀·상처 | 관계 |
+|---|---|---|---|---|---|
+| 주지 다루 | 60대, 명상당 26년 | 해라체(짧고 차가움, "~다", "~는가") | 아무도 세지 않은 채 남겨지지 않게 하려 한다 | 삼 년 전 새벽 사람을 안고 나왔다. 노래를 안다(거짓말) | 펠라의 아우뻘 제자. 구르와 같은 해에 옴. 이레 남편 장례에 와 말없이 앉았다 감 |
+| 견습 이안 | 10대 후반, 견습 3년 | 해요체 | 선방에 앉고 싶다. 시험비를 장작 패서 모음 | 밤마다 잠긴 선방 문고리를 쥐어 봄 | 다루가 가장 걱정하는 아이(서두르는 아이). 도란이 장작 일을 줌 |
+| 서기관 세온 | 40대 | 해라체(건조한 기록 말투) | 장부는 정확해야 한다 | 펠라를 적지 않고 서고 등잔 기름을 더 채워 둠 | 다루의 장부를 맡음 |
+| 치유사 루아 | 40대, 면허 없음 | 반말(따뜻하고 단호) | 아픈 사람의 숨이 먼저다 | 지난겨울 이레 남편의 마지막 숨을 들었다 | 명상당 앞방 한구석을 빌려 씀. 이레와 함께 노래했다 |
+| 은자 펠라 | 70대, 옛 스님 | 반말(나직함, "……쉿") | 소리 내지 않아야 들리는 것이 있다 | 장부에서 제 이름을 지웠다 | 다루를 가르쳤다. 소미가 따라 함. 호레가 그 자리 풀을 앎 |
+| 정원지기 호레 | 70대 | 하게체 노인("~라네", "~지") | 뜰은 누구에게나 같다 | — | 소미를 손주처럼 둠 |
+| 아이 소미 | 8세쯤, 기숙사에서 자람 | 반말(아이) | 노래하면 조용해진다 | 주지가 잠든 자기에게 가사를 덮어 준 걸 비밀로 함 | 펠라를 몰래 따라 함 |
+| 찻집 주인 도란 | 50대, 공양간 한켠 | 하게체("~일세", "~네") | 숨 돌릴 자리를 내준다 | — | 다루는 삼 년 전 겨울 뒤로 발을 끊음 |
+| 수문장 구르 | 50대, 26년 | 하게체 | 문 하나는 열어 둔다 | 26년 전 다루는 "문을 열어 두라"고 했다 | 이안의 문고리를 못 본 척함 |
+| 과부 이레 | 40대 | 해요체, 남편은 "그이" | 둘 몫의 숨을 센다 | 남편은 그녀를 문 밖에 혼자 두기 싫어 마지막 시험을 보지 않았고, 지난겨울 세상을 떴다 | 루아가 남편 곁을 지킴 |
+| 공양주 오미 *(새)* | 60대, 공양간 30년 | 해요체(무뚝뚝한 할머니) | 밥 남기는 사람을 기억한다 | 삼 년 전 새벽을 본 사람 | 다루의 밥 반 공기 |
+| 향 빚는 이 누리 *(새)* | 20대 | 해요체(눈 밝음) | 향은 천천히 타야 한다 | 불 꺼진 향로 앞 다루의 입술을 봤다 | 저녁(18시)에는 명상당 안으로 들어가 향을 붙임 |
+| 물시계지기 타오 *(새)* | 30대 | 합쇼체(정확, 조금 불안) | 한 방울은 늘 같다 | 제 숨은 날마다 다르다 | 명상당 안, 시계 곁 |
+| 목탁 깎는 이 케아 *(새)* | 40대 | 반말(말수 적은 장인) | 속이 비어야 소리가 난다 | 펠라의 목탁은 스승의 것 | 기숙사 구석 |
+| 면허 수행자 미온 *(새)* | 50대, 면허 번호 열하나 | 하오체 | 절차를 다 지키면 무언가 올 것이다 | 삼 년 동안 아무것도 오지 않았다 | 뜰에서 소미의 얼굴을 본다 |
+
+### 반복 소재
+1. **셋까지 세는 숨**(들이쉬고·머물고·내쉬고): 펠라 "숨은 셋이면 돼", 이레 남편이 끝까지 센 셋, 호레가 흙을 세 번 두드림, 미온의 "세 번, 세 번, 세 번 — 그 사이에 무엇이", 타오의 방울. *세는 것*(숨)과 *적는 것*(장부)의 대비. (겸손 마을의 정답 '셋'과 같은 울림이다. 힌트에는 쓰지 않았다.)
+2. **문과 문 앞**: 이안은 삼 년째 선방 문 앞, 이레는 뜰 건너 문이 보이는 자리, 다루는 가장 먼저 열고 가장 늦게 닫는 사람, 구르의 두 문, 이안이 밤마다 쥐는 문고리. 끝에 선방 문이 면허 없이 열린다.
+3. **장부의 첫 줄**: 옛 장부는 '기도'로, 새 장부는 '면허'로 시작한다. 맨 첫 줄은 이름 없는 순례자의 하루. 펠라가 지운 이름, 다루가 짚는 나온 시각, 이레 남편의 없는 이름.
+4. **속이 비어야 소리가 난다**: 목탁, 소리 없는 노래, "듣고 나면 마음이 비워져요", 불 꺼진 향로. 가짜 스님의 목탁만 속이 꽉 막혀 있다.
+
+## 4. 새 인물 5명
+위치는 모두 걸을 수 있는 칸, 출구·문과 그 옆 칸이 아니고, 이웃 칸이 3개 이상 열려 있으며, 기존 인물의 일과 칸과 겹치지 않는다(`spec.py validate` 확인).
+
+| id | 위치 | 종류 | 무엇을 흘리나(결정적이지 않음) | 주제 |
+|---|---|---|---|---|
+| `npc.spirituality.cook` 공양주 오미 | 공양간(우하) [18,14] | 증인 | 주지가 삼 년째 밥을 반만 먹는다(누구나). 주지를 알면 — 삼 년 전 겨울 새벽 젊은 스님을 가사로 싸안고 왔고, 그 봄 면허 번호가 붙었다 | `fact.elia.monk`, `fact.elia.novice` |
+| `npc.spirituality.incense` 향 빚는 이 누리 | 뜰 서쪽 [5,8], 18시 명상당 안 [6,5] | 증인 | 주지는 제 몫의 향을 받지 않고 모두 나간 뒤 혼자 앉는다. 주지를 알면 — 그의 입술이 소리 없이 움직였다(그의 거짓말에 대한 정황) | `fact.elia.monk`, `word.ritual` |
+| `npc.spirituality.clock` 물시계지기 타오 | 명상당 안 [12,4] | 분위기 | 물시계는 원래 오래 앉은 사람을 깨우려던 것, 지금은 자리를 돌리는 데 쓴다 | `word.breath`, `word.prayer` |
+| `npc.spirituality.carver` 목탁 깎는 이 케아 | 기숙사(좌하) [5,14] | 분위기 | 속이 비어야 소리가 난다. 가짜 스님 목탁은 꽉 막힘 | `fact.elia.hermit`, `word.ritual` |
+| `npc.spirituality.licensee` 면허 수행자 미온 | 뜰 동쪽 [18,11] | 분위기 | 절차를 다 지켰는데 아무것도 오지 않았다 — 형식만 남은 영성의 얼굴 | `fact.elia.courtyard`, `word.ritual` |
+
+새 이름(오미·누리·타오·케아·미온, 고친 이름 소미·도란)은 다른 마을 문자열·인물과 겹치지 않음을 grep으로 확인했다. 명세 전체 문자열을 `content/ip-denylist.yaml`과 대조해 걸리는 것 없음.
+
+## 5. 흐름 점검 (FLOW CHECK)
+
+**풀이 경로(바꾸지 않음)**
+- 주지 `job` → `fact.elia.monk`, `word.ritual` · 견습 `job` → `fact.elia.novice`, `word.prayer` · 서기관 `job` → `word.ritual`, `fact.elia.license-rule`, `prayer` 주제 → `word.prayer`
+- 치유사 `job` → `fact.elia.healer`, `word.breath`, **`word.courage`** · 은자 `job` → `fact.elia.hermit`, **`fact.elia.silent-chant`**, **`word.truth`** · 정원지기 `job` → `fact.elia.courtyard`, `word.breath`, **`word.love`**
+- 아이 `job` → `fact.elia.silent-chant` · 찻집 주인 `job` → `fact.elia.courtyard` · 수문장 `job` → 가짜 스님 도감 · 과부 `job` → `fact.elia.widow`, `fact.elia.breath-song`
+- 추론 `deduction.spirituality` = [진실, 사랑, 용기] → "영성은 진실을 듣고, 사랑으로 품고, 용기로 내딛는 것이다" → `ability.spirituality-mind`
+- 위기(주지) `option.open-meditation`: `fact.elia.silent-chant` + 추론 → `flag.spirituality.meditation-open` · `option.exile-monk`: `fact.elia.license-rule` → `flag.spirituality.monk-exiled`
+- 가장 짧은 길: 은자·정원지기·치유사의 `job` 셋 → 추론 → 주지. 세 낱말이 모두 다른 마을에서 이미 있을 수도 있다(칼라스·리오나·솔강).
+
+**사건 시간표**: 약 300년 전 순례자가 엘리아에서 하루를 앉았다 감(첫 장부 첫 줄), 뜰에 약초를 심음 → 297년 동안 장부는 앉은 이름과 기도를 적음 → 26년 전 다루가 주지가 되고 구르가 옴("문을 열어 두라") → 3년 전 겨울 젊은 스님이 선방에서 홀로 사흘, 다루가 새벽에 안고 나옴(오미) → 그해 봄 면허 번호·시험·물시계(타오가 들은 원래 쓰임), 펠라가 이름을 지움, 이안이 견습으로 옴 → 3년 동안 단계와 값이 늘어 세 배 → 지난겨울 이레의 남편이 숨짐(루아가 곁, 다루가 장례에 옴) → 요즘 가짜 스님이 남동쪽 담 모퉁이에 → 오늘 이안의 시험 날(위기).
+
+**확인한 것**
+- 새 주제·새 인물은 아무것도 부여하지 않는다. `grants`·`lie`·`requires`·깃발은 그대로다.
+- 고친 줄 가운데 단서를 주는 줄은 주는 것을 계속 말한다: 은자 `job`(진실·소리 없는 노래), 정원지기 `job`(뜰·숨, 사람을 달래는 풀), 치유사 `job`(바꾸지 않음), 서기관 `job`(면허법, 마지막 세 해의 면허 번호), 아이 `job`(소리 없는 노래).
+- 거짓 깃발: `monk.truth.t`는 거짓 주장("절차만 지키면 누구든 거룩해진다")을 그대로 둔다. 새로 쓴 주지의 주제(펠라·이안·숨)는 참말이라 `lie`가 필요 없다. 누리의 증언(입술이 소리 없이 움직임)이 주지의 노래 거짓말과 맞물린다.
+- 증인 대사는 그 사람을 아는 주제(`fact.elia.monk`)에서만 사건을 말한다 — 오미의 `job`에는 삼 년 전 새벽을 넣지 않았다. 둘 다 "주지가 그날 무엇을 느꼈는지"는 말하지 않는다.
+- 위기 지문·선택지는 이미 등장한 인물만 부른다. 선택지 `open-meditation`의 "맨 첫 장부의 순례자 줄"은 그 장면에서 처음 읽히는 것으로 쓴다(미리 알 필요 없음).
+- 추론 힌트에는 15개 정답 라벨(ko·en)과 "세 원리/three principles"가 없다(`spec.py`가 검사함; en의 'silence'는 겸손 정답이라 뺐다).
+- 지도: 명상당(좌상)은 문 [8,6] 하나인 한 칸 건물이다. 그래서 "앞방"(치유사 [4,3], 물시계지기 [12,4], 누리 18시 [6,5])과 "안쪽 선방"(면허)을 말로만 나눴다. 타일로 안쪽 벽을 세우지 않았다.
+
+**기존 내용에서 찾은 모순과 해결**
+| 모순 | 해결 |
+|---|---|
+| "삼백 년 치 면허 기록" vs 면허는 3년 | 297년 기도 기록 + 3년 면허 번호 |
+| 서고에 순례자의 경전이 있다 vs 빈 경전은 봉인된 서고에 하나(설계 §3.1) | 경전 대신 장부 첫 줄(이름 없는 순례자의 하루) |
+| 노래 둘이 모두 "숨 노래", 은자가 "유일하게 아는 사람" | 소리 없는 노래 / 새벽 숨 노래로 나눔 |
+| 은자가 노래하는 곳이 "뒤뜰"/"서고 깊은 곳" | 새벽엔 서고 뒤 담 밑, 그 밖엔 서고 깊은 곳 |
+| 명상당 문은 늘 잠김 vs 지도에서 걸어 들어감, 치유사가 안에 있음, 견습이 바닥을 닦음 | 앞방/선방 |
+| 명상당 "마을 한가운데", 정원 "명상당 뒤편", 가짜 스님 "마을 입구" | 북서, 앞뜰, 남동쪽 담 모퉁이 |
+| 은자 "이름 없는 사람" vs 바로 이름을 댐 | 장부에서 지웠다 |
+| 과부 "면허가 거둬들여져도" vs 면허 없음 | "누가 나무라도" |
+| 과부 남편: 면허를 포기했다 / 숨을 센다 / 죽었다가 엉킴 | 그녀를 혼자 두기 싫어 마지막 시험을 안 봄 → 지난겨울 숨짐 → 그녀가 둘 몫을 셈 |
+| 소리 없이 부르는데 이안이 "목소리를 보탬" | 숨을 보탬 |
+| 추론 문장 "용기을" | 셋째 칸 (으)로 |
+| 수문장이 주지를 "악하다"고 함 | 면허로 막는 사람과 털어 가는 사람의 대비로 |
+| 이름 리네·이온이 다른 마을과 겹침 | 소미·도란 |
+
+**남은 문제(못 고침 — 메커니즘을 바꿔야 함)**
+- **얻을 수 없는 단서 3개.** `word.spirit`(은자 `spirit` 주제에서만, 그 주제는 `word.spirit`을 알아야 열림), `fact.elia.meditation-hall`(견습의 같은 이름 주제에서만), `fact.elia.library`(서기관의 같은 이름 주제에서만) — 모두 자기 자신을 알아야 열리는 고리다. 제안: 은자 `job`에 `word.spirit`, 견습 `job`에 `fact.elia.meditation-hall`, 서기관 `job`에 `fact.elia.library`를 더 부여. 그래서 새 주제는 이 셋에 걸지 않았다.
+- 명상당 안쪽 벽(선방)이 지도에 없다.
+- 위기의 정답 쪽 조건은 소리 없는 노래인데, 그 노래의 핵심 대사(`hermit.silent-chant.t`)는 아래처럼 물을 수 없다.
+
+## 6. 물을 수 없는 기존 주제 (`spec.py dead-topics`, 보고만)
+kind가 song·meaning·creature라 수첩 칩으로 나오지 않는 주제 8개. 아래 "옮길 곳"은 이번 추가 뒤에도 그 인물에게 비어 있는 주제다(`word.spirit`은 얻을 수 없으니 제외).
+
+| 인물 · 주제 | 내용 | 옮길 곳 제안 |
+|---|---|---|
+| 주지 · `fact.elia.silent-chant` (song, **`lie: true`**) | "그런 노래는 듣지 못했다" — 이 마을의 대표 거짓말이 게임에 안 나온다 | `fact.elia.widow` 또는 `word.courage`로 `lie: true`째 옮기기. 더 자연스러운 곳은 `fact.elia.hermit`이지만 이번에 참말 주제(`monk.hermit.t`)를 걸었으므로, 옮긴다면 그 참말 줄을 `word.courage`로 비켜 주고 거짓말을 `fact.elia.hermit`에 둔다 |
+| 견습 · `fact.elia.silent-chant` (song) | 은자의 노래를 몰래 들었다 | `fact.elia.hermit` |
+| 치유사 · `fact.elia.breath-song` (song, 부여 breath-song) | 아픈 사람 곁에서 부르던 숨 노래 | `word.prayer`("그게 내 기도야"와 이어짐). breath-song은 과부 `job`으로도 얻으므로 부여가 사라져도 길은 남음 |
+| 은자 · `fact.elia.silent-chant` (song, 부여 silent-chant·truth) | 진실·사랑·용기가 마음속에서 함께 숨 쉴 때만 산다 — 추론의 핵심 문장 | `word.prayer` 또는 `word.love`. 이번에 `hermit.job.t`("소리를 내지 않아야 들리는 진실")와 `hermit.truth.t`("숨은 혼자 쉬는 게 아니야")에 뜻을 나눠 실어 두었다 |
+| 아이 · `fact.elia.silent-chant` (song) | 은자를 나무 뒤에서 따라 한다 | `fact.elia.courtyard` |
+| 찻집 주인 · `fact.elia.license-rule` (meaning, 부여 license-rule) | 삼 년 전엔 누구나 앉았다 | 내용은 `brewer.job.t`에 합쳤다. 주제는 지워도 됨(license-rule은 서기관 `job`에서 얻음) |
+| 수문장 · 가짜 스님 도감 (creature, 부여 같은 도감) | 두건·목탁·헌납 | `word.ritual`(목탁을 흉내 낸 의례). 도감은 수문장 `job`에서도 얻음 |
+| 과부 · `fact.elia.breath-song` (song, 부여 breath-song) | "면허 제도 전에는 이것이 기도였어요" | `word.prayer` |

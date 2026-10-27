@@ -13,7 +13,8 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 ## 다음 할 일 (위에서부터)
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
-| D-1 | 마을 대사 점검·고쳐 쓰기·인물 추가 **15명 기준**. 완료·반영: 칼라스(15+들판 6), 연민, 용맹, 희생, 겸손 — 각 마을 5명 추가·기존 인물 새 주제 20개·수정 30~50줄(ko+en). **진행 중(에이전트 재실행): 정의, 명예, 영성.** 🧑 읽고 판정. 인물 그림은 아직 임시 스프라이트 | `docs/narrative/<마을>-script.md`(전문), `voice-bible.md`(칼라스 설정), `<마을>-audit.md` | 5/8 완료 |
+| D-1 | 마을 대사 점검·고쳐 쓰기·인물 추가 **8개 마을 모두 15명 기준으로 반영 완료**(2026-10-27, 전체 NPC 126명). 마을당 대사 30~70줄 수정, 새 주제 20개 안팎, 새 인물 5명(ko+en). 인물 그림은 임시 스프라이트. 🧑 대사 읽기·판정, 아래 결정 3건 | `docs/narrative/<마을>-script.md`(전문), `<마을>-audit.md`(점검·설정·흐름), `voice-bible.md`(칼라스 설정) | 반영 완료, 판정 대기 |
+| 🧑 | **결정 필요(D-2)**: ① 물을 수 없는 대화 주제 58줄 — (A) 콘텐츠 재연결 (B) CHIP_KINDS에 song·creature 추가(추천) ② 얻을 수 없는 단서(셀레스 `fact.seles.prisoner/widow`, 엘리아 `word.spirit`·`fact.elia.meditation-hall/library`, 리오나 `fact.reona.baker/open-pantry`) — 단서 부여(`grants`) 구조 수정 허용? ③ 인물 이름 겹침(과부 셀레↔마을 셀레스 등) 개명 여부 | 채팅 | 대기 |
 | R-2a2 | 효과음 추가 14상황(게임 이벤트 중 소리 없는 것: 맵 이동·전투 시작·방어·설득·도주·승리·패배·동료 합류/이탈·열석 열림·능력·위기·경전 쓰기·에필로그) 후보 53개를 실험실에 올림 → 🧑 청취·선택 → `assets/audio/sfx/` | 실험실 `/hollow-codex/lab/` | 후보 준비됨(2026-10-27), 선택 대기 |
 | R-2a3 | ElevenLabs 효과음 35개(늑대·열석·전투·이벤트·분위기 루프) 생성 완료, 🧑 실험실에서 청취·판정 | `docs/research/elevenlabs-sfx.md` | 완료(청취 대기) |
 | R-2b | 배경음악 12곡 **기본 A로 변환 완료**(사용자: CC-BY 허용·바로 진행, 슬롯별 선택은 안 함) → `assets/audio/bgm/<슬롯>.ogg`(110초→106초 루프, 합계 11 MB) + `credits.json`. 마음에 안 드는 슬롯은 `scripts/audio/bgm-selection.json`에서 B로 바꾸고 `make-bgm-loops.py` 재실행 | `docs/research/bgm-candidates.md` | 완료(사용자 청취 대기) |
@@ -27,7 +28,6 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |
 
 ## 진행 중
-- D-1 정의·명예·영성 대사 · Claude(에이전트 3) · todo-1-walk-review · 2026-10-27 · 결과 파일 `docs/narrative/specs/<마을>.json` 완성되면 `python3 scripts/narrative/spec.py apply`로 반영
 - R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
 
 - 형식: `- <ID> · <에이전트 이름> · <브랜치> · <시작 시각> · <한 줄 상태>`
