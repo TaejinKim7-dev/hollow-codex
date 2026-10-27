@@ -25,8 +25,6 @@
       - text: npc.field.gatekeeper.lantern.t
     word.silence:
       - text: npc.field.gatekeeper.silence.t
-    fact.song.lantern-song:
-      - text: npc.field.gatekeeper.song.t
 - id: npc.field.hunter
   map: map.field
   pos: [4, 3]
@@ -44,7 +42,7 @@
     job:
       - text: npc.field.hunter.job.t
         grants: [fact.creature.wolf-hungry]
-    fact.creature.wolf-hungry:
+    word.weapon:
       - text: npc.field.hunter.wolf.t
     word.confession:
       - text: npc.field.hunter.confession.t
@@ -109,7 +107,7 @@
       - text: npc.kalas.warden.confession.t
     fact.kalas.nia:
       - text: npc.kalas.warden.nia.t
-    fact.song.lantern-song:
+    word.ledger:
       - text: npc.kalas.warden.song.t
 - id: npc.kalas.elin
   map: map.kalas
@@ -203,8 +201,6 @@
       - text: npc.kalas.tobi.ledger.t
     fact.kalas.archive:
       - text: npc.kalas.tobi.archive.t
-    fact.song.lantern-song:
-      - text: npc.kalas.tobi.song.t
 - id: npc.kalas.mira
   map: map.kalas
   pos: [15, 16]
@@ -250,7 +246,7 @@
     job:
       - text: npc.kalas.child.job.t
         grants: [fact.song.lantern-song, word.lantern]
-    fact.song.lantern-song:
+    word.lantern:
       - text: npc.kalas.child.song.t
     word.ledger:
       - text: npc.kalas.child.ledger.t
@@ -428,7 +424,7 @@
       - text: npc.kalas.bellringer.job.t
     word.lantern:
       - text: npc.kalas.bellringer.lantern.t
-    fact.song.lantern-song:
+    word.silence:
       - text: npc.kalas.bellringer.song.t
 - id: npc.field.aspirant
   map: map.field

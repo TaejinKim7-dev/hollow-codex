@@ -24,6 +24,7 @@ import yaml
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 os.chdir(ROOT)
+ASKABLE = {"word", "person", "place"}  # src/core/dialogue/talk.ts CHIP_KINDS — 이 종류의 단서만 대화 주제로 고를 수 있다
 SAFE_BAD_START = ("'", '"', "[", "{", "-", "&", "*", "!", "|", ">", "%", "@", "`", "?", ":", "#", ",")
 HANGUL = re.compile(r"[가-힣]")
 
@@ -64,7 +65,8 @@ def context():
         for m in load(f"content/towns/{t}/maps.yaml") or []: c["maps"][m["id"]] = m
         for n in load(f"content/towns/{t}/npcs.yaml") or []:
             c["npcs"][n["id"]] = n; c["npcfile"][n["id"]] = t
-        for f in load(f"content/towns/{t}/facts.yaml") or []: c["facts"].add(f["id"])
+        for f in load(f"content/towns/{t}/facts.yaml") or []:
+            c["facts"].add(f["id"]); c.setdefault("factdefs", {})[f["id"]] = f
         for d in load(f"content/towns/{t}/deduction.yaml") or []: c["deductions"].append(d)
     for ex in ["content/abilities.yaml"]:
         pass
@@ -72,9 +74,11 @@ def context():
     ans = {w for d in c["deductions"] for w in d["answer"]}
     c["answer_labels"] = {"ko": [], "en": []}
     for w in ans:
+        lk = (c.get("factdefs", {}).get(w) or {}).get("label", w + ".label")
         for lang in ("ko", "en"):
-            lab = c[lang].get(w + ".label")
+            lab = c[lang].get(lk)
             if lab: c["answer_labels"][lang].append(lab)
+        if not any(c[lang].get(lk) for lang in ("ko", "en")): print(f"(경고) 정답 단어 {w}의 라벨 키 {lk}를 못 찾음", file=sys.stderr)
     return c
 
 
@@ -124,6 +128,7 @@ def validate(spec, c=None):
         npc = c["npcs"].get(a.get("npc"))
         if not npc: errs.append(f"add_topics: 인물 없음 {a.get('npc')}"); continue
         if a.get("topic") not in (c["facts"] | {"name", "job"}): errs.append(f"add_topics[{k}]: 주제 '{a.get('topic')}'는 실제 단서/단어 id가 아님")
+        elif a.get("topic") in c["facts"] and c["factdefs"][a["topic"]]["kind"] not in ASKABLE: errs.append(f"add_topics[{k}]: 주제 '{a['topic']}'는 종류가 '{c['factdefs'][a['topic']]['kind']}'라 대화 주제로 고를 수 없음(word/person/place만 가능)")
         if a.get("topic") in (npc.get("topics") or {}): errs.append(f"add_topics[{k}]: {a['npc']}에 주제 '{a['topic']}'가 이미 있음")
         if (a.get("npc"), a.get("topic")) in seen_topic: errs.append(f"add_topics[{k}]: spec 안에서 같은 인물·주제 중복")
         seen_topic[(a.get("npc"), a.get("topic"))] = 1
@@ -143,6 +148,7 @@ def validate(spec, c=None):
             if key in ko or key in en or key in new_keys: errs.append(f"new_npcs[{nid}]: 키가 이미 있음 {key}")
             new_keys.add(key); need_pair(t, f"new_npcs[{nid}].topics[{t.get('suffix')}]")
             if t.get("topic") not in c["facts"]: errs.append(f"new_npcs[{nid}]: 주제 '{t.get('topic')}'는 실제 단서/단어 id가 아님(name/job은 자동)")
+            elif c["factdefs"][t["topic"]]["kind"] not in ASKABLE: errs.append(f"new_npcs[{nid}]: 주제 '{t['topic']}'는 종류가 '{c['factdefs'][t['topic']]['kind']}'라 대화 주제로 고를 수 없음(word/person/place만 가능)")
             if t.get("topic") in tops: errs.append(f"new_npcs[{nid}]: 주제 중복 {t.get('topic')}")
             tops.add(t.get("topic"))
         sched = n.get("schedule") or {"0": n["pos"]}
@@ -231,7 +237,19 @@ def apply(spec):
     print(f"적용: 수정 {len(spec.get('edits', []))}줄, 새 주제 {len(spec.get('add_topics', []))}개, 새 인물 {len(spec.get('new_npcs', []))}명")
 
 
+def dead_topics():
+    c = context(); out = []
+    for nid, n in c["npcs"].items():
+        for tk in (n.get("topics") or {}):
+            if tk in ("name", "job"): continue
+            k = c["factdefs"].get(tk, {}).get("kind")
+            if k not in ASKABLE: out.append((nid, tk, k))
+    return out
+
+
 if __name__ == "__main__":
+    if len(sys.argv) == 2 and sys.argv[1] == "dead-topics":
+        d = dead_topics(); [print(f"{a} · {b} ({k})") for a, b, k in d]; print(f"{len(d)}개: 이 주제는 수첩 칩으로 나타나지 않아 게임에서 물을 수 없다"); sys.exit(0)
     if len(sys.argv) != 3 or sys.argv[1] not in ("validate", "apply"): print(__doc__); sys.exit(2)
     spec = json.load(open(sys.argv[2], encoding="utf8"))
     if sys.argv[1] == "validate":

@@ -26,6 +26,12 @@
         lie: true
     fact.creature.sacrifice-penitent:
       - text: sacrifice.npc.altar-priest.penitent.t
+    fact.dione.altar:
+      - text: sacrifice.npc.altar-priest.altar.t
+    fact.dione.sanctuary:
+      - text: sacrifice.npc.altar-priest.sanctuary.t
+    fact.dione.widow:
+      - text: sacrifice.npc.altar-priest.widow.t
 - id: npc.sacrifice.widow
   map: map.town.sacrifice
   pos: [7, 10]
@@ -55,6 +61,10 @@
     word.devotion:
       - text: sacrifice.npc.widow.devotion.t
         grants: [word.devotion]
+    fact.dione.surgeon:
+      - text: sacrifice.npc.widow.surgeon.t
+    word.courage:
+      - text: sacrifice.npc.widow.courage.t
 - id: npc.sacrifice.child
   map: map.town.sacrifice
   pos: [13, 7]
@@ -81,6 +91,12 @@
     fact.dione.widow:
       - text: sacrifice.npc.child.widow.t
         grants: [fact.dione.widow]
+    fact.dione.garden:
+      - text: sacrifice.npc.child.garden.t
+    fact.dione.altar:
+      - text: sacrifice.npc.child.altar.t
+    word.love:
+      - text: sacrifice.npc.child.love.t
 - id: npc.sacrifice.pilgrim
   map: map.town.sacrifice
   pos: [12, 8]
@@ -107,6 +123,10 @@
     word.devotion:
       - text: sacrifice.npc.pilgrim.devotion.t
         grants: [word.devotion]
+    word.pilgrim:
+      - text: sacrifice.npc.pilgrim.pilgrim.t
+    fact.dione.widow:
+      - text: sacrifice.npc.pilgrim.widow.t
 - id: npc.sacrifice.surgeon
   map: map.town.sacrifice
   pos: [9, 14]
@@ -136,6 +156,10 @@
     word.courage:
       - text: sacrifice.npc.surgeon.courage.t
         grants: [word.courage]
+    fact.dione.widow:
+      - text: sacrifice.npc.surgeon.widow.t
+    fact.dione.altar:
+      - text: sacrifice.npc.surgeon.altar.t
 - id: npc.sacrifice.scribe
   map: map.town.sacrifice
   pos: [18, 3]
@@ -162,6 +186,10 @@
     fact.dione.widow:
       - text: sacrifice.npc.scribe.widow.t
         grants: [fact.dione.widow]
+    fact.dione.pilgrim:
+      - text: sacrifice.npc.scribe.pilgrim.t
+    word.witness:
+      - text: sacrifice.npc.scribe.witness.t
 - id: npc.sacrifice.mason
   map: map.town.sacrifice
   pos: [14, 13]
@@ -188,6 +216,10 @@
     fact.dione.widow-song:
       - text: sacrifice.npc.mason.widow-song.t
         grants: [fact.dione.widow-song]
+    fact.dione.sanctuary:
+      - text: sacrifice.npc.mason.sanctuary.t
+    word.devotion:
+      - text: sacrifice.npc.mason.devotion.t
 - id: npc.sacrifice.baker
   map: map.town.sacrifice
   pos: [20, 14]
@@ -211,6 +243,10 @@
     word.love:
       - text: sacrifice.npc.baker.love.t
         grants: [word.love]
+    fact.dione.widow:
+      - text: sacrifice.npc.baker.widow.t
+    fact.dione.garden:
+      - text: sacrifice.npc.baker.garden.t
 - id: npc.sacrifice.healer
   map: map.town.sacrifice
   pos: [7, 14]
@@ -234,6 +270,10 @@
     word.burden:
       - text: sacrifice.npc.healer.burden.t
         grants: [word.burden]
+    fact.dione.surgeon:
+      - text: sacrifice.npc.healer.surgeon.t
+    word.courage:
+      - text: sacrifice.npc.healer.courage.t
 - id: npc.sacrifice.gardener
   map: map.town.sacrifice
   pos: [16, 18]
@@ -257,3 +297,107 @@
     fact.dione.martyr-contest:
       - text: sacrifice.npc.gardener.martyr-contest.t
         grants: [fact.dione.martyr-contest]
+    fact.dione.altar:
+      - text: sacrifice.npc.gardener.altar.t
+    word.devotion:
+      - text: sacrifice.npc.gardener.devotion.t
+- id: npc.sacrifice.acolyte
+  map: map.town.sacrifice
+  pos: [8, 5]
+  schedule:
+    "0": [8, 5]
+    "6": [8, 5]
+    "12": [8, 5]
+    "18": [8, 5]
+  name: sacrifice.npc.acolyte.name
+  greet: sacrifice.npc.acolyte.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: sacrifice.npc.acolyte.name.t
+    job:
+      - text: sacrifice.npc.acolyte.job.t
+    word.devotion:
+      - text: sacrifice.npc.acolyte.devotion.t
+    fact.dione.sanctuary:
+      - text: sacrifice.npc.acolyte.sanctuary.t
+- id: npc.sacrifice.cord-keeper
+  map: map.town.sacrifice
+  pos: [24, 9]
+  schedule:
+    "0": [24, 9]
+    "6": [24, 9]
+    "12": [24, 9]
+    "18": [24, 9]
+  name: sacrifice.npc.cord-keeper.name
+  greet: sacrifice.npc.cord-keeper.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: sacrifice.npc.cord-keeper.name.t
+    job:
+      - text: sacrifice.npc.cord-keeper.job.t
+    fact.dione.widow:
+      - text: sacrifice.npc.cord-keeper.widow.t
+    word.burden:
+      - text: sacrifice.npc.cord-keeper.burden.t
+- id: npc.sacrifice.bandage-seller
+  map: map.town.sacrifice
+  pos: [18, 10]
+  schedule:
+    "0": [18, 10]
+    "6": [18, 10]
+    "12": [18, 10]
+    "18": [18, 10]
+  name: sacrifice.npc.bandage-seller.name
+  greet: sacrifice.npc.bandage-seller.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: sacrifice.npc.bandage-seller.name.t
+    job:
+      - text: sacrifice.npc.bandage-seller.job.t
+    word.devotion:
+      - text: sacrifice.npc.bandage-seller.devotion.t
+    fact.dione.surgeon:
+      - text: sacrifice.npc.bandage-seller.surgeon.t
+- id: npc.sacrifice.old-kneeler
+  map: map.town.sacrifice
+  pos: [4, 9]
+  schedule:
+    "0": [4, 9]
+    "6": [4, 9]
+    "12": [4, 9]
+    "18": [4, 9]
+  name: sacrifice.npc.old-kneeler.name
+  greet: sacrifice.npc.old-kneeler.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: sacrifice.npc.old-kneeler.name.t
+    job:
+      - text: sacrifice.npc.old-kneeler.job.t
+    fact.dione.altar:
+      - text: sacrifice.npc.old-kneeler.altar.t
+    word.love:
+      - text: sacrifice.npc.old-kneeler.love.t
+- id: npc.sacrifice.midwife
+  map: map.town.sacrifice
+  pos: [25, 4]
+  schedule:
+    "0": [25, 4]
+    "6": [25, 4]
+    "12": [25, 4]
+    "18": [25, 4]
+  name: sacrifice.npc.midwife.name
+  greet: sacrifice.npc.midwife.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: sacrifice.npc.midwife.name.t
+    job:
+      - text: sacrifice.npc.midwife.job.t
+    fact.dione.widow:
+      - text: sacrifice.npc.midwife.widow.t
+    word.burden:
+      - text: sacrifice.npc.midwife.burden.t

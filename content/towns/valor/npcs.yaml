@@ -25,6 +25,12 @@
     fact.solgang.retreat-law:
       - text: valor.npc.champion.retreat-law.t
         lie: true
+    word.brother:
+      - text: valor.npc.champion.brother.t
+    word.shield:
+      - text: valor.npc.champion.shield.t
+    word.courage:
+      - text: valor.npc.champion.battle-hymn.t
 - id: npc.valor.sergeant
   map: map.town.valor
   pos: [6, 7]
@@ -47,6 +53,12 @@
     fact.solgang.barracks:
       - text: valor.npc.sergeant.barracks.t
         grants: [word.battle]
+    word.retreat:
+      - text: valor.npc.sergeant.retreat.t
+    fact.solgang.champion:
+      - text: valor.npc.sergeant.champion.t
+    word.courage:
+      - text: valor.npc.sergeant.retreat-law.t
 - id: npc.valor.smith
   map: map.town.valor
   pos: [5, 16]
@@ -67,6 +79,10 @@
     word.shield:
       - text: valor.npc.smith.shield.t
         grants: [fact.solgang.forge]
+    fact.solgang.forge:
+      - text: valor.npc.smith.forge.t
+    fact.solgang.champion:
+      - text: valor.npc.smith.champion.t
 - id: npc.valor.brewer
   map: map.town.valor
   pos: [20, 4]
@@ -87,6 +103,10 @@
     word.brother:
       - text: valor.npc.brewer.brother.t
         grants: [fact.solgang.barracks]
+    fact.solgang.barracks:
+      - text: valor.npc.brewer.barracks.t
+    fact.solgang.veteran:
+      - text: valor.npc.brewer.veteran.t
 - id: npc.valor.child
   map: map.town.valor
   pos: [13, 7]
@@ -107,6 +127,10 @@
     fact.solgang.champion:
       - text: valor.npc.child.champion.t
         grants: [word.courage, word.battle]
+    word.retreat:
+      - text: valor.npc.child.retreat.t
+    word.courage:
+      - text: valor.npc.child.battle-hymn.t
 - id: npc.valor.veteran
   map: map.town.valor
   pos: [5, 1]
@@ -127,6 +151,10 @@
     word.retreat:
       - text: valor.npc.veteran.retreat.t
         grants: [word.courage, fact.solgang.battle-hymn]
+    fact.solgang.champion:
+      - text: valor.npc.veteran.champion.t
+    word.shield:
+      - text: valor.npc.veteran.shield.t
 - id: npc.valor.scout
   map: map.town.valor
   pos: [12, 16]
@@ -146,6 +174,10 @@
         grants: [fact.solgang.barracks]
     fact.creature.valor-duelist:
       - text: valor.npc.scout.duelist.t
+    word.retreat:
+      - text: valor.npc.scout.retreat.t
+    word.blood:
+      - text: valor.npc.scout.blood.t
 - id: npc.valor.healer
   map: map.town.valor
   pos: [21, 16]
@@ -166,6 +198,10 @@
     word.blood:
       - text: valor.npc.healer.blood.t
         grants: [fact.creature.valor-duelist]
+    fact.solgang.champion:
+      - text: valor.npc.healer.champion.t
+    word.brother:
+      - text: valor.npc.healer.brother.t
 - id: npc.valor.standard
   map: map.town.valor
   pos: [10, 14]
@@ -186,6 +222,10 @@
     word.courage:
       - text: valor.npc.standard.courage.t
         grants: [word.battle]
+    word.retreat:
+      - text: valor.npc.standard.retreat.t
+    fact.solgang.arena:
+      - text: valor.npc.standard.arena.t
 - id: npc.valor.widow
   map: map.town.valor
   pos: [24, 7]
@@ -206,3 +246,107 @@
     fact.solgang.retreat-law:
       - text: valor.npc.widow.retreat-law.t
         grants: [word.retreat, word.shield]
+    word.shield:
+      - text: valor.npc.widow.shield.t
+    word.brother:
+      - text: valor.npc.widow.brother.t
+- id: npc.valor.plasterer
+  map: map.town.valor
+  pos: [9, 4]
+  schedule:
+    "0": [9, 4]
+    "6": [9, 4]
+    "12": [9, 4]
+    "18": [9, 4]
+  name: valor.npc.plasterer.name
+  greet: valor.npc.plasterer.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: valor.npc.plasterer.name.t
+    job:
+      - text: valor.npc.plasterer.job.t
+    fact.solgang.barracks:
+      - text: valor.npc.plasterer.barracks.t
+    fact.solgang.sergeant:
+      - text: valor.npc.plasterer.sergeant.t
+- id: npc.valor.oldwoman
+  map: map.town.valor
+  pos: [16, 17]
+  schedule:
+    "0": [16, 17]
+    "6": [16, 17]
+    "12": [16, 17]
+    "18": [16, 17]
+  name: valor.npc.oldwoman.name
+  greet: valor.npc.oldwoman.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: valor.npc.oldwoman.name.t
+    job:
+      - text: valor.npc.oldwoman.job.t
+    word.retreat:
+      - text: valor.npc.oldwoman.retreat.t
+    fact.solgang.champion:
+      - text: valor.npc.oldwoman.champion.t
+- id: npc.valor.bookie
+  map: map.town.valor
+  pos: [20, 10]
+  schedule:
+    "0": [20, 10]
+    "6": [20, 10]
+    "12": [20, 10]
+    "18": [20, 10]
+  name: valor.npc.bookie.name
+  greet: valor.npc.bookie.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: valor.npc.bookie.name.t
+    job:
+      - text: valor.npc.bookie.job.t
+    fact.solgang.arena:
+      - text: valor.npc.bookie.arena.t
+    word.blood:
+      - text: valor.npc.bookie.blood.t
+- id: npc.valor.recruit
+  map: map.town.valor
+  pos: [2, 4]
+  schedule:
+    "0": [2, 4]
+    "6": [2, 4]
+    "12": [2, 4]
+    "18": [2, 4]
+  name: valor.npc.recruit.name
+  greet: valor.npc.recruit.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: valor.npc.recruit.name.t
+    job:
+      - text: valor.npc.recruit.job.t
+    fact.solgang.champion:
+      - text: valor.npc.recruit.champion.t
+    word.shield:
+      - text: valor.npc.recruit.shield.t
+- id: npc.valor.carver
+  map: map.town.valor
+  pos: [24, 11]
+  schedule:
+    "0": [24, 11]
+    "6": [24, 11]
+    "12": [24, 11]
+    "18": [24, 11]
+  name: valor.npc.carver.name
+  greet: valor.npc.carver.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: valor.npc.carver.name.t
+    job:
+      - text: valor.npc.carver.job.t
+    fact.solgang.barracks:
+      - text: valor.npc.carver.barracks.t
+    word.brother:
+      - text: valor.npc.carver.brother.t
