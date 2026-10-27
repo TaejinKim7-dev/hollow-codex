@@ -22,6 +22,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | R-1c | 칼라스 광장 목업 → 🧑 화풍 판정 | `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png` | 🧑 확인 대기 |
 | 🧑 | 문지기 색: 원본(짙은 녹색) vs `gatekeeper-field-grey`(청회색, 풀 위에서 또렷) 선택. 집·열석 고리의 비스듬한 시점을 그대로 쓸지(`art-kalas-maps.md` 끝) 판정 | 채팅 | 대기 |
 | 🧑 | 확인 대기: 그림 제작 계획 §6(`art-production-plan.md`), 아트 방향 §5(`art-direction.md`), 강·다리 목업, 엘린 걷기 영상 | 문서 의견란 | 대기 |
+| 🧑 | 인물 크기: 지금 캐릭터는 몸 약 35px(타일 1칸 높이)라 15×11칸 ×2에서는 화면 높이의 10%뿐. 해결 후보 ① 시야를 11×7칸 ×3으로 좁힘(16%, 추천·비용 0) ② 9×6칸 ×4(18%) ③ 캐릭터를 더 크게 재생성(횟수 소모). 실험실에서 시야 버튼으로 비교 후 선택 | 채팅 | 대기 |
 | S | 그래픽·소리 재설계(층 렌더링, Wang 자동 타일, 걷기, 소리 id→파일, 배포 용량) | `docs/superpowers/specs/` | R 끝난 뒤 |
 | 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |
 
@@ -39,7 +40,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 - 토큰·로그인 정보는 저장소에 두지 않는다(`key.txt`는 `.gitignore`, 파일 삭제 권장).
 
 ## 자산 실험실
-- `npm run dev` → http://localhost:5173/hollow-codex/lab/ (개발 전용). 방향키 걷기, 바닥별 발걸음, 효과음·배경음악 청취·선택("선택 결과 복사"). 후보 소리는 `assets-private/preview/`(git 제외). 검사 `node scripts/visual/lab-check.mjs <out-prefix>`.
+- `npm run dev` → http://localhost:5173/hollow-codex/lab/ (개발 전용). **시야 15×11/11×7/9×6칸 + 배율 ×2~×4 버튼**(플레이어를 따라가는 카메라). 방향키 걷기, 바닥별 발걸음, 효과음·배경음악 청취·선택("선택 결과 복사"). 후보 소리는 `assets-private/preview/`(git 제외). 검사 `node scripts/visual/lab-check.mjs <out-prefix>`.
 
 ## 화면 확인 (AGENTS.md §9.1)
 - 이미지·영상은 **최종 파일 자체**를 검사하고 열어 본 뒤 보여 준다. 도구 `scripts/visual/`(verify-video, scene-preview, tileset-preview, character-sheet, walk-strip, party-demo, recolor, crop-canvas, drop-specks, lab-check).

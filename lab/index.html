@@ -48,7 +48,9 @@
     <canvas id="c" width="480" height="352"></canvas>
     <div class="row" style="margin-top:8px">
       <span class="small">배율</span>
-      <button data-scale="2" class="on">×2</button><button data-scale="3">×3</button>
+      <button data-scale="2" class="on">×2</button><button data-scale="3">×3</button><button data-scale="4">×4</button>
+      <span class="small" style="margin-left:10px">시야</span>
+      <button data-view="15x11" class="on">넓게 15×11칸</button><button data-view="11x7">가까이 11×7칸</button><button data-view="9x6">더 가까이 9×6칸</button>
       <span class="small" id="pos"></span>
     </div>
     <div id="err"></div>
@@ -173,8 +175,12 @@ loadEl();
 document.getElementById("vol").oninput = e => { if (bgmEl) bgmEl.volume = +e.target.value; };
 
 document.getElementById("copy").onclick = async () => { const s = JSON.stringify(choice, null, 1); try { await navigator.clipboard.writeText(s); document.getElementById("copied").textContent = "복사됨 — 채팅에 붙여 넣어 주세요"; } catch { document.getElementById("copied").textContent = s; } };
-document.querySelectorAll("[data-scale]").forEach(b => b.onclick = () => { document.querySelectorAll("[data-scale]").forEach(x => x.classList.toggle("on", x === b)); document.getElementById("c").style.width = (W * T * +b.dataset.scale) + "px"; });
-document.getElementById("c").style.width = (W * T * 2) + "px";
+let SCALE = 2, VIEW = { w: 15, h: 11 };
+const cv = document.getElementById("c");
+function applyView() { cv.width = VIEW.w * T; cv.height = VIEW.h * T; cv.style.width = (VIEW.w * T * SCALE) + "px"; cv.style.height = "auto"; cv.getContext("2d").imageSmoothingEnabled = false; }
+document.querySelectorAll("[data-scale]").forEach(b => b.onclick = () => { document.querySelectorAll("[data-scale]").forEach(x => x.classList.toggle("on", x === b)); SCALE = +b.dataset.scale; applyView(); });
+document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => { document.querySelectorAll("[data-view]").forEach(x => x.classList.toggle("on", x === b)); const [w, h] = b.dataset.view.split("x").map(Number); VIEW = { w, h }; applyView(); });
+applyView();
 
 document.getElementById("startBtn").onclick = async () => {
   actx = new AudioContext(); master = actx.createGain(); master.gain.value = 0.8; master.connect(actx.destination);
@@ -203,7 +209,7 @@ function tryMove(now) {
   P.from = { x: P.tx, y: P.ty }; P.tx = nx; P.ty = ny; P.moving = true; P.t = 0;
   const g = ground(nx, ny), id = g === "wood" ? "footstep_wood" : "footstep"; const u = pick(id); if (u) play(u, 0.55);
 }
-const cx = document.getElementById("c").getContext("2d"); cx.imageSmoothingEnabled = false;
+const cx = cv.getContext("2d"); cx.imageSmoothingEnabled = false;
 const t0 = performance.now(); let last = t0;
 function frame(now) {
   const dt = Math.min(0.05, Math.max(0, now - last) / 1000); last = now;
@@ -212,6 +218,8 @@ function frame(now) {
     P.x = P.from.x + (P.tx - P.from.x) * P.t; P.y = P.from.y + (P.ty - P.from.y) * P.t;
     E.x = E.from.x + (E.tx - E.from.x) * P.t; E.y = E.from.y + (E.ty - E.from.y) * P.t;
     if (P.t >= 1) { P.moving = false; E.moving = false; } }
+  const camX = Math.round(Math.min(Math.max((P.x + 0.5) * T - VIEW.w * T / 2, 0), W * T - VIEW.w * T)), camY = Math.round(Math.min(Math.max((P.y + 0.5) * T - VIEW.h * T / 2, 0), H * T - VIEW.h * T));
+  cx.imageSmoothingEnabled = false; cx.clearRect(0, 0, cv.width, cv.height); cx.save(); cx.translate(-camX, -camY);
   cx.drawImage(groundLayer, 0, 0);
   cx.drawImage(bridgeImg, BRIDGE.px, BRIDGE.py);
   const f = Math.floor(Math.max(0, now - t0) / 140) % 4;
@@ -222,6 +230,7 @@ function frame(now) {
     cx.fillStyle = "rgba(0,0,0,.28)"; cx.beginPath(); cx.ellipse(px, py + 10, 10, 4, 0, 0, 7); cx.fill();
     cx.drawImage(im, Math.round(px - 24), Math.round(py - 38));
   }
+  cx.restore();
   document.getElementById("pos").textContent = `칸 (${P.tx},${P.ty}) · 바닥: ${ground(P.tx, P.ty)}`;
   requestAnimationFrame(frame);
 }
