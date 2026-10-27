@@ -138,30 +138,30 @@ npc.kalas.patrol-a.name.t: 순찰 3년 차입니다. 이름은…… 아직 장�
 npc.kalas.patrol-a.job.t: 광장과 골목을 돌며 고백하지 않은 사람이 없는지 봅니다. 없으면 제 순찰은 성공이고, 있으면…… 그것도 성공이라고 배웠습니다. 이상하지요.
 npc.kalas.patrol-a.confession.t: 고백을 마친 분께는 이 완장을 보여 드립니다. 보이시지요? 이게 있으면 오늘은 안전합니다. 내일 다시 받아야 하지만요.
 npc.kalas.patrol-a.lantern.t: 그날 밤은 제 순번이 아니었습니다. 원래 제가 광장을 돌 차례였는데, 관장님이 대신 서 주겠다고 하셨습니다. 이상하게 친절하셔서 기억에 남습니다.
-npc.kalas.patrol-b.name: 늙은 순찰 경비
-npc.kalas.patrol-b.greet: 이봐, 거기. 걷는 걸 보니 고백할 게 많은 걸음이로군. 농담이야. 반쯤은.
-npc.kalas.patrol-b.name.t: 이름? 순찰 이십 년 차. 이름은 그동안 닳아 없어졌어.
-npc.kalas.patrol-b.job.t: 밤을 지키는 일이야. 처음엔 도둑을 막으려고 시작했지. 지금은 말 새는 걸 막는 일이 됐네. 도둑보다 말이 더 많이 새거든.
-npc.kalas.patrol-b.ledger.t: 내 이름도 장부에 열두 번 올랐어. 전부 사소한 거야. 신발을 짝짝이로 신었다든가. 그래도 열두 줄이면 열두 번 의심받은 사람이 되지.
-npc.kalas.patrol-b.truth.t: 진실은 순찰로 막을 수 없어. 담을 넘어 들어오고 창문으로 새어 나가지. 나는 그걸 못 본 척하는 게 일이었고.
-npc.kalas.herbalist.name: 약초 장수
-npc.kalas.herbalist.greet: 어서 와, 어서 와! 기침엔 별꽃, 불면엔 쑥, 마음엔…… 마음엔 약이 없어.
-npc.kalas.herbalist.name.t: 이름? 약초 이름은 백 개를 외우는데 내 이름은 가끔 까먹어. 그냥 약초 장수라 불러.
-npc.kalas.herbalist.job.t: 산과 들판에서 풀을 뜯어다 말려 팔지. 풀은 말은 안 해도 색과 냄새로 다 알려 줘. 사람이 풀만 같아도 고백할 일이 없을 텐데.
-npc.kalas.herbalist.truth.t: 진실도 약초 같아서, 말려 두면 쓴맛만 남아. 갓 딴 걸 바로 써야 약이 되는 법이야.
-npc.kalas.herbalist.archive.t: 옛 서고 담벼락 밑에 풀이 한 종류 있어. 서고 문이 닫힌 뒤로도 해마다 같은 자리에 나지. 사람은 잊어도 풀은 안 잊나 봐.
+npc.field.patrol.name: 늙은 순찰 경비
+npc.field.patrol.greet: 이봐, 거기. 걷는 걸 보니 고백할 게 많은 걸음이로군. 농담이야. 반쯤은.
+npc.field.patrol.name.t: 이름? 순찰 이십 년 차. 이름은 그동안 닳아 없어졌어.
+npc.field.patrol.job.t: 밤을 지키는 일이야. 처음엔 도둑을 막으려고 시작했지. 지금은 말 새는 걸 막는 일이 됐네. 도둑보다 말이 더 많이 새거든.
+npc.field.patrol.ledger.t: 내 이름도 장부에 열두 번 올랐어. 전부 사소한 거야. 신발을 짝짝이로 신었다든가. 그래도 열두 줄이면 열두 번 의심받은 사람이 되지.
+npc.field.patrol.truth.t: 진실은 순찰로 막을 수 없어. 담을 넘어 들어오고 창문으로 새어 나가지. 나는 그걸 못 본 척하는 게 일이었고.
+npc.field.herbalist.name: 약초 장수
+npc.field.herbalist.greet: 어서 와, 어서 와! 기침엔 별꽃, 불면엔 쑥, 마음엔…… 마음엔 약이 없어.
+npc.field.herbalist.name.t: 이름? 약초 이름은 백 개를 외우는데 내 이름은 가끔 까먹어. 그냥 약초 장수라 불러.
+npc.field.herbalist.job.t: 산과 들판에서 풀을 뜯어다 말려 팔지. 풀은 말은 안 해도 색과 냄새로 다 알려 줘. 사람이 풀만 같아도 고백할 일이 없을 텐데.
+npc.field.herbalist.truth.t: 진실도 약초 같아서, 말려 두면 쓴맛만 남아. 갓 딴 걸 바로 써야 약이 되는 법이야.
+npc.field.herbalist.archive.t: 옛 서고 담벼락 밑에 풀이 한 종류 있어. 서고 문이 닫힌 뒤로도 해마다 같은 자리에 나지. 사람은 잊어도 풀은 안 잊나 봐.
 npc.kalas.bellringer.name: 종지기
 npc.kalas.bellringer.greet: 아, 소리가 들리셨어요? 오늘은 아직 안 쳤는데. ……그래도 귀가 울리는 날이 있죠.
 npc.kalas.bellringer.name.t: 그냥 종지기예요. 종은 이름을 안 물어봐요. 치면 소리가 나는 것뿐이에요.
 npc.kalas.bellringer.job.t: 하루 세 번, 고백 시간에 종을 쳐요. 종소리가 나면 사람들이 입을 열고, 멈추면 입을 닫아요. 제가 마을의 입을 여닫는 셈이죠.
 npc.kalas.bellringer.lantern.t: 그날 밤엔 종을 안 쳤어요. 달이 너무 밝아서요. ……그런데 한밤중에 유리 깨지는 소리가 들렸어요. 종소리보다 맑았어요.
 npc.kalas.bellringer.song.t: 등불 노래의 첫 음은 종소리에서 따왔대요. 그래서 노래가 시작되면 저도 모르게 종줄을 만져요. 빈 이름 자리에서는 종도 가만히 있고요.
-npc.kalas.aspirant.name: 순례 지망생
-npc.kalas.aspirant.greet: 혹시 순례자세요? 열석을 지나 오셨죠? 저, 여덟 마을을 다 돌 거예요!
-npc.kalas.aspirant.name.t: 이름 말하면 장부에 올라갈까 봐…… 아니, 농담이에요. 근데 정말 안 말하는 게 좋을지도요.
-npc.kalas.aspirant.job.t: 아직 아무 일도 안 해요. 순례가 일이에요. 삼백 년 전 순례자가 어떻게 걸었는지, 그 걸음을 따라가 보려고요.
-npc.kalas.aspirant.pilgrim.t: 순례자는 말보다 행동으로 가르쳤다던데, 그게 제일 어려워요. 저는 행동하기 전에 먼저 물어봐 버리거든요. ……당신은 어땠어요?
-npc.kalas.aspirant.truth.t: 진실을 찾으러 왔는데, 칼라스에서는 다들 진실을 먼저 적어 두고 시작하더라고요. 이미 적힌 진실을 어떻게 찾아요?
+npc.field.aspirant.name: 순례 지망생
+npc.field.aspirant.greet: 혹시 순례자세요? 열석을 지나 오셨죠? 저, 여덟 마을을 다 돌 거예요!
+npc.field.aspirant.name.t: 이름 말하면 장부에 올라갈까 봐…… 아니, 농담이에요. 근데 정말 안 말하는 게 좋을지도요.
+npc.field.aspirant.job.t: 아직 아무 일도 안 해요. 순례가 일이에요. 삼백 년 전 순례자가 어떻게 걸었는지, 그 걸음을 따라가 보려고요.
+npc.field.aspirant.pilgrim.t: 순례자는 말보다 행동으로 가르쳤다던데, 그게 제일 어려워요. 저는 행동하기 전에 먼저 물어봐 버리거든요. ……당신은 어땠어요?
+npc.field.aspirant.truth.t: 진실을 찾으러 왔는데, 칼라스에서는 다들 진실을 먼저 적어 두고 시작하더라고요. 이미 적힌 진실을 어떻게 찾아요?
 npc.kalas.neighbor.name: 니아네 이웃 할머니
 npc.kalas.neighbor.greet: 아이고, 낯선 얼굴이네. 니아네 집에 볼일이 있어요? 지금은 비었는데.
 npc.kalas.neighbor.name.t: 그냥 이웃 할멈이라고 해요. 니아 어릴 때부터 옆집이었으니, 이름보다 그게 더 길어요.

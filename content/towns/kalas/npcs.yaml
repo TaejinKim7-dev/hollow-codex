@@ -370,46 +370,46 @@
       - text: npc.kalas.patrol-a.confession.t
     word.lantern:
       - text: npc.kalas.patrol-a.lantern.t
-- id: npc.kalas.patrol-b
-  map: map.kalas
-  pos: [5, 14]
+- id: npc.field.patrol
+  map: map.field
+  pos: [2, 6]
   schedule:
-    "0": [5, 14]
-    "6": [5, 14]
-    "12": [5, 14]
-    "18": [5, 14]
-  name: npc.kalas.patrol-b.name
-  greet: npc.kalas.patrol-b.greet
+    "0": [2, 6]
+    "6": [2, 6]
+    "12": [2, 6]
+    "18": [2, 6]
+  name: npc.field.patrol.name
+  greet: npc.field.patrol.greet
   sprite: [town, 84]
   topics:
     name:
-      - text: npc.kalas.patrol-b.name.t
+      - text: npc.field.patrol.name.t
     job:
-      - text: npc.kalas.patrol-b.job.t
+      - text: npc.field.patrol.job.t
     word.ledger:
-      - text: npc.kalas.patrol-b.ledger.t
+      - text: npc.field.patrol.ledger.t
     word.truth:
-      - text: npc.kalas.patrol-b.truth.t
-- id: npc.kalas.herbalist
-  map: map.kalas
-  pos: [12, 10]
+      - text: npc.field.patrol.truth.t
+- id: npc.field.herbalist
+  map: map.field
+  pos: [19, 4]
   schedule:
-    "0": [12, 10]
-    "6": [12, 10]
-    "12": [12, 10]
-    "18": [12, 10]
-  name: npc.kalas.herbalist.name
-  greet: npc.kalas.herbalist.greet
+    "0": [19, 4]
+    "6": [19, 4]
+    "12": [19, 4]
+    "18": [19, 4]
+  name: npc.field.herbalist.name
+  greet: npc.field.herbalist.greet
   sprite: [town, 84]
   topics:
     name:
-      - text: npc.kalas.herbalist.name.t
+      - text: npc.field.herbalist.name.t
     job:
-      - text: npc.kalas.herbalist.job.t
+      - text: npc.field.herbalist.job.t
     word.truth:
-      - text: npc.kalas.herbalist.truth.t
+      - text: npc.field.herbalist.truth.t
     fact.kalas.archive:
-      - text: npc.kalas.herbalist.archive.t
+      - text: npc.field.herbalist.archive.t
 - id: npc.kalas.bellringer
   map: map.kalas
   pos: [20, 8]
@@ -430,26 +430,26 @@
       - text: npc.kalas.bellringer.lantern.t
     fact.song.lantern-song:
       - text: npc.kalas.bellringer.song.t
-- id: npc.kalas.aspirant
-  map: map.kalas
-  pos: [8, 14]
+- id: npc.field.aspirant
+  map: map.field
+  pos: [10, 6]
   schedule:
-    "0": [8, 14]
-    "6": [8, 14]
-    "12": [8, 14]
-    "18": [8, 14]
-  name: npc.kalas.aspirant.name
-  greet: npc.kalas.aspirant.greet
+    "0": [10, 6]
+    "6": [10, 6]
+    "12": [10, 6]
+    "18": [10, 6]
+  name: npc.field.aspirant.name
+  greet: npc.field.aspirant.greet
   sprite: [town, 84]
   topics:
     name:
-      - text: npc.kalas.aspirant.name.t
+      - text: npc.field.aspirant.name.t
     job:
-      - text: npc.kalas.aspirant.job.t
+      - text: npc.field.aspirant.job.t
     word.pilgrim:
-      - text: npc.kalas.aspirant.pilgrim.t
+      - text: npc.field.aspirant.pilgrim.t
     word.truth:
-      - text: npc.kalas.aspirant.truth.t
+      - text: npc.field.aspirant.truth.t
 - id: npc.kalas.neighbor
   map: map.kalas
   pos: [4, 17]
