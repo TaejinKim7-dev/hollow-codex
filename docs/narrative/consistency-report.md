@@ -8,6 +8,10 @@
 3. **하게체·반말 인물의 어체 이탈 8줄**(현판 칠장이, 성문 고백관, 늙은 순찰 경비).
 4. **니아의 직함** 단서 힌트 `word.trial.hint`가 "견습 필경사"였던 것을 "필경사"로(영어도).
 
+5. **(2026-10-27 사용자 결정 반영) 대화 주제**: 규칙 변경으로 노래·크리처 단서도 주제 버튼에 나온다(`src/core/dialogue/talk.ts` CHIP_KINDS, 테스트 갱신). 그래도 남은 24줄(결론 단서에 걸린 것)은 각 인물의 다른 단어·인물·장소 주제로 옮기고 첫 문장도 맞췄다. 결과: 물을 수 없는 주제 0개(`python3 scripts/narrative/spec.py dead-topics`).
+6. **얻을 수 없던 단서 6개**를 최소 수정으로 얻게 함(`python3 scripts/narrative/reachable.py` → 0개): 제단 사제 크레온←아이 리오(노아) 이름, 영성 서고←서기 세온 이름, 명상당←주지 다루 이름, 빵집 주인←빵집 주인 이름, 과부←과부 이름, 영(word.spirit)←서기 세온 job.
+7. **헷갈리던 인물 이름 7개 개명**(마을 이름은 그대로): 카이온→바르칸(Kaion→Barkan), 레온→카셀(Leon→Kasel), 고르노→오스탄(Gorno→Ostan), 하르파→다멘(Harpa→Damen), 리오→노아(Rio→Noah), 셀레→하린(Cele→Harin), 아르벤→할덴(Arben→Halden). 이유: 순례자 이온/크레온/세르노·고르노/하르·하르파/리오나/셀레스/아르곤과 겹침. 엘린(칼라스)과 엘리아(마을)는 의도적으로 그대로 둠.
+
 ## 사람이 보고 문제 없다고 판정한 것
 - 훈련관 하르의 "~한다/묻지 마라"는 해라체로 일관(엄한 교관), 제단 사제 크레온의 "~다/~구나"도 해라체로 일관.
 - 면허 수행자 미온·곡비 실라의 하오체 뒤 "~니/~거요"는 하오체 연결형이라 정상.
@@ -19,15 +23,15 @@
 ## 1. 인물별 어체 분포 (의심 = 주 어체가 아닌 문장이 20% 넘음)
 | 인물 | 마을 | 주 어체 | 분포 | 의심 문장 수 |
 |---|---|---|---|---|
-| 자선 관장 `npc.compassion.almoner` | compassion | 합쇼체 | {'합쇼체': 18} | 0 |
+| 자선 관장 `npc.compassion.almoner` | compassion | 합쇼체 | {'합쇼체': 20} | 0 |
 | 빵집 주인 `npc.compassion.baker` | compassion | 합쇼체 | {'합쇼체': 9} | 0 |
 | 골목 아이 피리 `npc.compassion.child` | compassion | 반말 | {'반말': 5} | 0 |
 | 거지 할브 `npc.compassion.beggar` | compassion | 합쇼체 | {'합쇼체': 12, '해요체': 1} | 1 |
 | 예배당 사제 리엔 `npc.compassion.priest` | compassion | 합쇼체 | {'합쇼체': 10, '해요체': 2} | 2 |
 | 떠돌이 노래꾼 셀 `npc.compassion.wanderer` | compassion | 합쇼체 | {'합쇼체': 10} | 0 |
-| 방앗간 주인 마레 `npc.compassion.miller` | compassion | 합쇼체 | {'합쇼체': 11, '반말': 1, '해요체': 1} | 2 |
+| 방앗간 주인 마레 `npc.compassion.miller` | compassion | 합쇼체 | {'합쇼체': 12, '반말': 1, '해요체': 1} | 2 |
 | 바느질꾼 유나 `npc.compassion.seamstress` | compassion | 합쇼체 | {'합쇼체': 10} | 0 |
-| 기록관 테오 `npc.compassion.scribe` | compassion | 합쇼체 | {'합쇼체': 11, '해요체': 1} | 1 |
+| 기록관 테오 `npc.compassion.scribe` | compassion | 합쇼체 | {'합쇼체': 12, '해요체': 1} | 1 |
 | 늙은 어머니 한나 `npc.compassion.grandmother` | compassion | 반말 | {'반말': 11} | 0 |
 | 곳간 짐꾼 브람 `npc.compassion.porter` | compassion | 반말 | {'반말': 10, '하게체': 2} | 2 |
 | 현판 칠장이 오센 `npc.compassion.painter` | compassion | 하게체 | {'하게체': 9} | 0 |
@@ -37,7 +41,7 @@
 | 원로 베론 `npc.honor.elder` | honor | 반말 | {'반말': 2} | 0 |
 | 후계자 시온 `npc.honor.heir` | honor | 하게체 | {'하게체': 4} | 0 |
 | 가문 기록관 마델 `npc.honor.scribe` | honor | 하게체 | {'하게체': 1} | 0 |
-| 검술 사범 카이온 `npc.honor.swordmaster` | honor | 하게체 | {'하게체': 19} | 0 |
+| 검술 사범 바르칸 `npc.honor.swordmaster` | honor | 하게체 | {'하게체': 19} | 0 |
 | 술 빚는 무르 `npc.honor.brewer` | honor | 하게체 | {'하게체': 10, '반말': 2} | 2 |
 | 마을 아이 아린 `npc.honor.child` | honor | 반말 | {'반말': 18} | 0 |
 | 과부 세린 `npc.honor.widow` | honor | 해요체 | {'해요체': 22, '합쇼체': 1, '반말': 1} | 2 |
@@ -60,16 +64,16 @@
 | 자리패 깎는 이 `npc.humility.tagcarver` | humility | 하게체 | {'하게체': 5, '반말': 1} | 1 |
 | 아이 어머니 `npc.humility.mother` | humility | 해요체 | {'해요체': 10} | 0 |
 | 비질하는 이 `npc.humility.sweeper` | humility | 하오체 | {'하오체': 6} | 0 |
-| 재판관 아르벤 `npc.justice.judge` | justice | 반말 | {'반말': 3} | 0 |
-| 법정 서기 레온 `npc.justice.clerk` | justice | 하게체 | {'하게체': 18, '반말': 2} | 2 |
-| 과부 셀레 `npc.justice.widow` | justice | 해요체 | {'해요체': 31} | 0 |
+| 재판관 할덴 `npc.justice.judge` | justice | 반말 | {'반말': 3} | 0 |
+| 법정 서기 카셀 `npc.justice.clerk` | justice | 하게체 | {'하게체': 18, '반말': 2} | 2 |
+| 과부 하린 `npc.justice.widow` | justice | 해요체 | {'해요체': 31} | 0 |
 | 갇힌 청년 이렌 `npc.justice.prisoner` | justice | 해요체 | {'해요체': 26} | 0 |
 | 목격자 카인 `npc.justice.witness` | justice | 반말 | {'반말': 14, '하게체': 1} | 1 |
 | 광장 아이 리네 `npc.justice.child` | justice | 반말 | {'반말': 11} | 0 |
-| 사제 세르노 `npc.justice.priest` | justice | 하게체 | {'하게체': 17, '반말': 1} | 1 |
+| 사제 세르노 `npc.justice.priest` | justice | 하게체 | {'하게체': 18, '반말': 1} | 1 |
 | 석공 두만 `npc.justice.mason` | justice | 하게체 | {'하게체': 14, '반말': 1} | 1 |
 | 필경사 벨라 `npc.justice.scribe` | justice | 합쇼체 | {'합쇼체': 13, '반말': 1} | 1 |
-| 묘지기 고르노 `npc.justice.gravedigger` | justice | 반말 | {'반말': 12} | 0 |
+| 묘지기 오스탄 `npc.justice.gravedigger` | justice | 반말 | {'반말': 12} | 0 |
 | 은세공인 니엘 `npc.justice.silversmith` | justice | 해요체 | {'해요체': 13} | 0 |
 | 묘지 옆 노파 오르마 `npc.justice.old-neighbor` | justice | 하오체 | {'하오체': 10} | 0 |
 | 저울 검사관 하임 `npc.justice.scale-keeper` | justice | 합쇼체 | {'합쇼체': 7, '해요체': 1} | 1 |
@@ -98,11 +102,11 @@
 | 들판 행상인 `npc.field.peddler` | kalas | 반말 | {'반말': 10} | 0 |
 | 제단 사제 크레온 `npc.sacrifice.altar-priest` | sacrifice | 반말 | {'반말': 3, '하게체': 1} | 1 |
 | 과부 레아 `npc.sacrifice.widow` | sacrifice | 해요체 | {'해요체': 22} | 0 |
-| 아이 리오 `npc.sacrifice.child` | sacrifice | 반말 | {'반말': 11, '하게체': 1} | 1 |
+| 아이 노아 `npc.sacrifice.child` | sacrifice | 반말 | {'반말': 11, '하게체': 1} | 1 |
 | 순례자 이온 `npc.sacrifice.pilgrim` | sacrifice | 하오체 | {'해요체': 2, '하오체': 17} | 2 |
 | 외과의 세인 `npc.sacrifice.surgeon` | sacrifice | 하게체 | {'하게체': 17, '반말': 2} | 2 |
 | 기록사 미르 `npc.sacrifice.scribe` | sacrifice | 합쇼체 | {'합쇼체': 19} | 0 |
-| 석공 하르파 `npc.sacrifice.mason` | sacrifice | 하게체 | {'하게체': 14} | 0 |
+| 석공 다멘 `npc.sacrifice.mason` | sacrifice | 하게체 | {'하게체': 14} | 0 |
 | 빵 굽는 세라 `npc.sacrifice.baker` | sacrifice | 반말 | {'반말': 11} | 0 |
 | 치유사 노라 `npc.sacrifice.healer` | sacrifice | 하게체 | {'하게체': 8, '반말': 2} | 2 |
 | 텃밭지기 마노 `npc.sacrifice.gardener` | sacrifice | 반말 | {'반말': 10} | 0 |
@@ -117,7 +121,7 @@
 | 은자 펠라 `npc.spirituality.hermit` | spirituality | 반말 | {'반말': 16, '하게체': 1} | 1 |
 | 정원지기 호레 `npc.spirituality.gardener` | spirituality | 하게체 | {'하게체': 15, '반말': 1} | 1 |
 | 아이 소미 `npc.spirituality.child` | spirituality | 반말 | {'반말': 13} | 0 |
-| 찻집 주인 도란 `npc.spirituality.brewer` | spirituality | 하게체 | {'하게체': 13, '반말': 2} | 2 |
+| 찻집 주인 도란 `npc.spirituality.brewer` | spirituality | 하게체 | {'하게체': 13, '반말': 1} | 1 |
 | 수문장 구르 `npc.spirituality.gatekeeper` | spirituality | 하게체 | {'하게체': 13, '반말': 1} | 1 |
 | 과부 이레 `npc.spirituality.widow` | spirituality | 해요체 | {'해요체': 21} | 0 |
 | 공양주 오미 `npc.spirituality.cook` | spirituality | 해요체 | {'해요체': 12, '반말': 1} | 1 |
@@ -167,7 +171,7 @@
 - 「리네」 `valor.npc.brewer.brother.t`: 전우나 형제나 다를 게 없네. 한 잔을 나눠 마신 사이지. 요즘 병영 젊은이들은 그 잔을 나눌 겨를도 없이
 - 「리네」 `valor.npc.brewer.veteran.t`: 켈 영감은 저녁마다 저 구석에서 잔 하나를 앞에 두고 노래를 흥얼거리네. 늘 같은 데서 멈추지. 그러고는 잔
 - 「리네」 `justice.npc.clerk.punishment.t`: 형벌은 세 가지일세. 매질, 추방, 그리고 무덤 앞에 무릎 꿇기. 무릎 꿇기가 가장 가볍지. ……아이들은 그
-- 「리네」 `justice.npc.clerk.harsh.t`: 이 기록을 보게. 지난달 조문을 어긴 사람이 여섯이네. 노래한 사람도, 무덤에 꽃을 두고 온 사람도, 모두
+- 「리네」 `justice.npc.clerk.harsh.t`: 공정이라…… 이 기록을 보게. 지난달 조문을 어긴 사람이 여섯이네. 노래한 사람도, 무덤에 꽃을 두고 온 사
 - 「리네」 `justice.npc.child.name`: 광장 아이 리네
 - 「리네」 `justice.npc.child.name.t`: 나는 리네야. 이 마을에서 태어난 아이야. 내가 아는 노래가 셀레스에서 제일 많아.
 - 「이온」 `sacrifice.npc.pilgrim.name`: 순례자 이온
@@ -176,12 +180,8 @@
 - 「미르」 `sacrifice.npc.scribe.name.t`: 미르입니다. 디오네의 기록사로, 제단에 바쳐진 것들의 목록을 옮겨 적는 사람이지요.
 - 「이온」 `sacrifice.fact.dione.pilgrim.label`: 순례자 이온
 - 「미르」 `sacrifice.fact.dione.scribe.label`: 기록사 미르
-- 「이온」 `sacrifice.crisis.altar.text`: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 리오의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치
-- 「미르」 `sacrifice.crisis.altar.text`: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 리오의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치
-- 「이온」 `honor.npc.elder.swordmaster.t`: 카이온은 아이들에게 꿇는 법부터 가르친다지. 칼 쥔 손이 무릎부터 배우면, 이 마을은 무엇으로 서겠느냐.
-- 「이온」 `honor.npc.swordmaster.name`: 검술 사범 카이온
-- 「이온」 `honor.npc.swordmaster.name.t`: 카이온일세. 이 마을에서 검을 가르치네. 하지만 이기는 법은 가르치지 않네. 이기고도 살지 못하는 검을 왜
-- 「이온」 `honor.fact.argon.swordmaster.label`: 검술 사범 카이온
+- 「이온」 `sacrifice.crisis.altar.text`: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 노아의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치
+- 「미르」 `sacrifice.crisis.altar.text`: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 노아의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치
 
 ## 3. 용어·직함 변형 (같은 개념이 여러 말로 쓰이는지)
 - 니아의 직함: 「필경사」 15회, 「견습 필경사」 0회, 「서기관」 5회, 「기록사」 8회

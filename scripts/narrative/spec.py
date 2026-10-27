@@ -24,7 +24,7 @@ import yaml
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 os.chdir(ROOT)
-ASKABLE = {"word", "person", "place"}  # src/core/dialogue/talk.ts CHIP_KINDS — 이 종류의 단서만 대화 주제로 고를 수 있다
+ASKABLE = {"word", "person", "place", "song", "creature"}  # src/core/dialogue/talk.ts CHIP_KINDS — 이 종류의 단서만 대화 주제로 고를 수 있다(meaning 제외)
 SAFE_BAD_START = ("'", '"', "[", "{", "-", "&", "*", "!", "|", ">", "%", "@", "`", "?", ":", "#", ",")
 HANGUL = re.compile(r"[가-힣]")
 
@@ -128,7 +128,7 @@ def validate(spec, c=None):
         npc = c["npcs"].get(a.get("npc"))
         if not npc: errs.append(f"add_topics: 인물 없음 {a.get('npc')}"); continue
         if a.get("topic") not in (c["facts"] | {"name", "job"}): errs.append(f"add_topics[{k}]: 주제 '{a.get('topic')}'는 실제 단서/단어 id가 아님")
-        elif a.get("topic") in c["facts"] and c["factdefs"][a["topic"]]["kind"] not in ASKABLE: errs.append(f"add_topics[{k}]: 주제 '{a['topic']}'는 종류가 '{c['factdefs'][a['topic']]['kind']}'라 대화 주제로 고를 수 없음(word/person/place만 가능)")
+        elif a.get("topic") in c["facts"] and c["factdefs"][a["topic"]]["kind"] not in ASKABLE: errs.append(f"add_topics[{k}]: 주제 '{a['topic']}'는 종류가 '{c['factdefs'][a['topic']]['kind']}'라 대화 주제로 고를 수 없음(word/person/place/song/creature만 가능)")
         if a.get("topic") in (npc.get("topics") or {}): errs.append(f"add_topics[{k}]: {a['npc']}에 주제 '{a['topic']}'가 이미 있음")
         if (a.get("npc"), a.get("topic")) in seen_topic: errs.append(f"add_topics[{k}]: spec 안에서 같은 인물·주제 중복")
         seen_topic[(a.get("npc"), a.get("topic"))] = 1
@@ -148,7 +148,7 @@ def validate(spec, c=None):
             if key in ko or key in en or key in new_keys: errs.append(f"new_npcs[{nid}]: 키가 이미 있음 {key}")
             new_keys.add(key); need_pair(t, f"new_npcs[{nid}].topics[{t.get('suffix')}]")
             if t.get("topic") not in c["facts"]: errs.append(f"new_npcs[{nid}]: 주제 '{t.get('topic')}'는 실제 단서/단어 id가 아님(name/job은 자동)")
-            elif c["factdefs"][t["topic"]]["kind"] not in ASKABLE: errs.append(f"new_npcs[{nid}]: 주제 '{t['topic']}'는 종류가 '{c['factdefs'][t['topic']]['kind']}'라 대화 주제로 고를 수 없음(word/person/place만 가능)")
+            elif c["factdefs"][t["topic"]]["kind"] not in ASKABLE: errs.append(f"new_npcs[{nid}]: 주제 '{t['topic']}'는 종류가 '{c['factdefs'][t['topic']]['kind']}'라 대화 주제로 고를 수 없음(word/person/place/song/creature만 가능)")
             if t.get("topic") in tops: errs.append(f"new_npcs[{nid}]: 주제 중복 {t.get('topic')}")
             tops.add(t.get("topic"))
         sched = n.get("schedule") or {"0": n["pos"]}

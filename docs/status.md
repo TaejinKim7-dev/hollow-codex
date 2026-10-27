@@ -14,7 +14,8 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
 | D-1 | 마을 대사 점검·고쳐 쓰기·인물 추가 **8개 마을 모두 15명 기준으로 반영 완료**(2026-10-27, 전체 NPC 126명). 마을당 대사 30~70줄 수정, 새 주제 20개 안팎, 새 인물 5명(ko+en). 인물 그림은 임시 스프라이트. 🧑 대사 읽기·판정, 아래 결정 3건 | `docs/narrative/<마을>-script.md`(전문), `<마을>-audit.md`(점검·설정·흐름), `voice-bible.md`(칼라스 설정) | 반영 완료, 판정 대기 |
-| 🧑 | **결정 필요(D-2)**: ① 물을 수 없는 대화 주제 58줄 — (A) 콘텐츠 재연결 (B) CHIP_KINDS에 song·creature 추가(추천) ② 얻을 수 없는 단서(셀레스 `fact.seles.prisoner/widow`, 엘리아 `word.spirit`·`fact.elia.meditation-hall/library`, 리오나 `fact.reona.baker/open-pantry`) — 단서 부여(`grants`) 구조 수정 허용? ③ 인물 이름 겹침(과부 셀레↔마을 셀레스 등) 개명 여부 | 채팅 | 대기 |
+| ✅ | **D-2 결정 반영(2026-10-27)**: ① 규칙 변경(song·creature 칩 허용) + 나머지 24줄 재연결 → 물을 수 없는 주제 0 ② 얻을 수 없던 단서 6개 최소 수정 → 0 ③ 헷갈리는 인물 이름 7개 개명(마을 이름 유지). 게이트 전부 통과 | `docs/narrative/consistency-report.md` | 완료 |
+| ✅ | **인물 그림 방식 결정(2026-10-27)**: 새 인물 약 45명은 **기본형 12종 + 마을색 변형**(처음 계획, `art-production-plan.md` §1)으로. 생성 약 12종×(대기 1 + 걷기) + `scripts/visual/recolor.mjs`로 8마을 색 | `art-production-plan.md` | 결정됨(그림은 PixelLab 하루 5회로 진행) |
 | R-2a2 | 효과음 추가 14상황(게임 이벤트 중 소리 없는 것: 맵 이동·전투 시작·방어·설득·도주·승리·패배·동료 합류/이탈·열석 열림·능력·위기·경전 쓰기·에필로그) 후보 53개를 실험실에 올림 → 🧑 청취·선택 → `assets/audio/sfx/` | 실험실 `/hollow-codex/lab/` | 후보 준비됨(2026-10-27), 선택 대기 |
 | R-2a3 | ElevenLabs 효과음 35개(늑대·열석·전투·이벤트·분위기 루프) 생성 완료, 🧑 실험실에서 청취·판정 | `docs/research/elevenlabs-sfx.md` | 완료(청취 대기) |
 | R-2b | 배경음악 12곡 **기본 A로 변환 완료**(사용자: CC-BY 허용·바로 진행, 슬롯별 선택은 안 함) → `assets/audio/bgm/<슬롯>.ogg`(110초→106초 루프, 합계 11 MB) + `credits.json`. 마음에 안 드는 슬롯은 `scripts/audio/bgm-selection.json`에서 B로 바꾸고 `make-bgm-loops.py` 재실행 | `docs/research/bgm-candidates.md` | 완료(사용자 청취 대기) |

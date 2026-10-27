@@ -56,7 +56,7 @@
     word.punishment:
       - text: justice.npc.clerk.punishment.t
         grants: [word.punishment]
-    fact.seles.harsh-punishment:
+    word.fairness:
       - text: justice.npc.clerk.harsh.t
         grants: [word.punishment, fact.seles.harsh-punishment]
     fact.seles.prisoner:
@@ -80,6 +80,7 @@
   topics:
     name:
       - text: justice.npc.widow.name.t
+        grants: [fact.seles.widow]
     job:
       - text: justice.npc.widow.job.t
         grants: [word.compassion, fact.seles.graveyard, fact.seles.mourning-lullaby]
@@ -95,7 +96,7 @@
     word.truth:
       - text: justice.npc.widow.truth.t
         grants: [word.truth]
-    fact.seles.mourning-duty:
+    word.law:
       - text: justice.npc.widow.mourning-duty.t
         grants: [fact.seles.mourning-duty]
     fact.seles.graveyard:
@@ -214,16 +215,16 @@
     job:
       - text: justice.npc.priest.job.t
         grants: [fact.seles.mourning-duty, word.law]
-    fact.seles.mourning-duty:
+    word.law:
       - text: justice.npc.priest.mourning-duty.t
         grants: [fact.seles.comfort-widow, word.compassion]
-    fact.seles.comfort-widow:
+    fact.seles.widow:
       - text: justice.npc.priest.comfort-widow.t
         grants: [word.love, fact.seles.comfort-widow]
     word.compassion:
       - text: justice.npc.priest.compassion.t
         grants: [word.compassion]
-    fact.seles.harsh-punishment:
+    word.punishment:
       - text: justice.npc.priest.harsh.t
         grants: [fact.seles.harsh-punishment]
     fact.seles.judge:
@@ -250,10 +251,10 @@
     word.law:
       - text: justice.npc.mason.law.t
         grants: [word.law]
-    fact.seles.harsh-punishment:
+    word.fairness:
       - text: justice.npc.mason.harsh.t
         grants: [fact.seles.harsh-punishment, word.punishment]
-    fact.seles.comfort-widow:
+    fact.seles.widow:
       - text: justice.npc.mason.comfort-widow.t
         grants: [fact.seles.comfort-widow]
     fact.seles.graveyard:
@@ -283,7 +284,7 @@
     fact.seles.prisoner:
       - text: justice.npc.scribe.prisoner.t
         grants: [word.truth, word.fairness]
-    fact.seles.harsh-punishment:
+    word.law:
       - text: justice.npc.scribe.harsh.t
         grants: [fact.seles.harsh-punishment, word.punishment]
     word.fairness:

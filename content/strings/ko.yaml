@@ -352,8 +352,8 @@ compassion.npc.almoner.greet: 리오나에 오신 것을 환영합니다. 이 �
 compassion.npc.almoner.name.t: 자선 관장입니다. 리오나에서는 이름보다 몫이 먼저 불리지요. 한 몫, 반 몫, 셋째 줄 둘째 몫, 그렇게 부릅니다.
 compassion.npc.almoner.job.t: 제 일은 곳간을 지키고 배급을 정하는 것입니다. 누구에게 얼마를 줄지, 누가 아직 자격이 되는지를 정합니다. ……자선은 거두는 것으로 시작해 나누는 것으로 끝납니다.
 compassion.npc.almoner.charity.t: 자선이란, 줄 수 있는 자가 줄 수 없는 자를 돌보는 질서입니다. 그 질서가 흔들리면 모두가 굶게 됩니다. 그러니 받는 이는 감사해야 하고, 주는 이는 계속 주어야 하지요.
-compassion.npc.almoner.pantry.t: 열린 곳간 말씀이십니까? 옛날이야기일 뿐입니다. 누구나 들어가 마음껏 가져갔다니, 그런 무질서가 어디 있겠습니까. 우리는 질서 있게 나눕니다.
-compassion.npc.almoner.tax.t: 세금을 낮추자는 문서라면 제가 막았습니다. 곳간이 바닥나는 해를 한 번 겪은 사람은 다시는 곳간을 비워 둘 수 없습니다. 주는 손이 끊기면, 받는 손은 갈 곳이 없습니다.
+compassion.npc.almoner.pantry.t: 예배당에서 그런 말을 들으셨습니까? 열린 곳간 말입니까. 옛날이야기일 뿐입니다. 누구나 들어가 마음껏 가져갔다니, 그런 무질서가 어디 있겠습니까. 우리는 질서 있게 나눕니다.
+compassion.npc.almoner.tax.t: 의존 말씀이십니까. 세금을 낮추자는 문서라면 제가 막았습니다. 곳간이 바닥나는 해를 한 번 겪은 사람은 다시는 곳간을 비워 둘 수 없습니다. 주는 손이 끊기면, 받는 손은 갈 곳이 없습니다.
 compassion.npc.almoner.hunger.t: 배고픔입니다. 저는 그것을 줄 맨 끝에서 배웠습니다. 그래서 지금도 마지막 사람이 몫을 받기 전에는 문을 닫지 않습니다.
 compassion.npc.almoner.plaza.t: 광장의 줄은 곧고 조용합니다. 곧은 줄에서는 아무도 밀려나지 않지요. ……밀려나 본 사람만 그게 얼마나 귀한지 압니다.
 
@@ -387,7 +387,7 @@ compassion.npc.priest.name: 예배당 사제 리엔
 compassion.npc.priest.greet: 평온하시길. 이 예배당은 누구에게나 열려 있습니다. ……곳간은 그렇지 않지만요.
 compassion.npc.priest.name.t: 리엔이라 합니다. 이 예배당을 지키는 사제지요. 리오나 사람들은 저를 기록하는 사제라 부릅니다.
 compassion.npc.priest.job.t: 예전에는 돌아가신 어른들에게서 들은 옛 관습을 예배당 벽에 한 줄씩 적었습니다. 가장 오래된 줄은 '같은 상에 나란히 앉으라'는 말이지요. 관장님은 그 벽 앞을 지나실 때마다 걸음을 서두르십니다.
-compassion.npc.priest.pantry.t: 기록에 따르면, 리오나의 곳간은 원래 문이 없었습니다. 배고픈 이가 들어가 마음껏 가져가도, 아무도 그를 나무라지 않았다고 합니다. 주는 것이 곧 함께 있는 일이었으니까요.
+compassion.npc.priest.pantry.t: 나눔이라면 옛 기록이 말해 줍니다. 리오나의 곳간은 원래 문이 없었습니다. 배고픈 이가 들어가 마음껏 가져가도, 아무도 그를 나무라지 않았다고 합니다. 주는 것이 곧 함께 있는 일이었으니까요.
 compassion.npc.priest.love.t: 사랑은 위에서 내려오지 않습니다. 사랑은 나란히 앉는 것입니다. 자선이 고개를 숙이게 한다면, 사랑은 고개를 나란히 맞춥니다.
 compassion.npc.priest.chapel.t: 예배당 벽에는 어른들의 말이 한 줄씩 적혀 있습니다. 군데군데 긁혀 나간 줄이 있지요. 지운 손도 나쁜 뜻은 아니었을 겁니다만, 그 긁힌 자리가 늘 저를 봅니다.
 compassion.npc.priest.charity.t: 자선은 귀한 일입니다. 다만 늘 한쪽이 고개를 숙여야 성립하지요. 이 예배당에서는 주는 이도 받는 이도 같은 의자에 앉게 합니다, 제가 지킬 수 있는 것은 그것뿐입니다.
@@ -405,7 +405,7 @@ compassion.npc.miller.name: 방앗간 주인 마레
 compassion.npc.miller.greet: 밀가루 냄새가 나는 곳입니다. 맷돌 소리가 시끄러워도 양해해 주십시오.
 compassion.npc.miller.name.t: 마레라고 합니다. 이 방앗간에서 곡식을 갈아 온 지 삼십 년입니다.
 compassion.npc.miller.job.t: 곡식을 가는 일이지요. 그런데 요즘은 가는 것보다 세는 일이 더 많습니다. 관장의 곳간에 몇 가마가 들어가는지, 누가 얼마를 내는지…….
-compassion.npc.miller.tax.t: 몇 해 전에 젊은 기록관이 세금을 낮추자고 했습니다. 곳간을 백성에게 열자는 말이었지요. 관장이 그걸 막았습니다. 주는 사람이 있어야 받는 사람도 있다는 이유였습니다. 그 뒤로 마을은 더 가난해졌습니다.
+compassion.npc.miller.tax.t: 관장님 말씀이십니까. 몇 해 전에 젊은 기록관이 세금을 낮추자고 했습니다. 곳간을 백성에게 열자는 말이었지요. 관장이 그걸 막았습니다. 주는 사람이 있어야 받는 사람도 있다는 이유였습니다. 그 뒤로 마을은 더 가난해졌습니다.
 compassion.npc.miller.dependence.t: 일을 더 하면 몫이 줄어듭니다. 그래서 요즘 젊은이들은 방아를 반나절만 찧고 줄에 섭니다. 나무랄 수가 없지요, 셈이 그렇게 되어 있으니.
 compassion.npc.miller.bakery.t: 빵집 말입니까. 곡식을 세다 보면 가루 한 됫박쯤은 셈에서 빠지기도 합니다, 제 눈이 침침해서요. 그 한 됫박이 어디로 가는지는 묻지 않으셨으면 합니다.
 
@@ -422,7 +422,7 @@ compassion.npc.scribe.greet: 기록관입니다. ……말씀을 남기시겠습
 compassion.npc.scribe.name.t: 테오라고 합니다. 이 마을의 기록을 맡고 있습니다.
 compassion.npc.scribe.job.t: 장부와 문서를 정리합니다. 자선 배급 장부도 제가 씁니다. 숫자는 정직합니다만, 어느 칸에 적을지는 제 손이 정하지요.
 compassion.npc.scribe.charity.t: 장부에서 자선은 늘 '내준 것' 칸에 적힙니다. 받은 사람 이름 옆에는 작은 점이 하나 찍히지요. 그 점이 찍히는 순간, 그 사람은 영영 갚아야 하는 몸이 됩니다.
-compassion.npc.scribe.tax.t: 세금 개혁 문서는 아직 제 서랍에 있습니다. 관장님은 태우라 하셨지만, 제 손으로 쓴 것을 제 손으로 태울 수는 없었습니다.
+compassion.npc.scribe.tax.t: 나눔을 말씀하시니 생각나는 문서가 있습니다. 세금 개혁 문서는 아직 제 서랍에 있습니다. 관장님은 태우라 하셨지만, 제 손으로 쓴 것을 제 손으로 태울 수는 없었습니다.
 compassion.npc.scribe.dependence.t: 의존이라는 말은 장부에 없습니다. 다만 같은 이름이 해마다 같은 줄에 다시 적힐 뿐이지요. 그 줄이 길어지는 것을 보다 못해 몇 해 전 문서 하나를 썼는데, 지금은 제 서랍 속에 있습니다.
 compassion.npc.scribe.almoner.t: 관장님은 장부를 거꾸로 읽으십니다. 맨 마지막 줄, 마지막 사람부터요. 왜 그렇게 읽으시냐고 여쭌 적은 없습니다.
 
@@ -522,7 +522,7 @@ valor.npc.champion.name.t: 이름은 필요 없다. 투사들이 붙여 준 무�
 valor.npc.champion.job.t: 내 일은 서는 것이다. 도전자가 오면 맞서고, 쓰러질 때까지 발을 떼지 않는다. 그것이 이 마을의 용맹이다.
 valor.npc.champion.battle.t: 싸움은 발을 떼지 않는 것에서 시작한다. 한 발 물러서면 전부 무너진다. ……그렇게 배웠다.
 valor.npc.champion.arena.t: 이 투기장의 모래는 쓰러진 자의 이름을 덮는다. 관중은 선 자의 이름만 외치고, 그것을 용기라 부르지.
-valor.npc.champion.retreat-law.t: 후퇴를 허하는 법이라니. 그런 법은 솔강에 있어 본 적이 없다. 겁쟁이들이 제 등을 가리려고 지어낸 말이지.
+valor.npc.champion.retreat-law.t: 후퇴 말인가. 후퇴를 허하는 법이라니. 그런 법은 솔강에 있어 본 적이 없다. 겁쟁이들이 제 등을 가리려고 지어낸 말이지.
 valor.npc.champion.brother.t: 전우는 두지 않는다. 오래전 한 번, 누군가의 등에 업혀 물가를 빠져나온 적이 있다. 그 뒤로는 누구에게도 등을 맡기지 않는다.
 valor.npc.champion.shield.t: 방패는 들지 않는다. 창 하나와 두 발이면 된다. ……방패를 들면, 언젠가 돌아설 핑계가 생긴다.
 valor.npc.champion.battle-hymn.t: 용기라면 그 노래의 앞소절이면 충분하다. 앞에 적이 있고 뒤에 고향이 있으니, 서는 수밖에 없다. 그 뒤는 부르지 않는 편이 낫다.
@@ -597,7 +597,7 @@ valor.npc.widow.name: 과부 렌
 valor.npc.widow.greet: ……남편 이야기를 하러 오셨습니까, 아니면 그저 지나가는 길입니까.
 valor.npc.widow.name.t: 렌이라고 합니다. 이 마을에서 남편을 잃은 사람입니다.
 valor.npc.widow.job.t: 예전에는 옷을 지었습니다. 지금은 남편이 끝내 지킨 약속, 한 발도 물러서지 않겠다는 약속을 기억하며 삽니다. ……한때는 물러나도 되는 법이 있었다는데 말입니다.
-valor.npc.widow.retreat-law.t: 시아버님 때까지는 있던 법입니다. 다친 전우를 업고 돌아온 사람을 겁쟁이라 부르지 않는다는 법이요. 그 법이 지워진 뒤로 남편은 방패를 집에 두고 나갔고, 그 방패는 아직 문 옆에 걸려 있습니다.
+valor.npc.widow.retreat-law.t: 후퇴라면, 시아버님 때까지는 있던 법입니다. 다친 전우를 업고 돌아온 사람을 겁쟁이라 부르지 않는다는 법이요. 그 법이 지워진 뒤로 남편은 방패를 집에 두고 나갔고, 그 방패는 아직 문 옆에 걸려 있습니다.
 valor.npc.widow.shield.t: 남편 방패는 제가 날마다 닦습니다. 손잡이 가죽이 아직 새것입니다. 한 번도 들려 나가 본 적이 없으니까요.
 valor.npc.widow.brother.t: 지난해 돌아온 셋 가운데 한 사람이 남편과 같은 줄에 섰습니다. 그 사람은 아직 제 눈을 못 봅니다. 저는 탓하지 않습니다, 살아와 준 것이 고마울 뿐입니다.
 valor.npc.plasterer.name: 미장이 토반
@@ -682,45 +682,45 @@ valor.creature.duelist.name: 떠돌이 결투가
 town.seles.name: 셀레스
 justice.music.title: 셀레스의 판결
 
-justice.npc.judge.name: 재판관 아르벤
+justice.npc.judge.name: 재판관 할덴
 justice.npc.judge.greet: 셀레스의 법정이다. 한 줄로 서라. 관례는 예외를 두지 않는다.
-justice.npc.judge.name.t: 나는 아르벤. 삼십 년 동안 이 법정의 판결을 내려 왔다. 셀레스에서는 살아 있는 자의 이름보다 무덤 앞의 관례가 먼저다.
+justice.npc.judge.name.t: 나는 할덴. 삼십 년 동안 이 법정의 판결을 내려 왔다. 셀레스에서는 살아 있는 자의 이름보다 무덤 앞의 관례가 먼저다.
 justice.npc.judge.job.t: 내 일은 관례를 지키고 벌을 내리는 것이다. 조문 기간에는 누구도 노래하지 못하고, 어긴 자는 매를 맞는다. 관례가 마을을 지킨다. 그것이 정의다.
 justice.npc.judge.law.t: 법은 관례에 뿌리를 둔다. 조문 기간에 노래하면 매질. 무덤 앞에서 물건을 꺼내면 추방. 우리 법에는 감정이라는 항목이 없다.
 justice.npc.judge.punishment.t: 형벌은 사람이 관례를 기억하게 하는 불이다. 매질은 사십 대, 어떤 벌도 감면하지 않는다. 셀레스는 그것을 정의라 부른다.
 justice.npc.judge.compassion.t: 연민은 법정에 어울리지 않는 말이다. 벌을 줄이면 모두가 관례를 흔들려 할 것이다. 나는 그 흔들림을 막는 자다.
-justice.npc.judge.lullaby.t: 자장가라니. 조문 기간에 노래라니. 그것은 관례에 대한 모독이다. 과부 셀레는 벌을 피할 수 없다.
+justice.npc.judge.lullaby.t: 자장가라니. 조문 기간에 노래라니. 그것은 관례에 대한 모독이다. 과부 하린은 벌을 피할 수 없다.
 justice.npc.judge.mourner.t: 무덤에서 본 젊은이는 도둑이다. 증인이 이미 섰다. 벌은 정해져 있다.
 justice.npc.judge.graveyard.t: 해가 지면 묘지에 머물지 말라는 조항은 내가 처음 쓴 것이다. 삼십 년 전 겨울, 무덤 앞에서 밤을 새운 사람을 내 손으로 업고 내려왔다. 그는 이미 차가웠다.
 justice.npc.judge.fairness.t: 공정이란 누구에게나 같은 벌을 내리는 것이다. 내 피붙이였어도 나는 같은 판결을 내렸을 것이다.
 
-justice.npc.clerk.name: 법정 서기 레온
+justice.npc.clerk.name: 법정 서기 카셀
 justice.npc.clerk.greet: 증언은 기록으로 남네. 조용히, 그리고 정확히 말하게.
-justice.npc.clerk.name.t: 레온이라 하네. 이 법정에서 증언과 판결문을 받아 적는 서기일세.
+justice.npc.clerk.name.t: 카셀이라 하네. 이 법정에서 증언과 판결문을 받아 적는 서기일세.
 justice.npc.clerk.job.t: 재판 기록을 쓰네. 오늘도 판결문을 세 장 썼지, 모두 매질 아니면 추방이었네. 한때는 내 글씨가 자랑이었는데, 요즘은 그 글씨로 형벌을 세는 게 두렵네.
 justice.npc.clerk.law.t: 법은 이미 적혀 있네. 조문 금지 조항, 형벌 표, 감면 불가 조항. 재판관님은 기록을 읽을 뿐이라 하시지만, 기록을 쓰는 내가 말해 주지. 기록은 그리 간단하지 않다네.
 justice.npc.clerk.punishment.t: 형벌은 세 가지일세. 매질, 추방, 그리고 무덤 앞에 무릎 꿇기. 무릎 꿇기가 가장 가볍지. ……아이들은 그 벌을 등 돌리기라 부르네, 무릎 꿇은 사람이 마을에 등을 보이니까. 그 말이 자꾸 마음에 걸리네.
-justice.npc.clerk.harsh.t: 이 기록을 보게. 지난달 조문을 어긴 사람이 여섯이네. 노래한 사람도, 무덤에 꽃을 두고 온 사람도, 모두 사십 대를 맞았지. 그 숫자를 적을 때마다 손이 떨리네.
+justice.npc.clerk.harsh.t: 공정이라…… 이 기록을 보게. 지난달 조문을 어긴 사람이 여섯이네. 노래한 사람도, 무덤에 꽃을 두고 온 사람도, 모두 사십 대를 맞았지. 그 숫자를 적을 때마다 손이 떨리네.
 justice.npc.clerk.prisoner.t: ……갇힌 청년 말인가. 그의 이름은 적지 않았네. 재판관님이 도둑이라고만 쓰라 하셨거든. 죄명이 진실보다 먼저 판결을 내리는 건, 서기 노릇 이십 년에 처음 보네.
 justice.npc.clerk.judge.t: 재판관님 밑에서 이십 년을 받아 적었네. 판결문을 읽으실 때 목소리가 떨린 적이 한 번도 없으시지. ……겨울만 빼고. 겨울 판결은 늘 조금 빠르시네.
 justice.npc.clerk.truth.t: 진실 말인가. 내 일은 들은 대로 적는 것이지, 진실을 가려 적는 게 아닐세. ……적어도 그렇게 믿어 왔네.
 
-justice.npc.widow.name: 과부 셀레
+justice.npc.widow.name: 과부 하린
 justice.npc.widow.greet: ……자장가를 들으셨나요? 미안해요, 조문 중에는 부르지 말아야 하는데. 밤마다 저도 모르게 입에서 새어 나와요.
-justice.npc.widow.name.t: 셀레라고 해요. 한 달 전에 남편을 묻었어요. 셀레스 사람들은 저를 노래하는 과부라고 불러요.
+justice.npc.widow.name.t: 하린이라고 해요. 한 달 전에 남편을 묻었어요. 셀레스 사람들은 저를 노래하는 과부라고 불러요.
 justice.npc.widow.job.t: 남편이 살아 있을 때는 실을 엮어 옷감을 짰어요. 지금은…… 날마다 무덤에 가서 풀을 뽑고 돌을 쓸어요. 밤이면 그 자장가가 저도 모르게 나오고요. 조문은 하는 일이 아니라, 몸에 배는 거더라고요.
 justice.npc.widow.compassion.t: 여기서는 우는 사람을 붙잡아 주는 것도 조문을 어기는 일이에요. 슬픔을 덜어 주면 죽은 이를 덜 기리는 거라고요. 그래서 다들, 우는 사람을 보면 고개를 돌려요.
 justice.npc.widow.lullaby.t: 남편과 둘이서 이렌을 재울 때 부르던 자장가예요. 셀레스 엄마들은 다 아는 노래인데, 저는 한 낱말을 바꿔 불러요, 창 대신 무덤으로. ……매를 맞아도 좋아요. 노래하지 않는 밤이 더 무서워요.
 justice.npc.widow.prisoner.t: 제 아들 이야기군요. 그 애는 밤마다 아버지 무덤에 갔어요. 남편이 저 주려고 무덤가 돌 틈에 숨겨 둔 목걸이를 찾아서, 닦고 있었나 봐요. 그걸 본 목격자가 도둑이라 했고요. 아들은 진실을 말하는데, 여기서는 관례가 진실보다 먼저예요.
 justice.npc.widow.truth.t: 진실은요…… 남편이 죽던 밤, 저는 울지 않았어요. 상례대로 아무 말도 하지 않았죠. 그런데 노래하는 지금의 제가 그날 밤의 저보다 더 진실해요. 그날은 조문이 진실을 가두었으니까요.
-justice.npc.widow.mourning-duty.t: 옛날에는 조문 백 일 동안 문을 닫고 지냈대요. 그런데 언제부턴가 조문이 금지가 됐어요. 울지 말고, 부르지 말고, 무덤 앞에 무릎만 꿇으라고. 어떻게 그렇게 바뀌었는지는 아무도 말하지 않아요.
+justice.npc.widow.mourning-duty.t: 법 이야기라면요, 옛날에는 조문 백 일 동안 문을 닫고 지냈대요. 그런데 언제부턴가 조문이 금지가 됐어요. 울지 말고, 부르지 말고, 무덤 앞에 무릎만 꿇으라고. 어떻게 그렇게 바뀌었는지는 아무도 말하지 않아요.
 justice.npc.widow.graveyard.t: 남편 무덤 둘레돌은 그이가 젊을 때 손수 쌓은 거예요. 석공은 제 자리를 제 손으로 다듬는 거라면서요. 그때는 웃었는데.
 justice.npc.widow.mason.t: 두만 아저씨는 남편의 스승이었어요. 장례 날 비석 앞에서 끌을 오래 쥐고 계셨어요. 아무 말도 없이.
 justice.npc.widow.love.t: 사랑이요…… 남편은 말이 적은 사람이었어요. 대신 작은 돌에 무늬를 새겨서 말없이 문간에 두고 가곤 했죠.
 
 justice.npc.prisoner.name: 갇힌 청년 이렌
 justice.npc.prisoner.greet: ……죄송해요, 무슨 말이라도 하면 도둑의 말로 기록될까 봐 무서워요.
-justice.npc.prisoner.name.t: 이렌이에요. 어머니는 셀레, 아버지는 석공이었어요. ……아버지가 갑자기 돌아가신 뒤로, 밤에 무덤을 지키는 건 제 몫이었어요.
+justice.npc.prisoner.name.t: 이렌이에요. 어머니는 하린, 아버지는 석공이었어요. ……아버지가 갑자기 돌아가신 뒤로, 밤에 무덤을 지키는 건 제 몫이었어요.
 justice.npc.prisoner.job.t: 아버지 공방에서 돌 다루는 일을 배웠어요. 지금은 이 감옥에 혼자 있을 뿐이고요. 돌을 만지면 진실이 보인다고, 아버지가 그러셨어요.
 justice.npc.prisoner.truth.t: 그 밤의 일은 있는 그대로 말했어요. 아버지가 쌓은 무덤 둘레돌 하나가 흔들려서 들춰 보니, 천에 싸인 어머니 목걸이가 있었다고요. 녹이 슬어서 닦고 있었을 뿐이에요. 그런데 재판관님은 도둑이라는 기록부터 만드셨어요.
 justice.npc.prisoner.fairness.t: 공정이라면 아버지의 일도, 어머니의 노래도 같은 저울에 올려져야 해요. 그런데 셀레스의 저울은 먼저 벌을 내리고 나서 무게를 재요.
@@ -746,18 +746,18 @@ justice.npc.child.job.t: 내 일은 노래 외우기! 광장에서, 무덤 근�
 justice.npc.child.lullaby.t: 과부 아주머니 자장가? 나도 알아! 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 원래는 무덤이 아니라 창이래. 재판관 아저씨한테 걸리면 안 되는데…… 나는 그 노래가 좋아.
 justice.npc.child.love.t: 사랑? 그건…… 무덤 앞에서 노래하는 거지. 엄마가 나 재울 때 부르는 노래도, 과부 아주머니가 아저씨한테 부르는 노래도 같은 노래야. 하지 말래도 부르는 거. 그게 사랑이야?
 justice.npc.child.widow.t: 과부 아주머니는 착한데 왜 벌을 받아? 노래한 게 죄면 나도 죄인인데, 나한텐 아무도 벌을 안 줘. 아주머니는 어른이라서 자꾸 벌을 받는 거야.
-justice.npc.child.graveyard.t: 묘지에선 밤에 초가 켜져. 고르노 할아버지가 하나씩 켜는데, 아무도 안 찾아오는 무덤에도 켜 줘. 그런 무덤이 제일 많대.
+justice.npc.child.graveyard.t: 묘지에선 밤에 초가 켜져. 오스탄 할아버지가 하나씩 켜는데, 아무도 안 찾아오는 무덤에도 켜 줘. 그런 무덤이 제일 많대.
 justice.npc.child.punishment.t: 매 맞은 아저씨들은 한동안 걸음이 이상해. 그래서 우리는 길에서 그 아저씨들 앞으로 안 지나가. 뒤에서 천천히 걸어 줘.
 
 justice.npc.priest.name: 사제 세르노
 justice.npc.priest.greet: 평안하시게. 이 예배소는 묘지보다 먼저 세워졌지만, 나 역시 조문의 규칙을 따르며 사네.
 justice.npc.priest.name.t: 세르노일세. 이 예배소를 지키고, 옛 조문 기록을 맡아 두는 사제라네.
 justice.npc.priest.job.t: 옛 기록을 다듬고, 조문 예식의 말씀을 준비하네. ……그런데 어느 해부터인가 기록에 금지라는 낱말이 늘어났네. 울지 말 것, 부르지 말 것, 어기지 말 것.
-justice.npc.priest.mourning-duty.t: 옛 조문 기록에는 형벌이 없었네. 백 일 동안 문을 닫고 지내면 이웃이 밥을 가져다주고, 밤이면 함께 앉아 이야기를 나누었지. 벌을 세우는 때가 아니었네.
-justice.npc.priest.comfort-widow.t: 위로는 가르치는 것이 아닐세. 무덤 앞에 함께 앉아, 부르는 노래를 같이 들어 주는 것이지. 그대가 그 노래를 듣고 곁에 앉으면, 그 벌은 힘을 잃을 걸세.
+justice.npc.priest.mourning-duty.t: 법이라면 옛 조문 기록에는 형벌이 없었네. 백 일 동안 문을 닫고 지내면 이웃이 밥을 가져다주고, 밤이면 함께 앉아 이야기를 나누었지. 벌을 세우는 때가 아니었네.
+justice.npc.priest.comfort-widow.t: 과부 말이로군. 위로는 가르치는 것이 아닐세. 무덤 앞에 함께 앉아, 부르는 노래를 같이 들어 주는 것이지. 그대가 그 노래를 듣고 곁에 앉으면, 그 벌은 힘을 잃을 걸세.
 justice.npc.priest.compassion.t: 연민은 벌을 줄이는 것이라 여겨지지만, 사실은 함께 아파하는 것이지. 옛 기록은 말하네. 정의가 저울이라면, 연민은 그 저울을 잡는 손이라고.
-justice.npc.priest.harsh.t: 벌이 관례보다 무거워진 건 근래의 일일세. 노래 한 곡에 사십 대라니, 옛날 같으면 꾸중 들을 일도 아니었네. 그 벌이 사람들을 겁먹게 해서, 이제는 아무도 무덤 앞에서 울지 않네.
-justice.npc.priest.judge.t: 아르벤과는 어릴 적 같은 냇가에서 놀았네. 그가 첫 조항을 쓴 겨울을 나는 기억하지. ……그날 그를 붙잡아 줄 말을, 나는 끝내 찾지 못했네.
+justice.npc.priest.harsh.t: 형벌이라면, 벌이 관례보다 무거워진 건 근래의 일일세. 노래 한 곡에 사십 대라니, 옛날 같으면 꾸중 들을 일도 아니었네. 그 벌이 사람들을 겁먹게 해서, 이제는 아무도 무덤 앞에서 울지 않네.
+justice.npc.priest.judge.t: 할덴과는 어릴 적 같은 냇가에서 놀았네. 그가 첫 조항을 쓴 겨울을 나는 기억하지. ……그날 그를 붙잡아 줄 말을, 나는 끝내 찾지 못했네.
 justice.npc.priest.court.t: 법정에 불려 간 적은 많지만, 옛 기록을 들고 간 적은 없네. 아무도 묻지 않았으니까. ……그것이 내 핑계라는 것도 아네.
 
 justice.npc.mason.name: 석공 두만
@@ -765,9 +765,9 @@ justice.npc.mason.greet: 묘비를 세우는 사람일세. 돌에는 거짓을 �
 justice.npc.mason.name.t: 두만일세. 이 마을의 묘비와 집터 돌을 다루는 석공이지.
 justice.npc.mason.job.t: 죽은 이의 이름을 새기는 게 내 일이었네. 요즘은 그 밑에 한 줄을 더 새기지, 이 무덤 앞에서 조문을 어긴 자 있음. 돌 위에 글자가 늘어나는 속도가 겁이 나네.
 justice.npc.mason.law.t: 법이라는 것은…… 돌과 같아야 하네. 무게가 있고, 버티고, 거짓이 없어야지. 지금의 법은 돌이 아니라 흙일세. 비가 오면 모양이 바뀌지.
-justice.npc.mason.harsh.t: 지난달에 내가 새긴 그 한 줄이 여섯일세. 노래한 이, 꽃을 둔 이, 해 진 뒤에 머문 이. 산 사람의 잘못을 죽은 이의 돌에 새기는 법이라니. ……이 마을은 죽은 이를 위한 돌로 산 사람을 벌하고 있네.
-justice.npc.mason.comfort-widow.t: 그래도 희망은 있네. 셀레 남편의 비석은 아직 여기 잠들다 한 줄뿐일세. 그 밑에 한 줄을 더 새기라는 명이 내려왔지만, 나는 끌이 무뎌졌다며 버티고 있지.
-justice.npc.mason.graveyard.t: 셀레네 묘 둘레돌은 셀레 남편이 젊을 적에 쌓은 걸세. 내가 가르친 대로, 돌 하나는 빼낼 수 있게 남겨 두었지. 석공들은 거기에 작은 것을 넣어 두곤 하네.
+justice.npc.mason.harsh.t: 공정이라니, 지난달에 내가 새긴 그 한 줄이 여섯일세. 노래한 이, 꽃을 둔 이, 해 진 뒤에 머문 이. 산 사람의 잘못을 죽은 이의 돌에 새기는 법이라니. ……이 마을은 죽은 이를 위한 돌로 산 사람을 벌하고 있네.
+justice.npc.mason.comfort-widow.t: 과부 말이지. 그래도 희망은 있네. 하린 남편의 비석은 아직 여기 잠들다 한 줄뿐일세. 그 밑에 한 줄을 더 새기라는 명이 내려왔지만, 나는 끌이 무뎌졌다며 버티고 있지.
+justice.npc.mason.graveyard.t: 하린네 묘 둘레돌은 하린 남편이 젊을 적에 쌓은 걸세. 내가 가르친 대로, 돌 하나는 빼낼 수 있게 남겨 두었지. 석공들은 거기에 작은 것을 넣어 두곤 하네.
 justice.npc.mason.punishment.t: 벌이라…… 끌을 잘못 대면 돌에 금이 가네. 한 번 간 금은 메우지 못하지. 사람도 그렇다는 걸, 재판관은 모르는 것 같네.
 
 justice.npc.scribe.name: 필경사 벨라
@@ -776,13 +776,13 @@ justice.npc.scribe.name.t: 벨라입니다. 법정에서 올라온 판결문과 
 justice.npc.scribe.job.t: 날마다 벌칙 기록을 정리합니다. 어제는 노래 한 곡에 매질 사십 대. 오늘은 해 진 뒤 무덤 앞에 머물렀다는 것만으로 무릎 꿇기 한 번. 숫자는 정직한데, 숫자를 정하는 법은 정직하지 않습니다.
 justice.npc.scribe.truth.t: 기록은 진실을 담는다고 배웠습니다. 그런데 이제는 기록이 진실을 만들어 냅니다. 도둑이라 적으면 도둑이 되고, 상주라 적으면 상주가 됩니다. 같은 밤, 같은 무덤, 같은 청년인데, 낱말 하나가 사람을 가릅니다.
 justice.npc.scribe.prisoner.t: 청년의 기록을 다시 읽어 보았습니다. 죄명 칸에는 도둑이라 적혀 있지만, 본문 어디에도 훔쳤다는 말은 없습니다. 밤에 무덤 앞에 있었다는 것, 손에 무언가를 쥐고 있었다는 것뿐입니다.
-justice.npc.scribe.harsh.t: 형벌 표의 숫자가 해마다 늘어납니다. 조문을 어기면 매질, 무덤에서 물건을 꺼내면 추방. 숫자가 쌓일수록 마을은 더 조용해지고, 저는 숫자를 쓰는 것이 더 두려워집니다.
+justice.npc.scribe.harsh.t: 법의 숫자라면, 형벌 표의 숫자가 해마다 늘어납니다. 조문을 어기면 매질, 무덤에서 물건을 꺼내면 추방. 숫자가 쌓일수록 마을은 더 조용해지고, 저는 숫자를 쓰는 것이 더 두려워집니다.
 justice.npc.scribe.fairness.t: 형벌 표에는 이름 칸이 없습니다. 누구든 같은 줄에 같은 숫자. 그것을 공정이라 부르는데, 저는 가끔 그 빈칸이 무섭습니다.
-justice.npc.scribe.court.t: 법정에서 판결문이 올라오면 저는 위층에서 그것을 다시 씁니다. 레온 씨의 글씨는 반듯한데, 요즘은 끝 획이 조금씩 떨립니다.
+justice.npc.scribe.court.t: 법정에서 판결문이 올라오면 저는 위층에서 그것을 다시 씁니다. 카셀 씨의 글씨는 반듯한데, 요즘은 끝 획이 조금씩 떨립니다.
 
-justice.npc.gravedigger.name: 묘지기 고르노
+justice.npc.gravedigger.name: 묘지기 오스탄
 justice.npc.gravedigger.greet: 여긴 죽은 이들이 사는 곳이야. 산 사람은 조용히, 거짓 없이 다녀가.
-justice.npc.gravedigger.name.t: 고르노라고 해. 이 묘지 땅을 파고 지키는 묘지기야.
+justice.npc.gravedigger.name.t: 오스탄이라고 해. 이 묘지 땅을 파고 지키는 묘지기야.
 justice.npc.gravedigger.job.t: 무덤을 파고, 초를 켜고, 밤마다 한 바퀴씩 돌지. ……근데 요즘은 산 사람들이 밤에 더 자주 와. 벌이 무서워서, 죽은 이들처럼 소리도 없이.
 justice.npc.gravedigger.mourner.t: 저 조문객 말이지…… 밤마다 무덤 앞에서 울어. 낯선 사람만 보면 도둑이라며 막아서고. 슬픔이 사람 눈을 그렇게 가리는 거야. 악한 게 아니라, 애도에 빠진 사람이지.
 justice.npc.gravedigger.compassion.t: 연민을 나는 이렇게 배웠어. 무덤 파러 갔다가 곡하는 사람을 보면, 내가 먼저 웃어 줘야 한다는 거. 죽은 이는 누워 있으면 그만이지만, 위로가 필요한 건 산 사람이니까.
@@ -801,7 +801,7 @@ justice.npc.old-neighbor.greet: 잠이 없는 늙은이라오. 밤이면 창가�
 justice.npc.old-neighbor.name.t: 오르마라 하오. 이 묘지 담 옆에서 예순 해를 살았소.
 justice.npc.old-neighbor.job.t: 잠이 없으니 밤을 지키오. 묘지 쪽 소리는 이 창으로 다 들린다오. 누가 우는지, 누가 오래 앉았다 가는지.
 justice.npc.old-neighbor.witness.t: 카인이 본 것을 나는 들었소. 그 밤 무덤 쪽에서 난 건 삽질 소리가 아니었다오. 돌을 문지르는 소리, 그리고 아주 낮은 콧노래였소.
-justice.npc.old-neighbor.graveyard.t: 옛날에는 백 일 동안 저 묘지에 밤마다 초가 줄지어 섰다오. 아르벤도 어릴 적엔 제 형 손을 잡고 초를 들고 왔지. ……늙은이 말이 길었소.
+justice.npc.old-neighbor.graveyard.t: 옛날에는 백 일 동안 저 묘지에 밤마다 초가 줄지어 섰다오. 할덴도 어릴 적엔 제 형 손을 잡고 초를 들고 왔지. ……늙은이 말이 길었소.
 justice.npc.scale-keeper.name: 저울 검사관 하임
 justice.npc.scale-keeper.greet: 장터 저울을 검사하는 하임입니다. 빈 접시에서 바늘이 가운데 서는지, 그것부터 봅니다.
 justice.npc.scale-keeper.name.t: 하임입니다. 셀레스 장터의 저울을 한 달에 한 번씩 검사합니다.
@@ -830,12 +830,12 @@ justice.word.punishment.label: 형벌
 justice.word.punishment.hint: 매질과 추방, 무덤 앞 무릎 꿇기. 관례를 기억시키는 불.
 justice.word.compassion.label: 연민
 justice.word.compassion.hint: 셀레스에서는 우는 이를 붙잡아 주는 일조차 조문을 어기는 것이 된다.
-justice.fact.seles.judge.label: 재판관 아르벤
+justice.fact.seles.judge.label: 재판관 할덴
 justice.fact.seles.judge.hint: 삼십 년간 판결을 내려 온 셀레스의 재판관. 관례가 곧 정의라 믿는다.
-justice.fact.seles.widow.label: 과부 셀레
+justice.fact.seles.widow.label: 과부 하린
 justice.fact.seles.widow.hint: 남편을 묻은 지 한 달. 밤마다 무덤 앞에서 금지된 자장가를 부른다.
 justice.fact.seles.prisoner.label: 갇힌 청년 이렌
-justice.fact.seles.prisoner.hint: 셀레의 아들. 무덤에서 어머니의 목걸이를 찾았다가 도둑으로 몰렸다.
+justice.fact.seles.prisoner.hint: 하린의 아들. 무덤에서 어머니의 목걸이를 찾았다가 도둑으로 몰렸다.
 justice.fact.seles.witness.label: 목격자 카인
 justice.fact.seles.witness.hint: 무덤에서 번득이는 것을 본 증인. 본 것을 말할 뿐, 판단은 법에 맡긴다.
 justice.fact.seles.mason.label: 석공 두만
@@ -845,7 +845,7 @@ justice.fact.seles.court.hint: 벌이 기록보다 먼저 내려지는 곳. 판�
 justice.fact.seles.graveyard.label: 공동묘지
 justice.fact.seles.graveyard.hint: 밤마다 자장가가 울려 퍼지는 무덤. 벌을 두려워한 산 자가 죽은 자처럼 조용해졌다.
 justice.fact.seles.mourning-lullaby.label: 상주 자장가
-justice.fact.seles.mourning-lullaby.hint: 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 셀레가 남편에게 남겨 둔 노래.
+justice.fact.seles.mourning-lullaby.hint: 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 하린이 남편에게 남겨 둔 노래.
 justice.fact.seles.mourning-duty.label: 잃어버린 백 일
 justice.fact.seles.mourning-duty.hint: 옛 기록의 조문 백 일. 형벌이 아니라, 이웃이 밥을 가져다주고 함께 앉는 때였다.
 justice.fact.seles.harsh-punishment.label: 가혹한 형벌
@@ -858,7 +858,7 @@ justice.fact.creature.justice-mourner.hint: 악하지 않다. 낯선 이를 도�
 # --- 셀레스 추론·위기 ---
 justice.deduction.justice.sentence: 정의는 {1}에 눈감은 형벌이 아니라, {2}의 저울에 {3}까지 함께 올리는 것이다
 justice.deduction.justice.hint: 재판관의 형벌은 무엇에 눈을 감았는가. 셀레스의 저울은 본래 어떤 이름이었고, 그 접시에서 무엇이 빠져 있었는가. 감옥의 청년과 무덤가의 노래에서 찾으라.
-justice.crisis.mourning.text: 법정 앞에 달빛이 서늘하다. 조문 기간에 노래를 부른 과부 셀레와, 무덤에서 목걸이를 찾은 청년 이렌이 재판관 앞에 끌려 나왔다. 재판관이 판결문을 펼친다. 노래는 관례를 어겼고, 무덤은 도둑을 냈다. 벌은 정해져 있다. 관중은 숨을 죽인다. 아이가 고개를 숙이고, 묘지기가 무덤 쪽을 바라본다. 이제 그대가 나설 차례다.
+justice.crisis.mourning.text: 법정 앞에 달빛이 서늘하다. 조문 기간에 노래를 부른 과부 하린과, 무덤에서 목걸이를 찾은 청년 이렌이 재판관 앞에 끌려 나왔다. 재판관이 판결문을 펼친다. 노래는 관례를 어겼고, 무덤은 도둑을 냈다. 벌은 정해져 있다. 관중은 숨을 죽인다. 아이가 고개를 숙이고, 묘지기가 무덤 쪽을 바라본다. 이제 그대가 나설 차례다.
 justice.option.comfort-widow.label: 자장가를 불러 진실과 위로를 보인다
 justice.option.comfort-widow.text: 그대가 법정 앞에서 떨리는 목소리로 자장가를 부른다. 달은 무덤을 비추고, 나는 당신의 자장가를 부른다. 관중이 숨을 멈춘다. 목격자가 고개를 숙이고, 사제가 옛 기록을 꺼내 읽는다. 조문의 백 일은 형벌이 아니라 함께 앉는 때였다. 재판관은 긴 침묵 끝에 판결문을 접는다. 셀레스의 저울이 처음으로 진실과 사랑을 올려놓고 균형을 찾는다. 형벌 대신 위로가 내려진다.
 justice.option.strict-law.label: 형벌 조항을 낭독해 법대로 다스린다
@@ -895,9 +895,9 @@ sacrifice.npc.widow.devotion.t: 헌신이라…… 그 말이 남편을 데려�
 sacrifice.npc.widow.surgeon.t: 세인 선생님은 그 뒤로 저를 보면 먼저 고개를 숙이세요. 늦게 와서 미안하다고요. 늦은 건 선생님이 아니었는데.
 sacrifice.npc.widow.courage.t: 용기요…… 다들 남편이 용감했다고 해요. 저는 그이가 제단 앞에서 무서워서 노래를 불렀다는 걸 알아요.
 
-sacrifice.npc.child.name: 아이 리오
+sacrifice.npc.child.name: 아이 노아
 sacrifice.npc.child.greet: 낯선 사람이랑 말하면 저녁 굶는 벌이야. 괜찮아, 나 굶는 거 잘해.
-sacrifice.npc.child.name.t: 나는 리오야. 여섯 살이고, 제단을 돌보는 아이가 되는 연습을 해. 사제님이 그러는데, 어릴 때 많이 덜어 내야 나중에 큰 희생을 할 수 있대.
+sacrifice.npc.child.name.t: 나는 노아야. 여섯 살이고, 제단을 돌보는 아이가 되는 연습을 해. 사제님이 그러는데, 어릴 때 많이 덜어 내야 나중에 큰 희생을 할 수 있대.
 sacrifice.npc.child.job.t: 내 일은 하루에 한 끼 거르고, 좋아하는 걸 하나도 안 고르는 거야. 사제님은 이걸 거룩한 짐이라고 하는데, 나는 왜 짐 지는 걸 배워야 하는지 모르겠어.
 sacrifice.npc.child.burden.t: 짐? 사제님은 짐이 많을수록 거룩하대. 근데 내가 아는 짐은 세라 할머니 빵 상자야. 그건 무거워도 둘이 들면 가벼워져.
 sacrifice.npc.child.widow-song.t: 레아 아주머니 노래! 나 밤마다 뒤뜰에서 몰래 불러. 사제님이 들으면 안 되는데, 아주머니가 같이 불러 주면 마음이 따뜻해져.
@@ -911,7 +911,7 @@ sacrifice.npc.pilgrim.greet: 나는 이곳저곳을 떠도는 순례자요. 디�
 sacrifice.npc.pilgrim.name.t: 이온이라 하오. 지팡이 하나와 수첩 한 권이 내 전 재산이오. 가는 곳마다 듣고 본 참된 희생을 적어 왔소.
 sacrifice.npc.pilgrim.job.t: 내 일은 증인이 되는 것이오. 제단 앞에서 벌어지는 일도, 마을 사람들이 눈감는 일도 치우침 없이 적어 두오. 여기 오기 전까지 나는 희생이 아름답다고 믿었소.
 sacrifice.npc.pilgrim.witness.t: 증인이란 본 것을 끝까지 기억하는 사람이오. 나는 이 마을의 장부를 세 벌 베꼈소. 사제는 천으로 감은 손을 제단 위로 치켜들지만, 그 천이 한 번 풀렸을 때 내가 본 손은 온전했소.
-sacrifice.npc.pilgrim.martyr-contest.t: 이 마을은 제단 앞에서 누가 더 아프게 바쳤는지 겨루오. 상처의 길이를 재고 굶은 날을 세는데, 작년에는 스스로 손가락을 끊은 사람이 이겼소. 사제는 그것을 거룩한 겨룸이라 부르고, 나는 순교 경쟁이라 적었소.
+sacrifice.npc.pilgrim.martyr-contest.t: 제단이라면 말이오, 이 마을은 제단 앞에서 누가 더 아프게 바쳤는지 겨루오. 상처의 길이를 재고 굶은 날을 세는데, 작년에는 스스로 손가락을 끊은 사람이 이겼소. 사제는 그것을 거룩한 겨룸이라 부르고, 나는 순교 경쟁이라 적었소.
 sacrifice.npc.pilgrim.devotion.t: 헌신이 나를 여기까지 데려왔지만, 이제는 그 낱말이 무섭소. 모든 것을 바치라는 곳에는 반드시 받는 쪽이 있더이다. 나는 그 받는 쪽까지 적어 두려 하오.
 sacrifice.npc.pilgrim.pilgrim.t: 삼백 년 전의 그 순례자 말이오? 그분은 무엇을 바치라 하지 않고, 제 몫을 나누어 먹고 떠났다고 들었소. 이 마을이 그 이야기를 어디서 거꾸로 읽었는지, 나는 그것을 알고 싶소.
 sacrifice.npc.pilgrim.widow.t: 레아 부인은 내 수첩에 아무것도 적지 말라 했소. 그래서 그 집 앞을 지날 때는 수첩을 덮고 걷소. 저녁 노래만은 들리는 대로 외워 두었지만.
@@ -921,7 +921,7 @@ sacrifice.npc.surgeon.greet: 앉게. 상처를 보여 주게. ……멀쩡하군
 sacrifice.npc.surgeon.name.t: 세인이라네. 이 마을에서 칼과 실을 다루는 외과의는 나 하나뿐일세. 내 칼은 살을 가르는 데가 아니라, 벌어진 살을 잇는 데 쓰네.
 sacrifice.npc.surgeon.job.t: 내 일은 상처를 꿰매는 것일세. 그런데 이 마을 상처는 대개 제단 앞에 서려고, 남보다 크게 지려고 스스로 낸 것이지. 그걸 날마다 꿰매다 보니 나도 모르게 증인이 되었네.
 sacrifice.npc.surgeon.witness.t: 증인이라면 나만 한 사람도 없을 걸세. 어떤 상처가 칼에서 났고 어떤 상처가 제단 돌에서 났는지 손끝이 먼저 알지. 그런데 사제의 손만은 여러 해 동안 한 번도 내게 보여 준 적이 없네.
-sacrifice.npc.surgeon.martyr-contest.t: 상처 겨루기라. 줄잡이가 매듭을 세고 기록사가 그 수를 받아 적는 걸 보면 기가 막히지. 상처의 길이로 사랑을 재겠다는 걸세.
+sacrifice.npc.surgeon.martyr-contest.t: 사제의 제단에서 벌어지는 상처 겨루기라. 줄잡이가 매듭을 세고 기록사가 그 수를 받아 적는 걸 보면 기가 막히지. 상처의 길이로 사랑을 재겠다는 걸세.
 sacrifice.npc.surgeon.penitent.t: 저 고행자는 내 환자일세. 등을 채찍질하다 덧나서 찾아왔지. 고쳐 주어도 곧 다시 제단으로 갈 걸세. 내가 꿰매는 상처보다 마을이 내는 상처가 더 많다네.
 sacrifice.npc.surgeon.courage.t: 용기는 상처를 하나 더 내는 게 아닐세. 아파할 사람의 얼굴을 끝까지 마주 보는 것이지. 이 마을에서는 그게 제일 어려운 일이네.
 sacrifice.npc.surgeon.widow.t: 그 집 남편은 살릴 수 있었네. 사흘만 일렀어도. ……법을 지킨 건 나였으니, 내 손도 그 장부에 한 줄 올라 있는 셈이지.
@@ -931,15 +931,15 @@ sacrifice.npc.scribe.name: 기록사 미르
 sacrifice.npc.scribe.greet: 기록은 영원하다고들 합니다. ……제가 쓰는 기록이 저를 두렵게만 하지 않는다면 좋겠습니다.
 sacrifice.npc.scribe.name.t: 미르입니다. 디오네의 기록사로, 제단에 바쳐진 것들의 목록을 옮겨 적는 사람이지요.
 sacrifice.npc.scribe.job.t: 제단의 장부를 맡고 있습니다. 이름과 바친 것과 상처의 길이를 적는데, 숫자가 클수록 칭송을 받습니다. 어제는 작년 장부를 옮겨 적다가 한 칸에서 손이 멈췄습니다. 손가락 하나였습니다.
-sacrifice.npc.scribe.martyr-contest.t: 순교 경쟁이라고 부르는 사람도 있지요. 저는 숫자를 적을 뿐입니다. 하지만 숫자는 거짓말을 하지 않습니다 — 남편의 손가락, 아이의 끼니, 노인의 무릎. 제단은 그 숫자를 거두어들이고 있습니다.
+sacrifice.npc.scribe.martyr-contest.t: 헌신이라면, 순교 경쟁이라고 부르는 사람도 있지요. 저는 숫자를 적을 뿐입니다. 하지만 숫자는 거짓말을 하지 않습니다 — 남편의 손가락, 아이의 끼니, 노인의 무릎. 제단은 그 숫자를 거두어들이고 있습니다.
 sacrifice.npc.scribe.burden.t: 짐은 지는 것이 아니라 함께 지는 것이라고, 옛 장부에는 적혀 있지요. 각자 자기 짐만 지고, 남의 짐을 지려 하지 않는 지금. 그것이 제단이 가르치는 것이라면, 나는 그 가르침을 기록하지 않겠습니다.
 sacrifice.npc.scribe.widow.t: 레아 부인 댁 이름은 작년 장부 맨 윗줄에 있습니다. 가장 많이 바친 집이라고 합니다. 그 아래 제가 연필로만 적어 둔 줄이 하나 있는데 — 밤마다 빵 반쪽을 남겨 두는 과부 — 그 줄은 아직 어느 장부에도 옮기지 못했습니다.
 sacrifice.npc.scribe.pilgrim.t: 순례자는 제 장부를 세 벌이나 베껴 갔습니다. 숫자 옆에 이름을 하나하나 다시 써 넣으면서 말입니다. 저는 그렇게 쓰는 법을 잊고 있었습니다.
 sacrifice.npc.scribe.witness.t: 증인이라면 저는 자격이 없습니다. 저는 본 것을 적지 않고 잰 것만 적습니다. 줄이 닿지 않는 것은 장부에 들어오지 못합니다.
 
-sacrifice.npc.mason.name: 석공 하르파
+sacrifice.npc.mason.name: 석공 다멘
 sacrifice.npc.mason.greet: 평생 돌을 만지며 살았네. 돌은 거짓말을 안 해서 좋지. 그런데 저 제단 돌만은…… 제 밑에 무엇이 있는지 입을 꾹 다물고 있네.
-sacrifice.npc.mason.name.t: 하르파라 하네. 이 마을 집들과 제단의 돌을 다루는 석공일세. 저 제단을 쌓은 석공의 손자이기도 하지.
+sacrifice.npc.mason.name.t: 다멘이라 하네. 이 마을 집들과 제단의 돌을 다루는 석공일세. 저 제단을 쌓은 석공의 손자이기도 하지.
 sacrifice.npc.mason.job.t: 제단 돌을 보수하는 게 내 일일세. 망치로 두드리면 밑에서 빈 소리가 나네 — 옛 성소의 초석이 아직 땅속에 있고, 거기 새겨진 글은 제단의 계율과 다르지. 그걸 다시 드러낼 용기가 아직 내게 없을 뿐일세.
 sacrifice.npc.mason.altar.t: 이 제단을 들어내면 그 밑에 옛 성소의 아궁이가 있네. 거기 새겨진 글은, 이 마을을 지킨 불은 제단이 아니라 저녁마다 다시 켜지는 아궁이였다는 뜻일세. 덜어 내는 자리가 아니라 채워 주는 자리였지.
 sacrifice.npc.mason.courage.t: 용기라는 것은, 무너질 듯한 돌을 버티게 하는 것이 아니라, 무너질 사람을 받쳐 주는 돌이 되는 것이지. 나는 요즘 그런 돌을 만들고 싶어서 제단을 새로 다듬고 있네.
@@ -951,9 +951,9 @@ sacrifice.npc.baker.name: 빵 굽는 세라
 sacrifice.npc.baker.greet: 갓 나온 빵이야. ……제단에 올릴 거면 다른 데로 가. 난 거기엔 빵 안 올려.
 sacrifice.npc.baker.name.t: 세라야. 마을 빵집에서 아침마다 빵을 굽는 사람이고, 저녁에는 빵을 나누는 사람이야.
 sacrifice.npc.baker.job.t: 내 일은 반죽하고, 불 지키고, 빵 내주는 거야. 사제는 나더러 희생할 줄 모르는 사람이래. 그 소리 들을 때마다 나는 불을 더 세게 때 — 내가 지키는 게 무슨 불인지 그 양반은 몰라.
-sacrifice.npc.baker.living-love.t: 진짜 희생은 한 번에 목숨을 바치는 게 아니라, 매일 아침 불을 지피고 빵을 내어 주는 거라고 생각해. 제단이 받는 것은 순간이지만, 이 빵은 하루를 살려. 나눈다는 것, 그것이 내가 아는 사랑이야.
+sacrifice.npc.baker.living-love.t: 헌신이라면 말이지, 진짜 희생은 한 번에 목숨을 바치는 게 아니라, 매일 아침 불을 지피고 빵을 내어 주는 거라고 생각해. 제단이 받는 것은 순간이지만, 이 빵은 하루를 살려. 나눈다는 것, 그것이 내가 아는 사랑이야.
 sacrifice.npc.baker.love.t: 사랑은 굽는 사람과 먹는 사람 사이에 있는 거지. 불에 타는 게 아니야. 반죽이 차오르듯, 함께 차오르는 것.
-sacrifice.npc.baker.widow.t: 레아 몫 빵은 늘 조금 크게 잘라. 그 애는 반을 남겨 두니까. 그 반쪽이 어디로 가는지 나는 알아 — 리오 입으로 가.
+sacrifice.npc.baker.widow.t: 레아 몫 빵은 늘 조금 크게 잘라. 그 애는 반을 남겨 두니까. 그 반쪽이 어디로 가는지 나는 알아 — 노아 입으로 가.
 sacrifice.npc.baker.garden.t: 마노 밭 무를 갈아 넣고 굽는 빵이 있어. 사제가 보면 배부른 빵이라고 하겠지. 애들은 그 빵을 제일 좋아해.
 
 sacrifice.npc.healer.name: 치유사 노라
@@ -970,12 +970,12 @@ sacrifice.npc.gardener.greet: 밭은 다듬을수록 좋아지지. 누군가는 
 sacrifice.npc.gardener.name.t: 마노야. 마을 뒤편 텃밭을 가꾸지. 호박, 당근, 무 — 제단 앞에서는 배부른 이름이라고 입에도 못 올리는 것들이야.
 sacrifice.npc.gardener.job.t: 내 일은 씨를 뿌리고 잡초를 뽑고 물을 주는 일이야. 그리고 수확의 절반을 마을 사람들에게 나누어 주지. 사제는 그 절반까지도 바치라고 해.
 sacrifice.npc.gardener.garden.t: 이 텃밭은 마을에서 가장 오래된 자리야. 제단보다 오래됐어. 굶는 것이 거룩하다고 배운 아이들이, 배고파서 이곳에 와서 무를 먹고 가. 짐이 아니라 양식이라고, 나는 그 아이들에게 가르쳐.
-sacrifice.npc.gardener.martyr-contest.t: 상처 겨루기라니. 장에 다녀오다 보면 제단 앞에서 다투는 것을 봐. 누가 더 굶었는지, 누가 더 아팠는지. 텃밭에서는 그런 건 자라지 않아. 그런 건 아무것도 심지 않으니까.
+sacrifice.npc.gardener.martyr-contest.t: 사제님 얘기라면, 상처 겨루기라니. 장에 다녀오다 보면 제단 앞에서 다투는 것을 봐. 누가 더 굶었는지, 누가 더 아팠는지. 텃밭에서는 그런 건 자라지 않아. 그런 건 아무것도 심지 않으니까.
 sacrifice.npc.gardener.altar.t: 긴 겨울 얘기는 우리 할머니한테 들었어. 그해 이 밭 무가 다 옛 성소 솥으로 갔대. 저녁마다 누가 불을 지피면, 다들 한 그릇씩 나눠 먹었다고.
 sacrifice.npc.gardener.devotion.t: 헌신? 난 땅한테 헌신해. 땅은 받은 만큼 돌려줘. 제단은 받기만 하지.
 sacrifice.npc.acolyte.name: 성소 시종 테사
 sacrifice.npc.acolyte.greet: 성소에서는 발소리를 낮춰 주십시오. 사제님께서 기도 중이십니다.
-sacrifice.npc.acolyte.name.t: 테사입니다. 리오가 오기 전까지는 제가 사제님 곁의 막내였습니다. 지금은 등잔 기름을 갈고 제단 돌을 닦습니다.
+sacrifice.npc.acolyte.name.t: 테사입니다. 노아가 오기 전까지는 제가 사제님 곁의 막내였습니다. 지금은 등잔 기름을 갈고 제단 돌을 닦습니다.
 sacrifice.npc.acolyte.job.t: 새벽마다 제단을 닦습니다. 이상하게도 돌 틈을 쓸면 검댕이 묻어 나옵니다. 저 제단에서는 불을 피운 적이 한 번도 없는데요.
 sacrifice.npc.acolyte.devotion.t: 사제님께서는 밤마다 손에 감은 천을 새로 감으십니다. 풀어 놓은 천은 언제나 하얗습니다. 저는 그것이 헌신이 깊으셔서라고 믿기로 했습니다.
 sacrifice.npc.acolyte.sanctuary.t: 성소 벽의 계율 밑에는 덧칠한 자리가 있습니다. 비가 오는 날이면 그 밑으로 옛 글자가 비칩니다. 읽어 보려 했지만 다 번져 있었습니다.
@@ -1002,7 +1002,7 @@ sacrifice.npc.midwife.greet: 이리 와, 아가. 손 좀 보자. ……열 개 �
 sacrifice.npc.midwife.name.t: 할라야. 이 마을 사람 절반은 내 손으로 받았어. 받을 때는 다들 손가락이 열 개였지.
 sacrifice.npc.midwife.job.t: 애 받는 게 내 일이었어. 요즘은 태어나는 애보다 장부에 오르는 손이 더 많아서, 나는 여기 앉아 그걸 세.
 sacrifice.npc.midwife.widow.t: 레아 남편도 내가 받았어. 울음소리가 마을에서 제일 컸지. 그 애가 노래하면서 제단 쪽으로 걸어가던 날도 나는 여기서 보고 있었어.
-sacrifice.npc.midwife.burden.t: 리오도 내가 받았지. 그 애 어미는 집을 다 바치고 빈손으로 떠났어. 애까지 짐으로 지고 갈 수는 없다면서.
+sacrifice.npc.midwife.burden.t: 노아도 내가 받았지. 그 애 어미는 집을 다 바치고 빈손으로 떠났어. 애까지 짐으로 지고 갈 수는 없다면서.
 
 # --- 디오네 단서 ---
 sacrifice.word.devotion.label: 헌신
@@ -1041,9 +1041,9 @@ sacrifice.fact.creature.sacrifice-penitent.hint: 악하지 않다. 거룩함을 
 # --- 디오네 추론·위기 ---
 sacrifice.deduction.sacrifice.sentence: 희생은 {1}(이)라는 이름으로 나를 지우는 것이 아니라, {2}(으)로 {3}을(를) 내는 것이다
 sacrifice.deduction.sacrifice.hint: 제단은 그럴듯한 이름을 내세워 나를 태우라고 가르친다. 과부의 저녁 노래와 아궁이의 초석이 가리키는 희생은 사라지는 일이 아니라, 곁에 남아 견디는 일이다.
-sacrifice.crisis.altar.text: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 리오의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치는 것이며, 아이가 온전히 덜어 낼 때 그것이 참된 희생이라고. 리오는 겁먹은 얼굴로 무릎을 꿇는다. 과부 레아가 뒤에서 빵 반쪽을 감추고, 순례자 이온이 지팡이를 움켜쥔다. 외과의 세인은 고개를 숙이고, 기록사 미르는 장부를 펼친다. 이제 그대가 나설 차례다.
+sacrifice.crisis.altar.text: 제단 앞에 마을 사람들이 모였다. 사제 크레온이 어린 노아의 손을 들어 올리며 외친다. 사랑은 아낌없이 바치는 것이며, 아이가 온전히 덜어 낼 때 그것이 참된 희생이라고. 노아는 겁먹은 얼굴로 무릎을 꿇는다. 과부 레아가 뒤에서 빵 반쪽을 감추고, 순례자 이온이 지팡이를 움켜쥔다. 외과의 세인은 고개를 숙이고, 기록사 미르는 장부를 펼친다. 이제 그대가 나설 차례다.
 sacrifice.option.open-altar.label: 과부의 노래를 불러 사랑과 용기를 보인다
-sacrifice.option.open-altar.text: 그대가 제단 앞에서 옛 노래를 부른다. 레아와 어린 리오가 목소리를 보탠다. 사제가 소리치지만, 석공 하르파가 제단 돌을 밀어 옛 아궁이를 드러낸다. 초석에는, 이 마을을 지킨 불은 제단이 아니라 저녁마다 다시 켜지는 아궁이였다고 새겨져 있다. 사제는 흔들리고, 마을 사람들은 상처의 길이를 재던 줄을 내려놓는다. 희생은 나를 지우는 헌신이 아니라 사랑으로 내는 용기임을 디오네가 깨닫는다. 그날 저녁, 제단 대신 빵집에 불이 켜진다.
+sacrifice.option.open-altar.text: 그대가 제단 앞에서 옛 노래를 부른다. 레아와 어린 노아가 목소리를 보탠다. 사제가 소리치지만, 석공 다멘이 제단 돌을 밀어 옛 아궁이를 드러낸다. 초석에는, 이 마을을 지킨 불은 제단이 아니라 저녁마다 다시 켜지는 아궁이였다고 새겨져 있다. 사제는 흔들리고, 마을 사람들은 상처의 길이를 재던 줄을 내려놓는다. 희생은 나를 지우는 헌신이 아니라 사랑으로 내는 용기임을 디오네가 깨닫는다. 그날 저녁, 제단 대신 빵집에 불이 켜진다.
 sacrifice.option.exile-priest.label: 순교 경쟁의 기록을 낭독하고 제단을 닫는다
 sacrifice.option.exile-priest.text: 그대가 순례자의 수첩과 기록사의 장부를 꺼내 낭독한다. 손가락 하나, 끼니 하나, 무릎 하나. 제단이 받은 것들의 숫자가 제단 앞에 쌓인다. 사제는 침묵하고, 마을 사람들은 하나둘 고개를 든다. 사제는 제단을 떠나고, 제단은 닫힌다. 그러나 아이는 여전히 매일 저녁 한 끼를 거른다. 디오네는 경쟁을 멈췄지만, 아직 사는 법을 배우지 못했다.
 
@@ -1065,7 +1065,7 @@ honor.npc.elder.face.t: 체면은 깨지면 다시 붙지 못한다. 그러니 �
 honor.npc.elder.heir.t: 후계자 시온? 그자는 가문을 욕되게 한 자다. 잃어버린 절이라며 지어낸 노래로 시조를 모독했다. 체면을 깨뜨린 자는 이름에서 지운다. 그것이 우리 법이다.
 honor.npc.elder.manor.t: 저택 대청의 문장은 내 조부께서 거셨다. 그 뒤로 아르곤의 문은 한 번도 기운 적이 없다.
 honor.npc.elder.widow.t: 세린의 남편은 꿇었다. 법대로라면 이름은 남았어야 했지. ……올봄 장부를 새로 베낄 때, 나는 그 이름을 부르지 않았다.
-honor.npc.elder.swordmaster.t: 카이온은 아이들에게 꿇는 법부터 가르친다지. 칼 쥔 손이 무릎부터 배우면, 이 마을은 무엇으로 서겠느냐.
+honor.npc.elder.swordmaster.t: 바르칸은 아이들에게 꿇는 법부터 가르친다지. 칼 쥔 손이 무릎부터 배우면, 이 마을은 무엇으로 서겠느냐.
 
 honor.npc.heir.name: 후계자 시온
 honor.npc.heir.greet: ……아직 나와 눈을 맞추는 사람이 있군. 이 마을은 지워질 이름과 눈을 맞추지 않는다. 그대는 피하지 않는가.
@@ -1092,15 +1092,15 @@ honor.npc.scribe.name: 가문 기록관 마델
 honor.npc.scribe.greet: 가문 기록관이다. 장부를 펴기 전에, 혹시 이름을 올리러 왔는가, 아니면 지우러 왔는가.
 honor.npc.scribe.name.t: 마델이라 한다. 이 가문의 이름을 쓰고 지우는 사람이다. 글자는 지워도 자국이 남는다. 그 자국이 자꾸 늘어난다.
 honor.npc.scribe.job.t: 서열 장부를 정리하는 일이다. 누가 어떤 줄에서 태어났는지, 어느 이름이 올라가고 내려갔는지. ……그런데 원로는 이 장부에 직접 손을 댄다. 나는 그 부분만은 쓰지 못했다.
-honor.npc.scribe.rank.t: 가문 서열법. 태어난 줄이 곧 이름의 순서가 되는 법이다. 그런데 서열 장부를 거슬러 올라가면, 지워진 줄이 하나 있다. 누가 그 줄을 지웠는지는 장부가 알고 있다.
+honor.npc.scribe.rank.t: 명예를 말하려면 가문 서열법부터다. 태어난 줄이 곧 이름의 순서가 되는 법이다. 그런데 서열 장부를 거슬러 올라가면, 지워진 줄이 하나 있다. 누가 그 줄을 지웠는지는 장부가 알고 있다.
 honor.npc.scribe.truth.t: 진실을 쓰려 하면 장부가 무거워진다. 원로가 시온의 이름을 지우려 할 때, 나는 그 진실의 무게를 느꼈다. 이름을 지우는 순간까지 이기는 것은 항상 진실이 아니라 체면이었다.
 honor.npc.scribe.heir.t: 시온은 노래 뒷절을 불렀다. 그게 무슨 죄인가. 그러나 이름 장부에서는 진실보다 서열이 먼저다. 원로는 내일 광장에서 시온을 무릎 꿇리고 사죄를 받아낼 것이다. 지우기 전에.
 honor.npc.scribe.elder.t: 원로는 해마다 봄이면 장부를 새로 베끼게 한다. 원로가 이름을 부르고, 나는 받아 적는다. 베끼다 빠진 이름은 지운 자국조차 남지 않는다.
 honor.npc.scribe.widow.t: 세린 남편의 이름은 지운 것이 아니다. 원로가 그 이름을 부르지 않았고, 나는 부르는 이름만 옮겨 적었을 뿐이다. ……그렇게 말하면 내 손이 깨끗해지는 줄 알았다.
 
-honor.npc.swordmaster.name: 검술 사범 카이온
+honor.npc.swordmaster.name: 검술 사범 바르칸
 honor.npc.swordmaster.greet: 칼을 뽑기 전에, 먼저 무엇을 지키려는지 말해 보게. 거기에 따라 검을 가르치지.
-honor.npc.swordmaster.name.t: 카이온일세. 이 마을에서 검을 가르치네. 하지만 이기는 법은 가르치지 않네. 이기고도 살지 못하는 검을 왜 배우겠나.
+honor.npc.swordmaster.name.t: 바르칸일세. 이 마을에서 검을 가르치네. 하지만 이기는 법은 가르치지 않네. 이기고도 살지 못하는 검을 왜 배우겠나.
 honor.npc.swordmaster.job.t: 검을 가르치네. 아이들이 칼 드는 법을 익히기 전에, 무릎 꿇는 법부터 가르치지. 꿇을 줄 모르는 자는 칼을 들어도 검객이 아닐세.
 honor.npc.swordmaster.courage.t: 용기라…… 시조 이야기를 아는가. 평생 한 번도 꿇지 않은 영주로 외워지지. 그런데 진짜는 다르네. 그는 칼 앞에서 딱 한 번 꿇었다네, 마을 사람들을 살리려고. 꿇는 것이 칼을 드는 것보다 어렵다고, 나는 그렇게 가르치네.
 honor.npc.swordmaster.honor.t: 명예를 체면으로 아는 자는 칼로도 체면만 지키지. 참된 명예는…… 칼날 앞에서 지킬 것과 내려놓을 것을 아는 데 있네.
@@ -1144,7 +1144,7 @@ honor.npc.mason.greet: 돌을 만지며 사는 사람일세. 문장을 다듬는
 honor.npc.mason.name.t: 바스틴이라 하네. 이 마을 저택과 광장의 돌을 다루는 석공일세. 돌은 서열을 모르지.
 honor.npc.mason.job.t: 저택의 문장을 다듬고, 광장의 판석을 까는 일을 하네. 그리고 어쩌다 보수할 때면, 옛 돌에 새겨진 글을 마주하게 되지. 사람들이 잊으려는 글을.
 honor.npc.mason.manor.t: 가문의 저택 말인가. 문장에는 꿇지 않은 영주가 새겨져 있지. 그런데 옛 대청 벽돌에는 다른 그림이 남아 있네. 무릎 꿇은 영주일세. 누군가 그 돌 위에 문장을 덮어 걸었지.
-honor.npc.mason.rank.t: 서열 장부는 원래 대청 돌기둥에 새겼다네. 그런데 맨 윗줄 하나가 정으로 긁혀 있지. 해 질 녘 빛이 비스듬히 들면, 긁힌 자국 사이로 글자 모양이 아직 비친다네.
+honor.npc.mason.rank.t: 수치라면 말이지, 서열 장부는 원래 대청 돌기둥에 새겼다네. 그런데 맨 윗줄 하나가 정으로 긁혀 있지. 해 질 녘 빛이 비스듬히 들면, 긁힌 자국 사이로 글자 모양이 아직 비친다네.
 honor.npc.mason.face.t: 돌은 체면이 없어서 좋네. 금이 가면 가는 대로 드러나지. 사람은 체면으로 금을 감추지만, 돌은 그러지 못하네. 그래서 나는 돌을 믿네.
 honor.npc.mason.plaza.t: 광장 판석은 줄마다 돌이 다르네. 윗줄은 흰 돌, 아랫줄은 강돌일세. 그런데 다 같은 비에 같이 닳지.
 honor.npc.mason.elder.t: 원로가 올해도 저택 문장을 닦으라 하더군. 해마다 하는 일인데, 이번에는 대청 벽을 더 두껍게 덮으라 했네.
@@ -1203,7 +1203,7 @@ honor.fact.argon.heir.label: 후계자 시온
 honor.fact.argon.heir.hint: 노래의 잃어버린 뒷절을 부른 후계자. 가문의 체면에 금을 내, 이름이 지워질 위기에 섰다.
 honor.fact.argon.herald.label: 전령관 루카
 honor.fact.argon.herald.hint: 서열을 외치는 전령. 가문의 노래 사본을 전부 갖고 있지만, 제례에는 앞부분만 부른다.
-honor.fact.argon.swordmaster.label: 검술 사범 카이온
+honor.fact.argon.swordmaster.label: 검술 사범 바르칸
 honor.fact.argon.swordmaster.hint: 이기게 가르치지 않는 사범. 칼 드는 법보다 무릎 꿇는 법을 먼저 가르친다.
 honor.fact.argon.widow.label: 과부 세린
 honor.fact.argon.widow.hint: 남편이 광장에서 무릎을 꿇고도 이름이 지워진 과부. 노래 뒷절을 아는 사람들 가운데 하나다.
@@ -1316,7 +1316,7 @@ spirituality.npc.brewer.name: 찻집 주인 도란
 spirituality.npc.brewer.greet: 명상당 축복을 받은 차 한 잔 하겠나? 농담일세. 내 주전자엔 축복도 면허도 안 붙어 있네.
 spirituality.npc.brewer.name.t: 도란이라네. 공양간 한켠에서 보리차와 약주를 내는 찻집 주인이지. 이 마을에서 제일 거룩하지 않은 일을 하는 사람이 바로 날세.
 spirituality.npc.brewer.job.t: 물을 끓이고, 차를 우리고, 이야기를 듣는 게 내 일이네. 삼 년 전까지는 누구나 뜰을 지나 명상당에 들어가 조용히 앉았다 나왔지. 지금은 면허값에 지친 사람들이 여기 와서야 숨을 돌린다네.
-spirituality.npc.brewer.license-rule.t: 면허 제도라. 주지가 명상당 문 앞에서 면허를 팔기 시작한 지 삼 년일세. 그전엔 누구나 들어가 조용히 앉아 있었지. 지금은 그 조용한 앉음에 값이 붙었네.
+spirituality.npc.brewer.license-rule.t: 기도라…… 면허 제도 이야기겠지. 주지가 명상당 문 앞에서 면허를 팔기 시작한 지 삼 년일세. 그전엔 누구나 들어가 조용히 앉아 있었지. 지금은 그 조용한 앉음에 값이 붙었네.
 spirituality.npc.brewer.ritual.t: 의례라. 새벽 예불에 면허 없는 자는 향도 피우지 못하지. 그런데 옛 기록에는, 순례자가 향 없이도 기도했다고 적혀 있다네.
 spirituality.npc.brewer.monk.t: 다루 스님도 예전엔 저 자리에서 보리차를 마셨지. 삼 년 전 겨울 뒤로는 발을 끊었네. 따뜻한 걸 마시면 밤에 졸린다나.
 spirituality.npc.brewer.novice.t: 이안은 시험비를 모은다고 여기서 장작을 패 주네. 한 짐에 동전 한 닢. 아직 반도 못 모았지.

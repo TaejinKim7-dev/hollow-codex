@@ -22,7 +22,7 @@
     fact.solgang.arena:
       - text: valor.npc.champion.arena.t
         grants: [word.courage]
-    fact.solgang.retreat-law:
+    word.retreat:
       - text: valor.npc.champion.retreat-law.t
         lie: true
     word.brother:
@@ -243,7 +243,7 @@
     job:
       - text: valor.npc.widow.job.t
         grants: [fact.solgang.retreat-law, word.retreat]
-    fact.solgang.retreat-law:
+    word.retreat:
       - text: valor.npc.widow.retreat-law.t
         grants: [word.retreat, word.shield]
     word.shield:

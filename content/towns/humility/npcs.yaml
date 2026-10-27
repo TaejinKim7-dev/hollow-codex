@@ -74,7 +74,7 @@
         grants: [fact.heron.well]
     word.name:
       - text: humility.npc.wellkeeper.wordname.t
-    fact.heron.silence-rule:
+    fact.heron.well:
       - text: humility.npc.wellkeeper.silence-rule.t
     word.listening:
       - text: humility.npc.wellkeeper.listening.t

@@ -90,9 +90,9 @@ describe("dialogue", () => {
     const r = step(talking, { type: "endTalk" }, c)
     expect(r.state.dialogue).toBeNull(); expect(r.events).toEqual([])
   })
-  it("availableTopics lists name, job and known word/person/place facts", () => {
-    const s = stateWith({ facts: ["fact.person.sage", "fact.secret", "word.alpha"] })
-    expect(availableTopics(s, c, "npc.sage")).toEqual(["name", "job", "fact.person.sage", "word.alpha"])
+  it("availableTopics lists name, job and known word/person/place/song/creature facts (never 'meaning' conclusions)", () => {
+    const s = stateWith({ facts: ["fact.person.sage", "fact.secret", "word.alpha", "fact.slime-lore"] })
+    expect(availableTopics(s, c, "npc.sage")).toEqual(["name", "job", "fact.person.sage", "fact.slime-lore", "word.alpha"])
   })
   it("pickVariant takes the first variant whose conditions hold", () => {
     const v = c.npcs["npc.sage"]!.topics["word.decoy"]!

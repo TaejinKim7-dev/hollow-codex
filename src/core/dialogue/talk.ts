@@ -8,7 +8,7 @@ import { offset } from "../world/path.ts"
 
 const DIRS: readonly Dir[] = ["n", "e", "s", "w"]
 const UNKNOWN_KEY = "npc.default.unknown"
-const CHIP_KINDS = new Set(["word", "person", "place"])
+const CHIP_KINDS = new Set(["word", "person", "place", "song", "creature"])
 
 /** NPC의 현재 시간대(0·6·12·18 버킷) 위치를 고른다. schedule이 없거나 버킷 키가 없으면 npc.pos (M1 호환). */
 export function npcPositionAt(npc: NpcDef, hour: number): Pos {
@@ -16,7 +16,7 @@ export function npcPositionAt(npc: NpcDef, hour: number): Pos {
   return npc.schedule?.[bucket] ?? npc.pos
 }
 
-/** 대화 칩(D8): name, job, 아는 word·person·place 단서(id 정렬). npcId는 시그니처 호환용. */
+/** 대화 칩(D8, 2026-10-27 개정): name, job, 아는 word·person·place·song·creature 단서(id 정렬). 'meaning'(결론) 단서는 추론 재료라 칩에 넣지 않는다. npcId는 시그니처 호환용. */
 export function availableTopics(state: GameState, content: GameContent, _npcId: Id): string[] {
   const known = state.facts.filter((id) => CHIP_KINDS.has(content.facts[id]?.kind ?? "")).sort()
   return ["name", "job", ...known]

@@ -79,6 +79,7 @@
   topics:
     name:
       - text: sacrifice.npc.child.name.t
+        grants: [fact.dione.altar-priest]
     job:
       - text: sacrifice.npc.child.job.t
         grants: [word.burden]
@@ -117,7 +118,7 @@
     word.witness:
       - text: sacrifice.npc.pilgrim.witness.t
         grants: [word.witness]
-    fact.dione.martyr-contest:
+    fact.dione.altar:
       - text: sacrifice.npc.pilgrim.martyr-contest.t
         grants: [fact.dione.martyr-contest]
     word.devotion:
@@ -147,7 +148,7 @@
     word.witness:
       - text: sacrifice.npc.surgeon.witness.t
         grants: [word.witness]
-    fact.dione.martyr-contest:
+    fact.dione.altar-priest:
       - text: sacrifice.npc.surgeon.martyr-contest.t
         grants: [fact.dione.martyr-contest]
     fact.creature.sacrifice-penitent:
@@ -177,7 +178,7 @@
     job:
       - text: sacrifice.npc.scribe.job.t
         grants: [fact.dione.scribe, fact.dione.martyr-contest]
-    fact.dione.martyr-contest:
+    word.devotion:
       - text: sacrifice.npc.scribe.martyr-contest.t
         grants: [fact.dione.martyr-contest, word.burden]
     word.burden:
@@ -237,7 +238,7 @@
     job:
       - text: sacrifice.npc.baker.job.t
         grants: [fact.dione.living-love]
-    fact.dione.living-love:
+    word.devotion:
       - text: sacrifice.npc.baker.living-love.t
         grants: [fact.dione.living-love, word.love]
     word.love:
@@ -294,7 +295,7 @@
     fact.dione.garden:
       - text: sacrifice.npc.gardener.garden.t
         grants: [fact.dione.garden, word.burden]
-    fact.dione.martyr-contest:
+    fact.dione.altar-priest:
       - text: sacrifice.npc.gardener.martyr-contest.t
         grants: [fact.dione.martyr-contest]
     fact.dione.altar:

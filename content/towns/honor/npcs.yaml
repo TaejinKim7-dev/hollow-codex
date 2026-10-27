@@ -111,7 +111,7 @@
     job:
       - text: honor.npc.scribe.job.t
         grants: [fact.argon.family-rank, word.face]
-    fact.argon.family-rank:
+    word.honor:
       - text: honor.npc.scribe.rank.t
         grants: [fact.argon.family-rank, word.honor]
     word.truth:
@@ -265,7 +265,7 @@
     fact.argon.manor:
       - text: honor.npc.mason.manor.t
         grants: [fact.argon.family-rank, fact.argon.kneeling-lord]
-    fact.argon.family-rank:
+    word.shame:
       - text: honor.npc.mason.rank.t
         grants: [fact.argon.family-rank]
     word.face:

@@ -354,8 +354,8 @@ compassion.npc.almoner.greet: Welcome to Reona. No one in this town goes hungry.
 compassion.npc.almoner.name.t: I am the almoner. In Reona a share is called out before a name. One share, half a share, third row second share — like that.
 compassion.npc.almoner.job.t: My work is keeping the storehouse and setting the rations. How much to give to whom, who is still qualified. …Charity begins with taking in and ends with giving out.
 compassion.npc.almoner.charity.t: Charity is the order by which those who can give look after those who cannot. If that order wavers, everyone goes hungry. So receivers must be grateful, and givers must keep giving.
-compassion.npc.almoner.pantry.t: An open storehouse? That is only an old tale. Anyone walking in and taking their fill — what kind of disorder would that be? We share out in good order.
-compassion.npc.almoner.tax.t: If you mean the paper to lower the tax, I stopped it. Anyone who has lived through one year of a bare storehouse can never let it stand empty again. If the giving hand stops, the receiving hand has nowhere to go.
+compassion.npc.almoner.pantry.t: Did you hear that at the chapel? An open storehouse? That is only an old tale. Anyone walking in and taking their fill — what kind of disorder would that be? We share out in good order.
+compassion.npc.almoner.tax.t: Dependence? If you mean the paper to lower the tax, I stopped it. Anyone who has lived through one year of a bare storehouse can never let it stand empty again. If the giving hand stops, the receiving hand has nowhere to go.
 compassion.npc.almoner.hunger.t: Hunger. I learned it at the very end of a line. That is why, even now, I do not close the door until the last person has their share.
 compassion.npc.almoner.plaza.t: The line in the square is straight and quiet. In a straight line, no one gets pushed aside. …Only those who have been pushed aside know what that is worth.
 
@@ -389,7 +389,7 @@ compassion.npc.priest.name: Priest Lien of the Chapel
 compassion.npc.priest.greet: Peace be with you. This chapel is open to anyone. …The storehouse, less so.
 compassion.npc.priest.name.t: My name is Lien. I keep this chapel. The people of Reona call me the recording priest.
 compassion.npc.priest.job.t: I used to write the old customs, as I heard them from elders now gone, on the chapel wall one line at a time. The oldest line says, 'Sit side by side at the same table.' The almoner always quickens his step when he passes that wall.
-compassion.npc.priest.pantry.t: According to the records, Reona's storehouse originally had no door. Even when the hungry went in and took their fill, no one reproached them. Because giving was simply being together.
+compassion.npc.priest.pantry.t: On sharing, the old records say Reona's storehouse originally had no door. Even when the hungry went in and took their fill, no one reproached them. Because giving was simply being together.
 compassion.npc.priest.love.t: Love does not come down from above. Love is sitting side by side. If charity makes one bow the head, love brings the heads level.
 compassion.npc.priest.chapel.t: The chapel wall holds the elders' sayings, one line at a time. Here and there a line has been scraped away. Whoever did it surely meant no harm — but those scraped places are always looking at me.
 compassion.npc.priest.charity.t: Charity is a precious thing. But it only works if one side bows its head. In this chapel, the one who gives and the one who receives sit on the same bench. That much, at least, I can keep.
@@ -407,7 +407,7 @@ compassion.npc.miller.name: Mare the Miller
 compassion.npc.miller.greet: A place that smells of flour. Please bear with the rumble of the millstone.
 compassion.npc.miller.name.t: They call me Mare. I have ground grain at this mill for thirty years.
 compassion.npc.miller.job.t: Grinding grain, that's the work. But lately I count more than I grind. How many sacks go into the almoner's storehouse, who pays how much….
-compassion.npc.miller.tax.t: "Some years back a young recorder proposed lowering the tax — opening the storehouse to the people. The almoner blocked it. His reason: there must be givers for there to be receivers. After that the village grew poorer."
+compassion.npc.miller.tax.t: "The almoner? Some years back a young recorder proposed lowering the tax — opening the storehouse to the people. The almoner blocked it. His reason: there must be givers for there to be receivers. After that the village grew poorer."
 compassion.npc.miller.dependence.t: Work more and your share shrinks. So young folk these days work the mill for half a day and then go stand in line. I can't blame them — that's how the sums are set.
 compassion.npc.miller.bakery.t: The bakery? When you count grain, a measure of flour sometimes slips out of the tally — my eyes aren't what they were. I'd rather you didn't ask where that measure goes.
 
@@ -424,7 +424,7 @@ compassion.npc.scribe.greet: I am the recorder. …Will you leave a statement, o
 compassion.npc.scribe.name.t: They call me Teo. I keep this village's records.
 compassion.npc.scribe.job.t: I keep the ledgers and papers in order. I write the charity ration ledger as well. The numbers are honest — but which column they go in, my hand decides.
 compassion.npc.scribe.charity.t: In the ledger, charity always goes in the 'given out' column. A small dot is marked beside the name of whoever received it. The moment that dot goes down, they become someone who must repay forever.
-compassion.npc.scribe.tax.t: The tax reform paper is still in my drawer. The almoner told me to burn it, but I couldn't burn with my own hand what my own hand had written.
+compassion.npc.scribe.tax.t: Speaking of sharing, there is a paper I remember. The tax reform paper is still in my drawer. The almoner told me to burn it, but I couldn't burn with my own hand what my own hand had written.
 compassion.npc.scribe.dependence.t: The word dependence isn't in the ledger. Only the same names, written again on the same line every year. I couldn't bear to watch that line grow, so a few years ago I wrote a paper. It's in my drawer now.
 compassion.npc.scribe.almoner.t: The almoner reads the ledger backward. From the very last line, the last person. I've never asked him why.
 
@@ -524,7 +524,7 @@ valor.npc.champion.name.t: I need no name. Undefeated, the one the fighters gave
 valor.npc.champion.job.t: My work is standing. When a challenger comes I meet them, and I do not move my feet until one of us falls. That is the valor of this village.
 valor.npc.champion.battle.t: Battle begins with not moving your feet. Step back once and everything falls apart. …That is how I was taught.
 valor.npc.champion.arena.t: This arena's sand covers the names of the fallen. The crowd shouts only the name of the one still standing, and calls that courage.
-valor.npc.champion.retreat-law.t: A law that permits retreat? Solgang never had such a law. Cowards made it up to cover their backs.
+valor.npc.champion.retreat-law.t: Retreat? A law that permits retreat? Solgang never had such a law. Cowards made it up to cover their backs.
 valor.npc.champion.brother.t: I keep no comrades. Once, long ago, I was carried off a riverbank on someone's back. Since then I have trusted my back to no one.
 valor.npc.champion.shield.t: I carry no shield. A spear and two feet are enough. …Carry a shield, and one day you'll have an excuse to turn around.
 valor.npc.champion.battle-hymn.t: As for courage, the first lines of that song are enough. The enemy ahead, home behind — so you stand. Whatever comes after is better left unsung.
@@ -599,7 +599,7 @@ valor.npc.widow.name: Ren the Widow
 valor.npc.widow.greet: …Did you come to speak of my husband, or are you only passing through?
 valor.npc.widow.name.t: They call me Ren. I am someone who lost a husband in this village.
 valor.npc.widow.job.t: I used to sew clothes. Now I live remembering the promise my husband kept to the end—never to take a step back. …And yet they say there was once a law that let a man fall back.
-valor.npc.widow.retreat-law.t: It held until my husband's father's day—a law that no one who carried a wounded comrade home would be called a coward. After it was erased, my husband went out leaving his shield at home, and it still hangs beside the door.
+valor.npc.widow.retreat-law.t: On retreat — it held until my husband's father's day—a law that no one who carried a wounded comrade home would be called a coward. After it was erased, my husband went out leaving his shield at home, and it still hangs beside the door.
 valor.npc.widow.shield.t: I polish my husband's shield every day. The leather grip is still new. It has never once been carried out the door.
 valor.npc.widow.brother.t: One of the three who came back last year stood in the same line as my husband. He still can't meet my eyes. I don't blame him—I'm only grateful he came home.
 valor.npc.plasterer.name: Toban the Plasterer
@@ -684,45 +684,45 @@ valor.creature.duelist.name: The Wandering Duelist
 town.seles.name: Seles
 justice.music.title: Seles's Verdict
 
-justice.npc.judge.name: Arben the Judge
+justice.npc.judge.name: Halden the Judge
 justice.npc.judge.greet: This is the court of Seles. Stand in one line. Custom allows no exceptions.
-justice.npc.judge.name.t: I am Arben. For thirty years I have handed down this court's verdicts. In Seles, the custom before a grave comes before the name of the living.
+justice.npc.judge.name.t: I am Halden. For thirty years I have handed down this court's verdicts. In Seles, the custom before a grave comes before the name of the living.
 justice.npc.judge.job.t: My work is to keep the custom and hand down punishment. During mourning no one may sing, and whoever does takes the lash. Custom guards the village. That is justice.
 justice.npc.judge.law.t: Law is rooted in custom. Sing during mourning, and it is the lash. Take anything out from before a grave, and it is exile. Our law has no clause for feeling.
 justice.npc.judge.punishment.t: Punishment is the fire that makes people remember custom. Forty lashes, and no sentence is ever lessened. That is what Seles calls justice.
 justice.npc.judge.compassion.t: Compassion is a word unfit for this court. If punishments shrink, everyone will try to shake the custom. I am the one who stops that shaking.
-justice.npc.judge.lullaby.t: A lullaby? Singing, during mourning? That is an insult to custom. The widow Cele will not escape punishment.
+justice.npc.judge.lullaby.t: A lullaby? Singing, during mourning? That is an insult to custom. The widow Harin will not escape punishment.
 justice.npc.judge.mourner.t: The young man seen at the grave is a thief. The witness has already stood. The punishment is fixed.
 justice.npc.judge.graveyard.t: The clause that no one may stay at the graves after dark, I wrote it first. Thirty years ago, one winter, I carried a man down from a grave where he had kept vigil all night. He was already cold.
 justice.npc.judge.fairness.t: Fairness is the same punishment for everyone. Had it been my own blood, I would have handed down the same verdict.
 
-justice.npc.clerk.name: Leon the Court Clerk
+justice.npc.clerk.name: Kasel the Court Clerk
 justice.npc.clerk.greet: Testimony stays in the record. Speak quietly, and exactly.
-justice.npc.clerk.name.t: I'm Leon, the clerk who takes down testimony and verdicts in this court.
+justice.npc.clerk.name.t: I'm Kasel, the clerk who takes down testimony and verdicts in this court.
 justice.npc.clerk.job.t: I write the trial records. Three sheets of verdicts again today, every one of them the lash or exile. I used to be proud of my hand. Lately I'm afraid of what it counts.
 justice.npc.clerk.law.t: The law is already written. The mourning prohibitions, the punishment table, the clause that forbids any lessening. The judge says he only reads the record, but take it from the man who writes it — a record is never that simple.
 justice.npc.clerk.punishment.t: There are three punishments. The lash, exile, and kneeling before a grave. Kneeling is the lightest. …The children call it turning your back, since the one kneeling shows his back to the village. That name keeps troubling me.
-justice.npc.clerk.harsh.t: Look at these records. Six people broke the mourning last month. The one who sang, the one who left flowers on a grave, all six took forty lashes. My hand shakes every time I write that number.
+justice.npc.clerk.harsh.t: Fairness… look at these records. Six people broke the mourning last month. The one who sang, the one who left flowers on a grave, all six took forty lashes. My hand shakes every time I write that number.
 justice.npc.clerk.prisoner.t: …The youth in the cell. I didn't write his name. The judge told me to write only 'thief.' A charge passing judgment before the truth does — in twenty years of clerking, I've never seen it.
 justice.npc.clerk.judge.t: Twenty years I've taken down the judge's words. His voice has never once shaken reading a verdict. …Except in winter. His winter verdicts always come a little faster.
 justice.npc.clerk.truth.t: The truth? My work is to write what I hear, not to sort out the truth from it. …At least, that's what I've always believed.
 
-justice.npc.widow.name: Cele the Widow
+justice.npc.widow.name: Harin the Widow
 justice.npc.widow.greet: …Did you hear a lullaby? I'm sorry, I mustn't sing during mourning. Each night it slips out of my mouth without my meaning to.
-justice.npc.widow.name.t: I'm Cele. I buried my husband a month ago. The people of Seles call me the singing widow.
+justice.npc.widow.name.t: I'm Harin. I buried my husband a month ago. The people of Seles call me the singing widow.
 justice.npc.widow.job.t: While my husband lived, I wove cloth. Now… every day I go to the grave, pull the weeds, and sweep the stone. At night the lullaby comes out of me on its own. Mourning isn't something you do. It settles into your body.
 justice.npc.widow.compassion.t: Here, even holding someone who weeps breaks the mourning. To ease grief is to honor the dead less, they say. So when people see someone crying, they look away.
 justice.npc.widow.lullaby.t: It's the lullaby my husband and I sang to put Iren to sleep. Every mother in Seles knows it, but I sing it with one word changed — grave, instead of window. …Let them flog me. The nights I don't sing frighten me more.
 justice.npc.widow.prisoner.t: You mean my son. He went to his father's grave every night. He found a necklace my husband had hidden for me in the stones by the grave, and he was polishing it, I think. A witness saw him and called him a thief. My son tells the truth, but here custom comes before truth.
 justice.npc.widow.truth.t: The truth is… the night my husband died, I didn't cry. I kept the rites and said nothing. But the woman who sings now is truer than the woman of that night. That night, mourning had the truth locked away.
-justice.npc.widow.mourning-duty.t: They say mourning used to mean closing your door for a hundred days. Somewhere along the way it became a list of prohibitions. Don't cry, don't sing, only kneel before the grave. No one will say how it changed.
+justice.npc.widow.mourning-duty.t: As for the law — they say mourning used to mean closing your door for a hundred days. Somewhere along the way it became a list of prohibitions. Don't cry, don't sing, only kneel before the grave. No one will say how it changed.
 justice.npc.widow.graveyard.t: My husband laid the border stones around his grave himself, when he was young. A mason shapes his own resting place, he said. I laughed at him then.
 justice.npc.widow.mason.t: Duman was my husband's teacher. On the day of the funeral he stood at the stone a long while, holding his chisel. Without a word.
 justice.npc.widow.love.t: Love… my husband wasn't a man of many words. Instead he'd carve a pattern into a small stone and leave it on the doorstep without saying anything.
 
 justice.npc.prisoner.name: Iren the Imprisoned Youth
 justice.npc.prisoner.greet: …I'm sorry. I'm afraid that anything I say will be written down as a thief's words.
-justice.npc.prisoner.name.t: I'm Iren. My mother is Cele, and my father was a stonemason. …After he died so suddenly, keeping watch at his grave by night fell to me.
+justice.npc.prisoner.name.t: I'm Iren. My mother is Harin, and my father was a stonemason. …After he died so suddenly, keeping watch at his grave by night fell to me.
 justice.npc.prisoner.job.t: I learned to work stone in my father's workshop. Now I just sit alone in this cell. Father used to say that if you touch stone, you can see the truth.
 justice.npc.prisoner.truth.t: I told them exactly what happened that night. One of the border stones my father laid around the grave was loose, and under it was my mother's necklace, wrapped in cloth. It had tarnished, so I was polishing it, that's all. But the judge made the record say 'thief' first.
 justice.npc.prisoner.fairness.t: If it were fairness, my father's work and my mother's song would both be laid on the same scale. But Seles's scale gives the punishment first and weighs afterward.
@@ -748,18 +748,18 @@ justice.npc.child.job.t: My job is remembering songs! In the square, near the gr
 justice.npc.child.lullaby.t: The widow's lullaby? I know it! The moon lights the grave, and I sing your lullaby. It used to be window, not grave. The judge mustn't catch her… but I like that song.
 justice.npc.child.love.t: Love? That's… singing at a grave. The song my mom sings to put me to sleep and the one the widow sings to her husband are the same song. Singing even when they tell you not to. Is that love?
 justice.npc.child.widow.t: The widow is kind, so why does she get punished? If singing is a crime, I'm a criminal too, and nobody punishes me. She keeps getting punished because she's a grown-up.
-justice.npc.child.graveyard.t: At night candles get lit in the graveyard. Grandpa Gorno lights them one by one, even on graves nobody visits. He says those are the most.
+justice.npc.child.graveyard.t: At night candles get lit in the graveyard. Grandpa Ostan lights them one by one, even on graves nobody visits. He says those are the most.
 justice.npc.child.punishment.t: The men who got the lash walk funny for a while. So on the road we don't cut in front of them. We walk slowly behind.
 
 justice.npc.priest.name: Serno the Priest
 justice.npc.priest.greet: Peace be with you. This shrine stood before the graveyard did, yet I too live by the rules of mourning.
 justice.npc.priest.name.t: I am Serno. I keep this shrine, and the old records of mourning.
 justice.npc.priest.job.t: I tend the old records and prepare the words for the mourning rites. …But some year or other, the word forbidden began to multiply in them. Do not weep, do not sing, do not transgress.
-justice.npc.priest.mourning-duty.t: The old records of mourning held no punishment. For a hundred days the family kept its door shut, neighbors brought meals, and at night they sat together and talked. It was no season for punishment.
-justice.npc.priest.comfort-widow.t: Comfort is not teaching. It is sitting beside the grave and hearing out the song being sung. If you hear that song and sit beside her, the punishment will lose its power.
+justice.npc.priest.mourning-duty.t: On the law — the old records of mourning held no punishment. For a hundred days the family kept its door shut, neighbors brought meals, and at night they sat together and talked. It was no season for punishment.
+justice.npc.priest.comfort-widow.t: You mean the widow. Comfort is not teaching. It is sitting beside the grave and hearing out the song being sung. If you hear that song and sit beside her, the punishment will lose its power.
 justice.npc.priest.compassion.t: Compassion is thought to lessen punishment, but truly it is suffering together. The old records say that if justice is the scale, compassion is the hand that holds it.
-justice.npc.priest.harsh.t: Punishment outweighing custom is a recent thing. Forty lashes for one song — in the old days it wouldn't have earned a scolding. That punishment has frightened people, and now no one weeps at a grave.
-justice.npc.priest.judge.t: Arben and I played at the same stream as boys. I remember the winter he wrote his first clause. …I never did find the words to hold him back that day.
+justice.npc.priest.harsh.t: As for punishment — its outweighing custom is a recent thing. Forty lashes for one song — in the old days it wouldn't have earned a scolding. That punishment has frightened people, and now no one weeps at a grave.
+justice.npc.priest.judge.t: Halden and I played at the same stream as boys. I remember the winter he wrote his first clause. …I never did find the words to hold him back that day.
 justice.npc.priest.court.t: I've been called to the court many times, but never once carried the old records with me. No one asked. …I know that's my excuse.
 
 justice.npc.mason.name: Duman the Mason
@@ -767,9 +767,9 @@ justice.npc.mason.greet: I raise gravestones. Stone won't take a lie, which is w
 justice.npc.mason.name.t: I'm Duman. I work the stone for this village's gravestones and house foundations.
 justice.npc.mason.job.t: My work was carving the names of the dead. These days I carve one more line beneath them — someone broke the mourning before this grave. The speed at which words pile up on stone frightens me.
 justice.npc.mason.law.t: Law… ought to be like stone. It should carry weight, hold fast, and hold no lies. Today's law isn't stone but mud. Rain reshapes it.
-justice.npc.mason.harsh.t: Last month I carved that line six times. For one who sang, one who left flowers, one who stayed past dark. A law that cuts the living's faults into the stones of the dead. …This village punishes the living with stones meant for the dead.
-justice.npc.mason.comfort-widow.t: There is still hope. The stone of Cele's husband still reads only 'rests here.' The order came to carve another line beneath it, but I've been telling them my chisel has gone dull.
-justice.npc.mason.graveyard.t: The border stones on Cele's family plot, Cele's husband laid them as a young man. As I taught him, he left one stone that could be lifted out. Masons tend to keep something small in such a place.
+justice.npc.mason.harsh.t: Fairness? Last month I carved that line six times. For one who sang, one who left flowers, one who stayed past dark. A law that cuts the living's faults into the stones of the dead. …This village punishes the living with stones meant for the dead.
+justice.npc.mason.comfort-widow.t: The widow, you mean. There is still hope. The stone of Harin's husband still reads only 'rests here.' The order came to carve another line beneath it, but I've been telling them my chisel has gone dull.
+justice.npc.mason.graveyard.t: The border stones on Harin's family plot, Harin's husband laid them as a young man. As I taught him, he left one stone that could be lifted out. Masons tend to keep something small in such a place.
 justice.npc.mason.punishment.t: Punishment… set the chisel wrong and the stone cracks. Once cracked, it can't be filled. The judge doesn't seem to know people are the same.
 
 justice.npc.scribe.name: Bela the Scribe
@@ -778,13 +778,13 @@ justice.npc.scribe.name.t: I'm Bela, the scribe who copies the court's verdicts 
 justice.npc.scribe.job.t: Every day I sort the punishment records. Yesterday, forty lashes for one song. Today, a kneeling for nothing more than lingering at a grave after dark. The numbers are honest. The law that sets them is not.
 justice.npc.scribe.truth.t: I was taught that records hold the truth. Now the records make it. Write 'thief' and he is a thief; write 'mourner' and he is a mourner. The same night, the same grave, the same youth, and one word decides which man he is.
 justice.npc.scribe.prisoner.t: I read the youth's record again. The charge reads 'thief,' but nowhere in the body does it say he stole anything. Only that he was at a grave by night, holding something in his hand.
-justice.npc.scribe.harsh.t: The numbers on the punishment table grow every year. Lashes for breaking mourning, exile for taking anything from a grave. The more they pile up, the quieter the village grows, and the more afraid I am of writing them.
+justice.npc.scribe.harsh.t: As for the numbers of the law — the numbers on the punishment table grow every year. Lashes for breaking mourning, exile for taking anything from a grave. The more they pile up, the quieter the village grows, and the more afraid I am of writing them.
 justice.npc.scribe.fairness.t: The punishment table has no column for names. Anyone at all, the same row, the same number. They call that fairness, but sometimes that blank column frightens me.
-justice.npc.scribe.court.t: When a verdict comes up from the court, I copy it again upstairs. Leon's hand is always straight, but lately the last stroke of each letter trembles a little.
+justice.npc.scribe.court.t: When a verdict comes up from the court, I copy it again upstairs. Kasel's hand is always straight, but lately the last stroke of each letter trembles a little.
 
-justice.npc.gravedigger.name: Gorno the Gravedigger
+justice.npc.gravedigger.name: Ostan the Gravedigger
 justice.npc.gravedigger.greet: This is where the dead live. The living should come quietly, and without lies.
-justice.npc.gravedigger.name.t: They call me Gorno. I dig and keep the ground of this graveyard.
+justice.npc.gravedigger.name.t: They call me Ostan. I dig and keep the ground of this graveyard.
 justice.npc.gravedigger.job.t: I dig graves, light candles, and walk my rounds at night. …But lately the living come by night more often. Afraid of punishment, they come as soundless as the dead.
 justice.npc.gravedigger.mourner.t: That mourner… he weeps at a grave every night, and when he sees a stranger he blocks the way, crying thief. Grief blinds a person like that. He isn't wicked. He's someone drowning in mourning.
 justice.npc.gravedigger.compassion.t: I learned compassion like this. When I go to dig a grave and find someone keening, I'm the one who should smile first. The dead just lie there and need nothing. It's the living who need comfort.
@@ -803,7 +803,7 @@ justice.npc.old-neighbor.greet: I'm an old woman who doesn't sleep. At night I s
 justice.npc.old-neighbor.name.t: They call me Orma. I've lived beside this graveyard wall for sixty years.
 justice.npc.old-neighbor.job.t: I don't sleep, so I keep the night. Every sound from the graves reaches this window. Who weeps, who sits a long while before going.
 justice.npc.old-neighbor.witness.t: What Kain saw, I heard. That night, the sound from the graves was not digging. It was something rubbing on stone, and a very low hum.
-justice.npc.old-neighbor.graveyard.t: In the old days, for a hundred days the candles stood in rows in that graveyard every night. Arben came too as a boy, holding his elder brother's hand and a candle. …An old woman talks too long.
+justice.npc.old-neighbor.graveyard.t: In the old days, for a hundred days the candles stood in rows in that graveyard every night. Halden came too as a boy, holding his elder brother's hand and a candle. …An old woman talks too long.
 justice.npc.scale-keeper.name: Haim the Scale Inspector
 justice.npc.scale-keeper.greet: I'm Haim, inspector of the market scales. Before anything else, I check that the needle stands in the middle with the pans empty.
 justice.npc.scale-keeper.name.t: I'm Haim. Once a month I inspect the scales in the Seles market.
@@ -832,12 +832,12 @@ justice.word.punishment.label: Punishment
 justice.word.punishment.hint: Flogging, exile, kneeling before a grave. The fire that makes custom remembered.
 justice.word.compassion.label: Compassion
 justice.word.compassion.hint: In Seles, even holding someone who weeps counts as breaking the mourning.
-justice.fact.seles.judge.label: Arben the Judge
+justice.fact.seles.judge.label: Halden the Judge
 justice.fact.seles.judge.hint: Seles's judge, who has passed verdicts for thirty years. He believes custom is justice.
-justice.fact.seles.widow.label: Cele the Widow
+justice.fact.seles.widow.label: Harin the Widow
 justice.fact.seles.widow.hint: A month since she buried her husband. Every night she sings the forbidden lullaby before the grave.
 justice.fact.seles.prisoner.label: Iren the Imprisoned Youth
-justice.fact.seles.prisoner.hint: Cele's son. He found his mother's necklace at the grave and was accused of theft.
+justice.fact.seles.prisoner.hint: Harin's son. He found his mother's necklace at the grave and was accused of theft.
 justice.fact.seles.witness.label: Kain the Witness
 justice.fact.seles.witness.hint: The witness who saw something gleaming at the grave. He tells only what he saw and leaves the judgment to the law.
 justice.fact.seles.mason.label: Duman the Mason
@@ -847,7 +847,7 @@ justice.fact.seles.court.hint: Where punishment comes before record. Verdicts pi
 justice.fact.seles.graveyard.label: The Graveyard
 justice.fact.seles.graveyard.hint: Where a lullaby carries every night. The living, afraid of punishment, have gone as quiet as the dead.
 justice.fact.seles.mourning-lullaby.label: The Mourner's Lullaby
-justice.fact.seles.mourning-lullaby.hint: The moon lights the grave, and I sing your lullaby. The song Cele kept for her husband.
+justice.fact.seles.mourning-lullaby.hint: The moon lights the grave, and I sing your lullaby. The song Harin kept for her husband.
 justice.fact.seles.mourning-duty.label: The Lost Hundred Days
 justice.fact.seles.mourning-duty.hint: The hundred days of mourning in the old records. Not punishment, but a time when neighbors brought meals and sat together.
 justice.fact.seles.harsh-punishment.label: The Harsh Punishment
@@ -860,7 +860,7 @@ justice.fact.creature.justice-mourner.hint: Not evil. It is grief that makes him
 # --- Seles deduction and crisis ---
 justice.deduction.justice.sentence: Justice is not punishment blind to {1}, but a scale of {2} that weighs {3} as well
 justice.deduction.justice.hint: What did the judge's punishments close their eyes to? What was Seles's scale meant to be called, and what was missing from its pans? Look to the youth in the cell and the song by the graves.
-justice.crisis.mourning.text: Moonlight runs cold before the courthouse. The widow Cele, who sang during mourning, and the youth Iren, who found a necklace at the grave, are dragged before the judge. The judge unfurls the verdict. The song broke custom; the grave yielded a thief. The punishment is fixed. The crowd holds its breath. A child bows her head, and the gravedigger looks toward the graves. Now it is your turn to step forward.
+justice.crisis.mourning.text: Moonlight runs cold before the courthouse. The widow Harin, who sang during mourning, and the youth Iren, who found a necklace at the grave, are dragged before the judge. The judge unfurls the verdict. The song broke custom; the grave yielded a thief. The punishment is fixed. The crowd holds its breath. A child bows her head, and the gravedigger looks toward the graves. Now it is your turn to step forward.
 justice.option.comfort-widow.label: Sing the lullaby to show the truth and offer comfort
 justice.option.comfort-widow.text: Before the courthouse, you sing the lullaby in a trembling voice. The moon lights the grave, and I sing your lullaby. The crowd stops breathing. The witness bows his head, and the priest takes out the old records and reads. The hundred days of mourning were never punishment, but a time of sitting together. After a long silence, the judge folds the verdict. For the first time, Seles's scale takes up truth and love and finds its balance. Comfort is handed down instead of punishment.
 justice.option.strict-law.label: Read out the punishment clauses and rule by the law
@@ -897,9 +897,9 @@ sacrifice.npc.widow.devotion.t: Devotion… that word took my husband. He kept m
 sacrifice.npc.widow.surgeon.t: Since then, Doctor Sein always bows his head first when he sees me. Sorry he came too late, he says. It wasn't him who was late.
 sacrifice.npc.widow.courage.t: Courage… everyone says my husband was brave. I know he sang before the altar because he was afraid.
 
-sacrifice.npc.child.name: Rio the Child
+sacrifice.npc.child.name: Noah the Child
 sacrifice.npc.child.greet: Talking to strangers means no supper. It's okay. I'm good at going hungry.
-sacrifice.npc.child.name.t: I'm Rio. I'm six, and I'm practicing to be the altar's child. The priest says if you give up a lot while you're little, you can make a big sacrifice later.
+sacrifice.npc.child.name.t: I'm Noah. I'm six, and I'm practicing to be the altar's child. The priest says if you give up a lot while you're little, you can make a big sacrifice later.
 sacrifice.npc.child.job.t: My job is skipping one meal a day and never picking anything I like. The priest calls it a holy burden, but I don't know why I have to learn to carry burdens.
 sacrifice.npc.child.burden.t: A burden? The priest says the more you carry, the holier you are. But the burden I know is Granny Sera's bread box. It's heavy, but with two of us it gets light.
 sacrifice.npc.child.widow-song.t: Auntie Leah's song! I sing it in the backyard every night, in secret. The priest mustn't hear. But when she sings it with me, I feel warm inside.
@@ -913,7 +913,7 @@ sacrifice.npc.pilgrim.greet: I am a pilgrim who wanders from place to place. I w
 sacrifice.npc.pilgrim.name.t: My name is Ion. One staff and one notebook are all I own. Wherever I go, I write down the true sacrifices I hear of and see.
 sacrifice.npc.pilgrim.job.t: My work is to be a witness. I write down, without taking sides, what happens before the altar and what the villagers look away from. Until I came here, I believed sacrifice was beautiful.
 sacrifice.npc.pilgrim.witness.t: A witness is one who remembers what he saw to the end. I have copied this village's ledgers three times over. The priest raises his bound hand over the altar, but once, when the cloth slipped, the hand I saw was whole.
-sacrifice.npc.pilgrim.martyr-contest.t: This village competes before the altar over who gave more painfully. They measure wounds and count days of fasting, and last year the man who cut off his own finger won. The priest calls it a holy contest. I wrote it down as the martyr contest.
+sacrifice.npc.pilgrim.martyr-contest.t: The altar? This village competes before it over who gave more painfully. They measure wounds and count days of fasting, and last year the man who cut off his own finger won. The priest calls it a holy contest. I wrote it down as the martyr contest.
 sacrifice.npc.pilgrim.devotion.t: Devotion brought me here, and now I fear the word. Wherever you are told to give everything, there is always someone on the receiving side. I mean to write that side down too.
 sacrifice.npc.pilgrim.pilgrim.t: The pilgrim of three hundred years ago? I heard he asked no one to give anything up. He shared his own portion, ate, and went on his way. Where this village came to read that story backwards is what I want to know.
 sacrifice.npc.pilgrim.widow.t: Lady Leah asked me to write nothing of her in my notebook. So when I pass her door, I walk with it closed. The evening song, though, I have learned by heart as I hear it.
@@ -923,7 +923,7 @@ sacrifice.npc.surgeon.greet: Sit. Show me the wound. …Clean. Good.
 sacrifice.npc.surgeon.name.t: Sein. I'm the only surgeon in this village who works with knife and thread. My blade is not for opening flesh, only for closing it.
 sacrifice.npc.surgeon.job.t: My work is sewing wounds. But most wounds here are self-made, to stand before the altar, to bear more than the next person. Sewing them day after day, I became a witness without meaning to.
 sacrifice.npc.surgeon.witness.t: If it's a witness you want, you won't find a better one. My fingertips know which wound came from a blade and which from the altar stone. But the priest's hand, in all these years, he has never once shown me.
-sacrifice.npc.surgeon.martyr-contest.t: The wound contest. Watching the cord-keeper count knots and the recorder write the number down, I can only shake my head. They mean to measure love by the length of a wound.
+sacrifice.npc.surgeon.martyr-contest.t: The wound contest the priest's altar hosts. Watching the cord-keeper count knots and the recorder write the number down, I can only shake my head. They mean to measure love by the length of a wound.
 sacrifice.npc.surgeon.penitent.t: That penitent is my patient. He whipped his back until it festered and came to me. I mend him, and soon he'll be back at the altar. This village opens more wounds than I can close.
 sacrifice.npc.surgeon.courage.t: Courage isn't making one more wound. It's looking, to the end, at the face of the one who will hurt. In this village, that's the hardest thing of all.
 sacrifice.npc.surgeon.widow.t: I could have saved that woman's husband. If only I'd been three days earlier. …I was the one who kept the law, so my hand is on that ledger too, in its way.
@@ -933,15 +933,15 @@ sacrifice.npc.scribe.name: Mir the Recorder
 sacrifice.npc.scribe.greet: They say records are eternal. …If only the records I keep did not frighten me.
 sacrifice.npc.scribe.name.t: I am Mir, Dione's recorder — the one who copies the lists of what is offered to the altar.
 sacrifice.npc.scribe.job.t: I keep the altar's ledger. Names, offerings, the length of each wound, and the larger the number, the greater the praise. Yesterday, copying out last year's ledger, my hand stopped at one entry. One finger.
-sacrifice.npc.scribe.martyr-contest.t: Some call it the martyr contest. I only write the numbers. But numbers do not lie. A husband's finger, a child's meal, an old man's knees. The altar is gathering those numbers in.
+sacrifice.npc.scribe.martyr-contest.t: Devotion? Some call it the martyr contest. I only write the numbers. But numbers do not lie. A husband's finger, a child's meal, an old man's knees. The altar is gathering those numbers in.
 sacrifice.npc.scribe.burden.t: The old ledger says a burden is not carried alone but carried together. Now each carries only their own and will not take up another's. If that is what the altar teaches, I will not record its teaching.
 sacrifice.npc.scribe.widow.t: Lady Leah's household is on the top line of last year's ledger, the house that gave the most. Beneath it is a line I wrote only in pencil, a widow who sets aside half a loaf every night. I have not yet managed to copy that line into any ledger.
 sacrifice.npc.scribe.pilgrim.t: The pilgrim copied my ledger three times over, writing each name back in beside its number. I had forgotten how to write that way.
 sacrifice.npc.scribe.witness.t: As a witness, I don't qualify. I write down not what I see, only what is measured. Whatever the cord cannot reach never makes it into the ledger.
 
-sacrifice.npc.mason.name: Harpa the Mason
+sacrifice.npc.mason.name: Damen the Mason
 sacrifice.npc.mason.greet: I've spent my life with stone. Stone doesn't lie, and I like that. But that altar stone… it keeps its mouth shut about what lies beneath it.
-sacrifice.npc.mason.name.t: Harpa. I'm the mason who works the stone of this village's houses and its altar. My grandfather was the mason who built that altar.
+sacrifice.npc.mason.name.t: Damen. I'm the mason who works the stone of this village's houses and its altar. My grandfather was the mason who built that altar.
 sacrifice.npc.mason.job.t: Repairing the altar stone is my work. Tap it with a hammer and it rings hollow underneath. The old shrine's foundation is still down there, and the words carved on it are not the altar's law. I just haven't found the courage to bring them back to light.
 sacrifice.npc.mason.altar.t: Lift this altar away and the old shrine's hearth lies beneath it. The words carved there say the fire that kept this village was never the altar, but the hearth relit every evening. It was a place that filled, not a place that stripped away.
 sacrifice.npc.mason.courage.t: Courage is not holding up a stone about to fall. It is becoming the stone that holds up a person about to fall. Lately I want to make such a stone, so I am dressing the altar anew.
@@ -953,9 +953,9 @@ sacrifice.npc.baker.name: Sera the Bread Baker
 sacrifice.npc.baker.greet: Fresh from the oven. …If it's for the altar, go elsewhere. I don't put bread there.
 sacrifice.npc.baker.name.t: I'm Sera. At the village bakery I bake bread each morning, and in the evening I share it.
 sacrifice.npc.baker.job.t: My work is kneading, keeping the fire, and handing out bread. The priest says I don't know how to sacrifice. Every time I hear it, I stoke the fire harder. He doesn't know what fire it is I keep.
-sacrifice.npc.baker.living-love.t: I believe true sacrifice is not offering your life at once, but stoking the fire and handing out bread every morning. The altar takes a moment; this bread keeps a day alive. Sharing — that is the love I know.
+sacrifice.npc.baker.living-love.t: As for devotion, I believe true sacrifice is not offering your life at once, but stoking the fire and handing out bread every morning. The altar takes a moment; this bread keeps a day alive. Sharing — that is the love I know.
 sacrifice.npc.baker.love.t: Love lives between the baker and the eater. It does not burn in the fire. Like dough rising, it rises together.
-sacrifice.npc.baker.widow.t: I always cut Leah's loaf a little bigger. She sets half of it aside. I know where that half goes, too. Into Rio's mouth.
+sacrifice.npc.baker.widow.t: I always cut Leah's loaf a little bigger. She sets half of it aside. I know where that half goes, too. Into Noah's mouth.
 sacrifice.npc.baker.garden.t: There's a bread I bake with grated radish from Mano's plot. The priest would call it a greedy, filling bread. The children love it best.
 
 sacrifice.npc.healer.name: Nora the Healer
@@ -972,12 +972,12 @@ sacrifice.npc.gardener.greet: A field only grows better with tending. Some say g
 sacrifice.npc.gardener.name.t: I'm Mano. I keep the vegetable plot behind the village. Pumpkin, carrot, radish, names you can't even say near the altar, they're too filling.
 sacrifice.npc.gardener.job.t: My work is sowing seed, pulling weeds, and giving water. Then I share half the harvest with the villagers. The priest tells me to offer even that half.
 sacrifice.npc.gardener.garden.t: This plot is the oldest place in the village — older than the altar. The children taught that hunger is holy come here starving, eat a radish, and go. I teach them it is not a burden, it is food.
-sacrifice.npc.gardener.martyr-contest.t: A wound contest — on the way back from market I see the quarrels before the altar. Who fasted more, who ached more. Nothing like that grows in a plot. Because nothing like that is ever planted.
+sacrifice.npc.gardener.martyr-contest.t: The priest's wound contest — on the way back from market I see the quarrels before the altar. Who fasted more, who ached more. Nothing like that grows in a plot. Because nothing like that is ever planted.
 sacrifice.npc.gardener.altar.t: My grandmother told me about the long winter. That year every radish from this plot went into the old shrine's pot. Each evening someone lit the fire, and everyone shared a bowl.
 sacrifice.npc.gardener.devotion.t: Devotion? I'm devoted to the soil. The soil gives back what it's given. The altar only takes.
 sacrifice.npc.acolyte.name: Tessa the Acolyte
 sacrifice.npc.acolyte.greet: Please walk softly in the sanctuary. The priest is at prayer.
-sacrifice.npc.acolyte.name.t: I am Tessa. Until Rio came, I was the youngest at the priest's side. Now I trim the lamps and scrub the altar stone.
+sacrifice.npc.acolyte.name.t: I am Tessa. Until Noah came, I was the youngest at the priest's side. Now I trim the lamps and scrub the altar stone.
 sacrifice.npc.acolyte.job.t: I scrub the altar every dawn. Oddly, when I sweep the cracks between the stones, soot comes out. No fire has ever been lit on that altar.
 sacrifice.npc.acolyte.devotion.t: Every night the priest rewraps the cloth on his hand. The cloth he takes off is always white. I have decided to believe that is because his devotion runs so deep.
 sacrifice.npc.acolyte.sanctuary.t: Under the law on the sanctuary wall there is a patch painted over. On rainy days, older letters show through. I tried to read them, but they had all run.
@@ -1004,7 +1004,7 @@ sacrifice.npc.midwife.greet: Come here, little one. Let me see your hands. …Al
 sacrifice.npc.midwife.name.t: Hala. I brought half this village into the world with these hands. Every one of them had ten fingers when I caught them.
 sacrifice.npc.midwife.job.t: Catching babies was my work. These days more hands go into the ledger than babies come into the world, so I sit here and count them.
 sacrifice.npc.midwife.widow.t: I caught Leah's husband too. Loudest cry in the village. The day he walked toward the altar singing, I was sitting right here, watching.
-sacrifice.npc.midwife.burden.t: I caught Rio too. Her mother gave away the whole house and left with empty hands. Said she couldn't carry a child along as one more burden.
+sacrifice.npc.midwife.burden.t: I caught Noah too. Her mother gave away the whole house and left with empty hands. Said she couldn't carry a child along as one more burden.
 
 # --- Dione clues ---
 sacrifice.word.devotion.label: Devotion
@@ -1043,9 +1043,9 @@ sacrifice.fact.creature.sacrifice-penitent.hint: Not evil. One taught that holin
 # --- Dione deduction and crisis ---
 sacrifice.deduction.sacrifice.sentence: Sacrifice is not letting {1} erase the self, but finding {3} through {2}
 sacrifice.deduction.sacrifice.hint: The altar teaches you to burn yourself away in the name of something fine-sounding. The widow's evening song and the hearth's foundation point to a sacrifice that does not vanish, but stays and endures.
-sacrifice.crisis.altar.text: Villagers gather before the altar. Priest Kreon lifts little Rio's hand and cries out that love is giving without holding back, and that only when the child is emptied entirely is it true sacrifice. Rio kneels, her face frightened. Behind them, the widow Leah hides half a loaf, and the pilgrim Ion grips his staff. Sein the surgeon bows his head, and Mir the recorder opens the ledger. Now it is your turn to step forward.
+sacrifice.crisis.altar.text: Villagers gather before the altar. Priest Kreon lifts little Noah's hand and cries out that love is giving without holding back, and that only when the child is emptied entirely is it true sacrifice. Noah kneels, her face frightened. Behind them, the widow Leah hides half a loaf, and the pilgrim Ion grips his staff. Sein the surgeon bows his head, and Mir the recorder opens the ledger. Now it is your turn to step forward.
 sacrifice.option.open-altar.label: Sing the widow's song to show love and courage
-sacrifice.option.open-altar.text: You sing the old song before the altar. Leah and little Rio add their voices. The priest cries out, but Harpa the mason shoves the altar stone aside and the old hearth comes to light. Carved in the foundation are the words that the fire which kept this village was never the altar, but the hearth relit every evening. The priest falters, and the villagers lay down the cords they used to measure wounds. Dione understands that sacrifice is not devotion that erases the self, but courage found through love. That evening, a fire is lit in the bakery instead of on the altar.
+sacrifice.option.open-altar.text: You sing the old song before the altar. Leah and little Noah add their voices. The priest cries out, but Damen the mason shoves the altar stone aside and the old hearth comes to light. Carved in the foundation are the words that the fire which kept this village was never the altar, but the hearth relit every evening. The priest falters, and the villagers lay down the cords they used to measure wounds. Dione understands that sacrifice is not devotion that erases the self, but courage found through love. That evening, a fire is lit in the bakery instead of on the altar.
 sacrifice.option.exile-priest.label: Read out the martyr contest records and close the altar
 sacrifice.option.exile-priest.text: You take out the pilgrim's notebook and the recorder's ledger and read them aloud. One finger, one meal, one knee. The counts of what the altar received pile up before it. The priest falls silent, and one by one the villagers lift their heads. The priest leaves the altar, and the altar is closed. But the child still skips a meal every evening. Dione stopped competing, but has not yet learned how to live.
 
@@ -1067,7 +1067,7 @@ honor.npc.elder.face.t: A broken face cannot be mended. So harden the face you h
 honor.npc.elder.heir.t: The heir Sion? He shamed this house. He made up a song, called it a lost verse, and insulted the founder with it. Whoever breaks face is struck from the rolls. That is our law.
 honor.npc.elder.manor.t: My grandfather hung the sigil in the manor hall. Since then, Argon's gate has never once leaned.
 honor.npc.elder.widow.t: Serin's husband knelt. By the law, his name should have stayed. …When the ledger was copied anew this spring, I did not call it out.
-honor.npc.elder.swordmaster.t: Kaion teaches the children to kneel first, I hear. If the hand that holds the sword learns the knee before anything, what will this village stand on?
+honor.npc.elder.swordmaster.t: Barkan teaches the children to kneel first, I hear. If the hand that holds the sword learns the knee before anything, what will this village stand on?
 
 honor.npc.heir.name: Sion the Heir
 honor.npc.heir.greet: …Someone still meets my eyes. This village does not look at a name that is about to be erased. You do not turn away?
@@ -1094,15 +1094,15 @@ honor.npc.scribe.name: Madel the House Recorder
 honor.npc.scribe.greet: House recorder. Before I open the ledger — have you come to add a name, or to erase one?
 honor.npc.scribe.name.t: I am Madel. I write the names of this house, and I erase them. An erased letter still leaves a mark. The marks keep multiplying.
 honor.npc.scribe.job.t: I keep the rank ledger. Who was born in which line, which name rose and which fell. …But the elder reaches into this ledger himself. Those parts I could not write.
-honor.npc.scribe.rank.t: The family rank law. The line you are born into becomes the order of your name. But trace the rank ledger back, and there is one erased line. The ledger knows who erased it.
+honor.npc.scribe.rank.t: To speak of honor, start with the family rank law. The line you are born into becomes the order of your name. But trace the rank ledger back, and there is one erased line. The ledger knows who erased it.
 honor.npc.scribe.truth.t: When I try to write the truth, the ledger grows heavy. When the elder moved to erase Sion's name, I felt the weight of that truth. To the very moment a name is erased, it is always face, not truth, that wins.
 honor.npc.scribe.heir.t: Sion sang the second verse. What crime is that? But in the name ledger, rank comes before truth. Tomorrow the elder will make Sion kneel in the square and take his apology. Before the erasure.
 honor.npc.scribe.elder.t: Every spring the elder has the ledger copied anew. He calls the names, and I write them down. A name left out in the copying does not even leave an erasure mark.
 honor.npc.scribe.widow.t: Serin's husband's name was not erased. The elder simply did not call it, and I only copied the names he called. …I thought saying so would keep my hands clean.
 
-honor.npc.swordmaster.name: Kaion the Swordmaster
+honor.npc.swordmaster.name: Barkan the Swordmaster
 honor.npc.swordmaster.greet: Before you draw a sword, tell me what you mean to guard. That decides what I teach.
-honor.npc.swordmaster.name.t: Kaion. I teach the sword in this village. But I don't teach winning. Why learn a sword that wins and still leaves you dead?
+honor.npc.swordmaster.name.t: Barkan. I teach the sword in this village. But I don't teach winning. Why learn a sword that wins and still leaves you dead?
 honor.npc.swordmaster.job.t: I teach the sword. Before the children learn to raise a blade, I teach them to kneel. One who cannot kneel is no swordsman, whatever he holds.
 honor.npc.swordmaster.courage.t: Courage… do you know the founder's story? He is remembered as the lord who never once knelt. But the truth is otherwise. He knelt once before a blade, to save the villagers. Kneeling is harder than raising a sword — that is what I teach.
 honor.npc.swordmaster.honor.t: A man who takes honor for face uses even his sword to guard his face. True honor… is knowing, before the blade, what to keep and what to lay down.
@@ -1146,7 +1146,7 @@ honor.npc.mason.greet: I live with my hands on stone. I dress the sigils, but th
 honor.npc.mason.name.t: Bastin. I work the stone of this village's manor and square. Stone knows no rank.
 honor.npc.mason.job.t: I dress the manors' sigils and lay the square's flagstones. And when I happen to make repairs, I face words carved in old stone. Words people want to forget.
 honor.npc.mason.manor.t: The house manor? Its sigil shows a lord who never knelt. But the old hall's wall stone still bears another picture — a kneeling lord. Someone hung the sigil right over it.
-honor.npc.mason.rank.t: The rank ledger was first carved on a stone pillar in the hall. But the topmost line has been scraped away with a chisel. When the evening light comes in low, the shapes of the letters still show through the scratches.
+honor.npc.mason.rank.t: As for shame — the rank ledger was first carved on a stone pillar in the hall. But the topmost line has been scraped away with a chisel. When the evening light comes in low, the shapes of the letters still show through the scratches.
 honor.npc.mason.face.t: Stone has no face, and that's what I like about it. When it cracks, the crack shows. People hide their cracks behind face; stone can't. That's why I trust stone.
 honor.npc.mason.plaza.t: The square's flagstones differ line by line. White stone for the high lines, river stone for the low. But the same rain wears them all down together.
 honor.npc.mason.elder.t: The elder had me polish the manor sigil again this year. I do it every year, but this time he told me to cover the hall wall more thickly.
@@ -1205,7 +1205,7 @@ honor.fact.argon.heir.label: Sion the Heir
 honor.fact.argon.heir.hint: The heir who sang the song's lost second verse. He cracked the house's face and now stands to have his name erased.
 honor.fact.argon.herald.label: Luka the Herald
 honor.fact.argon.herald.hint: The herald who cries the ranks. He holds the full copy of the house song, but at rites only the front is sung.
-honor.fact.argon.swordmaster.label: Kaion the Swordmaster
+honor.fact.argon.swordmaster.label: Barkan the Swordmaster
 honor.fact.argon.swordmaster.hint: A master who does not teach winning. He teaches kneeling before the sword.
 honor.fact.argon.widow.label: Serin the Widow
 honor.fact.argon.widow.hint: A widow whose husband knelt in the square and was erased anyway. One of the few who know the song's second verse.
@@ -1318,7 +1318,7 @@ spirituality.npc.brewer.name: Doran the Teahouse Keeper
 spirituality.npc.brewer.greet: Care for a cup of tea blessed by the hall? Only joking. My kettle carries no blessing and no license.
 spirituality.npc.brewer.name.t: Doran, they call me. I serve barley tea and herb wine from a corner of the kitchen. I do the least holy work in this village.
 spirituality.npc.brewer.job.t: Boiling water, steeping tea, listening — that's my work. Until three years ago anyone could cross the courtyard into the hall, sit a while in quiet, and go. Now people worn out by license fees only catch their breath here.
-spirituality.npc.brewer.license-rule.t: The license law. It's been three years since the abbot began selling licenses at the hall door. Before that, anyone could go in and sit quietly. Now that quiet sitting has a price.
+spirituality.npc.brewer.license-rule.t: Prayer… you mean the license law. It's been three years since the abbot began selling licenses at the hall door. Before that, anyone could go in and sit quietly. Now that quiet sitting has a price.
 spirituality.npc.brewer.ritual.t: Ritual. At dawn prayers, those without licenses cannot even light incense. But the old records say the pilgrim prayed without incense.
 spirituality.npc.brewer.monk.t: Daru used to drink barley tea in that very seat. Since the winter three years ago he hasn't come by. Says warm drinks make him drowsy at night.
 spirituality.npc.brewer.novice.t: Ian splits firewood here to save up for the exam fee. One coin a bundle. He hasn't saved half yet.
