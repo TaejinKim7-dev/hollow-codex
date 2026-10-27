@@ -5,6 +5,7 @@
 최종 갱신: 2026-10-27 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
 
 ## 지금 단계
+**2026-10-27 사용자 지시: 그래픽·소리 작업은 여기서 일단 정리하고, 다음은 대사(실제 내용) 품질 작업(D 단계).** 남은 그림·소리(맵 그림 15회, 문지기 색, 집 시점 판정, NPC 걷기)는 `art-kalas-maps.md`·`art-kalas-cast.md`에 목록으로 보존.
 R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-BY-SA 공개 음원만(사용자 결정 2026-10-19, ElevenLabs 안 씀).
 확정: 플레이어 **이방인 B-navy**, 동료 **엘린 B**(4방향 걷기), 땅 **풀↔흙길 v3**·**풀↔물**, **긴 다리**, **효과음 14종**(`assets/audio/sfx/`).
 2026-10-27 추가: 칼라스 인물 10명+늑대(걷기)+고백석+집+나무(`docs/research/art-kalas-cast.md`).
@@ -14,7 +15,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 |---|---|---|---|
 | R-2a2 | 효과음 추가 14상황(게임 이벤트 중 소리 없는 것: 맵 이동·전투 시작·방어·설득·도주·승리·패배·동료 합류/이탈·열석 열림·능력·위기·경전 쓰기·에필로그) 후보 53개를 실험실에 올림 → 🧑 청취·선택 → `assets/audio/sfx/` | 실험실 `/hollow-codex/lab/` | 후보 준비됨(2026-10-27), 선택 대기 |
 | R-2a3 | ElevenLabs 효과음 35개(늑대·열석·전투·이벤트·분위기 루프) 생성 완료, 🧑 실험실에서 청취·판정 | `docs/research/elevenlabs-sfx.md` | 완료(청취 대기) |
-| R-2b | 배경음악 후보 24곡(12슬롯×A/B, Kevin MacLeod CC BY 4.0) 받아서 실험실에 올림 → 🧑 청취·선택, CC BY 표기 허용 여부. 방법 정리 `docs/research/music-plan.md` | `docs/research/bgm-candidates.md` | 후보 준비됨(2026-10-27) |
+| R-2b | 배경음악 12곡 **기본 A로 변환 완료**(사용자: CC-BY 허용·바로 진행, 슬롯별 선택은 안 함) → `assets/audio/bgm/<슬롯>.ogg`(110초→106초 루프, 합계 11 MB) + `credits.json`. 마음에 안 드는 슬롯은 `scripts/audio/bgm-selection.json`에서 B로 바꾸고 `make-bgm-loops.py` 재실행 | `docs/research/bgm-candidates.md` | 완료(사용자 청취 대기) |
 | R-1b | 칼라스 인물 10명+늑대(걷기 포함)+고백석+집+나무 **완료**(2026-10-27). 남은: 🧑 집 시점 판정, 고백관·문지기 색 조정, NPC 걷기 | `docs/research/art-kalas-cast.md`, 목업 `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png` | 완료(판정 대기) |
 | R-1d | 칼라스 **맵 그림**(풀↔돌바닥, 서고 바닥·벽, 외벽·성문·건물, 계단, 나무 변형 ≈15회, 하루 +5회로 3일) → `docs/research/art-kalas-maps.md`. 열석 고리 물건은 완성 | `assets/sprites/` | 다음(하루 보너스 대기) |
 | R-1c | 칼라스 광장 목업 → 🧑 화풍 판정 | `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png` | 🧑 확인 대기 |
