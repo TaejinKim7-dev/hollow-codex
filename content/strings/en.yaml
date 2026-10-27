@@ -6,44 +6,58 @@ topic.job: Job
 
 # --- Village people ---
 npc.field.gatekeeper.name: Stone Gatekeeper
-npc.field.gatekeeper.greet: A stranger, all the way to this far field. I am the gatekeeper who watches over these stones.
-npc.field.gatekeeper.name.t: I have long forgotten what a name was. Once, everyone asked each other's names. Now the folk of Kalas ask for confession records before names.
-npc.field.gatekeeper.job.t: My work is keeping the stones the pilgrims left behind. Three hundred years ago, a pilgrim walked in among these stones. The village has been different ever since.
-npc.field.gatekeeper.pilgrim.t: The pilgrim taught not with words but by deeds. One saying he left behind — that no one can write the truth for another.
-npc.field.gatekeeper.archive.t: The old archive… a place Kalas sealed away as forbidden ground. Everyone insists they have forgotten it, and yet they probe about it before even passing the gate.
+npc.field.gatekeeper.greet: A stranger, all the way out to this far field. I am the gatekeeper who watches over these stones.
+npc.field.gatekeeper.name.t: I have lived so long I forgot what a name was. Once, everyone asked each other's names. These days the people of Kalas ask for your confession record before anything else.
+npc.field.gatekeeper.job.t: I keep the standing stones the pilgrim left behind. Three hundred years ago a pilgrim walked in among these stones. Kalas has not been the same since.
+npc.field.gatekeeper.pilgrim.t: The pilgrim never taught with words; he showed it by living. He left one saying behind — that no one can write the truth for another.
+npc.field.gatekeeper.archive.t: The old archive… Kalas sealed it away as forbidden ground. Everyone swears they have forgotten it. Then why do they ask about it before you even pass the gate?
+npc.field.gatekeeper.lantern.t: The lantern in the square — I was told it carries on the first flame the pilgrim lit among these stones. A fire is lit by human hands, and when one goes out, there has always been a hand behind that too.
+npc.field.gatekeeper.silence.t: These stones have stood silent for three hundred years and never once told a lie. Silence and lying are different things. People today treat them as the same.
+npc.field.gatekeeper.song.t: The lantern song… it once had a name in it. I do not know when the children began leaving that place empty. A gap left long enough becomes something that was never there.
 
 npc.field.hunter.name: The Hunter
 npc.field.hunter.greet: Shh, quietly. There are wolves howling across the river.
-npc.field.hunter.name.t: A name… nothing comes when you call it, so just call me the Hunter.
-npc.field.hunter.job.t: I'm someone who lives with the wolves of the field. At first I nocked arrows at them. They were hard to reach. But the wolves were only hungry, never evil.
+npc.field.hunter.name.t: A name… nothing comes when you call it anyway. Just call me the Hunter.
+npc.field.hunter.job.t: I live out here beside the wolves of the field. At first I aimed arrows at them. Then I saw they were only starving, not evil.
+npc.field.hunter.wolf.t: There's one she-wolf, the thinnest of them. She won't touch her own share; it all goes to the pups. Could you aim at that? A frightened animal calms down once you hold your own breath first.
+npc.field.hunter.confession.t: Confession? I haven't crossed Kalas's gate in ages. In there you can't even breathe without owing a confession. Out here the wolves hear mine. They never answer, though.
 
 npc.kalas.confessor.name: Gate Confessor
 npc.kalas.confessor.greet: Before you step past the gate, let me ask one thing first. What wrong have you done today?
 npc.kalas.confessor.name.t: I am the one who takes the confessions of those passing the gate. Kalas does not begin with suspicion. It begins with confession.
-npc.kalas.confessor.job.guilty.t: But from the look of your clothes, something is weighing on you. Have you entered the forbidden ground? If you have, that is what must be confessed first.
-npc.kalas.confessor.job.t: Confession is the work. Ten, twenty times a day people speak the wrongs they have done and I write them down. Those who do not speak must denounce those who do… absurd, and yet it has become this village's way.
+npc.kalas.confessor.job.guilty.t: Judging by your clothes, something is weighing on you. Have you entered the forbidden ground? If you have, that is the first thing you must confess.
+npc.kalas.confessor.job.t: Confession is the work. Ten, twenty times a day, people speak their wrongs and I write them down. Those who don't speak must denounce those who do… a ridiculous thing, but it has become this village's work.
+npc.kalas.confessor.duty.t: Duty… in the beginning it was a way to set down the weight on your heart. Some year, it became something you must set down or else. The weight is the same; only its name changed.
+npc.kalas.confessor.nia.t: Nia is the girl who wrote down every confession I took, without missing a day. Never once did she copy a word wrongly. So this confession too… no. It is not for me to say.
 option.confess-yes.label: I entered.
 option.confess-yes.text: I will take the confession. Kalas punishes no one who admits it, so move freely within the village.
 option.confess-no.label: No, I did not enter.
-option.confess-no.text: …Hm. There is a blur of ambiguity in that answer. A confession must be clear. I will record today's wavering words.
+option.confess-no.text: …Hm. Your answer trails off. A confession must be clear. I will record today's wavering reply.
 
 npc.kalas.warden.name: Chief Denouncer
-npc.kalas.warden.greet: This is the Kalas Office of Denunciation. State your identity. No — before that, tell me how you know about last night.
-npc.kalas.warden.name.t: Call me the chief, who oversees all the denunciations of this village. Here, records are presented before names; that is the courtesy.
-npc.kalas.warden.job.t: The Office's work is to examine every record. Who hid what, and when — it must always remain in the ledgers. Kalas believes records protect the village. Of course, trials are decided by the ledger too.
-npc.kalas.warden.lantern.t: The lantern in the square… that night the square was empty. I was sorting scrolls at the office. That is all.
-npc.kalas.warden.trial.witness.t: The trial will open five days from now. But the apprentice scribe will not open her mouth. This is a situation that needs testimony. You there — do you know anything about that child?
-npc.kalas.warden.trial.t: Kalas's trials proceed by public confession. Without a witness, a verdict rests on a confession alone. That is why confession matters above all.
+npc.kalas.warden.greet: This is the Kalas Office of Denunciation. State your identity. …No, first I would hear what you were doing near the square last night.
+npc.kalas.warden.name.t: I am the chief of the Office. Here, one gives one's record before one's name; that is the courtesy.
+npc.kalas.warden.job.t: The Office's work is to examine every record. Who hid what, and when — it must always remain in the ledger. Kalas believes records protect the village. Trials, too, take the ledger as evidence.
+npc.kalas.warden.lantern.t: The lantern in the square… that night the square was empty. I was sorting scrolls at the Office. That is all.
+npc.kalas.warden.trial.witness.t: The trial opens in five days. Yet the scribe will not open her mouth. We need testimony. You there — do you know anything about that girl?
+npc.kalas.warden.trial.t: Trials in Kalas proceed by public confession. Without a witness, a confession alone decides the verdict. That is why confession matters above all.
+npc.kalas.warden.silence.t: Silence is louder than confession. One who does not speak leaves a blank in the ledger, and a blank always invites suspicion. I keep records to cover that suspicion.
+npc.kalas.warden.confession.t: Confession is the frame that holds this village up. Before records, a single rumor drove a whole family out of the village. After that we chose to write words down. We believed a ledger was better than a rumor. I still wish to believe it.
+npc.kalas.warden.nia.t: That girl has copied at my side for ten years. Never once has she spoken a falsehood. So if there is a confession, it is fact. …Is it not?
+npc.kalas.warden.song.t: The lantern song — I sang it as a boy. The gap in its words bothered me enough that I once searched the ledgers. There was no answer. That something exists in this village without a record still troubles me.
 option.tell-warden.label: Tobi saw that night.
-option.tell-warden.text: …My sibling's name comes up. This could make sufficient testimony. I'll put it in the record. It will surely be used in this trial.
+option.tell-warden.text: …So the brother's name comes up. That will make sufficient testimony. I shall enter it in the record. It will be used at this trial.
 option.deny-warden.label: I know nothing about that child.
-option.deny-warden.text: Hm, your answer wavers. In court, do not forget that every word you speak becomes a record.
+option.deny-warden.text: Hm, your answer falters. In court, do not forget that every word you speak becomes a record.
 
 npc.kalas.elin.name: Elin, Apprentice Denouncer
-npc.kalas.elin.greet: Well met. I am Elin, apprentice denouncer. I am learning the law of records at the chief's side.
+npc.kalas.elin.greet: Pleased to meet you. I am Elin, apprentice at the Office. I am learning the law of records at the chief's side.
 npc.kalas.elin.name.t: I'm Elin. I grew up in the Office since I was small. The people here took me in, so I would become someone who never betrays records.
-npc.kalas.elin.job.t: I keep the ledgers. I like copying letters neatly and exactly. But lately I have been watching the ledgers turned to hurting people.
+npc.kalas.elin.job.t: I keep the ledgers. I like copying letters neatly and exactly. But lately… I can't stop worrying about whom those letters are aimed at.
 npc.kalas.elin.ledger.t: When the letters of a ledger cover someone's name… I am only an apprentice, so I can say nothing, but I have seen the ledger become a weapon that stabs neighbors.
+npc.kalas.elin.nia.t: Senior Nia is the one who corrected my handwriting. Instead of striking out a wrong letter, she wrote the right one small beside it. That she would break a lantern and say nothing about it — I know better than anyone that she wouldn't.
+npc.kalas.elin.trial.t: The trial is in five days. I'll only be taking the record from behind the gallery. …I only just learned that the one who records can't stop anything.
+npc.kalas.elin.archive.t: I once sneaked to the old archive as a child. Dust drifted out through the crack of the door. That day I first thought there might be stories that aren't in the ledgers.
 
 npc.kalas.nia.name: Nia the Scribe
 npc.kalas.nia.greet: …I'm sorry, I can't take a confession right now. I have become someone who must confess too.
@@ -51,42 +65,63 @@ npc.kalas.nia.name.t: I'm Nia. I was the scribe who wrote down people's confessi
 npc.kalas.nia.job.t: A scribe's work is to copy other people's words most exactly. To keep others' words I had to trim my own, and what I guarded most firmly was… silence.
 npc.kalas.nia.lantern.t: I'm the one who broke the lantern. That night, alone in the square, I was careless. That's all.
 npc.kalas.nia.ledger.t: If it's about the ledger — I can speak now, now that I believe what Tobi saw. I no longer hate that person. They must have needed someone's record too.
+npc.kalas.nia.confession.t: A confession… I wish it could take down even the words that were never said. I always leave the last page of a ledger blank, a seat for the words people never managed to say.
+npc.kalas.nia.tobi.t: Tobi has a habit of sleeping on rooftops. He says the stars are closer. …Please don't ask about that night. I'm begging you.
+npc.kalas.nia.truth.t: I was taught that truth isn't written, it's kept. But no one ever taught me whom it is kept for.
+npc.kalas.nia.trial.t: I'm not afraid of the trial. What I'm afraid of is… no. It's nothing.
 
 npc.kalas.tobi.name: Tobi, Nia's Brother
-npc.kalas.tobi.greet: Oh, hi… are you here to see my big sister? Then that's a relief. No — nothing, nothing.
-npc.kalas.tobi.name.t: I'm Tobi. My sister's name is Nia. Nia can't lie, so people trusted her and told her everything. So she spent her whole life keeping those words.
+npc.kalas.tobi.greet: Oh, hello… are you here to see my sister? Then that's a relief. …No, it's nothing, really.
+npc.kalas.tobi.name.t: I'm Tobi. My sister is Nia. Nia can't lie, so people trusted her and told her everything. She was so busy keeping their words that she never got to say her own.
 npc.kalas.tobi.nia.t: Nia is in the holding room now. The one who took people's confessions is now waiting on her own. I feel like I'm doing something wrong.
-npc.kalas.tobi.lantern.t: …That night, I slept on the roof south of the square. Someone climbed onto the lantern and shattered its glass. That man was the chief of the Office. But because Nia never once spoke my name, I have kept my mouth shut too… until now.
+npc.kalas.tobi.lantern.t: …That night I slept on the roof south of the square. Someone climbed up to the lantern and… smashed the glass. It was the chief. Because my sister never once said my name, I've kept quiet too, until now.
+npc.kalas.tobi.silence.t: Keeping quiet — my sister is good at it, but I'm not. The words keep climbing up to my throat. …How does she hold them in?
+npc.kalas.tobi.ledger.t: When my sister's name went into the ledger… it felt like I could hear the ledger growing thicker. My kite is made of that paper — the back of a thrown-away scroll. I picked only the side with no writing.
+npc.kalas.tobi.archive.t: The archive? Nia told me never to go there. But… she said there's a very old story inside. Her eyes only sparkled when she talked about it.
+npc.kalas.tobi.song.t: The lantern song? I know it. At the part where there's a name, everybody just moves their mouths. I breathe there.
 
 npc.kalas.mira.name: Mira the Weaver
 npc.kalas.mira.greet: Come here. I can't make you cloth, but I can spare you a story.
-npc.kalas.mira.name.t: I'm Mira. I've worked thread for eight years. Thread is honest — loose or taut, you can feel it all in the fingertips. Thread is the only thing I trust in this village.
-npc.kalas.mira.job.t: I weave cloth. I sell it at market, and sometimes I take the wrapping of the Office's scrolls.
-npc.kalas.mira.lantern.t: Ah, that story has reached you already. I picked up a piece of the lantern in the square. It was bound tightly in thread. Someone meant to hide the piece. Take it if you need it.
-npc.kalas.mira.ledger.t: Every year the Office's scrolls grow a bundle thicker. Last year a neighbor's child's slip of the tongue was recorded, and the family had to leave the village. That ledger does not keep the truth — it piles up suspicion.
+npc.kalas.mira.name.t: I'm Mira. Eight years at the thread. Thread is honest — loose or taut, you feel it all in your fingertips. In this village, thread is the only thing I trust.
+npc.kalas.mira.job.t: I weave cloth. I sell it at market, and sometimes I do the tying of the Office's scrolls.
+npc.kalas.mira.lantern.t: Ah, that story has reached you already. I picked up a piece of the lantern in the square. It was wound tight in thread. Someone meant to hide it. I know that thread — it's what ties the Office's scrolls. I twisted it myself. Take the piece if you need it.
+npc.kalas.mira.ledger.t: Every year the Office's scrolls grow a bundle thicker. Last year even a neighbor's child's slip of the tongue got recorded, and that family had to leave the village. That ledger doesn't keep the truth. It piles up suspicion.
+npc.kalas.mira.silence.t: A person who says nothing is like a taut thread. They look like they can hold forever, but once it snaps, the knot remains when you rejoin it. Nia is that kind of girl.
+npc.kalas.mira.nia.t: I wove Nia's apron. Someone from the Office came to order it and said, 'make it a color that says nothing.' So I wove it gray-green. Only now do I think I understand what that meant.
+npc.kalas.mira.confession.t: I don't do confessions. If a lie goes into thread, the cloth comes out crooked. That's enough for me.
 
 npc.kalas.child.name: Village Child
 npc.kalas.child.greet: Whoa, a stranger! Do you know the square's song?
-npc.kalas.child.name.t: I have lots of names but I forgot them all! Just call me Me. That's how it is for all the kids here.
+npc.kalas.child.name.t: I have lots of names but I forgot them all! Just call me 'Hey you.' That's how it is for all the kids here.
 npc.kalas.child.job.t: My job is singing! When the moon rises, we all gather in the square and sing the lantern song. Then even the adults stop and listen. Want me to sing it for you?
+npc.kalas.child.song.t: Want me to sing the lantern song? 'When the moon rises we light the flame, the flame that ○○ lit. Let it never go out all night.' At the name, everybody shuts their mouths together. I don't know why. It's the rule.
+npc.kalas.child.ledger.t: The ledger? That super thick one? They say my name is in there a bunch of times! Because I have lots of names!
+npc.kalas.child.trial.t: A trial? All the grown-ups gather? Then can I sing in the square that day? …Oh. I guess not.
 
 npc.kalas.innkeeper.name: The Innkeeper
 npc.kalas.innkeeper.greet: Welcome in! The rooms are all empty, so sleep easy. By Kalas custom, a roof is given free of charge.
 npc.kalas.innkeeper.name.t: Just an ordinary innkeeper. But in Kalas even 'ordinary' arouses suspicion, so just call me the innkeeper.
-npc.kalas.innkeeper.job.t: I run an inn — trading passing guests for village news. The talk these days is all about Nia the scribe. Such a good-natured girl. There's also a rumor that a trial will be held in five days.
-npc.kalas.innkeeper.trial.t: Now that you mention the trial, there's a rumor the Office has hidden away some old document somewhere. The likeliest place is that old archive. But it's forbidden ground, so whoever enters must confess.
+npc.kalas.innkeeper.job.t: I run an inn — trading news of the village with passing guests. These days everyone's talk is the scribe Nia. Such a good girl. And there's a rumor going round that a trial opens in five days.
+npc.kalas.innkeeper.trial.t: Now that you mention the trial, there's a rumor the Office keeps some hidden old document somewhere. The likeliest place is that old archive. But it's forbidden ground, and whoever goes in must confess.
+npc.kalas.innkeeper.lantern.t: A guest was staying here that night, but… no, he says he saw nothing. This inn gives a roof free of charge, but what a person saw is not given away free.
+npc.kalas.innkeeper.confession.t: I denounce someone about once a month myself — over something small. If I didn't, that would look suspicious. A shameful thing, but… it's how one lives in this village.
+npc.kalas.innkeeper.ledger.t: The thicker the ledger grows, the quieter the inn gets. Guests hold their tongues, so rumors stop going round. Quiet is comfortable, but… now and then I miss a noisy day.
+npc.kalas.innkeeper.nia.t: Nia used to sit in the corner of my place now and then, murmuring to herself as she wrote. It was clearly no confession. It was good to see a girl who only ever copied others' words writing her own.
 
 npc.kalas.librarian.name: The Old Librarian
 npc.kalas.librarian.greet: …Ah, another one who comes down to this cramped place. Welcome. Books you can touch are all that remain now.
 npc.kalas.librarian.name.t: I was the librarian who kept the old archive. Now I live hidden deep in this cellar, but a book is not a wall — it is something to hold in your hands.
 npc.kalas.librarian.pilgrim.t: If it's the pilgrim's story, look at that letter. Three hundred years ago the pilgrim left it for this village. I have kept it, waiting for the day someone understands its meaning.
-npc.kalas.librarian.job.t: My work was teaching the children and keeping the records. Those grave robbers each came with their own tale and broke through this archive's walls. I have watched people fall to greed for so long that I can spot it at a glance now.
+npc.kalas.librarian.job.t: My work was teaching the children and keeping the records. Those tomb-robbers each came with their own tale and broke through this archive's wall. I have watched people fall to greed for so long that I can spot the signs at a glance.
+npc.kalas.librarian.archive.t: This is the room left of the old archive. The shelves above were sealed by the Office, and the key was lost long ago. Only grave-robbers ever broke in. Those who came to steal the books and those who wished to hide them — I cannot say which did the archive more harm.
+npc.kalas.librarian.truth.t: I have always believed truth is not written in a ledger but read in a book. One person writes it, many read it, and so what is read is less lonely.
+npc.kalas.librarian.ledger.t: A ledger is a book in which one person writes down another. A book in the archive is one a person leaves for another. Both are paper, but they point in opposite directions.
 
 # --- Clue labels and hints ---
 word.pilgrim.label: Pilgrim
-word.pilgrim.hint: "The one who came in among the stones three hundred years ago and lived all eight virtues. He left behind that no one can write what is real for another."
+word.pilgrim.hint: The one who came in among the stones three hundred years ago and lived all eight virtues. He left behind that no one can write what is real for another.
 word.truth.label: Truth
-word.truth.hint: A single line left by the pilgrim. Kalas's ledger is covering something.
+word.truth.hint: What the pilgrim's single line points to. What the ledger says and what actually happened are not the same.
 word.weapon.label: Weapon
 word.weapon.hint: "When records hurt people, they no longer keep what is real."
 word.lantern.label: Lantern
@@ -96,7 +131,7 @@ word.duty.hint: In this village confession is a duty. The duty of not being susp
 word.ledger.label: Ledger
 word.ledger.hint: The Office's scrolls. A place where a neighbor's name grows by one line.
 word.silence.label: Silence
-word.silence.hint: What the scribe kept to the very end. Because keeping is sometimes the falling.
+word.silence.hint: What the scribe kept to the very end. It was the price of erasing her own words to protect others'.
 word.confession.label: Confession
 word.confession.hint: Not speaking a sin, but laying bare what was left unsaid.
 word.trial.label: Trial
@@ -129,7 +164,7 @@ deduction.honesty.sentence: Honesty is writing {1} not as {2} but as {3}
 deduction.honesty.hint: Kalas hardened honesty into records. The meaning the pilgrim left lies on the other side of that.
 
 # --- Crisis ---
-crisis.kalas.trial.text: People of the square gather before the Office. The trial that has been closed for five days opens. The chief denouncer unrolls a scroll and speaks. 'This scribe, Nia, broke the square's lantern and failed to report it. A confession already exists; testimony is unnecessary.' The crowd stirs. Someone among the people looks at you. Now it is your turn to step forward.
+crisis.kalas.trial.text: The people of the square gather before the Office. The trial they have waited five days for opens. The chief unrolls a scroll and speaks. "The scribe Nia broke the square's lantern and did not report it. A confession already exists; testimony is unnecessary." The crowd stirs. Someone among them looks at you. Now it is your turn to step forward.
 option.truth.label: Produce Tobi's testimony and the lantern shard
 option.truth.text: You present Tobi's words and the thread-wound lantern shard. 'Whoever hid this shard is the one who broke the lantern.' In a trembling voice, Tobi tells what he saw from the roof. The people turn to the chief denouncer. Nia's silence is at last understood, and the ledger keeps the truth.
 option.lantern.label: Read the pilgrim's letter

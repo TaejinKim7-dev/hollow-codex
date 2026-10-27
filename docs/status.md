@@ -13,7 +13,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 ## 다음 할 일 (위에서부터)
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
-| D-1 | 칼라스 대사 점검(79문자열) + 고쳐 쓰기 제안 + 인물별 말투 기준. 🧑 §6 확인 → ko.yaml 반영 → 다음 마을 | `docs/narrative/kalas-audit.md`, `voice-bible.md` | 제안 완료, 확인 대기 |
+| D-1 | 칼라스 대사 **반영 완료**(2026-10-27): 기존 36줄 고침 + 새 대사 35줄(11명, 새 주제 35개), 영어 동시 작성, 인물 설정·말투 기준 확정. 게이트 전부 통과. 🧑 대사를 읽고 판정 → 다음 마을 | `docs/narrative/kalas-script.md`(전문), `voice-bible.md`(설정), `kalas-audit.md`(점검) | 반영됨, 읽기·판정 대기 |
 | R-2a2 | 효과음 추가 14상황(게임 이벤트 중 소리 없는 것: 맵 이동·전투 시작·방어·설득·도주·승리·패배·동료 합류/이탈·열석 열림·능력·위기·경전 쓰기·에필로그) 후보 53개를 실험실에 올림 → 🧑 청취·선택 → `assets/audio/sfx/` | 실험실 `/hollow-codex/lab/` | 후보 준비됨(2026-10-27), 선택 대기 |
 | R-2a3 | ElevenLabs 효과음 35개(늑대·열석·전투·이벤트·분위기 루프) 생성 완료, 🧑 실험실에서 청취·판정 | `docs/research/elevenlabs-sfx.md` | 완료(청취 대기) |
 | R-2b | 배경음악 12곡 **기본 A로 변환 완료**(사용자: CC-BY 허용·바로 진행, 슬롯별 선택은 안 함) → `assets/audio/bgm/<슬롯>.ogg`(110초→106초 루프, 합계 11 MB) + `credits.json`. 마음에 안 드는 슬롯은 `scripts/audio/bgm-selection.json`에서 B로 바꾸고 `make-bgm-loops.py` 재실행 | `docs/research/bgm-candidates.md` | 완료(사용자 청취 대기) |

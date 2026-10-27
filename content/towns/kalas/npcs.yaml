@@ -21,6 +21,12 @@
         grants: [word.truth]
     fact.kalas.archive:
       - text: npc.field.gatekeeper.archive.t
+    word.lantern:
+      - text: npc.field.gatekeeper.lantern.t
+    word.silence:
+      - text: npc.field.gatekeeper.silence.t
+    fact.song.lantern-song:
+      - text: npc.field.gatekeeper.song.t
 - id: npc.field.hunter
   map: map.field
   pos: [4, 3]
@@ -38,6 +44,10 @@
     job:
       - text: npc.field.hunter.job.t
         grants: [fact.creature.wolf-hungry]
+    fact.creature.wolf-hungry:
+      - text: npc.field.hunter.wolf.t
+    word.confession:
+      - text: npc.field.hunter.confession.t
 - id: npc.kalas.confessor
   map: map.kalas
   pos: [3, 12]
@@ -61,6 +71,10 @@
           - { id: option.confess-no, label: option.confess-no.label, text: option.confess-no.text, deed: { virtue: honesty, deed: deed.lie }, setsFlags: [flag.kalas.archive-asked] }
       - text: npc.kalas.confessor.job.t
         grants: [word.confession, word.duty]
+    word.duty:
+      - text: npc.kalas.confessor.duty.t
+    fact.kalas.nia:
+      - text: npc.kalas.confessor.nia.t
 - id: npc.kalas.warden
   map: map.kalas
   pos: [16, 4]
@@ -89,6 +103,14 @@
           - { id: option.tell-warden, label: option.tell-warden.label, text: option.tell-warden.text, setsFlags: [flag.kalas.warden-asked] }
           - { id: option.deny-warden, label: option.deny-warden.label, text: option.deny-warden.text, deed: { virtue: honesty, deed: deed.lie }, setsFlags: [flag.kalas.warden-asked] }
       - text: npc.kalas.warden.trial.t
+    word.silence:
+      - text: npc.kalas.warden.silence.t
+    word.confession:
+      - text: npc.kalas.warden.confession.t
+    fact.kalas.nia:
+      - text: npc.kalas.warden.nia.t
+    fact.song.lantern-song:
+      - text: npc.kalas.warden.song.t
 - id: npc.kalas.elin
   map: map.kalas
   pos: [18, 4]
@@ -108,6 +130,12 @@
     word.ledger:
       - text: npc.kalas.elin.ledger.t
         grants: [word.weapon]
+    fact.kalas.nia:
+      - text: npc.kalas.elin.nia.t
+    word.trial:
+      - text: npc.kalas.elin.trial.t
+    fact.kalas.archive:
+      - text: npc.kalas.elin.archive.t
   companion:
     virtue: honesty
     joinRequires: [fact.kalas.ledger-doubt]
@@ -140,6 +168,14 @@
       - text: npc.kalas.nia.ledger.t
         requires: [fact.kalas.brother-witness]
         grants: [fact.kalas.elin-forgiven]
+    word.confession:
+      - text: npc.kalas.nia.confession.t
+    fact.kalas.tobi:
+      - text: npc.kalas.nia.tobi.t
+    word.truth:
+      - text: npc.kalas.nia.truth.t
+    word.trial:
+      - text: npc.kalas.nia.trial.t
 - id: npc.kalas.tobi
   map: map.kalas
   pos: [7, 19]
@@ -161,6 +197,14 @@
       - text: npc.kalas.tobi.lantern.t
         requires: [fact.kalas.lantern-shard]
         grants: [fact.kalas.brother-witness]
+    word.silence:
+      - text: npc.kalas.tobi.silence.t
+    word.ledger:
+      - text: npc.kalas.tobi.ledger.t
+    fact.kalas.archive:
+      - text: npc.kalas.tobi.archive.t
+    fact.song.lantern-song:
+      - text: npc.kalas.tobi.song.t
 - id: npc.kalas.mira
   map: map.kalas
   pos: [15, 16]
@@ -183,6 +227,12 @@
     word.ledger:
       - text: npc.kalas.mira.ledger.t
         grants: [fact.kalas.ledger-doubt]
+    word.silence:
+      - text: npc.kalas.mira.silence.t
+    fact.kalas.nia:
+      - text: npc.kalas.mira.nia.t
+    word.confession:
+      - text: npc.kalas.mira.confession.t
 - id: npc.kalas.child
   map: map.kalas
   pos: [17, 13]
@@ -200,6 +250,12 @@
     job:
       - text: npc.kalas.child.job.t
         grants: [fact.song.lantern-song, word.lantern]
+    fact.song.lantern-song:
+      - text: npc.kalas.child.song.t
+    word.ledger:
+      - text: npc.kalas.child.ledger.t
+    word.trial:
+      - text: npc.kalas.child.trial.t
 - id: npc.kalas.innkeeper
   map: map.kalas
   pos: [24, 11]
@@ -220,6 +276,14 @@
     word.trial:
       - text: npc.kalas.innkeeper.trial.t
         grants: [fact.kalas.archive]
+    word.lantern:
+      - text: npc.kalas.innkeeper.lantern.t
+    word.confession:
+      - text: npc.kalas.innkeeper.confession.t
+    word.ledger:
+      - text: npc.kalas.innkeeper.ledger.t
+    fact.kalas.nia:
+      - text: npc.kalas.innkeeper.nia.t
 - id: npc.kalas.librarian
   map: map.archive
   pos: [6, 3]
@@ -240,3 +304,9 @@
     job:
       - text: npc.kalas.librarian.job.t
         grants: [fact.creature.robber-greed]
+    fact.kalas.archive:
+      - text: npc.kalas.librarian.archive.t
+    word.truth:
+      - text: npc.kalas.librarian.truth.t
+    word.ledger:
+      - text: npc.kalas.librarian.ledger.t
