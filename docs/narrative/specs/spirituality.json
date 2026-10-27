@@ -1,0 +1,706 @@
+{
+ "town": "spirituality",
+ "edits": [
+  {
+   "key": "spirituality.npc.monk.greet",
+   "ko": "엘리아에 온 이방인인가. 명상을 원한다면 면허부터 보여라. 고요는 값없이 주어지지 않는다.",
+   "en": "A stranger come to Elia? If you wish to meditate, show me your license first. Stillness is not given for nothing."
+  },
+  {
+   "key": "spirituality.npc.monk.name.t",
+   "ko": "다루다. 이 명상당을 스물여섯 해 지켰다. 새벽에 문을 가장 먼저 여는 것도, 밤에 가장 늦게 닫는 것도 나다.",
+   "en": "Daru. I have kept this hall for twenty-six years. I am the first to open its door at dawn and the last to close it at night."
+  },
+  {
+   "key": "spirituality.npc.monk.job.t",
+   "ko": "마음의 질서를 지킨다. 명상당에는 절차를 아는 자만 앉을 수 있고, 그것을 증명하는 것이 면허다. 면허 없이 앉는 것은 배교다.",
+   "en": "I keep the order of the mind. Only those who know the procedure may sit in the hall, and the license is the proof. To sit without one is apostasy."
+  },
+  {
+   "key": "spirituality.npc.monk.ritual.t",
+   "ko": "의례는 형식이다. 새벽 예불, 오후 독경, 저녁 향—그 순서를 아는 자는 숨이 어디서 멈춰야 하는지도 안다. 그것을 모르고 홀로 앉은 자가 어떻게 되는지, 나는 보았다.",
+   "en": "Ritual is form. Dawn prayers, afternoon sutras, evening incense — one who knows the order also knows where the breath must stop. I have seen what becomes of one who sits alone without knowing it."
+  },
+  {
+   "key": "spirituality.npc.monk.prayer.t",
+   "ko": "기도에는 단계가 있다. 따라 하는 기도, 함께하는 기도, 홀로 하는 기도. 단계마다 면허가 따로 있고, 서명은 모두 내가 한다.",
+   "en": "Prayer has stages. The prayer you repeat, the prayer you share, the prayer you make alone. Each stage has its own license, and I sign every one."
+  },
+  {
+   "key": "spirituality.npc.monk.truth.t",
+   "ko": "진실이라. 명상당에 필요한 것은 진실이 아니라 절차다. 절차만 지키면 누구든 거룩해진다. 진실을 찾아 헤매는 자는 제 숨부터 잃는다.",
+   "en": "Truth? What the hall needs is not truth but procedure. Keep the procedure and anyone becomes holy. One who wanders after truth loses his own breath first."
+  },
+  {
+   "key": "spirituality.npc.novice.job.t",
+   "ko": "매일 아침 명상당 앞방 바닥을 닦아요. 안쪽 선방엔 아직 못 들어가지만, 앉으시는 분들 발밑은 닦을 수 있으니까요. 주지 스님은 이것도 수행이라시는데, 수행인지 시험인지 저는 아직 모르겠어요.",
+   "en": "Every morning I scrub the floor of the hall's front room. I can't go into the meditation room yet, but I can scrub where the sitters' feet go. The abbot calls this practice too, though I still can't tell if it's practice or a test."
+  },
+  {
+   "key": "spirituality.npc.novice.meditation-hall.t",
+   "ko": "안쪽 선방 문은 늘 잠겨 있어요. 면허를 보여 드리면 열리고, 없으면 문 앞에 서 있어야 해요. 저는 삼 년째 그 문 앞에 서 있어요.",
+   "en": "The door to the inner meditation room is always locked. Show a license and it opens; without one, you stand outside it. I've stood outside it for three years."
+  },
+  {
+   "key": "spirituality.npc.novice.silent-chant.t",
+   "ko": "그 노래…… 저도 몰래 들었어요. 늙은 은자가 서고 뒤 담 밑에서 숨처럼 내쉬는 노래요. 주지 스님 귀에 들어가면 큰일 나지만, 듣고 나면 마음이 비워져요. 두려움까지요.",
+   "en": "That song… I've heard it in secret too. The old hermit breathes it out under the wall behind the archive. It'd be trouble if the abbot heard, but after listening my mind empties out. Even the fear."
+  },
+  {
+   "key": "spirituality.npc.scribe.greet",
+   "ko": "면허 발급 기록이다. 신청은 초하루, 갱신은 계절마다. 선방 자리는 장부에 적힌 순서대로 돈다.",
+   "en": "License records. Applications on the first of the month, renewals each season. Seats in the meditation room go in the order of the ledger."
+  },
+  {
+   "key": "spirituality.npc.scribe.job.t",
+   "ko": "이 서고에는 삼백 년 치 장부가 있다. 이백구십칠 해 동안은 앉은 사람의 이름과 그날의 기도를 적었고, 마지막 세 해는 면허 번호와 갱신일을 적는다. 장부에 없는 자의 명상은 장부 밖의 영성이다.",
+   "en": "This archive holds three hundred years of ledgers. For two hundred and ninety-seven years they recorded who sat and what they prayed; these last three years, license numbers and renewal dates. Meditation by anyone not in the ledger is spirituality outside the book."
+  },
+  {
+   "key": "spirituality.npc.scribe.prayer.t",
+   "ko": "옛 장부는 어느 장을 펼쳐도 '기도'라는 낱말로 시작한다. 새 장부는 '면허'로 시작한다. 같은 서가의 같은 종이인데, 첫 낱말만 바뀌었다.",
+   "en": "Open any page of the old ledgers and it begins with the word 'prayer.' The new ones begin with 'license.' The same shelf, the same paper — only the first word has changed."
+  },
+  {
+   "key": "spirituality.npc.scribe.library.t",
+   "ko": "이 서고가 명상당의 심장이다. 맨 첫 장부의 첫 줄에는 이름 없이 이렇게만 적혀 있다. 순례자, 해 뜰 녘부터 질 녘까지 앉았다 감.",
+   "en": "This archive is the heart of the hall. The first line of the very first ledger bears no name, only this. A pilgrim, sat from sunrise to sunset, then left."
+  },
+  {
+   "key": "spirituality.npc.healer.greet",
+   "ko": "숨이 먼저야, 자격이 나중이지. 아픈 사람에게 면허를 묻는 법은 없어.",
+   "en": "Breath first, credentials after. No one asks the sick for a license."
+  },
+  {
+   "key": "spirituality.npc.healer.name.t",
+   "ko": "루아라고 해. 이 마을의 아픈 사람들을 돌봐. 명상당 앞방 한구석을 빌려 환자를 눕히지만, 나한테 면허는 없어.",
+   "en": "I'm Rua. I look after the sick of this village. I borrow a corner of the hall's front room to lay them down, but I hold no license."
+  },
+  {
+   "key": "spirituality.npc.healer.breath-song.t",
+   "ko": "예전엔 아픈 사람 곁에서 아이들과 숨 노래를 불렀어. '숨은 산다, 떨림은 쉰다.' 지금은 명상당에서 그 노래를 부르면 면허를 거둬 간대.",
+   "en": "I used to sing the breath song with the children at the bedsides of the sick. 'The breath lives, the trembling rests.' Now they say singing it in the hall gets your license taken away."
+  },
+  {
+   "key": "spirituality.npc.healer.courage.t",
+   "ko": "용기는 면허를 내미는 일이 아니야. 아픈 사람의 손을 잡고, 금지된 노래 한 소절을 부르는 일이지. 나도 언젠가 그 한 소절을 부를 거야.",
+   "en": "Courage is not holding out a license. It's taking a sick person's hand and singing one line of a forbidden song. Someday I'll sing that line too."
+  },
+  {
+   "key": "spirituality.npc.hermit.greet",
+   "ko": "……쉿. 장부에서 내 이름은 내 손으로 지웠어. 그래도 말을 걸어 오는 사람에게는 조용한 대답 하나쯤 빚지고 있지.",
+   "en": "…Shh. I struck my own name from the ledger with my own hand. Still, to one who speaks to me, I owe a quiet answer."
+  },
+  {
+   "key": "spirituality.npc.hermit.name.t",
+   "ko": "펠라. 한때는 이 명상당의 스님이었어. 면허가 아니라 노래로 기도하던 시절이 있었지. 지금은 서고 그늘에서 이름 없이 살아.",
+   "en": "Pella. I was a monk of this hall once. There was a time we prayed with song, not with licenses. Now I live nameless in the archive's shadow."
+  },
+  {
+   "key": "spirituality.npc.hermit.job.t",
+   "ko": "나는 명상을 해. 면허도 예불도 없이, 숨을 세고 소리 없는 노래를 부르지. 소리를 내지 않아야 들리는 진실이 있거든.",
+   "en": "I meditate. No license, no dawn prayers — I count my breath and sing the soundless song. There is a truth you can only hear when you make no sound."
+  },
+  {
+   "key": "spirituality.npc.hermit.spirit.t",
+   "ko": "영은 붙잡는 게 아니야. 숨이 가늘어질 때 어느새 마음에 와 앉지. 면허는 그 자리를 맡아 두는 표였는데, 언제부턴가 표만 남고 영은 쫓겨났어.",
+   "en": "Spirit is not something you catch. When the breath grows thin, it comes and sits in the heart before you know it. The license was a ticket to hold that seat, but somewhere along the way only the ticket remained and the spirit was driven out."
+  },
+  {
+   "key": "spirituality.npc.hermit.silent-chant.t",
+   "ko": "듣고 있구나. 이 노래는 입 밖으로 내지 않아. 진실도 사랑도 용기도, 소리 내어 외치면 흩어지고 마음속에서 함께 숨 쉴 때만 살아 있거든.",
+   "en": "You're listening. This song never leaves the mouth. Truth, love, courage — shout them and they scatter; they live only when they breathe together in the heart."
+  },
+  {
+   "key": "spirituality.npc.hermit.truth.t",
+   "ko": "진실. 그 낱말을 입에 올리기도 이제는 조심스러워. 면허는 종이에 있지만 진실은 숨에 있어. 그리고 숨은 혼자 쉬는 게 아니야.",
+   "en": "Truth. I'm wary now of even saying the word. The license lives on paper, but truth lives in the breath — and no one breathes alone."
+  },
+  {
+   "key": "spirituality.npc.hermit.courage.t",
+   "ko": "용기. 이 마을에서 제일 모자란 거야. 면허 없이는 앉지도 못하는 때에, 그 면허를 내려놓고 앉는 것. 내가 아는 용기는 그것뿐이야.",
+   "en": "Courage. The thing this village lacks most. To set the license down and sit anyway, in a time when you can't sit without one — that's the only courage I know."
+  },
+  {
+   "key": "spirituality.npc.gardener.name",
+   "ko": "정원지기 호레",
+   "en": "Hore the Gardener"
+  },
+  {
+   "key": "spirituality.npc.gardener.greet",
+   "ko": "뜰에는 면허가 필요 없다네. 씨앗을 묻으면 면허 없이도 자라지.",
+   "en": "The courtyard needs no license. Bury a seed, and it grows without one."
+  },
+  {
+   "key": "spirituality.npc.gardener.name.t",
+   "ko": "호레라네. 명상당 앞뜰에서 약초와 꽃을 가꾸지. 스님들이 마음을 비우는 동안, 나는 흙을 고른다네.",
+   "en": "Hore, they call me. I tend the herbs and flowers in the hall's courtyard. While the monks empty their minds, I loosen the soil."
+  },
+  {
+   "key": "spirituality.npc.gardener.job.t",
+   "ko": "이 뜰은 명상당보다 오래됐다네. 순례자가 약초를 심고 간 자리지. 숨이 가쁜 사람, 걱정에 잠 못 드는 사람을 달래는 풀들인데, 면허는 여기서 안 자란다네.",
+   "en": "This courtyard is older than the hall. It's where the pilgrim planted herbs and moved on. Plants that soothe the short of breath and the sleepless with worry — but licenses don't grow here."
+  },
+  {
+   "key": "spirituality.npc.gardener.breath.t",
+   "ko": "숨은 밭과 같다네. 가꾸면 깊어지고, 내버려 두면 메마르지. 나는 호미질 한 번에 숨 한 번을 고른다네. 그게 내 유일한 의례라네.",
+   "en": "Breath is like a field. Tend it and it deepens; leave it and it dries. I take one breath for each stroke of the hoe. That is my only ritual."
+  },
+  {
+   "key": "spirituality.npc.gardener.love.t",
+   "ko": "사랑은 뜰의 물이지. 면허 번호에 물을 주는 사람은 없다네. 우리는 사람에게, 꽃에게, 가끔은 낯선 이방인에게도 물을 준다네.",
+   "en": "Love is the courtyard's water. No one waters a license number. We water people, and flowers, and now and then a passing stranger."
+  },
+  {
+   "key": "spirituality.npc.gardener.courtyard.t",
+   "ko": "이 뜰은 명상당 문 앞까지 이어져 있지. 면허를 사러 가는 사람도, 면허를 잃고 나오는 사람도 이 길을 지나간다네. 풀은 그 모두를 똑같이 바라본다네.",
+   "en": "This courtyard runs right up to the hall's door. Those going to buy licenses and those coming out having lost them all walk this path. The grass looks on them all alike."
+  },
+  {
+   "key": "spirituality.npc.child.name",
+   "ko": "아이 소미",
+   "en": "Somi the Child"
+  },
+  {
+   "key": "spirituality.npc.child.greet",
+   "ko": "쉿! ……휴, 스님인 줄 알았어. 나 노래하던 중이었거든.",
+   "en": "Shh! …Phew, I thought you were a monk. I was in the middle of singing."
+  },
+  {
+   "key": "spirituality.npc.child.name.t",
+   "ko": "소미야! 기숙사에서 스님들이랑 살아. 스님들은 나더러 '작은 떠들썩함'이래. 근데 나는 노래할 때 제일 조용해.",
+   "en": "I'm Somi! I live in the dormitory with the monks. They call me 'little racket.' But I'm quietest when I sing."
+  },
+  {
+   "key": "spirituality.npc.child.job.t",
+   "ko": "내 일은 노래하는 거야! 호레 할아버지가 풀을 뽑으면 나는 옆에서 소리 없는 노래를 불러. 입만 벙긋벙긋. 주지 스님한테 들키면 혼나지만, 그러고 나면 마음이 하늘하늘해져.",
+   "en": "My job is singing! When Grandpa Hore pulls weeds, I sing the soundless song beside him. Just moving my mouth. If the abbot catches me I'll get scolded, but afterward my heart feels light as a feather."
+  },
+  {
+   "key": "spirituality.npc.child.silent-chant.t",
+   "ko": "그 노래가 내 노래야! 은자 할아버지가 서고 뒤 담 밑에서 부르는 걸, 나는 나무 뒤에 숨어서 따라 해. 소리 내면 안 된대서 입만 벙긋. 근데 진짜로 마음이 맑아져. 신기하지?",
+   "en": "That's my song! The hermit grandpa sings it under the wall behind the archive, and I hide behind a tree and copy him. He says you mustn't make a sound, so I only move my mouth. But it really clears your head. Strange, right?"
+  },
+  {
+   "key": "spirituality.npc.child.prayer.t",
+   "ko": "기도는 배워 본 적 없어. 면허를 받아야 기도할 수 있대. 근데 나는 그 노래가 기도 같아. 면허 받는 법은 아직 몰라.",
+   "en": "I've never learned to pray. They say you need a license to pray. But that song feels like praying to me. I still don't know how you get a license."
+  },
+  {
+   "key": "spirituality.npc.brewer.name",
+   "ko": "찻집 주인 도란",
+   "en": "Doran the Teahouse Keeper"
+  },
+  {
+   "key": "spirituality.npc.brewer.greet",
+   "ko": "명상당 축복을 받은 차 한 잔 하겠나? 농담일세. 내 주전자엔 축복도 면허도 안 붙어 있네.",
+   "en": "Care for a cup of tea blessed by the hall? Only joking. My kettle carries no blessing and no license."
+  },
+  {
+   "key": "spirituality.npc.brewer.name.t",
+   "ko": "도란이라네. 공양간 한켠에서 보리차와 약주를 내는 찻집 주인이지. 이 마을에서 제일 거룩하지 않은 일을 하는 사람이 바로 날세.",
+   "en": "Doran, they call me. I serve barley tea and herb wine from a corner of the kitchen. I do the least holy work in this village."
+  },
+  {
+   "key": "spirituality.npc.brewer.job.t",
+   "ko": "물을 끓이고, 차를 우리고, 이야기를 듣는 게 내 일이네. 삼 년 전까지는 누구나 뜰을 지나 명상당에 들어가 조용히 앉았다 나왔지. 지금은 면허값에 지친 사람들이 여기 와서야 숨을 돌린다네.",
+   "en": "Boiling water, steeping tea, listening — that's my work. Until three years ago anyone could cross the courtyard into the hall, sit a while in quiet, and go. Now people worn out by license fees only catch their breath here."
+  },
+  {
+   "key": "spirituality.npc.brewer.license-rule.t",
+   "ko": "면허 제도라. 주지가 명상당 문 앞에서 면허를 팔기 시작한 지 삼 년일세. 그전엔 누구나 들어가 조용히 앉아 있었지. 지금은 그 조용한 앉음에 값이 붙었네.",
+   "en": "The license law. It's been three years since the abbot began selling licenses at the hall door. Before that, anyone could go in and sit quietly. Now that quiet sitting has a price."
+  },
+  {
+   "key": "spirituality.npc.gatekeeper.greet",
+   "ko": "명상당 문지기일세. 면허 없이는 그 문을 지나지 못하네. ……물론 이 마을에 문이 하나뿐인 건 아니지만.",
+   "en": "I keep the hall's door. Without a license you don't pass it. …Though this village has more than one door, mind you."
+  },
+  {
+   "key": "spirituality.npc.gatekeeper.name.t",
+   "ko": "구르라 부르게. 마을 어귀와 명상당 문을 지키는 수문장일세. 문은 둘인데, 면허로 막는 건 하나뿐이지.",
+   "en": "Call me Gur. Warden of the village gate and the hall's door. Two doors, and only one of them barred by license."
+  },
+  {
+   "key": "spirituality.npc.gatekeeper.job.t",
+   "ko": "명상당 문은 면허로 막고, 마을 어귀는 열어 두지. 그런데 요즘 남동쪽 담 모퉁이에 가짜 스님이 숨어 있다가, 지나는 사람을 붙들고 명상을 판다네. 면허도 없이 말일세. 그자가 정말 위험하네.",
+   "en": "The hall door I bar by license; the village gate I leave open. But lately a false monk lurks at the southeast corner of the wall, waylaying passersby to sell them meditation. Without a license, even. That one is the real danger."
+  },
+  {
+   "key": "spirituality.npc.gatekeeper.fake-monk.t",
+   "ko": "그 가짜 스님 말인가. 두건을 쓰고 목탁을 두드리며 명상의 은혜를 헌납하라 하지. 지갑을 한 번 열면 또 헌납, 두 번 열면 이름까지 받아 적어 가네. 주지는 면허로 사람을 막지만, 그자는 사람을 털어 가는 걸세.",
+   "en": "That false monk? Cowled, rapping a wooden fish, telling people to donate for the grace of meditation. Open your purse once, another donation; twice, and he writes down your name too. The abbot bars people with licenses — that one fleeces them."
+  },
+  {
+   "key": "spirituality.npc.gatekeeper.courtyard.t",
+   "ko": "명상당 뜰 말인가. 뜰 안은 여전히 조용한데, 뜰 밖이 시끄러워졌네. 면허 없이 앉아 숨만 고르던 사람들이 이제는 돈을 내고 시험을 봐야 하니.",
+   "en": "The hall's courtyard? Inside, it's as quiet as ever; outside, it's grown noisy. People who used to just sit and settle their breath without a license now have to pay and sit an exam."
+  },
+  {
+   "key": "spirituality.npc.widow.greet",
+   "ko": "저는 면허가 없어서 명상당에 들어가지 못해요. 그래서 뜰 건너 문이 보이는 이 자리에서, 그이가 가르쳐 준 대로 숨을 세요.",
+   "en": "I have no license, so I can't enter the hall. So I sit here where I can see its door across the courtyard, and count my breath the way he taught me."
+  },
+  {
+   "key": "spirituality.npc.widow.name.t",
+   "ko": "이레예요. 그이는 면허를 받을 수 있었는데, 저 혼자 문 밖에 남겨 두기 싫다고 마지막 시험을 보지 않았어요.",
+   "en": "I'm Ire. He could have earned his license, but he didn't take the last exam — he didn't want to leave me alone outside the door."
+  },
+  {
+   "key": "spirituality.npc.widow.job.t",
+   "ko": "그이가 남긴 건 숨 노래 하나예요. 지난겨울 그이가 떠난 뒤로도, 저녁마다 둘 몫의 숨을 세요. 장부엔 그이 이름이 없으니 제가 세어 줄 수밖에요.",
+   "en": "All he left me is a breath song. Since he passed last winter, I still count breaths for two every evening. His name isn't in the ledger, so someone has to count for him."
+  },
+  {
+   "key": "spirituality.npc.widow.love.t",
+   "ko": "사랑은 면허를 내밀지 않아요. 그이가 시험을 그만둔 것도 저를 문 밖에 혼자 두지 않으려는 마음이었어요. 사랑은 명상이 아니어도, 명상보다 깊은 숨을 쉬게 해요.",
+   "en": "Love holds out no license. When he gave up the exam, it was so I wouldn't be left outside the door alone. Love isn't meditation, but it lets you breathe deeper than meditation does."
+  },
+  {
+   "key": "spirituality.npc.widow.courage.t",
+   "ko": "용기…… 요즘은 그 숨 노래를 명상당 문 앞에서 소리 내어 부르고 싶어요. 누가 나무라도 좋아요. 참된 명상은 두려움에서 놓여나는 거라고, 그이가 가르쳐 줬거든요.",
+   "en": "Courage… lately I want to sing that breath song aloud at the hall door. Let them scold me. He taught me that true meditation is being set free from fear."
+  },
+  {
+   "key": "spirituality.fact.elia.healer.hint",
+   "ko": "숨을 다스리는 법을 가르치는 치유사. 병든 사람에게 면허를 묻지 않는다.",
+   "en": "A healer who teaches how to steady the breath. She does not ask the sick for licenses."
+  },
+  {
+   "key": "spirituality.fact.elia.hermit.hint",
+   "ko": "서고 그늘에 숨어 면허 없이 명상하는 옛 스님. 소리 없이 부르는 노래를 안다.",
+   "en": "A former monk who meditates without a license in the archive's shadow. He knows the song that is sung without sound."
+  },
+  {
+   "key": "spirituality.fact.elia.widow.hint",
+   "ko": "뜰 건너 명상당 문이 보이는 자리에서, 저녁마다 세상을 떠난 남편 몫까지 숨을 세는 과부. 옛 숨 노래를 기억한다.",
+   "en": "A widow who, every evening, counts breaths for herself and her late husband where she can see the hall door. She remembers the old breath song."
+  },
+  {
+   "key": "spirituality.fact.elia.meditation-hall.hint",
+   "ko": "엘리아 북서쪽의 집. 앞방은 누구나 드나들지만, 안쪽 선방은 면허를 보여야만 열린다.",
+   "en": "The house in Elia's northwest. Anyone may enter the front room, but the inner meditation room opens only to a license."
+  },
+  {
+   "key": "spirituality.fact.elia.library.hint",
+   "ko": "명상당의 서고. 삼백 년 치 장부가 쌓여 있고, 맨 첫 줄에는 이름 없는 순례자의 하루가 적혀 있다.",
+   "en": "The hall's archive, stacked with three hundred years of ledgers. Its very first line records one day of a nameless pilgrim."
+  },
+  {
+   "key": "spirituality.fact.elia.silent-chant.label",
+   "ko": "소리 없는 노래",
+   "en": "The Soundless Song"
+  },
+  {
+   "key": "spirituality.fact.elia.silent-chant.hint",
+   "ko": "새벽 숨 노래를 소리 없이 부르는 법. 은자가 서고 뒤 담 밑에서 부르고, 아이가 입만 벙긋거려 따라 한다.",
+   "en": "The dawn breath song, sung without sound. The hermit sings it under the wall behind the archive, and the child follows by mouthing it."
+  },
+  {
+   "key": "spirituality.fact.elia.license-rule.hint",
+   "ko": "삼 년 전부터 명상에는 면허가 필요하다. 면허 없는 자는 선방에 앉을 수도, 소리 내어 기도할 수도 없다.",
+   "en": "For three years now, meditation has required a license. Without one, you may neither sit in the meditation room nor pray aloud."
+  },
+  {
+   "key": "spirituality.deduction.spirituality.sentence",
+   "ko": "영성은 {1}을 듣고, {2}(으)로 품고, {3}(으)로 내딛는 것이다",
+   "en": "Spirituality is hearing {1}, holding it with {2}, and stepping forward with {3}"
+  },
+  {
+   "key": "spirituality.deduction.spirituality.hint",
+   "ko": "주지의 면허는 의례만 남기고 마음을 잠갔다. 은자는 소리를 내지 않아야 들리는 것을, 정원지기는 사람에게 주는 물을, 치유사는 금지된 노래 한 소절을 말했다.",
+   "en": "The abbot's license kept only the ritual and locked the heart. The hermit spoke of what you hear only when you make no sound, the gardener of the water we give people, the healer of one line of a forbidden song."
+  },
+  {
+   "key": "spirituality.crisis.license.text",
+   "ko": "명상당 앞뜰에 마을 사람들이 모였다. 주지 다루가 면허 장부를 펼치며 외친다. 이 마을의 명상은 자격 있는 자의 것이며, 면허 없이 명상당에 드는 것은 배교라고. 오늘은 견습 이안이 면허 시험을 치르는 날이지만, 그는 시험비를 내지 못해 문 앞에 서 있다. 서기관 세온은 장부를 펼치고, 치유사 루아는 손을 움켜쥐고, 은자 펠라는 서고 그늘에서 이 모든 것을 듣고 있다. 아이 소미가 숨을 죽이고, 정원지기 호레가 고개를 숙인다. 이제 그대가 나설 차례다.",
+   "en": "Villagers gather in the hall's courtyard. Abbot Daru opens the license ledger and proclaims that meditation in this village belongs to the qualified, and that entering the hall without a license is apostasy. Today the novice Ian is to sit his license exam, but he cannot pay the fee and stands outside the door. Clerk Seon opens the ledger, healer Rua clenches her hands, and the hermit Pella listens to it all from the archive's shadow. The child Somi holds her breath, and gardener Hore bows his head. Now it is your turn to step forward."
+  },
+  {
+   "key": "spirituality.option.open-meditation.label",
+   "ko": "은자의 소리 없는 노래를 불러 명상당의 문을 연다",
+   "en": "Sing the hermit's soundless song and open the hall's door"
+  },
+  {
+   "key": "spirituality.option.open-meditation.text",
+   "ko": "그대가 앞으로 나서서, 은자에게 배운 노래를 소리 없이 부른다. 진실을 듣고, 사랑으로 품고, 용기로 내딛는 숨. 견습 이안이 숨을 보태고, 과부 이레가 그 숨을 잇는다. 정원지기 호레가 뜰의 약초를 문 앞에 놓고, 치유사 루아가 숨을 고른다. 서기관 세온이 맨 첫 장부를 꺼내, 이름 없는 순례자가 해 뜰 녘부터 질 녘까지 앉았다 간 줄을 읽는다. 참된 명상은 면허에 있지 않고, 진실과 사랑과 용기가 함께 숨 쉬는 데 있었다. 주지 다루가 장부를 내려놓고, 그의 입술이 소리 없이 움직인다. 명상당의 문이 처음으로 면허 없이 열린다. 그날부터 엘리아는 누구든 조용히 앉을 수 있는 마을이 된다.",
+   "en": "You step forward and sing, without sound, the song you learned from the hermit. A breath that hears the truth, holds it with love, and steps forward with courage. The novice Ian adds his breath, and the widow Ire carries it on. Gardener Hore lays herbs from the courtyard before the door, and healer Rua steadies her breath. Clerk Seon takes out the very first ledger and reads the line about a nameless pilgrim who sat from sunrise to sunset and left. True meditation was never in the license but in truth, love, and courage breathing together. Abbot Daru sets down the ledger, and his lips move without a sound. For the first time, the hall's door opens without a license. From that day, Elia is a village where anyone may sit in quiet."
+  },
+  {
+   "key": "spirituality.option.exile-monk.text",
+   "ko": "그대가 서기관 세온의 장부를 꺼내 낭독한다. 삼 년 사이 면허값은 세 배가 되었고, 면허 없는 자의 기도는 모두 금지되었다. 새 장부에는 이름과 서명과 갱신일만 남고, 그들이 올린 기도는 한 줄도 적혀 있지 않다. 주지 다루는 장부를 덮고 말없이 마을을 떠난다. 명상당의 문은 열리지만, 사람들은 여전히 노래를 두려워한다. 엘리아는 면허를 벗었지만, 아직 참된 영성을 세우는 법은 배우지 못했다.",
+   "en": "You take clerk Seon's ledger and read it aloud. In three years the license fee tripled, and every prayer of the unlicensed was forbidden. The new ledgers hold only names, signatures, and renewal dates — not a single line of the prayers people offered. Abbot Daru closes the ledger and leaves the village without a word. The hall's door opens, but the people still fear the song. Elia has shed its licenses, but has not yet learned how to build true spirituality."
+  }
+ ],
+ "add_topics": [
+  {
+   "npc": "npc.spirituality.monk",
+   "topic": "fact.elia.hermit",
+   "key": "spirituality.npc.monk.hermit.t",
+   "ko": "펠라라. ……내게 처음 숨 세는 법을 가르친 사람이다. 그 이름은 이제 장부에 없다. 그것으로 됐다.",
+   "en": "Pella. …He was the one who first taught me to count my breath. His name is no longer in the ledger. Let that be enough."
+  },
+  {
+   "npc": "npc.spirituality.monk",
+   "topic": "fact.elia.novice",
+   "key": "spirituality.npc.monk.novice.t",
+   "ko": "삼 년을 바닥만 닦은 아이다. 서두르지 않는 법부터 배워야 한다. 마음만 앞서 홀로 앉았던 아이를, 나는 새벽에 안고 나온 적이 있다.",
+   "en": "A boy who has scrubbed floors for three years. First he must learn not to hurry. I once carried a boy out of that room at dawn, one whose heart ran ahead of him and who sat alone."
+  },
+  {
+   "npc": "npc.spirituality.monk",
+   "topic": "word.breath",
+   "key": "spirituality.npc.monk.breath.t",
+   "ko": "숨에도 끝이 있다. 그 끝이 어디인지 모르는 자를 선방에 들일 수는 없다.",
+   "en": "Even breath has an end. I cannot let anyone into that room who does not know where it is."
+  },
+  {
+   "npc": "npc.spirituality.novice",
+   "topic": "fact.elia.monk",
+   "key": "spirituality.npc.novice.monk.t",
+   "ko": "주지 스님은 새벽마다 선방 문을 제일 먼저 여세요. 아무도 없는 방인데도, 한 자리 한 자리 손으로 짚어 보고 나오세요.",
+   "en": "Every dawn the abbot is the first to open the meditation room. It's empty, but he still goes seat by seat, touching each one, before he comes out."
+  },
+  {
+   "npc": "npc.spirituality.novice",
+   "topic": "fact.elia.widow",
+   "key": "spirituality.npc.novice.widow.t",
+   "ko": "이레 아주머니는 제가 바닥을 닦는 동안 뜰 건너편에 앉아 계세요. 걸레질 소리에 맞춰 숨을 세신대요.",
+   "en": "While I scrub the floor, Ire sits across the courtyard. She says she counts her breath to the sound of my mopping."
+  },
+  {
+   "npc": "npc.spirituality.scribe",
+   "topic": "fact.elia.hermit",
+   "key": "spirituality.npc.scribe.hermit.t",
+   "ko": "그런 이름은 장부에 없다. ……서고 등잔 기름이 달마다 조금씩 더 줄어드는 것도 장부에는 없지.",
+   "en": "There is no such name in the ledger. …Nor does the ledger mention that the archive's lamp oil runs a little lower each month."
+  },
+  {
+   "npc": "npc.spirituality.scribe",
+   "topic": "fact.elia.monk",
+   "key": "spirituality.npc.scribe.monk.t",
+   "ko": "주지께서는 밤마다 그날 장부를 손가락으로 짚어 내려가신다. 들어간 이름마다 나온 시각이 적혔는지, 하나도 빠짐없이.",
+   "en": "Every night the abbot runs a finger down that day's ledger, checking that every name that went in has a time written beside it for coming out. Not one missed."
+  },
+  {
+   "npc": "npc.spirituality.scribe",
+   "topic": "word.pilgrim",
+   "key": "spirituality.npc.scribe.pilgrim.t",
+   "ko": "맨 첫 장부의 첫 줄에는 이름이 없다. 순례자, 해 뜰 녘부터 질 녘까지 앉았다 감. 적힌 것은 그뿐이다.",
+   "en": "The first line of the very first ledger has no name. A pilgrim, sat from sunrise to sunset, then left. Nothing more is written."
+  },
+  {
+   "npc": "npc.spirituality.healer",
+   "topic": "fact.elia.widow",
+   "key": "spirituality.npc.healer.widow.t",
+   "ko": "지난겨울 이레 남편의 숨을 마지막까지 들은 게 나야. 그이는 끝까지 셋을 세고 내쉬었어. 이레는 아직도 그 셋을 세고 있고.",
+   "en": "I was the one who listened to Ire's husband's breath to the very end last winter. He counted three and breathed out, right to the last. Ire is still counting those threes."
+  },
+  {
+   "npc": "npc.spirituality.healer",
+   "topic": "word.ritual",
+   "key": "spirituality.npc.healer.ritual.t",
+   "ko": "의례도 처음엔 약이었을 거야. 그런데 약도 양을 넘기면 독이 돼.",
+   "en": "Ritual was probably medicine once. But even medicine turns to poison past the right dose."
+  },
+  {
+   "npc": "npc.spirituality.hermit",
+   "topic": "fact.elia.monk",
+   "key": "spirituality.npc.hermit.monk.t",
+   "ko": "다루는 내 아우 같은 애야. 숨 세는 법을 처음 가르친 게 나지. 그 애가 장부를 만든 건 사람을 잃기 싫어서였어. 지키는 법을 잘못 골랐을 뿐이야.",
+   "en": "Daru is like a younger brother to me. I was the first to teach him to count his breath. He made that ledger because he couldn't bear to lose anyone. He only chose the wrong way to keep them."
+  },
+  {
+   "npc": "npc.spirituality.hermit",
+   "topic": "word.breath",
+   "key": "spirituality.npc.hermit.breath.t",
+   "ko": "숨은 셋이면 돼. 들이쉬고, 머물고, 내쉬고. 그 사이에 마음이 앉을 자리가 생겨.",
+   "en": "Three is all breath needs. In, hold, out. In between, the heart finds a place to sit."
+  },
+  {
+   "npc": "npc.spirituality.gardener",
+   "topic": "fact.elia.hermit",
+   "key": "spirituality.npc.gardener.hermit.t",
+   "ko": "펠라 말인가. 새벽마다 서고 뒤 담 밑에 앉아 있지. 그 자리 풀만 눌려 있어서 내가 안다네.",
+   "en": "Pella? He sits under the wall behind the archive every dawn. I know because the grass is flattened in just that one spot."
+  },
+  {
+   "npc": "npc.spirituality.gardener",
+   "topic": "word.prayer",
+   "key": "spirituality.npc.gardener.prayer.t",
+   "ko": "기도라. 나는 씨앗을 묻을 때 흙을 세 번 두드린다네. 누가 가르쳐 준 건 아닌데, 그러고 나면 싹이 잘 트더군.",
+   "en": "Prayer, eh. When I bury a seed, I pat the soil three times. Nobody taught me, but the shoots come up better for it."
+  },
+  {
+   "npc": "npc.spirituality.child",
+   "topic": "fact.elia.hermit",
+   "key": "spirituality.npc.child.hermit.t",
+   "ko": "은자 할아버지는 입만 벙긋해. 근데 할아버지가 벙긋하면 새들도 조용해져. 진짜야!",
+   "en": "The hermit grandpa only moves his mouth. But when he does, even the birds go quiet. It's true!"
+  },
+  {
+   "npc": "npc.spirituality.child",
+   "topic": "fact.elia.monk",
+   "key": "spirituality.npc.child.monk.t",
+   "ko": "주지 스님은 무서워. 근데 저번에 내가 명상당 앞에서 깜빡 잠들었는데, 깨 보니까 스님 옷이 덮여 있었어. 비밀이야.",
+   "en": "The abbot is scary. But once I dozed off in front of the hall, and when I woke up his robe was over me. It's a secret."
+  },
+  {
+   "npc": "npc.spirituality.brewer",
+   "topic": "fact.elia.monk",
+   "key": "spirituality.npc.brewer.monk.t",
+   "ko": "다루 스님도 예전엔 저 자리에서 보리차를 마셨지. 삼 년 전 겨울 뒤로는 발을 끊었네. 따뜻한 걸 마시면 밤에 졸린다나.",
+   "en": "Daru used to drink barley tea in that very seat. Since the winter three years ago he hasn't come by. Says warm drinks make him drowsy at night."
+  },
+  {
+   "npc": "npc.spirituality.brewer",
+   "topic": "fact.elia.novice",
+   "key": "spirituality.npc.brewer.novice.t",
+   "ko": "이안은 시험비를 모은다고 여기서 장작을 패 주네. 한 짐에 동전 한 닢. 아직 반도 못 모았지.",
+   "en": "Ian splits firewood here to save up for the exam fee. One coin a bundle. He hasn't saved half yet."
+  },
+  {
+   "npc": "npc.spirituality.gatekeeper",
+   "topic": "fact.elia.monk",
+   "key": "spirituality.npc.gatekeeper.monk.t",
+   "ko": "주지와는 같은 해에 이 마을에 왔네. 그때 그는 나더러 문을 지키라 하지 않고, 열어 두라 했지. 사람은 변하는 법일세.",
+   "en": "The abbot and I came to this village the same year. Back then he didn't tell me to guard the door — he told me to keep it open. People change."
+  },
+  {
+   "npc": "npc.spirituality.gatekeeper",
+   "topic": "fact.elia.novice",
+   "key": "spirituality.npc.gatekeeper.novice.t",
+   "ko": "견습 아이가 밤마다 명상당 문고리를 한 번씩 쥐어 보고 가더군. 잠긴 걸 알면서도. 나는 못 본 척하네.",
+   "en": "Every night the novice comes and grips the hall's door handle once before he goes. Knowing full well it's locked. I pretend not to see."
+  },
+  {
+   "npc": "npc.spirituality.widow",
+   "topic": "fact.elia.healer",
+   "key": "spirituality.npc.widow.healer.t",
+   "ko": "루아가 그이 곁을 끝까지 지켜 줬어요. 마지막 밤엔 둘이서 숨 노래를 낮게 불렀어요. 면허 없는 두 사람이요.",
+   "en": "Rua stayed by him to the end. On the last night the two of them sang the breath song softly. Two people without a license."
+  },
+  {
+   "npc": "npc.spirituality.widow",
+   "topic": "fact.elia.monk",
+   "key": "spirituality.npc.widow.monk.t",
+   "ko": "주지 스님이 그이 장례에 오셨어요. 아무 말 없이, 제 자리 옆에 한참 앉았다 가셨어요.",
+   "en": "The abbot came to his funeral. Without a word, he sat beside me in my spot for a long while, then left."
+  }
+ ],
+ "new_npcs": [
+  {
+   "id": "npc.spirituality.cook",
+   "map": "map.town.spirituality",
+   "pos": [
+    18,
+    14
+   ],
+   "key_prefix": "spirituality.npc.cook",
+   "name": {
+    "ko": "공양주 오미",
+    "en": "Omi the Temple Cook"
+   },
+   "greet": {
+    "ko": "배고프면 앉아요. 밥에는 면허가 없으니까.",
+    "en": "Sit down if you're hungry. Rice needs no license."
+   },
+   "name_t": {
+    "ko": "오미예요. 이 공양간에서 스님들 밥을 지은 지 서른 해가 넘었어요. 누가 언제 밥을 남기는지, 나는 다 알아요.",
+    "en": "I'm Omi. I've cooked for the monks in this kitchen for over thirty years. I know who leaves rice in the bowl, and when."
+   },
+   "job_t": {
+    "ko": "새벽밥 짓고, 저녁 죽 쑤고, 그 사이엔 숭늉을 끓여요. 삼 년 전 겨울 새벽엔 숭늉 한 솥이 다 나갔지요. 주지 스님이 젊은 스님 하나를 제 가사로 싸안고 와서는, 해가 중천에 뜰 때까지 그 곁에 앉아 있었어요.",
+    "en": "I cook the dawn rice and the evening porridge, and in between I boil rice water. One winter dawn three years ago, a whole pot of it went. The abbot came in carrying a young monk wrapped in his own robe, and sat beside him until the sun was high."
+   },
+   "topics": [
+    {
+     "topic": "fact.elia.monk",
+     "suffix": "monk.t",
+     "ko": "그 일 있고 봄부터 장부에 면허 번호가 붙었어요. 주지 스님은 그 뒤로 밥을 반만 드세요. 밤에 졸면 안 된다고요.",
+     "en": "That spring, license numbers started appearing in the ledger. Since then the abbot only eats half his rice. Says he mustn't doze at night."
+    },
+    {
+     "topic": "fact.elia.novice",
+     "suffix": "novice.t",
+     "ko": "이안이요? 그 아이는 밥을 남긴 적이 없어요. 그 젊은 스님도 그랬는데, 선방에 홀로 앉아 있던 사흘은 한술도 안 떴지요. 몸을 추스르고는 엘리아를 떠났어요.",
+     "en": "Ian? That boy has never left a grain. Neither had that young monk — until the three days he sat alone in the meditation room without touching a spoonful. Once he'd recovered, he left Elia."
+    }
+   ]
+  },
+  {
+   "id": "npc.spirituality.incense",
+   "map": "map.town.spirituality",
+   "pos": [
+    5,
+    8
+   ],
+   "key_prefix": "spirituality.npc.incense",
+   "name": {
+    "ko": "향 빚는 이 누리",
+    "en": "Nuri the Incense Maker"
+   },
+   "greet": {
+    "ko": "손에서 송진 냄새 나죠? 엘리아의 저녁 향은 다 제 손을 거쳐요.",
+    "en": "Smell the pine resin on my hands? Every stick of evening incense in Elia passes through them."
+   },
+   "name_t": {
+    "ko": "누리예요. 송진이랑 마른 쑥을 개어 향을 빚어요. 저녁 향 때는 명상당에 들어가 불을 붙이는 데까지가 제 일이에요.",
+    "en": "I'm Nuri. I knead pine resin and dried mugwort into incense. At evening incense, my work goes as far as stepping into the hall and lighting it."
+   },
+   "job_t": {
+    "ko": "면허 있는 분들 몫으로 하루에 향 마흔 개를 빚어요. 그런데 주지 스님 몫은 삼 년째 한 개도 안 나가요. 스님은 향이 다 타고 모두 나간 뒤에야, 불 꺼진 향로 앞에 혼자 앉으시거든요.",
+    "en": "I make forty sticks a day for the license holders. But for three years not one has gone to the abbot. He only sits, alone, before the cold burner after the incense has burned out and everyone has gone."
+   },
+   "topics": [
+    {
+     "topic": "fact.elia.monk",
+     "suffix": "monk.t",
+     "ko": "한번은 향로를 치우러 다시 들어갔다가 봤어요. 스님 입술이 소리 없이 움직이고 있었어요. 아이가 뜰에서 입을 벙긋거릴 때랑 똑같은 모양으로요.",
+     "en": "Once I went back in to clear the burner and saw him. His lips were moving without a sound. The very same shape as the child's when she mouths along in the courtyard."
+    },
+    {
+     "topic": "word.ritual",
+     "suffix": "ritual.t",
+     "ko": "향은 천천히 타야 좋은 향이에요. 그런데 요즘은 정해진 시간에 맞춰 빨리 타는 향만 찾으세요. 자리가 다음 사람에게 넘어가야 하니까요.",
+     "en": "Good incense burns slowly. But these days they only want incense that burns fast, right on time. The seat has to pass to the next person."
+    }
+   ],
+   "schedule": {
+    "0": [
+     5,
+     8
+    ],
+    "6": [
+     5,
+     8
+    ],
+    "12": [
+     5,
+     8
+    ],
+    "18": [
+     6,
+     5
+    ]
+   }
+  },
+  {
+   "id": "npc.spirituality.clock",
+   "map": "map.town.spirituality",
+   "pos": [
+    12,
+    4
+   ],
+   "key_prefix": "spirituality.npc.clock",
+   "name": {
+    "ko": "물시계지기 타오",
+    "en": "Tao the Water-Clock Keeper"
+   },
+   "greet": {
+    "ko": "한 방울에 숨 열 번입니다. 면허 한 장이면 오백 방울을 앉으실 수 있습니다.",
+    "en": "One drop is ten breaths. One license lets you sit for five hundred drops."
+   },
+   "name_t": {
+    "ko": "타오입니다. 명상당 물시계를 맡고 있습니다. 하루에 몇 방울이 떨어졌는지 저보다 정확히 아는 사람은 없습니다.",
+    "en": "I am Tao. I keep the hall's water clock. No one knows more exactly than I how many drops fall in a day."
+   },
+   "job_t": {
+    "ko": "물이 다 떨어지면 종을 쳐서 자리를 비우게 합니다. 처음엔 너무 오래 앉은 분을 깨우려고 둔 시계였다고 들었습니다. 요즘은 다음 분을 들이려고 칩니다.",
+    "en": "When the water runs out, I ring the bell and the seat is cleared. I'm told the clock was first set there to wake those who had sat too long. These days I ring it to let the next person in."
+   },
+   "topics": [
+    {
+     "topic": "word.breath",
+     "suffix": "breath.t",
+     "ko": "숨을 재 보려고 한 적이 있습니다. 한 방울 동안 제 숨을 세어 보니 어떤 날은 여덟 번, 어떤 날은 열네 번이었습니다. 물은 늘 같은데 말입니다.",
+     "en": "I once tried to measure breath. Counting my own breaths through a single drop, some days it was eight, some days fourteen. Though the water is always the same."
+    },
+    {
+     "topic": "word.prayer",
+     "suffix": "prayer.t",
+     "ko": "기도에도 방울 수가 정해져 있습니다. 따라 하는 기도는 백 방울, 함께하는 기도는 이백 방울. 홀로 하는 기도는 아직 아무도 끝까지 채우지 못했습니다.",
+     "en": "Prayers have their drop counts too. A hundred for the prayer you repeat, two hundred for the prayer you share. No one has yet filled the count for the prayer made alone."
+    }
+   ]
+  },
+  {
+   "id": "npc.spirituality.carver",
+   "map": "map.town.spirituality",
+   "pos": [
+    5,
+    14
+   ],
+   "key_prefix": "spirituality.npc.carver",
+   "name": {
+    "ko": "목탁 깎는 이 케아",
+    "en": "Kea the Carver"
+   },
+   "greet": {
+    "ko": "두드려 봐. 속이 비어야 소리가 나.",
+    "en": "Go on, tap it. It only sings if it's hollow inside."
+   },
+   "name_t": {
+    "ko": "케아. 기숙사 구석에서 목탁을 깎아. 면허 받은 스님한테만 하나씩 나가.",
+    "en": "Kea. I carve wooden fish in a corner of the dormitory. One goes to each monk who gets a license."
+   },
+   "job_t": {
+    "ko": "살구나무 토막 속을 사흘 동안 파내. 덜 파면 소리가 둔하고, 너무 파면 깨져. 요즘 스님들은 장부에 적힐 날짜에 맞춰 달라고 재촉하지만, 나무는 날짜를 몰라.",
+    "en": "I spend three days hollowing out a block of apricot wood. Too little and it sounds dull; too much and it cracks. The monks these days press me to finish by the date they'll be written into the ledger, but wood knows nothing of dates."
+   },
+   "topics": [
+    {
+     "topic": "fact.elia.hermit",
+     "suffix": "hermit.t",
+     "ko": "펠라 목탁은 내 스승이 깎은 거야. 지금도 서고 어딘가에 있겠지. 안 두드린 지 삼 년은 됐을 거야.",
+     "en": "Pella's wooden fish was carved by my teacher. It's probably still somewhere in the archive. It can't have been struck in three years."
+    },
+    {
+     "topic": "word.ritual",
+     "suffix": "ritual.t",
+     "ko": "목탁은 박자를 맞추라고 있는 거야. 그런데 요즘은 목탁을 들었느냐로 스님인지 아닌지를 가려. 가짜 스님도 하나 들고 다니더라. 속이 꽉 막힌 걸로.",
+     "en": "A wooden fish is for keeping time. But nowadays people tell a monk from a non-monk by whether he carries one. Even the false monk has one — solid all the way through."
+    }
+   ]
+  },
+  {
+   "id": "npc.spirituality.licensee",
+   "map": "map.town.spirituality",
+   "pos": [
+    18,
+    11
+   ],
+   "key_prefix": "spirituality.npc.licensee",
+   "name": {
+    "ko": "면허 수행자 미온",
+    "en": "Mion the License Holder"
+   },
+   "greet": {
+    "ko": "일곱 번째 갱신이 다음 달이오. 이번에도 도장은 받을 거요. 한 번도 절차를 어긴 적이 없으니.",
+    "en": "My seventh renewal is next month. I'll get the stamp again. I have never once broken procedure."
+   },
+   "name_t": {
+    "ko": "미온이오. 면허 번호 열하나. 엘리아에서 면허를 가장 먼저 받은 열두 사람 가운데 하나요.",
+    "en": "I am Mion. License number eleven. One of the first twelve in Elia to receive one."
+   },
+   "job_t": {
+    "ko": "새벽 예불, 오후 독경, 저녁 향. 삼 년 동안 한 번도 빠지지 않고 앉았소. ……그런데 이상하지, 아직 아무것도 오지 않았소.",
+    "en": "Dawn prayers, afternoon sutras, evening incense. For three years I have not missed a single sitting. …Strange, though. Nothing has come yet."
+   },
+   "topics": [
+    {
+     "topic": "fact.elia.courtyard",
+     "suffix": "courtyard.t",
+     "ko": "저 아이가 뜰에서 입을 벙긋거리는 걸 보았소. 무엇을 하는지는 모르겠으나, 그 아이 얼굴이 내가 선방에서 기다리던 얼굴이었소.",
+     "en": "I've watched that child mouthing something in the courtyard. I don't know what she is doing, but her face is the face I have been waiting for in the meditation room."
+    },
+    {
+     "topic": "word.ritual",
+     "suffix": "ritual.t",
+     "ko": "절차는 내가 제일 잘 아오. 손 씻기 세 번, 절 세 번, 숨 세 번. 그런데 그 셋과 셋 사이에 무엇이 있어야 하는지는 아무도 적어 두지 않았소.",
+     "en": "I know the procedure better than anyone. Wash the hands three times, bow three times, breathe three times. But no one ever wrote down what is supposed to lie between the threes."
+    }
+   ]
+  }
+ ]
+}

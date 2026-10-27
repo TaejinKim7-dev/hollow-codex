@@ -1008,76 +1008,97 @@ honor.music.title: Argon's House Song
 
 honor.npc.elder.name: Elder Beron
 honor.npc.elder.greet: A guest of Argon. Give me your name. Which line you belong to, which house's sigil you carry.
-honor.npc.elder.name.t: I am Beron, an elder who has kept this house's rank order for three generations. In this village a name comes from the house. No house, no name.
+honor.npc.elder.name.t: I am Beron, the third elder of my line to keep this house's ranks. In this village a name comes from the house. No house, no name.
 honor.npc.elder.job.t: My work is counting the ranks and keeping face. Who stands above and who below — if that order wavers, the whole village falls. The ledger that counts names is my law.
-honor.npc.elder.honor.t: Honor is the face of a house. When that face cracks, whether dead or living, the flaw must be washed clean. Keeping honor — that alone is this village's order.
+honor.npc.elder.honor.t: Honor is the face of a house. When that face cracks, the stain must be washed out, whether the one who made it is living or dead. Keeping honor — that alone is this village's order.
 honor.npc.elder.shame.t: Knowing shame is itself honor. An insult weighs more than death. One whose face is trampled is a name already gone, even while alive.
-honor.npc.elder.face.t: A broken face cannot be mended. So before it breaks, harden the face you have now. Rather than lie down, shatter standing.
-honor.npc.elder.heir.t: My heir Sion? He dishonored the house. With a song he invented about a lost verse, he insulted the founder. One who breaks face is struck from the name. That is our law.
+honor.npc.elder.face.t: A broken face cannot be mended. So harden the face you have before it breaks. Kneel once, and you are the one who knelt for the rest of your life.
+honor.npc.elder.heir.t: The heir Sion? He shamed this house. He made up a song, called it a lost verse, and insulted the founder with it. Whoever breaks face is struck from the rolls. That is our law.
+honor.npc.elder.manor.t: My grandfather hung the sigil in the manor hall. Since then, Argon's gate has never once leaned.
+honor.npc.elder.widow.t: Serin's husband knelt. By the law, his name should have stayed. …When the ledger was copied anew this spring, I did not call it out.
+honor.npc.elder.swordmaster.t: Kaion teaches the children to kneel first, I hear. If the hand that holds the sword learns the knee before anything, what will this village stand on?
 
 honor.npc.heir.name: Sion the Heir
-honor.npc.heir.greet: …Another who comes face to face with me. To those who avoid a name about to be erased, I am already a stranger. Will you not avoid me?
-honor.npc.heir.name.t: They call me Sion. I was this house's heir. …That 'was' is bitter.
+honor.npc.heir.greet: …Someone still meets my eyes. This village does not look at a name that is about to be erased. You do not turn away?
+honor.npc.heir.name.t: I am Sion. I was the heir of this house. …That 'was' still sits strangely in my mouth.
 honor.npc.heir.job.t: An heir's work is to learn words and learn the sword, and one day inherit the house. But I lost all of it over a single verse of a song.
 honor.npc.heir.song.t: Do you know the second verse of that song? Our house memorizes only the first — the lord who never knelt. But the second verse sings differently. He was a kneeling lord. Not one who raised a celebrated spear, but one who knelt to save everyone.
-honor.npc.heir.truth.t: Truth hurts more than face. I sang that second verse. The founder knelt from fear? No. He knelt not from fear but to save the village. That is the truth this village hides.
-honor.npc.heir.courage.t: I was taught that courage is nothing other than raising a sword. But the song's second verse says kneeling is courage too. Facing the enemy's blade and thinking first of the villagers' lives — that was the founder's courage.
+honor.npc.heir.truth.t: Truth hurts more than face. I sang that second verse in the square. People heard a song about a founder who knelt from fear, but the verse says he knelt to save the village.
+honor.npc.heir.courage.t: I was taught that courage means raising a sword. But the song's second verse says kneeling is courage too. To face the enemy's blade and think of the villagers' lives before your own face — that was the founder's courage.
+honor.npc.heir.elder.t: My grandfather taught me my letters from the ledger. His was the hand that first wrote my name. Now that same hand means to erase it.
+honor.npc.heir.widow.t: I was ten the day Serin's husband knelt in the square. No one helped him to his feet. Not even me.
+honor.npc.heir.face.t: I was taught that face is my face as others see it. The day I sang, I saw my own face for the first time.
 
 honor.npc.herald.name: Luka the Herald
 honor.npc.herald.greet: A herald who carries the house's voice. Whose name shall I cry today?
-honor.npc.herald.name.t: Call me Luka. I am the herald who cries the house's ranks before duels and at rites.
+honor.npc.herald.name.t: I am Luka, the herald who cries the house ranks before duels and at rites.
 honor.npc.herald.job.t: My work is calling names — by rank, by house. But lately I cry more names that must be erased. When that name is called, the people bow their heads.
-honor.npc.herald.song.t: The house song is all in the copy I keep — from the first verse to the second. …But at rites we always sing only the front. It is our house's way never to sing the last verse.
-honor.npc.herald.honor.t: Honor — how dare I. I only cry out. That the name standing above is the right name. …But every time I turn to the back pages of the songbook, it rises in me that there are names this village does not sing.
-honor.npc.herald.elder.t: "Elder Beron is the master of rank. He holds the power to raise and lower names. He set one law: one who breaks face must kneel in apology or be struck from the name. An insult weighs more than death, he says. That is this village's law of shame."
+honor.npc.herald.song.t: The whole house song is in the copy I keep, first verse and second. …Yet at the rites we only ever sing the first. Leaving the second unsung is this house's law.
+honor.npc.herald.honor.t: Honor — who am I to speak of it. I only call out that the name standing highest is the right one. …But each time I turn the back pages of my copy, I remember there are names this village does not sing.
+honor.npc.herald.elder.t: Elder Beron is the master of the ranks. He holds the power to raise names and lower them. He keeps one law. Whoever breaks face must kneel and apologize, or be struck from the rolls. An insult weighs more than death, he says. That is this village's law of shame.
+honor.npc.herald.heir.t: I have cried Sion's name a hundred times. If tomorrow they tell me to cry it one last time, I don't know if my voice will obey.
+honor.npc.herald.plaza.t: The square's flagstones change color with each line. I know where every line stands with my eyes shut. …Lately there are more days I would like to keep them shut.
 
-honor.npc.scribe.name: Eli the House Recorder
+honor.npc.scribe.name: Madel the House Recorder
 honor.npc.scribe.greet: House recorder. Before I open the ledger — have you come to add a name, or to erase one?
-honor.npc.scribe.name.t: They call me Eli. I write and erase the names of this house. An erased letter leaves a mark. Those marks keep growing.
+honor.npc.scribe.name.t: I am Madel. I write the names of this house, and I erase them. An erased letter still leaves a mark. The marks keep multiplying.
 honor.npc.scribe.job.t: I keep the rank ledger. Who was born in which line, which name rose and which fell. …But the elder reaches into this ledger himself. Those parts I could not write.
 honor.npc.scribe.rank.t: The family rank law. The line you are born into becomes the order of your name. But trace the rank ledger back, and there is one erased line. The ledger knows who erased it.
 honor.npc.scribe.truth.t: When I try to write the truth, the ledger grows heavy. When the elder moved to erase Sion's name, I felt the weight of that truth. To the very moment a name is erased, it is always face, not truth, that wins.
 honor.npc.scribe.heir.t: Sion sang the second verse. What crime is that? But in the name ledger, rank comes before truth. Tomorrow the elder will make Sion kneel in the square and take his apology. Before the erasure.
+honor.npc.scribe.elder.t: Every spring the elder has the ledger copied anew. He calls the names, and I write them down. A name left out in the copying does not even leave an erasure mark.
+honor.npc.scribe.widow.t: Serin's husband's name was not erased. The elder simply did not call it, and I only copied the names he called. …I thought saying so would keep my hands clean.
 
 honor.npc.swordmaster.name: Kaion the Swordmaster
 honor.npc.swordmaster.greet: Before you draw a sword, tell me what you mean to guard. That decides what I teach.
-honor.npc.swordmaster.name.t: Kaion. I teach swordsmanship in this village. But I don't teach how to win. Why learn a sword that cannot let you live after winning?
-honor.npc.swordmaster.job.t: I teach the sword, and before children learn how to raise a blade I teach them how to kneel. One who doesn't know how to kneel is no man with a sword.
-honor.npc.swordmaster.courage.t: Courage… do you know the founder's story? He is remembered as the lord who never once knelt. But the truth differs. He knelt once before a blade — to save the villagers. I teach that kneeling is harder than raising a sword.
-honor.npc.swordmaster.honor.t: One who knows honor only as face keeps even his sword for face. But true honor… is knowing what to keep and what to abandon, even before a blade.
-honor.npc.swordmaster.song.t: The house song carries how swordsmanship began in this village. The first verse sings he never knelt; the second sings he knelt. The same blade, the same lord, a different song. Which side will you sing?
-honor.npc.swordmaster.face.t: I've seen many raise a sword wrongly to keep their face. Face carried on your back is a shield; held before your face it is a blindfold. Behind a blindfold you cannot even see the fight.
+honor.npc.swordmaster.name.t: Kaion. I teach the sword in this village. But I don't teach winning. Why learn a sword that wins and still leaves you dead?
+honor.npc.swordmaster.job.t: I teach the sword. Before the children learn to raise a blade, I teach them to kneel. One who cannot kneel is no swordsman, whatever he holds.
+honor.npc.swordmaster.courage.t: Courage… do you know the founder's story? He is remembered as the lord who never once knelt. But the truth is otherwise. He knelt once before a blade, to save the villagers. Kneeling is harder than raising a sword — that is what I teach.
+honor.npc.swordmaster.honor.t: A man who takes honor for face uses even his sword to guard his face. True honor… is knowing, before the blade, what to keep and what to lay down.
+honor.npc.swordmaster.song.t: The house song holds the story of how the sword came to this village. The first verse says he never knelt; the second says he did. The same blade, the same lord, a different song. Which will you sing?
+honor.npc.swordmaster.face.t: I've seen many raise a sword wrongly to keep their face. Carry face on your back and it is a shield; wear it over your eyes and it is a blindfold. Behind a blindfold you cannot even see the fight.
+honor.npc.swordmaster.heir.t: Sion learned the sword in my yard. He was the slowest of all to learn to kneel. Now he says he will not kneel in the square. This time, he is right.
+honor.npc.swordmaster.shame.t: Shame is the heart that cannot lift its head after losing. I teach the children that the day they lose is the day to lift it first.
 
 honor.npc.brewer.name: Mur the Brewer
 honor.npc.brewer.greet: Welcome. Drink doesn't ask your name. After a cup, everyone wears the same face.
 honor.npc.brewer.name.t: They call me Mur. I've brewed at this tavern for thirty years — a man of the lowest line in this village, too.
-honor.npc.brewer.job.t: I brew the drink, fill the cups, toast honorable names, and forget erased ones. In the tavern all names are equal. Rank and house alike — all sink into the cup.
-honor.npc.brewer.heir.t: The day Sion sang the song, I watched, cup in hand. Before everyone's eyes, he sang the second verse alone, all the way through. Some bowed their heads and clapped. Most fell silent and only stared at the ranks. …Those faces stay with me.
+honor.npc.brewer.job.t: I brew and I pour. On the nights after names are called in the square, the high lines get drunk on pride, and the families of erased names empty their cups quietly in the corner. In here, rank and house alike sink into the cup.
+honor.npc.brewer.heir.t: The day Sion sang, I watched from the edge of the square with a cup in my hand. In front of everyone he sang the second verse alone, all the way through. A few clapped with their heads down, but most kept their mouths shut and watched the high lines. …I can't forget those faces.
+honor.npc.brewer.widow.t: Serin asks me to keep her husband's corner seat empty. So I leave a cup turned upside down on that table.
+honor.npc.brewer.face.t: Customers who mind their face leave their cups half full. I drink the other half. Which makes me the man with the least face in this village.
+honor.npc.brewer.elder.t: The elder has never set foot in this tavern. The high lines do not take a cup poured by the low. His grandson came and drank, though.
 
 honor.npc.child.name: Arin the Village Child
 honor.npc.child.greet: Hi! Do you want to learn a song? I know the back part of the house song!
 honor.npc.child.name.t: I'm Arin! A village kid, and nobody asks my name. Because my line is low. But I know the songs best of all!
-honor.npc.child.job.t: My job is singing! In the square, at the tavern, at the rites. The adults sing the founder's boast-song, but I also sing the founder's hidden song. They say the founder was a kneeling lord!
+honor.npc.child.job.t: My job is singing! In the square, at the tavern, at the rites. The grown-ups sing the founder's boasting song, but I sing his hidden song too. They say the founder was a kneeling lord!
 honor.npc.child.song.t: The first verse sings a lord who never knelt, and the second verse sings one who knelt. I like the second better. A song about what really happened is more fun than a boasting one!
 honor.npc.child.shame.t: Shame — you know the kneeling in the square, right? That's what the adults call shame. But the founder knelt too, and he's still the founder. So I don't really get what shame is.
 honor.npc.child.widow.t: Auntie Serin cries a lot. Because her husband's name was erased. I remember that name in a song too. You can erase a name, but you can't erase a song!
+honor.npc.child.elder.t: The old elder is scary. But when I sing the second verse, he stops and listens. Then he walks off without a word!
+honor.npc.child.heir.t: When big brother Sion sang the second verse, I sang along! But my mom covered my mouth with her hand. Her hand was shaking.
 
 honor.npc.widow.name: Serin the Widow
 honor.npc.widow.greet: …Did you come to sing, or to find an erased name?
-honor.npc.widow.name.t: They call me Serin. A widow whose name was erased in this village. My husband knelt in the square, and even so his name was erased.
+honor.npc.widow.name.t: My name is Serin. A widow who lost her husband's name from the ledger. He knelt in the square, and still his name was erased.
 honor.npc.widow.job.t: My work is selling cloth in the market. When my husband lived, we sold it together. Now I stand alone without that name. In a village where face loomed larger than a husband.
-honor.npc.widow.shame.t: Do you know what shame is? In this village, kneeling. But I think — my husband's kneeling was not shame but love. He knelt to save everyone.
-honor.npc.widow.song.t: The second verse of that song survives in this village as a folk lyric. Sung by children, sung by widows, sung by erased names. The founder was a kneeling lord. Not one who fled — one who knelt to save.
+honor.npc.widow.shame.t: Do you know what shame is? In this village, it is kneeling. But I believe my husband's kneeling was not shame but love. Had he raised his sword, he would have left me that very day.
+honor.npc.widow.song.t: The second verse vanished from the rites, but it lived on from mouth to mouth. Children sing it, widows sing it, the erased names sing it. The founder was a kneeling lord. He did not run — he knelt so others would live.
 honor.npc.widow.pride.t: Pride is not raised with a sword. My husband meant to fight for pride, but he knelt for my sake. That moment of kneeling — I think it was greater than pride.
-honor.npc.widow.heir.t: The day Sion sang that song, I wept. It brought back my husband's affair. The boy only sang the truth, and this village means to punish that truth. Tomorrow, in the square, the elder… .
+honor.npc.widow.heir.t: The day Sion sang that song, I wept. It brought my husband back to me. The boy only sang the truth, and this village means to punish him for it. Tomorrow, in the square, the elder…
+honor.npc.widow.elder.t: I try not to resent the elder. The day we buried my husband, I saw him standing at our door. He never came in, though.
+honor.npc.widow.plaza.t: There is a flagstone in the square where my husband knelt. No one steps on it. Not even me.
 
-honor.npc.mason.name: Toben the Mason
-honor.npc.mason.greet: I'm someone who lives touching stone. I dress sigils, but the stone hidden beneath them is older.
-honor.npc.mason.name.t: They call me Toben. A mason who works the stone of this village's manors and square. Stone knows no rank.
+honor.npc.mason.name: Bastin the Mason
+honor.npc.mason.greet: I live with my hands on stone. I dress the sigils, but the stone hidden beneath them is older.
+honor.npc.mason.name.t: Bastin. I work the stone of this village's manor and square. Stone knows no rank.
 honor.npc.mason.job.t: I dress the manors' sigils and lay the square's flagstones. And when I happen to make repairs, I face words carved in old stone. Words people want to forget.
-honor.npc.mason.manor.t: The house manor. Its sigil shows a lord who never knelt. But a different picture remains on the old hall's stone — a picture of a kneeling lord. Someone covered that stone over with the sigil.
-honor.npc.mason.rank.t: The rank ledger was originally carved on a stone pillar beneath the ridge beam. One line from hundreds of years ago is erased. The stone I dress long remembers what name was on that erased line.
-honor.npc.mason.face.t: Stone has no face, which is good. When it cracks, the crack shows as it is. People hide cracks with face, but stone cannot. That is why I trust that stone is truth.
+honor.npc.mason.manor.t: The house manor? Its sigil shows a lord who never knelt. But the old hall's wall stone still bears another picture — a kneeling lord. Someone hung the sigil right over it.
+honor.npc.mason.rank.t: The rank ledger was first carved on a stone pillar in the hall. But the topmost line has been scraped away with a chisel. When the evening light comes in low, the shapes of the letters still show through the scratches.
+honor.npc.mason.face.t: Stone has no face, and that's what I like about it. When it cracks, the crack shows. People hide their cracks behind face; stone can't. That's why I trust stone.
+honor.npc.mason.plaza.t: The square's flagstones differ line by line. White stone for the high lines, river stone for the low. But the same rain wears them all down together.
+honor.npc.mason.elder.t: The elder had me polish the manor sigil again this year. I do it every year, but this time he told me to cover the hall wall more thickly.
 
 honor.npc.seamstress.name: Rian the Seamstress
 honor.npc.seamstress.greet: Cloth doesn't ask your name. Whatever line you belong to, it only wraps the body.
@@ -1085,20 +1106,52 @@ honor.npc.seamstress.name.t: They call me Rian. I sew this village's clothes. I 
 honor.npc.seamstress.job.t: I stitch the gold thread of the rite robes and embroider sigils on collars. But for the shame rite I make clothes that cover even the sigil. The face-keeping house dresses its own in clothes that shed face.
 honor.npc.seamstress.face.t: You hold your clothes straight to keep face, but on the day you kneel they all crumple anyway. Face should not be a garment you wear but a heart you keep.
 honor.npc.seamstress.widow.t: I have mended all of Lady Serin's clothes of late — even the clothes of her erased husband. Every time I mend them with care, I feel I am stitching in place of an erased name.
+honor.npc.seamstress.shame.t: The shame-rite garment has no sleeves, so there is nowhere to hide your hands. That is the only garment that keeps pricking my fingers while I sew.
+honor.npc.seamstress.heir.t: Young master Sion sang that song wearing the rite robe I made him. Now the robe is back in my room. They want the sigil unpicked from its collar.
+honor.npc.nurse.name: Nelda the Old Nurse
+honor.npc.nurse.greet: Have you come to see the young master? In the manor these days, we even soften our footsteps.
+honor.npc.nurse.name.t: I'm Nelda. I've raised two generations in this manor. The elder's son, and then his son's son, young master Sion.
+honor.npc.nurse.job.t: I keep the manor's house, and at night I go round putting out the lamps. The lamp in the old hall is always the last. Someone stays there late.
+honor.npc.nurse.elder.t: Every night the elder stands before the sigil in the old hall with a single lamp. I've never asked what he looks at. It isn't my place to ask.
+honor.npc.nurse.heir.t: When the young master was small, there was a song I sang to put him to sleep. I learned it from the elder's own mother. …He only ever fell asleep if I sang it to the very end.
+honor.npc.drummer.name: Gale the Drummer
+honor.npc.drummer.greet: Mind the drumsticks. I'm drying the skins before the rite.
+honor.npc.drummer.name.t: Gale. I beat the drum at the rites. My father did, and his father before him.
+honor.npc.drummer.job.t: Three beats before the herald cries the names, one when the song begins. A drum doesn't care about lines. It sounds the same before anyone's name.
+honor.npc.drummer.plaza.t: The drum score my grandfather left me runs a whole verse longer than the song. They say he always drummed it to the end. Though no one sang along.
+honor.npc.drummer.herald.t: When those leftover beats come, Luka's lips move. No sound comes out. I pretend not to see and just keep drumming.
+honor.npc.matchmaker.name: Misha the Matchmaker
+honor.npc.matchmaker.greet: Oh, a face I've never seen. Without knowing your line, I can't tell who to match you with.
+honor.npc.matchmaker.name.t: I'm Misha. Nearly every marriage in Argon passes through my hands. You can't do this work without knowing the ledger by heart.
+honor.npc.matchmaker.job.t: A match begins in the ledger. One line apart is fine. Two, and the elders' faces go red. Three, and no one even brings it up.
+honor.npc.matchmaker.face.t: Twelve matches broken over face have passed through my hands alone. I have yet to hear that any of those pairs forgot each other.
+honor.npc.matchmaker.heir.t: Three houses were lined up to marry into young master Sion's. After that song, they all quietly backed away. One verse undid three matches.
+honor.npc.proxy.name: Rok the Proxy Duelist
+honor.npc.proxy.greet: If you came to learn the sword, go to the master. I'm the one who keeps other people's face for them, for a fee.
+honor.npc.proxy.name.t: Rok. I'm from a low line, so I never fight under my own name. Always under someone else's.
+honor.npc.proxy.job.t: When a high-line son is insulted, his house hires me. If I win, the house keeps its face; if I lose, my arm breaks. Either way, the son's face never gets a scratch.
+honor.npc.proxy.pride.t: Pride? That belongs to the house that hired me. All I get to keep are the scars.
+honor.npc.proxy.swordmaster.t: The first thing the master taught me was how to kneel. Thanks to that, I get hurt less on the days I lose. I doubt that's what he meant by it.
+honor.npc.mourner.name: Sila the Mourner
+honor.npc.mourner.greet: Have you come to hire a mourner? The great houses of this village do not weep with their own eyes.
+honor.npc.mourner.name.t: I am Sila. For forty years I have wept at other people's funerals. Yet the day I buried my own husband, no tears would come.
+honor.npc.mourner.job.t: When a high house has a death, I weep in their place. The chief mourner must stand straight to keep face. Even the price of weeping depends on your line.
+honor.npc.mourner.shame.t: Weeping as shame — a strange law. When I wail, the family's shoulders slowly sink. I am not weeping for them; they are weeping behind my voice.
+honor.npc.mourner.widow.t: No one hired a mourner for Serin's husband. A man who knelt in the square is owed no weeping. So that night I went alone and wept for nothing.
 
 # --- Argon clues ---
 honor.word.honor.label: Honor
 honor.word.honor.hint: "The name this village gives to face and family rank. But the song's second verse sings that same word another way."
 honor.word.shame.label: Shame
-honor.word.shame.hint: "An insult weighs more than death. So what really happened is hidden, and the kneeling lord was erased."
+honor.word.shame.hint: An insult weighs more than death. So what happened was hidden, and the founder's kneeling was cut from the song.
 honor.word.pride.label: Pride
-honor.word.pride.hint: A heart that seems greater not when raised by the sword but in the moment of kneeling.
+honor.word.pride.hint: What swells when it is won by the sword and your name is called in the square. The widow Serin says her husband's moment of kneeling was greater.
 honor.word.face.label: Face
 honor.word.face.hint: A house's face that cannot be mended once cracked. This village weighs it heavier than life.
 honor.fact.argon.elder.label: Elder Beron
 honor.fact.argon.elder.hint: The elder who has kept the rank for three generations. He holds the ledger that raises and lowers names.
 honor.fact.argon.heir.label: Sion the Heir
-honor.fact.argon.heir.hint: The heir who sang the lost second verse of the song. He cracked the house's face and now stands at risk of erasure.
+honor.fact.argon.heir.hint: The heir who sang the song's lost second verse. He cracked the house's face and now stands to have his name erased.
 honor.fact.argon.herald.label: Luka the Herald
 honor.fact.argon.herald.hint: The herald who cries the ranks. He holds the full copy of the house song, but at rites only the front is sung.
 honor.fact.argon.swordmaster.label: Kaion the Swordmaster
@@ -1114,20 +1167,20 @@ honor.fact.argon.lineage-song.hint: A proud old song. The first verse sings a lo
 honor.fact.argon.family-rank.label: The Family Rank Law
 honor.fact.argon.family-rank.hint: The law by which the line you are born into becomes the order of your name. One erased line remains in the ledger.
 honor.fact.argon.humiliation-rule.label: The Law of Shame
-honor.fact.argon.humiliation-rule.hint: One who breaks face must kneel in apology or be struck from the name. The law that an insult weighs more than death.
+honor.fact.argon.humiliation-rule.hint: Whoever breaks face must kneel and apologize, or be struck from the rolls. The law that an insult weighs more than death.
 honor.fact.argon.kneeling-lord.label: The Kneeling Founder
 honor.fact.argon.kneeling-lord.hint: The first lord who knelt before an enemy's blade to save the village. The descendants sing of it turned into a boast.
 honor.fact.creature.honor-braggart.label: The Braggart Duelist
 honor.fact.creature.honor-braggart.hint: "Evil. One who picks fights over face. Believing that winning is glory, he lunges at anyone who offers a hilt."
 
 # --- Argon deduction and crisis ---
-honor.deduction.honor.sentence: Honor is not a hardened face guarding {1}, but building {3} through {2}
+honor.deduction.honor.sentence: True {3} is not a hardened face kept for show, but what is built by the {2} to speak the {1}
 honor.deduction.honor.hint: "Argon gives face and family rank one name. Hear the song's second verse and the swordmaster out to the end."
-honor.crisis.lineage.text: People of the square gather, ordered by house. Elder Beron raises the rank ledger high and cries out. In a seat meant to keep the house's name sits one who dishonored it. The heir Sion invented a song and insulted the founder. One who breaks face must kneel in apology or be struck from the name. Herald Luka unrolls the ledger, and the people hold their breath. The heir Sion does not kneel — he stands and lifts his head. Now it is your turn to step forward.
+honor.crisis.lineage.text: The villagers gather in the square, ordered by house. Elder Beron raises the rank ledger high and cries out. Here, where the house's name is kept, stands one who has shamed it. The heir Sion made up a song and insulted the founder. Whoever breaks face must kneel and apologize, or be struck from the rolls. Herald Luka opens the ledger, and the people hold their breath. Sion does not kneel — he stands and lifts his head. Now it is your turn to step forward.
 honor.option.truth-lineage.label: Sing the second verse of the house song to the end and reveal the truth
-honor.option.truth-lineage.text: You break the silence and begin to sing the house song. First the first verse, the lord who never knelt that everyone knows. Then the lost second verse, the kneeling lord. The founder did not flee. To save everyone, he knelt before the enemy's blade. The child Arin joins in, and the widow Serin adds her voice. The swordmaster nods, and one by one the people of the square learn the second verse. The elder's ledger is lowered, and Sion does not apologize. Argon learns that honor lies not in hardening one's face, but in keeping the truth and building with courage.
+honor.option.truth-lineage.text: You break the silence and begin to sing the house song. First the verse everyone knows, the lord who never knelt. Then the lost second verse, the kneeling lord. The founder did not flee. To save them all, he knelt before the enemy's blade. The child Arin sings along, and the widow Serin adds her voice. The swordmaster nods, and one by one the people of the square learn the second verse. The elder lowers his ledger, and Sion does not apologize. Argon learns that honor lies not in hardening one's face, but in what the courage to speak the truth builds.
 honor.option.exile-elder.label: Read out the erased line of the rank ledger and cast out the elder
-honor.option.exile-elder.text: You gather the words of recorder Eli and mason Toben and read out the erased line of the rank ledger. The founder's name was on that line originally, and someone erased it to hide the humiliation. Elder Beron bows his head, and the square stirs. The elder is struck from the name and leaves the village. But the rank ledger still remains, and the people begin to form ranks again. Argon shed its false face, but has not yet learned how to build true honor.
+honor.option.exile-elder.text: You gather the words of the recorder Madel and the mason Bastin and read aloud the erased line of the rank ledger. That topmost line once recorded the day the founder knelt to save the village, and the elder's family covered it over for generations to hide the humiliation. Elder Beron bows his head, and the square stirs. The elder is struck from the rolls and leaves the village. But the rank ledger remains, and the people begin to line up again. Argon has shed its false face, but has not yet learned how to build true honor.
 
 # --- Argon abilities and creatures ---
 honor.ability.truth.name: The Sword of Truth

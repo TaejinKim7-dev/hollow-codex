@@ -27,6 +27,12 @@
     fact.argon.heir:
       - text: honor.npc.elder.heir.t
         lie: true
+    fact.argon.manor:
+      - text: honor.npc.elder.manor.t
+    fact.argon.widow:
+      - text: honor.npc.elder.widow.t
+    fact.argon.swordmaster:
+      - text: honor.npc.elder.swordmaster.t
 - id: npc.honor.heir
   map: map.town.honor
   pos: [8, 4]
@@ -53,6 +59,12 @@
     word.courage:
       - text: honor.npc.heir.courage.t
         grants: [word.courage]
+    fact.argon.elder:
+      - text: honor.npc.heir.elder.t
+    fact.argon.widow:
+      - text: honor.npc.heir.widow.t
+    word.face:
+      - text: honor.npc.heir.face.t
 - id: npc.honor.herald
   map: map.town.honor
   pos: [11, 8]
@@ -78,6 +90,10 @@
     fact.argon.elder:
       - text: honor.npc.herald.elder.t
         grants: [fact.argon.humiliation-rule]
+    fact.argon.heir:
+      - text: honor.npc.herald.heir.t
+    fact.argon.plaza:
+      - text: honor.npc.herald.plaza.t
 - id: npc.honor.scribe
   map: map.town.honor
   pos: [17, 3]
@@ -104,6 +120,10 @@
     fact.argon.heir:
       - text: honor.npc.scribe.heir.t
         grants: [fact.argon.heir]
+    fact.argon.elder:
+      - text: honor.npc.scribe.elder.t
+    fact.argon.widow:
+      - text: honor.npc.scribe.widow.t
 - id: npc.honor.swordmaster
   map: map.town.honor
   pos: [5, 13]
@@ -133,6 +153,10 @@
     word.face:
       - text: honor.npc.swordmaster.face.t
         grants: [word.pride]
+    fact.argon.heir:
+      - text: honor.npc.swordmaster.heir.t
+    word.shame:
+      - text: honor.npc.swordmaster.shame.t
 - id: npc.honor.brewer
   map: map.town.honor
   pos: [18, 13]
@@ -153,6 +177,12 @@
     fact.argon.heir:
       - text: honor.npc.brewer.heir.t
         grants: [fact.argon.heir]
+    fact.argon.widow:
+      - text: honor.npc.brewer.widow.t
+    word.face:
+      - text: honor.npc.brewer.face.t
+    fact.argon.elder:
+      - text: honor.npc.brewer.elder.t
 - id: npc.honor.child
   map: map.town.honor
   pos: [9, 8]
@@ -178,6 +208,10 @@
     fact.argon.widow:
       - text: honor.npc.child.widow.t
         grants: [fact.argon.widow]
+    fact.argon.elder:
+      - text: honor.npc.child.elder.t
+    fact.argon.heir:
+      - text: honor.npc.child.heir.t
 - id: npc.honor.widow
   map: map.town.honor
   pos: [20, 9]
@@ -207,6 +241,10 @@
     fact.argon.heir:
       - text: honor.npc.widow.heir.t
         grants: [fact.argon.heir]
+    fact.argon.elder:
+      - text: honor.npc.widow.elder.t
+    fact.argon.plaza:
+      - text: honor.npc.widow.plaza.t
 - id: npc.honor.mason
   map: map.town.honor
   pos: [14, 13]
@@ -232,6 +270,10 @@
         grants: [fact.argon.family-rank]
     word.face:
       - text: honor.npc.mason.face.t
+    fact.argon.plaza:
+      - text: honor.npc.mason.plaza.t
+    fact.argon.elder:
+      - text: honor.npc.mason.elder.t
 - id: npc.honor.seamstress
   map: map.town.honor
   pos: [12, 17]
@@ -255,3 +297,107 @@
     fact.argon.widow:
       - text: honor.npc.seamstress.widow.t
         grants: [fact.argon.widow]
+    word.shame:
+      - text: honor.npc.seamstress.shame.t
+    fact.argon.heir:
+      - text: honor.npc.seamstress.heir.t
+- id: npc.honor.nurse
+  map: map.town.honor
+  pos: [4, 8]
+  schedule:
+    "0": [4, 8]
+    "6": [4, 9]
+    "12": [4, 8]
+    "18": [5, 8]
+  name: honor.npc.nurse.name
+  greet: honor.npc.nurse.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: honor.npc.nurse.name.t
+    job:
+      - text: honor.npc.nurse.job.t
+    fact.argon.elder:
+      - text: honor.npc.nurse.elder.t
+    fact.argon.heir:
+      - text: honor.npc.nurse.heir.t
+- id: npc.honor.drummer
+  map: map.town.honor
+  pos: [15, 10]
+  schedule:
+    "0": [15, 10]
+    "6": [15, 10]
+    "12": [15, 10]
+    "18": [15, 10]
+  name: honor.npc.drummer.name
+  greet: honor.npc.drummer.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: honor.npc.drummer.name.t
+    job:
+      - text: honor.npc.drummer.job.t
+    fact.argon.plaza:
+      - text: honor.npc.drummer.plaza.t
+    fact.argon.herald:
+      - text: honor.npc.drummer.herald.t
+- id: npc.honor.matchmaker
+  map: map.town.honor
+  pos: [24, 4]
+  schedule:
+    "0": [24, 4]
+    "6": [24, 5]
+    "12": [24, 4]
+    "18": [25, 4]
+  name: honor.npc.matchmaker.name
+  greet: honor.npc.matchmaker.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: honor.npc.matchmaker.name.t
+    job:
+      - text: honor.npc.matchmaker.job.t
+    word.face:
+      - text: honor.npc.matchmaker.face.t
+    fact.argon.heir:
+      - text: honor.npc.matchmaker.heir.t
+- id: npc.honor.proxy
+  map: map.town.honor
+  pos: [8, 14]
+  schedule:
+    "0": [8, 14]
+    "6": [8, 14]
+    "12": [8, 14]
+    "18": [8, 14]
+  name: honor.npc.proxy.name
+  greet: honor.npc.proxy.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: honor.npc.proxy.name.t
+    job:
+      - text: honor.npc.proxy.job.t
+    word.pride:
+      - text: honor.npc.proxy.pride.t
+    fact.argon.swordmaster:
+      - text: honor.npc.proxy.swordmaster.t
+- id: npc.honor.mourner
+  map: map.town.honor
+  pos: [24, 14]
+  schedule:
+    "0": [24, 14]
+    "6": [24, 14]
+    "12": [24, 14]
+    "18": [24, 14]
+  name: honor.npc.mourner.name
+  greet: honor.npc.mourner.greet
+  sprite: [town, 84]
+  topics:
+    name:
+      - text: honor.npc.mourner.name.t
+    job:
+      - text: honor.npc.mourner.job.t
+    word.shame:
+      - text: honor.npc.mourner.shame.t
+    fact.argon.widow:
+      - text: honor.npc.mourner.widow.t
