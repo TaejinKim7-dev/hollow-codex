@@ -687,100 +687,151 @@ justice.music.title: Seles's Verdict
 justice.npc.judge.name: Arben the Judge
 justice.npc.judge.greet: This is the court of Seles. Stand in one line. Custom allows no exceptions.
 justice.npc.judge.name.t: I am Arben. For thirty years I have handed down this court's verdicts. In Seles, the custom before a grave comes before the name of the living.
-justice.npc.judge.job.t: My work is keeping the custom and giving the punishment. In the month of mourning no one may sing, and those who break it take the lash. Custom guards the village. That is justice.
-justice.npc.judge.law.t: Law is rooted in custom. Singing during mourning brings the lash. Taking things out before a grave brings exile. Our law has no item called emotion.
-justice.npc.judge.punishment.t: Punishment is the fire that makes people remember custom. Forty lashes — no punishment is ever reduced. That is how Seles calls justice.
+justice.npc.judge.job.t: My work is to keep the custom and hand down punishment. During mourning no one may sing, and whoever does takes the lash. Custom guards the village. That is justice.
+justice.npc.judge.law.t: Law is rooted in custom. Sing during mourning, and it is the lash. Take anything out from before a grave, and it is exile. Our law has no clause for feeling.
+justice.npc.judge.punishment.t: Punishment is the fire that makes people remember custom. Forty lashes, and no sentence is ever lessened. That is what Seles calls justice.
 justice.npc.judge.compassion.t: Compassion is a word unfit for this court. If punishments shrink, everyone will try to shake the custom. I am the one who stops that shaking.
-justice.npc.judge.lullaby.t: A lullaby? Singing, in the month of mourning? That is an offense against custom. The widow Cele cannot escape punishment.
+justice.npc.judge.lullaby.t: A lullaby? Singing, during mourning? That is an insult to custom. The widow Cele will not escape punishment.
 justice.npc.judge.mourner.t: The young man seen at the grave is a thief. The witness has already stood. The punishment is fixed.
+justice.npc.judge.graveyard.t: The clause that no one may stay at the graves after dark, I wrote it first. Thirty years ago, one winter, I carried a man down from a grave where he had kept vigil all night. He was already cold.
+justice.npc.judge.fairness.t: Fairness is the same punishment for everyone. Had it been my own blood, I would have handed down the same verdict.
 
 justice.npc.clerk.name: Leon the Court Clerk
-justice.npc.clerk.greet: Testimony remains in the records. Quietly, and exactly.
-justice.npc.clerk.name.t: I am Leon, the court's clerk. The one who copies the verdicts and charges.
-justice.npc.clerk.job.t: I write the trial records. Today I wrote three sheets of verdicts. All flogging or exile. I once counted pride in writing letters; lately I am afraid of counting punishments in letters.
-justice.npc.clerk.law.t: The law is already written. The mourning prohibition, the punishment table, the no-remission clause. The judge says he only reads the record, but the one who writes it will tell you — it is not that simple.
-justice.npc.clerk.punishment.t: There are three kinds of punishment. Flogging, exile, and kneeling before a grave. Kneeling is the lightest. …The children call it the turning-away, and that nickname troubles me.
-justice.npc.clerk.harsh.t: Look at these records. Last month, six people broke the mourning. All took forty lashes. Even the one who sang, even the one who laid flowers at a grave. My hands shake every time I write those numbers.
-justice.npc.clerk.prisoner.t: …The imprisoned youth. I did not record his name. The judge ordered he be called only 'thief.' The record 'thief' passes judgment before the truth does. That is something I have never seen before.
+justice.npc.clerk.greet: Testimony stays in the record. Speak quietly, and exactly.
+justice.npc.clerk.name.t: I'm Leon, the clerk who takes down testimony and verdicts in this court.
+justice.npc.clerk.job.t: I write the trial records. Three sheets of verdicts again today, every one of them the lash or exile. I used to be proud of my hand. Lately I'm afraid of what it counts.
+justice.npc.clerk.law.t: The law is already written. The mourning prohibitions, the punishment table, the clause that forbids any lessening. The judge says he only reads the record, but take it from the man who writes it — a record is never that simple.
+justice.npc.clerk.punishment.t: There are three punishments. The lash, exile, and kneeling before a grave. Kneeling is the lightest. …The children call it turning your back, since the one kneeling shows his back to the village. That name keeps troubling me.
+justice.npc.clerk.harsh.t: Look at these records. Six people broke the mourning last month. The one who sang, the one who left flowers on a grave, all six took forty lashes. My hand shakes every time I write that number.
+justice.npc.clerk.prisoner.t: …The youth in the cell. I didn't write his name. The judge told me to write only 'thief.' A charge passing judgment before the truth does — in twenty years of clerking, I've never seen it.
+justice.npc.clerk.judge.t: Twenty years I've taken down the judge's words. His voice has never once shaken reading a verdict. …Except in winter. His winter verdicts always come a little faster.
+justice.npc.clerk.truth.t: The truth? My work is to write what I hear, not to sort out the truth from it. …At least, that's what I've always believed.
 
 justice.npc.widow.name: Cele the Widow
 justice.npc.widow.greet: …Did you hear a lullaby? I'm sorry, I mustn't sing during mourning. Each night it slips out of my mouth without my meaning to.
-justice.npc.widow.name.t: I'm Cele. A widow who buried her husband a month ago. The people of Seles call me the singing widow.
-justice.npc.widow.job.t: When my husband was alive I wove thread into cloth. Now… every day I go to the grave, pull up the grass, and touch the stones. That is my work. Mourning is not work — it becomes the body.
-justice.npc.widow.compassion.t: People don't call compassion comfort. Feeling compassion itself is said to break the mourning. So no one reaches for the one who weeps. In the month of mourning, song, comfort, and tears are all forbidden.
-justice.npc.widow.lullaby.t: That song is the lullaby only the two of us sang when my husband was alive. The song you sing to soothe a child, or an adult in fear. Even after death it seems to keep me, so at the grave I sang it after all. …Let the lashes come. The nights I don't sing frighten me more.
-justice.npc.widow.prisoner.t: You speak of my son. He went to his father's grave every night. He found the necklace my husband had hidden somewhere by the grave, and he was polishing it. A witness saw him and called him a thief. My son speaks the truth, but custom comes before truth.
-justice.npc.widow.truth.t: The truth is… on the night my husband died I did not weep. Following the rites, I said nothing. But the me who sings now is more truthful than the me of that night. Because mourning imprisoned the truth.
-justice.npc.widow.mourning-duty.t: They say mourning used to be a time of closing the door for a hundred days. Somewhere along the way mourning became a prohibition. Don't weep, don't sing, only kneel before the grave. No one knows whose punishment made it so.
+justice.npc.widow.name.t: I'm Cele. I buried my husband a month ago. The people of Seles call me the singing widow.
+justice.npc.widow.job.t: While my husband lived, I wove cloth. Now… every day I go to the grave, pull the weeds, and sweep the stone. At night the lullaby comes out of me on its own. Mourning isn't something you do. It settles into your body.
+justice.npc.widow.compassion.t: Here, even holding someone who weeps breaks the mourning. To ease grief is to honor the dead less, they say. So when people see someone crying, they look away.
+justice.npc.widow.lullaby.t: It's the lullaby my husband and I sang to put Iren to sleep. Every mother in Seles knows it, but I sing it with one word changed — grave, instead of window. …Let them flog me. The nights I don't sing frighten me more.
+justice.npc.widow.prisoner.t: You mean my son. He went to his father's grave every night. He found a necklace my husband had hidden for me in the stones by the grave, and he was polishing it, I think. A witness saw him and called him a thief. My son tells the truth, but here custom comes before truth.
+justice.npc.widow.truth.t: The truth is… the night my husband died, I didn't cry. I kept the rites and said nothing. But the woman who sings now is truer than the woman of that night. That night, mourning had the truth locked away.
+justice.npc.widow.mourning-duty.t: They say mourning used to mean closing your door for a hundred days. Somewhere along the way it became a list of prohibitions. Don't cry, don't sing, only kneel before the grave. No one will say how it changed.
+justice.npc.widow.graveyard.t: My husband laid the border stones around his grave himself, when he was young. A mason shapes his own resting place, he said. I laughed at him then.
+justice.npc.widow.mason.t: Duman was my husband's teacher. On the day of the funeral he stood at the stone a long while, holding his chisel. Without a word.
+justice.npc.widow.love.t: Love… my husband wasn't a man of many words. Instead he'd carve a pattern into a small stone and leave it on the doorstep without saying anything.
 
 justice.npc.prisoner.name: Iren the Imprisoned Youth
 justice.npc.prisoner.greet: …I'm sorry. I'm afraid that anything I say will be written down as a thief's words.
-justice.npc.prisoner.name.t: I'm Iren. My mother is Cele, and my father was a stonemason. …When my father died suddenly, only I was left before the grave.
-justice.npc.prisoner.job.t: I learned to work stone in my father's workshop. Now I only sit alone in this cell. Father said that when you touch stone, you see the truth.
-justice.npc.prisoner.truth.t: I told exactly what happened that night at the grave — that I found my mother's necklace, that I was late because I saw an injured fledgling, that I was wiping the necklace at the side of the grave. But the judge made the record 'thief' first.
+justice.npc.prisoner.name.t: I'm Iren. My mother is Cele, and my father was a stonemason. …After he died so suddenly, keeping watch at his grave by night fell to me.
+justice.npc.prisoner.job.t: I learned to work stone in my father's workshop. Now I just sit alone in this cell. Father used to say that if you touch stone, you can see the truth.
+justice.npc.prisoner.truth.t: I told them exactly what happened that night. One of the border stones my father laid around the grave was loose, and under it was my mother's necklace, wrapped in cloth. It had tarnished, so I was polishing it, that's all. But the judge made the record say 'thief' first.
 justice.npc.prisoner.fairness.t: If it were fairness, my father's work and my mother's song would both be laid on the same scale. But Seles's scale gives the punishment first and weighs afterward.
-justice.npc.prisoner.widow.t: My mother sings the lullaby before the grave each night — even after the rites forbade song, until her voice gave out. I grew up hearing that song. It keeps me.
-justice.npc.prisoner.mourner.t: Do you know that mourner? He was my father's friend. He wandered by the grave every night to guard it, and mistook a stranger for a thief. Grief does that to a person, I suppose.
+justice.npc.prisoner.widow.t: My mother sings the lullaby at the grave every night, even after song was forbidden, until her voice gives out. I can hear it through this window. That song keeps me.
+justice.npc.prisoner.mourner.t: That mourner? He was my father's old friend. He paces by the grave every night to guard it, and in the dark he didn't know me and shouted thief. Grief covers a person's eyes, I suppose.
+justice.npc.prisoner.mason.t: Duman taught my father stone, and my father taught me. Last night he slipped a chisel to me through the bars. Idle hands let the heart spoil first, he said.
+justice.npc.prisoner.judge.t: I don't hate the judge. But when he gave the verdict, he never once looked straight at me. That frightened me more.
 
 justice.npc.witness.name: Kain the Witness
-justice.npc.witness.greet: I'd sell my two eyes. I saw that night clearly.
-justice.npc.witness.name.t: I am Kain. The cobbler of this village. These days I stand as a witness in court more and more often.
-justice.npc.witness.job.t: I make shoes, and at night I keep watch over the village. I record anyone who walks toward the grave. …I don't know when that became my work.
+justice.npc.witness.greet: I'd stake both my eyes on it. I saw that night clearly.
+justice.npc.witness.name.t: Kain. I keep the cobbler's shop here. These days I stand witness in court more and more often.
+justice.npc.witness.job.t: I make shoes, and at night I keep watch over the village. Anyone who heads toward the graves, I write down. …I don't know when that became my job.
 justice.npc.witness.law.t: Where there is law, there are witnesses. I only tell what I saw. The sound of singing during mourning, the shadows passing in and out of the graves. The law told me to keep an eye on those.
 justice.npc.witness.punishment.t: Punishment isn't frightening — it is order. After the lashes, everyone remembers the custom. I believe punishment corrects people.
 justice.npc.witness.mourner.t: I saw the youth Iren holding something gleaming at the grave. If he wasn't a thief, what would he be seeking at a grave? …But thinking on it now, it did look like a necklace. If it was his mother's?
+justice.npc.witness.graveyard.t: A few years back, the ring I'd left at my wife's stone went missing. Since then I watch the graveyard every night. When something glints by a grave, the first thing I think is that someone took it.
+justice.npc.witness.truth.t: The truth? I said what I saw. …Lately, resoling boots, I keep thinking that what you see and what happened aren't always the same.
 
 justice.npc.child.name: Rine the Square Child
 justice.npc.child.greet: The adults only ever say be quiet, so I can't sing. But you look okay, don't you?
 justice.npc.child.name.t: I'm Rine. A child born in this village. I know more songs than anyone in Seles.
-justice.npc.child.job.t: My job is remembering songs! In the square, near the graves, I memorize all the sounds the adults make with their throats. …But lately the adults forbid singing, so I'm the keeper of the songs now.
-justice.npc.child.lullaby.t: The widow lady's lullaby? I know it too! The moon lights the grave, and I sing your lullaby. She sings it before the grave every night. The judge mustn't catch her… I like that song.
-justice.npc.child.love.t: Love? That is… singing before a grave. The song my mother sang to put me to sleep and the one the widow sings to her husband are the same song. Singing even when it's forbidden. Is that love?
-justice.npc.child.widow.t: The widow lady is kind — why does she have to be punished? If singing is a crime, I'm a criminal too, and no one punishes me. She gets punished because she's an adult.
+justice.npc.child.job.t: My job is remembering songs! In the square, near the graves, I listen when the grown-ups hum in secret and learn them all. …The grown-ups don't sing anymore, so now all the songs are mine.
+justice.npc.child.lullaby.t: The widow's lullaby? I know it! The moon lights the grave, and I sing your lullaby. It used to be window, not grave. The judge mustn't catch her… but I like that song.
+justice.npc.child.love.t: Love? That's… singing at a grave. The song my mom sings to put me to sleep and the one the widow sings to her husband are the same song. Singing even when they tell you not to. Is that love?
+justice.npc.child.widow.t: The widow is kind, so why does she get punished? If singing is a crime, I'm a criminal too, and nobody punishes me. She keeps getting punished because she's a grown-up.
+justice.npc.child.graveyard.t: At night candles get lit in the graveyard. Grandpa Gorno lights them one by one, even on graves nobody visits. He says those are the most.
+justice.npc.child.punishment.t: The men who got the lash walk funny for a while. So on the road we don't cut in front of them. We walk slowly behind.
 
 justice.npc.priest.name: Serno the Priest
-justice.npc.priest.greet: Peace. This shrine is older than the graves, but I too live by the mourning rules.
-justice.npc.priest.name.t: I am Serno. As the priest who keeps this village's shrine, I am also the one who keeps the old records of mourning.
-justice.npc.priest.job.t: I tend the old records and prepare the words of the mourning rites. …But through the years, the word 'forbidden' has grown in the records. Do not weep, do not sing, do not break the rules.
-justice.npc.priest.mourning-duty.t: The old mourning records had no punishment in them. The month of mourning was a time of closing the door for a hundred days, when neighbors brought meals and sat together talking by night. It was no place for punishment.
-justice.npc.priest.comfort-widow.t: Comfort is not teaching. It is sitting beside the grave and listening to the song being sung. If you hear that song and sit with her, the punishment will lose its power.
-justice.npc.priest.compassion.t: "Compassion is thought to lessen punishment, but truly it is suffering together. The old records say: if justice is the scale, compassion is the hand that holds it."
-justice.npc.priest.harsh.t: Punishment outweighing custom is recent. Forty lashes — in the old days it was not even cause for a cell. That punishment has made people afraid, and now no one weeps before a grave.
+justice.npc.priest.greet: Peace be with you. This shrine stood before the graveyard did, yet I too live by the rules of mourning.
+justice.npc.priest.name.t: I am Serno. I keep this shrine, and the old records of mourning.
+justice.npc.priest.job.t: I tend the old records and prepare the words for the mourning rites. …But some year or other, the word forbidden began to multiply in them. Do not weep, do not sing, do not transgress.
+justice.npc.priest.mourning-duty.t: The old records of mourning held no punishment. For a hundred days the family kept its door shut, neighbors brought meals, and at night they sat together and talked. It was no season for punishment.
+justice.npc.priest.comfort-widow.t: Comfort is not teaching. It is sitting beside the grave and hearing out the song being sung. If you hear that song and sit beside her, the punishment will lose its power.
+justice.npc.priest.compassion.t: Compassion is thought to lessen punishment, but truly it is suffering together. The old records say that if justice is the scale, compassion is the hand that holds it.
+justice.npc.priest.harsh.t: Punishment outweighing custom is a recent thing. Forty lashes for one song — in the old days it wouldn't have earned a scolding. That punishment has frightened people, and now no one weeps at a grave.
+justice.npc.priest.judge.t: Arben and I played at the same stream as boys. I remember the winter he wrote his first clause. …I never did find the words to hold him back that day.
+justice.npc.priest.court.t: I've been called to the court many times, but never once carried the old records with me. No one asked. …I know that's my excuse.
 
 justice.npc.mason.name: Duman the Mason
-justice.npc.mason.greet: I raise gravestones. Stone cannot carve lies, which is why my work survives in this village.
-justice.npc.mason.name.t: They call me Duman. A mason who handles the stone of this village's gravestones and house foundations.
-justice.npc.mason.job.t: I used to carve the names of the living. Now I carve the punishments of the dead. Inscribing 'defied the mourning' on grave markers, I mean. The pace at which the names on stone grow frightens me.
-justice.npc.mason.law.t: Law… should be like stone. It should carry weight, hold fast, and hold no lies. Today's law is not stone but clay. Rain reshapes it.
-justice.npc.mason.harsh.t: Last month I cut six inscriptions. All for singing. Look — since when is there a law that carves gravestones for singers? …This village uses the stones meant for the dead to punish the living.
-justice.npc.mason.comfort-widow.t: There is still hope, though. I carved the gravestone of Cele the widow's husband, and that stone alone still reads 'rests here.' Her son polishes it every day. While the stone endures, the scale will find its balance someday.
+justice.npc.mason.greet: I raise gravestones. Stone won't take a lie, which is why my trade still holds in this village.
+justice.npc.mason.name.t: I'm Duman. I work the stone for this village's gravestones and house foundations.
+justice.npc.mason.job.t: My work was carving the names of the dead. These days I carve one more line beneath them — someone broke the mourning before this grave. The speed at which words pile up on stone frightens me.
+justice.npc.mason.law.t: Law… ought to be like stone. It should carry weight, hold fast, and hold no lies. Today's law isn't stone but mud. Rain reshapes it.
+justice.npc.mason.harsh.t: Last month I carved that line six times. For one who sang, one who left flowers, one who stayed past dark. A law that cuts the living's faults into the stones of the dead. …This village punishes the living with stones meant for the dead.
+justice.npc.mason.comfort-widow.t: There is still hope. The stone of Cele's husband still reads only 'rests here.' The order came to carve another line beneath it, but I've been telling them my chisel has gone dull.
+justice.npc.mason.graveyard.t: The border stones on Cele's family plot, Cele's husband laid them as a young man. As I taught him, he left one stone that could be lifted out. Masons tend to keep something small in such a place.
+justice.npc.mason.punishment.t: Punishment… set the chisel wrong and the stone cracks. Once cracked, it can't be filled. The judge doesn't seem to know people are the same.
 
 justice.npc.scribe.name: Bela the Scribe
-justice.npc.scribe.greet: I write the verdicts. …Between documents and words, I can no longer tell which is the truth.
-justice.npc.scribe.name.t: I am Bela, the scribe who copies this village's verdicts and mourning records.
-justice.npc.scribe.job.t: Every day I sort the punishment records. Yesterday, forty lashes for one song. Today, one more for merely lingering before a grave. The numbers are honest — it is the law that sets them that isn't.
-justice.npc.scribe.truth.t: I was taught that records hold the truth. But now the records make the truth. Write 'thief' and he becomes a thief; write 'mourner' and it changes. The same night, the same grave, the same youth. One word divides a person.
-justice.npc.scribe.prisoner.t: I read the youth's record again. The witness's words, the hour of the night, the place of the grave. Nowhere was theft written. Only that he had been before the grave. That single line brought him to this cell.
-justice.npc.scribe.harsh.t: The numbers on the punishment table grow every year. Lashes for defying mourning, exile for the graves. As the numbers stack, the villagers grow quieter, and I grow more afraid of writing numbers.
+justice.npc.scribe.greet: I keep the punishment table in the archive. …Between the documents and the spoken word, I can no longer tell which is true.
+justice.npc.scribe.name.t: I'm Bela, the scribe who copies the court's verdicts and the mourning records into the archive.
+justice.npc.scribe.job.t: Every day I sort the punishment records. Yesterday, forty lashes for one song. Today, a kneeling for nothing more than lingering at a grave after dark. The numbers are honest. The law that sets them is not.
+justice.npc.scribe.truth.t: I was taught that records hold the truth. Now the records make it. Write 'thief' and he is a thief; write 'mourner' and he is a mourner. The same night, the same grave, the same youth, and one word decides which man he is.
+justice.npc.scribe.prisoner.t: I read the youth's record again. The charge reads 'thief,' but nowhere in the body does it say he stole anything. Only that he was at a grave by night, holding something in his hand.
+justice.npc.scribe.harsh.t: The numbers on the punishment table grow every year. Lashes for breaking mourning, exile for taking anything from a grave. The more they pile up, the quieter the village grows, and the more afraid I am of writing them.
+justice.npc.scribe.fairness.t: The punishment table has no column for names. Anyone at all, the same row, the same number. They call that fairness, but sometimes that blank column frightens me.
+justice.npc.scribe.court.t: When a verdict comes up from the court, I copy it again upstairs. Leon's hand is always straight, but lately the last stroke of each letter trembles a little.
 
 justice.npc.gravedigger.name: Gorno the Gravedigger
-justice.npc.gravedigger.greet: This is where the dead live. For the living — be quieter, and more truthful.
-justice.npc.gravedigger.name.t: They call me Gorno. I dig and guard the earth of this graveyard.
-justice.npc.gravedigger.job.t: I dig graves, light candles, and walk my rounds at night. …But lately the living come by night more often. Afraid of punishment, they've gone as quiet as the dead.
-justice.npc.gravedigger.mourner.t: That mourner… he weeps before a grave every night. When he sees a stranger he blocks them, calling thief. Grief can blind a person that way. He is not wicked — he is someone swallowed in mourning.
-justice.npc.gravedigger.compassion.t: "I learned compassion like this: when I go to dig a grave and see someone keening, it is I who should smile instead. Even with the dead lying there, it is the living who need comfort."
-justice.npc.gravedigger.lullaby.t: That lullaby… I hear it every night. A sound that carries between the graves. The judge forbade it, but as I see it, that song harms no one. Rather, it keeps me.
+justice.npc.gravedigger.greet: This is where the dead live. The living should come quietly, and without lies.
+justice.npc.gravedigger.name.t: They call me Gorno. I dig and keep the ground of this graveyard.
+justice.npc.gravedigger.job.t: I dig graves, light candles, and walk my rounds at night. …But lately the living come by night more often. Afraid of punishment, they come as soundless as the dead.
+justice.npc.gravedigger.mourner.t: That mourner… he weeps at a grave every night, and when he sees a stranger he blocks the way, crying thief. Grief blinds a person like that. He isn't wicked. He's someone drowning in mourning.
+justice.npc.gravedigger.compassion.t: I learned compassion like this. When I go to dig a grave and find someone keening, I'm the one who should smile first. The dead just lie there and need nothing. It's the living who need comfort.
+justice.npc.gravedigger.lullaby.t: That lullaby… I hear it every night, carrying between the graves. The judge forbade it, but as I see it that song harms no one. If anything, it keeps me company.
 justice.npc.gravedigger.prisoner.t: Iren is no thief. I saw him every night — kneeling before the grave, polishing the stone, listening to the lullaby. That necklace was what the dead man left his wife, and the son was finding it to return to his mother.
+justice.npc.gravedigger.judge.t: The judge comes too. Before sundown, to an old grave at the north end. Leaves no flowers, doesn't kneel. Just stands there a long while, then goes.
+justice.npc.gravedigger.law.t: The law says leave the graves at sundown, but night is when the dead are loneliest. That's why I light the candles.
+justice.npc.silversmith.name: Niel the Silversmith
+justice.npc.silversmith.greet: If you've a clasp to mend, leave it with me. These days everyone just keeps their jewelry in a drawer, so my hands are idle.
+justice.npc.silversmith.name.t: I'm Niel. By the square I solder silver clasps and mend broken chains.
+justice.npc.silversmith.job.t: I mend small things. Last spring a stonemason brought in a pendant he'd cut from stone himself and asked me to fit it with a silver clasp. When I asked who it was for, he only smiled.
+justice.npc.silversmith.love.t: Love? People pick the costly thing, but what lasts is what's made by hand. That mason's pendant had more care in the stone than in the silver.
+justice.npc.silversmith.witness.t: Kain suspects anything that glitters. Ever since his late wife's ring went missing. Even when he brings me a clasp to fix, he always asks where I got the silver.
+justice.npc.old-neighbor.name: Orma of the Graveyard Wall
+justice.npc.old-neighbor.greet: I'm an old woman who doesn't sleep. At night I sit by the window and look out toward the graves.
+justice.npc.old-neighbor.name.t: They call me Orma. I've lived beside this graveyard wall for sixty years.
+justice.npc.old-neighbor.job.t: I don't sleep, so I keep the night. Every sound from the graves reaches this window. Who weeps, who sits a long while before going.
+justice.npc.old-neighbor.witness.t: What Kain saw, I heard. That night, the sound from the graves was not digging. It was something rubbing on stone, and a very low hum.
+justice.npc.old-neighbor.graveyard.t: In the old days, for a hundred days the candles stood in rows in that graveyard every night. Arben came too as a boy, holding his elder brother's hand and a candle. …An old woman talks too long.
+justice.npc.scale-keeper.name: Haim the Scale Inspector
+justice.npc.scale-keeper.greet: I'm Haim, inspector of the market scales. Before anything else, I check that the needle stands in the middle with the pans empty.
+justice.npc.scale-keeper.name.t: I'm Haim. Once a month I inspect the scales in the Seles market.
+justice.npc.scale-keeper.job.t: I set the weights on, and I look at the empty pans too. A crooked scale fools the merchant before it fools the buyer. He never knows the needle is off, and believes all his life that he sold honestly.
+justice.npc.scale-keeper.fairness.t: A fair scale holds no grudge against the heavier side. It only tells the weight. I think verdicts should be the same, but scales are all I look at.
+justice.npc.scale-keeper.law.t: There's a painting of a scale on the courthouse wall. But one of its pans has had a weight painted in it from the start. No one finds that strange.
+justice.npc.keener.name: Eda the Keener
+justice.npc.keener.greet: I used to keen for the dead. Now I scrub the shrine floor. It's work that makes no sound.
+justice.npc.keener.name.t: I'm Eda. I was a keener, the one who wept aloud at funerals in place of the family.
+justice.npc.keener.job.t: Weeping for those who couldn't was my work. Since keening was forbidden, my voice has nowhere to go. Sometimes in the empty shrine I just open my mouth. Nothing comes out.
+justice.npc.keener.punishment.t: When it was first forbidden, I knelt too. Before a grave, without a sound. That's when I learned it. Stop the sound, and the weeping just goes down your throat.
+justice.npc.keener.graveyard.t: Keening was never for the dead. It was so the ones left behind wouldn't weep alone. In the graveyard now, everyone weeps alone.
+justice.npc.lash-bearer.name: Bor the Lash-Bearer
+justice.npc.lash-bearer.greet: …I work for the court. Don't look at my hands.
+justice.npc.lash-bearer.name.t: Bor. When a verdict comes down, I'm the one who lifts the lash.
+justice.npc.lash-bearer.job.t: Counting forty is my job. I have to count out loud. I count slow. Count fast and the one being struck has no room to breathe.
+justice.npc.lash-bearer.punishment.t: Last month there were six. Three of them I carried on my back when they were little. The law doesn't ask about things like that.
+justice.npc.lash-bearer.judge.t: The judge always comes to the flogging and stands to the end. Never looks away. Says the one who gives the sentence has to watch it. …That much I respect.
 
 # --- Seles clues ---
 justice.word.fairness.label: Fairness
 justice.word.fairness.hint: Laying everyone on the same scale. Seles's law gives the punishment first and weighs afterward.
 justice.word.law.label: Law
-justice.word.law.hint: The mourning prohibitions and punishment clauses rooted in custom. There is no item called emotion.
+justice.word.law.hint: The mourning prohibitions and punishment clauses rooted in custom. There is no clause for feeling.
 justice.word.punishment.label: Punishment
 justice.word.punishment.hint: Flogging, exile, kneeling before a grave. The fire that makes custom remembered.
 justice.word.compassion.label: Compassion
-justice.word.compassion.hint: What people forbade in place of comfort. Mourning punishes compassion.
+justice.word.compassion.hint: In Seles, even holding someone who weeps counts as breaking the mourning.
 justice.fact.seles.judge.label: Arben the Judge
 justice.fact.seles.judge.hint: Seles's judge, who has passed verdicts for thirty years. He believes custom is justice.
 justice.fact.seles.widow.label: Cele the Widow
@@ -790,30 +841,30 @@ justice.fact.seles.prisoner.hint: Cele's son. He found his mother's necklace at 
 justice.fact.seles.witness.label: Kain the Witness
 justice.fact.seles.witness.hint: The witness who saw something gleaming at the grave. He tells only what he saw and leaves the judgment to the law.
 justice.fact.seles.mason.label: Duman the Mason
-justice.fact.seles.mason.hint: One who works the stone of gravestones and foundations. Now he carves inscriptions for those who defied mourning.
+justice.fact.seles.mason.hint: One who works the stone of gravestones and foundations. Lately, whenever someone breaks mourning, he carves that line on the dead's stone.
 justice.fact.seles.court.label: The Court of Seles
 justice.fact.seles.court.hint: Where punishment comes before record. Verdicts pile up three sheets a day.
 justice.fact.seles.graveyard.label: The Graveyard
 justice.fact.seles.graveyard.hint: Where a lullaby carries every night. The living, afraid of punishment, have gone as quiet as the dead.
 justice.fact.seles.mourning-lullaby.label: The Mourner's Lullaby
 justice.fact.seles.mourning-lullaby.hint: The moon lights the grave, and I sing your lullaby. The song Cele kept for her husband.
-justice.fact.seles.mourning-duty.label: The Lost Month of Mourning
-justice.fact.seles.mourning-duty.hint: The hundred days of the old records. Not punishment — a time when neighbors brought meals and sat together.
+justice.fact.seles.mourning-duty.label: The Lost Hundred Days
+justice.fact.seles.mourning-duty.hint: The hundred days of mourning in the old records. Not punishment, but a time when neighbors brought meals and sat together.
 justice.fact.seles.harsh-punishment.label: The Harsh Punishment
-justice.fact.seles.harsh-punishment.hint: Forty lashes for one song. Exile for entering the graves. The table's numbers grow every year.
+justice.fact.seles.harsh-punishment.hint: Forty lashes for one song, exile for taking anything from a grave. The table's numbers grow every year.
 justice.fact.seles.comfort-widow.label: The Hand of Comfort
 justice.fact.seles.comfort-widow.hint: "Sitting by the grave and hearing the song out. When comfort stands before punishment, the scale finds its balance."
 justice.fact.creature.justice-mourner.label: The Grief-Stricken Mourner
 justice.fact.creature.justice-mourner.hint: Not evil. It is grief that makes him mistake a stranger for a thief. He is a person swallowed in mourning.
 
 # --- Seles deduction and crisis ---
-justice.deduction.justice.sentence: Justice is not blocking {2} in the name of {1}, but ruling through {3}
-justice.deduction.justice.hint: "The judge's law keeps custom with punishment. What Seles lost is the balance of the scale. Look in the graveside song and the court records for what should set the scale and what should rule."
+justice.deduction.justice.sentence: Justice is not punishment blind to {1}, but a scale of {2} that weighs {3} as well
+justice.deduction.justice.hint: What did the judge's punishments close their eyes to? What was Seles's scale meant to be called, and what was missing from its pans? Look to the youth in the cell and the song by the graves.
 justice.crisis.mourning.text: Moonlight runs cold before the courthouse. The widow Cele, who sang during mourning, and the youth Iren, who found a necklace at the grave, are dragged before the judge. The judge unfurls the verdict. The song broke custom; the grave yielded a thief. The punishment is fixed. The crowd holds its breath. A child bows her head, and the gravedigger looks toward the graves. Now it is your turn to step forward.
 justice.option.comfort-widow.label: Sing the lullaby to show the truth and offer comfort
-justice.option.comfort-widow.text: Before the courthouse, you sing the lullaby in a trembling voice. The moon lights the grave, and I sing your lullaby. The crowd stops breathing. The witness bows his head, and the priest takes out the old records and reads them. The month of mourning was not punishment but a time of being together. After a long silence, the judge folds the verdict. For the first time, Seles's scale takes up truth and love and finds its balance. Comfort is handed down instead of punishment.
+justice.option.comfort-widow.text: Before the courthouse, you sing the lullaby in a trembling voice. The moon lights the grave, and I sing your lullaby. The crowd stops breathing. The witness bows his head, and the priest takes out the old records and reads. The hundred days of mourning were never punishment, but a time of sitting together. After a long silence, the judge folds the verdict. For the first time, Seles's scale takes up truth and love and finds its balance. Comfort is handed down instead of punishment.
 justice.option.strict-law.label: Read out the punishment clauses and rule by the law
-justice.option.strict-law.text: You unfold the punishment table and read by the law. Song — forty lashes; entering the graves — exile. The judge nods, and the flogging is carried out. The people grow quieter, but somewhere a child's lullaby continues, low. Seles kept its custom. Yet no one stands before the graves anymore.
+justice.option.strict-law.text: You unfold the punishment table and read by the law. Song, forty lashes. Taking from a grave, exile. The judge nods, and the flogging is carried out. The people grow quieter, but somewhere a child's lullaby goes on, low. Seles kept its custom. Yet no one stands before the graves anymore.
 
 # --- Seles abilities and creatures ---
 justice.ability.eye.name: The Eye of Justice

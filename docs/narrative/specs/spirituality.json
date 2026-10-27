@@ -13,8 +13,8 @@
   },
   {
    "key": "spirituality.npc.monk.job.t",
-   "ko": "마음의 질서를 지킨다. 명상당에는 절차를 아는 자만 앉을 수 있고, 그것을 증명하는 것이 면허다. 면허 없이 앉는 것은 배교다.",
-   "en": "I keep the order of the mind. Only those who know the procedure may sit in the hall, and the license is the proof. To sit without one is apostasy."
+   "ko": "마음의 질서를 지킨다. 선방에는 절차를 아는 자만 앉을 수 있고, 그것을 증명하는 것이 면허다. 면허 없이 앉는 것은 배교다.",
+   "en": "I keep the order of the mind. Only those who know the procedure may sit in the meditation room, and the license is the proof. To sit without one is apostasy."
   },
   {
    "key": "spirituality.npc.monk.ritual.t",
@@ -63,8 +63,8 @@
   },
   {
    "key": "spirituality.npc.scribe.library.t",
-   "ko": "이 서고가 명상당의 심장이다. 맨 첫 장부의 첫 줄에는 이름 없이 이렇게만 적혀 있다. 순례자, 해 뜰 녘부터 질 녘까지 앉았다 감.",
-   "en": "This archive is the heart of the hall. The first line of the very first ledger bears no name, only this. A pilgrim, sat from sunrise to sunset, then left."
+   "ko": "이 서고가 명상당의 심장이다. 가장 오래된 장부는 종이가 얇아져서, 등잔에 비추면 삼백 년 동안 적힌 이름들이 한꺼번에 비친다.",
+   "en": "This archive is the heart of the hall. The oldest ledgers have worn so thin that, held to a lamp, three hundred years of names show through at once."
   },
   {
    "key": "spirituality.npc.healer.greet",
@@ -213,18 +213,18 @@
   },
   {
    "key": "spirituality.npc.gatekeeper.greet",
-   "ko": "명상당 문지기일세. 면허 없이는 그 문을 지나지 못하네. ……물론 이 마을에 문이 하나뿐인 건 아니지만.",
-   "en": "I keep the hall's door. Without a license you don't pass it. …Though this village has more than one door, mind you."
+   "ko": "선방 문지기일세. 면허 없이는 그 문을 지나지 못하네. ……물론 이 마을에 문이 하나뿐인 건 아니지만.",
+   "en": "I keep the meditation room's door. Without a license you don't pass it. …Though this village has more than one door, mind you."
   },
   {
    "key": "spirituality.npc.gatekeeper.name.t",
-   "ko": "구르라 부르게. 마을 어귀와 명상당 문을 지키는 수문장일세. 문은 둘인데, 면허로 막는 건 하나뿐이지.",
-   "en": "Call me Gur. Warden of the village gate and the hall's door. Two doors, and only one of them barred by license."
+   "ko": "구르라 부르게. 마을 어귀와 선방 문을 지키는 수문장일세. 문은 둘인데, 면허로 막는 건 하나뿐이지.",
+   "en": "Call me Gur. Warden of the village gate and the meditation room's door. Two doors, and only one of them barred by license."
   },
   {
    "key": "spirituality.npc.gatekeeper.job.t",
-   "ko": "명상당 문은 면허로 막고, 마을 어귀는 열어 두지. 그런데 요즘 남동쪽 담 모퉁이에 가짜 스님이 숨어 있다가, 지나는 사람을 붙들고 명상을 판다네. 면허도 없이 말일세. 그자가 정말 위험하네.",
-   "en": "The hall door I bar by license; the village gate I leave open. But lately a false monk lurks at the southeast corner of the wall, waylaying passersby to sell them meditation. Without a license, even. That one is the real danger."
+   "ko": "선방 문은 면허로 막고, 마을 어귀는 열어 두지. 그런데 요즘 남동쪽 담 모퉁이에 가짜 스님이 숨어 있다가, 지나는 사람을 붙들고 명상을 판다네. 면허도 없이 말일세. 그자가 정말 위험하네.",
+   "en": "The meditation room's door I bar by license; the village gate I leave open. But lately a false monk lurks at the southeast corner of the wall, waylaying passersby to sell them meditation. Without a license, even. That one is the real danger."
   },
   {
    "key": "spirituality.npc.gatekeeper.fake-monk.t",
@@ -238,8 +238,8 @@
   },
   {
    "key": "spirituality.npc.widow.greet",
-   "ko": "저는 면허가 없어서 명상당에 들어가지 못해요. 그래서 뜰 건너 문이 보이는 이 자리에서, 그이가 가르쳐 준 대로 숨을 세요.",
-   "en": "I have no license, so I can't enter the hall. So I sit here where I can see its door across the courtyard, and count my breath the way he taught me."
+   "ko": "저는 면허가 없어서 선방에 들지 못해요. 그래서 뜰 건너 문이 보이는 이 자리에서, 그이가 가르쳐 준 대로 숨을 세요.",
+   "en": "I have no license, so I can't enter the meditation room. So I sit here where I can see its door across the courtyard, and count my breath the way he taught me."
   },
   {
    "key": "spirituality.npc.widow.name.t",
@@ -313,8 +313,8 @@
   },
   {
    "key": "spirituality.crisis.license.text",
-   "ko": "명상당 앞뜰에 마을 사람들이 모였다. 주지 다루가 면허 장부를 펼치며 외친다. 이 마을의 명상은 자격 있는 자의 것이며, 면허 없이 명상당에 드는 것은 배교라고. 오늘은 견습 이안이 면허 시험을 치르는 날이지만, 그는 시험비를 내지 못해 문 앞에 서 있다. 서기관 세온은 장부를 펼치고, 치유사 루아는 손을 움켜쥐고, 은자 펠라는 서고 그늘에서 이 모든 것을 듣고 있다. 아이 소미가 숨을 죽이고, 정원지기 호레가 고개를 숙인다. 이제 그대가 나설 차례다.",
-   "en": "Villagers gather in the hall's courtyard. Abbot Daru opens the license ledger and proclaims that meditation in this village belongs to the qualified, and that entering the hall without a license is apostasy. Today the novice Ian is to sit his license exam, but he cannot pay the fee and stands outside the door. Clerk Seon opens the ledger, healer Rua clenches her hands, and the hermit Pella listens to it all from the archive's shadow. The child Somi holds her breath, and gardener Hore bows his head. Now it is your turn to step forward."
+   "ko": "명상당 앞뜰에 마을 사람들이 모였다. 주지 다루가 면허 장부를 펼치며 외친다. 이 마을의 명상은 자격 있는 자의 것이며, 면허 없이 선방에 드는 것은 배교라고. 오늘은 견습 이안이 면허 시험을 치르는 날이지만, 그는 시험비를 내지 못해 문 앞에 서 있다. 서기관 세온은 장부를 펼치고, 치유사 루아는 손을 움켜쥐고, 은자 펠라는 서고 그늘에서 이 모든 것을 듣고 있다. 아이 소미가 숨을 죽이고, 정원지기 호레가 고개를 숙인다. 이제 그대가 나설 차례다.",
+   "en": "Villagers gather in the hall's courtyard. Abbot Daru opens the license ledger and proclaims that meditation in this village belongs to the qualified, and that entering the meditation room without a license is apostasy. Today the novice Ian is to sit his license exam, but he cannot pay the fee and stands outside the door. Clerk Seon opens the ledger, healer Rua clenches her hands, and the hermit Pella listens to it all from the archive's shadow. The child Somi holds her breath, and gardener Hore bows his head. Now it is your turn to step forward."
   },
   {
    "key": "spirituality.option.open-meditation.label",
@@ -323,13 +323,23 @@
   },
   {
    "key": "spirituality.option.open-meditation.text",
-   "ko": "그대가 앞으로 나서서, 은자에게 배운 노래를 소리 없이 부른다. 진실을 듣고, 사랑으로 품고, 용기로 내딛는 숨. 견습 이안이 숨을 보태고, 과부 이레가 그 숨을 잇는다. 정원지기 호레가 뜰의 약초를 문 앞에 놓고, 치유사 루아가 숨을 고른다. 서기관 세온이 맨 첫 장부를 꺼내, 이름 없는 순례자가 해 뜰 녘부터 질 녘까지 앉았다 간 줄을 읽는다. 참된 명상은 면허에 있지 않고, 진실과 사랑과 용기가 함께 숨 쉬는 데 있었다. 주지 다루가 장부를 내려놓고, 그의 입술이 소리 없이 움직인다. 명상당의 문이 처음으로 면허 없이 열린다. 그날부터 엘리아는 누구든 조용히 앉을 수 있는 마을이 된다.",
-   "en": "You step forward and sing, without sound, the song you learned from the hermit. A breath that hears the truth, holds it with love, and steps forward with courage. The novice Ian adds his breath, and the widow Ire carries it on. Gardener Hore lays herbs from the courtyard before the door, and healer Rua steadies her breath. Clerk Seon takes out the very first ledger and reads the line about a nameless pilgrim who sat from sunrise to sunset and left. True meditation was never in the license but in truth, love, and courage breathing together. Abbot Daru sets down the ledger, and his lips move without a sound. For the first time, the hall's door opens without a license. From that day, Elia is a village where anyone may sit in quiet."
+   "ko": "그대가 앞으로 나서서, 은자에게 배운 노래를 소리 없이 부른다. 진실을 듣고, 사랑으로 품고, 용기로 내딛는 숨. 견습 이안이 숨을 보태고, 과부 이레가 그 숨을 잇는다. 정원지기 호레가 뜰의 약초를 문 앞에 놓고, 치유사 루아가 숨을 고른다. 서기관 세온이 맨 첫 장부를 꺼내, 이름 없는 순례자가 해 뜰 녘부터 질 녘까지 앉았다 간 줄을 읽는다. 참된 명상은 면허에 있지 않고, 진실과 사랑과 용기가 함께 숨 쉬는 데 있었다. 주지 다루가 장부를 내려놓고, 그의 입술이 소리 없이 움직인다. 선방 문이 처음으로 면허 없이 열린다. 그날부터 엘리아는 누구든 조용히 앉을 수 있는 마을이 된다.",
+   "en": "You step forward and sing, without sound, the song you learned from the hermit. A breath that hears the truth, holds it with love, and steps forward with courage. The novice Ian adds his breath, and the widow Ire carries it on. Gardener Hore lays herbs from the courtyard before the door, and healer Rua steadies her breath. Clerk Seon takes out the very first ledger and reads the line about a nameless pilgrim who sat from sunrise to sunset and left. True meditation was never in the license but in truth, love, and courage breathing together. Abbot Daru sets down the ledger, and his lips move without a sound. For the first time, the meditation room's door opens without a license. From that day, Elia is a village where anyone may sit in quiet."
   },
   {
    "key": "spirituality.option.exile-monk.text",
    "ko": "그대가 서기관 세온의 장부를 꺼내 낭독한다. 삼 년 사이 면허값은 세 배가 되었고, 면허 없는 자의 기도는 모두 금지되었다. 새 장부에는 이름과 서명과 갱신일만 남고, 그들이 올린 기도는 한 줄도 적혀 있지 않다. 주지 다루는 장부를 덮고 말없이 마을을 떠난다. 명상당의 문은 열리지만, 사람들은 여전히 노래를 두려워한다. 엘리아는 면허를 벗었지만, 아직 참된 영성을 세우는 법은 배우지 못했다.",
    "en": "You take clerk Seon's ledger and read it aloud. In three years the license fee tripled, and every prayer of the unlicensed was forbidden. The new ledgers hold only names, signatures, and renewal dates — not a single line of the prayers people offered. Abbot Daru closes the ledger and leaves the village without a word. The hall's door opens, but the people still fear the song. Elia has shed its licenses, but has not yet learned how to build true spirituality."
+  },
+  {
+   "key": "spirituality.npc.novice.name.t",
+   "ko": "이안이라고 해요. 삼 년째 견습으로 지내고 있어요. 면허를 받으면 드디어 안쪽 선방에 앉을 수 있어요.",
+   "en": "My name is Ian. I've been a novice for three years. Once I get my license, I can finally sit in the inner meditation room."
+  },
+  {
+   "key": "spirituality.fact.elia.novice.hint",
+   "ko": "삼 년째 면허 시험을 준비하는 견습. 명상당 앞방 바닥은 닦지만, 안쪽 선방에는 들어서지 못한다.",
+   "en": "A novice who has been preparing for the license exam for three years. He scrubs the floor of the hall's front room but cannot step into the meditation room."
   }
  ],
  "add_topics": [
@@ -470,8 +480,8 @@
    "npc": "npc.spirituality.gatekeeper",
    "topic": "fact.elia.novice",
    "key": "spirituality.npc.gatekeeper.novice.t",
-   "ko": "견습 아이가 밤마다 명상당 문고리를 한 번씩 쥐어 보고 가더군. 잠긴 걸 알면서도. 나는 못 본 척하네.",
-   "en": "Every night the novice comes and grips the hall's door handle once before he goes. Knowing full well it's locked. I pretend not to see."
+   "ko": "견습 아이가 밤마다 선방 문고리를 한 번씩 쥐어 보고 가더군. 잠긴 걸 알면서도. 나는 못 본 척하네.",
+   "en": "Every night the novice comes and grips the meditation room's door handle once before he goes. Knowing full well it's locked. I pretend not to see."
   },
   {
    "npc": "npc.spirituality.widow",
@@ -510,21 +520,21 @@
     "en": "I'm Omi. I've cooked for the monks in this kitchen for over thirty years. I know who leaves rice in the bowl, and when."
    },
    "job_t": {
-    "ko": "새벽밥 짓고, 저녁 죽 쑤고, 그 사이엔 숭늉을 끓여요. 삼 년 전 겨울 새벽엔 숭늉 한 솥이 다 나갔지요. 주지 스님이 젊은 스님 하나를 제 가사로 싸안고 와서는, 해가 중천에 뜰 때까지 그 곁에 앉아 있었어요.",
-    "en": "I cook the dawn rice and the evening porridge, and in between I boil rice water. One winter dawn three years ago, a whole pot of it went. The abbot came in carrying a young monk wrapped in his own robe, and sat beside him until the sun was high."
+    "ko": "새벽밥 짓고, 저녁 죽 쑤고, 그 사이엔 숭늉을 끓여요. 주지 스님은 삼 년째 밥을 반만 드세요. 배가 부르면 밤에 졸린다고요.",
+    "en": "I cook the dawn rice and the evening porridge, and in between I boil rice water. For three years the abbot has eaten only half his rice. A full stomach makes him drowsy at night, he says."
    },
    "topics": [
     {
      "topic": "fact.elia.monk",
      "suffix": "monk.t",
-     "ko": "그 일 있고 봄부터 장부에 면허 번호가 붙었어요. 주지 스님은 그 뒤로 밥을 반만 드세요. 밤에 졸면 안 된다고요.",
-     "en": "That spring, license numbers started appearing in the ledger. Since then the abbot only eats half his rice. Says he mustn't doze at night."
+     "ko": "삼 년 전 겨울 새벽, 주지 스님이 젊은 스님 하나를 제 가사로 싸안고 들어왔어요. 숭늉 한 솥이 다 나가도록 해가 중천에 뜰 때까지 그 곁에 앉아 있었지요. 그 봄부터 장부에 면허 번호가 붙었어요.",
+     "en": "One winter dawn three years ago, the abbot came in carrying a young monk wrapped in his own robe. He sat beside him until the sun was high, and a whole pot of rice water was gone. That spring, license numbers started appearing in the ledger."
     },
     {
      "topic": "fact.elia.novice",
      "suffix": "novice.t",
-     "ko": "이안이요? 그 아이는 밥을 남긴 적이 없어요. 그 젊은 스님도 그랬는데, 선방에 홀로 앉아 있던 사흘은 한술도 안 떴지요. 몸을 추스르고는 엘리아를 떠났어요.",
-     "en": "Ian? That boy has never left a grain. Neither had that young monk — until the three days he sat alone in the meditation room without touching a spoonful. Once he'd recovered, he left Elia."
+     "ko": "이안이요? 그 아이는 밥을 남긴 적이 없어요. 예전에 그런 젊은 스님이 하나 더 있었는데, 선방에 홀로 앉은 사흘 동안 한술도 안 뜨더니 끝내 일어나지 못했지요. 몸을 추스르고는 엘리아를 떠났어요.",
+     "en": "Ian? That boy has never left a grain. There was another young monk like him once, who sat alone in the meditation room for three days without touching a spoonful, until he could not get up. Once he'd recovered, he left Elia."
     }
    ]
   },
@@ -676,8 +686,8 @@
     "en": "Mion the License Holder"
    },
    "greet": {
-    "ko": "일곱 번째 갱신이 다음 달이오. 이번에도 도장은 받을 거요. 한 번도 절차를 어긴 적이 없으니.",
-    "en": "My seventh renewal is next month. I'll get the stamp again. I have never once broken procedure."
+    "ko": "열한 번째 갱신이 다음 달이오. 이번에도 도장은 받을 거요. 한 번도 절차를 어긴 적이 없으니.",
+    "en": "My eleventh renewal is next month. I'll get the stamp again. I have never once broken procedure."
    },
    "name_t": {
     "ko": "미온이오. 면허 번호 열하나. 엘리아에서 면허를 가장 먼저 받은 열두 사람 가운데 하나요.",

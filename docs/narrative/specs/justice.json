@@ -132,16 +132,6 @@
    "en": "I make shoes, and at night I keep watch over the village. Anyone who heads toward the graves, I write down. …I don't know when that became my job."
   },
   {
-   "key": "justice.npc.child.name",
-   "ko": "광장 아이 솔리",
-   "en": "Soli the Square Child"
-  },
-  {
-   "key": "justice.npc.child.name.t",
-   "ko": "나는 솔리야. 셀레스에서 태어났어. 셀레스에서 노래를 제일 많이 아는 건 나야!",
-   "en": "I'm Soli. I was born in Seles. Nobody in Seles knows more songs than me!"
-  },
-  {
    "key": "justice.npc.child.job.t",
    "ko": "내 일은 노래 외우기! 광장에서, 무덤 근처에서, 어른들이 몰래 흥얼거리는 걸 듣고 다 외워. ……요즘은 어른들이 노래를 안 하니까, 노래는 이제 다 내 거야.",
    "en": "My job is remembering songs! In the square, near the graves, I listen when the grown-ups hum in secret and learn them all. …The grown-ups don't sing anymore, so now all the songs are mine."
@@ -343,7 +333,7 @@
    "topic": "fact.seles.graveyard",
    "key": "justice.npc.judge.graveyard.t",
    "ko": "해가 지면 묘지에 머물지 말라는 조항은 내가 처음 쓴 것이다. 삼십 년 전 겨울, 무덤 앞에서 밤을 새운 사람을 내 손으로 업고 내려왔다. 그는 이미 차가웠다.",
-   "en": "The clause that no one may stay at the graves after dark — I wrote it first. Thirty years ago, one winter, I carried a man down from a grave he had kept vigil at all night. He was already cold."
+   "en": "The clause that no one may stay at the graves after dark, I wrote it first. Thirty years ago, one winter, I carried a man down from a grave where he had kept vigil all night. He was already cold."
   },
   {
    "npc": "npc.justice.judge",
@@ -371,7 +361,7 @@
    "topic": "fact.seles.graveyard",
    "key": "justice.npc.widow.graveyard.t",
    "ko": "남편 무덤 둘레돌은 그이가 젊을 때 손수 쌓은 거예요. 석공은 제 자리를 제 손으로 다듬는 거라면서요. 그때는 웃었는데.",
-   "en": "The border stones around my husband's grave, he laid them himself when he was young. A mason shapes his own resting place, he said. I laughed at him then."
+   "en": "My husband laid the border stones around his grave himself, when he was young. A mason shapes his own resting place, he said. I laughed at him then."
   },
   {
    "npc": "npc.justice.widow",
@@ -413,7 +403,7 @@
    "topic": "word.truth",
    "key": "justice.npc.witness.truth.t",
    "ko": "진실? 난 본 걸 말했어. ……본 거랑 있었던 일이 꼭 같은 건 아니라는 걸, 요즘 밑창을 갈다가 자꾸 생각해.",
-   "en": "The truth? I said what I saw. …That what you see and what happened aren't always the same thing, I keep thinking about lately, while I'm resoling boots."
+   "en": "The truth? I said what I saw. …Lately, resoling boots, I keep thinking that what you see and what happened aren't always the same."
   },
   {
    "npc": "npc.justice.child",
@@ -447,8 +437,8 @@
    "npc": "npc.justice.mason",
    "topic": "fact.seles.graveyard",
    "key": "justice.npc.mason.graveyard.t",
-   "ko": "그 집 둘레돌은 셀레 남편이 젊을 적에 쌓은 걸세. 내가 가르친 대로, 돌 하나는 빼낼 수 있게 남겨 두었지. 석공들은 거기에 작은 것을 넣어 두곤 하네.",
-   "en": "The border stones on that plot, Cele's husband laid them as a young man. As I taught him, he left one stone that could be lifted out. Masons tend to keep something small in such a place."
+   "ko": "셀레네 묘 둘레돌은 셀레 남편이 젊을 적에 쌓은 걸세. 내가 가르친 대로, 돌 하나는 빼낼 수 있게 남겨 두었지. 석공들은 거기에 작은 것을 넣어 두곤 하네.",
+   "en": "The border stones on Cele's family plot, Cele's husband laid them as a young man. As I taught him, he left one stone that could be lifted out. Masons tend to keep something small in such a place."
   },
   {
    "npc": "npc.justice.mason",
@@ -547,21 +537,21 @@
     "en": "They call me Orma. I've lived beside this graveyard wall for sixty years."
    },
    "job_t": {
-    "ko": "할 일이 없으니 밤을 지키오. 그 밤에도 깨어 있었소. 무덤 쪽에서 들린 건 삽질 소리가 아니라, 돌을 문지르는 소리와 아주 낮은 콧노래였다오.",
-    "en": "Having nothing to do, I keep the night. I was awake that night too. What I heard from the graves wasn't digging. It was the sound of something rubbing on stone, and a very low hum."
+    "ko": "잠이 없으니 밤을 지키오. 묘지 쪽 소리는 이 창으로 다 들린다오. 누가 우는지, 누가 오래 앉았다 가는지.",
+    "en": "I don't sleep, so I keep the night. Every sound from the graves reaches this window. Who weeps, who sits a long while before going."
    },
    "topics": [
     {
-     "topic": "fact.seles.graveyard",
-     "suffix": "graveyard.t",
-     "ko": "옛날에는 백 일 동안 저 묘지에 밤마다 초가 줄지어 섰다오. 노래도 들렸지. 지금은 고르노가 켜는 초 몇 자루뿐이오.",
-     "en": "In the old days, for a hundred days the candles stood in rows in that graveyard every night. You could hear singing too. Now there are only the few that Gorno lights."
+     "topic": "fact.seles.witness",
+     "suffix": "witness.t",
+     "ko": "카인이 본 것을 나는 들었소. 그 밤 무덤 쪽에서 난 건 삽질 소리가 아니었다오. 돌을 문지르는 소리, 그리고 아주 낮은 콧노래였소.",
+     "en": "What Kain saw, I heard. That night, the sound from the graves was not digging. It was something rubbing on stone, and a very low hum."
     },
     {
-     "topic": "fact.seles.judge",
-     "suffix": "judge.t",
-     "ko": "아르벤이 어릴 적 제 형 손을 잡고 묘지에 오던 게 생각나오. 그 형이 그 겨울에…… 아니오, 늙은이 말이 길었소.",
-     "en": "I remember Arben as a boy, coming to the graveyard holding his elder brother's hand. That brother, the winter he… no. An old woman talks too long."
+     "topic": "fact.seles.graveyard",
+     "suffix": "graveyard.t",
+     "ko": "옛날에는 백 일 동안 저 묘지에 밤마다 초가 줄지어 섰다오. 아르벤도 어릴 적엔 제 형 손을 잡고 초를 들고 왔지. ……늙은이 말이 길었소.",
+     "en": "In the old days, for a hundred days the candles stood in rows in that graveyard every night. Arben came too as a boy, holding his elder brother's hand and a candle. …An old woman talks too long."
     }
    ]
   },
