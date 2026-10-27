@@ -1,6 +1,6 @@
 # English strings (optional localization, spec §8).
 # Key set must match content/strings/ko.yaml exactly (checked by compileContent).
-npc.default.unknown: "…Hmm, I'm afraid I don't know that."
+npc.default.unknown: "…(Shakes their head.)"
 topic.name: Name
 topic.job: Job
 
@@ -193,7 +193,7 @@ word.silence.hint: What the scribe kept to the very end. It was the price of era
 word.confession.label: Confession
 word.confession.hint: Not speaking a sin, but laying bare what was left unsaid.
 word.trial.label: Trial
-word.trial.hint: In five days, the trial of the apprentice scribe will open.
+word.trial.hint: In five days, the scribe's trial will open.
 fact.kalas.nia.label: Nia the Scribe
 fact.kalas.nia.hint: The scribe who wrote down people's confessions at the Office. Now she waits on her own confession.
 fact.kalas.tobi.label: Tobi, Nia's Brother
