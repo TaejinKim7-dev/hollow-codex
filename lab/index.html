@@ -57,6 +57,7 @@
     <section id="bgm"><h2>배경음악</h2><div id="bgmList" class="small">불러오는 중…</div>
       <div class="row" style="margin-top:6px"><span class="small">음량</span><input id="vol" type="range" min="0" max="1" step="0.05" value="0.5"></div></section>
     <section><h2>효과음 후보 <span class="small">(숫자 = 후보, 고른 것이 걷기·게임에 쓰임)</span></h2><div id="sfx">불러오는 중…</div></section>
+    <section id="el"><h2>ElevenLabs 효과음 <span class="small">(비상업 전용 · 저장소에 안 들어감)</span></h2><div id="elList" class="small">불러오는 중…</div></section>
     <section><h2>선택 결과</h2><button id="copy">선택 결과 복사</button> <span class="small" id="copied"></span></section>
   </div>
 </main>
@@ -151,6 +152,24 @@ async function loadBgm() {
     d.append(row, info); box.appendChild(d);
   }
 }
+async function loadEl() {
+  const box = document.getElementById("elList"); let man;
+  try { man = await json(PRIV.replace("preview/", "elevenlabs/") + "sfx/manifest.json"); } catch { box.textContent = "ElevenLabs 효과음 없음 (assets-private/elevenlabs/sfx/manifest.json)"; return; }
+  box.innerHTML = ""; const row = document.createElement("div"); row.className = "row";
+  let loopSrc = null, loopId = null;
+  for (const [id, m] of Object.entries(man)) {
+    const b = document.createElement("button"); b.textContent = id + (m.loop ? " ⟲" : ""); b.title = m.prompt + " (" + m.duration_s + "s)";
+    b.onclick = async () => {
+      if (!actx) return;
+      if (m.loop) { if (loopSrc) { loopSrc.stop(); loopSrc = null; document.querySelectorAll("#elList button.on").forEach(x => x.classList.remove("on")); if (loopId === id) { loopId = null; return; } }
+        try { const bf = await buf(PRIV.replace("preview/", "elevenlabs/") + "sfx/" + m.file); const s = actx.createBufferSource(), g = actx.createGain(); g.gain.value = 0.6; s.buffer = bf; s.loop = true; s.connect(g).connect(master); s.start(); loopSrc = s; loopId = id; b.classList.add("on"); } catch (e) { err(e.message); }
+      } else { play(PRIV.replace("preview/", "elevenlabs/") + "sfx/" + m.file); b.classList.add("on"); setTimeout(() => b.classList.remove("on"), 400); choice["el." + id] = "tried"; save(); }
+    };
+    row.appendChild(b);
+  }
+  box.appendChild(row); const n = document.createElement("div"); n.className = "small"; n.style.marginTop = "6px"; n.textContent = "⟲ = 반복 분위기음(다시 누르면 정지). 마우스를 올리면 프롬프트가 보입니다."; box.appendChild(n);
+}
+loadEl();
 document.getElementById("vol").oninput = e => { if (bgmEl) bgmEl.volume = +e.target.value; };
 
 document.getElementById("copy").onclick = async () => { const s = JSON.stringify(choice, null, 1); try { await navigator.clipboard.writeText(s); document.getElementById("copied").textContent = "복사됨 — 채팅에 붙여 넣어 주세요"; } catch { document.getElementById("copied").textContent = s; } };
