@@ -1,0 +1,44 @@
+# 칼라스 한 판 — 만들 캐릭터 목록과 진행 (R-1b)
+
+작성: 2026-10-27 · 근거: `content/towns/kalas/npcs.yaml`(11명), `content/strings/ko.yaml` 인물 대사, `content/creatures.yaml`, `docs/research/art-production-plan.md` §1·§2·§5
+공통 설정(이방인 B와 같음): `create_character` standard · 4방향 · `size=32`(48×48 캔버스; 아이는 26→40×40) · `view=low top-down` · `proportions=stylized`(아이 chibi) · `outline=selective outline` · `shading=detailed shading` · `detail=high detail` · 프롬프트 꼬리 `medieval fantasy, soft muted palette with warm lantern light, light from top-left`. 원작·작가 이름은 쓰지 않는다.
+
+PixelLab 횟수: 체험 0, **하루 보너스 20회**(2026-10-27 `get_balance`). 대기 4방향 1회, 걷기는 방향당 1회(템플릿) 또는 3회(skeleton-v3).
+
+## 이미 있는 것
+| 인물 | 파일 |
+|---|---|
+| 이방인(플레이어) | `characters/stranger-B-navy` (4방향 + 걷기) |
+| 엘린(동료) | `characters/elin-B` (4방향 + 걷기) |
+
+## 이번에 만들 것 (칼라스 인물 9 + 크리처 1)
+| # | 인물 | 이야기 속 모습 | 그림 지시(요약) | 횟수 | 상태 |
+|---|---|---|---|---|---|
+| 1 | 고발관장 `npc.kalas.warden` | 사건 당일 "사무소에서 두루마리를 정리했다"고 말하는, 엄하지만 악인이 아닌 관장 | 짙은 남청 관복+호박 테두리, 두루마리, 흰머리 | 1 | ✅ `warden-kalas` |
+| 2 | 필경사 니아 `npc.kalas.nia` | 등불을 깼다고 자백한 사람, 체념한 얼굴, 잉크 묻은 손 | 오트밀 린넨 블라우스+회녹 앞치마, 잉크병·깃펜, 밝은 갈색 낮은 쪽머리 | 1 | ✅ `nia-scribe` |
+| 3 | 토비 `npc.kalas.tobi` | 니아의 어린 동생, 거짓말 못 하는 누나를 걱정, 연을 든 아이 | 큰 갈색 튜닉, 모래색 머리, 종이 연 | 1 | ✅ `tobi-kalas` |
+| 4 | 성문 고백관 `npc.kalas.confessor` | 성문에서 고백을 받아 적는 관리, 지친 말투 | 낡은 회청 외투, 고백 장부, 수염 | 1 | ✅ `confessor-kalas` |
+| 5 | 열석 문지기 `npc.field.gatekeeper` | 삼백 년 전 순례자를 아는 노인, 돌을 지킴 | 이끼 낀 회갈색 망토, 지팡이, 흰 수염 | 1 | ✅ `gatekeeper-field` |
+| 6 | 사냥꾼 `npc.field.hunter` | 늑대와 함께 사는 사람, "쉿" | 풀빛 가죽 조끼, 활, 헝클어진 머리 | 1 | ✅ `hunter-field` |
+| 7 | 직조공 미라 `npc.kalas.mira` | 8년째 실을 다루는 사람, "믿는 것은 실뿐" | 앞치마, 실타래, 걷어붙인 소매, 중년 | 1 | ✅ `mira-weaver` |
+| 8 | 마을 아이 `npc.kalas.child` | 광장 등불 노래를 부르는 아이 | 밝은 겉옷, 작은 등불, 활발한 얼굴 | 1 | ✅ `child-kalas` |
+| 9 | 여관 주인 `npc.kalas.innkeeper` | 평범하다는 말도 의심받는 마을의 주인 | 앞치마, 접시, 둥근 체형 | 1 | ✅ `innkeeper-kalas` |
+| 10 | 늙은 사서 `npc.kalas.librarian` | 지하 서고의 사서, "만질 수 있는 책이 이것뿐" | 등 굽은 회색 로브, 안경, 책 | 1 | ✅ `librarian-kalas` |
+| 11 | 늑대 `creature.wolf` | 굶주렸을 뿐 악하지 않음 — 측은하게 | `body_type=quadruped, template=dog`, 마른 갈비뼈, 꼬리 내림. 걷기(템플릿) 4방향 | 1+4 | ✅ `wolf-hungry` (걷기 4방향 포함) |
+
+→ 대기 4방향 10명 = 10회, 늑대 5회. **합계 15회** + 물건(고백석+깨진 등불, 집, 나무) 약 3~4회 = 하루 보너스 20회에 맞음.
+
+## 걷기는 어떻게
+- NPC는 일과표(schedule)로 움직이므로 결국 4방향 걷기가 필요하다. 하지만 하루 20회로는 걷기까지 못 만든다 → **오늘은 대기 4방향만**, 걷기는 내일 이후 보너스로 이어서 한다(소품 든 인물은 skeleton-v3 3회/방향, 소품 없는 인물은 템플릿 1회/방향).
+- 걷기를 만들기 전까지 게임 화면은 대기 그림 4방향 + 위아래 흔들림으로 대신할 수 있다(S 설계에서 정함).
+
+## 다음 날들
+2차: 칼라스 건물(고발청·여관·도서관)과 서고 안, 도굴꾼, 열석 고리. 3차 이후: `art-production-plan.md` §4.
+
+## 2026-10-27 결과
+- 인물 10명(대기 4방향) + 늑대(4방향 + 걷기 4×4) + 물건 3(고백석+깨진 등불 `objects/kalas/confession-stone.png`, 집 `house.png`, 나무 `tree-oak.png`) 생성. 하루 보너스 20회 중 19회 사용(남은 1회). 장면 목업 `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png`.
+- 문제 1: 사서 첫 판은 북쪽이 정면으로 나와 폐기·재생성(v2 사용).
+- 문제 2(🧑 판정): 집이 모서리가 보이는 비스듬한 시점이라 캐릭터·타일과 시점이 다름.
+- 문제 3: 고발관장·고백관이 둘 다 흰머리+남색이라 비슷함. 고백관 외투 색 변경 후보(`recolor.mjs`, 생성 0회).
+- 문제 4: 문지기(짙은 녹색)가 올리브 풀 위에서 어둡다 — 밝은 이끼색으로 색 변경 후보.
+- NPC 걷기는 아직 없음(일과표로 움직이므로 필요): 소품 든 인물은 skeleton-v3(3회/방향), 아니면 템플릿(1회/방향).

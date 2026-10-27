@@ -12,8 +12,8 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | ID | 할 일 | 산출물 | 상태 |
 |---|---|---|---|
 | R-2b | 배경음악 12곡 후보(들판·마을 8·서고·전투·엔딩). CC0/CC-BY/CC-BY-SA만, 곡마다 원문 라이선스 인용 → `assets-private/preview/bgm/` + `bgm.json` → 실험실 청취 | `docs/research/bgm-candidates.md` | 다음 (2026-10-19 조사 에이전트는 결과 없이 중단) |
-| R-1b | 칼라스 나머지 그림: 늑대·니아·고발관장·고백석+깨진 등불·칼라스 집(≈5회) | `assets/sprites/` | PixelLab 체험 0 → 하루 보너스(+5/일) |
-| R-1c | 칼라스 광장 목업 → 🧑 화풍 판정 | `docs/screenshots/` | R-1b 뒤 |
+| R-1b | 칼라스 인물 10명+늑대(걷기 포함)+고백석+집+나무 **완료**(2026-10-27). 남은: 🧑 집 시점 판정, 고백관·문지기 색 조정, NPC 걷기 | `docs/research/art-kalas-cast.md`, 목업 `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png` | 완료(판정 대기) |
+| R-1c | 칼라스 광장 목업 → 🧑 화풍 판정 | `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png` | 🧑 확인 대기 |
 | 🧑 | 확인 대기: 그림 제작 계획 §6(`art-production-plan.md`), 아트 방향 §5(`art-direction.md`), 강·다리 목업, 엘린 걷기 영상 | 문서 의견란 | 대기 |
 | S | 그래픽·소리 재설계(층 렌더링, Wang 자동 타일, 걷기, 소리 id→파일, 배포 용량) | `docs/superpowers/specs/` | R 끝난 뒤 |
 | 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |

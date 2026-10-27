@@ -478,3 +478,9 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - **끊긴 것**: 배경음악 후보 조사 에이전트를 사용자 지시로 중단(결과 파일 없음) → R-2b를 처음부터 다시. 조건은 `docs/research/audio-assets.md` §1·§2, 곡 슬롯 12개는 status.md R-2b.
 - **PixelLab 남은 횟수 0**. 다음 날 보너스로 R-1b(늑대·니아·고발관장·고백석·집).
 - ⚠ 브랜치 사고(2026-10-19 발견): Codex가 같은 작업 폴더에서 `todo-1-walk-review`를 checkout(eee3c0c "claim walking demo review")한 뒤, Claude가 커밋 171c223..e97a1d7(12개)을 그 브랜치에 만들고 `git push origin main`만 실행 → 원격 main은 751fe91에 머묾. Claude가 그동안 "push함"이라고 보고한 것은 사실과 달랐다. 조치: main이 그 브랜치의 조상임을 확인하고 `git push origin todo-1-walk-review:main`으로 fast-forward. 작업 폴더의 checkout 브랜치는 Codex 작업 보호를 위해 그대로 둠. 재발 방지 규칙은 status.md "같은 폴더 여러 에이전트".
+
+## 2026-10-27 R-1b 칼라스 인물 (Claude)
+- 하루 보너스 20회 중 19회: 인물 10(고발관장·니아·토비·고백관·문지기·사냥꾼·미라·마을 아이·여관 주인·사서)=대기 4방향, 늑대 4방향+걷기, 물건 3. 목록·결과: `docs/research/art-kalas-cast.md`, 프롬프트 `assets/generated/prompts/2026-10-27-R1b-kalas-cast.md`, 장부 기록함.
+- 아이(토비·마을 아이)는 size 26 → 캔버스 40×40으로 나옴 → `scripts/visual/pad-canvas.mjs 48 41`로 48×48에 발 끝 맞춤.
+- 교훈: 프롬프트에 "안경", "책을 가슴에 안음" 같은 정면 전용 특징을 쓰면 북쪽(뒷모습)이 정면으로 나온다(사서 v1 폐기). 뒷모습이 자연스러운 소품(망토, 팔에 낀 책)을 쓴다.
+- 브랜치: 작업 폴더가 `todo-1-walk-review`(Codex 작업 브랜치) 상태여서 푸시는 `git push origin HEAD:main` 후 `git ls-remote`로 확인.
