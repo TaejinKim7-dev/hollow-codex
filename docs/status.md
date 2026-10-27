@@ -14,9 +14,11 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 |---|---|---|---|
 | R-2a2 | 효과음 추가 14상황(게임 이벤트 중 소리 없는 것: 맵 이동·전투 시작·방어·설득·도주·승리·패배·동료 합류/이탈·열석 열림·능력·위기·경전 쓰기·에필로그) 후보 53개를 실험실에 올림 → 🧑 청취·선택 → `assets/audio/sfx/` | 실험실 `/hollow-codex/lab/` | 후보 준비됨(2026-10-27), 선택 대기 |
 | R-2a3 | ElevenLabs 효과음 35개(늑대·열석·전투·이벤트·분위기 루프) 생성 완료, 🧑 실험실에서 청취·판정 | `docs/research/elevenlabs-sfx.md` | 완료(청취 대기) |
-| R-2b | 배경음악 12곡 후보(들판·마을 8·서고·전투·엔딩). CC0/CC-BY/CC-BY-SA만, 곡마다 원문 라이선스 인용 → `assets-private/preview/bgm/` + `bgm.json` → 실험실 청취 | `docs/research/bgm-candidates.md` | 다음 (2026-10-19 조사 에이전트는 결과 없이 중단) |
+| R-2b | 배경음악: 길 A(공개 음원)·B(MIDI+CC0 샘플)·C(ElevenLabs 유료) 정리 → `docs/research/music-plan.md`. 후보 조사 에이전트 재실행 중(2026-10-27). 배경음악 12곡 후보(들판·마을 8·서고·전투·엔딩). CC0/CC-BY/CC-BY-SA만, 곡마다 원문 라이선스 인용 → `assets-private/preview/bgm/` + `bgm.json` → 실험실 청취 | `docs/research/bgm-candidates.md` | 다음 (2026-10-19 조사 에이전트는 결과 없이 중단) |
 | R-1b | 칼라스 인물 10명+늑대(걷기 포함)+고백석+집+나무 **완료**(2026-10-27). 남은: 🧑 집 시점 판정, 고백관·문지기 색 조정, NPC 걷기 | `docs/research/art-kalas-cast.md`, 목업 `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png` | 완료(판정 대기) |
+| R-1d | 칼라스 **맵 그림**(풀↔돌바닥, 서고 바닥·벽, 외벽·성문·건물, 계단, 나무 변형 ≈15회, 하루 +5회로 3일) → `docs/research/art-kalas-maps.md`. 열석 고리 물건은 완성 | `assets/sprites/` | 다음(하루 보너스 대기) |
 | R-1c | 칼라스 광장 목업 → 🧑 화풍 판정 | `docs/screenshots/2026-10-27-R1b-kalas-cast-scene.png` | 🧑 확인 대기 |
+| 🧑 | 문지기 색: 원본(짙은 녹색) vs `gatekeeper-field-grey`(청회색, 풀 위에서 또렷) 선택. 집·열석 고리의 비스듬한 시점을 그대로 쓸지(`art-kalas-maps.md` 끝) 판정 | 채팅 | 대기 |
 | 🧑 | 확인 대기: 그림 제작 계획 §6(`art-production-plan.md`), 아트 방향 §5(`art-direction.md`), 강·다리 목업, 엘린 걷기 영상 | 문서 의견란 | 대기 |
 | S | 그래픽·소리 재설계(층 렌더링, Wang 자동 타일, 걷기, 소리 id→파일, 배포 용량) | `docs/superpowers/specs/` | R 끝난 뒤 |
 | 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |
