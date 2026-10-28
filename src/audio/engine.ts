@@ -50,7 +50,11 @@ export function createEngine(deps: EngineDeps): AudioEngine {
     t.gain.gain.setValueAtTime(t.gain.gain.value, c.currentTime)
     t.gain.gain.linearRampToValueAtTime(0, end)
     t.src.stop(end)
-    t.src.onended = (): void => { t.src.disconnect(); t.gain.disconnect() }
+    t.src.onended = (): void => {
+      t.src.disconnect()
+      t.gain.disconnect()
+      if (wanted !== t.key) musicBuffers.delete(t.key)   // 디코드한 곡은 약 37MB: 다시 필요하지 않으면 놓아 준다
+    }
   }
 
   const startMusic = (c: AudioContext, key: string): void => {
@@ -72,7 +76,11 @@ export function createEngine(deps: EngineDeps): AudioEngine {
 
   return {
     unlock() {
-      if (ctx !== null) return
+      if (ctx !== null) {
+        // 백그라운드·전화 등으로 멈춘 컨텍스트는 다음 사용자 입력에서 되살린다.
+        if (ctx.state !== "running") ctx.resume().catch(() => {})
+        return
+      }
       try {
         ctx = deps.createContext()
       } catch (error) {
@@ -80,6 +88,7 @@ export function createEngine(deps: EngineDeps): AudioEngine {
         ctx = null
       }
       if (ctx === null) return
+      if (ctx.state !== "running") ctx.resume().catch(() => {})
       sfxMaster = ctx.createGain()
       sfxMaster.gain.value = volumes.sfx
       sfxMaster.connect(ctx.destination)

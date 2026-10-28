@@ -10,7 +10,7 @@ import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
 import type { UiAction } from "./input/commands.ts"
 import { loadMapAssets, mapAssetPrefixes, spriteUrls } from "./render/assets.ts"
 import { drawFrame } from "./render/canvas.ts"
-import { createMotion } from "./render/motion.ts"
+import { createMotion, resyncMotion } from "./render/motion.ts"
 import type { Motion } from "./render/motion.ts"
 import { frameViewport, tileAtPointer } from "./render/viewport.ts"
 import { createIndexedDbSlotStore } from "./save/slot-store.ts"
@@ -267,6 +267,9 @@ export function apply(cmd: Command): readonly GameEvent[] {
   for (const e of events) log.log("event", e.type)
   if (cmd.type === "endTalk") dialogueLog = []
   handleEvents(events)
+  // `moved`·`mapChanged` 없이 위치나 지도가 바뀐 경우(열석 고리 이동, 도망, 패배)도 걷기 상태와 그림을 맞춘다.
+  motion = resyncMotion(motion, next.player.pos, next.player.facing)
+  if (next.mapId !== s.mapId) ensureMapAssets(next.mapId)
   maybeAutoSave(next, events)
   scheduleFrame()
   return events
@@ -438,7 +441,7 @@ export async function boot(): Promise<void> {
       y: (event.clientY - rect.top) * (canvas.height / rect.height)
     }
     // 전투 중에는 전투 격자 뷰포트로(그려진 칸과 같은 칸), 탐험 중에는 지도 뷰포트로 타일을 구한다.
-    const cmd = pointerToCommand(tileAtPointer(st, content, { w: canvas.width, h: canvas.height }, px), st, content)
+    const cmd = pointerToCommand(tileAtPointer(st, content, { w: canvas.width, h: canvas.height }, px, motion.sample(performance.now())), st, content)
     if (cmd === null) return
     dispatch(cmd)
   })

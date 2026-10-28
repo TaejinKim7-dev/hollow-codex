@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { createMotion, WALK_MS } from "../../../src/render/motion.ts"
+import { createMotion, resyncMotion, WALK_MS } from "../../../src/render/motion.ts"
 
 describe("RenderMotion", () => {
   it("starts at rest on its cell", () => {
@@ -32,5 +32,20 @@ describe("RenderMotion", () => {
     const a = createMotion({ x: 0, y: 0 }, "s")
     a.onMoved({ x: 1, y: 0 }, "e", 0)
     expect(a.sample(0).x).toBe(0)
+  })
+})
+
+describe("resyncMotion (position changed without a moved event: ring travel, fleeing, defeat)", () => {
+  it("target() is where the motion ends up", () => {
+    expect(createMotion({ x: 5, y: 5 }, "s").onMoved({ x: 6, y: 5 }, "e", 0).target()).toEqual({ x: 6, y: 5 })
+  })
+  it("keeps the motion when it already ends at the player's cell", () => {
+    const m = createMotion({ x: 5, y: 5 }, "s").onMoved({ x: 6, y: 5 }, "e", 0)
+    expect(resyncMotion(m, { x: 6, y: 5 }, "e")).toBe(m)
+  })
+  it("teleports (no interpolation) when the player's cell differs from where the motion ends", () => {
+    const m = createMotion({ x: 5, y: 5 }, "s").onMoved({ x: 15, y: 8 }, "e", 0)
+    const r = resyncMotion(m, { x: 14, y: 8 }, "w")
+    expect(r.sample(10)).toEqual({ x: 14, y: 8, moving: false, frame: 0, dir: "w" })
   })
 })

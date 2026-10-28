@@ -6,7 +6,7 @@ import { overlayTiles, type OverlayTile } from "./autotile.ts"
 import { sortDrawables, type Drawable } from "./layers.ts"
 import type { MotionFrame } from "./motion.ts"
 import { characterImageKey, charDrawRect, idleBobPx, legacyDraw } from "./sprites.ts"
-import { frameViewport, TILE, type Viewport } from "./viewport.ts"
+import { cameraShiftPx, frameViewport, TILE, type Viewport } from "./viewport.ts"
 
 /** 화면에 그릴 때 쓰는 이미지 묶음. sheets = 옛 16px 시트, images = 지도별로 불러온 새 그림(키는 assets/sprites 아래 경로). */
 export interface RenderResources {
@@ -112,7 +112,8 @@ function drawMap(ctx: CanvasRenderingContext2D, res: RenderResources, content: G
   if (!map) return
   const size = TILE * vp.scale
   ctx.save()
-  ctx.translate(Math.round((state.player.pos.x - motion.x) * size), Math.round((state.player.pos.y - motion.y) * size))
+  const shift = cameraShiftPx(vp, { w: map.rows[0]?.length ?? 0, h: map.rows.length }, motion)
+  ctx.translate(shift.x, shift.y)
   drawGround(ctx, res, content, map, vp, size)
 
   const items: Item[] = []

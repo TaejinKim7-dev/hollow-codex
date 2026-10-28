@@ -18,6 +18,8 @@ export interface Motion {
   /** 보간 없이 즉시 이동(지도 이동 등). */
   onTeleport(to: Pos, dir: Dir): Motion
   sample(nowMs: number): MotionFrame
+  /** 이 보간이 끝나는 칸. */
+  target(): Pos
 }
 
 interface Step { readonly from: Pos; readonly to: Pos; readonly startMs: number; readonly dir: Dir }
@@ -26,6 +28,7 @@ function make(rest: Pos, dir: Dir, step: Step | null): Motion {
   return {
     onMoved: (to, d, nowMs) => make(step === null ? rest : step.to, d, { from: step === null ? rest : step.to, to, startMs: nowMs, dir: d }),
     onTeleport: (to, d) => make(to, d, null),
+    target: () => (step === null ? rest : step.to),
     sample(nowMs) {
       if (step === null) return { x: rest.x, y: rest.y, moving: false, frame: 0, dir }
       const t = Math.max(0, nowMs - step.startMs)
@@ -44,4 +47,10 @@ function make(rest: Pos, dir: Dir, step: Step | null): Motion {
 
 export function createMotion(start: Pos, dir: Dir): Motion {
   return make(start, dir, null)
+}
+
+/** `moved` 이벤트 없이 플레이어 칸이 바뀐 경우(열석 고리 이동, 도망, 패배)를 맞춘다. 이미 그 칸에서 끝나면 그대로, 아니면 보간 없이 옮긴다. */
+export function resyncMotion(motion: Motion, playerPos: Pos, dir: Dir): Motion {
+  const t = motion.target()
+  return t.x === playerPos.x && t.y === playerPos.y ? motion : motion.onTeleport(playerPos, dir)
 }

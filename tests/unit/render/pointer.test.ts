@@ -29,4 +29,14 @@ describe("tileAtPointer", () => {
     const size = TILE * vp.scale
     expect(tileAtPointer(s, c, canvas, { x: vp.offsetPx.x + 4 * size + 1, y: vp.offsetPx.y + 1 * size + 1 })).toEqual({ x: 4, y: 1 })
   })
+
+  it("during a step a tap maps to the cell that is drawn there (the world is shifted by the camera slide)", () => {
+    const s = at(2, 2)
+    const vp = computeViewport(canvas, 1, { w: 6, h: 5 }, s.player.pos)
+    // map is narrower than the view → no slide: same answer with or without motion
+    const motion = { x: 1.4, y: 2 }
+    const size = TILE * vp.scale
+    const px = { x: vp.offsetPx.x + 4 * size + 1, y: vp.offsetPx.y + 1 * size + 1 }
+    expect(tileAtPointer(s, c, canvas, px, motion)).toEqual(tileAtPointer(s, c, canvas, px))
+  })
 })

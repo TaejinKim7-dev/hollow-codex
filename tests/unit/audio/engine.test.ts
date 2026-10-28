@@ -25,12 +25,15 @@ class FakeGainNode {
   disconnect(): void {}
 }
 
-function harness(opts: { failFetch?: boolean } = {}) {
+function harness(opts: { failFetch?: boolean; suspended?: boolean } = {}) {
   const sources: FakeSrc[] = []
   const gains: FakeGainNode[] = []
   const fetched: string[] = []
+  let resumed = 0
   const ctx = {
     currentTime: 0,
+    state: opts.suspended === true ? "suspended" : "running",
+    resume: (): Promise<void> => { resumed++; return Promise.resolve() },
     destination: {},
     createGain: () => { const g = new FakeGainNode(); gains.push(g); return g },
     createBufferSource: () => { const s = new FakeSrc(); sources.push(s); return s },
@@ -44,7 +47,7 @@ function harness(opts: { failFetch?: boolean } = {}) {
       return opts.failFetch === true ? Promise.reject(new Error("404")) : Promise.resolve(new ArrayBuffer(8))
     }
   })
-  return { engine, sources, gains, fetched, created: () => created }
+  return { engine, sources, gains, fetched, created: () => created, resumed: () => resumed }
 }
 const flush = (): Promise<void> => new Promise((r) => setTimeout(r, 0))
 
@@ -149,5 +152,42 @@ describe("audio engine", () => {
   it("when no context can be made it stays silent without throwing", () => {
     const engine = createEngine({ createContext: () => null, fetchBuffer: () => Promise.resolve(new ArrayBuffer(0)) })
     expect(() => { engine.unlock(); engine.sfx("x"); engine.music("y") }).not.toThrow()
+  })
+
+  it("frees the decoded buffer of a track once it has faded out, so asking for it again refetches", async () => {
+    const h = harness()
+    h.engine.unlock()
+    h.engine.music("field")
+    await flush()
+    h.engine.music("kalas")
+    await flush()
+    h.sources[0]?.onended?.()   // field finished fading out
+    h.engine.music("field")
+    await flush()
+    expect(h.fetched.filter((f) => f === "music:field")).toHaveLength(2)
+  })
+  it("keeps the buffer of the track that is wanted again before the old copy ends", async () => {
+    const h = harness()
+    h.engine.unlock()
+    h.engine.music("field")
+    await flush()
+    h.engine.music("kalas")
+    h.engine.music("field")
+    await flush()
+    h.sources[0]?.onended?.()
+    expect(h.fetched.filter((f) => f === "music:field")).toHaveLength(1)
+  })
+  it("resumes a suspended context on every unlock call (backgrounded tab, interrupted phone call)", () => {
+    const h = harness({ suspended: true })
+    h.engine.unlock()
+    expect(h.resumed()).toBe(1)
+    h.engine.unlock()
+    expect(h.resumed()).toBe(2)
+  })
+  it("does not call resume on a running context", () => {
+    const h = harness()
+    h.engine.unlock()
+    h.engine.unlock()
+    expect(h.resumed()).toBe(0)
   })
 })

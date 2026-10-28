@@ -55,6 +55,20 @@ export function computeViewport(
   return { scale, originTile, offsetPx, viewW, viewH }
 }
 
+/**
+ * 걷기 보간 중에 세계를 밀어야 하는 장치 픽셀. 카메라가 보간 위치를 따라가되 실제 카메라처럼 지도 가장자리에서 멈춘다.
+ * vp = 플레이어 칸 기준으로 구한 뷰포트, motion = 보간 중인 플레이어 위치(칸 단위 실수).
+ * 그리기와 탭 좌표 계산이 같은 값을 써서 걷는 중에도 탭이 그려진 칸에 맞는다.
+ */
+export function cameraShiftPx(vp: Viewport, mapSize: { readonly w: number; readonly h: number }, motion: Pos): Pos {
+  const size = TILE * vp.scale
+  const origin = (m: number, view: number, mapLen: number): number => (mapLen <= view ? 0 : clamp(m - Math.floor(view / 2), 0, mapLen - view))
+  return {
+    x: Math.round((vp.originTile.x - origin(motion.x, vp.viewW, mapSize.w)) * size) || 0,
+    y: Math.round((vp.originTile.y - origin(motion.y, vp.viewH, mapSize.h)) * size) || 0
+  }
+}
+
 /** 장치 픽셀 → 지도 타일 좌표(내림). vp의 역변환. */
 export function screenToTile(px: Pos, vp: Viewport): Pos {
   const step = TILE * vp.scale
@@ -80,6 +94,10 @@ export function frameViewport(state: GameState, content: GameContent, canvasPx: 
 }
 
 /** Canvas device-pixel point → tile (combat grid cell in combat, map tile otherwise). */
-export function tileAtPointer(state: GameState, content: GameContent, canvasPx: { readonly w: number; readonly h: number }, px: Pos): Pos {
-  return screenToTile(px, frameViewport(state, content, canvasPx))
+export function tileAtPointer(state: GameState, content: GameContent, canvasPx: { readonly w: number; readonly h: number }, px: Pos, motion?: Pos): Pos {
+  const vp = frameViewport(state, content, canvasPx)
+  if (motion === undefined || state.combat !== null) return screenToTile(px, vp)
+  const map = content.maps[state.mapId]
+  const shift = cameraShiftPx(vp, { w: map?.rows[0]?.length ?? 0, h: map?.rows.length ?? 0 }, motion)
+  return screenToTile({ x: px.x - shift.x, y: px.y - shift.y }, vp)
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { chooseView, combatReservePx, computeViewport, screenToTile, TILE } from "../../../src/render/viewport.ts"
+import { cameraShiftPx, chooseView, combatReservePx, computeViewport, screenToTile, TILE } from "../../../src/render/viewport.ts"
 
 describe("chooseView", () => {
   it("1280×720 gives scale 3 and 13 columns", () => { expect(chooseView({ w: 1280, h: 720 })).toEqual({ scale: 3, viewW: 13, viewH: 7 }) })
@@ -42,5 +42,25 @@ describe("combat viewport", () => {
   })
   it("without a reserve nothing changes", () => {
     expect(computeViewport({ w: 1280, h: 720 }, 1, { w: 7, h: 7 }, { x: 3, y: 3 })).toEqual(computeViewport({ w: 1280, h: 720 }, 1, { w: 7, h: 7 }, { x: 3, y: 3 }, 0))
+  })
+})
+
+describe("cameraShiftPx (the world slides with the interpolated camera, clamped like the real one)", () => {
+  const canvas = { w: 1280, h: 720 }
+  it("one cell behind in open space shifts the world by one cell", () => {
+    const vp = computeViewport(canvas, 1, { w: 32, h: 24 }, { x: 16, y: 12 })
+    expect(cameraShiftPx(vp, { w: 32, h: 24 }, { x: 15, y: 12 })).toEqual({ x: TILE * vp.scale, y: 0 })
+  })
+  it("does not shift when the camera is pinned at the map edge", () => {
+    const vp = computeViewport(canvas, 1, { w: 32, h: 24 }, { x: 1, y: 12 })
+    expect(cameraShiftPx(vp, { w: 32, h: 24 }, { x: 0.5, y: 12 })).toEqual({ x: 0, y: 0 })
+  })
+  it("does not shift when the map is narrower than the view", () => {
+    const vp = computeViewport(canvas, 1, { w: 8, h: 5 }, { x: 4, y: 2 })
+    expect(cameraShiftPx(vp, { w: 8, h: 5 }, { x: 3, y: 2 })).toEqual({ x: 0, y: 0 })
+  })
+  it("is zero at rest", () => {
+    const vp = computeViewport(canvas, 1, { w: 32, h: 24 }, { x: 16, y: 12 })
+    expect(cameraShiftPx(vp, { w: 32, h: 24 }, { x: 16, y: 12 })).toEqual({ x: 0, y: 0 })
   })
 })
