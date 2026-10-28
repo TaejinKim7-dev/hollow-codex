@@ -267,3 +267,5 @@
 | assets/audio/bgm/battle.ogg | https://incompetech.com/music/royalty-free/music.html ("Rynos Theme", ISRC USUAN1600016); edited per scripts/audio/make-bgm-loops.py | Kevin MacLeod (incompetech.com) | CC-BY-4.0 |
 | assets/audio/bgm/ending.ogg | https://incompetech.com/music/royalty-free/music.html ("The Parting", ISRC USUAN1100638); edited per scripts/audio/make-bgm-loops.py | Kevin MacLeod (incompetech.com) | CC-BY-4.0 |
 | assets/audio/bgm/credits.json | original (attribution strings for the BGM tracks) | TaejinKim7-dev | CC-BY-SA-4.0 |
+| assets/sprites/tilesets/grass-path-v3/autotile.json | derived from assets/sprites/tilesets/grass-path-v3/metadata.json by scripts/assets/make-autotile.mjs (corner pattern → sheet cell table) | TaejinKim7-dev | CC-BY-SA-4.0 |
+| assets/sprites/tilesets/grass-water/autotile.json | derived from assets/sprites/tilesets/grass-water/metadata.json by scripts/assets/make-autotile.mjs (corner pattern → sheet cell table) | TaejinKim7-dev | CC-BY-SA-4.0 |
