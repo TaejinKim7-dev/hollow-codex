@@ -28,7 +28,8 @@ const files: DistFile[] = walk(DIST).map((p) => {
   return { path, text, size }
 })
 
-const violations = auditFiles(files)
+const bgmKeys = new Set(readdirSync("assets/audio/bgm").filter((n) => n.endsWith(".ogg")).map((n) => n.replace(/\.ogg$/, "")))
+const violations = auditFiles(files, { bgmKeys })
 if (violations.length > 0) {
   for (const v of violations) console.error(v)
   process.exit(1)
