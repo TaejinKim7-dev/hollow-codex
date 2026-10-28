@@ -9,7 +9,10 @@ import { step } from "./core/step.ts"
 import type { Command, GameEvent, GameState, Id, Pos } from "./core/types.ts"
 import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
 import type { UiAction } from "./input/commands.ts"
+import { loadMapAssets, mapAssetPrefixes, spriteUrls } from "./render/assets.ts"
 import { drawFrame } from "./render/canvas.ts"
+import { createMotion } from "./render/motion.ts"
+import type { Motion } from "./render/motion.ts"
 import { frameViewport, tileAtPointer } from "./render/viewport.ts"
 import { createIndexedDbSlotStore } from "./save/slot-store.ts"
 import { createSession } from "./save/session.ts"
@@ -47,6 +50,24 @@ for (const [id, sheet] of Object.entries(content.sheets)) {
   else img.src = imageUrls[key] ?? ""
   if (img.src === "") log.log("sheet-missing", { id, file: sheet.file })
   sheets[id] = img
+}
+
+// ── 새 그림(지도별 지연 로딩)과 걷기 보간 ───────────────
+const images = new Map<string, HTMLImageElement>()
+const requestedAssets = new Set<string>()
+let motion: Motion = createMotion(content.start.pos, "s")
+
+/** 이 지도에 필요한 그림을 불러온다. 아직 못 불러온 요소는 그 칸만 건너뛰고, 다 불러오면 다시 그린다. */
+function ensureMapAssets(mapId: Id): void {
+  const fresh = mapAssetPrefixes(content, mapId).filter((p) => !requestedAssets.has(p))
+  if (fresh.length === 0) return
+  for (const p of fresh) requestedAssets.add(p)
+  loadMapAssets(spriteUrls, fresh)
+    .then((loaded) => {
+      for (const [key, img] of loaded) images.set(key, img)
+      scheduleFrame()
+    })
+    .catch((error: unknown) => log.log("assets-error", String(error)))
 }
 
 // ── 저장소와 오디오 ─────────────────────────────────────
@@ -120,8 +141,10 @@ function draw(): void {
     return
   }
   const vp = frameViewport(s, content, { w: canvas.width, h: canvas.height })
-  drawFrame(canvas2d, sheets, s, content, vp)
+  const frame = motion.sample(performance.now())
+  drawFrame(canvas2d, { sheets, images }, s, content, vp, frame)
   ui.render(s, dialogueLog)
+  if (frame.moving) scheduleFrame()
 }
 function scheduleFrame(): void {
   if (frameQueued) return
@@ -175,7 +198,12 @@ function handleEvents(events: readonly GameEvent[]): void {
         dialogueLog.push({ textKey: e.textKey, lie: e.lie })
         break
       case "moved":
+        motion = motion.onMoved(e.pos, state?.player.facing ?? "s", performance.now())
         playSfx("step")
+        break
+      case "mapChanged":
+        if (state !== null) motion = motion.onTeleport(state.player.pos, state.player.facing)
+        ensureMapAssets(e.mapId)
         break
       case "bumped":
         playSfx("bump")
@@ -303,6 +331,8 @@ function refreshSlotInfo(): void {
 function replaceState(next: GameState): void {
   stopTouchRepeat()
   state = next
+  motion = createMotion(next.player.pos, next.player.facing)
+  ensureMapAssets(next.mapId)
   dialogueLog = []
   lastAutoTurn = next.turn
   const track = next.combat !== null
@@ -387,6 +417,8 @@ export async function boot(): Promise<void> {
     dispatch(cmd)
   })
 
+  motion = createMotion(s.player.pos, s.player.facing)
+  ensureMapAssets(s.mapId)
   const bootMusic = content.maps[s.mapId]?.music
   if (bootMusic !== undefined) playTrack(bootMusic)
 

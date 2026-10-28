@@ -58,7 +58,7 @@ export interface CrisisOptionDef {
 }
 export interface GameContent {
   readonly sheets: Readonly<Record<string, { readonly file: string; readonly columns: number; readonly tile: number }>>
-  readonly tiles: Readonly<Record<string, { readonly sprite?: SpriteRef; readonly ground?: Ground; readonly walk: number | null }>>   // ASCII 1글자 → 타일
+  readonly tiles: Readonly<Record<string, { readonly sprite?: SpriteRef; readonly ground?: Ground; readonly object?: Id; readonly walk: number | null }>>   // ASCII 1글자 → 타일
   readonly objects: Readonly<Record<Id, ObjectDef>>
   readonly playerSprite: SpriteRef
   readonly maps: Readonly<Record<Id, MapDef>>

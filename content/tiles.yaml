@@ -19,4 +19,12 @@ tiles:
   "%": { sprite: [dungeon, 43], walk: null }
   ">": { sprite: [dungeon, 56], walk: 1 }
   "<": { sprite: [dungeon, 56], walk: 1 }
-player: [town, 84]
+# 새 그림 칸(땅 종류 + 물건). 옛 16px 칸과 한 지도에서 섞여 쓸 수 있다.
+  g: { ground: grass, walk: 1 }
+  h: { ground: grass, walk: 2 }
+  s: { ground: grass, walk: 1 }
+  t: { ground: grass, walk: null, object: obj.tree-oak }
+  p: { ground: path, walk: 1 }
+  w: { ground: water, walk: null }
+  b: { ground: water, walk: 1 }
+player: char.stranger-B-navy

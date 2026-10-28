@@ -1,22 +1,25 @@
 # 칼라스 지도 3장 — field, kalas town, archive. Tile glyphs are in content/tiles.yaml.
 - id: map.field
+  objects:
+    - { id: obj.standing-ring, at: [6, 8] }
+    - { id: obj.bridge, at: [14, 8] }
   rows:
-    - "TTTTTTTTTTTTTTTTTTTTTTTT"
-    - "T.T.........,..~.......T"
-    - "T..............~..T....T"
-    - "T,.............~.......T"
-    - "T..........T...~.......T"
-    - "T.....o.o......~.......T"
-    - "T.,.........,..~..,....T"
-    - "T....o.S.o.....~.......T"
-    - "<.........:::::=::::::::"
-    - "T.....o.o......~.......T"
-    - "T.........T....~.......T"
-    - "T..,...........~.......T"
-    - "T..T.........,.~.......T"
-    - "T..............~...,.,.T"
-    - "T..............~.......T"
-    - "TTTTTTTTTTTTTTTTTTTTTTTT"
+    - "tttttttttttttttttttttttt"
+    - "tgtggggggggghggwgggggggt"
+    - "tggggggggggggggwggtggggt"
+    - "thgggggggggggggwgggggggt"
+    - "tggggggggggtgggwgggggggt"
+    - "tggggggggggggggwgggggggt"
+    - "tghggggggggghggwgghggggt"
+    - "tggggggsgggggggwgggggggt"
+    - "ggggggggggpppppbpppppppp"
+    - "tggggggggggggggwgggggggt"
+    - "tgggggggggtggggwgggggggt"
+    - "tgghgggggggggggwgggggggt"
+    - "tggtggggggggghgwgggggggt"
+    - "tggggggggggggggwggghghgt"
+    - "tggggggggggggggwgggggggt"
+    - "tttttttttttttttttttttttt"
   exits:
     - { at: [23, 8], to: map.kalas, arrive: [1, 12] }
     # 대륙(map.over)과의 왕복. 오버월드 입구 `+` [14,24] → 이 들판 [11,8]로 들어오고,

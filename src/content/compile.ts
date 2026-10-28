@@ -34,8 +34,8 @@ type Ring = GameContent["rings"][string]
 const KEYS = {
   tiles: ["sheets", "tiles", "player"],
   sheet: ["file", "columns", "tile"],
-  tile: ["sprite", "ground", "walk"],
-  object: ["id", "image", "footprint", "blocks"],
+  tile: ["sprite", "ground", "object", "walk"],
+  object: ["id", "image", "footprint", "blocks", "sortOffset"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
   creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
@@ -141,10 +141,14 @@ function readTiles(r: Reader, v: unknown, d: Draft): void {
     const ground = to["ground"]
     if (ground !== undefined && !GROUNDS.includes(ground as Ground)) r.fail(`tiles."${ch}".ground`, `expected one of ${GROUNDS.join(", ")}`)
     if (sprite === undefined && ground === undefined) r.fail(`tiles."${ch}"`, "a tile needs a sprite or a ground")
+    const object = to["object"] === undefined ? undefined : r.str(to, "object", `tiles."${ch}"`)
     const walk = to["walk"]
     if (walk !== null && !(typeof walk === "number" && Number.isFinite(walk))) r.fail(`tiles."${ch}".walk`, "expected a number or null")
     if (r.errors.length === before) {
-      d.tiles[ch] = { ...(sprite === undefined ? {} : { sprite }), ...(ground === undefined ? {} : { ground: ground as Ground }), walk: walk as number | null }
+      d.tiles[ch] = {
+        ...(sprite === undefined ? {} : { sprite }), ...(ground === undefined ? {} : { ground: ground as Ground }),
+        ...(object === undefined ? {} : { object }), walk: walk as number | null
+      }
     }
   }
   const before = r.errors.length
@@ -222,7 +226,9 @@ function readObjects(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
       r.fail(`${w}.footprint`, "expected [width, height] positive integers")
     }
     const blocks = r.bool(o, "blocks", w, true)
-    if (r.errors.length === before) put(ctx, d.objects, "object", r.file, id, { image, footprint: [w0 as number, h0 as number], blocks })
+    const sortOffset = o["sortOffset"] === undefined ? 0 : r.num(o, "sortOffset", w)
+    if (r.errors.length === before && (!Number.isInteger(sortOffset) || sortOffset < 0)) r.fail(`${w}.sortOffset`, "expected a non-negative integer")
+    if (r.errors.length === before) put(ctx, d.objects, "object", r.file, id, { image, footprint: [w0 as number, h0 as number], blocks, sortOffset })
   })
 }
 
@@ -488,7 +494,10 @@ function checkReferences(d: Draft, out: string[]): void {
   }
   const facts = d.facts.items
   if (d.playerSprite !== null) sheet("tiles.yaml", "player", d.playerSprite)
-  for (const [ch, t] of Object.entries(d.tiles)) if (t.sprite !== undefined) sheet("tiles.yaml", `tiles."${ch}"`, t.sprite)
+  for (const [ch, t] of Object.entries(d.tiles)) {
+    if (t.sprite !== undefined) sheet("tiles.yaml", `tiles."${ch}"`, t.sprite)
+    if (t.object !== undefined) ref("tiles.yaml", `tiles."${ch}".object`, "object", t.object, d.objects.items)
+  }
   if (d.start !== null) ref("start.yaml", "map", "map", d.start.map, d.maps.items)
 
   for (const [id, m] of Object.entries(d.maps.items)) {

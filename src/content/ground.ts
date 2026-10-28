@@ -9,6 +9,8 @@ export interface ObjectDef {
   readonly image: string
   readonly footprint: readonly [number, number]   // [칸 폭, 칸 높이]
   readonly blocks: boolean
+  /** 깊이 정렬에 쓰는 발 줄을 아래 줄에서 몇 칸 위로 잡을지(기본 0). 걸어 들어가는 큰 물건(열석 고리)이 안에 선 사람을 가리지 않게 한다. */
+  readonly sortOffset: number
 }
 
 /** 물건 발자국이 차지한 칸이 합쳐진 뒤의 "걷지 못함" 글리프(사설 영역 문자). tiles에 `walk: null`로 자동 등록된다. */

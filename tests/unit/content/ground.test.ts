@@ -6,8 +6,8 @@ import type { Ground } from "../../../src/content/ground.ts"
 
 type Obj = Record<string, unknown>
 const defs = {
-  "obj.house": { image: "kalas/house", footprint: [2, 2] as const, blocks: true },
-  "obj.bridge": { image: "bridge/bridge", footprint: [1, 1] as const, blocks: false }
+  "obj.house": { image: "kalas/house", footprint: [2, 2] as const, blocks: true, sortOffset: 0 },
+  "obj.bridge": { image: "bridge/bridge", footprint: [1, 1] as const, blocks: false, sortOffset: 0 }
 }
 const rows5 = ["....." , ".....", ".....", ".....", "....."]
 
@@ -73,6 +73,21 @@ describe("compile: ground and objects", () => {
     expect(content?.maps["map.min"]?.rows[1]).toBe(`#..${BLOCKER}#`)
     expect(content?.tiles[BLOCKER]?.walk).toBeNull()
     expect(content?.objects["obj.rock"]?.footprint).toEqual([1, 1])
+  })
+  it("reads an object's sortOffset (cells above its bottom row used for depth sorting), default 0", () => {
+    const objects = [
+      { id: "obj.ring", image: "kalas/standing-stone-ring", footprint: [3, 3], blocks: false, sortOffset: 1 },
+      { id: "obj.rock", image: "kalas/tree-oak", footprint: [1, 1], blocks: true }
+    ]
+    const { content, errors } = compileContent(withTiles({}, objects))
+    expect(errors).toEqual([])
+    expect(content?.objects["obj.ring"]?.sortOffset).toBe(1)
+    expect(content?.objects["obj.rock"]?.sortOffset).toBe(0)
+  })
+  it("rejects a tile whose object does not exist", () => {
+    const { content, errors } = compileContent(withTiles({ t: { ground: "grass", walk: null, object: "obj.nope" } }))
+    expect(content).toBeNull()
+    expect(errors.some((e) => e.includes("obj.nope"))).toBe(true)
   })
   it("fails the build when path touches water", () => {
     const { content, errors } = compileContent(withTiles(

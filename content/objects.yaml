@@ -1,0 +1,7 @@
+# 물건: image는 assets/sprites/objects/ 아래 경로(확장자 없이). 발자국 [칸 폭, 칸 높이]의 왼쪽 아래 칸이 놓는 기준이고,
+# 그림은 발자국 아래 가운데에 맞춰 그린다. blocks=false면 걸어 지나갈 수 있다(다리, 열석 고리).
+- { id: obj.tree-oak, image: kalas/tree-oak, footprint: [1, 1], blocks: true }
+- { id: obj.house, image: kalas/house, footprint: [3, 2], blocks: true }
+- { id: obj.standing-ring, image: kalas/standing-stone-ring, footprint: [3, 3], blocks: false, sortOffset: 1 }
+- { id: obj.confession-stone, image: kalas/confession-stone, footprint: [2, 2], blocks: true }
+- { id: obj.bridge, image: bridge/bridge, footprint: [3, 1], blocks: false }

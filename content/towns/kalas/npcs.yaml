@@ -9,7 +9,7 @@
     "18": [3, 7]
   name: npc.field.gatekeeper.name
   greet: npc.field.gatekeeper.greet
-  sprite: [town, 84]
+  sprite: char.gatekeeper-field
   topics:
     name:
       - text: npc.field.gatekeeper.name.t
@@ -35,7 +35,7 @@
     "18": [4, 4]
   name: npc.field.hunter.name
   greet: npc.field.hunter.greet
-  sprite: [town, 84]
+  sprite: char.hunter-field
   topics:
     name:
       - text: npc.field.hunter.name.t
