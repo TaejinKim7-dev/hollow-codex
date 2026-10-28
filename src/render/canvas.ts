@@ -45,7 +45,7 @@ function drawMap(ctx: CanvasRenderingContext2D, sheets: Readonly<Record<string, 
     for (let x = vp.originTile.x; x < Math.min(mapW, vp.originTile.x + vp.viewW); x++) {
       const ch = row[x]
       const tile = ch !== undefined ? content.tiles[ch] : undefined
-      if (!tile) continue
+      if (!tile?.sprite) continue
       drawSprite(ctx, sheets, content, tile.sprite, screenX(vp, x, size), screenY(vp, y, size), size)
     }
   }
@@ -76,7 +76,7 @@ function drawCombat(ctx: CanvasRenderingContext2D, sheets: Readonly<Record<strin
     for (let gx = 0; gx < row.length; gx++) {
       const ch = row[gx]
       const tile = ch !== undefined ? content.tiles[ch] : undefined
-      if (!tile) continue
+      if (!tile?.sprite) continue
       drawSprite(ctx, sheets, content, tile.sprite, screenX(vp, gx, size), screenY(vp, gy, size), size)
     }
   }

@@ -1,4 +1,5 @@
 import type { Id, Pos, Virtue } from "../core/types.ts"
+import type { Ground, ObjectDef } from "./ground.ts"
 
 export type FactKind = "person" | "place" | "word" | "song" | "meaning" | "creature"
 /** 옛 시트 칸 `[sheet, index]` 또는 새 캐릭터 그림 `char.<이름>`(assets/sprites/characters/<이름>/). */
@@ -35,6 +36,8 @@ export interface MapDef {
   readonly heals: boolean
   readonly isOverworld?: boolean                                  // D20 — M2 신규
   readonly terrainCost?: Readonly<Record<string, number | null>>  // D20 — 글리프 → 이동 비용(null = 통행 불가)
+  readonly objects?: readonly { readonly id: Id; readonly at: Pos }[]   // 집·나무 같은 물건(발자국은 rows에 합쳐진다)
+  readonly ground?: readonly (readonly (Ground | null)[])[]             // 칸마다 땅 종류(옛 그림 타일은 null). 땅이 하나도 없으면 생략
 }
 export interface NpcDef {
   readonly map: Id; readonly pos: Pos; readonly nameKey: string; readonly greetKey: string; readonly sprite: SpriteRef
@@ -55,7 +58,8 @@ export interface CrisisOptionDef {
 }
 export interface GameContent {
   readonly sheets: Readonly<Record<string, { readonly file: string; readonly columns: number; readonly tile: number }>>
-  readonly tiles: Readonly<Record<string, { readonly sprite: SpriteRef; readonly walk: number | null }>>   // ASCII 1글자 → 타일
+  readonly tiles: Readonly<Record<string, { readonly sprite?: SpriteRef; readonly ground?: Ground; readonly walk: number | null }>>   // ASCII 1글자 → 타일
+  readonly objects: Readonly<Record<Id, ObjectDef>>
   readonly playerSprite: SpriteRef
   readonly maps: Readonly<Record<Id, MapDef>>
   readonly npcs: Readonly<Record<Id, NpcDef>>

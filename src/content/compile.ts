@@ -1,6 +1,7 @@
 // Pure YAML → GameContent compiler. Collects every error; content is null if any.
 // Check groups run in order: 1 shape, 2 duplicate ids, 3 references, 4 string keys,
 // 5 map/grid geometry, 6 grant paths, 7 deduction answers, 8 denied terms.
+import { BLOCKER, checkGroundAdjacency, GROUNDS, mergeObjectFootprints, type Ground, type ObjectDef } from "./ground.ts"
 import type { Id, Pos, Virtue } from "../core/types.ts"
 import { findDenied, parseDenylist } from "./denylist.ts"
 import { arrivalCell } from "../core/world/ring.ts"
@@ -33,13 +34,14 @@ type Ring = GameContent["rings"][string]
 const KEYS = {
   tiles: ["sheets", "tiles", "player"],
   sheet: ["file", "columns", "tile"],
-  tile: ["sprite", "walk"],
+  tile: ["sprite", "ground", "walk"],
+  object: ["id", "image", "footprint", "blocks"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
   creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
   music: ["tempo", "loop", "channels"],
   channel: ["wave", "volume", "notes"],
-  map: ["id", "rows", "exits", "music", "encounters", "enterFlags", "heals", "isOverworld", "terrainCost"],
+  map: ["id", "rows", "exits", "music", "encounters", "enterFlags", "heals", "isOverworld", "terrainCost", "objects"],
   exit: ["at", "to", "arrive"],
   mapEncounter: ["at", "id"],
   choice: ["id", "label", "text", "deed", "grants", "setsFlags"],
@@ -65,6 +67,7 @@ interface Draft {
   sheets: Mutable<GameContent["sheets"]>
   tiles: Mutable<GameContent["tiles"]>
   playerSprite: SpriteRef | null
+  objects: Table<ObjectDef>
   maps: Table<MapDef>
   npcs: Table<NpcDef>
   facts: Table<Fact>
@@ -134,10 +137,15 @@ function readTiles(r: Reader, v: unknown, d: Draft): void {
     if (ch.length !== 1) r.fail(`tiles."${ch}"`, "tile key must be exactly one character")
     const to = r.obj(t, `tiles."${ch}"`)
     onlyKeys(r, to, `tiles."${ch}"`, KEYS.tile)
-    const sprite = r.sprite(to["sprite"], `tiles."${ch}".sprite`)
+    const sprite = to["sprite"] === undefined ? undefined : r.sprite(to["sprite"], `tiles."${ch}".sprite`)
+    const ground = to["ground"]
+    if (ground !== undefined && !GROUNDS.includes(ground as Ground)) r.fail(`tiles."${ch}".ground`, `expected one of ${GROUNDS.join(", ")}`)
+    if (sprite === undefined && ground === undefined) r.fail(`tiles."${ch}"`, "a tile needs a sprite or a ground")
     const walk = to["walk"]
     if (walk !== null && !(typeof walk === "number" && Number.isFinite(walk))) r.fail(`tiles."${ch}".walk`, "expected a number or null")
-    if (r.errors.length === before) d.tiles[ch] = { sprite, walk: walk as number | null }
+    if (r.errors.length === before) {
+      d.tiles[ch] = { ...(sprite === undefined ? {} : { sprite }), ...(ground === undefined ? {} : { ground: ground as Ground }), walk: walk as number | null }
+    }
   }
   const before = r.errors.length
   const player = o["player"] === undefined ? (r.fail("player", "missing player sprite"), null) : r.sprite(o["player"], "player")
@@ -202,6 +210,22 @@ function readMusic(r: Reader, v: unknown, d: Draft, ctx: Ctx, id: Id): void {
   if (r.errors.length === before) put(ctx, d.music, "music", r.file, id, score)
 }
 
+function readObjects(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
+  if (v === null || v === undefined) return
+  eachEntry(r, v, (o, id, w) => {
+    onlyKeys(r, o, w, KEYS.object)
+    const before = r.errors.length
+    const image = r.str(o, "image", w)
+    const fp = r.arr(o["footprint"], `${w}.footprint`)
+    const w0 = fp[0], h0 = fp[1]
+    if (fp.length !== 2 || !Number.isInteger(w0) || !Number.isInteger(h0) || (w0 as number) < 1 || (h0 as number) < 1) {
+      r.fail(`${w}.footprint`, "expected [width, height] positive integers")
+    }
+    const blocks = r.bool(o, "blocks", w, true)
+    if (r.errors.length === before) put(ctx, d.objects, "object", r.file, id, { image, footprint: [w0 as number, h0 as number], blocks })
+  })
+}
+
 function readMaps(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
   eachEntry(r, v, (o, id, w) => {
     onlyKeys(r, o, w, KEYS.map)
@@ -219,6 +243,13 @@ function readMaps(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
     const m: Mutable<MapDef> = {
       rows: r.strList(o, "rows", w), exits, music: r.str(o, "music", w), encounters,
       enterFlags: r.strListOr(o, "enterFlags", w), heals: r.bool(o, "heals", w, false)
+    }
+    if (o["objects"] !== undefined) {
+      m.objects = r.arr(o["objects"], `${w}.objects`).map((e, i) => {
+        const eo = r.obj(e, `${w}.objects[${i}]`)
+        onlyKeys(r, eo, `${w}.objects[${i}]`, ["id", "at"])
+        return { id: r.str(eo, "id", `${w}.objects[${i}]`), at: r.pos(eo["at"], `${w}.objects[${i}].at`) }
+      })
     }
     if (o["isOverworld"] !== undefined) m.isOverworld = r.bool(o, "isOverworld", w)
     if (o["terrainCost"] !== undefined) {
@@ -405,7 +436,7 @@ function checkDenylistShape(r: Reader, v: unknown): void {
 
 function readAll(raw: RawContent, ctx: Ctx): Draft {
   const d: Draft = {
-    sheets: {}, tiles: {}, playerSprite: null, maps: table(), npcs: table(), facts: table(), deductions: table(),
+    sheets: {}, tiles: {}, playerSprite: null, objects: table(), maps: table(), npcs: table(), facts: table(), deductions: table(),
     crises: table(), creatures: table(), encounters: table(), abilities: table(), music: table(), rings: table(), strings: {}, start: null
   }
   if (!("tiles.yaml" in raw)) ctx.shape.push("tiles.yaml: missing required file")
@@ -422,6 +453,7 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
     else if (STRINGS_FILE_RE.test(file)) {
       readStrings(r, v, d, STRINGS_FILE_RE.exec(file)?.[1] ?? "ko")
     }
+    else if (file === "objects.yaml") readObjects(r, v, d, ctx)
     else if (file === "creatures.yaml") readCreatures(r, v, d, ctx)
     else if (file === "rings.yaml") readRings(r, v, d, ctx)
     else if (music !== null) {
@@ -456,7 +488,7 @@ function checkReferences(d: Draft, out: string[]): void {
   }
   const facts = d.facts.items
   if (d.playerSprite !== null) sheet("tiles.yaml", "player", d.playerSprite)
-  for (const [ch, t] of Object.entries(d.tiles)) sheet("tiles.yaml", `tiles."${ch}"`, t.sprite)
+  for (const [ch, t] of Object.entries(d.tiles)) if (t.sprite !== undefined) sheet("tiles.yaml", `tiles."${ch}"`, t.sprite)
   if (d.start !== null) ref("start.yaml", "map", "map", d.start.map, d.maps.items)
 
   for (const [id, m] of Object.entries(d.maps.items)) {
@@ -570,6 +602,33 @@ function checkStringKeys(d: Draft, out: string[]): void {
     for (const key of Object.keys(strings)) {
       if (!(key in ko)) out.push(`strings/${lang}.yaml: string key "${key}" not present in ${KO_STRINGS_FILE}`)
     }
+  }
+}
+
+// ---------- objects and ground: after reading, before geometry ----------
+
+/** 물건 발자국을 rows에 합치고 땅 격자를 만든다. 합친 칸은 걷지 못하는 BLOCKER 타일로 자동 등록된다. */
+function resolveMaps(d: Draft, out: string[]): void {
+  d.tiles[BLOCKER] = { walk: null }
+  for (const [id, m] of Object.entries(d.maps.items)) {
+    const f = d.maps.file[id] ?? ""
+    const groundOf = (ch: string | undefined): Ground | null => (ch === undefined ? null : d.tiles[ch]?.ground ?? null)
+    const ground = m.rows.map((row) => [...row].map((ch) => groundOf(ch)))
+    const exempt = new Set<string>()
+    let rows = m.rows
+    if (m.objects !== undefined && m.objects.length > 0) {
+      const merged = mergeObjectFootprints(m.rows, m.objects, d.objects.items)
+      for (const e of merged.errors) out.push(`${f}: ${id}: ${e}`)
+      rows = merged.rows
+      for (const p of m.objects) {
+        const def = d.objects.items[p.id]
+        if (def === undefined || def.blocks) continue
+        for (let y = p.at.y - def.footprint[1] + 1; y <= p.at.y; y++) for (let x = p.at.x; x < p.at.x + def.footprint[0]; x++) exempt.add(`${x},${y}`)
+      }
+    }
+    const hasGround = ground.some((r) => r.some((g) => g !== null))
+    if (hasGround) for (const e of checkGroundAdjacency(ground, exempt)) out.push(`${f}: ${id}: ${e}`)
+    d.maps.items[id] = { ...m, rows, ...(hasGround ? { ground } : {}) }
   }
 }
 
@@ -765,6 +824,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
   const errors: string[] = [...ctx.shape, ...ctx.dups]
   checkReferences(d, errors)
   checkStringKeys(d, errors)
+  resolveMaps(d, errors)
   checkGeometry(d, errors)
   checkOverworld(d, errors)
   checkRingArrivals(d, errors)
@@ -775,7 +835,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
     return { content: null, errors }
   }
   const content: GameContent = {
-    sheets: d.sheets, tiles: d.tiles, playerSprite: d.playerSprite,
+    sheets: d.sheets, tiles: d.tiles, objects: d.objects.items, playerSprite: d.playerSprite,
     maps: d.maps.items, npcs: d.npcs.items, facts: d.facts.items,
     deductions: d.deductions.items as GameContent["deductions"],   // answer length checked in group 7
     crises: d.crises.items, creatures: d.creatures.items, encounters: d.encounters.items,
