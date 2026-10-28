@@ -1,6 +1,7 @@
 import type { GameContent } from "../content/types.ts"
 import type { Command, Dir, GameState, Pos } from "../core/types.ts"
 import { manhattan, samePos } from "../core/combat/intents.ts"
+import { attackTargets } from "../core/combat/preview.ts"
 import { npcAt } from "../core/world/move.ts"
 
 /** 키 입력으로 열 수 있는 UI 패널. */
@@ -38,7 +39,12 @@ export function keyToCommand(key: string, mode: InputMode): Command | UiAction |
 
 /** 화면 탭 → 명령. 탐험: 인접 NPC interact, 먼 NPC·플레이어 칸 무시, 그 외 moveTo. 전투: 격자 좌표로 combat move. 대화: 무시. */
 export function pointerToCommand(tile: Pos, state: GameState, content: GameContent): Command | null {
-  if (state.combat !== null) return { type: "combat", action: { kind: "move", to: tile } }
+  if (state.combat !== null) {
+    // 활성 아군 바로 옆의 적을 누르면 곧바로 공격한다(조준 단계 없이). 그 밖에는 그 칸으로 이동.
+    const hit = attackTargets(state.combat, state.combat.active).find((t) => samePos(t.pos, tile))
+    if (hit !== undefined) return { type: "combat", action: { kind: "attack", dir: hit.dir } }
+    return { type: "combat", action: { kind: "move", to: tile } }
+  }
   if (state.dialogue !== null) return null
   const npc = npcAt(state, content, tile)
   if (npc !== null) return manhattan(state.player.pos, tile) === 1 ? { type: "interact", at: tile } : null

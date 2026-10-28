@@ -26,6 +26,21 @@ describe("pointerToCommand", () => {
     const s = step(at(1, 2), { type: "move", dir: "s" }, c).state
     expect(pointerToCommand({ x: 2, y: 2 }, s, c)).toEqual({ type: "combat", action: { kind: "move", to: { x: 2, y: 2 } } })
   })
+  it("combat mode: tapping an adjacent enemy attacks it", () => {
+    const start = step(at(1, 2), { type: "move", dir: "s" }, c).state          // player (2,4), slime (2,0), bandit (4,1)
+    const near = step(start, { type: "combat", action: { kind: "move", to: { x: 2, y: 1 } } }, c).state
+    expect(pointerToCommand({ x: 2, y: 0 }, near, c)).toEqual({ type: "combat", action: { kind: "attack", dir: "n" } })
+  })
+  it("combat mode: a far enemy or an empty cell is still a move", () => {
+    const start = step(at(1, 2), { type: "move", dir: "s" }, c).state
+    expect(pointerToCommand({ x: 2, y: 0 }, start, c)).toEqual({ type: "combat", action: { kind: "move", to: { x: 2, y: 0 } } })
+  })
+  it("combat mode: after acting, tapping an adjacent enemy is not an attack", () => {
+    const start = step(at(1, 2), { type: "move", dir: "s" }, c).state
+    const near = step(start, { type: "combat", action: { kind: "move", to: { x: 2, y: 1 } } }, c).state
+    const acted = { ...near, combat: { ...near.combat!, units: near.combat!.units.map((u) => (u.id === "player" ? { ...u, acted: true } : u)) } }
+    expect(pointerToCommand({ x: 2, y: 0 }, acted, c)).toEqual({ type: "combat", action: { kind: "move", to: { x: 2, y: 0 } } })
+  })
   it("tapping an adjacent NPC interacts", () => {
     const s = stateWith({ player: { ...stateWith({}).player, pos: { x: 2, y: 3 } } })
     expect(pointerToCommand({ x: 3, y: 3 }, s, c)).toEqual({ type: "interact", at: { x: 3, y: 3 } })
