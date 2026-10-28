@@ -38,6 +38,8 @@ export type GameEvent =
   | { type: "companionJoined"; npcId: Id } | { type: "companionLeft"; npcId: Id }
   | { type: "crisisResolved"; crisisId: Id; optionId: Id }
   | { type: "combatStarted"; encounterId: Id } | { type: "combatEnded"; outcome: "victory" | "defeat" | "fled" }
+  | { type: "combatHit"; attacker: Id; target: Id; amount: number; defeated: boolean; hp: number }   // 연출용: 맞은 뒤 남은 hp
+  | { type: "combatYield"; target: Id; how: "persuaded" | "retreated" }                              // 연출용: 죽지 않고 물러남
   | { type: "sfx"; name: string } | { type: "music"; track: Id }
   | { type: "timePassed"; hour: number; day: number } | { type: "dayPassed"; day: number }
   | { type: "ringTraveled"; from: Id; to: Id }
