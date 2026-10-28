@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest"
 import { cameraShiftPx, chooseView, combatReservePx, computeViewport, screenToTile, TILE } from "../../../src/render/viewport.ts"
 
-describe("chooseView", () => {
-  it("1280×720 gives scale 3 and 13 columns", () => { expect(chooseView({ w: 1280, h: 720 })).toEqual({ scale: 3, viewW: 13, viewH: 7 }) })
-  it("a short canvas drops to scale 2 and caps columns at 15", () => { expect(chooseView({ w: 1280, h: 560 })).toEqual({ scale: 2, viewW: 15, viewH: 7 }) })
-  it("a tiny canvas still gets scale 2 and at least 7 columns", () => { expect(chooseView({ w: 300, h: 200 })).toEqual({ scale: 2, viewW: 7, viewH: 7 }) })
-  it("a huge canvas caps at scale 4 and 15 columns", () => { expect(chooseView({ w: 2560, h: 1440 })).toEqual({ scale: 4, viewW: 15, viewH: 7 }) })
+describe("chooseView (the view covers the whole canvas: columns/rows round UP, edge cells are cut)", () => {
+  it("1280×720 gives scale 3, 14 columns and 8 rows", () => { expect(chooseView({ w: 1280, h: 720 })).toEqual({ scale: 3, viewW: 14, viewH: 8 }) })
+  it("a short canvas drops to scale 2", () => { expect(chooseView({ w: 1280, h: 560 })).toEqual({ scale: 2, viewW: 20, viewH: 9 }) })
+  it("a tiny canvas still gets scale 2 and at least 7 columns and rows", () => { expect(chooseView({ w: 300, h: 200 })).toEqual({ scale: 2, viewW: 7, viewH: 7 }) })
+  it("a huge canvas caps the scale at 4", () => { expect(chooseView({ w: 2560, h: 1440 })).toEqual({ scale: 4, viewW: 20, viewH: 12 }) })
 })
 
 describe("computeViewport", () => {
@@ -27,6 +27,18 @@ describe("computeViewport", () => {
     const vp = computeViewport({ w: 1280, h: 720 }, 1, { w: 32, h: 24 }, { x: 16, y: 12 })
     const step = TILE * vp.scale
     expect(screenToTile({ x: vp.offsetPx.x + step * 2 + 1, y: vp.offsetPx.y + 1 }, vp)).toEqual({ x: vp.originTile.x + 2, y: vp.originTile.y })
+  })
+})
+
+describe("no black bars on a map larger than the view", () => {
+  it("2000×1214: the drawn cells cover the whole canvas and the overflow is split evenly", () => {
+    const vp = computeViewport({ w: 2000, h: 1214 }, 1, { w: 24, h: 16 }, { x: 12, y: 8 })
+    const size = TILE * vp.scale
+    expect(vp.viewW * size).toBeGreaterThanOrEqual(2000)
+    expect(vp.viewH * size).toBeGreaterThanOrEqual(1214)
+    expect(vp.offsetPx.x).toBeLessThanOrEqual(0)
+    expect(vp.offsetPx.y).toBeLessThanOrEqual(0)
+    expect(vp.offsetPx.y).toBe(Math.floor((1214 - vp.viewH * size) / 2))
   })
 })
 

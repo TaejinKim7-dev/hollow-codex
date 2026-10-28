@@ -2,9 +2,8 @@ import type { GameContent } from "../content/types.ts"
 import type { GameState, Pos } from "../core/types.ts"
 
 export const TILE = 32
-const VIEW_ROWS = 7
+const MIN_ROWS = 7
 const MIN_COLS = 7
-const MAX_COLS = 15
 const MIN_SCALE = 2
 const MAX_SCALE = 4
 
@@ -23,11 +22,14 @@ const clamp = (v: number, lo: number, hi: number): number => Math.min(hi, Math.m
 export const COMBAT_RESERVE_RATIO = 0.17
 export const combatReservePx = (canvasPx: { readonly w: number; readonly h: number }): number => Math.round(canvasPx.h * COMBAT_RESERVE_RATIO)
 
-/** 정수 배율을 높이로 먼저 고르고(2~4), 그 배율에서 들어가는 가로 칸 수(7~15)를 정한다. 세로는 7칸. */
+/**
+ * 정수 배율을 높이로 먼저 고른다(칸 7줄이 들어가는 만큼, 2~4). 칸 수는 화면을 덮도록 올림한다 — 가장자리 칸은 잘린다(검은 여백 없음).
+ * 지도가 시야보다 작을 때만 computeViewport가 가운데 정렬해 여백을 남긴다.
+ */
 export function chooseView(canvasPx: { readonly w: number; readonly h: number }): { scale: number; viewW: number; viewH: number } {
-  const scale = clamp(Math.floor(canvasPx.h / (VIEW_ROWS * TILE)), MIN_SCALE, MAX_SCALE)
-  const viewW = clamp(Math.floor(canvasPx.w / (TILE * scale)), MIN_COLS, MAX_COLS)
-  return { scale, viewW, viewH: VIEW_ROWS }
+  const scale = clamp(Math.floor(canvasPx.h / (MIN_ROWS * TILE)), MIN_SCALE, MAX_SCALE)
+  const size = TILE * scale
+  return { scale, viewW: Math.max(MIN_COLS, Math.ceil(canvasPx.w / size)), viewH: Math.max(MIN_ROWS, Math.ceil(canvasPx.h / size)) }
 }
 
 /**
@@ -48,6 +50,7 @@ export function computeViewport(
     x: mapSize.w <= viewW ? 0 : clamp(center.x - Math.floor(viewW / 2), 0, mapSize.w - viewW),
     y: mapSize.h <= viewH ? 0 : clamp(center.y - Math.floor(viewH / 2), 0, mapSize.h - viewH)
   }
+  // 시야보다 큰 지도는 넘치는 만큼(음수)을 양쪽에 똑같이 나눠 잘리게 하고, 작은 지도는 가운데에 둔다.
   const offsetPx: Pos = {
     x: Math.floor((vw - Math.min(mapSize.w, viewW) * TILE * scale) / 2),
     y: Math.floor((vh - Math.min(mapSize.h, viewH) * TILE * scale) / 2)
