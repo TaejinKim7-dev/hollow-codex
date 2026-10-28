@@ -60,7 +60,7 @@ for (const [id, sheet] of Object.entries(content.sheets)) {
 const images = new Map<string, HTMLImageElement>()
 const requestedAssets = new Set<string>()
 let motion: Motion = createMotion(content.start.pos, "s")
-const fx = createFx()
+const fx = createFx(1.5)   // 연출 배속(판정: 기본 속도가 조금 느리다는 평가)
 /** 전투가 끝난 직후(마지막 일격)에도 연출이 끝날 때까지 전투 장면을 계속 그리기 위한 직전 상태. */
 let lingerState: GameState | null = null
 

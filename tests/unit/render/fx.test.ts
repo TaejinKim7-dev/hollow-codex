@@ -216,3 +216,18 @@ describe("fx: movement, banner, clear, determinism", () => {
     expect(oneHit().fx.sample(T0 + 230)).toEqual(oneHit().fx.sample(T0 + 230))
   })
 })
+
+describe("fx speed", () => {
+  it("a faster fx runs the same timeline in proportionally less time", () => {
+    const player = unit("player", "ally", 2, 1, 10)
+    const before = [player, unit("e0", "enemy", 2, 0, 4)]
+    const after = [player, unit("e0", "enemy", 2, 0, 1)]
+    const mk = (speed: number) => { const fx = createFx(speed); fx.reset(before); fx.enqueue([hit("player", "e0", 3, 1)], before, after, T0); return fx }
+    const endOf = (fx: ReturnType<typeof mk>): number => { let t = T0; while (fx.busy(t)) t += 5; return t - T0 }
+    const slow = endOf(mk(1)), fast = endOf(mk(1.5))
+    expect(fast).toBeLessThan(slow * 0.75)
+    const f = mk(1.5)
+    expect(f.takeCues(T0 + 120 - 1)).toHaveLength(0)
+    expect(f.takeCues(T0 + 120 + 1)).toHaveLength(1)
+  })
+})

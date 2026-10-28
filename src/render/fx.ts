@@ -50,7 +50,9 @@ function lunge(t: number): number {
 
 const dirOf = (ux: number, uy: number): Dir => (Math.abs(ux) > Math.abs(uy) ? (ux > 0 ? "e" : "w") : uy > 0 ? "s" : "n")
 
-export function createFx(): Fx {
+/** speed: 연출 배속(1 = 기본 410ms/공격). 시간표의 모양은 그대로 두고 모든 길이를 speed로 나눈다. */
+export function createFx(speed = 1): Fx {
+  const S = speed
   let max: Record<Id, number> = {}
   let base: Record<Id, number> = {}        // 연출이 끝난 뒤의 hp
   let run: Record<Id, number> = {}         // 지금까지 큐에 넣은 마지막 hp(다음 공격의 시작값)
@@ -93,8 +95,8 @@ export function createFx(): Fx {
       const sideOf = (id: Id): "ally" | "enemy" | undefined => (find(after, id) ?? find(before, id))?.side
       const phase = enemyPhase ?? events.some((e) => e.type === "combatHit" && sideOf(e.attacker) === "enemy")
       const immediate = phase ? unitsMoved("ally") : [...unitsMoved("ally"), ...unitsMoved("enemy")]
-      for (const m of immediate) { tweens.push({ ...m, start: t }); endAt = Math.max(endAt, t + MOVE_MS) }
-      if (immediate.length > 0) t += MOVE_MS
+      for (const m of immediate) { tweens.push({ ...m, start: t }); endAt = Math.max(endAt, t + MOVE_MS / S) }
+      if (immediate.length > 0) t += MOVE_MS / S
       let enemyFlushed = !phase
       const flushEnemy = (willAttack: boolean): void => {
         if (enemyFlushed) return
@@ -102,9 +104,9 @@ export function createFx(): Fx {
         const moves = unitsMoved("enemy")
         if (moves.length === 0 && !willAttack) return
         banners.push({ start: t })
-        endAt = Math.max(endAt, t + 700)
-        for (const m of moves) { tweens.push({ ...m, start: t }); endAt = Math.max(endAt, t + MOVE_MS) }
-        if (moves.length > 0) t += MOVE_MS
+        endAt = Math.max(endAt, t + 700 / S)
+        for (const m of moves) { tweens.push({ ...m, start: t }); endAt = Math.max(endAt, t + MOVE_MS / S) }
+        if (moves.length > 0) t += MOVE_MS / S
       }
       let index = 0
       const hitIds = new Set<Id>()
@@ -119,21 +121,21 @@ export function createFx(): Fx {
           const ux = vx / len, uy = vy / len
           attacks.push({ s: t, attacker: e.attacker, target: e.target, ux, uy, dir: dirOf(ux, uy), amount: e.amount, defeated: e.defeated, index, tx: d.pos.x, ty: d.pos.y })
           const from = run[e.target] ?? find(before, e.target)?.hp ?? e.hp + e.amount
-          tracks.push({ id: e.target, from, to: e.hp, impact: t + IMPACT })
+          tracks.push({ id: e.target, from, to: e.hp, impact: t + IMPACT / S })
           run[e.target] = e.hp
           hitIds.add(e.target)
-          cues.push({ at: t + IMPACT, amount: e.amount, index, defeated: e.defeated })
-          endAt = Math.max(endAt, t + IMPACT + 600, t + IMPACT + 550)
+          cues.push({ at: t + IMPACT / S, amount: e.amount, index, defeated: e.defeated })
+          endAt = Math.max(endAt, t + (IMPACT + 600) / S)
           if (e.defeated) {
             const snap = find(before, e.target)
-            if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + IMPACT + DEFEAT_HOLD, fadeMs: DEFEAT_FADE, target: e.target }); endAt = Math.max(endAt, t + IMPACT + DEFEAT_HOLD + DEFEAT_FADE) }
+            if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + (IMPACT + DEFEAT_HOLD) / S, fadeMs: DEFEAT_FADE / S, target: e.target }); endAt = Math.max(endAt, t + (IMPACT + DEFEAT_HOLD + DEFEAT_FADE) / S) }
           }
           index += 1
-          t += ATTACK_MS
+          t += ATTACK_MS / S
         } else if (e.type === "combatYield") {
           const snap = find(before, e.target)
-          if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + YIELD_HOLD, fadeMs: YIELD_FADE, target: e.target }); endAt = Math.max(endAt, t + YIELD_HOLD + YIELD_FADE) }
-          t += 200
+          if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + YIELD_HOLD / S, fadeMs: YIELD_FADE / S, target: e.target }); endAt = Math.max(endAt, t + (YIELD_HOLD + YIELD_FADE) / S) }
+          t += 200 / S
         }
       }
       flushEnemy(false)
@@ -158,11 +160,11 @@ export function createFx(): Fx {
       const sparks: FxFrame["sparks"][number][] = []
 
       for (const tw of tweens) {
-        const p = (now - tw.start) / MOVE_MS
+        const p = ((now - tw.start) * S) / MOVE_MS
         if (p < 1) add(tw.id, tw.dx * (1 - smooth(p)), tw.dy * (1 - smooth(p)), 0)
       }
       for (const a of attacks) {
-        const t = now - a.s
+        const t = (now - a.s) * S
         const l = lunge(t)
         if (l !== 0) add(a.attacker, a.ux * l, a.uy * l, 0)
         if (t >= IMPACT && t < 330) {
@@ -200,15 +202,15 @@ export function createFx(): Fx {
         let shown = base[id] ?? 0, trail = shown
         for (const tr of tracks) {
           if (tr.id !== id || now < tr.impact) continue
-          shown = lerp(tr.from, tr.to, (now - tr.impact) / 250)
-          trail = lerp(tr.from, tr.to, (now - tr.impact - 150) / 400)
+          shown = lerp(tr.from, tr.to, ((now - tr.impact) * S) / 250)
+          trail = lerp(tr.from, tr.to, ((now - tr.impact) * S - 150) / 400)
         }
         hp[id] = { shown, trail, max: max[id] ?? 0 }
       }
 
       let banner: FxFrame["banner"] = null
       for (const b of banners) {
-        const t = now - b.start
+        const t = (now - b.start) * S
         if (t >= 0 && t < 700) banner = { text: "enemy", alpha: Math.min(clamp01(t / 100), clamp01((700 - t) / 200)) }
       }
 
