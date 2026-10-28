@@ -3,6 +3,7 @@
   objects:
     - { id: obj.standing-ring, at: [6, 8] }
     - { id: obj.bridge, at: [14, 8] }
+    - { id: obj.sign, at: [10, 7] }
   rows:
     - "tttttttttttttttttttttttt"
     - "tgtggggggggghggwgggggggt"

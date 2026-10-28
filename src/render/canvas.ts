@@ -73,7 +73,7 @@ function drawGround(ctx: CanvasRenderingContext2D, res: RenderResources, content
     for (let x = x0; x < x1; x++) {
       const tile = content.tiles[map.rows[y]?.[x] ?? ""]
       if (tile?.sprite !== undefined) drawLegacy(ctx, res, content, tile.sprite, screenX(vp, x, size), screenY(vp, y, size), size)
-      else if (tile?.ground !== undefined) drawBaseGrass(ctx, res, screenX(vp, x, size), screenY(vp, y, size), size)
+      else if (tile?.ground !== undefined || map.ground?.[y]?.[x] != null) drawBaseGrass(ctx, res, screenX(vp, x, size), screenY(vp, y, size), size)
     }
   }
   for (const kind of OVERLAY_ORDER) {
