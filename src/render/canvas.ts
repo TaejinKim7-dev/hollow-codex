@@ -156,20 +156,31 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
   const vp = frameViewport(state, content, { w: ctx.canvas.width, h: ctx.canvas.height })
   const size = TILE * vp.scale
   const items: Item[] = []
-  for (let gy = 0; gy < combat.grid.length; gy++) {
-    const row = combat.grid[gy]
-    if (!row) continue
-    for (let gx = 0; gx < row.length; gx++) {
-      const ch = row[gx]
+  const gridH = combat.grid.length
+  const gridW = combat.grid[0]?.length ?? 0
+  // 격자 바깥까지 화면 전체를 가장자리 땅으로 이어 채운다(검은 여백 없음). 물건은 격자 안에만 둔다.
+  const cx0 = Math.floor(-vp.offsetPx.x / size) - 1, cx1 = Math.ceil((ctx.canvas.width - vp.offsetPx.x) / size) + 1
+  const cy0 = Math.floor(-vp.offsetPx.y / size) - 1, cy1 = Math.ceil((ctx.canvas.height - vp.offsetPx.y) / size) + 1
+  for (let gy = cy0; gy < cy1; gy++) {
+    for (let gx = cx0; gx < cx1; gx++) {
+      const inside = gx >= 0 && gx < gridW && gy >= 0 && gy < gridH
+      const ch = combat.grid[Math.min(gridH - 1, Math.max(0, gy))]?.[Math.min(gridW - 1, Math.max(0, gx))]
       const tile = ch !== undefined ? content.tiles[ch] : undefined
       if (tile?.sprite) drawLegacy(ctx, res, content, tile.sprite, screenX(vp, gx, size), screenY(vp, gy, size), size)
       else if (tile?.ground !== undefined) drawBaseGrass(ctx, res, screenX(vp, gx, size), screenY(vp, gy, size), size)
-      if (tile?.object !== undefined) {
+      if (inside && tile?.object !== undefined) {
         const item = objectItem(ctx, res, content, vp, size, tile.object, gx, gy)
         if (item !== null) items.push(item)
       }
     }
   }
+  // 전투가 일어나는 격자만 또렷하게: 바깥은 어둡게 눌러 구분한다.
+  ctx.fillStyle = "rgba(0, 0, 0, 0.45)"
+  const gx0 = screenX(vp, 0, size), gy0 = screenY(vp, 0, size), gx1 = screenX(vp, gridW, size), gy1 = screenY(vp, gridH, size)
+  ctx.fillRect(0, 0, ctx.canvas.width, gy0)
+  ctx.fillRect(0, gy1, ctx.canvas.width, ctx.canvas.height - gy1)
+  ctx.fillRect(0, gy0, gx0, gy1 - gy0)
+  ctx.fillRect(gx1, gy0, ctx.canvas.width - gx1, gy1 - gy0)
   for (const unit of combat.units) {
     if (unit.gone !== null) continue
     items.push({
