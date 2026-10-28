@@ -19,7 +19,8 @@ export interface FxFrame {
 export interface HitCue { at: number; amount: number; index: number; defeated: boolean }
 export interface Fx {
   reset(units: readonly CombatUnit[]): void
-  enqueue(events: readonly GameEvent[], before: readonly CombatUnit[], after: readonly CombatUnit[], now: number): void
+  /** enemyPhase: 이 배치에 적의 차례가 들어 있는가(기본: 적이 때린 이벤트가 있으면 true). false면 적의 이동(밀치기 등)은 즉시 미끄러지고 배너는 없다. */
+  enqueue(events: readonly GameEvent[], before: readonly CombatUnit[], after: readonly CombatUnit[], now: number, enemyPhase?: boolean): void
   sample(now: number): FxFrame
   takeCues(now: number): HitCue[]
   busy(now: number): boolean
@@ -59,9 +60,10 @@ export function createFx(): Fx {
   let ghosts: GhostFx[] = []
   let cues: HitCue[] = []
   let banners: { start: number }[] = []
-  let cursor = 0
+  let cursor = 0      // 다음 동작을 시작할 시각(순서 정하기용)
+  let endAt = 0       // 모든 효과(숫자·잔상·체력 잔상·배너)가 끝나는 시각 — busy와 정리의 기준
 
-  const clear = (): void => { max = {}; base = {}; run = {}; attacks = []; tweens = []; tracks = []; ghosts = []; cues = []; banners = []; cursor = 0 }
+  const clear = (): void => { max = {}; base = {}; run = {}; attacks = []; tweens = []; tracks = []; ghosts = []; cues = []; banners = []; cursor = 0; endAt = 0 }
 
   return {
     reset(units) {
@@ -69,7 +71,7 @@ export function createFx(): Fx {
       for (const u of units) { max[u.id] = u.hp; base[u.id] = u.hp; run[u.id] = u.hp }
     },
     clear,
-    enqueue(events, before, after, now) {
+    enqueue(events, before, after, now, enemyPhase) {
       const find = (list: readonly CombatUnit[], id: Id): CombatUnit | undefined => list.find((u) => u.id === id)
       let t = Math.max(now, cursor)
       const unitsMoved = (side: "ally" | "enemy"): { id: Id; dx: number; dy: number }[] => {
@@ -88,17 +90,20 @@ export function createFx(): Fx {
         if (run[u.id] === undefined) { base[u.id] = b.hp; run[u.id] = b.hp }
       }
       // 아군의 이동은 배치 시작에 바로(걷고 → 공격). 적의 이동·배너는 아군 행동 연출이 끝난 뒤(적의 첫 행동 직전)에 시작한다.
-      const allyMoves = unitsMoved("ally")
-      for (const m of allyMoves) tweens.push({ ...m, start: t })
-      if (allyMoves.length > 0) t += MOVE_MS
-      let enemyFlushed = false
+      const sideOf = (id: Id): "ally" | "enemy" | undefined => (find(after, id) ?? find(before, id))?.side
+      const phase = enemyPhase ?? events.some((e) => e.type === "combatHit" && sideOf(e.attacker) === "enemy")
+      const immediate = phase ? unitsMoved("ally") : [...unitsMoved("ally"), ...unitsMoved("enemy")]
+      for (const m of immediate) { tweens.push({ ...m, start: t }); endAt = Math.max(endAt, t + MOVE_MS) }
+      if (immediate.length > 0) t += MOVE_MS
+      let enemyFlushed = !phase
       const flushEnemy = (willAttack: boolean): void => {
         if (enemyFlushed) return
         enemyFlushed = true
         const moves = unitsMoved("enemy")
         if (moves.length === 0 && !willAttack) return
         banners.push({ start: t })
-        for (const m of moves) tweens.push({ ...m, start: t })
+        endAt = Math.max(endAt, t + 700)
+        for (const m of moves) { tweens.push({ ...m, start: t }); endAt = Math.max(endAt, t + MOVE_MS) }
         if (moves.length > 0) t += MOVE_MS
       }
       let index = 0
@@ -118,15 +123,16 @@ export function createFx(): Fx {
           run[e.target] = e.hp
           hitIds.add(e.target)
           cues.push({ at: t + IMPACT, amount: e.amount, index, defeated: e.defeated })
+          endAt = Math.max(endAt, t + IMPACT + 600, t + IMPACT + 550)
           if (e.defeated) {
             const snap = find(before, e.target)
-            if (snap !== undefined) ghosts.push({ unit: snap, holdUntil: t + IMPACT + DEFEAT_HOLD, fadeMs: DEFEAT_FADE, target: e.target })
+            if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + IMPACT + DEFEAT_HOLD, fadeMs: DEFEAT_FADE, target: e.target }); endAt = Math.max(endAt, t + IMPACT + DEFEAT_HOLD + DEFEAT_FADE) }
           }
           index += 1
           t += ATTACK_MS
         } else if (e.type === "combatYield") {
           const snap = find(before, e.target)
-          if (snap !== undefined) ghosts.push({ unit: snap, holdUntil: t + YIELD_HOLD, fadeMs: YIELD_FADE, target: e.target })
+          if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + YIELD_HOLD, fadeMs: YIELD_FADE, target: e.target }); endAt = Math.max(endAt, t + YIELD_HOLD + YIELD_FADE) }
           t += 200
         }
       }
@@ -139,7 +145,7 @@ export function createFx(): Fx {
       cues = cues.filter((c) => c.at > now)
       return due
     },
-    busy: (now) => now < cursor,
+    busy: (now) => now < endAt,
     sample(now) {
       const units: Record<Id, UnitFx> = {}
       const add = (id: Id, dx: number, dy: number, flash: number): void => {
@@ -206,7 +212,7 @@ export function createFx(): Fx {
         if (t >= 0 && t < 700) banner = { text: "enemy", alpha: Math.min(clamp01(t / 100), clamp01((700 - t) / 200)) }
       }
 
-      if (now >= cursor) {                                    // 연출이 모두 끝났으면 hp를 확정하고 목록을 비운다
+      if (now >= endAt) {                                     // 모든 효과가 끝났으면 hp를 확정하고 목록을 비운다
         for (const tr of tracks) base[tr.id] = tr.to
         attacks = []; tweens = []; tracks = []; ghosts = []; banners = []
       }

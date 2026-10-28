@@ -247,6 +247,13 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     const f = fx.units[unit.id]
     drawHpBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), bar?.shown ?? unit.hp, bar?.trail ?? unit.hp, bar?.max ?? Math.max(unit.hp, 1))
   }
+  for (const g of fx.ghosts) {                       // 방금 쓰러진 유닛의 체력 막대도 끝까지 줄어드는 걸 보여 준다
+    const bar = fx.hp[g.unit.id]
+    if (bar === undefined) continue
+    ctx.globalAlpha = g.alpha
+    drawHpBar(ctx, vp, size, g.unit.pos.x + g.dx, g.unit.pos.y + g.dy, bar.shown, bar.trail, bar.max)
+    ctx.globalAlpha = 1
+  }
   for (const sl of fx.slashes) drawSlash(ctx, vp, size, sl.x, sl.y, sl.dir, sl.age)
   ctx.fillStyle = "#ffe9a8"
   for (const sp of fx.sparks) {

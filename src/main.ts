@@ -12,6 +12,7 @@ import type { UiAction } from "./input/commands.ts"
 import { loadMapAssets, mapAssetPrefixes, spriteUrls } from "./render/assets.ts"
 import { drawFrame } from "./render/canvas.ts"
 import type { CombatFxView } from "./render/canvas.ts"
+import { endedCombatUnits } from "./render/combat-linger.ts"
 import { combatOverlay } from "./render/combat-overlay.ts"
 import { createFx } from "./render/fx.ts"
 import { createMotion, resyncMotion } from "./render/motion.ts"
@@ -280,16 +281,16 @@ function trackCombatFx(prev: GameState, next: GameState, events: readonly GameEv
   const nc = next.combat
   const now = performance.now()
   if (pc === null && nc !== null) { lingerState = null; fx.reset(nc.units); return }
-  if (pc !== null && nc !== null) { fx.enqueue(events, pc.units, nc.units, now); return }
-  if (pc !== null && nc === null && events.some((e) => e.type === "combatHit" || e.type === "combatYield")) {
-    const gone = new Map<Id, "dead" | "retreated">()
-    for (const e of events) {
-      if (e.type === "combatHit" && e.defeated) gone.set(e.target, "dead")
-      if (e.type === "combatYield") gone.set(e.target, "retreated")
+  if (pc !== null && nc !== null) { fx.enqueue(events, pc.units, nc.units, now, pc.round !== nc.round); return }
+  if (pc !== null && nc === null) {
+    if (events.some((e) => e.type === "combatHit" || e.type === "combatYield")) {
+      const units = endedCombatUnits(pc.units, events)
+      fx.enqueue(events, pc.units, units, now)
+      lingerState = { ...prev, combat: { ...pc, units } }
+    } else {                                                  // 도망 등: 보여 줄 마지막 일격이 없다. 남은 연출과 소리를 버린다.
+      fx.clear()
+      lingerState = null
     }
-    const units = pc.units.map((u) => (gone.has(u.id) ? { ...u, gone: gone.get(u.id)! } : u))
-    fx.enqueue(events, pc.units, units, now)
-    lingerState = { ...prev, combat: { ...pc, units } }
   }
 }
 
@@ -457,8 +458,18 @@ export async function boot(): Promise<void> {
   })
   refreshSlotInfo()
 
+  /** 마지막 일격 연출이 남아 있는 동안의 첫 입력은 연출을 건너뛰는 데만 쓴다(탐험 화면으로 새지 않게). */
+  const skipLinger = (): boolean => {
+    if (lingerState === null) return false
+    lingerState = null
+    fx.clear()
+    scheduleFrame()
+    return true
+  }
+
   window.addEventListener("keydown", (event) => {
     ensureAudio()
+    if (skipLinger()) { event.preventDefault(); return }
     const st = state
     if (st === null) return
     const cmd = keyToCommand(event.key, modeOf(st))
@@ -469,6 +480,7 @@ export async function boot(): Promise<void> {
 
   canvas.addEventListener("pointerdown", (event) => {
     ensureAudio()
+    if (skipLinger()) return
     const st = state
     if (st === null) return
     showTouchHintOnce()

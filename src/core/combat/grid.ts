@@ -66,9 +66,9 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
       if (!target) return ignored
       const done = withUnit(state, actor.id, { acted: true })
       if (action.kind === "attack") {
-        return harm(done, content, actor.id, target, damage(actor.attack, target), [{ type: "sfx", name: "hit" }])
+        return harm(done, content, actor, target, damage(actor.attack, target), [{ type: "sfx", name: "hit" }])
       }
-      if (action.kind === "push") return push(done, content, actor.id, target, action.dir)
+      if (action.kind === "push") return push(done, content, actor, target, action.dir)
       const yielded = persuaded(state, content, target)
       const events: GameEvent[] = yielded ? [{ type: "combatYield", target: target.id, how: "persuaded" }] : []
       return settle(yielded ? withUnit(done, target.id, { gone: "retreated" }) : done, events, content)
@@ -77,13 +77,13 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
 }
 
 /** 규칙 6: 격자 밖 → 물러남, 막힌 타일·유닛 → 제자리 피해 1, 그 외 1칸 이동. */
-function push(state: GameState, content: GameContent, attackerId: Id, target: CombatUnit, dir: Dir): StepResult {
+function push(state: GameState, content: GameContent, attacker: CombatUnit, target: CombatUnit, dir: Dir): StepResult {
   const combat = state.combat!
   const dest = offset(target.pos, dir)
   const tile = gridTileAt(combat.grid, content.tiles, dest)
   const events: GameEvent[] = [{ type: "sfx", name: "push" }]
   if (tile === null) return settle(withUnit(state, target.id, { gone: "retreated" }), [{ type: "combatYield", target: target.id, how: "retreated" }, ...events], content)
-  if (tile.walk === null || occupied(combat.units, dest, target.id)) return harm(state, content, attackerId, target, 1, events)
+  if (tile.walk === null || occupied(combat.units, dest, target.id)) return harm(state, content, attacker, target, 1, events)
   return settle(withUnit(state, target.id, { pos: dest }), events, content)
 }
 
@@ -94,10 +94,10 @@ function persuaded(state: GameState, content: GameContent, target: CombatUnit): 
 }
 
 /** 적에게 피해를 준다. 죽은 생물이 evil 아니면 compassion 행실(D7). */
-function harm(state: GameState, content: GameContent, attackerId: Id, target: CombatUnit, amount: number, events: GameEvent[]): StepResult {
+function harm(state: GameState, content: GameContent, attacker: CombatUnit, target: CombatUnit, amount: number, events: GameEvent[]): StepResult {
   const hurt = wound(target, amount)
   let next = withUnit(state, target.id, hurt)
-  const all: GameEvent[] = [{ type: "combatHit", attacker: attackerId, target: target.id, amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp) }, ...events]
+  const all: GameEvent[] = [{ type: "combatHit", attacker: attacker.id, target: target.id, amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp), at: attacker.pos }, ...events]
   const creature = target.creature === null ? undefined : content.creatures[target.creature]
   if (hurt.gone === "dead" && creature !== undefined && !creature.evil) {
     const deed = recordDeed(next, content, "compassion", "deed.kill-innocent")
@@ -140,7 +140,7 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
       const amount = damage(enemy.attack, target)
       const hurt = wound(target, amount)
       units[j] = { ...target, ...hurt }
-      events.push({ type: "combatHit", attacker: enemy.id, target: target.id, amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp) })
+      events.push({ type: "combatHit", attacker: enemy.id, target: target.id, amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp), at: pos })
       events.push({ type: "sfx", name: "hit" })
     }
   }

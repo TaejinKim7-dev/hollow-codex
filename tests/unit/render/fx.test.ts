@@ -5,7 +5,7 @@ import { createFx } from "../../../src/render/fx.ts"
 const unit = (id: string, side: "ally" | "enemy", x: number, y: number, hp: number, patch: Partial<CombatUnit> = {}): CombatUnit => ({
   id, side, creature: side === "enemy" ? "creature.slime" : null, pos: { x, y }, hp, attack: 3, defending: false, moved: false, acted: false, gone: null, ...patch
 })
-const hit = (attacker: string, target: string, amount: number, hp: number, defeated = false): GameEvent => ({ type: "combatHit", attacker, target, amount, defeated, hp })
+const hit = (attacker: string, target: string, amount: number, hp: number, defeated = false): GameEvent => ({ type: "combatHit", attacker, target, amount, defeated, hp, at: { x: 0, y: 0 } })
 const T0 = 1000
 const mag = (v: { x: number; y: number }) => Math.hypot(v.x, v.y)
 
@@ -82,9 +82,9 @@ describe("fx: one attack (410 ms: windup 100, lunge 80, impact at 180, hit-stop 
     expect(done.shown).toBe(1); expect(done.trail).toBeGreaterThan(1); expect(done.max).toBe(4)
     expect(fx.sample(T0 + 2000).hp["e0"]).toEqual({ shown: 1, trail: 1, max: 4 })
   })
-  it("is busy until the 410 ms are over, and offers exactly one sound cue at impact", () => {
+  it("stays busy until its last effect is over (the damage number lives to impact + 600), and offers exactly one sound cue at impact", () => {
     const { fx } = oneHit()
-    expect(fx.busy(T0 + 400)).toBe(true); expect(fx.busy(T0 + 411)).toBe(false)
+    expect(fx.busy(T0 + 400)).toBe(true); expect(fx.busy(T0 + 700)).toBe(true); expect(fx.busy(T0 + 781)).toBe(false)
     expect(fx.takeCues(T0 + 179)).toEqual([])
     expect(fx.takeCues(T0 + 181)).toEqual([{ at: T0 + 180, amount: 3, index: 0, defeated: false }])
     expect(fx.takeCues(T0 + 500)).toEqual([])
@@ -92,6 +92,22 @@ describe("fx: one attack (410 ms: windup 100, lunge 80, impact at 180, hit-stop 
 })
 
 describe("fx: sequences and kills", () => {
+  it("sampling during the 410 ms sequence does not cut the damage number short", () => {
+    const { fx } = oneHit()
+    fx.sample(T0 + 430)                                                             // past the sequencing step, inside the number's life
+    expect(fx.sample(T0 + 500).floats).toHaveLength(1)
+    expect(fx.sample(T0 + 500).hp["e0"]!.trail).toBeGreaterThan(1)                  // the trail is still catching up
+  })
+  it("a killed target's ghost fades to the end even though the sequence step is shorter", () => {
+    const player = unit("player", "ally", 2, 1, 10)
+    const before = [player, unit("e0", "enemy", 2, 0, 3)]
+    const after = [player, unit("e0", "enemy", 2, 0, 0, { gone: "dead" })]
+    const fx = createFx(); fx.reset(before)
+    fx.enqueue([hit("player", "e0", 3, 0, true)], before, after, T0)
+    fx.sample(T0 + 420)
+    expect(fx.sample(T0 + 500).ghosts[0]!.alpha).toBeGreaterThan(0)
+    expect(fx.busy(T0 + 500)).toBe(true)
+  })
   it("two attacks in one batch play one after the other, 410 ms apart, with rising cue indexes", () => {
     const player = unit("player", "ally", 2, 1, 10)
     const e0 = unit("e0", "enemy", 2, 0, 4)
@@ -100,7 +116,7 @@ describe("fx: sequences and kills", () => {
     const fx = createFx(); fx.reset(before)
     fx.enqueue([hit("player", "e0", 3, 1), hit("e0", "player", 2, 8)], before, after, T0)
     expect(fx.takeCues(T0 + 5000).map((c) => [c.at, c.index])).toEqual([[T0 + 180, 0], [T0 + 410 + 180, 1]])
-    expect(fx.busy(T0 + 800)).toBe(true); expect(fx.busy(T0 + 821)).toBe(false)
+    expect(fx.busy(T0 + 1000)).toBe(true); expect(fx.busy(T0 + 411 + 781)).toBe(false)
   })
   it("a batch queued while another is playing starts after it", () => {
     const { fx, before, after } = oneHit()
@@ -177,9 +193,18 @@ describe("fx: movement, banner, clear, determinism", () => {
     const before = [player, unit("e0", "enemy", 2, 0, 4)]
     const after = [player, unit("e0", "enemy", 2, 3, 4)]
     const fx = createFx(); fx.reset(before)
-    fx.enqueue([], before, after, T0)
+    fx.enqueue([], before, after, T0, true)
     expect(fx.sample(T0 + 50).banner?.text).toBe("enemy")
     expect(fx.sample(T0).units["e0"]).toMatchObject({ dy: -3 })
+  })
+  it("a push in the middle of the player's turn (no enemy phase) slides the unit at once and raises no banner", () => {
+    const player = unit("player", "ally", 2, 4, 10)
+    const before = [player, unit("e0", "enemy", 2, 2, 4)]
+    const after = [player, unit("e0", "enemy", 2, 1, 4)]
+    const fx = createFx(); fx.reset(before)
+    fx.enqueue([], before, after, T0, false)
+    expect(fx.sample(T0 + 50).banner).toBeNull()
+    expect(fx.sample(T0).units["e0"]).toMatchObject({ dy: 1 })
   })
   it("clear() drops everything, including pending cues", () => {
     const { fx } = oneHit()
