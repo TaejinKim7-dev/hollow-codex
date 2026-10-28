@@ -470,6 +470,8 @@ export async function boot(): Promise<void> {
   window.addEventListener("keydown", (event) => {
     ensureAudio()
     if (skipLinger()) { event.preventDefault(); return }
+    const t = event.target
+    if (t instanceof HTMLInputElement || t instanceof HTMLSelectElement || t instanceof HTMLTextAreaElement) return   // 음량 슬라이더 등: 방향키는 그 입력 칸의 것
     const st = state
     if (st === null) return
     const cmd = keyToCommand(event.key, modeOf(st))
