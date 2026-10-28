@@ -227,14 +227,15 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     if (enemy.side !== "enemy" || enemy.gone !== null) continue
     const intent = combat.intents[enemy.id]
     if (!intent) continue
-    const from = cellCenter(vp, enemy.pos, size)
-    const to = cellCenter(vp, intent.moveTo, size)
-    ctx.strokeStyle = "#ffd700"
-    ctx.lineWidth = 2 * vp.scale
-    ctx.beginPath()
-    ctx.moveTo(from.x, from.y)
-    ctx.lineTo(to.x, to.y)
-    ctx.stroke()
+    // 예고: 적이 다음 차례에 설 칸을 노란 블록으로 보여 준다(제자리면 생략).
+    if (intent.moveTo.x !== enemy.pos.x || intent.moveTo.y !== enemy.pos.y) {
+      const bx = screenX(vp, intent.moveTo.x, size), by = screenY(vp, intent.moveTo.y, size)
+      ctx.fillStyle = "rgba(255, 215, 0, 0.30)"
+      ctx.fillRect(bx, by, size, size)
+      ctx.strokeStyle = "rgba(255, 225, 90, 0.75)"
+      ctx.lineWidth = Math.max(1, vp.scale)
+      ctx.strokeRect(bx + 0.5, by + 0.5, size - 1, size - 1)
+    }
     if (intent.attack !== null) {
       const target = combat.units.find((u) => u.id === intent.attack)
       if (target && target.gone === null) strokeCell(ctx, vp, target.pos, size, "#ff0000", vp.scale)
@@ -351,12 +352,6 @@ function unitSprite(content: GameContent, unit: { readonly id: string; readonly 
   if (creature) return creature.sprite
   return content.playerSprite
 }
-
-const cellCenter = (vp: Viewport, p: Pos, size: number): Pos => ({
-  x: screenX(vp, p.x, size) + size / 2,
-  y: screenY(vp, p.y, size) + size / 2
-})
-
 function strokeCell(ctx: CanvasRenderingContext2D, vp: Viewport, p: Pos, size: number, color: string, scale: number): void {
   ctx.strokeStyle = color
   ctx.lineWidth = Math.max(1, Math.floor(2 * scale))
