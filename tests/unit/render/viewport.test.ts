@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { chooseView, computeViewport, screenToTile, TILE } from "../../../src/render/viewport.ts"
+import { chooseView, combatReservePx, computeViewport, screenToTile, TILE } from "../../../src/render/viewport.ts"
 
 describe("chooseView", () => {
   it("1280×720 gives scale 3 and 13 columns", () => { expect(chooseView({ w: 1280, h: 720 })).toEqual({ scale: 3, viewW: 13, viewH: 7 }) })
@@ -27,5 +27,20 @@ describe("computeViewport", () => {
     const vp = computeViewport({ w: 1280, h: 720 }, 1, { w: 32, h: 24 }, { x: 16, y: 12 })
     const step = TILE * vp.scale
     expect(screenToTile({ x: vp.offsetPx.x + step * 2 + 1, y: vp.offsetPx.y + 1 }, vp)).toEqual({ x: vp.originTile.x + 2, y: vp.originTile.y })
+  })
+})
+
+describe("combat viewport", () => {
+  it("reserves the bottom 17% of the canvas for the HUD: the grid is centred in what is left", () => {
+    const canvas = { w: 1280, h: 720 }
+    expect(combatReservePx(canvas)).toBe(122)
+    const vp = computeViewport(canvas, 1, { w: 7, h: 7 }, { x: 3, y: 3 }, 122)
+    expect(vp.scale).toBe(2)   // 598 px left: 7 rows fit at ×2 (448) but not ×3 (672)
+    const gridBottom = vp.offsetPx.y + 7 * TILE * vp.scale
+    expect(gridBottom).toBeLessThanOrEqual(720 - 122)
+    expect(vp.offsetPx.y).toBe(Math.floor((598 - 448) / 2))
+  })
+  it("without a reserve nothing changes", () => {
+    expect(computeViewport({ w: 1280, h: 720 }, 1, { w: 7, h: 7 }, { x: 3, y: 3 })).toEqual(computeViewport({ w: 1280, h: 720 }, 1, { w: 7, h: 7 }, { x: 3, y: 3 }, 0))
   })
 })

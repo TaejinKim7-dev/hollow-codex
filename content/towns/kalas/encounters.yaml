@@ -1,13 +1,13 @@
 - id: enc.field.wolves
   map: map.field
   grid:
-    - "......."
-    - "......."
-    - "...T..."
-    - "......."
-    - "...T..."
-    - "......."
-    - "......."
+    - "ggggggg"
+    - "ggggggg"
+    - "gggtggg"
+    - "ggggggg"
+    - "gggtggg"
+    - "ggggggg"
+    - "ggggggg"
   allyStart: [[3, 6], [2, 6], [4, 6]]
   enemies:
     - { creature: creature.wolf, at: [1, 0] }

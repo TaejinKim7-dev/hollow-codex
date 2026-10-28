@@ -2,7 +2,7 @@
 
 > 규칙: 이 파일은 **짧게, 항상 최신으로** 유지한다(60줄 이내). 작업을 시작할 때 "진행 중"에 이름을 올리고, 끝날 때 결과를 반영해 덮어쓴다. 자세한 기록은 `docs/handoff.md` 끝에 추가한다.
 
-최종 갱신: 2026-10-27 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
+최종 갱신: 2026-10-28 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
 
 ## 지금 단계
 **2026-10-27 사용자 지시: 그래픽·소리 작업은 여기서 일단 정리하고, 다음은 대사(실제 내용) 품질 작업(D 단계).** D-1 칼라스 점검 완료 → `docs/narrative/kalas-audit.md`(제안), `docs/narrative/voice-bible.md`(말투 기준). 🧑 확인 뒤 `content/strings/ko.yaml` 반영. 남은 그림·소리(맵 그림 15회, 문지기 색, 집 시점 판정, NPC 걷기)는 `art-kalas-maps.md`·`art-kalas-cast.md`에 목록으로 보존.
@@ -25,10 +25,12 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | 🧑 | 문지기 색: 원본(짙은 녹색) vs `gatekeeper-field-grey`(청회색, 풀 위에서 또렷) 선택. 집·열석 고리의 비스듬한 시점을 그대로 쓸지(`art-kalas-maps.md` 끝) 판정 | 채팅 | 대기 |
 | 🧑 | 확인 대기: 그림 제작 계획 §6(`art-production-plan.md`), 아트 방향 §5(`art-direction.md`), 강·다리 목업, 엘린 걷기 영상 | 문서 의견란 | 대기 |
 | 🧑 | 인물 크기: 지금 캐릭터는 몸 약 35px(타일 1칸 높이)라 15×11칸 ×2에서는 화면 높이의 10%뿐. 해결 후보 ① 시야를 11×7칸 ×3으로 좁힘(16%, 추천·비용 0) ② 9×6칸 ×4(18%) ③ 캐릭터를 더 크게 재생성(횟수 소모). 실험실에서 시야 버튼으로 비교 후 선택 | 채팅 | 대기 |
-| S | 그래픽·소리 재설계(층 렌더링, Wang 자동 타일, 걷기, 소리 id→파일, 배포 용량) | `docs/superpowers/specs/` | R 끝난 뒤 |
+| ✅ | **S 설계 + P 계획 + I-1/I-2 구현(2026-10-28, 브랜치 `todo-2-art-audio-engine`)**: 32px 칸·가변 시야(11~15×7)·층 렌더링·듀얼 그리드 자동 타일·걷기 보간·소리 엔진(`audio.yaml`)·칩 합성기 제거·배포 예산. 칼라스 들판·전투(들판 늑대)·칼라스 인물 11명이 새 그림. 나머지 7마을·서고·대륙은 옛 16px 그림을 2배로 호환 표시 | 설계 `docs/superpowers/specs/2026-10-28-art-audio-redesign.md`, 계획 `docs/superpowers/plans/2026-10-28-art-audio-engine.md`, 화면 `docs/screenshots/2026-10-28-I2-*.png` | 🧑 화면·소리 판정 대기 |
+| 다음 | 칼라스 마을·서고 지도를 새 땅·물건으로 이전(맵 그림 약 15회 필요), 새 인물 기본형 12종(PixelLab 하루 +5, 잔액 0이었음), 효과음 14상황 선택 | `art-kalas-maps.md` | 그림 횟수 대기 |
 | 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |
 
 ## 진행 중
+- I-1/I-2 · Claude · todo-2-art-audio-engine · 2026-10-28 · 구현 끝, 최종 검토·병합 전
 - R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
 
 - 형식: `- <ID> · <에이전트 이름> · <브랜치> · <시작 시각> · <한 줄 상태>`
@@ -56,5 +58,5 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 - 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 1/8, 능력 1/7만 효과. 에필로그가 위기 풀이를 반영하지 않음.
 
 ## 마지막 게이트
-main `b17ee6d`: npm ci 0 · test:unit 0 (384 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
+todo-2-art-audio-engine (2026-10-28): npm run test:unit 0 (453 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0.
 main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. 이후 커밋은 문서·자산·lab·scripts/visual만(매번 check:content 0).

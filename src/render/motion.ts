@@ -2,7 +2,7 @@ import type { Dir, Pos } from "../core/types.ts"
 
 /** 한 칸 걷는 시간. core는 칸 단위로 순간 이동하므로 보간은 화면에서만 한다. */
 export const WALK_MS = 130
-const FRAME_MS = 65
+const WALK_FRAMES = 4
 
 export interface MotionFrame {
   readonly x: number
@@ -35,7 +35,7 @@ function make(rest: Pos, dir: Dir, step: Step | null): Motion {
         x: step.from.x + (step.to.x - step.from.x) * k,
         y: step.from.y + (step.to.y - step.from.y) * k,
         moving: true,
-        frame: Math.floor(t / FRAME_MS) % 2,
+        frame: Math.min(WALK_FRAMES - 1, Math.floor((t / WALK_MS) * WALK_FRAMES)),
         dir: step.dir
       }
     }

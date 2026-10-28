@@ -23,10 +23,10 @@ describe("RenderMotion", () => {
     const m = createMotion({ x: 5, y: 5 }, "s").onMoved({ x: 6, y: 5 }, "e", 1000).onTeleport({ x: 1, y: 2 }, "n")
     expect(m.sample(1010)).toEqual({ x: 1, y: 2, moving: false, frame: 0, dir: "n" })
   })
-  it("alternates the walk frame every 65 ms while moving", () => {
+  it("runs through 4 walk frames during one step, 0 at rest", () => {
     const m = createMotion({ x: 0, y: 0 }, "s").onMoved({ x: 1, y: 0 }, "e", 0)
-    expect(m.sample(10).frame).toBe(0)
-    expect(m.sample(70).frame).toBe(1)
+    expect([5, 40, 70, 110].map((t) => m.sample(t).frame)).toEqual([0, 1, 2, 3])
+    expect(m.sample(500).frame).toBe(0)
   })
   it("does not mutate the previous motion", () => {
     const a = createMotion({ x: 0, y: 0 }, "s")

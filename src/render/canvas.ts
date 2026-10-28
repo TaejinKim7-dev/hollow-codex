@@ -5,7 +5,7 @@ import { BASE_SET, GROUND_SETS, wangTables } from "./assets.ts"
 import { overlayTiles, type OverlayTile } from "./autotile.ts"
 import { sortDrawables, type Drawable } from "./layers.ts"
 import type { MotionFrame } from "./motion.ts"
-import { charDrawRect, legacyDraw } from "./sprites.ts"
+import { characterImageKey, charDrawRect, idleBobPx, legacyDraw } from "./sprites.ts"
 import { frameViewport, TILE, type Viewport } from "./viewport.ts"
 
 /** 화면에 그릴 때 쓰는 이미지 묶음. sheets = 옛 16px 시트, images = 지도별로 불러온 새 그림(키는 assets/sprites 아래 경로). */
@@ -14,7 +14,6 @@ export interface RenderResources {
   readonly images: ReadonlyMap<string, HTMLImageElement>
 }
 
-const DIR_NAME: Readonly<Record<Dir, string>> = { n: "north", e: "east", s: "south", w: "west" }
 const OVERLAY_ORDER = ["path", "water"] as const
 
 /**
@@ -66,15 +65,11 @@ function drawGround(ctx: CanvasRenderingContext2D, res: RenderResources, content
   ctx.beginPath()
   ctx.rect(screenX(vp, 0, size), screenY(vp, 0, size), mapW * size, mapH * size)
   ctx.clip()
-  const base = wangTables[BASE_SET]?.["0000"]
-  const baseImg = res.images.get(`tilesets/${BASE_SET}/sheet`)
   for (let y = y0; y < y1; y++) {
     for (let x = x0; x < x1; x++) {
       const tile = content.tiles[map.rows[y]?.[x] ?? ""]
       if (tile?.sprite !== undefined) drawLegacy(ctx, res, content, tile.sprite, screenX(vp, x, size), screenY(vp, y, size), size)
-      else if (tile?.ground !== undefined && base !== undefined && baseImg !== undefined) {
-        ctx.drawImage(baseImg, base.col * TILE, base.row * TILE, TILE, TILE, screenX(vp, x, size), screenY(vp, y, size), size, size)
-      }
+      else if (tile?.ground !== undefined) drawBaseGrass(ctx, res, screenX(vp, x, size), screenY(vp, y, size), size)
     }
   }
   for (const kind of OVERLAY_ORDER) {
@@ -91,6 +86,27 @@ function drawGround(ctx: CanvasRenderingContext2D, res: RenderResources, content
 
 type Item = Drawable & { readonly draw: () => void }
 
+/** 풀 한 칸(바닥). 땅 종류가 있는 칸의 바탕이다. */
+function drawBaseGrass(ctx: CanvasRenderingContext2D, res: RenderResources, dx: number, dy: number, size: number): void {
+  const base = wangTables[BASE_SET]?.["0000"]
+  const img = res.images.get(`tilesets/${BASE_SET}/sheet`)
+  if (base !== undefined && img !== undefined) ctx.drawImage(img, base.col * TILE, base.row * TILE, TILE, TILE, dx, dy, size, size)
+}
+
+/** 물건 하나를 깊이 정렬 목록에 넣을 항목으로. 그림이 아직 없으면 null. 발자국 왼쪽 아래 칸 (x, y)에 아래 가운데를 맞춘다. */
+function objectItem(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, vp: Viewport, size: number, id: Id, x: number, y: number): Item | null {
+  const def = content.objects[id]
+  const img = def === undefined ? undefined : res.images.get(`objects/${def.image}`)
+  if (def === undefined || img === undefined) return null
+  return {
+    kind: "object", footX: x, footY: y - def.sortOffset, id: `${id}@${x},${y}`,
+    draw: () => {
+      const w = img.width * vp.scale, h = img.height * vp.scale
+      ctx.drawImage(img, screenX(vp, x, size) + (def.footprint[0] * size - w) / 2, screenY(vp, y, size) + size - h, w, h)
+    }
+  }
+}
+
 function drawMap(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, state: GameState, vp: Viewport, motion: MotionFrame): void {
   const map = content.maps[state.mapId]
   if (!map) return
@@ -102,16 +118,8 @@ function drawMap(ctx: CanvasRenderingContext2D, res: RenderResources, content: G
   const items: Item[] = []
   const mapW = map.rows[0]?.length ?? 0
   const putObject = (id: Id, x: number, y: number): void => {
-    const def = content.objects[id]
-    const img = def === undefined ? undefined : res.images.get(`objects/${def.image}`)
-    if (def === undefined || img === undefined) return
-    items.push({
-      kind: "object", footX: x, footY: y - def.sortOffset, id: `${id}@${x},${y}`,
-      draw: () => {
-        const w = img.width * vp.scale, h = img.height * vp.scale
-        ctx.drawImage(img, screenX(vp, x, size) + (def.footprint[0] * size - w) / 2, screenY(vp, y, size) + size - h, w, h)
-      }
-    })
+    const item = objectItem(ctx, res, content, vp, size, id, x, y)
+    if (item !== null) items.push(item)
   }
   for (const o of map.objects ?? []) putObject(o.id, o.at.x, o.at.y)
   for (let y = Math.max(0, vp.originTile.y - 2); y < Math.min(map.rows.length, vp.originTile.y + vp.viewH + 4); y++) {
@@ -127,7 +135,7 @@ function drawMap(ctx: CanvasRenderingContext2D, res: RenderResources, content: G
   }
   items.push({
     kind: "player", footX: motion.x, footY: motion.y, id: "player",
-    draw: () => drawCharacter(ctx, res, content, content.playerSprite, motion.x, motion.y, motion.dir, vp, size)
+    draw: () => drawCharacter(ctx, res, content, content.playerSprite, motion.x, motion.y, motion.dir, vp, size, motion.moving, motion.frame)
   })
   for (const item of sortDrawables(items)) item.draw()
   ctx.restore()
@@ -146,20 +154,29 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
   const active = combat.units.find((u) => u.id === combat.active)
   const vp = frameViewport(state, content, { w: ctx.canvas.width, h: ctx.canvas.height })
   const size = TILE * vp.scale
+  const items: Item[] = []
   for (let gy = 0; gy < combat.grid.length; gy++) {
     const row = combat.grid[gy]
     if (!row) continue
     for (let gx = 0; gx < row.length; gx++) {
       const ch = row[gx]
       const tile = ch !== undefined ? content.tiles[ch] : undefined
-      if (!tile?.sprite) continue
-      drawLegacy(ctx, res, content, tile.sprite, screenX(vp, gx, size), screenY(vp, gy, size), size)
+      if (tile?.sprite) drawLegacy(ctx, res, content, tile.sprite, screenX(vp, gx, size), screenY(vp, gy, size), size)
+      else if (tile?.ground !== undefined) drawBaseGrass(ctx, res, screenX(vp, gx, size), screenY(vp, gy, size), size)
+      if (tile?.object !== undefined) {
+        const item = objectItem(ctx, res, content, vp, size, tile.object, gx, gy)
+        if (item !== null) items.push(item)
+      }
     }
   }
   for (const unit of combat.units) {
     if (unit.gone !== null) continue
-    drawCharacter(ctx, res, content, unitSprite(content, unit), unit.pos.x, unit.pos.y, unit.side === "ally" ? "e" : "w", vp, size)
+    items.push({
+      kind: unit.side === "ally" ? "player" : "npc", footX: unit.pos.x, footY: unit.pos.y, id: unit.id,
+      draw: () => drawCharacter(ctx, res, content, unitSprite(content, unit), unit.pos.x, unit.pos.y, unit.side === "ally" ? "e" : "w", vp, size)
+    })
   }
+  for (const item of sortDrawables(items)) item.draw()
   for (const enemy of combat.units) {
     if (enemy.side !== "enemy" || enemy.gone !== null) continue
     const intent = combat.intents[enemy.id]
@@ -203,12 +220,17 @@ function strokeCell(ctx: CanvasRenderingContext2D, vp: Viewport, p: Pos, size: n
 }
 
 /** 인물·크리처 한 명. 새 `char.*`는 48px 캔버스를 칸 아래 중앙에, 옛 시트 칸은 칸 크기로 확대해 그린다. (x, y)는 칸 좌표(보간 중에는 실수). */
-function drawCharacter(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, ref: SpriteRef, x: number, y: number, dir: Dir, vp: Viewport, size: number): void {
+function drawCharacter(
+  ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, ref: SpriteRef, x: number, y: number, dir: Dir, vp: Viewport, size: number,
+  moving = false, frame = 0
+): void {
   if ("char" in ref) {
-    const img = res.images.get(`characters/${ref.char}/rot-${DIR_NAME[dir]}`)
+    const pick = characterImageKey(ref.char, dir, moving, frame, (k) => res.images.has(k))
+    const img = res.images.get(pick.key) ?? res.images.get(characterImageKey(ref.char, dir, false, 0, () => false).key)
     if (img === undefined) return
     const r = charDrawRect(x, y, size)
-    ctx.drawImage(img, vp.offsetPx.x + r.x - vp.originTile.x * size, vp.offsetPx.y + r.y - vp.originTile.y * size, r.w, r.h)
+    const bob = moving && !pick.walking ? idleBobPx(frame) * vp.scale : 0
+    ctx.drawImage(img, vp.offsetPx.x + r.x - vp.originTile.x * size, vp.offsetPx.y + r.y - vp.originTile.y * size + bob, r.w, r.h)
     return
   }
   drawLegacy(ctx, res, content, ref, screenX(vp, x, size), screenY(vp, y, size), size)

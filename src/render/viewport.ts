@@ -19,6 +19,10 @@ export interface Viewport {
 
 const clamp = (v: number, lo: number, hi: number): number => Math.min(hi, Math.max(lo, v))
 
+/** 전투 HUD(하단 조작 패널)가 가리는 아래쪽 높이(장치 픽셀). 전투 격자는 이 위쪽 영역에 맞춘다. */
+export const COMBAT_RESERVE_RATIO = 0.17
+export const combatReservePx = (canvasPx: { readonly w: number; readonly h: number }): number => Math.round(canvasPx.h * COMBAT_RESERVE_RATIO)
+
 /** 정수 배율을 높이로 먼저 고르고(2~4), 그 배율에서 들어가는 가로 칸 수(7~15)를 정한다. 세로는 7칸. */
 export function chooseView(canvasPx: { readonly w: number; readonly h: number }): { scale: number; viewW: number; viewH: number } {
   const scale = clamp(Math.floor(canvasPx.h / (VIEW_ROWS * TILE)), MIN_SCALE, MAX_SCALE)
@@ -34,10 +38,11 @@ export function computeViewport(
   canvasCss: { readonly w: number; readonly h: number },
   dpr: number,
   mapSize: { readonly w: number; readonly h: number },
-  center: Pos
+  center: Pos,
+  reserveBottomPx = 0
 ): Viewport {
   const vw = canvasCss.w * dpr
-  const vh = canvasCss.h * dpr
+  const vh = canvasCss.h * dpr - reserveBottomPx
   const { scale, viewW, viewH } = chooseView({ w: vw, h: vh })
   const originTile: Pos = {
     x: mapSize.w <= viewW ? 0 : clamp(center.x - Math.floor(viewW / 2), 0, mapSize.w - viewW),
@@ -68,7 +73,7 @@ export function frameViewport(state: GameState, content: GameContent, canvasPx: 
   const combat = state.combat
   if (combat !== null) {
     const active = combat.units.find((u) => u.id === combat.active)
-    return computeViewport(canvasPx, 1, { w: combat.grid[0]?.length ?? 0, h: combat.grid.length }, active?.pos ?? { x: 0, y: 0 })
+    return computeViewport(canvasPx, 1, { w: combat.grid[0]?.length ?? 0, h: combat.grid.length }, active?.pos ?? { x: 0, y: 0 }, combatReservePx(canvasPx))
   }
   const map = content.maps[state.mapId]
   return computeViewport(canvasPx, 1, { w: map?.rows[0]?.length ?? 0, h: map?.rows.length ?? 0 }, state.player.pos)

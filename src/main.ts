@@ -385,11 +385,22 @@ export async function boot(): Promise<void> {
       state(): GameState | null
       dispatch(cmd: Command | UiAction): void
       handleMenu(action: "save" | "load" | "new", slotId: string): Promise<void>
+      debugTeleport?(mapId: Id, x: number, y: number): void
     }
   }).__hollowCodex__ = {
     state: () => state,
     dispatch,
-    handleMenu
+    handleMenu,
+    // 화면 확인용: ?debug=1 로 연 때만 있다. 지도·칸을 바로 정해 그림을 확인한다(저장 파일에는 영향이 없다).
+    ...(debugEnabledFromUrl(location.href)
+      ? {
+          debugTeleport: (mapId: Id, x: number, y: number): void => {
+            const cur = state
+            if (cur === null) return
+            replaceState({ ...cur, mapId, player: { ...cur.player, pos: { x, y } } })
+          }
+        }
+      : {})
   }
 
   panels = mountPanels(document.getElementById("ui")!, content, dispatch, credits)

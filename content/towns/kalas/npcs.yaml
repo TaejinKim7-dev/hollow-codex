@@ -56,7 +56,7 @@
     "18": [4, 12]
   name: npc.kalas.confessor.name
   greet: npc.kalas.confessor.greet
-  sprite: [town, 84]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: npc.kalas.confessor.name.t
@@ -83,7 +83,7 @@
     "18": [16, 5]
   name: npc.kalas.warden.name
   greet: npc.kalas.warden.greet
-  sprite: [town, 84]
+  sprite: char.warden-kalas
   topics:
     name:
       - text: npc.kalas.warden.name.t
@@ -119,7 +119,7 @@
     "18": [17, 5]
   name: npc.kalas.elin.name
   greet: npc.kalas.elin.greet
-  sprite: [town, 84]
+  sprite: char.elin-B
   topics:
     name:
       - text: npc.kalas.elin.name.t
@@ -151,7 +151,7 @@
     "18": [10, 8]
   name: npc.kalas.nia.name
   greet: npc.kalas.nia.greet
-  sprite: [town, 84]
+  sprite: char.nia-scribe
   topics:
     name:
       - text: npc.kalas.nia.name.t
@@ -184,7 +184,7 @@
     "18": [10, 18]
   name: npc.kalas.tobi.name
   greet: npc.kalas.tobi.greet
-  sprite: [town, 84]
+  sprite: char.tobi-kalas
   topics:
     name:
       - text: npc.kalas.tobi.name.t
@@ -211,7 +211,7 @@
     "18": [18, 15]
   name: npc.kalas.mira.name
   greet: npc.kalas.mira.greet
-  sprite: [town, 84]
+  sprite: char.mira-weaver
   topics:
     name:
       - text: npc.kalas.mira.name.t
@@ -239,7 +239,7 @@
     "18": [17, 14]
   name: npc.kalas.child.name
   greet: npc.kalas.child.greet
-  sprite: [town, 84]
+  sprite: char.child-kalas
   topics:
     name:
       - text: npc.kalas.child.name.t
@@ -262,7 +262,7 @@
     "18": [24, 12]
   name: npc.kalas.innkeeper.name
   greet: npc.kalas.innkeeper.greet
-  sprite: [town, 84]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: npc.kalas.innkeeper.name.t
@@ -290,7 +290,7 @@
     "18": [6, 4]
   name: npc.kalas.librarian.name
   greet: npc.kalas.librarian.greet
-  sprite: [town, 84]
+  sprite: char.librarian-kalas
   topics:
     name:
       - text: npc.kalas.librarian.name.t

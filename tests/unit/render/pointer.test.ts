@@ -2,7 +2,7 @@
 // the encounter grid (centred on the active unit) in combat, the map (centred on the player) otherwise.
 import { describe, expect, it } from "vitest"
 import { frameViewport, tileAtPointer } from "../../../src/render/viewport.ts"
-import { computeViewport, TILE } from "../../../src/render/viewport.ts"
+import { combatReservePx, computeViewport, TILE } from "../../../src/render/viewport.ts"
 import { at, run, testContent } from "../core/fixture.ts"
 
 const c = testContent()
@@ -15,7 +15,7 @@ describe("tileAtPointer", () => {
     expect(s.combat).not.toBeNull()
     const combat = s.combat!
     const active = combat.units.find((u) => u.id === combat.active)!
-    const gridVp = computeViewport(canvas, 1, { w: 5, h: 5 }, active.pos)   // what drawCombat uses
+    const gridVp = computeViewport(canvas, 1, { w: 5, h: 5 }, active.pos, combatReservePx(canvas))   // what drawCombat uses
     expect(frameViewport(s, c, canvas)).toEqual(gridVp)
     const size = TILE * gridVp.scale
     const px = { x: gridVp.offsetPx.x + 3 * size + size / 2, y: gridVp.offsetPx.y + 2 * size + size / 2 }
