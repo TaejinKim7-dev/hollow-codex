@@ -57,8 +57,8 @@ if (repoErrors.length > 0) {
   process.exit(1)
 }
 
-// D20: ledger targets are assets/** plus content/music/*.yaml.
-const files = [...walk("assets"), ...walk("content/music").filter((f) => f.endsWith(".yaml") && f.split("/").length === 3)].sort()
+// D20: ledger targets are assets/**.
+const files = walk("assets").sort()
 const ledgerErrors = checkLedger(parseLedger(readFileSync("assets/LEDGER.md", "utf8")), files)
 if (ledgerErrors.length > 0) {
   for (const e of ledgerErrors) console.error(e)

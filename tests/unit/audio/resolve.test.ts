@@ -31,8 +31,13 @@ describe("resolvers", () => {
 
 describe("audio.yaml in compile", () => {
   const raw = () => loadContentDir("tests/fixtures/content-min")
-  it("is optional and defaults to empty maps", () => {
-    expect(compileContent(raw()).content?.audio).toEqual({ sfx: {}, footsteps: {}, music: {} })
+  it("each section is optional and defaults to an empty map", () => {
+    expect(compileContent(raw()).content?.audio).toEqual({ sfx: {}, footsteps: {}, music: { "music.min": "kalas" } })
+  })
+  it("a map whose music id is not in audio.yaml fails the build (a typo would otherwise be silent)", () => {
+    const { content, errors } = compileContent({ ...raw(), "audio.yaml": { music: { "music.other": "kalas" } } })
+    expect(content).toBeNull()
+    expect(errors.some((e) => e.includes("music.min"))).toBe(true)
   })
   it("reads sfx, footsteps and music tables", () => {
     const { content, errors } = compileContent({ ...raw(), "audio.yaml": { sfx: { step: "footstep" }, footsteps: { stone: "footstep_stone" }, music: { "music.min": "kalas" } } })
@@ -41,7 +46,7 @@ describe("audio.yaml in compile", () => {
     expect(content?.audio.music).toEqual({ "music.min": "kalas" })
   })
   it("rejects a footsteps key that is not a ground", () => {
-    const { content, errors } = compileContent({ ...raw(), "audio.yaml": { footsteps: { lava: "x" } } })
+    const { content, errors } = compileContent({ ...raw(), "audio.yaml": { footsteps: { lava: "x" }, music: { "music.min": "kalas" } } })
     expect(content).toBeNull()
     expect(errors.some((e) => e.includes("lava"))).toBe(true)
   })

@@ -290,6 +290,8 @@ ui.no-rings: You don't know any rings yet.
 ui.ring-travel: Travel
 ui.ring-not-here: Stand on a ring (or right next to its stone) to travel.
 ui.ring-here: "You stand at {name}."
+ui.volume.music: Music volume
+ui.volume.sfx: Sound effects volume
 ui.language: Language
 
 # --- Accessibility (M6 Task 46) ---

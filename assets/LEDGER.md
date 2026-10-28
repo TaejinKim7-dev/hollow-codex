@@ -7,18 +7,6 @@
 | assets/fonts/neodgm.woff2 | https://github.com/neodgm/neodgm | Copyright (c) 2017-2021, Eunbin Jeong (Dalgona.) <project-neodgm@dalgona.dev> | OFL-1.1 |
 | assets/tiles/kenney-tiny-town.png | https://kenney.nl/assets/tiny-town | Kenney (www.kenney.nl) | CC0-1.0 |
 | assets/tiles/kenney-tiny-dungeon.png | https://kenney.nl/assets/tiny-dungeon | Kenney (www.kenney.nl) | CC0-1.0 |
-| content/music/field.yaml | Greensleeves (traditional, England, 16th c., public domain) — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/kalas.yaml | Tielman Susato, Danserye (1551), La Mourisque (public domain) — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/battle.yaml | original | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/overworld.yaml | original | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/compassion.yaml | original pastoral chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/valor.yaml | original heroic chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/justice.yaml | original measured chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/sacrifice.yaml | original sacred chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/honor.yaml | original proud martial chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/spirituality.yaml | original meditative chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/humility.yaml | original near-silent chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
-| content/music/archive.yaml | original quiet chapel chip tune — chip arrangement | TaejinKim7-dev | CC-BY-SA-4.0 |
 | assets/sprites/characters/stranger-B/rot-east.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-18; prompts: assets/generated/prompts/2026-10-18-R1-trial.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |
 | assets/sprites/characters/stranger-B/rot-north.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-18; prompts: assets/generated/prompts/2026-10-18-R1-trial.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |
 | assets/sprites/characters/stranger-B/rot-south.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-18; prompts: assets/generated/prompts/2026-10-18-R1-trial.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |

@@ -1,10 +1,9 @@
 import "./ui/fonts.css"
 import content from "virtual:content"
 import credits from "virtual:credits"
-import { createChipPlayer } from "./audio/synth.ts"
-import type { ChipPlayer } from "./audio/synth.ts"
-import { renderSfx, SFX } from "./audio/sfx.ts"
-import type { SfxParams } from "./audio/sfx.ts"
+import { createEngine } from "./audio/engine.ts"
+import { footstepKey, resolveSfx, resolveTrack } from "./audio/resolve.ts"
+import { loadVolumes, saveVolume } from "./audio/volume-store.ts"
 import { step } from "./core/step.ts"
 import type { Command, GameEvent, GameState, Id, Pos } from "./core/types.ts"
 import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
@@ -87,29 +86,38 @@ const session = createSession({
   seed: () => Date.now() >>> 0,
   log: (event, data) => log.log(event, data)
 })
-let audio: AudioContext | null = null
-let player: ChipPlayer | null = null
-let pendingTrack: Id | null = null
+const audioUrls = import.meta.glob<string>("../assets/audio/**/*.ogg", { query: "?url", import: "default", eager: true })
+const engine = createEngine({
+  createContext: () => (typeof AudioContext === "undefined" ? null : new AudioContext()),
+  fetchBuffer: async (key, kind) => {
+    const found = Object.entries(audioUrls).find(([path]) => path.endsWith(`/audio/${kind}/${key}.ogg`))
+    if (found === undefined) throw new Error(`audio file missing: ${kind}/${key}`)
+    const response = await fetch(found[1])
+    if (!response.ok) throw new Error(`audio fetch ${response.status}: ${kind}/${key}`)
+    return response.arrayBuffer()
+  },
+  log: (event, data) => log.log(event, data)
+})
+
+function storageOrNull(): Storage | null {
+  try {
+    return typeof localStorage === "undefined" ? null : localStorage
+  } catch {
+    return null
+  }
+}
+const savedVolumes = loadVolumes(storageOrNull())
+if (savedVolumes.music !== null) engine.setVolume("music", savedVolumes.music)
+if (savedVolumes.sfx !== null) engine.setVolume("sfx", savedVolumes.sfx)
 
 /** 오디오 그래프는 첫 사용자 입력에서 만든다(브라우저는 제스처 뒤에만 소리를 허용한다). 그전엔 무음. */
-function ensureAudio(): ChipPlayer {
-  if (player === null) {
-    audio = new AudioContext()
-    player = createChipPlayer(audio)
-    if (pendingTrack !== null) {
-      const score = content.music[pendingTrack]
-      if (score !== undefined) player.play(score)
-    }
-  }
-  return player
+function ensureAudio(): void {
+  engine.unlock()
 }
 
-/** 지금 재생하거나, 아직 오디오가 없으면 첫 입력 때 시작하도록 기억한다. */
+/** 지금 재생한다. 아직 오디오가 없으면 엔진이 마지막 요청을 기억했다가 첫 입력 때 시작한다. 매핑이 없는 곡은 무음. */
 function playTrack(track: Id): void {
-  pendingTrack = track
-  if (player === null) return
-  const score = content.music[track]
-  if (score !== undefined) player.play(score)
+  engine.music(resolveTrack(content.audio, track))
 }
 
 let state: GameState | null = null
@@ -118,16 +126,17 @@ let dialogueLog: SaidLine[] = []
 let lastAutoTurn = 0
 
 // ── 효과음 ──────────────────────────────────────────────
+/** 코어가 내는 효과음 이름을 audio.yaml로 풀어 재생한다. 매핑이 없으면 무음. */
 function playSfx(name: string): void {
-  if (audio === null) return
-  const params = (SFX as Record<string, SfxParams | undefined>)[name]
-  if (params === undefined) return
-  const buffer = audio.createBuffer(1, Math.round((params.ms * audio.sampleRate) / 1000), audio.sampleRate)
-  buffer.copyToChannel(renderSfx(params, audio.sampleRate), 0)
-  const src = audio.createBufferSource()
-  src.buffer = buffer
-  src.connect(audio.destination)
-  src.start()
+  const key = resolveSfx(content.audio, name)
+  if (key !== null) engine.sfx(key)
+}
+
+/** 발 아래 땅 종류(없으면 null)에 맞는 발걸음 소리. 속도를 조금씩 바꿔 단조로움을 줄인다(코어 난수는 쓰지 않는다). */
+function playFootstep(s: GameState): void {
+  const ground = content.maps[s.mapId]?.ground?.[s.player.pos.y]?.[s.player.pos.x] ?? null
+  const key = footstepKey(content.audio, ground)
+  if (key !== null) engine.sfx(key, 0.95 + (s.turn % 3) * 0.05)
 }
 
 // ── 그리기와 리사이즈 ───────────────────────────────────
@@ -199,7 +208,7 @@ function handleEvents(events: readonly GameEvent[]): void {
         break
       case "moved":
         motion = motion.onMoved(e.pos, state?.player.facing ?? "s", performance.now())
-        playSfx("step")
+        if (state !== null) playFootstep(state)
         break
       case "mapChanged":
         if (state !== null) motion = motion.onTeleport(state.player.pos, state.player.facing)
@@ -238,7 +247,8 @@ function handleEvents(events: readonly GameEvent[]): void {
         log.log("event-codex", e)
         break
       case "epilogue":
-        // M5 에필로그: 선택한 단어에 따른 마을 메시지는 패널/에필로그 화면 몫. 여기선 디버그 기록만.
+        // M5 에필로그: 선택한 단어에 따른 마을 메시지는 패널/에필로그 화면 몫. 여기선 끝 곡과 디버그 기록.
+        playTrack("music.ending")
         log.log("event-epilogue", e)
         break
       default:
@@ -383,6 +393,11 @@ export async function boot(): Promise<void> {
   }
 
   panels = mountPanels(document.getElementById("ui")!, content, dispatch, credits)
+  panels.setVolumes({ sfx: engine.volume("sfx"), music: engine.volume("music") })
+  panels.onVolume((kind, v) => {
+    engine.setVolume(kind, v)
+    saveVolume(storageOrNull(), kind, v)
+  })
   panels.onMenu((action, slotId) => {
     log.log("menu", { action, slotId })
     handleMenu(action, slotId).catch((error: unknown) => log.log("menu-error", String(error)))

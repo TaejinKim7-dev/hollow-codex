@@ -8,14 +8,13 @@ import { arrivalCell } from "../core/world/ring.ts"
 import { isObj, makeReader } from "./shape.ts"
 import type { Obj, Reader } from "./shape.ts"
 import type {
-  ChoiceOption, CompanionDef, CrisisOptionDef, FactKind, GameContent, MapDef, NpcDef, RawContent, Score, SpriteRef, Topic
+  ChoiceOption, CompanionDef, CrisisOptionDef, FactKind, GameContent, MapDef, NpcDef, RawContent, SpriteRef, Topic
 } from "./types.ts"
 
 const VIRTUES: readonly Virtue[] = ["honesty", "compassion", "valor", "justice", "sacrifice", "honor", "spirituality", "humility"]
 const FACT_KINDS: readonly FactKind[] = ["person", "place", "word", "song", "meaning", "creature"]
 /** NPC 일과 버킷(D13): 0–5, 6–11, 12–17, 18–23시. */
 const SCHEDULE_BUCKETS: readonly string[] = ["0", "6", "12", "18"]
-const WAVES: readonly string[] = ["square50", "square25", "triangle", "noise"]
 const ALWAYS_REQUIRED_STRINGS: readonly string[] = ["npc.default.unknown", "topic.name", "topic.job"]
 const DENYLIST_FILE = "ip-denylist.yaml"
 const KO_STRINGS_FILE = "strings/ko.yaml"
@@ -40,8 +39,6 @@ const KEYS = {
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
   creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
-  music: ["tempo", "loop", "channels"],
-  channel: ["wave", "volume", "notes"],
   map: ["id", "rows", "exits", "music", "encounters", "enterFlags", "heals", "isOverworld", "terrainCost", "objects"],
   exit: ["at", "to", "arrive"],
   mapEncounter: ["at", "id"],
@@ -78,7 +75,6 @@ interface Draft {
   creatures: Table<Creature>
   encounters: Table<Encounter>
   abilities: Table<{ readonly nameKey: string }>
-  music: Table<Score>
   rings: Table<Ring>
   strings: Record<string, Record<string, string>>   // 언어 → 키 → 문구
   start: GameContent["start"] | null
@@ -199,21 +195,6 @@ function readCreatures(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
     }
     if (r.errors.length === before) put(ctx, d.creatures, "creature", r.file, id, c)
   })
-}
-
-function readMusic(r: Reader, v: unknown, d: Draft, ctx: Ctx, id: Id): void {
-  const o = r.obj(v, "")
-  onlyKeys(r, o, "", KEYS.music)
-  const before = r.errors.length
-  const channels = r.arr(o["channels"], "channels").map((c, i) => {
-    const co = r.obj(c, `channels[${i}]`)
-    onlyKeys(r, co, `channels[${i}]`, KEYS.channel)
-    const wave = r.str(co, "wave", `channels[${i}]`)
-    if (wave !== "" && !WAVES.includes(wave)) r.fail(`channels[${i}].wave`, `unknown wave "${wave}"`)
-    return { wave: wave as Score["channels"][number]["wave"], volume: r.num(co, "volume", `channels[${i}]`), notes: r.str(co, "notes", `channels[${i}]`) }
-  })
-  const score: Score = { tempo: r.num(o, "tempo", ""), loop: r.bool(o, "loop", ""), channels }
-  if (r.errors.length === before) put(ctx, d.music, "music", r.file, id, score)
 }
 
 function readAudio(r: Reader, v: unknown, d: Draft): void {
@@ -465,14 +446,13 @@ function checkDenylistShape(r: Reader, v: unknown): void {
 function readAll(raw: RawContent, ctx: Ctx): Draft {
   const d: Draft = {
     sheets: {}, tiles: {}, playerSprite: null, objects: table(), audio: { sfx: {}, footsteps: {}, music: {} }, maps: table(), npcs: table(), facts: table(), deductions: table(),
-    crises: table(), creatures: table(), encounters: table(), abilities: table(), music: table(), rings: table(), strings: {}, start: null
+    crises: table(), creatures: table(), encounters: table(), abilities: table(), rings: table(), strings: {}, start: null
   }
   if (!("tiles.yaml" in raw)) ctx.shape.push("tiles.yaml: missing required file")
   if (!("start.yaml" in raw)) ctx.shape.push("start.yaml: missing required file")
   if (!(DENYLIST_FILE in raw)) ctx.shape.push(`${DENYLIST_FILE}: missing required file`)
   for (const [file, v] of Object.entries(raw)) {
     const r = makeReader(file, ctx.shape)
-    const music = /^music\/([^/]+)\.yaml$/.exec(file)
     const town = /^towns\/[^/]+\/(maps|npcs|facts|deduction|crisis|encounters)\.yaml$/.exec(file)
     if (file === DENYLIST_FILE) checkDenylistShape(r, v)
     else if (file === "tiles.yaml") readTiles(r, v, d)
@@ -485,9 +465,7 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
     else if (file === "audio.yaml") readAudio(r, v, d)
     else if (file === "creatures.yaml") readCreatures(r, v, d, ctx)
     else if (file === "rings.yaml") readRings(r, v, d, ctx)
-    else if (music !== null) {
-      if (v !== null && v !== undefined) readMusic(r, v, d, ctx, `music.${music[1] ?? ""}`)
-    } else if (town !== null) {
+    else if (town !== null) {
       const kind = town[1]
       if (kind === "maps") readMaps(r, v, d, ctx)
       else if (kind === "npcs") readNpcs(r, v, d, ctx)
@@ -515,6 +493,7 @@ function checkReferences(d: Draft, out: string[]): void {
   const sheet = (file: string, where: string, s: SpriteRef): void => {
     if ("sheet" in s && !(s.sheet in d.sheets)) out.push(`${file}: ${where}: unknown sprite sheet "${s.sheet}"`)
   }
+  const musicIds: Record<Id, true> = Object.fromEntries(Object.keys(d.audio.music).map((k) => [k, true as const]))
   const facts = d.facts.items
   if (d.playerSprite !== null) sheet("tiles.yaml", "player", d.playerSprite)
   for (const [ch, t] of Object.entries(d.tiles)) {
@@ -527,7 +506,7 @@ function checkReferences(d: Draft, out: string[]): void {
     const f = d.maps.file[id] ?? ""
     m.exits.forEach((e, i) => ref(f, `${id}.exits[${i}].to`, "map", e.to, d.maps.items))
     m.encounters.forEach((e, i) => ref(f, `${id}.encounters[${i}].id`, "encounter", e.id, d.encounters.items))
-    ref(f, `${id}.music`, "music", m.music, d.music.items)
+    ref(f, `${id}.music`, "music", m.music, musicIds)
   }
   for (const [id, n] of Object.entries(d.npcs.items)) {
     const f = d.npcs.file[id] ?? ""
@@ -573,7 +552,7 @@ function checkReferences(d: Draft, out: string[]): void {
   for (const [id, e] of Object.entries(d.encounters.items)) {
     const f = d.encounters.file[id] ?? ""
     ref(f, `${id}.map`, "map", e.map, d.maps.items)
-    ref(f, `${id}.music`, "music", e.music, d.music.items)
+    ref(f, `${id}.music`, "music", e.music, musicIds)
     e.enemies.forEach((en, i) => ref(f, `${id}.enemies[${i}].creature`, "creature", en.creature, d.creatures.items))
   }
   for (const [id, mg] of Object.entries(d.rings.items)) {
@@ -750,7 +729,7 @@ function checkRingArrivals(d: Draft, out: string[]): void {
   const probe = {
     maps: d.maps.items, tiles: d.tiles, npcs: d.npcs.items, encounters: d.encounters.items,
     rings: d.rings.items, facts: d.facts.items, deductions: d.deductions.items, crises: d.crises.items,
-    creatures: d.creatures.items, abilities: d.abilities.items, music: d.music.items,
+    creatures: d.creatures.items, abilities: d.abilities.items,
     sheets: d.sheets, playerSprite: d.playerSprite, strings: d.strings, start: d.start
   } as unknown as GameContent
   for (const [id, ring] of Object.entries(d.rings.items)) {
@@ -817,7 +796,7 @@ function checkDenied(raw: RawContent, d: Draft, out: string[]): void {
     }
   }
   for (const id of Object.keys(d.sheets)) add(`tiles.yaml: sheet id ${id}`, id)
-  const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.music, d.rings]
+  const tables: readonly Table<unknown>[] = [d.maps, d.npcs, d.facts, d.deductions, d.crises, d.creatures, d.encounters, d.abilities, d.rings]
   for (const t of tables) for (const [id, f] of Object.entries(t.file)) add(`${f}: id ${id}`, id)
   const flags = (file: string, where: string, ids: readonly Id[] | undefined): void => {
     for (const x of ids ?? []) add(`${file}: ${where} flag ${x}`, x)
@@ -871,7 +850,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
     maps: d.maps.items, npcs: d.npcs.items, facts: d.facts.items,
     deductions: d.deductions.items as GameContent["deductions"],   // answer length checked in group 7
     crises: d.crises.items, creatures: d.creatures.items, encounters: d.encounters.items,
-    abilities: d.abilities.items, music: d.music.items, strings: d.strings, start: d.start,
+    abilities: d.abilities.items, strings: d.strings, start: d.start,
     rings: d.rings.items
   }
   return { content, errors }

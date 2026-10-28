@@ -5,12 +5,6 @@ export type FactKind = "person" | "place" | "word" | "song" | "meaning" | "creat
 /** 옛 시트 칸 `[sheet, index]` 또는 새 캐릭터 그림 `char.<이름>`(assets/sprites/characters/<이름>/). */
 export type SpriteRef = { readonly sheet: string; readonly index: number } | { readonly char: string }
 
-export interface Score {                        // D5. 형식은 Task 14
-  readonly tempo: number                        // 4분음표 bpm
-  readonly loop: boolean
-  readonly channels: readonly { readonly wave: "square50" | "square25" | "triangle" | "noise"; readonly volume: number; readonly notes: string }[]
-}
-
 /** content/audio.yaml: 소리 이름 → 파일 키(assets/audio/sfx/<키>.ogg, assets/audio/bgm/<키>.ogg). */
 export interface AudioMap {
   readonly sfx: Readonly<Record<string, string>>
@@ -80,7 +74,6 @@ export interface GameContent {
   readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id }>>
   readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id }>>
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
-  readonly music: Readonly<Record<Id, Score>>
   readonly strings: Readonly<Record<string, Readonly<Record<string, string>>>>   // 언어 코드 → 키 → 문구
   readonly rings: Readonly<Record<Id, RingDef>>   // D14
   readonly start: { readonly map: Id; readonly pos: Pos; readonly hp: number; readonly attack: number }

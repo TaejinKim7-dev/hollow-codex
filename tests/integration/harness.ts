@@ -108,8 +108,7 @@ export function silentContent(): GameContent {
     maps: Object.fromEntries(Object.entries(base.maps).map(([id, m]) => [id, silentMap(m)])),
     encounters: Object.fromEntries(
       Object.entries(base.encounters).map(([id, e]) => [id, { ...e, music: "music.none" }])
-    ),
-    music: {}
+    )
   }
 }
 

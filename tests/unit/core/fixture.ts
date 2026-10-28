@@ -1,10 +1,8 @@
 // 공용 core 테스트 fixture (Task 5가 만들고 Task 6–13이 쓴다). 좌표·id를 바꾸지 말 것.
-import type { GameContent, Score } from "../../../src/content/types.ts"
+import type { GameContent } from "../../../src/content/types.ts"
 import type { Command, GameEvent, GameState } from "../../../src/core/types.ts"
 import { createInitialState } from "../../../src/core/state.ts"
 import { step } from "../../../src/core/step.ts"
-
-const oneNote: Score = { tempo: 120, loop: true, channels: [{ wave: "square50", volume: 0.5, notes: "A4/4" }] }
 
 const factIds = [
   "word.alpha", "word.beta", "word.gamma", "word.decoy",
@@ -27,7 +25,7 @@ export function testContent(): GameContent {
   return {
     sheets: { t: { file: "t.png", columns: 4, tile: 16 } },
     objects: {},
-    audio: { sfx: {}, footsteps: {}, music: {} },
+    audio: { sfx: {}, footsteps: {}, music: { "music.a": "field", "music.b": "kalas", "music.battle": "battle" } },
     tiles: {
       ".": { sprite: { sheet: "t", index: 0 }, walk: 1 },
       ",": { sprite: { sheet: "t", index: 1 }, walk: 2 },
@@ -126,7 +124,6 @@ export function testContent(): GameContent {
       }
     },
     abilities: { "ability.see-lies": { nameKey: "ability.see-lies.name" } },
-    music: { "music.a": oneNote, "music.b": oneNote, "music.battle": oneNote },
     strings: { ko: Object.fromEntries(stringKeys.map((k) => [k, k])) },
     rings: {},
     start: { map: "map.a", pos: { x: 1, y: 1 }, hp: 10, attack: 3 }

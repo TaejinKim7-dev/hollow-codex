@@ -52,7 +52,7 @@ const CREDIT_CATEGORIES: readonly CreditCategory[] = ["fonts", "tiles", "music",
 function creditCategory(path: string): CreditCategory {
   if (path.startsWith("assets/fonts/")) return "fonts"
   if (path.startsWith("assets/tiles/")) return "tiles"
-  if (path.startsWith("content/music/")) return "music"
+  if (path.startsWith("assets/audio/")) return "music"
   return "code"
 }
 
@@ -85,6 +85,10 @@ export interface MountedPanels {
   setSlotInfo(info: readonly { readonly id: string; readonly updatedAt: number | null }[]): void
   /** Closes every overlay (after load / new game). */
   closeOverlays(): void
+  /** Menu volume sliders: handler gets kind and 0..1 on every change. */
+  onVolume(handler: (kind: "sfx" | "music", v: number) => void): void
+  /** Sets the sliders (0..1) without firing the handler. */
+  setVolumes(v: { readonly sfx: number; readonly music: number }): void
 }
 
 export function mountPanels(
@@ -99,6 +103,7 @@ export function mountPanels(
   let aim: Aim | null = null
   let lang: "ko" | "en" = "ko"
   let menuAction: ((action: "save" | "load" | "new", slotId: string) => void) | null = null
+  let volumeHandler: ((kind: "sfx" | "music", v: number) => void) | null = null
   let selectedSlot = "slot-1"
   let slotInfo: readonly { readonly id: string; readonly updatedAt: number | null }[] = []
   const canvas = document.getElementById("screen") as HTMLCanvasElement | null
@@ -494,6 +499,19 @@ export function mountPanels(
     dispatch({ type: "setLanguage", language: lang === "ko" ? "en" : "ko" })
   })
 
+  const volumeRows = (["music", "sfx"] as const).map((kind) => {
+    const row = make("label", `volume ${kind}`)
+    const text = make("span", "volume-label")
+    const input = make("input", "volume-slider")
+    input.type = "range"
+    input.min = "0"
+    input.max = "100"
+    input.step = "5"
+    input.addEventListener("input", () => volumeHandler?.(kind, Number(input.value) / 100))
+    row.append(text, input)
+    return { kind, text, input }
+  })
+
   const creditsBox = make("details", "credits")
   const creditsSummary = make("summary")
   creditsBox.appendChild(creditsSummary)
@@ -513,7 +531,7 @@ export function mountPanels(
     creditsBox.appendChild(group)
   }
 
-  menu.append(menuHeader, slots, menuSave, menuLoad, menuNew, langButton, creditsBox)
+  menu.append(menuHeader, slots, menuSave, menuLoad, menuNew, langButton, ...volumeRows.map((r) => r.text.parentElement as HTMLElement), creditsBox)
 
   // ── 열석 고리 메뉴 ────────────────────
   const ringsMenu = make("section", "rings-menu")
@@ -707,6 +725,10 @@ export function mountPanels(
     menuNew.setAttribute("aria-label", tr("ui.new"))
     langButton.textContent = tr("ui.language")
     langButton.setAttribute("aria-label", tr("ui.language"))
+    for (const row of volumeRows) {
+      row.text.textContent = tr(`ui.volume.${row.kind}`)
+      row.input.setAttribute("aria-label", tr(`ui.volume.${row.kind}`))
+    }
     creditsSummary.textContent = tr("ui.credits")
     creditsSummary.setAttribute("aria-label", tr("ui.credits"))
     creditsIntro.textContent = tr("ui.credits-intro")
@@ -726,6 +748,14 @@ export function mountPanels(
     codex.hidden = true
     aim = null
     syncChrome()
+  }
+
+  const onVolume = (handler: (kind: "sfx" | "music", v: number) => void): void => {
+    volumeHandler = handler
+  }
+
+  const setVolumes = (v: { readonly sfx: number; readonly music: number }): void => {
+    for (const row of volumeRows) row.input.value = String(Math.round(v[row.kind] * 100))
   }
 
   const onMenu = (handler: (action: "save" | "load" | "new", slotId: string) => void): void => {
@@ -769,6 +799,8 @@ export function mountPanels(
     toggle,
     onMenu,
     setSlotInfo,
-    closeOverlays
+    closeOverlays,
+    onVolume,
+    setVolumes
   }
 }
