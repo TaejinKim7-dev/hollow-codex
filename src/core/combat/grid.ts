@@ -179,7 +179,7 @@ function endCombat(state: GameState, content: GameContent, outcome: Outcome, eve
 }
 
 /** 규칙 4: 방어 중이면 공격력의 절반(올림). */
-const damage = (attack: number, target: CombatUnit): number => (target.defending ? Math.ceil(attack / 2) : attack)
+export const damage = (attack: number, target: CombatUnit): number => (target.defending ? Math.ceil(attack / 2) : attack)
 
 const wound = (unit: CombatUnit, amount: number): Pick<CombatUnit, "hp" | "gone"> => {
   const hp = unit.hp - amount
