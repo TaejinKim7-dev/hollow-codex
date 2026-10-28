@@ -51,7 +51,7 @@ const KEYS = {
   deduction: ["id", "sentence", "hint", "answer", "unlocks", "codexWord"],
   crisis: ["id", "npc", "text", "options"],
   crisisOption: ["requires", "requiresDeductions", "setsFlags", "label", "text"],
-  encounter: ["id", "map", "grid", "allyStart", "enemies", "music"],
+  encounter: ["id", "map", "grid", "allyStart", "enemies", "music", "repeatable"],
   enemy: ["creature", "at"],
   ring: ["id", "at", "name", "song", "fact", "onOverworld"],
   denylist: ["latin", "hangul"]
@@ -408,7 +408,8 @@ function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
       onlyKeys(r, eo, `${w}.enemies[${i}]`, KEYS.enemy)
       return { creature: r.str(eo, "creature", `${w}.enemies[${i}]`), at: r.pos(eo["at"], `${w}.enemies[${i}].at`) }
     })
-    const enc: Encounter = { map: r.str(o, "map", w), grid: r.strList(o, "grid", w), allyStart, enemies, music: r.str(o, "music", w) }
+    const repeatable = r.optBool(o, "repeatable", w) === true
+    const enc: Encounter = { map: r.str(o, "map", w), grid: r.strList(o, "grid", w), allyStart, enemies, music: r.str(o, "music", w), ...(repeatable ? { repeatable } : {}) }
     if (r.errors.length === before) put(ctx, d.encounters, "encounter", r.file, id, enc)
   })
 }

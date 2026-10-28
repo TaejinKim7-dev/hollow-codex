@@ -72,7 +72,7 @@ export interface GameContent {
   }>>
   readonly crises: Readonly<Record<Id, { readonly npc: Id; readonly textKey: string; readonly options: Readonly<Record<Id, CrisisOptionDef>> }>>
   readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id }>>
-  readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id }>>
+  readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id; readonly repeatable?: boolean }>>
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
   readonly strings: Readonly<Record<string, Readonly<Record<string, string>>>>   // 언어 코드 → 키 → 문구
   readonly rings: Readonly<Record<Id, RingDef>>   // D14

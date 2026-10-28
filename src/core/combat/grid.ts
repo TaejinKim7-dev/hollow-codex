@@ -167,7 +167,7 @@ function endCombat(state: GameState, content: GameContent, outcome: Outcome, eve
   } else if (outcome === "fled") {
     next = { ...state, combat: null, player: { ...state.player, pos: combat.returnPos, hp: unitHp } }
   } else {
-    const cleared = state.clearedEncounters.includes(combat.encounterId)
+    const cleared = state.clearedEncounters.includes(combat.encounterId) || content.encounters[combat.encounterId]?.repeatable === true
       ? state.clearedEncounters
       : [...state.clearedEncounters, combat.encounterId]
     next = { ...state, combat: null, clearedEncounters: cleared, player: { ...state.player, hp: unitHp } }

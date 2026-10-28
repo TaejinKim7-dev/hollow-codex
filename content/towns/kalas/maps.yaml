@@ -11,7 +11,7 @@
     - "tggggggggggtgggwgggggggt"
     - "tggggggggggggggwgggggggt"
     - "tghggggggggghggwgghggggt"
-    - "tggggggsgggggggwgggggggt"
+    - "tggggggsgpgggggwgggggggt"
     - "ggggggggggpppppbpppppppp"
     - "tggggggggggggggwgggggggt"
     - "tgggggggggtggggwgggggggt"
@@ -25,6 +25,8 @@
     # 대륙(map.over)과의 왕복. 오버월드 입구 `+` [14,24] → 이 들판 [11,8]로 들어오고,
     # 서쪽 `<` [0,8]로 나가면 다시 대륙 [14,24]에 선다 (마을 스텁의 `<` 출구와 같은 방식).
     - { at: [0, 8], to: map.over, arrive: [14, 24] }
+    # 전투 연습장(길 위 갈림길). 판정·시연용으로 늑대·도적·섞인 무리를 반복해 만난다.
+    - { at: [9, 7], to: map.arena, arrive: [1, 4] }
   music: music.field
   encounters:
     - { at: [15, 8], id: enc.field.wolves }
@@ -84,3 +86,23 @@
     - flag.town.kalas
     - flag.visited-archive
   heals: false
+- id: map.arena
+  rows:
+    - "ttttttttttttttt"
+    - "tgggggggggggggt"
+    - "tgggggggggggggt"
+    - "tgggggggggggggt"
+    - "pgggggggggggggt"
+    - "tgggggggggggggt"
+    - "tgggggggggggggt"
+    - "tgggggggggggggt"
+    - "ttttttttttttttt"
+  exits:
+    - { at: [0, 4], to: map.field, arrive: [9, 8] }
+  music: music.field
+  encounters:
+    - { at: [5, 2], id: enc.arena.wolves }
+    - { at: [5, 6], id: enc.arena.robbers }
+    - { at: [9, 4], id: enc.arena.mixed }
+  enterFlags: []
+  heals: true

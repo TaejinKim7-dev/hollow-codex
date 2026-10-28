@@ -88,6 +88,13 @@ describe("grid combat", () => {
     expect(r.state.combat).toBeNull(); expect(r.state.clearedEncounters).toEqual(["enc.a"])
     expect(r.state.player.pos).toEqual({ x: 1, y: 3 }); expect(r.state.player.hp).toBe(10)
   })
+  it("a repeatable encounter is not recorded as cleared, so it can be fought again", () => {
+    const enc = c.encounters["enc.a"]!
+    const rc = { ...c, encounters: { ...c.encounters, "enc.a": { ...enc, repeatable: true } } }
+    const r = step(combatState([P(2, 1), S(2, 0, { hp: 3 })]), { type: "combat", action: { kind: "attack", dir: "n" } }, rc)
+    expect(r.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
+    expect(r.state.clearedEncounters).toEqual([])
+  })
   it("combat ends in defeat when every ally is gone", () => {
     const r = act(combatState([P(2, 1, { hp: 1 }), B(2, 0)]), { kind: "endTurn" })
     expect(r.events).toContainEqual({ type: "combatEnded", outcome: "defeat" })
