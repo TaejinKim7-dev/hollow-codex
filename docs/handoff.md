@@ -525,3 +525,10 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-28 상자(임시 그림) 인물 제거 — 기본형 5종 생성과 배정
 - 사용자 지적: "순례자가 왜 박스야?" 원인: 새 인물 55명의 임시 그림이 옛 시트 `[town, 84]`(창문 모양 타일). 오늘 PixelLab 보너스 5회로 기본형 5종(`elder-woman`, `robed-priest`, `guard-soldier`, `craftsman`, `young-villager`; 4방향, 모두 정상)을 만들고 `scripts/assets/assign-npc-sprites.py`로 역할 낱말 → 그림을 배정(기존 칼라스 인물 그림 재사용 포함, 같은 마을 안에서는 가급적 안 겹치게). 55명 배정, 게이트 통과(469 passed). 프롬프트 `assets/generated/prompts/2026-10-28-base-types.md`, 장부 24행 추가.
 - 한계: 같은 그림이 한 마을에서 반복됨(특히 craftsman), 마을색 변형(recolor) 아직 안 함, 걷기 그림 없음(위아래 흔들림으로 대체). 기본형 12종 중 5종 완료 — 남은 약 7종(젊은 여성 일꾼, 병사 변형, 상인 등)은 다음 보너스.
+
+## 2026-10-28 전투 C-1 타격감
+- 계획 `docs/superpowers/plans/2026-10-28-combat-c1-hit-feel.md`, 설계 `docs/superpowers/specs/2026-10-28-combat-fun-design.md` §4.9. 규칙(피해·턴·AI)은 바꾸지 않았다. core에는 이벤트 `combatHit`/`combatYield`와 순수 조회(`combat/preview.ts`)만 추가.
+- 만든 것: `render/fx.ts`(공격 1회 410ms 시간표: 예비동작 0.2칸 → 돌진 0.55칸 → 충돌 180ms에 점멸·화면 흔들림(피해 비례, 상한 6px)·넉백·피해 숫자·슬래시·스파크 6개·체력 막대 감소+잔상 → 히트스톱 70ms → 복귀; 처치·퇴각은 잔상 페이드; 이동은 160ms 슬라이드; 적 행동은 내 연출이 끝난 뒤 "적의 차례" 배너와 함께 시작), `render/combat-overlay.ts`(이동 가능 칸 파랑·공격 가능한 적 빨간 테두리와 예상 피해/"처치"), `audio/hit-sound.ts`(피해가 클수록 낮은 음정, 연타마다 +0.06, 처치 -0.05; 충돌 시점에 재생), 인접한 적을 눌러 바로 공격(`pointerToCommand`), 격자 바깥도 땅으로 채우고 바깥만 어둡게, 세로 화면은 하단 25%를 비우고 격자가 통째로 들어오게 배율을 낮춤(`computeViewport`의 `fitCells`).
+- 마지막 일격으로 전투가 끝나도 연출이 끝날 때까지 `lingerState`로 전투 장면을 유지한다.
+- 확인: 테스트 515 passed, typecheck/check:content/build/audit:dist exit 0. 캡처를 직접 열어 봄(`docs/screenshots/2026-10-28-C1-*.png`: 공격 프레임 스트립, 공격 가능 표시, 휴대폰 3배). 도구 `scripts/visual/combat-demo.mjs`.
+- 확인 못 한 것: 실제 소리(🧑), 연출 속도·세기의 취향(🧑 판정), 동료가 있는 전투(4명) 화면, 처치 연출의 소리 층(push 겹침은 미구현), 빠른 모드·건너뛰기(C-6).

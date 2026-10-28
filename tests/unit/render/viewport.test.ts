@@ -52,6 +52,23 @@ describe("combat viewport", () => {
     expect(gridBottom).toBeLessThanOrEqual(720 - 122)
     expect(vp.offsetPx.y).toBe(Math.floor((598 - 448) / 2))
   })
+  it("portrait screens reserve 25% (the HUD stacks taller there)", () => {
+    expect(combatReservePx({ w: 390, h: 844 })).toBe(211)
+  })
+  it("the whole grid always fits: the scale drops until the grid is inside the canvas (width and height)", () => {
+    const canvas = { w: 390, h: 844 }
+    const vp = computeViewport(canvas, 1, { w: 7, h: 7 }, { x: 3, y: 3 }, combatReservePx(canvas), { w: 7, h: 7 })
+    expect(vp.scale).toBe(1)                                   // 390 px wide holds 7 cells only at ×1 (224 px)
+    expect(vp.offsetPx.x).toBe(Math.floor((390 - 7 * TILE) / 2))
+    expect(vp.offsetPx.y + 7 * TILE).toBeLessThanOrEqual(844 - 211)
+  })
+  it("a phone's real canvas (3× pixel ratio) gets the big scale and the grid still fits", () => {
+    const canvas = { w: 1170, h: 2532 }
+    const vp = computeViewport(canvas, 1, { w: 7, h: 7 }, { x: 3, y: 3 }, combatReservePx(canvas), { w: 7, h: 7 })
+    expect(vp.scale).toBe(4)
+    expect(vp.offsetPx.x).toBeGreaterThanOrEqual(0)
+    expect(vp.offsetPx.y + 7 * TILE * 4).toBeLessThanOrEqual(2532 - combatReservePx(canvas))
+  })
   it("without a reserve nothing changes", () => {
     expect(computeViewport({ w: 1280, h: 720 }, 1, { w: 7, h: 7 }, { x: 3, y: 3 })).toEqual(computeViewport({ w: 1280, h: 720 }, 1, { w: 7, h: 7 }, { x: 3, y: 3 }, 0))
   })

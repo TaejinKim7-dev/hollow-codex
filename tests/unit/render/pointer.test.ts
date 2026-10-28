@@ -15,7 +15,7 @@ describe("tileAtPointer", () => {
     expect(s.combat).not.toBeNull()
     const combat = s.combat!
     const active = combat.units.find((u) => u.id === combat.active)!
-    const gridVp = computeViewport(canvas, 1, { w: 5, h: 5 }, active.pos, combatReservePx(canvas))   // what drawCombat uses
+    const gridVp = computeViewport(canvas, 1, { w: 5, h: 5 }, active.pos, combatReservePx(canvas), { w: 5, h: 5 })   // what drawCombat uses
     expect(frameViewport(s, c, canvas)).toEqual(gridVp)
     const size = TILE * gridVp.scale
     const px = { x: gridVp.offsetPx.x + 3 * size + size / 2, y: gridVp.offsetPx.y + 2 * size + size / 2 }

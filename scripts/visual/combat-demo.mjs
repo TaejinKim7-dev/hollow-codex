@@ -1,11 +1,11 @@
 // 전투 연출 확인: 들판 늑대 전투를 열고, 늑대가 붙을 때까지 턴을 넘긴 뒤 공격하는 순간을 연속 캡처해 한 장의 스트립으로 합친다.
-// 사용: (npm run dev 실행 중) node scripts/visual/combat-demo.mjs <out-prefix> [가로x세로 기본 1280x720]
+// 사용: (npm run dev 실행 중) node scripts/visual/combat-demo.mjs <out-prefix> [가로x세로 기본 1280x720] [화면 배율 기본 1, 휴대폰은 3]
 // 만드는 파일: <out-prefix>-adjacent.png (공격 가능 적 표시·예상 피해), <out-prefix>-strip.png (공격 연출 프레임 모음), <out-prefix>-enemy.png (적 차례 배너 장면), <out-prefix>-overlay.png (이동 범위·미리보기)
 import { chromium } from "playwright";
 import fs from "node:fs";
-const [prefix, size = "1280x720"] = process.argv.slice(2);
+const [prefix, size = "1280x720", dpr = "1"] = process.argv.slice(2);
 const [w, h] = size.split("x").map(Number);
-const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: w, height: h } });
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: Number(dpr) });
 const errs = []; p.on("pageerror", e => errs.push("pageerror " + e.message));
 p.on("console", m => { if (m.type() === "error") errs.push("console " + m.text()); });
 const st = () => p.evaluate(() => { const s = window.__hollowCodex__.state(); return { combat: s.combat !== null, units: s.combat?.units.map(u => ({ id: u.id, side: u.side, x: u.pos.x, y: u.pos.y, hp: u.hp, gone: u.gone, acted: u.acted })) ?? [], active: s.combat?.active }; });

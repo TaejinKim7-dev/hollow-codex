@@ -20,7 +20,9 @@ const clamp = (v: number, lo: number, hi: number): number => Math.min(hi, Math.m
 
 /** 전투 HUD(하단 조작 패널)가 가리는 아래쪽 높이(장치 픽셀). 전투 격자는 이 위쪽 영역에 맞춘다. */
 export const COMBAT_RESERVE_RATIO = 0.17
-export const combatReservePx = (canvasPx: { readonly w: number; readonly h: number }): number => Math.round(canvasPx.h * COMBAT_RESERVE_RATIO)
+const COMBAT_RESERVE_RATIO_PORTRAIT = 0.25   // 세로 화면은 조작 패널이 좁아서 줄바꿈되어 더 높다
+export const combatReservePx = (canvasPx: { readonly w: number; readonly h: number }): number =>
+  Math.round(canvasPx.h * (canvasPx.h > canvasPx.w ? COMBAT_RESERVE_RATIO_PORTRAIT : COMBAT_RESERVE_RATIO))
 
 /**
  * 정수 배율을 높이로 먼저 고른다(칸 7줄이 들어가는 만큼, 2~4). 칸 수는 화면을 덮도록 올림한다 — 가장자리 칸은 잘린다(검은 여백 없음).
@@ -41,11 +43,21 @@ export function computeViewport(
   dpr: number,
   mapSize: { readonly w: number; readonly h: number },
   center: Pos,
-  reserveBottomPx = 0
+  reserveBottomPx = 0,
+  fitCells?: { readonly w: number; readonly h: number }
 ): Viewport {
   const vw = canvasCss.w * dpr
   const vh = canvasCss.h * dpr - reserveBottomPx
-  const { scale, viewW, viewH } = chooseView({ w: vw, h: vh })
+  let { scale, viewW, viewH } = chooseView({ w: vw, h: vh })
+  if (fitCells !== undefined) {
+    // 전투 격자는 통째로 보여야 한다: 격자가 들어올 때까지 배율을 낮춘다(최소 ×1).
+    const fit = Math.max(1, Math.min(scale, Math.floor(vw / (fitCells.w * TILE)), Math.floor(vh / (fitCells.h * TILE))))
+    if (fit !== scale) {
+      scale = fit
+      viewW = Math.max(MIN_COLS, Math.ceil(vw / (TILE * scale)))
+      viewH = Math.max(MIN_ROWS, Math.ceil(vh / (TILE * scale)))
+    }
+  }
   const originTile: Pos = {
     x: mapSize.w <= viewW ? 0 : clamp(center.x - Math.floor(viewW / 2), 0, mapSize.w - viewW),
     y: mapSize.h <= viewH ? 0 : clamp(center.y - Math.floor(viewH / 2), 0, mapSize.h - viewH)
@@ -90,7 +102,7 @@ export function frameViewport(state: GameState, content: GameContent, canvasPx: 
   const combat = state.combat
   if (combat !== null) {
     const active = combat.units.find((u) => u.id === combat.active)
-    return computeViewport(canvasPx, 1, { w: combat.grid[0]?.length ?? 0, h: combat.grid.length }, active?.pos ?? { x: 0, y: 0 }, combatReservePx(canvasPx))
+    return computeViewport(canvasPx, 1, { w: combat.grid[0]?.length ?? 0, h: combat.grid.length }, active?.pos ?? { x: 0, y: 0 }, combatReservePx(canvasPx), { w: combat.grid[0]?.length ?? 0, h: combat.grid.length })
   }
   const map = content.maps[state.mapId]
   return computeViewport(canvasPx, 1, { w: map?.rows[0]?.length ?? 0, h: map?.rows.length ?? 0 }, state.player.pos)
