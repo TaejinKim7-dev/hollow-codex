@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs"
 import { compileContent } from "../src/content/compile.ts"
 import { parseDenylist, scanRepoText } from "../src/content/denylist.ts"
+import { missingAudioKeys } from "../src/audio/resolve.ts"
 import { missingCharacterSprites } from "../src/content/sprites-check.ts"
 import { checkLedger, parseLedger } from "../src/content/ledger.ts"
 import { loadContentDir } from "../src/content/load-node.ts"
@@ -32,6 +33,16 @@ if (content === null || errors.length > 0) {
 const charErrors = missingCharacterSprites(content, (name) => existsSync(`assets/sprites/characters/${name}`))
 if (charErrors.length > 0) {
   for (const e of charErrors) console.error(`unknown character sprite ${e}`)
+  process.exit(1)
+}
+
+const audioErrors = missingAudioKeys(
+  content.audio,
+  new Set(walk("assets/audio/sfx").filter((f) => f.endsWith(".ogg")).map((f) => (f.split("/").pop() ?? "").replace(/\.ogg$/, ""))),
+  new Set(walk("assets/audio/bgm").filter((f) => f.endsWith(".ogg")).map((f) => (f.split("/").pop() ?? "").replace(/\.ogg$/, "")))
+)
+if (audioErrors.length > 0) {
+  for (const e of audioErrors) console.error(`audio.yaml maps to a missing file: ${e}`)
   process.exit(1)
 }
 

@@ -36,6 +36,7 @@ const KEYS = {
   sheet: ["file", "columns", "tile"],
   tile: ["sprite", "ground", "object", "walk"],
   object: ["id", "image", "footprint", "blocks", "sortOffset"],
+  audio: ["sfx", "footsteps", "music"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
   creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
@@ -68,6 +69,7 @@ interface Draft {
   tiles: Mutable<GameContent["tiles"]>
   playerSprite: SpriteRef | null
   objects: Table<ObjectDef>
+  audio: { sfx: Record<string, string>; footsteps: Partial<Record<Ground, string>>; music: Record<Id, string> }
   maps: Table<MapDef>
   npcs: Table<NpcDef>
   facts: Table<Fact>
@@ -212,6 +214,26 @@ function readMusic(r: Reader, v: unknown, d: Draft, ctx: Ctx, id: Id): void {
   })
   const score: Score = { tempo: r.num(o, "tempo", ""), loop: r.bool(o, "loop", ""), channels }
   if (r.errors.length === before) put(ctx, d.music, "music", r.file, id, score)
+}
+
+function readAudio(r: Reader, v: unknown, d: Draft): void {
+  if (v === null || v === undefined) return
+  const o = r.obj(v, "")
+  onlyKeys(r, o, "", KEYS.audio)
+  const table = (key: string): Record<string, string> => {
+    const out: Record<string, string> = {}
+    for (const [name, file] of Object.entries(o[key] === undefined ? {} : r.obj(o[key], key))) {
+      if (typeof file === "string" && file !== "") out[name] = file
+      else r.fail(`${key}.${name}`, "expected a file key string")
+    }
+    return out
+  }
+  d.audio.sfx = table("sfx")
+  d.audio.music = table("music")
+  for (const [ground, file] of Object.entries(table("footsteps"))) {
+    if (GROUNDS.includes(ground as Ground)) d.audio.footsteps[ground as Ground] = file
+    else r.fail(`footsteps.${ground}`, `unknown ground "${ground}"`)
+  }
 }
 
 function readObjects(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
@@ -442,7 +464,7 @@ function checkDenylistShape(r: Reader, v: unknown): void {
 
 function readAll(raw: RawContent, ctx: Ctx): Draft {
   const d: Draft = {
-    sheets: {}, tiles: {}, playerSprite: null, objects: table(), maps: table(), npcs: table(), facts: table(), deductions: table(),
+    sheets: {}, tiles: {}, playerSprite: null, objects: table(), audio: { sfx: {}, footsteps: {}, music: {} }, maps: table(), npcs: table(), facts: table(), deductions: table(),
     crises: table(), creatures: table(), encounters: table(), abilities: table(), music: table(), rings: table(), strings: {}, start: null
   }
   if (!("tiles.yaml" in raw)) ctx.shape.push("tiles.yaml: missing required file")
@@ -460,6 +482,7 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
       readStrings(r, v, d, STRINGS_FILE_RE.exec(file)?.[1] ?? "ko")
     }
     else if (file === "objects.yaml") readObjects(r, v, d, ctx)
+    else if (file === "audio.yaml") readAudio(r, v, d)
     else if (file === "creatures.yaml") readCreatures(r, v, d, ctx)
     else if (file === "rings.yaml") readRings(r, v, d, ctx)
     else if (music !== null) {
@@ -844,7 +867,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
     return { content: null, errors }
   }
   const content: GameContent = {
-    sheets: d.sheets, tiles: d.tiles, objects: d.objects.items, playerSprite: d.playerSprite,
+    sheets: d.sheets, tiles: d.tiles, objects: d.objects.items, audio: d.audio, playerSprite: d.playerSprite,
     maps: d.maps.items, npcs: d.npcs.items, facts: d.facts.items,
     deductions: d.deductions.items as GameContent["deductions"],   // answer length checked in group 7
     crises: d.crises.items, creatures: d.creatures.items, encounters: d.encounters.items,

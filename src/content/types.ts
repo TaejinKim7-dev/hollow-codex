@@ -11,6 +11,13 @@ export interface Score {                        // D5. 형식은 Task 14
   readonly channels: readonly { readonly wave: "square50" | "square25" | "triangle" | "noise"; readonly volume: number; readonly notes: string }[]
 }
 
+/** content/audio.yaml: 소리 이름 → 파일 키(assets/audio/sfx/<키>.ogg, assets/audio/bgm/<키>.ogg). */
+export interface AudioMap {
+  readonly sfx: Readonly<Record<string, string>>
+  readonly footsteps: Readonly<Partial<Record<Ground, string>>>
+  readonly music: Readonly<Record<Id, string>>
+}
+
 export interface ChoiceOption {
   readonly optionId: Id; readonly labelKey: string; readonly textKey: string
   readonly deed?: { readonly virtue: Virtue; readonly deed: Id }
@@ -60,6 +67,7 @@ export interface GameContent {
   readonly sheets: Readonly<Record<string, { readonly file: string; readonly columns: number; readonly tile: number }>>
   readonly tiles: Readonly<Record<string, { readonly sprite?: SpriteRef; readonly ground?: Ground; readonly object?: Id; readonly walk: number | null }>>   // ASCII 1글자 → 타일
   readonly objects: Readonly<Record<Id, ObjectDef>>
+  readonly audio: AudioMap
   readonly playerSprite: SpriteRef
   readonly maps: Readonly<Record<Id, MapDef>>
   readonly npcs: Readonly<Record<Id, NpcDef>>

@@ -1,0 +1,35 @@
+# 소리 이름 → 파일 키. 효과음 키는 assets/audio/sfx/<키>.ogg, 음악 키는 assets/audio/bgm/<키>.ogg.
+# 여기 없는 소리는 무음이다(오류 아님) — 후보만 있고 아직 고르지 않은 상황은 줄 하나 추가로 연결한다.
+sfx:
+  step: footstep
+  bump: bump
+  learn: clue
+  confirm: confirm
+  hit: hit
+  push: push
+  click: click
+  page: page
+  wrong: wrong
+  door: door
+  teleport: teleport
+  coins: coins
+footsteps:
+  grass: footstep
+  path: footstep
+  floor: footstep
+  stone: footstep_stone
+  water: footstep_wood   # 물 칸 위의 소리는 다리 위에서만 들린다
+music:
+  music.field: field
+  music.overworld: field
+  music.kalas: kalas
+  music.archive: archive
+  music.battle: battle
+  music.compassion: compassion
+  music.valor: valor
+  music.justice: justice
+  music.sacrifice: sacrifice
+  music.honor: honor
+  music.spirituality: spirituality
+  music.humility: humility
+  music.ending: ending
