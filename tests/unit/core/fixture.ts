@@ -25,7 +25,7 @@ const stringKeys = [
 
 export function testContent(): GameContent {
   return {
-    sheets: { t: { file: "t.png", columns: 4 } },
+    sheets: { t: { file: "t.png", columns: 4, tile: 16 } },
     tiles: {
       ".": { sprite: { sheet: "t", index: 0 }, walk: 1 },
       ",": { sprite: { sheet: "t", index: 1 }, walk: 2 },

@@ -1,6 +1,7 @@
 import type { GameContent, SpriteRef } from "../content/types.ts"
 import type { GameState, Id, Pos } from "../core/types.ts"
 import { npcPositionAt } from "../core/dialogue/talk.ts"
+import { legacyDraw } from "./sprites.ts"
 import { frameViewport, TILE, type Viewport } from "./viewport.ts"
 
 /**
@@ -28,9 +29,6 @@ function clear(ctx: CanvasRenderingContext2D): void {
   ctx.fillStyle = "#000"
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 }
-
-/** 0.1.0 시트의 한 칸. 32px 칸에 2배로 확대해 그린다. */
-const LEGACY_TILE = 16
 
 const screenX = (vp: Viewport, x: number, size: number): number => vp.offsetPx.x + (x - vp.originTile.x) * size
 const screenY = (vp: Viewport, y: number, size: number): number => vp.offsetPx.y + (y - vp.originTile.y) * size
@@ -137,10 +135,10 @@ function drawSprite(
   dy: number,
   size: number
 ): void {
+  if ("char" in ref) return   // 새 캐릭터 그림은 Task 7의 이미지 지연 로딩과 함께 그린다
   const img = sheets[ref.sheet]
   if (!img) return
-  const columns = content.sheets[ref.sheet]?.columns ?? 1
-  const sx = (ref.index % columns) * LEGACY_TILE
-  const sy = Math.floor(ref.index / columns) * LEGACY_TILE
-  ctx.drawImage(img, sx, sy, LEGACY_TILE, LEGACY_TILE, dx, dy, size, size)
+  const sheet = content.sheets[ref.sheet]
+  const r = legacyDraw(sheet?.columns ?? 1, sheet?.tile ?? 16, ref.index)
+  ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, dx, dy, size, size)
 }

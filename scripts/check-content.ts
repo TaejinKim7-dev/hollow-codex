@@ -1,6 +1,7 @@
-import { readdirSync, readFileSync, statSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs"
 import { compileContent } from "../src/content/compile.ts"
 import { parseDenylist, scanRepoText } from "../src/content/denylist.ts"
+import { missingCharacterSprites } from "../src/content/sprites-check.ts"
 import { checkLedger, parseLedger } from "../src/content/ledger.ts"
 import { loadContentDir } from "../src/content/load-node.ts"
 
@@ -25,6 +26,12 @@ const { content, errors } = compileContent(loadContentDir("content"))
 if (content === null || errors.length > 0) {
   for (const e of errors) console.error(e)
   if (errors.length === 0) console.error("check:content: compile produced no content")
+  process.exit(1)
+}
+
+const charErrors = missingCharacterSprites(content, (name) => existsSync(`assets/sprites/characters/${name}`))
+if (charErrors.length > 0) {
+  for (const e of charErrors) console.error(`unknown character sprite ${e}`)
   process.exit(1)
 }
 

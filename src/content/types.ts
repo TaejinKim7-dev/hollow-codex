@@ -1,7 +1,8 @@
 import type { Id, Pos, Virtue } from "../core/types.ts"
 
 export type FactKind = "person" | "place" | "word" | "song" | "meaning" | "creature"
-export interface SpriteRef { readonly sheet: string; readonly index: number }
+/** 옛 시트 칸 `[sheet, index]` 또는 새 캐릭터 그림 `char.<이름>`(assets/sprites/characters/<이름>/). */
+export type SpriteRef = { readonly sheet: string; readonly index: number } | { readonly char: string }
 
 export interface Score {                        // D5. 형식은 Task 14
   readonly tempo: number                        // 4분음표 bpm
@@ -53,7 +54,7 @@ export interface CrisisOptionDef {
   readonly setsFlags: readonly Id[]; readonly labelKey: string; readonly textKey: string
 }
 export interface GameContent {
-  readonly sheets: Readonly<Record<string, { readonly file: string; readonly columns: number }>>
+  readonly sheets: Readonly<Record<string, { readonly file: string; readonly columns: number; readonly tile: number }>>
   readonly tiles: Readonly<Record<string, { readonly sprite: SpriteRef; readonly walk: number | null }>>   // ASCII 1글자 → 타일
   readonly playerSprite: SpriteRef
   readonly maps: Readonly<Record<Id, MapDef>>

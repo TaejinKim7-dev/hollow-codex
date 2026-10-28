@@ -105,10 +105,16 @@ export function makeReader(file: string, errors: string[]): Reader {
       return { x: 0, y: 0 }
     },
     sprite(v, where) {
+      if (typeof v === "string") {
+        const m = /^char\.([a-z0-9][a-z0-9-]*)$/.exec(v)
+        if (m !== null) return { char: m[1] ?? "" }
+        fail(where, "expected [sheet, index] or char.<name>")
+        return { sheet: "", index: 0 }
+      }
       if (Array.isArray(v) && v.length === 2 && typeof v[0] === "string" && isInt(v[1]) && v[1] >= 0) {
         return { sheet: v[0], index: v[1] }
       }
-      fail(where, "expected [sheet, index]")
+      fail(where, "expected [sheet, index] or char.<name>")
       return { sheet: "", index: 0 }
     }
   }

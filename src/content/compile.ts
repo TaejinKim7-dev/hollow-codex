@@ -32,7 +32,7 @@ type Ring = GameContent["rings"][string]
 /** Every key each YAML object may carry. An unknown key is a build error (B-4f), not silently ignored. */
 const KEYS = {
   tiles: ["sheets", "tiles", "player"],
-  sheet: ["file", "columns"],
+  sheet: ["file", "columns", "tile"],
   tile: ["sprite", "walk"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
@@ -124,8 +124,10 @@ function readTiles(r: Reader, v: unknown, d: Draft): void {
     onlyKeys(r, so, `sheets.${id}`, KEYS.sheet)
     const file = r.str(so, "file", `sheets.${id}`)
     const columns = r.num(so, "columns", `sheets.${id}`)
+    const tile = so["tile"] === undefined ? 16 : r.num(so, "tile", `sheets.${id}`)
     if (r.errors.length === before && (!Number.isInteger(columns) || columns <= 0)) r.fail(`sheets.${id}.columns`, "expected a positive integer")
-    if (r.errors.length === before) d.sheets[id] = { file, columns }
+    if (r.errors.length === before && (!Number.isInteger(tile) || tile <= 0)) r.fail(`sheets.${id}.tile`, "expected a positive integer")
+    if (r.errors.length === before) d.sheets[id] = { file, columns, tile }
   }
   for (const [ch, t] of Object.entries(o["tiles"] === undefined ? {} : r.obj(o["tiles"], "tiles"))) {
     const before = r.errors.length
@@ -450,7 +452,7 @@ function checkReferences(d: Draft, out: string[]): void {
     if (!VIRTUES.includes(v as Virtue)) out.push(`${file}: ${where}: unknown virtue "${v}"`)
   }
   const sheet = (file: string, where: string, s: SpriteRef): void => {
-    if (!(s.sheet in d.sheets)) out.push(`${file}: ${where}: unknown sprite sheet "${s.sheet}"`)
+    if ("sheet" in s && !(s.sheet in d.sheets)) out.push(`${file}: ${where}: unknown sprite sheet "${s.sheet}"`)
   }
   const facts = d.facts.items
   if (d.playerSprite !== null) sheet("tiles.yaml", "player", d.playerSprite)
