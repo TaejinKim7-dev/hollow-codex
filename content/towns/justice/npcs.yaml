@@ -334,7 +334,7 @@
     "18": [17, 14]
   name: justice.npc.silversmith.name
   greet: justice.npc.silversmith.greet
-  sprite: [town, 84]
+  sprite: char.craftsman
   topics:
     name:
       - text: justice.npc.silversmith.name.t
@@ -354,7 +354,7 @@
     "18": [25, 16]
   name: justice.npc.old-neighbor.name
   greet: justice.npc.old-neighbor.greet
-  sprite: [town, 84]
+  sprite: char.elder-woman
   topics:
     name:
       - text: justice.npc.old-neighbor.name.t
@@ -374,7 +374,7 @@
     "18": [12, 15]
   name: justice.npc.scale-keeper.name
   greet: justice.npc.scale-keeper.greet
-  sprite: [town, 84]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: justice.npc.scale-keeper.name.t
@@ -394,7 +394,7 @@
     "18": [8, 4]
   name: justice.npc.keener.name
   greet: justice.npc.keener.greet
-  sprite: [town, 84]
+  sprite: char.mira-weaver
   topics:
     name:
       - text: justice.npc.keener.name.t
@@ -414,7 +414,7 @@
     "18": [14, 10]
   name: justice.npc.lash-bearer.name
   greet: justice.npc.lash-bearer.greet
-  sprite: [town, 84]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: justice.npc.lash-bearer.name.t

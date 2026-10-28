@@ -7,6 +7,9 @@ import { sortDrawables, type Drawable } from "./layers.ts"
 import type { MotionFrame } from "./motion.ts"
 import { characterImageKey, charDrawRect, idleBobPx, legacyDraw } from "./sprites.ts"
 import { cameraShiftPx, frameViewport, TILE, type Viewport } from "./viewport.ts"
+import type { CombatOverlay } from "./combat-overlay.ts"
+import type { FxFrame } from "./fx.ts"
+import { t } from "../ui/strings.ts"
 
 /** 화면에 그릴 때 쓰는 이미지 묶음. sheets = 옛 16px 시트, images = 지도별로 불러온 새 그림(키는 assets/sprites 아래 경로). */
 export interface RenderResources {
@@ -27,11 +30,12 @@ export function drawFrame(
   state: GameState,
   content: GameContent,
   vp: Viewport,
-  motion: MotionFrame
+  motion: MotionFrame,
+  combatFx: CombatFxView | null = null
 ): void {
   ctx.imageSmoothingEnabled = false
   clear(ctx)
-  if (state.combat !== null) drawCombat(ctx, res, content, state)
+  if (state.combat !== null) drawCombat(ctx, res, content, state, combatFx)
   else drawMap(ctx, res, content, state, vp, motion)
 }
 
@@ -149,12 +153,19 @@ export function npcsToDraw(state: GameState, content: GameContent): { readonly i
     .map(([id, npc]) => ({ id, pos: npcPositionAt(npc, state.time.hour), sprite: npc.sprite }))
 }
 
-function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, state: GameState): void {
+/** 전투 연출 입력: 연출 프레임과(있으면) 조작 힌트. */
+export interface CombatFxView { readonly frame: FxFrame; readonly overlay: CombatOverlay | null }
+const NO_FX: FxFrame = { shake: { x: 0, y: 0 }, units: {}, hp: {}, floats: [], slashes: [], sparks: [], ghosts: [], banner: null }
+
+function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, state: GameState, view: CombatFxView | null): void {
   const combat = state.combat
   if (!combat) return
+  const fx = view?.frame ?? NO_FX
   const active = combat.units.find((u) => u.id === combat.active)
   const vp = frameViewport(state, content, { w: ctx.canvas.width, h: ctx.canvas.height })
   const size = TILE * vp.scale
+  ctx.save()
+  ctx.translate(Math.round(fx.shake.x * vp.scale), Math.round(fx.shake.y * vp.scale))
   const items: Item[] = []
   const gridH = combat.grid.length
   const gridW = combat.grid[0]?.length ?? 0
@@ -177,18 +188,39 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
   // 전투가 일어나는 격자만 또렷하게: 바깥은 어둡게 눌러 구분한다.
   ctx.fillStyle = "rgba(0, 0, 0, 0.45)"
   const gx0 = screenX(vp, 0, size), gy0 = screenY(vp, 0, size), gx1 = screenX(vp, gridW, size), gy1 = screenY(vp, gridH, size)
-  ctx.fillRect(0, 0, ctx.canvas.width, gy0)
-  ctx.fillRect(0, gy1, ctx.canvas.width, ctx.canvas.height - gy1)
-  ctx.fillRect(0, gy0, gx0, gy1 - gy0)
-  ctx.fillRect(gx1, gy0, ctx.canvas.width - gx1, gy1 - gy0)
+  ctx.fillRect(-size, -size, ctx.canvas.width + 2 * size, gy0 + size)
+  ctx.fillRect(-size, gy1, ctx.canvas.width + 2 * size, ctx.canvas.height - gy1 + size)
+  ctx.fillRect(-size, gy0, gx0 + size, gy1 - gy0)
+  ctx.fillRect(gx1, gy0, ctx.canvas.width - gx1 + size, gy1 - gy0)
+  // 조작 힌트: 갈 수 있는 칸(파랑), 칠 수 있는 적(빨강 테두리)
+  const overlay = view?.overlay ?? null
+  if (overlay !== null) {
+    for (const p of overlay.reachable) {
+      ctx.fillStyle = "rgba(90, 150, 255, 0.30)"
+      ctx.fillRect(screenX(vp, p.x, size), screenY(vp, p.y, size), size, size)
+      ctx.strokeStyle = "rgba(170, 205, 255, 0.55)"
+      ctx.lineWidth = Math.max(1, vp.scale)
+      ctx.strokeRect(screenX(vp, p.x, size) + 0.5, screenY(vp, p.y, size) + 0.5, size - 1, size - 1)
+    }
+    for (const tg of overlay.targets) strokeCell(ctx, vp, tg.pos, size, "#ff3b30", vp.scale * 1.5)
+  }
+  const sideKind = (u: { readonly side: "ally" | "enemy" }): "player" | "npc" => (u.side === "ally" ? "player" : "npc")
   for (const unit of combat.units) {
     if (unit.gone !== null) continue
+    const f = fx.units[unit.id]
     items.push({
-      kind: unit.side === "ally" ? "player" : "npc", footX: unit.pos.x, footY: unit.pos.y, id: unit.id,
-      draw: () => drawCharacter(ctx, res, content, unitSprite(content, unit), unit.pos.x, unit.pos.y, unit.side === "ally" ? "e" : "w", vp, size)
+      kind: sideKind(unit), footX: unit.pos.x + (f?.dx ?? 0), footY: unit.pos.y + (f?.dy ?? 0), id: unit.id,
+      draw: () => drawCharacter(ctx, res, content, unitSprite(content, unit), unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), unit.side === "ally" ? "e" : "w", vp, size, false, 0, f?.flash ?? 0, 1)
+    })
+  }
+  for (const g of fx.ghosts) {
+    items.push({
+      kind: sideKind(g.unit), footX: g.unit.pos.x + g.dx, footY: g.unit.pos.y + g.dy, id: `ghost:${g.unit.id}`,
+      draw: () => drawCharacter(ctx, res, content, unitSprite(content, g.unit), g.unit.pos.x + g.dx, g.unit.pos.y + g.dy, g.unit.side === "ally" ? "e" : "w", vp, size, false, 0, g.flash, g.alpha)
     })
   }
   for (const item of sortDrawables(items)) item.draw()
+
   for (const enemy of combat.units) {
     if (enemy.side !== "enemy" || enemy.gone !== null) continue
     const intent = combat.intents[enemy.id]
@@ -207,6 +239,97 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     }
   }
   if (active && active.gone === null && active.side === "ally") strokeCell(ctx, vp, active.pos, size, "#ffffff", vp.scale)
+
+  // 체력 막대(발 아래), 슬래시·스파크, 피해 숫자, 예상 피해
+  for (const unit of combat.units) {
+    if (unit.gone !== null) continue
+    const bar = fx.hp[unit.id]
+    const f = fx.units[unit.id]
+    drawHpBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), bar?.shown ?? unit.hp, bar?.trail ?? unit.hp, bar?.max ?? Math.max(unit.hp, 1))
+  }
+  for (const sl of fx.slashes) drawSlash(ctx, vp, size, sl.x, sl.y, sl.dir, sl.age)
+  ctx.fillStyle = "#ffe9a8"
+  for (const sp of fx.sparks) {
+    ctx.globalAlpha = Math.max(0, 1 - sp.age)
+    const px = Math.max(2, Math.round(2 * vp.scale))
+    ctx.fillRect(Math.round(screenX(vp, sp.x, size) + size / 2 - px / 2), Math.round(screenY(vp, sp.y, size) + size / 2 - px / 2), px, px)
+  }
+  ctx.globalAlpha = 1
+  for (const fl of fx.floats) drawFloat(ctx, vp, size, fl.x, fl.y, fl.text, fl.kind, fl.age)
+  if (overlay !== null) {
+    for (const tg of overlay.targets) {
+      const label = tg.defeated ? t(state.language, content.strings, "ui.combat.preview-defeat") : `-${tg.amount}`
+      drawFloat(ctx, vp, size, tg.pos.x, tg.pos.y - 0.15, label, tg.defeated ? "defeat" : "normal", 0)
+    }
+  }
+  ctx.restore()
+  if (fx.banner !== null) drawBanner(ctx, t(state.language, content.strings, "ui.combat.enemy-turn"), fx.banner.alpha, vp.scale)
+}
+
+function hpColor(ratio: number): string {
+  return ratio > 0.5 ? "#6fcf55" : ratio > 0.25 ? "#e8c43a" : "#e5483b"
+}
+
+function drawHpBar(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, shown: number, trail: number, max: number): void {
+  const w = Math.round(size * 0.78), h = Math.max(3, Math.round(size * 0.1))
+  const x = Math.round(screenX(vp, cellX, size) + (size - w) / 2)
+  const y = Math.round(screenY(vp, cellY, size) + size + 2 * vp.scale)
+  ctx.fillStyle = "rgba(0, 0, 0, 0.7)"
+  ctx.fillRect(x - 1, y - 1, w + 2, h + 2)
+  const ratio = (v: number): number => Math.max(0, Math.min(1, v / Math.max(1, max)))
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)"
+  ctx.fillRect(x, y, Math.round(w * ratio(trail)), h)
+  ctx.fillStyle = hpColor(ratio(shown))
+  ctx.fillRect(x, y, Math.round(w * ratio(shown)), h)
+}
+
+function drawSlash(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, dir: Dir, age: number): void {
+  const cx = screenX(vp, cellX, size) + size / 2, cy = screenY(vp, cellY, size) + size / 2
+  const rot = { e: 0, s: Math.PI / 2, w: Math.PI, n: -Math.PI / 2 }[dir]
+  ctx.save()
+  ctx.translate(cx, cy)
+  ctx.rotate(rot + Math.PI)                                   // 공격이 들어온 쪽에서 대상 쪽으로 휘두르는 호
+  ctx.globalAlpha = Math.max(0, 1 - age)
+  ctx.lineCap = "round"
+  for (const [r, w, color] of [[0.5, 5, "#ffffff"], [0.42, 3, "#ffd36b"]] as const) {
+    ctx.strokeStyle = color
+    ctx.lineWidth = w * vp.scale
+    ctx.beginPath()
+    ctx.arc(0, 0, size * r, -1.0, -1.0 + 2.0 * Math.min(1, age * 2 + 0.25))
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
+function drawFloat(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, text: string, kind: "normal" | "defeat", age: number): void {
+  const px = Math.round(size * (kind === "defeat" ? 0.52 : 0.4))
+  ctx.save()
+  ctx.font = `bold ${px}px "NeoDunggeunmo", monospace`
+  ctx.textAlign = "center"
+  ctx.textBaseline = "middle"
+  ctx.globalAlpha = Math.max(0, 1 - age * age)
+  const x = screenX(vp, cellX, size) + size / 2, y = screenY(vp, cellY, size)
+  ctx.lineWidth = Math.max(3, Math.round(px * 0.18))
+  ctx.strokeStyle = "#1a1210"
+  ctx.strokeText(text, x, y)
+  ctx.fillStyle = kind === "defeat" ? "#ffd23f" : "#ffffff"
+  ctx.fillText(text, x, y)
+  ctx.restore()
+}
+
+function drawBanner(ctx: CanvasRenderingContext2D, text: string, alpha: number, scale: number): void {
+  const h = Math.round(22 * scale), y = Math.round(ctx.canvas.height * 0.12)
+  ctx.save()
+  ctx.globalAlpha = Math.max(0, Math.min(1, alpha)) * 0.85
+  ctx.fillStyle = "#1a1210"
+  ctx.fillRect(0, y, ctx.canvas.width, h)
+  ctx.globalAlpha = Math.max(0, Math.min(1, alpha))
+  ctx.fillStyle = "#ff9d6b"
+  ctx.font = `bold ${Math.round(14 * scale)}px "NeoDunggeunmo", monospace`
+  ctx.textAlign = "center"
+  ctx.textBaseline = "middle"
+  ctx.fillText(text, ctx.canvas.width / 2, y + h / 2)
+  ctx.restore()
 }
 
 function unitSprite(content: GameContent, unit: { readonly id: string; readonly creature: string | null }): SpriteRef {
@@ -234,7 +357,7 @@ function strokeCell(ctx: CanvasRenderingContext2D, vp: Viewport, p: Pos, size: n
 /** 인물·크리처 한 명. 새 `char.*`는 48px 캔버스를 칸 아래 중앙에, 옛 시트 칸은 칸 크기로 확대해 그린다. (x, y)는 칸 좌표(보간 중에는 실수). */
 function drawCharacter(
   ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, ref: SpriteRef, x: number, y: number, dir: Dir, vp: Viewport, size: number,
-  moving = false, frame = 0
+  moving = false, frame = 0, flash = 0, alpha = 1
 ): void {
   if ("char" in ref) {
     const pick = characterImageKey(ref.char, dir, moving, frame, (k) => res.images.has(k))
@@ -242,17 +365,48 @@ function drawCharacter(
     if (img === undefined) return
     const r = charDrawRect(x, y, size)
     const bob = moving && !pick.walking ? idleBobPx(frame) * vp.scale : 0
-    ctx.drawImage(img, vp.offsetPx.x + r.x - vp.originTile.x * size, vp.offsetPx.y + r.y - vp.originTile.y * size + bob, r.w, r.h)
+    blit(ctx, img, 0, 0, img.width, img.height, vp.offsetPx.x + r.x - vp.originTile.x * size, vp.offsetPx.y + r.y - vp.originTile.y * size + bob, r.w, r.h, flash, alpha)
     return
   }
-  drawLegacy(ctx, res, content, ref, screenX(vp, x, size), screenY(vp, y, size), size)
+  drawLegacy(ctx, res, content, ref, screenX(vp, x, size), screenY(vp, y, size), size, flash, alpha)
 }
 
-function drawLegacy(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, ref: SpriteRef, dx: number, dy: number, size: number): void {
+function drawLegacy(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, ref: SpriteRef, dx: number, dy: number, size: number, flash = 0, alpha = 1): void {
   if ("char" in ref) return
   const img = res.sheets[ref.sheet]
   if (!img) return
   const sheet = content.sheets[ref.sheet]
   const r = legacyDraw(sheet?.columns ?? 1, sheet?.tile ?? 16, ref.index)
-  ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, dx, dy, size, size)
+  blit(ctx, img, r.sx, r.sy, r.sw, r.sh, dx, dy, size, size, flash, alpha)
+}
+
+let tint: HTMLCanvasElement | null = null
+/** 스프라이트를 그린다. flash > 0이면 실루엣만 흰색으로 덮어(맞은 순간 점멸), alpha < 1이면 투명하게(사라지는 중). */
+function blit(
+  ctx: CanvasRenderingContext2D, img: CanvasImageSource, sx: number, sy: number, sw: number, sh: number,
+  dx: number, dy: number, dw: number, dh: number, flash: number, alpha: number
+): void {
+  if (flash <= 0 && alpha >= 1) { ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh); return }
+  ctx.save()
+  ctx.globalAlpha = Math.max(0, Math.min(1, alpha))
+  if (flash > 0 && typeof document !== "undefined") {
+    tint ??= document.createElement("canvas")
+    const w = Math.max(1, Math.round(dw)), h = Math.max(1, Math.round(dh))
+    if (tint.width !== w || tint.height !== h) { tint.width = w; tint.height = h }
+    const c = tint.getContext("2d")
+    if (c !== null) {
+      c.imageSmoothingEnabled = false
+      c.globalCompositeOperation = "source-over"
+      c.clearRect(0, 0, w, h)
+      c.drawImage(img, sx, sy, sw, sh, 0, 0, w, h)
+      c.globalCompositeOperation = "source-atop"
+      c.fillStyle = `rgba(255, 255, 255, ${Math.min(1, flash)})`
+      c.fillRect(0, 0, w, h)
+      ctx.drawImage(tint, dx, dy, dw, dh)
+      ctx.restore()
+      return
+    }
+  }
+  ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
+  ctx.restore()
 }

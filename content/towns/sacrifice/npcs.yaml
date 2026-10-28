@@ -312,7 +312,7 @@
     "18": [8, 5]
   name: sacrifice.npc.acolyte.name
   greet: sacrifice.npc.acolyte.greet
-  sprite: [town, 84]
+  sprite: char.robed-priest
   topics:
     name:
       - text: sacrifice.npc.acolyte.name.t
@@ -332,7 +332,7 @@
     "18": [24, 9]
   name: sacrifice.npc.cord-keeper.name
   greet: sacrifice.npc.cord-keeper.greet
-  sprite: [town, 84]
+  sprite: char.craftsman
   topics:
     name:
       - text: sacrifice.npc.cord-keeper.name.t
@@ -352,7 +352,7 @@
     "18": [18, 10]
   name: sacrifice.npc.bandage-seller.name
   greet: sacrifice.npc.bandage-seller.greet
-  sprite: [town, 84]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: sacrifice.npc.bandage-seller.name.t
@@ -372,7 +372,7 @@
     "18": [4, 9]
   name: sacrifice.npc.old-kneeler.name
   greet: sacrifice.npc.old-kneeler.greet
-  sprite: [town, 84]
+  sprite: char.young-villager
   topics:
     name:
       - text: sacrifice.npc.old-kneeler.name.t
@@ -392,7 +392,7 @@
     "18": [25, 4]
   name: sacrifice.npc.midwife.name
   greet: sacrifice.npc.midwife.greet
-  sprite: [town, 84]
+  sprite: char.elder-woman
   topics:
     name:
       - text: sacrifice.npc.midwife.name.t

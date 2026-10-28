@@ -35,12 +35,12 @@ describe("fx: idle", () => {
 })
 
 describe("fx: one attack (410 ms: windup 100, lunge 80, impact at 180, hit-stop 70, return 80, tail 80)", () => {
-  it("the attacker winds up away from the target, lunges 0.42 cell toward it at impact, holds, then returns", () => {
+  it("the attacker winds up away from the target, lunges 0.55 cell toward it at impact, holds, then returns", () => {
     const { fx } = oneHit()
     expect(fx.sample(T0 + 50).units["player"]!.dy).toBeGreaterThan(0)          // target is north → wind up south
-    expect(fx.sample(T0 + 180).units["player"]!.dy).toBeCloseTo(-0.42, 2)
-    expect(fx.sample(T0 + 220).units["player"]!.dy).toBeCloseTo(-0.42, 2)      // hit-stop: held
-    expect(Math.abs(fx.sample(T0 + 290).units["player"]!.dy)).toBeLessThan(0.42)
+    expect(fx.sample(T0 + 180).units["player"]!.dy).toBeCloseTo(-0.55, 2)
+    expect(fx.sample(T0 + 220).units["player"]!.dy).toBeCloseTo(-0.55, 2)      // hit-stop: held
+    expect(Math.abs(fx.sample(T0 + 290).units["player"]!.dy)).toBeLessThan(0.55)
     expect(fx.sample(T0 + 420).units["player"]?.dy ?? 0).toBeCloseTo(0, 5)
   })
   it("the target flashes white at impact, fades within ~120 ms, and is knocked back along the blow", () => {
@@ -158,6 +158,28 @@ describe("fx: movement, banner, clear, determinism", () => {
     expect(fx.sample(T0 + 100).banner?.text).toBe("enemy")
     expect(fx.sample(T0 + 2000).banner).toBeNull()
     expect(oneHit().fx.sample(T0 + 100).banner).toBeNull()
+  })
+  it("in one batch the enemy phase starts after the ally's blow: banner and enemy slide wait 410 ms", () => {
+    const player = unit("player", "ally", 2, 4, 10)
+    const e0 = unit("e0", "enemy", 2, 2, 4)
+    const before = [player, e0]
+    const after = [{ ...player, hp: 8 }, { ...unit("e0", "enemy", 2, 3, 3) }]
+    const fx = createFx(); fx.reset(before)
+    fx.enqueue([hit("player", "e0", 1, 3), hit("e0", "player", 2, 8)], before, after, T0)
+    expect(fx.sample(T0 + 100).banner).toBeNull()
+    expect(fx.sample(T0 + 100).units["e0"]?.dy).toBeCloseTo(-1, 1)             // still standing on its old cell (offset = old − new)
+    expect(fx.sample(T0 + 410 + 80).units["e0"]!.dy).toBeGreaterThan(-1)       // now sliding
+    expect(fx.sample(T0 + 410 + 100).banner?.text).toBe("enemy")
+    expect(fx.takeCues(T0 + 5000).map((c) => c.at)).toEqual([T0 + 180, T0 + 410 + 160 + 180])
+  })
+  it("enemies that only walk (no attack) still get the banner and a slide after the ally's action", () => {
+    const player = unit("player", "ally", 2, 4, 10)
+    const before = [player, unit("e0", "enemy", 2, 0, 4)]
+    const after = [player, unit("e0", "enemy", 2, 3, 4)]
+    const fx = createFx(); fx.reset(before)
+    fx.enqueue([], before, after, T0)
+    expect(fx.sample(T0 + 50).banner?.text).toBe("enemy")
+    expect(fx.sample(T0).units["e0"]).toMatchObject({ dy: -3 })
   })
   it("clear() drops everything, including pending cues", () => {
     const { fx } = oneHit()

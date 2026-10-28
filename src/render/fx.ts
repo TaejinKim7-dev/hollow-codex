@@ -3,7 +3,7 @@ import type { CombatUnit, Dir, GameEvent, Id } from "../core/types.ts"
 /**
  * 전투 연출 시간표. core는 결과만 계산하고(이벤트), 여기서 그 결과를 시간에 펼친다.
  * 시계는 밖에서 넣는다(`now`, ms) — 같은 입력이면 같은 출력이고 난수는 쓰지 않는다. 상태 규칙에는 아무 영향이 없다.
- * 공격 1회 = 410 ms: 예비동작 0–100 → 돌진 100–180 → 충돌 180(히트스톱 70) → 복귀 250–330 → 여운 → 다음 공격 410.
+ * 공격 1회 = 410 ms: 예비동작 0–100 → 돌진 100–180(0.55칸) → 충돌 180(히트스톱 70) → 복귀 250–330 → 여운 → 다음 공격 410.
  */
 export interface UnitFx { dx: number; dy: number; flash: number; alpha: number }   // dx,dy: 칸 단위
 export interface FxFrame {
@@ -37,12 +37,13 @@ interface HpTrack { id: Id; from: number; to: number; impact: number }
 interface GhostFx { unit: CombatUnit; holdUntil: number; fadeMs: number; target: Id }
 
 /** 공격자가 대상 쪽(+)으로 나가는 정도(칸). 예비동작은 반대쪽(-0.12). */
+const WINDUP = 0.2, LUNGE = 0.55
 function lunge(t: number): number {
   if (t < 0) return 0
-  if (t < 100) return -0.12 * smooth(t / 100)
-  if (t < IMPACT) return lerp(-0.12, 0.42, (t - 100) / 80)
-  if (t < 250) return 0.42
-  if (t < 330) return 0.42 * (1 - (t - 250) / 80)
+  if (t < 100) return -WINDUP * smooth(t / 100)
+  if (t < IMPACT) return lerp(-WINDUP, LUNGE, (t - 100) / 80)
+  if (t < 250) return LUNGE
+  if (t < 330) return LUNGE * (1 - (t - 250) / 80)
   return 0
 }
 
@@ -71,19 +72,35 @@ export function createFx(): Fx {
     enqueue(events, before, after, now) {
       const find = (list: readonly CombatUnit[], id: Id): CombatUnit | undefined => list.find((u) => u.id === id)
       let t = Math.max(now, cursor)
-      const batchStart = t
-      let enemyActs = false
+      const unitsMoved = (side: "ally" | "enemy"): { id: Id; dx: number; dy: number }[] => {
+        const out: { id: Id; dx: number; dy: number }[] = []
+        for (const u of after) {
+          const b = find(before, u.id)
+          if (b === undefined || u.side !== side) continue
+          if (b.pos.x !== u.pos.x || b.pos.y !== u.pos.y) out.push({ id: u.id, dx: b.pos.x - u.pos.x, dy: b.pos.y - u.pos.y })
+        }
+        return out
+      }
       for (const u of after) {
         const b = find(before, u.id)
         if (b === undefined) continue
         max[u.id] = Math.max(max[u.id] ?? 0, b.hp, u.hp)
         if (run[u.id] === undefined) { base[u.id] = b.hp; run[u.id] = b.hp }
-        if (b.pos.x !== u.pos.x || b.pos.y !== u.pos.y) {
-          tweens.push({ id: u.id, dx: b.pos.x - u.pos.x, dy: b.pos.y - u.pos.y, start: t })
-          if (u.side === "enemy") enemyActs = true
-        }
       }
-      if (tweens.some((tw) => tw.start === t)) t += MOVE_MS
+      // 아군의 이동은 배치 시작에 바로(걷고 → 공격). 적의 이동·배너는 아군 행동 연출이 끝난 뒤(적의 첫 행동 직전)에 시작한다.
+      const allyMoves = unitsMoved("ally")
+      for (const m of allyMoves) tweens.push({ ...m, start: t })
+      if (allyMoves.length > 0) t += MOVE_MS
+      let enemyFlushed = false
+      const flushEnemy = (willAttack: boolean): void => {
+        if (enemyFlushed) return
+        enemyFlushed = true
+        const moves = unitsMoved("enemy")
+        if (moves.length === 0 && !willAttack) return
+        banners.push({ start: t })
+        for (const m of moves) tweens.push({ ...m, start: t })
+        if (moves.length > 0) t += MOVE_MS
+      }
       let index = 0
       const hitIds = new Set<Id>()
       for (const e of events) {
@@ -91,6 +108,7 @@ export function createFx(): Fx {
           const a = find(after, e.attacker) ?? find(before, e.attacker)
           const d = find(after, e.target) ?? find(before, e.target)
           if (a === undefined || d === undefined) continue
+          if (a.side === "enemy") flushEnemy(true)
           const vx = d.pos.x - a.pos.x, vy = d.pos.y - a.pos.y
           const len = Math.hypot(vx, vy) || 1
           const ux = vx / len, uy = vy / len
@@ -104,7 +122,6 @@ export function createFx(): Fx {
             const snap = find(before, e.target)
             if (snap !== undefined) ghosts.push({ unit: snap, holdUntil: t + IMPACT + DEFEAT_HOLD, fadeMs: DEFEAT_FADE, target: e.target })
           }
-          if (a.side === "enemy") enemyActs = true
           index += 1
           t += ATTACK_MS
         } else if (e.type === "combatYield") {
@@ -113,8 +130,8 @@ export function createFx(): Fx {
           t += 200
         }
       }
+      flushEnemy(false)
       for (const u of after) if (!hitIds.has(u.id)) { base[u.id] = u.hp; run[u.id] = u.hp }
-      if (enemyActs) banners.push({ start: batchStart })
       cursor = Math.max(cursor, t)
     },
     takeCues(now) {

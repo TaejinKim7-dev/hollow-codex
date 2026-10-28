@@ -276,6 +276,8 @@ ui.combat.push: 밀기
 ui.combat.persuade: 설득
 ui.combat.defend: 방어
 ui.combat.flee: 도망
+ui.combat.enemy-turn: 적의 차례
+ui.combat.preview-defeat: 처치
 ui.combat.endTurn: 턴 넘기기
 ui.evil: 악하다
 ui.not-evil: 악하지 않다

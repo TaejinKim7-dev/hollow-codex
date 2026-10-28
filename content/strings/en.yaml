@@ -278,6 +278,8 @@ ui.combat.push: Push
 ui.combat.persuade: Persuade
 ui.combat.defend: Defend
 ui.combat.flee: Flee
+ui.combat.enemy-turn: Enemy turn
+ui.combat.preview-defeat: Defeat
 ui.combat.endTurn: End Turn
 ui.evil: Evil
 ui.not-evil: Not Evil

@@ -303,7 +303,7 @@
     "18": [18, 14]
   name: spirituality.npc.cook.name
   greet: spirituality.npc.cook.greet
-  sprite: [town, 84]
+  sprite: char.mira-weaver
   topics:
     name:
       - text: spirituality.npc.cook.name.t
@@ -323,7 +323,7 @@
     "18": [6, 5]
   name: spirituality.npc.incense.name
   greet: spirituality.npc.incense.greet
-  sprite: [town, 84]
+  sprite: char.robed-priest
   topics:
     name:
       - text: spirituality.npc.incense.name.t
@@ -343,7 +343,7 @@
     "18": [12, 4]
   name: spirituality.npc.clock.name
   greet: spirituality.npc.clock.greet
-  sprite: [town, 84]
+  sprite: char.librarian-kalas
   topics:
     name:
       - text: spirituality.npc.clock.name.t
@@ -363,7 +363,7 @@
     "18": [5, 14]
   name: spirituality.npc.carver.name
   greet: spirituality.npc.carver.greet
-  sprite: [town, 84]
+  sprite: char.craftsman
   topics:
     name:
       - text: spirituality.npc.carver.name.t
@@ -383,7 +383,7 @@
     "18": [18, 11]
   name: spirituality.npc.licensee.name
   greet: spirituality.npc.licensee.greet
-  sprite: [town, 84]
+  sprite: char.gatekeeper-field
   topics:
     name:
       - text: spirituality.npc.licensee.name.t

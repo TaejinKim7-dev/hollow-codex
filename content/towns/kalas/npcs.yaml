@@ -316,7 +316,7 @@
     "18": [27, 5]
   name: npc.kalas.jailer.name
   greet: npc.kalas.jailer.greet
-  sprite: [town, 84]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: npc.kalas.jailer.name.t
@@ -336,7 +336,7 @@
     "18": [22, 17]
   name: npc.kalas.baker.name
   greet: npc.kalas.baker.greet
-  sprite: [town, 84]
+  sprite: char.elder-woman
   topics:
     name:
       - text: npc.kalas.baker.name.t
@@ -356,7 +356,7 @@
     "18": [16, 9]
   name: npc.kalas.patrol-a.name
   greet: npc.kalas.patrol-a.greet
-  sprite: [town, 84]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: npc.kalas.patrol-a.name.t
@@ -376,7 +376,7 @@
     "18": [2, 6]
   name: npc.field.patrol.name
   greet: npc.field.patrol.greet
-  sprite: [town, 84]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: npc.field.patrol.name.t
@@ -396,7 +396,7 @@
     "18": [19, 4]
   name: npc.field.herbalist.name
   greet: npc.field.herbalist.greet
-  sprite: [town, 84]
+  sprite: char.craftsman
   topics:
     name:
       - text: npc.field.herbalist.name.t
@@ -416,7 +416,7 @@
     "18": [20, 8]
   name: npc.kalas.bellringer.name
   greet: npc.kalas.bellringer.greet
-  sprite: [town, 84]
+  sprite: char.young-villager
   topics:
     name:
       - text: npc.kalas.bellringer.name.t
@@ -436,7 +436,7 @@
     "18": [10, 6]
   name: npc.field.aspirant.name
   greet: npc.field.aspirant.greet
-  sprite: [town, 84]
+  sprite: char.young-villager
   topics:
     name:
       - text: npc.field.aspirant.name.t
@@ -456,7 +456,7 @@
     "18": [4, 17]
   name: npc.kalas.neighbor.name
   greet: npc.kalas.neighbor.greet
-  sprite: [town, 84]
+  sprite: char.elder-woman
   topics:
     name:
       - text: npc.kalas.neighbor.name.t
@@ -476,7 +476,7 @@
     "18": [14, 3]
   name: npc.kalas.clerk.name
   greet: npc.kalas.clerk.greet
-  sprite: [town, 84]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: npc.kalas.clerk.name.t
@@ -496,7 +496,7 @@
     "18": [12, 8]
   name: npc.field.peddler.name
   greet: npc.field.peddler.greet
-  sprite: [town, 84]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: npc.field.peddler.name.t

@@ -267,7 +267,7 @@
     "18": [26, 10]
   name: humility.npc.stonecutter.name
   greet: humility.npc.stonecutter.greet
-  sprite: [town, 84]
+  sprite: char.craftsman
   topics:
     name:
       - text: humility.npc.stonecutter.name.t
@@ -287,7 +287,7 @@
     "18": [11, 3]
   name: humility.npc.lampkeeper.name
   greet: humility.npc.lampkeeper.greet
-  sprite: [town, 84]
+  sprite: char.young-villager
   topics:
     name:
       - text: humility.npc.lampkeeper.name.t
@@ -307,7 +307,7 @@
     "18": [14, 11]
   name: humility.npc.tagcarver.name
   greet: humility.npc.tagcarver.greet
-  sprite: [town, 84]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: humility.npc.tagcarver.name.t
@@ -327,7 +327,7 @@
     "18": [19, 9]
   name: humility.npc.mother.name
   greet: humility.npc.mother.greet
-  sprite: [town, 84]
+  sprite: char.mira-weaver
   topics:
     name:
       - text: humility.npc.mother.name.t
@@ -347,7 +347,7 @@
     "18": [4, 10]
   name: humility.npc.sweeper.name
   greet: humility.npc.sweeper.greet
-  sprite: [town, 84]
+  sprite: char.craftsman
   topics:
     name:
       - text: humility.npc.sweeper.name.t

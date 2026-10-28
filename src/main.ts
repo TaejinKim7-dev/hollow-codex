@@ -3,6 +3,7 @@ import content from "virtual:content"
 import credits from "virtual:credits"
 import { createEngine } from "./audio/engine.ts"
 import { findAudioUrl, footstepKey, resolveSfx, resolveTrack } from "./audio/resolve.ts"
+import { hitRate } from "./audio/hit-sound.ts"
 import { loadVolumes, saveVolume } from "./audio/volume-store.ts"
 import { step } from "./core/step.ts"
 import type { Command, GameEvent, GameState, Id, Pos } from "./core/types.ts"
@@ -10,6 +11,9 @@ import { keyToCommand, modeOf, pointerToCommand } from "./input/commands.ts"
 import type { UiAction } from "./input/commands.ts"
 import { loadMapAssets, mapAssetPrefixes, spriteUrls } from "./render/assets.ts"
 import { drawFrame } from "./render/canvas.ts"
+import type { CombatFxView } from "./render/canvas.ts"
+import { combatOverlay } from "./render/combat-overlay.ts"
+import { createFx } from "./render/fx.ts"
 import { createMotion, resyncMotion } from "./render/motion.ts"
 import type { Motion } from "./render/motion.ts"
 import { frameViewport, tileAtPointer } from "./render/viewport.ts"
@@ -55,6 +59,9 @@ for (const [id, sheet] of Object.entries(content.sheets)) {
 const images = new Map<string, HTMLImageElement>()
 const requestedAssets = new Set<string>()
 let motion: Motion = createMotion(content.start.pos, "s")
+const fx = createFx()
+/** 전투가 끝난 직후(마지막 일격)에도 연출이 끝날 때까지 전투 장면을 계속 그리기 위한 직전 상태. */
+let lingerState: GameState | null = null
 
 /** 이 지도에 필요한 그림을 불러온다. 아직 못 불러온 요소는 그 칸만 건너뛰고, 다 불러오면 다시 그린다. */
 function ensureMapAssets(mapId: Id): void {
@@ -149,11 +156,21 @@ function draw(): void {
     log.log("unknown-map", s.mapId)
     return
   }
-  const vp = frameViewport(s, content, { w: canvas.width, h: canvas.height })
-  const frame = motion.sample(performance.now())
-  drawFrame(canvas2d, { sheets, images }, s, content, vp, frame)
+  const now = performance.now()
+  if (lingerState !== null && !fx.busy(now)) { lingerState = null; fx.clear() }
+  const shown = lingerState ?? s
+  const vp = frameViewport(shown, content, { w: canvas.width, h: canvas.height })
+  const frame = motion.sample(now)
+  const combatView: CombatFxView | null = shown.combat === null
+    ? null
+    : { frame: fx.sample(now), overlay: fx.busy(now) ? null : combatOverlay(shown, content) }
+  drawFrame(canvas2d, { sheets, images }, shown, content, vp, frame, combatView)
+  for (const cue of fx.takeCues(now)) {
+    const key = resolveSfx(content.audio, "hit")
+    if (key !== null) engine.sfx(key, hitRate(cue.amount, cue.index, cue.defeated))
+  }
   ui.render(s, dialogueLog)
-  if (frame.moving) scheduleFrame()
+  if (frame.moving || fx.busy(now)) scheduleFrame()
 }
 function scheduleFrame(): void {
   if (frameQueued) return
@@ -224,7 +241,7 @@ function handleEvents(events: readonly GameEvent[]): void {
         playSfx("confirm")
         break
       case "sfx":
-        playSfx(e.name)
+        if (e.name !== "hit") playSfx(e.name)   // "hit"은 연출의 충돌 시점에 fx 큐가 재생한다
         break
       case "music": {
         playTrack(e.track)
@@ -257,12 +274,32 @@ function handleEvents(events: readonly GameEvent[]): void {
   }
 }
 
+/** 전투 연출: 시작이면 초기화, 진행이면 이벤트를 시간표에 올리고, 끝났어도 마지막 일격이 보이도록 직전 장면을 남긴다. */
+function trackCombatFx(prev: GameState, next: GameState, events: readonly GameEvent[]): void {
+  const pc = prev.combat
+  const nc = next.combat
+  const now = performance.now()
+  if (pc === null && nc !== null) { lingerState = null; fx.reset(nc.units); return }
+  if (pc !== null && nc !== null) { fx.enqueue(events, pc.units, nc.units, now); return }
+  if (pc !== null && nc === null && events.some((e) => e.type === "combatHit" || e.type === "combatYield")) {
+    const gone = new Map<Id, "dead" | "retreated">()
+    for (const e of events) {
+      if (e.type === "combatHit" && e.defeated) gone.set(e.target, "dead")
+      if (e.type === "combatYield") gone.set(e.target, "retreated")
+    }
+    const units = pc.units.map((u) => (gone.has(u.id) ? { ...u, gone: gone.get(u.id)! } : u))
+    fx.enqueue(events, pc.units, units, now)
+    lingerState = { ...prev, combat: { ...pc, units } }
+  }
+}
+
 /** 핵심 실행: step → 상태 교체 → 이벤트 처리 → 그리기 예약. return 이벤트 목록(터치 반복 판정용). */
 export function apply(cmd: Command): readonly GameEvent[] {
   const s = state
   if (s === null) return []
   log.log("cmd", cmd.type)
   const { state: next, events } = step(s, cmd, content)
+  trackCombatFx(s, next, events)
   state = next
   for (const e of events) log.log("event", e.type)
   if (cmd.type === "endTalk") dialogueLog = []
@@ -345,6 +382,8 @@ function replaceState(next: GameState): void {
   stopTouchRepeat()
   state = next
   motion = createMotion(next.player.pos, next.player.facing)
+  fx.clear()
+  lingerState = null
   ensureMapAssets(next.mapId)
   dialogueLog = []
   lastAutoTurn = next.turn
