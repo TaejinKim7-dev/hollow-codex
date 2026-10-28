@@ -1,3 +1,4 @@
+import { combatObjectFit } from "./object-fit.ts"
 import type { GameContent, MapDef, SpriteRef } from "../content/types.ts"
 import type { Dir, GameState, Id, Pos } from "../core/types.ts"
 import { npcPositionAt } from "../core/dialogue/talk.ts"
@@ -98,14 +99,15 @@ function drawBaseGrass(ctx: CanvasRenderingContext2D, res: RenderResources, dx: 
 }
 
 /** 물건 하나를 깊이 정렬 목록에 넣을 항목으로. 그림이 아직 없으면 null. 발자국 왼쪽 아래 칸 (x, y)에 아래 가운데를 맞춘다. */
-function objectItem(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, vp: Viewport, size: number, id: Id, x: number, y: number): Item | null {
+function objectItem(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, vp: Viewport, size: number, id: Id, x: number, y: number, fitToCell = false): Item | null {
   const def = content.objects[id]
   const img = def === undefined ? undefined : res.images.get(`objects/${def.image}`)
   if (def === undefined || img === undefined) return null
   return {
     kind: "object", footX: x, footY: y - def.sortOffset, id: `${id}@${x},${y}`,
     draw: () => {
-      const w = img.width * vp.scale, h = img.height * vp.scale
+      const k = fitToCell ? combatObjectFit(img.width, img.height, def.footprint[0]) : 1
+      const w = img.width * vp.scale * k, h = img.height * vp.scale * k
       ctx.drawImage(img, screenX(vp, x, size) + (def.footprint[0] * size - w) / 2, screenY(vp, y, size) + size - h, w, h)
     }
   }
@@ -180,7 +182,7 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
       if (tile?.sprite) drawLegacy(ctx, res, content, tile.sprite, screenX(vp, gx, size), screenY(vp, gy, size), size)
       else if (tile?.ground !== undefined) drawBaseGrass(ctx, res, screenX(vp, gx, size), screenY(vp, gy, size), size)
       if (inside && tile?.object !== undefined) {
-        const item = objectItem(ctx, res, content, vp, size, tile.object, gx, gy)
+        const item = objectItem(ctx, res, content, vp, size, tile.object, gx, gy, true)
         if (item !== null) items.push(item)
       }
     }
