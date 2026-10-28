@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { compileContent } from "../../../src/content/compile.ts"
 import { loadContentDir } from "../../../src/content/load-node.ts"
-import { footstepKey, missingAudioKeys, resolveSfx, resolveTrack } from "../../../src/audio/resolve.ts"
+import { findAudioUrl, footstepKey, missingAudioKeys, resolveSfx, resolveTrack } from "../../../src/audio/resolve.ts"
 
 const audio = {
   sfx: { step: "footstep", learn: "clue", bump: "bump" },
@@ -50,4 +50,15 @@ describe("audio.yaml in compile", () => {
     expect(content).toBeNull()
     expect(errors.some((e) => e.includes("lava"))).toBe(true)
   })
+})
+
+describe("findAudioUrl (the engine's kind \"music\" lives in assets/audio/bgm/)", () => {
+  const urls = {
+    "../assets/audio/bgm/field.ogg": "/bgm-field.ogg",
+    "../assets/audio/sfx/footstep.ogg": "/sfx-footstep.ogg",
+    "../assets/audio/sfx/field.ogg": "/sfx-field.ogg"
+  }
+  it("finds background music in the bgm folder", () => { expect(findAudioUrl(urls, "music", "field")).toBe("/bgm-field.ogg") })
+  it("finds sound effects in the sfx folder, even when a music file has the same name", () => { expect(findAudioUrl(urls, "sfx", "field")).toBe("/sfx-field.ogg") })
+  it("returns undefined for an unknown key", () => { expect(findAudioUrl(urls, "music", "nope")).toBeUndefined() })
 })

@@ -517,3 +517,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-28 검은 여백 제거
 - 사용자 지적: 큰 화면(2000×1214)에서 위·아래·오른쪽에 검은 바. 원인: 시야 칸 수를 내림해 정수 칸으로 고정하고 남는 픽셀을 가운데 정렬해 여백으로 둠. 수정: `chooseView`가 칸 수를 **올림**하고(가로·세로 최소 7, 가로 상한 없음), 지도가 시야보다 크면 넘치는 만큼을 양쪽에 똑같이 나눠 가장자리 칸이 잘리게 한다. 작은 지도(서고 등)만 가운데 정렬. 테스트 갱신(`viewport.test.ts`), 캡처 `docs/screenshots/2026-10-28-no-black-bars-2000x1214.png`(시작 위치·왼쪽 위 모서리 직접 확인). 전투 격자는 하단 HUD 17%를 비운 채 그대로.
 - 전투 화면도 같은 지적(격자 바깥이 검음). 수정: `drawCombat`이 격자 바깥까지 화면 전체를 가장자리 땅으로 이어 그리고(물건은 격자 안만), 격자 바깥을 `rgba(0,0,0,0.45)`로 눌러 실제 전투 영역을 구분. 캡처 `docs/screenshots/2026-10-28-combat-no-black-bars.png`(2000×1214, 직접 확인). 테스트 466 passed, typecheck·check:content 0.
+
+## 2026-10-28 배경음악이 안 나오던 버그
+- 사용자: "배경음악은 원래 안나오나?" 실제 브라우저(playwright)로 확인: 첫 입력 뒤에도 곡 파일 요청이 없고 `audio-load-failed … audio file missing: music/field`가 로그에 남았다. 원인: 엔진의 소리 종류 이름이 `music`인데 파일 폴더는 `assets/audio/bgm/`이라 `/audio/music/<키>.ogg`를 찾아 항상 실패(효과음은 `sfx`라 정상). 수정: `findAudioUrl(urls, kind, key)`(음악 → bgm 폴더, 테스트 3개 추가). 재확인: 첫 입력 뒤 `bgm/field.ogg` 요청 200, `AudioBufferSourceNode.start` 호출 2회(발걸음 + 음악), 컨텍스트 running.
+- 교훈: 엔진 단위 테스트는 가짜 `fetchBuffer`를 써서 경로 조합 버그를 못 잡았다. 파일 경로 조합은 순수 함수로 빼서 테스트한다.

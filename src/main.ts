@@ -2,7 +2,7 @@ import "./ui/fonts.css"
 import content from "virtual:content"
 import credits from "virtual:credits"
 import { createEngine } from "./audio/engine.ts"
-import { footstepKey, resolveSfx, resolveTrack } from "./audio/resolve.ts"
+import { findAudioUrl, footstepKey, resolveSfx, resolveTrack } from "./audio/resolve.ts"
 import { loadVolumes, saveVolume } from "./audio/volume-store.ts"
 import { step } from "./core/step.ts"
 import type { Command, GameEvent, GameState, Id, Pos } from "./core/types.ts"
@@ -90,9 +90,9 @@ const audioUrls = import.meta.glob<string>("../assets/audio/**/*.ogg", { query: 
 const engine = createEngine({
   createContext: () => (typeof AudioContext === "undefined" ? null : new AudioContext()),
   fetchBuffer: async (key, kind) => {
-    const found = Object.entries(audioUrls).find(([path]) => path.endsWith(`/audio/${kind}/${key}.ogg`))
-    if (found === undefined) throw new Error(`audio file missing: ${kind}/${key}`)
-    const response = await fetch(found[1])
+    const url = findAudioUrl(audioUrls, kind, key)
+    if (url === undefined) throw new Error(`audio file missing: ${kind}/${key}`)
+    const response = await fetch(url)
     if (!response.ok) throw new Error(`audio fetch ${response.status}: ${kind}/${key}`)
     return response.arrayBuffer()
   },

@@ -24,3 +24,12 @@ export function missingAudioKeys(audio: AudioMap, sfxFiles: ReadonlySet<string>,
   for (const key of Object.values(audio.music)) if (!bgmFiles.has(key)) out.add(`music ${key}`)
   return [...out]
 }
+
+const AUDIO_DIR = { sfx: "sfx", music: "bgm" } as const
+
+/** 소리 종류와 키로 번들된 파일의 URL을 찾는다. 음악(kind "music")의 폴더 이름은 assets/audio/bgm/ 이다. */
+export function findAudioUrl(urls: Readonly<Record<string, string>>, kind: "sfx" | "music", key: string): string | undefined {
+  const suffix = `/audio/${AUDIO_DIR[kind]}/${key}.ogg`
+  const found = Object.entries(urls).find(([path]) => path.endsWith(suffix))
+  return found?.[1]
+}
