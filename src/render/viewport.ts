@@ -1,22 +1,33 @@
 import type { GameContent } from "../content/types.ts"
 import type { GameState, Pos } from "../core/types.ts"
 
-export const VIEW_W = 15
-export const VIEW_H = 11
-export const TILE = 16
+export const TILE = 32
+const VIEW_ROWS = 7
+const MIN_COLS = 7
+const MAX_COLS = 15
+const MIN_SCALE = 2
+const MAX_SCALE = 4
 
 /** 화면 위 타일 시야. scale은 장치 픽셀 단위 정수, offsetPx는 장치 픽셀 기준 중앙 정렬 오프셋. */
 export interface Viewport {
   readonly scale: number
   readonly originTile: Pos
   readonly offsetPx: Pos
+  readonly viewW: number
+  readonly viewH: number
 }
 
 const clamp = (v: number, lo: number, hi: number): number => Math.min(hi, Math.max(lo, v))
 
+/** 정수 배율을 높이로 먼저 고르고(2~4), 그 배율에서 들어가는 가로 칸 수(7~15)를 정한다. 세로는 7칸. */
+export function chooseView(canvasPx: { readonly w: number; readonly h: number }): { scale: number; viewW: number; viewH: number } {
+  const scale = clamp(Math.floor(canvasPx.h / (VIEW_ROWS * TILE)), MIN_SCALE, MAX_SCALE)
+  const viewW = clamp(Math.floor(canvasPx.w / (TILE * scale)), MIN_COLS, MAX_COLS)
+  return { scale, viewW, viewH: VIEW_ROWS }
+}
+
 /**
- * CSS 크기 × dpr 화면에 시야(15×11 타일)를 맞춘다.
- * scale = max(1, floor(min(w*dpr/(15*16), h*dpr/(11*16)))) — 정수 배율.
+ * CSS 크기 × dpr 화면에 시야를 맞춘다(chooseView).
  * 지도가 시야보다 크면 center를 시야 중앙에 두고 가장자리에서 clamp, 작으면 왼쪽 위부터 두고 offsetPx로 가운데 정렬.
  */
 export function computeViewport(
@@ -27,16 +38,16 @@ export function computeViewport(
 ): Viewport {
   const vw = canvasCss.w * dpr
   const vh = canvasCss.h * dpr
-  const scale = Math.max(1, Math.floor(Math.min(vw / (VIEW_W * TILE), vh / (VIEW_H * TILE))))
+  const { scale, viewW, viewH } = chooseView({ w: vw, h: vh })
   const originTile: Pos = {
-    x: mapSize.w <= VIEW_W ? 0 : clamp(center.x - Math.floor(VIEW_W / 2), 0, mapSize.w - VIEW_W),
-    y: mapSize.h <= VIEW_H ? 0 : clamp(center.y - Math.floor(VIEW_H / 2), 0, mapSize.h - VIEW_H)
+    x: mapSize.w <= viewW ? 0 : clamp(center.x - Math.floor(viewW / 2), 0, mapSize.w - viewW),
+    y: mapSize.h <= viewH ? 0 : clamp(center.y - Math.floor(viewH / 2), 0, mapSize.h - viewH)
   }
   const offsetPx: Pos = {
-    x: Math.floor((vw - Math.min(mapSize.w, VIEW_W) * TILE * scale) / 2),
-    y: Math.floor((vh - Math.min(mapSize.h, VIEW_H) * TILE * scale) / 2)
+    x: Math.floor((vw - Math.min(mapSize.w, viewW) * TILE * scale) / 2),
+    y: Math.floor((vh - Math.min(mapSize.h, viewH) * TILE * scale) / 2)
   }
-  return { scale, originTile, offsetPx }
+  return { scale, originTile, offsetPx, viewW, viewH }
 }
 
 /** 장치 픽셀 → 지도 타일 좌표(내림). vp의 역변환. */

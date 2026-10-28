@@ -1,7 +1,7 @@
 import type { GameContent, SpriteRef } from "../content/types.ts"
 import type { GameState, Id, Pos } from "../core/types.ts"
 import { npcPositionAt } from "../core/dialogue/talk.ts"
-import { frameViewport, TILE, VIEW_H, VIEW_W, type Viewport } from "./viewport.ts"
+import { frameViewport, TILE, type Viewport } from "./viewport.ts"
 
 /**
  * 프레임을 하나 그린다. 테스트 없음(사용자 확인).
@@ -29,6 +29,9 @@ function clear(ctx: CanvasRenderingContext2D): void {
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 }
 
+/** 0.1.0 시트의 한 칸. 32px 칸에 2배로 확대해 그린다. */
+const LEGACY_TILE = 16
+
 const screenX = (vp: Viewport, x: number, size: number): number => vp.offsetPx.x + (x - vp.originTile.x) * size
 const screenY = (vp: Viewport, y: number, size: number): number => vp.offsetPx.y + (y - vp.originTile.y) * size
 
@@ -38,10 +41,10 @@ function drawMap(ctx: CanvasRenderingContext2D, sheets: Readonly<Record<string, 
   const size = TILE * vp.scale
   const mapW = map.rows[0]?.length ?? 0
   const mapH = map.rows.length
-  for (let y = vp.originTile.y; y < Math.min(mapH, vp.originTile.y + VIEW_H); y++) {
+  for (let y = vp.originTile.y; y < Math.min(mapH, vp.originTile.y + vp.viewH); y++) {
     const row = map.rows[y]
     if (!row) continue
-    for (let x = vp.originTile.x; x < Math.min(mapW, vp.originTile.x + VIEW_W); x++) {
+    for (let x = vp.originTile.x; x < Math.min(mapW, vp.originTile.x + vp.viewW); x++) {
       const ch = row[x]
       const tile = ch !== undefined ? content.tiles[ch] : undefined
       if (!tile) continue
@@ -49,8 +52,8 @@ function drawMap(ctx: CanvasRenderingContext2D, sheets: Readonly<Record<string, 
     }
   }
   for (const npc of npcsToDraw(state, content)) {
-    if (npc.pos.x < vp.originTile.x || npc.pos.x >= vp.originTile.x + VIEW_W) continue
-    if (npc.pos.y < vp.originTile.y || npc.pos.y >= vp.originTile.y + VIEW_H) continue
+    if (npc.pos.x < vp.originTile.x || npc.pos.x >= vp.originTile.x + vp.viewW) continue
+    if (npc.pos.y < vp.originTile.y || npc.pos.y >= vp.originTile.y + vp.viewH) continue
     drawSprite(ctx, sheets, content, npc.sprite, screenX(vp, npc.pos.x, size), screenY(vp, npc.pos.y, size), size)
   }
   drawSprite(ctx, sheets, content, content.playerSprite, screenX(vp, state.player.pos.x, size), screenY(vp, state.player.pos.y, size), size)
@@ -137,7 +140,7 @@ function drawSprite(
   const img = sheets[ref.sheet]
   if (!img) return
   const columns = content.sheets[ref.sheet]?.columns ?? 1
-  const sx = (ref.index % columns) * TILE
-  const sy = Math.floor(ref.index / columns) * TILE
-  ctx.drawImage(img, sx, sy, TILE, TILE, dx, dy, size, size)
+  const sx = (ref.index % columns) * LEGACY_TILE
+  const sy = Math.floor(ref.index / columns) * LEGACY_TILE
+  ctx.drawImage(img, sx, sy, LEGACY_TILE, LEGACY_TILE, dx, dy, size, size)
 }
