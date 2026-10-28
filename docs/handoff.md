@@ -521,3 +521,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-28 배경음악이 안 나오던 버그
 - 사용자: "배경음악은 원래 안나오나?" 실제 브라우저(playwright)로 확인: 첫 입력 뒤에도 곡 파일 요청이 없고 `audio-load-failed … audio file missing: music/field`가 로그에 남았다. 원인: 엔진의 소리 종류 이름이 `music`인데 파일 폴더는 `assets/audio/bgm/`이라 `/audio/music/<키>.ogg`를 찾아 항상 실패(효과음은 `sfx`라 정상). 수정: `findAudioUrl(urls, kind, key)`(음악 → bgm 폴더, 테스트 3개 추가). 재확인: 첫 입력 뒤 `bgm/field.ogg` 요청 200, `AudioBufferSourceNode.start` 호출 2회(발걸음 + 음악), 컨텍스트 running.
 - 교훈: 엔진 단위 테스트는 가짜 `fetchBuffer`를 써서 경로 조합 버그를 못 잡았다. 파일 경로 조합은 순수 함수로 빼서 테스트한다.
+
+## 2026-10-28 상자(임시 그림) 인물 제거 — 기본형 5종 생성과 배정
+- 사용자 지적: "순례자가 왜 박스야?" 원인: 새 인물 55명의 임시 그림이 옛 시트 `[town, 84]`(창문 모양 타일). 오늘 PixelLab 보너스 5회로 기본형 5종(`elder-woman`, `robed-priest`, `guard-soldier`, `craftsman`, `young-villager`; 4방향, 모두 정상)을 만들고 `scripts/assets/assign-npc-sprites.py`로 역할 낱말 → 그림을 배정(기존 칼라스 인물 그림 재사용 포함, 같은 마을 안에서는 가급적 안 겹치게). 55명 배정, 게이트 통과(469 passed). 프롬프트 `assets/generated/prompts/2026-10-28-base-types.md`, 장부 24행 추가.
+- 한계: 같은 그림이 한 마을에서 반복됨(특히 craftsman), 마을색 변형(recolor) 아직 안 함, 걷기 그림 없음(위아래 흔들림으로 대체). 기본형 12종 중 5종 완료 — 남은 약 7종(젊은 여성 일꾼, 병사 변형, 상인 등)은 다음 보너스.
