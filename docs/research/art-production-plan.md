@@ -108,3 +108,18 @@ B 12종 × 8마을을 강조색으로 바꾼다. 생성 0회. 렌더러가 팔�
 
 ## 2026-10-27 결정: 새 인물은 기본형 12종 + 마을색 변형
 사용자 결정("기본형 12종에 마을 색 변형을 쓰는 방식(처음 계획)으로 가자"). 칼라스 핵심 인물은 이미 개별 그림이 있다. 대사가 늘어 마을 인물이 126명이 되었으므로 나머지(약 105명)는 §1의 B층(기본형 12종: 아이 2·젊은 어른 남녀·노인 남녀·과부·서기·장인·사제/수도자·상주/주막·병사)에 C층(마을 강조색 변형, 생성 0회, `scripts/visual/recolor.mjs`)을 입힌다. 핵심 인물(마을당 2~4명)만 따로 생성한다. 하루 보너스 5회 기준으로 기본형 12종은 약 이틀(대기 4방향 1회씩), 걷기는 템플릿 1회/방향씩 이어서.
+
+## 2026-10-29 결정: 마을색 팔레트(사용자 위임 "승인/선택", Claude 선택)
+`scripts/visual/recolor.mjs`로 기본형 옷의 주된 색상(hue)을 마을 강조색으로 옮긴다(생성 0회). 칼라스는 원본 그대로.
+| 마을 | 강조색 | 목표 hue | 느낌 |
+|---|---|---|---|
+| 연민(compassion) | 장미 분홍 | 345 | 따뜻함 |
+| 명예(honor) | 황금 | 45 | 격식 |
+| 겸손(humility) | 흙갈색 | 28 | 소박 |
+| 정의(justice) | 청남 | 215 | 엄정 |
+| 희생(sacrifice) | 진홍 | 355 | 무거움 |
+| 영성(spirituality) | 보라 | 275 | 고요 |
+| 용맹(valor) | 주황 | 18 | 활기 |
+기준: 서로 hue가 30° 이상 벌어지게, 풀 위에서 또렷하도록 채도 0.9~1.0·밝기 1.0 근처. 적용은 마을 안 같은 기본형이 반복되는 인물부터(`assign-npc-sprites.py` 결과 기준). 직접 눈으로 보고 정해야 하는 옷 hue 범위는 기본형마다 첫 변형을 만들 때 확인한다.
+## 2026-10-29 결정: 소리 없던 14상황 효과음(사용자 위임, 직접 듣지 못해 "가장 흔한 선택" 기준)
+전부 Kenney CC0 후보 중 A안(동료 합류만 B): map_change doorOpen_2, combat_start drawKnife1, defend impactPlate_medium_000, persuade pluck_001, flee cloth1, victory jingles_STEEL02, defeat impactBell_heavy_003, companion_join confirmation_001, companion_leave back_002, ring_unlock impactBell_heavy_002(C), ability maximize_004, crisis jingles_STEEL00, codex_write scratch_002, epilogue jingles_STEEL16. 마음에 안 들면 `assets-private/preview/sfx/slots.json` 후보 키를 바꿔 알려 주면 교체한다. ElevenLabs 35개는 비상업 라이선스라 공개 저장소에 넣지 않았다.

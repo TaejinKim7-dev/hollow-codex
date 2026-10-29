@@ -15,6 +15,7 @@ import type { CombatFxView } from "./render/canvas.ts"
 import { endedCombatUnits } from "./render/combat-linger.ts"
 import { combatOverlay } from "./render/combat-overlay.ts"
 import { createFx } from "./render/fx.ts"
+import { eventSounds } from "./audio/event-sounds.ts"
 import { createMotion, resyncMotion } from "./render/motion.ts"
 import type { Motion } from "./render/motion.ts"
 import { frameViewport, tileAtPointer } from "./render/viewport.ts"
@@ -305,6 +306,7 @@ export function apply(cmd: Command): readonly GameEvent[] {
   for (const e of events) log.log("event", e.type)
   if (cmd.type === "endTalk") dialogueLog = []
   handleEvents(events)
+  for (const name of eventSounds(events, cmd)) playSfx(name)
   // `moved`·`mapChanged` 없이 위치나 지도가 바뀐 경우(열석 고리 이동, 도망, 패배)도 걷기 상태와 그림을 맞춘다.
   motion = resyncMotion(motion, next.player.pos, next.player.facing)
   if (next.mapId !== s.mapId) ensureMapAssets(next.mapId)

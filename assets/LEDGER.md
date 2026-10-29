@@ -283,3 +283,17 @@
 | assets/sprites/tilesets/grass-stone/sheet.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-29; prompts: assets/generated/prompts/2026-10-29-grass-stone.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |
 | assets/sprites/tilesets/grass-stone/autotile.json | derived from assets/sprites/tilesets/grass-stone/metadata.json by scripts/assets/make-autotile.mjs (corner pattern → sheet cell table) | TaejinKim7-dev | CC-BY-SA-4.0 |
 | assets/generated/prompts/2026-10-29-grass-stone.md | prompts and settings for the grass-stone tileset (PixelLab MCP, 2026-10-29) | TaejinKim7-dev | CC-BY-SA-4.0 |
+| assets/audio/sfx/map_change.ogg | https://kenney.nl/assets/rpg-audio (doorOpen_2.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/combat_start.ogg | https://kenney.nl/assets/rpg-audio (drawKnife1.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/defend.ogg | https://kenney.nl/assets/impact-sounds (impactPlate_medium_000.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/persuade.ogg | https://kenney.nl/assets/interface-sounds (pluck_001.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/flee.ogg | https://kenney.nl/assets/rpg-audio (cloth1.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/victory.ogg | https://kenney.nl/assets/music-jingles (jingles_STEEL02.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/defeat.ogg | https://kenney.nl/assets/impact-sounds (impactBell_heavy_003.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/companion_join.ogg | https://kenney.nl/assets/interface-sounds (confirmation_001.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/companion_leave.ogg | https://kenney.nl/assets/interface-sounds (back_002.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/ring_unlock.ogg | https://kenney.nl/assets/impact-sounds (impactBell_heavy_002.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/ability.ogg | https://kenney.nl/assets/interface-sounds (maximize_004.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/crisis.ogg | https://kenney.nl/assets/music-jingles (jingles_STEEL00.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/codex_write.ogg | https://kenney.nl/assets/interface-sounds (scratch_002.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/audio/sfx/epilogue.ogg | https://kenney.nl/assets/music-jingles (jingles_STEEL16.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |

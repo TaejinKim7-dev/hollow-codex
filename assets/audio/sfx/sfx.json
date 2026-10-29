@@ -124,5 +124,131 @@
   "license": "CC0-1.0",
   "picked": "A",
   "pickedBy": "default (user did not pick)"
+ },
+ "map_change": {
+  "file": "map_change.ogg",
+  "label": "맵 이동(문·계단·출구) mapChanged",
+  "source": "Kenney rpg-audio — doorOpen_2.ogg",
+  "url": "https://kenney.nl/assets/rpg-audio",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "combat_start": {
+  "file": "combat_start.ogg",
+  "label": "전투 시작 combatStarted",
+  "source": "Kenney rpg-audio — drawKnife1.ogg",
+  "url": "https://kenney.nl/assets/rpg-audio",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "defend": {
+  "file": "defend.ogg",
+  "label": "방어",
+  "source": "Kenney impact-sounds — impactPlate_medium_000.ogg",
+  "url": "https://kenney.nl/assets/impact-sounds",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "persuade": {
+  "file": "persuade.ogg",
+  "label": "설득",
+  "source": "Kenney interface-sounds — pluck_001.ogg",
+  "url": "https://kenney.nl/assets/interface-sounds",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "flee": {
+  "file": "flee.ogg",
+  "label": "도주",
+  "source": "Kenney rpg-audio — cloth1.ogg",
+  "url": "https://kenney.nl/assets/rpg-audio",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "victory": {
+  "file": "victory.ogg",
+  "label": "전투 승리 combatEnded(victory)",
+  "source": "Kenney music-jingles — jingles_STEEL02.ogg",
+  "url": "https://kenney.nl/assets/music-jingles",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "defeat": {
+  "file": "defeat.ogg",
+  "label": "전투 패배 combatEnded(defeat)",
+  "source": "Kenney impact-sounds — impactBell_heavy_003.ogg",
+  "url": "https://kenney.nl/assets/impact-sounds",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "companion_join": {
+  "file": "companion_join.ogg",
+  "label": "동료 합류 companionJoined",
+  "source": "Kenney interface-sounds — confirmation_001.ogg",
+  "url": "https://kenney.nl/assets/interface-sounds",
+  "license": "CC0-1.0",
+  "picked": "B",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "companion_leave": {
+  "file": "companion_leave.ogg",
+  "label": "동료 이탈 companionLeft",
+  "source": "Kenney interface-sounds — back_002.ogg",
+  "url": "https://kenney.nl/assets/interface-sounds",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "ring_unlock": {
+  "file": "ring_unlock.ogg",
+  "label": "열석 고리 열림 ringUnlocked",
+  "source": "Kenney impact-sounds — impactBell_heavy_002.ogg",
+  "url": "https://kenney.nl/assets/impact-sounds",
+  "license": "CC0-1.0",
+  "picked": "C",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "ability": {
+  "file": "ability.ogg",
+  "label": "능력 해금 abilityUnlocked",
+  "source": "Kenney interface-sounds — maximize_004.ogg",
+  "url": "https://kenney.nl/assets/interface-sounds",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "crisis": {
+  "file": "crisis.ogg",
+  "label": "위기 해결 crisisResolved",
+  "source": "Kenney music-jingles — jingles_STEEL00.ogg",
+  "url": "https://kenney.nl/assets/music-jingles",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "codex_write": {
+  "file": "codex_write.ogg",
+  "label": "경전에 단어를 씀 codexWritten",
+  "source": "Kenney interface-sounds — scratch_002.ogg",
+  "url": "https://kenney.nl/assets/interface-sounds",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
+ },
+ "epilogue": {
+  "file": "epilogue.ogg",
+  "label": "에필로그 epilogue",
+  "source": "Kenney music-jingles — jingles_STEEL16.ogg",
+  "url": "https://kenney.nl/assets/music-jingles",
+  "license": "CC0-1.0",
+  "picked": "A",
+  "pickedBy": "claude (2026-10-29: 가장 흔한 선택 기준, 직접 듣지는 못함)"
  }
 }
