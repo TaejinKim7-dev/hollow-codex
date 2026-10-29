@@ -32,12 +32,11 @@ export const WOLF_KILL: readonly Command[] = [
   { type: "combat", action: { kind: "attack", dir: "e" } }
 ]
 
-/** 서고 도굴꾼 2명 공격으로 격파 — evil이라 행실 없음. 전투 후 hp 3. */
+/** 서고 도굴꾼 2명 격파 — evil이라 행실 없음. 첫 도굴꾼은 옆 타격으로 마음이 0이 돼 물러나고(C-4), 둘째는 한 대 맞고 물러나며 전투가 끝난다. */
 export const ROBBER_WIN: readonly Command[] = [
   { type: "combat", action: { kind: "endTurn" } },
   { type: "combat", action: { kind: "move", to: { x: 3, y: 3 } } },
   { type: "combat", action: { kind: "attack", dir: "n" } },
-  { type: "combat", action: { kind: "attack", dir: "n" } },
-  { type: "combat", action: { kind: "attack", dir: "e" } },
-  { type: "combat", action: { kind: "attack", dir: "e" } }
+  { type: "combat", action: { kind: "move", to: { x: 4, y: 3 } } },
+  { type: "combat", action: { kind: "attack", dir: "s" } }
 ]

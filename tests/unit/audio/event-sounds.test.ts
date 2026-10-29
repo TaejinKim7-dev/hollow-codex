@@ -34,7 +34,8 @@ describe("eventSounds", () => {
   it("plays persuade only when a creature was actually persuaded, and defend on the defend command", () => {
     expect(eventSounds([{ type: "combatYield", target: "t", how: "persuaded" }], combat({ kind: "endTurn" }))).toEqual(["persuade"])
     expect(eventSounds([{ type: "combatYield", target: "t", how: "retreated" }], combat({ kind: "endTurn" }))).toEqual([])
-    expect(eventSounds([], combat({ kind: "defend" }))).toEqual(["defend"])
+    expect(eventSounds([], combat({ kind: "defend" }), true)).toEqual(["defend"])
+    expect(eventSounds([], combat({ kind: "defend" }), false)).toEqual([])   // a rejected defend (state unchanged) stays silent
     expect(eventSounds([], combat({ kind: "endTurn" }))).toEqual([])
   })
 })

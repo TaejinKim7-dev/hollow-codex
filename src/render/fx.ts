@@ -90,7 +90,7 @@ export function createFx(speed = 1): Fx {
       for (const u of after) {
         const b = find(before, u.id)
         if (b === undefined) continue
-        max[u.id] = Math.max(max[u.id] ?? 0, b.hp, u.hp)
+        max[u.id] = Math.max(max[u.id] ?? 0, b.hp, u.hp, u.maxHp ?? 0)
         if (run[u.id] === undefined) { base[u.id] = b.hp; run[u.id] = b.hp }
       }
       // 아군의 이동은 배치 시작에 바로(걷고 → 공격). 적의 이동·배너는 아군 행동 연출이 끝난 뒤(적의 첫 행동 직전)에 시작한다.

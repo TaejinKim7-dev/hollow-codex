@@ -295,3 +295,13 @@ describe("fx: hp bar max", () => {
     expect(fx.sample(T0).hp["player"]).toEqual({ shown: 3, trail: 3, max: 12 })
   })
 })
+
+describe("fx: hp bar max without reset", () => {
+  it("falls back to maxHp when the fx was cleared mid-combat (loaded save)", () => {
+    const fx = createFx()
+    const before = [unit("player", "ally", 2, 1, 3, { maxHp: 10 }), unit("e0", "enemy", 2, 0, 4)]
+    const after = [unit("player", "ally", 2, 1, 3, { maxHp: 10 }), unit("e0", "enemy", 2, 0, 1)]
+    fx.enqueue([hit("player", "e0", 3, 1)], before, after, T0)
+    expect(fx.sample(T0 + 1).hp["player"]!.max).toBe(10)
+  })
+})

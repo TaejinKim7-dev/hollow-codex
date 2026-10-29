@@ -267,7 +267,7 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     if (unit.gone !== null) continue
     const bar = fx.hp[unit.id]
     const f = fx.units[unit.id]
-    drawHpBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), bar?.shown ?? unit.hp, bar?.trail ?? unit.hp, bar?.max ?? Math.max(unit.hp, 1))
+    drawHpBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), bar?.shown ?? unit.hp, bar?.trail ?? unit.hp, bar?.max ?? Math.max(unit.hp, unit.maxHp ?? 0, 1))
     if (unit.side === "enemy" && unit.morale !== undefined && unit.maxMorale !== undefined) drawMoraleBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), unit.morale, unit.maxMorale)
   }
   for (const g of fx.ghosts) {                       // 방금 쓰러진 유닛의 체력 막대도 끝까지 줄어드는 걸 보여 준다

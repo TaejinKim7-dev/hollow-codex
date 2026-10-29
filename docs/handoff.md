@@ -617,3 +617,8 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-29 C-5 일부: 적 성격(AI) 5종 + 자동 대전 균형 벽
 - `creature.ai`(aggressive 기본 · skirmisher 가장 약한 아군 · pack 다른 적이 붙은 아군 · cautious 마음 ≤ 절반이면 거리 두기 · coward 마음 ≤ 3/4이면 거리 두기). `intents.ts`의 `computeIntents`가 성격별 대상·이동을 고르고 예고(노란 블록·빨간 테두리)는 그대로 같은 결과를 보인다. 테스트 `combat-ai.test.ts`. 크리처에 배정: 늑대 pack, 도적 skirmisher 등.
 - `scripts/sim/combat-sim.ts` + `tests/unit/core/combat-balance.test.ts`(자동 대전이 모든 조우를 12라운드 안에 끝내는지). 이야기 조우는 일부러 짧게 둔다(결정 이유는 `docs/superpowers/plans/2026-10-29-combat-c5-ai-encounters.md`).
+
+## 2026-10-29 검토(opus) 수정 3건 — C-2/C-3a/C-4
+- 적 단계의 고립으로 마음이 0이 된 악한 적이 한 입력 늦게 물러나던 문제 → `settle` 끝에서도 `breakMorale`. 이 때문에 시나리오 수순 `ROBBER_WIN`(서고 도굴꾼)을 다시 풀었다(첫 도굴꾼은 옆 타격으로 마음 0 → 퇴각, 둘째는 한 대에 퇴각).
+- 불러오기 등으로 fx가 reset 없이 비워진 뒤 체력 막대 최대값이 `maxHp`를 무시하던 문제 → `enqueue`·캔버스 대체값이 `maxHp`를 쓴다. 거절된 방어(상태 불변)에도 방어음이 나던 문제 → `eventSounds(events, cmd, accepted)`.
+- 검토가 확인한 정상: 연계가 쓰러진 대상에 안 닿음, 행실 한 번만 기록, 기세 한 번만 계산·상한, 필살 분출 순서, 목표 판정 순서(섬멸→패배→탈출/버티기), 저장 호환(새 필드 모두 선택).

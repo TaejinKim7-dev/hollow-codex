@@ -222,7 +222,7 @@ function settle(state0: GameState, events: GameEvent[], content: GameContent): S
     combat = phase.combat
     all.push(...phase.events)
   }
-  const next: GameState = { ...state, combat: { ...combat, active: nextActive(combat.units) ?? combat.active } }
+  const next: GameState = breakMorale({ ...state, combat: { ...combat, active: nextActive(combat.units) ?? combat.active } }, content, all)   // 적 단계의 고립으로 마음이 0이 된 악한 적도 바로 물러난다
   return checkEnd(next, content, all) ?? { state: next, events: all }
 }
 

@@ -172,6 +172,13 @@ describe("grid combat", () => {
       expect(unit(r.state, "creature.slime#0").morale).toBe(4)
       expect(unit(r.state, "creature.bandit#1").morale).toBe(4)
     })
+    it("an evil enemy whose morale hits 0 in the enemy phase (isolation) retreats at once and ends the fight", () => {
+      const s0 = combatState([P(2, 3), B(2, 0, { hp: 9, morale: 1, maxMorale: 3 })])
+      const r = act(s0, { kind: "endTurn" })
+      expect(r.events).toContainEqual({ type: "combatYield", target: "creature.bandit#1", how: "retreated" })
+      expect(r.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
+      expect(r.state.combat).toBeNull()
+    })
     it("starting a fight fills each enemy's morale from the creature (default = its hp)", () => {
       const s = step(at(1, 2), { type: "move", dir: "s" }, c).state
       const e = s.combat!.units.find((u) => u.side === "enemy")!

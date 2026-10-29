@@ -4,7 +4,7 @@ import type { Command, GameEvent } from "../core/types.ts"
  * 게임 이벤트(와 방금 낸 명령)에서 효과음 이름을 정한다. 이름은 audio.yaml의 sfx 키.
  * 걸음·부딪힘·단서·타격·밀치기는 handleEvents가 따로 처리하므로 여기에 없다.
  */
-export function eventSounds(events: readonly GameEvent[], cmd: Command): string[] {
+export function eventSounds(events: readonly GameEvent[], cmd: Command, accepted = true): string[] {
   const out: string[] = []
   const ringTrip = events.some((e) => e.type === "ringTraveled")
   for (const e of events) {
@@ -24,6 +24,6 @@ export function eventSounds(events: readonly GameEvent[], cmd: Command): string[
       default: break
     }
   }
-  if (cmd.type === "combat" && cmd.action.kind === "defend") out.push("defend")
+  if (accepted && cmd.type === "combat" && cmd.action.kind === "defend") out.push("defend")
   return out
 }
