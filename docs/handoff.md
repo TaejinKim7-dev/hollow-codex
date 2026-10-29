@@ -544,3 +544,13 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 사용자 위임: "마을색 팔레트 승인/선택, 소리 없는 14개 상황 효과음은 최신 트렌드에 맞게 네가 선택. 못 들으면 가장 많이 쓰는 기준". 결정과 목록은 `docs/research/art-production-plan.md` 끝(마을색 hue 표, 소리 선택). 효과음 14개는 Kenney CC0 후보(`assets-private/preview/sfx`)에서 복사해 `assets/audio/sfx/<상황>.ogg`, `sfx.json`·`LEDGER.md`·`content/audio.yaml` 갱신, 이벤트 연결은 `src/audio/event-sounds.ts`(순수 함수, 테스트 4개)를 `apply()`에서 호출. 직접 들어 보지는 못함.
 - 오늘 PixelLab 1회 사용(잔액 보너스 4회 남음): 풀↔돌바닥 `assets/sprites/tilesets/grass-stone`(프롬프트 `assets/generated/prompts/2026-10-29-grass-stone.md`), `GROUND_SETS.stone`·`OVERLAY_ORDER`에 stone 추가, 타일 글자 `c`. 칼라스 마을 지도의 풀(.→g)·흙길(,→p)·나무(T→t)·바깥 돌바닥(:→c)을 새 땅으로 바꾸고 고백석은 `obj.confession-stone`(16,12)로. 건물 안 돌바닥(:)과 벽(#)·문(+)은 옛 타일 그대로(벽 그림 필요). 캡처 `docs/screenshots/2026-10-29-kalas-town-stone.png` 직접 확인: 광장은 잘 어울리나 옛 벽이 확대되어 튄다. 도구 `scripts/visual/map-shot.mjs`.
 - 다음: 외벽·건물 그림(남은 보너스 4회), 서고 바닥·벽 타일셋, 마을색 변형 적용, C-2.
+
+## 2026-10-29 D-1b 정의·겸손 대사 수정 (oc/narrative-fixes-b)
+- 담당: OpenCode · 브랜치 `oc/narrative-fixes-b` · 커밋 `6fa26f6`
+- 한 일:
+  ① 정의 마을 `lie` 주제 이동: `npc.justice.judge`의 `fact.creature.justice-mourner` 주제를 제거하고, 동일 거짓 문장을 `fact.seles.witness`(person) 주제로 옮겨 `lie: true`를 유지. 문자열 키 `justice.npc.judge.mourner.t` → `justice.npc.judge.witness.t`로 변경하고 ko/en에서 동시 교체.
+  ② 겸손 마을 9명 NPC의 name 응답 개별화: `npc.default.unknown` 대신 `humility.npc.<id>.name.t` 신규 키 9개 추가(listener, wellkeeper, child, librarian, gardener, cook, novice, hermit, widow). 각자 침묵 규칙을 다른 이유로 말하며 1~2문장, 낮고 짧은 말투 유지. `npc.default.unknown` 자체는 삭제하지 않음.
+  ③ 위기 지문 조사(READ ONLY, 코드 수정 없음): `crisis.*.text` 키는 8개 마을 전부 ko/en에 존재하고 `content/towns/*/crisis.yaml`이 참조하지만, UI(`src/ui/view-model.ts`, `src/ui/panels.ts`)에서 위기 본문 설명을 렌더링하지 않음. `DialogueView.crisis`는 선택지 라벨·available·hints만 포함하고 `Crisis.textKey`는 빠져 있음. 수정 제안: `dialogueView`가 `crisisText` 필드를 추가해 `crisisId`별 설명을 1회 렌더링하거나, 선택지 목록 상단에 crisis.textKey를 넣는다.
+  ④ 과부 설정: 정의 과부 하린과 겸손 과부(무호칭)는 이미 별개 인물로 남겨 둠. 하린은 "노래하는 과부"로 아들 이렌·묘지기·재판관과 연결된 정사의 중심; 겸손 과부는 잊혀 가는 남편 이름을 지키는 인물로, 비석을 비워 두는 마을의 침묵 법과 연결.
+- 검증: `python3 scripts/narrative/consistency.py` 0 problems · `python3 scripts/narrative/reachable.py` 0 unreachable · `python3 scripts/narrative/spec.py dead-topics` 0 · `npm run test:unit` 531 passed · `npm run typecheck` 0 · `npm run check:content` 0 · `npm run build` 0 · `npm run audit:dist` 0 · `git diff --check` 0.
+- 확인 못 한 것: 실제 게임 화면에서 거짓 표시(!) 노출 여부(능력 획득 후), 위기 지문 UI 추가는 사용자/메인 에이전트 결정 필요.
