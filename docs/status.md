@@ -2,9 +2,10 @@
 
 > 규칙: 이 파일은 **짧게, 항상 최신으로** 유지한다(60줄 이내). 작업을 시작할 때 "진행 중"에 이름을 올리고, 끝날 때 결과를 반영해 덮어쓴다. 자세한 기록은 `docs/handoff.md` 끝에 추가한다.
 
-최종 갱신: 2026-10-28 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
+최종 갱신: 2026-10-29 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
 
 ## 지금 단계
+**진행률 약 70%(추정)·TODO·방향: `docs/progress-2026-10-29.md`.**
 **2026-10-27 사용자 지시: 그래픽·소리 작업은 여기서 일단 정리하고, 다음은 대사(실제 내용) 품질 작업(D 단계).** D-1 칼라스 점검 완료 → `docs/narrative/kalas-audit.md`(제안), `docs/narrative/voice-bible.md`(말투 기준). 🧑 확인 뒤 `content/strings/ko.yaml` 반영. 남은 그림·소리(맵 그림 15회, 문지기 색, 집 시점 판정, NPC 걷기)는 `art-kalas-maps.md`·`art-kalas-cast.md`에 목록으로 보존.
 R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-BY-SA 공개 음원만(사용자 결정 2026-10-19, ElevenLabs 안 씀).
 확정: 플레이어 **이방인 B-navy**, 동료 **엘린 B**(4방향 걷기), 땅 **풀↔흙길 v3**·**풀↔물**, **긴 다리**, **효과음 14종**(`assets/audio/sfx/`).
@@ -32,7 +33,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | ✅ | **7개 미덕 마을 지도 새 땅으로 이전(2026-10-29, 브랜치 `oc/town-ground`)**: 연민·명예·겸손·정의·희생·영성·용맹 마을 낮은 땅(`g/p/t/c`)로 변환, 건축물 납부 `.` 유지, `check:content`·`test:unit`·`typecheck` 통과, 스크린샷 검증 | `scripts/assets/migrate-town-ground.py`, `content/towns/*/maps.yaml`, `docs/screenshots/2026-10-29-town-*.png` | 완료 |
 
 ## 진행 중
-- R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
+- (없음)
 - 형식: `- <ID> · <에이전트 이름> · <브랜치> · <시작 시각> · <한 줄 상태>`
 - 끝나면 이 줄을 지우고 위 표의 상태를 "완료(<커밋>)"로 바꾼다.
 - 중간에 끊긴 작업: 줄을 남기고 `⚠ 중단: <어디까지 했는지>`를 붙인다.
@@ -56,5 +57,5 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 
 ## 마지막 게이트
 oc/fx-tracking-tests (2026-10-29): npm run test:unit 0 (558 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
-todo-2-art-audio-engine (2026-10-29): npm run test:unit 0 (591 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0.
+todo-2-art-audio-engine (2026-10-29): npm run test:unit 0 (613 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0.
 main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. 이후 커밋은 문서·자산·lab·scripts/visual만(매번 check:content 0).

@@ -664,3 +664,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 
 ## 2026-10-29 NPC 도달 불가 수정(나무가 건물 문을 막음)
 - 점검 도구로 NPC 일과 자리 옆에 걸어갈 수 없는 곳을 찾아보니, 헤론·엘리아 마을 아래쪽 건물의 문이 나무 줄에 갇혀 있었다(정원사·요리사·양조사·조각가 등 20개 슬롯). `scripts/assets/open-blocked-paths.py`(0-1 BFS로 막힌 길의 나무 `t`만 풀 `g`로, `--dry` 지원)로 6그루를 풀로 바꿨다. 재발 방지 `tests/scenario/npc-reachability.test.ts`(모든 NPC의 모든 슬롯에 도달 가능한 이웃 칸이 있는지). README의 "밤낮 일과" 한계는 NPC끼리 막는 경우만 남는다.
+
+## 2026-10-29 완성도 점검·방향 문서
+- `docs/progress-2026-10-29.md`: 영역별 진행률(약 70%, 추정치), TODO(판정 대기·PixelLab 필요·잔액 없이 가능·공개 준비), 방향. 코드 변경 없음.
+- 알려진 것: `docs/status.md`의 "진행 중" Codex 줄 등 일부가 낡았던 것을 정리했다.
