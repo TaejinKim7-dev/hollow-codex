@@ -1,10 +1,13 @@
-import type { GameContent } from "../../content/types.ts"
+import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../content/types.ts"
 import type { CombatAction, CombatState, CombatUnit, Dir, GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
 import { recordDeed } from "../virtue/conduct.ts"
 import { findPathOnGrid, gridTileAt, offset } from "../world/path.ts"
+import { attackDamage, chainHits, facingToward } from "./rules.ts"
 import { alive, computeIntents, manhattan, MAX_STEPS, nextActive, occupied, samePos } from "./intents.ts"
 
 export { computeIntents } from "./intents.ts"
+
+const rulesOf = (content: GameContent): CombatRules => content.combat ?? DEFAULT_COMBAT_RULES
 
 type Outcome = "victory" | "defeat" | "fled"
 
@@ -30,7 +33,12 @@ export function startCombat(state: GameState, content: GameContent, encounterId:
     if (!creature) throw new Error(`unknown creature: ${e.creature}`)
     return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, ...fresh }
   })
-  const units = [...allies, ...enemies]
+  const placed = [...allies, ...enemies]
+  const units = placed.map((u) => {   // 처음엔 가장 가까운 상대 쪽을 본다
+    const foes = placed.filter((o) => o.side !== u.side)
+    const near = foes.reduce<CombatUnit | null>((best, o) => (best === null || manhattan(u.pos, o.pos) < manhattan(u.pos, best.pos) ? o : best), null)
+    return near === null ? u : { ...u, facing: facingToward(u.pos, near.pos) }
+  })
   const base: CombatState = {
     encounterId, grid: encounter.grid, units, active: nextActive(units) ?? "player", round: 1, intents: {}, returnPos
   }
@@ -51,7 +59,8 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
       const blocked = (p: Pos) => occupied(combat.units, p, actor.id)
       const path = findPathOnGrid(combat.grid, content.tiles, actor.pos, action.to, blocked)
       if (path === null || path.length < 1 || path.length > MAX_STEPS) return ignored
-      return settle(withUnit(state, actor.id, { pos: action.to, moved: true }), [], content)
+      const last = path[path.length - 1]
+      return settle(withUnit(state, actor.id, { pos: action.to, moved: true, ...(last === undefined ? {} : { facing: last }) }), [], content)
     }
     case "defend":
       return settle(withUnit(state, actor.id, { defending: true, acted: true }), [], content)
@@ -64,9 +73,10 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
     case "persuade": {
       const target = enemyAt(combat.units, offset(actor.pos, action.dir))
       if (!target) return ignored
-      const done = withUnit(state, actor.id, { acted: true })
+      const done = withUnit(state, actor.id, { acted: true, facing: action.dir })
       if (action.kind === "attack") {
-        return harm(done, content, actor, target, damage(actor.attack, target), [{ type: "sfx", name: "hit" }])
+        const facingActor = { ...actor, facing: action.dir }
+        return harm(done, content, facingActor, target, attackDamage(combat, rulesOf(content), facingActor, target), [{ type: "sfx", name: "hit" }], true)
       }
       if (action.kind === "push") return push(done, content, actor, target, action.dir)
       const yielded = persuaded(state, content, target)
@@ -93,16 +103,34 @@ function persuaded(state: GameState, content: GameContent, target: CombatUnit): 
   return creature !== undefined && !creature.evil && state.facts.includes(creature.lore)
 }
 
-/** 적에게 피해를 준다. 죽은 생물이 evil 아니면 compassion 행실(D7). */
-function harm(state: GameState, content: GameContent, attacker: CombatUnit, target: CombatUnit, amount: number, events: GameEvent[]): StepResult {
+/**
+ * 적에게 피해를 준다. 죽은 생물이 evil 아니면 compassion 행실(D7).
+ * withChain이면 주 타격 뒤 연계 추가타를 이어 낸다(규칙: rules.ts chainHits).
+ */
+function harm(state: GameState, content: GameContent, attacker: CombatUnit, target: CombatUnit, amount: number, events: GameEvent[], withChain = false): StepResult {
   const hurt = wound(target, amount)
   let next = withUnit(state, target.id, hurt)
   const all: GameEvent[] = [{ type: "combatHit", attacker: attacker.id, target: target.id, amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp), at: attacker.pos }, ...events]
   const creature = target.creature === null ? undefined : content.creatures[target.creature]
-  if (hurt.gone === "dead" && creature !== undefined && !creature.evil) {
+  const innocent = creature !== undefined && !creature.evil
+  let dead = hurt.gone === "dead"
+  if (dead && innocent) {
     const deed = recordDeed(next, content, "compassion", "deed.kill-innocent")
     next = deed.state
     all.push(...deed.events)
+  }
+  if (withChain && !dead) {
+    const chain = chainHits(next.combat!, rulesOf(content), attacker, { ...target, ...hurt })
+    chain.forEach((h, i) => {
+      all.push({ type: "combatHit", attacker: h.attacker, target: h.target, amount: h.amount, defeated: h.defeated, hp: h.hp, at: h.at, chain: i + 1 }, { type: "sfx", name: "hit" })
+      next = withUnit(next, target.id, { hp: h.hp, gone: h.defeated ? "dead" : null })
+      if (h.defeated) dead = true
+    })
+    if (dead && !(hurt.gone === "dead") && innocent) {
+      const deed = recordDeed(next, content, "compassion", "deed.kill-innocent")
+      next = deed.state
+      all.push(...deed.events)
+    }
   }
   return settle(next, all, content)
 }
@@ -137,11 +165,23 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
     const j = intent.attack === null ? -1 : units.findIndex((u) => u.id === intent.attack)
     const target = units[j]
     if (target && alive(target) && manhattan(pos, target.pos) === 1) {
-      const amount = damage(enemy.attack, target)
+      units[i] = { ...units[i]!, facing: facingToward(pos, target.pos) }
+      const striker = units[i]!
+      const rules = rulesOf(content)
+      const amount = attackDamage(combat, rules, striker, target)
       const hurt = wound(target, amount)
       units[j] = { ...target, ...hurt }
       events.push({ type: "combatHit", attacker: enemy.id, target: target.id, amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp), at: pos })
       events.push({ type: "sfx", name: "hit" })
+      if (hurt.gone !== "dead") {
+        chainHits({ ...combat, units }, rules, striker, units[j]!).forEach((h, k) => {
+          const t = units[j]!
+          units[j] = { ...t, hp: h.hp, gone: h.defeated ? "dead" : null }
+          events.push({ type: "combatHit", attacker: h.attacker, target: h.target, amount: h.amount, defeated: h.defeated, hp: h.hp, at: h.at, chain: k + 1 }, { type: "sfx", name: "hit" })
+        })
+      }
+    } else if (pos !== enemy.pos && !samePos(pos, enemy.pos)) {
+      units[i] = { ...units[i]!, facing: facingToward(enemy.pos, pos) }
     }
   }
   const reset = units.map((u) => (u.side === "ally" && alive(u) ? { ...u, moved: false, acted: false, defending: false } : u))
@@ -178,7 +218,7 @@ function endCombat(state: GameState, content: GameContent, outcome: Outcome, eve
   return { state: next, events: [...events, ...tail] }
 }
 
-/** 규칙 4: 방어 중이면 공격력의 절반(올림). */
+/** 규칙 4(방향·지형 없는 기본형): 방어 중이면 공격력의 절반(올림). 실제 공격은 rules.ts `attackDamage`. */
 export const damage = (attack: number, target: CombatUnit): number => (target.defending ? Math.ceil(attack / 2) : attack)
 
 const wound = (unit: CombatUnit, amount: number): Pick<CombatUnit, "hp" | "gone"> => {

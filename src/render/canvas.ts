@@ -266,10 +266,10 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     ctx.fillRect(Math.round(screenX(vp, sp.x, size) + size / 2 - px / 2), Math.round(screenY(vp, sp.y, size) + size / 2 - px / 2), px, px)
   }
   ctx.globalAlpha = 1
-  for (const fl of fx.floats) drawFloat(ctx, vp, size, fl.x, fl.y, fl.text, fl.kind, fl.age)
+  for (const fl of fx.floats) drawFloat(ctx, vp, size, fl.x, fl.y, fl.kind === "chain" ? t(state.language, content.strings, "ui.combat.chain").replace("{n}", fl.text) : fl.text, fl.kind, fl.age)
   if (overlay !== null) {
     for (const tg of overlay.targets) {
-      const label = tg.defeated ? t(state.language, content.strings, "ui.combat.preview-defeat") : `-${tg.amount}`
+      const label = tg.defeated ? t(state.language, content.strings, "ui.combat.preview-defeat") : `-${tg.amount}${tg.chain > 0 ? ` ×${tg.chain + 1}` : ""}`
       drawFloat(ctx, vp, size, tg.pos.x, tg.pos.y - 0.15, label, tg.defeated ? "defeat" : "normal", 0)
     }
   }
@@ -312,8 +312,8 @@ function drawSlash(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, ce
   ctx.restore()
 }
 
-function drawFloat(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, text: string, kind: "normal" | "defeat", age: number): void {
-  const px = Math.round(size * (kind === "defeat" ? 0.52 : 0.4))
+function drawFloat(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, text: string, kind: "normal" | "defeat" | "chain", age: number): void {
+  const px = Math.round(size * (kind === "defeat" ? 0.52 : kind === "chain" ? 0.46 : 0.4))
   ctx.save()
   ctx.font = `bold ${px}px "NeoDunggeunmo", monospace`
   ctx.textAlign = "center"
@@ -323,7 +323,7 @@ function drawFloat(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, ce
   ctx.lineWidth = Math.max(3, Math.round(px * 0.18))
   ctx.strokeStyle = "#1a1210"
   ctx.strokeText(text, x, y)
-  ctx.fillStyle = kind === "defeat" ? "#ffd23f" : "#ffffff"
+  ctx.fillStyle = kind === "defeat" ? "#ffd23f" : kind === "chain" ? "#ff9a3c" : "#ffffff"
   ctx.fillText(text, x, y)
   ctx.restore()
 }

@@ -1,7 +1,7 @@
-import type { GameContent } from "../../content/types.ts"
+import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Id, Pos } from "../types.ts"
 import { DIRS, findPathOnGrid, offset } from "../world/path.ts"
-import { damage } from "./grid.ts"
+import { attackDamage, chainHits, facingToward } from "./rules.ts"
 import { alive, manhattan, MAX_STEPS, occupied, samePos } from "./intents.ts"
 
 const unitOf = (combat: CombatState, id: Id): CombatUnit | undefined => combat.units.find((u) => u.id === id)
@@ -36,11 +36,19 @@ export function attackTargets(combat: CombatState, unitId: Id): { id: Id; pos: P
   return out
 }
 
-/** `attack`을 하면 줄 피해와 처치 여부(규칙 4: 방어 중이면 절반 올림). 모르는 유닛이면 피해 0. */
-export function previewHit(combat: CombatState, attackerId: Id, targetId: Id): { amount: number; defeated: boolean } {
-  const attacker = unitOf(combat, attackerId)
+/**
+ * `attack`을 하면 줄 피해(주 타격 + 연계 추가타 합계)와 처치 여부, 연계 수. 방향·지형·연계는 rules(content.combat)를 따른다.
+ * 모르는 유닛이면 피해 0. 공격자는 대상 쪽을 보고 친다(실제 공격과 같다).
+ */
+export function previewHit(combat: CombatState, attackerId: Id, targetId: Id, rules: CombatRules = DEFAULT_COMBAT_RULES): { amount: number; defeated: boolean; chain: number } {
+  const found = unitOf(combat, attackerId)
   const target = unitOf(combat, targetId)
-  if (attacker === undefined || target === undefined) return { amount: 0, defeated: false }
-  const amount = damage(attacker.attack, target)
-  return { amount, defeated: target.hp - amount <= 0 }
+  if (found === undefined || target === undefined) return { amount: 0, defeated: false, chain: 0 }
+  const attacker = { ...found, facing: facingToward(found.pos, target.pos) }
+  const main = attackDamage(combat, rules, attacker, target)
+  const left = target.hp - main
+  if (left <= 0) return { amount: main, defeated: true, chain: 0 }
+  const chain = chainHits(combat, rules, attacker, { ...target, hp: left })
+  const total = main + chain.reduce((sum, h) => sum + h.amount, 0)
+  return { amount: total, defeated: target.hp - total <= 0, chain: chain.length }
 }

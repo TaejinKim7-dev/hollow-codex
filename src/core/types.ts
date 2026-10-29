@@ -7,6 +7,7 @@ export interface CombatUnit {
   readonly id: Id; readonly side: "ally" | "enemy"; readonly creature: Id | null; readonly pos: Pos
   readonly hp: number; readonly attack: number; readonly defending: boolean
   readonly moved: boolean; readonly acted: boolean; readonly gone: null | "dead" | "retreated" | "fled"
+  readonly facing?: Dir                                            // 바라보는 방향(없으면 방향 보정 없음). 이동·공격 때 갱신
 }
 export interface CombatState {
   readonly encounterId: Id; readonly grid: readonly string[]; readonly units: readonly CombatUnit[]
@@ -38,7 +39,7 @@ export type GameEvent =
   | { type: "companionJoined"; npcId: Id } | { type: "companionLeft"; npcId: Id }
   | { type: "crisisResolved"; crisisId: Id; optionId: Id }
   | { type: "combatStarted"; encounterId: Id } | { type: "combatEnded"; outcome: "victory" | "defeat" | "fled" }
-  | { type: "combatHit"; attacker: Id; target: Id; amount: number; defeated: boolean; hp: number; at: Pos }   // 연출용: 맞은 뒤 남은 hp, at = 때린 순간 공격자 칸
+  | { type: "combatHit"; attacker: Id; target: Id; amount: number; defeated: boolean; hp: number; at: Pos; chain?: number }   // 연출용: 맞은 뒤 남은 hp, at = 때린 순간 공격자 칸
   | { type: "combatYield"; target: Id; how: "persuaded" | "retreated" }                              // 연출용: 죽지 않고 물러남
   | { type: "sfx"; name: string } | { type: "music"; track: Id }
   | { type: "timePassed"; hour: number; day: number } | { type: "dayPassed"; day: number }

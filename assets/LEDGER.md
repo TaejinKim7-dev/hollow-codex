@@ -297,3 +297,4 @@
 | assets/audio/sfx/crisis.ogg | https://kenney.nl/assets/music-jingles (jingles_STEEL00.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
 | assets/audio/sfx/codex_write.ogg | https://kenney.nl/assets/interface-sounds (scratch_002.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
 | assets/audio/sfx/epilogue.ogg | https://kenney.nl/assets/music-jingles (jingles_STEEL16.ogg) | Kenney (www.kenney.nl) | CC0-1.0 |
+| assets/sprites/objects/kalas/house-front.png | AI-generated with PixelLab MCP (https://api.pixellab.ai/mcp) on 2026-10-29; prompts: assets/generated/prompts/2026-10-29-grass-stone.md; PixelLab ToS https://www.pixellab.ai/termsofservice (user owns outputs) | TaejinKim7-dev (AI-generated; copyright protection of AI output may vary by jurisdiction) | CC-BY-SA-4.0 |

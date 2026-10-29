@@ -10,7 +10,7 @@ export interface FxFrame {
   shake: { x: number; y: number }                                                   // 원본 픽셀(32px 칸 기준)
   units: Readonly<Record<Id, UnitFx>>
   hp: Readonly<Record<Id, { shown: number; trail: number; max: number }>>
-  floats: readonly { x: number; y: number; text: string; kind: "normal" | "defeat"; age: number }[]   // x,y: 칸 좌표, age 0..1
+  floats: readonly { x: number; y: number; text: string; kind: "normal" | "defeat" | "chain"; age: number }[]   // x,y: 칸 좌표, age 0..1
   slashes: readonly { x: number; y: number; dir: Dir; age: number }[]
   sparks: readonly { x: number; y: number; age: number }[]
   ghosts: readonly { unit: CombatUnit; alpha: number; dx: number; dy: number; flash: number }[]      // 이미 상태에서 사라진 유닛이 페이드 아웃하는 모습
@@ -27,12 +27,13 @@ export interface Fx {
   clear(): void
 }
 
+const CHAIN_STEP = 250   // 연계 추가타는 앞 타격이 끝나기 전에 이어 들어간다
 const ATTACK_MS = 410, IMPACT = 180, MOVE_MS = 160, YIELD_HOLD = 150, YIELD_FADE = 300, DEFEAT_HOLD = 100, DEFEAT_FADE = 300
 const clamp01 = (v: number): number => Math.min(1, Math.max(0, v))
 const smooth = (p: number): number => { const q = clamp01(p); return q * q * (3 - 2 * q) }
 const lerp = (a: number, b: number, p: number): number => a + (b - a) * clamp01(p)
 
-interface Attack { s: number; attacker: Id; target: Id; ux: number; uy: number; dir: Dir; amount: number; defeated: boolean; index: number; tx: number; ty: number }
+interface Attack { s: number; attacker: Id; target: Id; ux: number; uy: number; dir: Dir; amount: number; defeated: boolean; index: number; tx: number; ty: number; chain?: number }
 interface Tween { id: Id; dx: number; dy: number; start: number }
 interface HpTrack { id: Id; from: number; to: number; impact: number }
 interface GhostFx { unit: CombatUnit; holdUntil: number; fadeMs: number; target: Id }
@@ -119,7 +120,7 @@ export function createFx(speed = 1): Fx {
           const vx = d.pos.x - a.pos.x, vy = d.pos.y - a.pos.y
           const len = Math.hypot(vx, vy) || 1
           const ux = vx / len, uy = vy / len
-          attacks.push({ s: t, attacker: e.attacker, target: e.target, ux, uy, dir: dirOf(ux, uy), amount: e.amount, defeated: e.defeated, index, tx: d.pos.x, ty: d.pos.y })
+          attacks.push({ s: t, attacker: e.attacker, target: e.target, ux, uy, dir: dirOf(ux, uy), amount: e.amount, defeated: e.defeated, index, tx: d.pos.x, ty: d.pos.y, ...(e.chain === undefined ? {} : { chain: e.chain }) })
           const from = run[e.target] ?? find(before, e.target)?.hp ?? e.hp + e.amount
           tracks.push({ id: e.target, from, to: e.hp, impact: t + IMPACT / S })
           run[e.target] = e.hp
@@ -131,7 +132,8 @@ export function createFx(speed = 1): Fx {
             if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + (IMPACT + DEFEAT_HOLD) / S, fadeMs: DEFEAT_FADE / S, target: e.target }); endAt = Math.max(endAt, t + (IMPACT + DEFEAT_HOLD + DEFEAT_FADE) / S) }
           }
           index += 1
-          t += ATTACK_MS / S
+          const nextHit = events.slice(events.indexOf(e) + 1).find((x) => x.type === "combatHit")
+          t += (nextHit !== undefined && nextHit.type === "combatHit" && nextHit.chain !== undefined ? CHAIN_STEP : ATTACK_MS) / S   // 다음 타격이 연계면 앞 타격이 끝나기 전에 이어 들어간다
         } else if (e.type === "combatYield") {
           const snap = find(before, e.target)
           if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + YIELD_HOLD / S, fadeMs: YIELD_FADE / S, target: e.target }); endAt = Math.max(endAt, t + (YIELD_HOLD + YIELD_FADE) / S) }
@@ -177,6 +179,7 @@ export function createFx(speed = 1): Fx {
           shakeX += amp * Math.cos(ph)
           shakeY += amp * Math.sin(ph * 1.3)
         }
+        if (a.chain !== undefined && t >= IMPACT && t < 780) floats.push({ x: a.tx, y: a.ty - 0.75 - 0.5 * ((t - IMPACT) / 600), text: String(a.chain + 1), kind: "chain", age: (t - IMPACT) / 600 })
         if (t >= IMPACT && t < 780) floats.push({ x: a.tx, y: a.ty - 0.25 - 0.6 * ((t - IMPACT) / 600), text: `-${a.amount}`, kind: a.defeated ? "defeat" : "normal", age: (t - IMPACT) / 600 })
         if (t >= IMPACT && t < 330) slashes.push({ x: a.tx, y: a.ty, dir: a.dir, age: (t - IMPACT) / 150 })
         if (t >= IMPACT && t < 430) {

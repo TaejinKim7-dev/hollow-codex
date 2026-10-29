@@ -506,3 +506,24 @@
       - text: npc.field.peddler.confession.t
     word.ledger:
       - text: npc.field.peddler.ledger.t
+# 전투 연습장의 훈련 동료. 단서 없이 바로 합류한다(연계 추가타를 보기 위한 연습용 — 판정이 끝나면 연습장과 함께 지운다).
+- id: npc.arena.trainer
+  map: map.arena
+  pos: [2, 4]
+  schedule:
+    "0": [2, 4]
+  name: npc.arena.trainer.name
+  greet: npc.arena.trainer.greet
+  sprite: char.guard-soldier
+  topics:
+    name:
+      - text: npc.arena.trainer.name.t
+    job:
+      - text: npc.arena.trainer.job.t
+  companion:
+    virtue: valor
+    joinRequires: []
+    leaveAfterDeeds: 99
+    rejoinRequires: []
+    hp: 8
+    attack: 3

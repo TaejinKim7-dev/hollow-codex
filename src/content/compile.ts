@@ -3,11 +3,13 @@
 // 5 map/grid geometry, 6 grant paths, 7 deduction answers, 8 denied terms.
 import { BLOCKER, checkGroundAdjacency, GROUNDS, mergeObjectFootprints, type Ground, type ObjectDef } from "./ground.ts"
 import type { Id, Pos, Virtue } from "../core/types.ts"
+import { DEFAULT_COMBAT_RULES } from "./types.ts"
 import { findDenied, parseDenylist } from "./denylist.ts"
 import { arrivalCell } from "../core/world/ring.ts"
 import { isObj, makeReader } from "./shape.ts"
 import type { Obj, Reader } from "./shape.ts"
 import type {
+  CombatRules,
   ChoiceOption, CompanionDef, CrisisOptionDef, FactKind, GameContent, MapDef, NpcDef, RawContent, SpriteRef, Topic
 } from "./types.ts"
 
@@ -36,6 +38,7 @@ const KEYS = {
   tile: ["sprite", "ground", "object", "walk"],
   object: ["id", "image", "footprint", "blocks", "sortOffset"],
   audio: ["sfx", "footsteps", "music"],
+  combat: ["direction", "chain", "terrain"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
   creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
@@ -67,6 +70,7 @@ interface Draft {
   playerSprite: SpriteRef | null
   objects: Table<ObjectDef>
   audio: { sfx: Record<string, string>; footsteps: Partial<Record<Ground, string>>; music: Record<Id, string> }
+  combat: CombatRules | null
   maps: Table<MapDef>
   npcs: Table<NpcDef>
   facts: Table<Fact>
@@ -215,6 +219,43 @@ function readAudio(r: Reader, v: unknown, d: Draft): void {
     if (GROUNDS.includes(ground as Ground)) d.audio.footsteps[ground as Ground] = file
     else r.fail(`footsteps.${ground}`, `unknown ground "${ground}"`)
   }
+}
+
+function readCombat(r: Reader, v: unknown, d: Draft): void {
+  if (v === null || v === undefined) return
+  const o = r.obj(v, "")
+  onlyKeys(r, o, "", KEYS.combat)
+  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; terrain: Record<string, { defense: number }> } = {
+    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, terrain: {}
+  }
+  if (o["direction"] !== undefined) {
+    const dir = r.obj(o["direction"], "direction")
+    onlyKeys(r, dir, "direction", ["front", "side", "back", "vsAllies"])
+    const pick = (k: "front" | "side" | "back"): number => {
+      if (dir[k] === undefined) return DEFAULT_COMBAT_RULES.direction[k]
+      const n = r.num(dir, k, "direction")
+      if (n <= 0) r.fail(`direction.${k}`, "expected a number above 0")
+      return n
+    }
+    rules.direction = { front: pick("front"), side: pick("side"), back: pick("back"), vsAllies: r.bool(dir, "vsAllies", "direction", DEFAULT_COMBAT_RULES.direction.vsAllies) }
+  }
+  if (o["chain"] !== undefined) {
+    const ch = r.obj(o["chain"], "chain")
+    onlyKeys(r, ch, "chain", ["ratio", "enemies"])
+    const ratio = ch["ratio"] === undefined ? DEFAULT_COMBAT_RULES.chain.ratio : r.num(ch, "ratio", "chain")
+    if (ratio < 0) r.fail("chain.ratio", "expected a number of 0 or more")
+    rules.chain = { ratio, enemies: r.bool(ch, "enemies", "chain", DEFAULT_COMBAT_RULES.chain.enemies) }
+  }
+  if (o["terrain"] !== undefined) {
+    for (const [glyph, def] of Object.entries(r.obj(o["terrain"], "terrain"))) {
+      const eo = r.obj(def, `terrain.${glyph}`)
+      onlyKeys(r, eo, `terrain.${glyph}`, ["defense"])
+      const defense = r.num(eo, "defense", `terrain.${glyph}`)
+      if (!Number.isInteger(defense) || defense < 0) r.fail(`terrain.${glyph}.defense`, "expected an integer of 0 or more")
+      rules.terrain[glyph] = { defense }
+    }
+  }
+  d.combat = rules
 }
 
 function readObjects(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
@@ -446,7 +487,7 @@ function checkDenylistShape(r: Reader, v: unknown): void {
 
 function readAll(raw: RawContent, ctx: Ctx): Draft {
   const d: Draft = {
-    sheets: {}, tiles: {}, playerSprite: null, objects: table(), audio: { sfx: {}, footsteps: {}, music: {} }, maps: table(), npcs: table(), facts: table(), deductions: table(),
+    sheets: {}, tiles: {}, playerSprite: null, objects: table(), audio: { sfx: {}, footsteps: {}, music: {} }, combat: null, maps: table(), npcs: table(), facts: table(), deductions: table(),
     crises: table(), creatures: table(), encounters: table(), abilities: table(), rings: table(), strings: {}, start: null
   }
   if (!("tiles.yaml" in raw)) ctx.shape.push("tiles.yaml: missing required file")
@@ -464,6 +505,7 @@ function readAll(raw: RawContent, ctx: Ctx): Draft {
     }
     else if (file === "objects.yaml") readObjects(r, v, d, ctx)
     else if (file === "audio.yaml") readAudio(r, v, d)
+    else if (file === "combat.yaml") readCombat(r, v, d)
     else if (file === "creatures.yaml") readCreatures(r, v, d, ctx)
     else if (file === "rings.yaml") readRings(r, v, d, ctx)
     else if (town !== null) {
@@ -837,6 +879,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
   checkReferences(d, errors)
   checkStringKeys(d, errors)
   resolveMaps(d, errors)
+  for (const glyph of Object.keys(d.combat?.terrain ?? {})) if (!(glyph in d.tiles)) errors.push(`combat.yaml: terrain.${glyph}: tile "${glyph}" missing from tiles.yaml`)
   checkGeometry(d, errors)
   checkOverworld(d, errors)
   checkRingArrivals(d, errors)
@@ -847,7 +890,7 @@ export function compileContent(raw: RawContent): { content: GameContent | null; 
     return { content: null, errors }
   }
   const content: GameContent = {
-    sheets: d.sheets, tiles: d.tiles, objects: d.objects.items, audio: d.audio, playerSprite: d.playerSprite,
+    sheets: d.sheets, tiles: d.tiles, objects: d.objects.items, audio: d.audio, ...(d.combat === null ? {} : { combat: d.combat }), playerSprite: d.playerSprite,
     maps: d.maps.items, npcs: d.npcs.items, facts: d.facts.items,
     deductions: d.deductions.items as GameContent["deductions"],   // answer length checked in group 7
     crises: d.crises.items, creatures: d.creatures.items, encounters: d.encounters.items,

@@ -1636,3 +1636,8 @@ epilogue.courage.sacrifice.text: Dione's priest knelt first before the altar. Sa
 epilogue.courage.honor.text: Argon's heir burned the old sigil. Honor was not the courage to keep, but the courage to let go.
 epilogue.courage.spirituality.text: Elia's people entered meditation without licenses. Spirituality was not waiting for permission, but the courage to stand alone.
 epilogue.courage.humility.text: Heron's elder spoke his own name first. Humility was not hiding, but the courage to step forward even from a low place.
+ui.combat.chain: "Chain x{n}!"
+npc.arena.trainer.name: Drill Instructor
+npc.arena.trainer.greet: This is the practice ground. Say the word if you want to fight beside me. Two of us next to an enemy means a second blow.
+npc.arena.trainer.name.t: I keep this practice ground. My name went into the blade long ago.
+npc.arena.trainer.job.t: Get around to the flank or the back and strike. If a friend stands beside the enemy too, a second blow follows at once.

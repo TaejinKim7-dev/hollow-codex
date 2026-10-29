@@ -95,6 +95,31 @@ describe("grid combat", () => {
     expect(r.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
     expect(r.state.clearedEncounters).toEqual([])
   })
+  describe("C-2: direction, chain", () => {
+    const M = (x: number, y: number, patch: Partial<CombatUnit> = {}) => ({ id: "npc.mate", side: "ally", creature: null, pos: { x, y }, hp: 8, attack: 4, ...patch }) as const
+    it("hitting an enemy from behind hurts more than from the front (facing decides)", () => {
+      const front = act(combatState([P(2, 1), S(2, 0, { hp: 9, facing: "s" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      const back = act(combatState([P(2, 1), S(2, 0, { hp: 9, facing: "n" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      expect(unit(front.state, "creature.slime#0").hp).toBe(6)   // 3 × 1.0
+      expect(unit(back.state, "creature.slime#0").hp).toBe(4)   // round(3 × 1.5) = 5
+    })
+    it("a teammate next to the target adds a chain hit (event with chain 1), and can finish it", () => {
+      const r = act(combatState([P(2, 1), M(1, 0), S(2, 0, { hp: 5, facing: "s" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      const hits = r.events.filter((e) => e.type === "combatHit")
+      expect(hits).toHaveLength(2)
+      expect(hits[0]).toMatchObject({ attacker: "player", amount: 3, defeated: false, hp: 2 })
+      expect(hits[1]).toMatchObject({ attacker: "npc.mate", chain: 1, defeated: true, hp: 0 })   // mate 4 × side(1.25) → 5 × 0.5 = 2.5 → 3 ≥ 2
+      expect(unit(r.state, "creature.slime#0").gone).toBe("dead")
+    })
+    it("no chain when the main hit already defeats, and none from a teammate who is not adjacent to the target", () => {
+      expect(act(combatState([P(2, 1), M(1, 0), S(2, 0, { hp: 3 }), B(4, 4)]), { kind: "attack", dir: "n" }).events.filter((e) => e.type === "combatHit")).toHaveLength(1)
+      expect(act(combatState([P(2, 1), M(0, 3), S(2, 0, { hp: 9 }), B(4, 4)]), { kind: "attack", dir: "n" }).events.filter((e) => e.type === "combatHit")).toHaveLength(1)
+    })
+    it("the attacker turns to face the target, and a move turns the unit toward its last step", () => {
+      expect(unit(act(combatState([P(2, 1), S(2, 0, { hp: 9 }), B(4, 4)]), { kind: "attack", dir: "n" }).state, "player").facing).toBe("n")
+      expect(unit(act(combatState([P(2, 3), S(2, 0), B(4, 4)]), { kind: "move", to: { x: 3, y: 3 } }).state, "player").facing).toBe("e")
+    })
+  })
   it("combat ends in defeat when every ally is gone", () => {
     const r = act(combatState([P(2, 1, { hp: 1 }), B(2, 0)]), { kind: "endTurn" })
     expect(r.events).toContainEqual({ type: "combatEnded", outcome: "defeat" })

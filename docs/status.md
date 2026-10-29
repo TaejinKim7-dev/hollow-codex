@@ -27,7 +27,8 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | 🧑 | 인물 크기: 지금 캐릭터는 몸 약 35px(타일 1칸 높이)라 15×11칸 ×2에서는 화면 높이의 10%뿐. 해결 후보 ① 시야를 11×7칸 ×3으로 좁힘(16%, 추천·비용 0) ② 9×6칸 ×4(18%) ③ 캐릭터를 더 크게 재생성(횟수 소모). 실험실에서 시야 버튼으로 비교 후 선택 | 채팅 | 대기 |
 | ✅ | **S 설계 + P 계획 + I-1/I-2 구현(2026-10-28, 브랜치 `todo-2-art-audio-engine`)**: 32px 칸·가변 시야(11~15×7)·층 렌더링·듀얼 그리드 자동 타일·걷기 보간·소리 엔진(`audio.yaml`)·칩 합성기 제거·배포 예산. 칼라스 들판·전투(들판 늑대)·칼라스 인물 11명이 새 그림. 나머지 7마을·서고·대륙은 옛 16px 그림을 2배로 호환 표시 | 설계 `docs/superpowers/specs/2026-10-28-art-audio-redesign.md`, 계획 `docs/superpowers/plans/2026-10-28-art-audio-engine.md`, 화면 `docs/screenshots/2026-10-28-I2-*.png` | 🧑 화면·소리 판정 대기 |
 | ✅ | **전투 C-1 타격감 구현(2026-10-28)**: 공격 연출 시간표·범위/미리보기·체력 막대·숫자·배너·타일 눌러 공격·타격 소리 음정. 사용자 판정: 타격감 OK, 연출 약간 느림 → 1.5배속 반영. 적 예고는 노란 블록, 전투 격자의 나무는 자기 칸 크기로 축소. **전투 연습장** `map.arena`(들판 (9,7) 입구, 표지판, 반복 조우 3개 — 판정 뒤 삭제 검토) | `docs/superpowers/plans/2026-10-28-combat-c1-hit-feel.md`, `docs/screenshots/2026-10-28-C1-*.png` | 판정 대기 |
-| 🧑 | **전투 재설계 계획 승인(2026-10-28 사용자 요청: "영걸전급으로 재미있게")**: C-2 지형·위치·연계(다음) → C-3 병과·책략 → C-4 마음·설득·목표 → C-5 AI·조우 → C-6 다듬기. 결정 5건(추천 포함) | `docs/superpowers/specs/2026-10-28-combat-fun-design.md` | 승인 대기 |
+| ✅ | **전투 C-2 구현(2026-10-29)**: 방향 보정(정면 1/옆 1.25/등 1.5, 적만)·지형 방어(`content/combat.yaml`, `h` +1)·**연계 추가타**(아군이 적 옆에 서면 추가타, 적 연계는 꺼짐)·미리보기 "-N ×k"·"N연계!" 연출·9×9 연습장 조우·훈련 교관 동료. 🧑 "연계가 재미있나" 판정 대기 | `docs/superpowers/plans/2026-10-29-combat-c2-terrain-chain.md`, `docs/screenshots/2026-10-29-C2-chain-strip.png` | 판정 대기 |
+| 🧑 | **전투 재설계 계획 승인(2026-10-28 사용자 요청: "영걸전급으로 재미있게")**: ~~C-2~~ → C-3 병과·책략 → C-4 마음·설득·목표 → C-5 AI·조우 → C-6 다듬기. 결정 5건(추천 포함) | `docs/superpowers/specs/2026-10-28-combat-fun-design.md` | 승인 대기 |
 | 다음 | 칼라스 마을·서고 지도를 새 땅·물건으로 이전(맵 그림 약 15회 필요), 새 인물 기본형 12종(PixelLab 하루 +5, 잔액 0이었음), 효과음 14상황 선택 | `art-kalas-maps.md` | 그림 횟수 대기 |
 | 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |
 
@@ -56,5 +57,5 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 - 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 1/8, 능력 1/7만 효과. 에필로그가 위기 풀이를 반영하지 않음.
 
 ## 마지막 게이트
-todo-2-art-audio-engine (2026-10-28): npm run test:unit 0 (527 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0.
+todo-2-art-audio-engine (2026-10-28): npm run test:unit 0 (553 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0.
 main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. 이후 커밋은 문서·자산·lab·scripts/visual만(매번 check:content 0).

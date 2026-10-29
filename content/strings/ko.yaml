@@ -1634,3 +1634,8 @@ epilogue.courage.sacrifice.text: 디오네의 사제가 제단 앞에서 먼저 
 epilogue.courage.honor.text: 아르곤의 후계자가 낡은 문장을 태웠다. 명예는 지키는 용기가 아니라, 버릴 줄 아는 용기였다.
 epilogue.courage.spirituality.text: 엘리아의 사람들이 면허 없이 명상에 들었다. 영성은 허락을 기다리는 일이 아니라, 홀로 서는 용기였다.
 epilogue.courage.humility.text: 헤론의 장로가 먼저 자기 이름을 말했다. 겸손은 숨는 일이 아니라, 낮은 자리에서도 나서는 용기였다.
+ui.combat.chain: "{n}연계!"
+npc.arena.trainer.name: 훈련 교관
+npc.arena.trainer.greet: 연습장이다. 함께 싸워 보고 싶으면 말만 해라. 적 옆에 둘이 서면 칼이 한 번 더 들어간다.
+npc.arena.trainer.name.t: 이곳 연습장을 보는 교관일세. 이름은 칼날에 묻어 두었지.
+npc.arena.trainer.job.t: 적의 옆구리나 등 뒤로 돌아가 쳐 보게. 같은 편이 적 옆에 서 있으면 연달아 한 번 더 들어간다네.

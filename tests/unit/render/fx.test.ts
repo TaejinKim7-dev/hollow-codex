@@ -231,3 +231,32 @@ describe("fx speed", () => {
     expect(f.takeCues(T0 + 120 + 1)).toHaveLength(1)
   })
 })
+
+describe("fx: chain hits", () => {
+  const player = unit("player", "ally", 2, 1, 10)
+  const mate = unit("mate", "ally", 1, 0, 10)
+  const before = [player, mate, unit("e0", "enemy", 2, 0, 6)]
+  const after = [player, mate, unit("e0", "enemy", 2, 0, 1)]
+  const chainHit: GameEvent = { type: "combatHit", attacker: "mate", target: "e0", amount: 2, defeated: false, hp: 1, at: { x: 1, y: 0 }, chain: 1 }
+  const mk = () => { const fx = createFx(); fx.reset(before); fx.enqueue([hit("player", "e0", 3, 3), chainHit], before, after, T0); return fx }
+
+  it("a chain hit follows the main hit sooner than a normal full attack would, and raises the sound index", () => {
+    const fx = mk()
+    const cues = fx.takeCues(T0 + 2000)
+    expect(cues).toHaveLength(2)
+    expect(cues[1]!.index).toBe(1)
+    expect(cues[1]!.at - cues[0]!.at).toBeLessThan(410)
+    expect(cues[1]!.at - cues[0]!.at).toBeGreaterThan(150)
+  })
+  it("shows a chain counter float (kind chain, text = hit number) once the chain hit lands", () => {
+    const fx = mk()
+    const t = T0 + 250 + 200
+    const chain = fx.sample(t).floats.filter((f) => f.kind === "chain")
+    expect(chain).toHaveLength(1)
+    expect(chain[0]!.text).toBe("2")
+  })
+  it("the chain attacker lunges toward the target too", () => {
+    const fx = mk()
+    expect(Math.hypot(fx.sample(T0 + 250 + 160).units["mate"]!.dx, fx.sample(T0 + 250 + 160).units["mate"]!.dy)).toBeGreaterThan(0.2)
+  })
+})

@@ -51,8 +51,8 @@ describe("attackTargets", () => {
 describe("previewHit", () => {
   it("shows the damage the attack would do and whether it would defeat", () => {
     const s = combat([P(2, 1), S(2, 0, { hp: 3 }), B(4, 4)])
-    expect(previewHit(s, "player", "creature.slime#0")).toEqual({ amount: 3, defeated: true })
-    expect(previewHit(combat([P(2, 1), S(2, 0), B(4, 4)]), "player", "creature.slime#0")).toEqual({ amount: 3, defeated: false })
+    expect(previewHit(s, "player", "creature.slime#0")).toEqual({ amount: 3, defeated: true, chain: 0 })
+    expect(previewHit(combat([P(2, 1), S(2, 0), B(4, 4)]), "player", "creature.slime#0")).toEqual({ amount: 3, defeated: false, chain: 0 })
   })
   it("halves (rounded up) against a defending target", () => {
     const s = combat([P(2, 1), S(2, 0, { defending: true }), B(4, 4)])

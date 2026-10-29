@@ -3,3 +3,6 @@
 lower: worn grey-beige cobblestone town plaza, muted irregular flat stones with thin dark mortar gaps, soft natural texture
 upper: (v3 풀 문구 그대로)
 transition: grass fringe with small tufts spilling over the stone edge
+
+## 마을 집 정면(house-front) — create_map_object, 96×96, low top-down, selective outline, medium detail/shading, 1회
+id 023edd5e-3fee-4af7-819c-1ad5894ac33c: small medieval village house seen from the front, plaster walls in muted warm beige, dark brown timber beams, steep terracotta-grey tiled roof, one wooden door and one shuttered window, calm evening light, front-facing facade, flat game sprite

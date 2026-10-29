@@ -17,7 +17,7 @@ describe("combatOverlay", () => {
   it("shows an attackable enemy with the damage it would take, and nothing to walk to once moved", () => {
     const o = combatOverlay(near(), c)!
     expect(o.reachable).toEqual([])
-    expect(o.targets).toEqual([{ id: "creature.slime#0", pos: { x: 2, y: 0 }, amount: 3, defeated: false }])
+    expect(o.targets).toEqual([{ id: "creature.slime#0", pos: { x: 2, y: 0 }, amount: 3, defeated: false, chain: 0 }])
   })
   it("is null when the active unit has acted (nothing to choose)", () => {
     const s = near()

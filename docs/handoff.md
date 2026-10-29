@@ -544,3 +544,11 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 사용자 위임: "마을색 팔레트 승인/선택, 소리 없는 14개 상황 효과음은 최신 트렌드에 맞게 네가 선택. 못 들으면 가장 많이 쓰는 기준". 결정과 목록은 `docs/research/art-production-plan.md` 끝(마을색 hue 표, 소리 선택). 효과음 14개는 Kenney CC0 후보(`assets-private/preview/sfx`)에서 복사해 `assets/audio/sfx/<상황>.ogg`, `sfx.json`·`LEDGER.md`·`content/audio.yaml` 갱신, 이벤트 연결은 `src/audio/event-sounds.ts`(순수 함수, 테스트 4개)를 `apply()`에서 호출. 직접 들어 보지는 못함.
 - 오늘 PixelLab 1회 사용(잔액 보너스 4회 남음): 풀↔돌바닥 `assets/sprites/tilesets/grass-stone`(프롬프트 `assets/generated/prompts/2026-10-29-grass-stone.md`), `GROUND_SETS.stone`·`OVERLAY_ORDER`에 stone 추가, 타일 글자 `c`. 칼라스 마을 지도의 풀(.→g)·흙길(,→p)·나무(T→t)·바깥 돌바닥(:→c)을 새 땅으로 바꾸고 고백석은 `obj.confession-stone`(16,12)로. 건물 안 돌바닥(:)과 벽(#)·문(+)은 옛 타일 그대로(벽 그림 필요). 캡처 `docs/screenshots/2026-10-29-kalas-town-stone.png` 직접 확인: 광장은 잘 어울리나 옛 벽이 확대되어 튄다. 도구 `scripts/visual/map-shot.mjs`.
 - 다음: 외벽·건물 그림(남은 보너스 4회), 서고 바닥·벽 타일셋, 마을색 변형 적용, C-2.
+
+## 2026-10-29 전투 C-2 (지형·방향·연계)
+- 계획 `docs/superpowers/plans/2026-10-29-combat-c2-terrain-chain.md`. 규칙은 `src/core/combat/rules.ts`(순수: `facingToward`, `sideOf`, `terrainDefense`, `attackDamage`, `chainHits`)와 `content/combat.yaml`(읽기 `compile.ts readCombat`, 타입 `CombatRules`/`DEFAULT_COMBAT_RULES`; 파일이 없으면 기본값). `CombatUnit.facing?`(시작: 가장 가까운 상대 쪽, 이동: 마지막 걸음, 공격: 대상 쪽)로 방향을 정한다 — 저장 호환(없으면 방향 보정 없음).
+- 피해 = max(1, round(공격력×방향배율) − 지형방어), 방어 자세면 절반 올림. 방향 보정은 **적에게만**(`vsAllies: false`) — 켜면 기존 시나리오 수순(WOLF_PUSH_WIN 등)이 죽어서 꺼 둠. 연계: 주 타격 뒤 대상이 살아 있으면 대상 4방 인접의 같은 편이 units 순서로 추가타(피해 = max(1, round(정상피해×0.5))), 쓰러지면 중단, 적 연계는 `chain.enemies`(기본 꺼짐, C-5에서 난이도와 함께). 이벤트 `combatHit.chain`(1부터).
+- 연출: 연계는 앞 타격이 끝나기 전(250ms, 배속 적용)에 이어 들어가고 "N연계!"(주황) 숫자가 뜨며 타격음 음정이 한 단계씩 오른다. 미리보기 라벨 "-N ×k"(합계와 타수). 노란 예고 블록은 쓰러지는 유닛 칸에서 숨김.
+- 콘텐츠: 연습장 `enc.arena.mixed`를 9×9(큰 풀 `h`·나무 `t`)로, 훈련 교관 `npc.arena.trainer`(단서 없이 합류하는 동료; 연습장과 함께 판정 뒤 삭제 예정).
+- 확인: 553 passed, typecheck/check:content/build/audit:dist 0, E2E 3개 통과, 연계 프레임 스트립을 직접 열어 확인(2연계 숫자·추가타·처치 페이드). 도구 `scripts/visual/fx-chain.mjs`, `fx-strip.mjs`, `fx-timing.mjs`. 확인 못 한 것: 방향·지형이 체감되는지(🧑), 연계 소리, 적 연계가 켜진 난이도.
+- 다음: 판정 뒤 C-3(병과·책략·기세). OpenCode 병렬 작업 3건(town-ground, narrative-fixes, fx-tracking-tests)은 `oc/*` 브랜치로 올라오면 받아서 게이트 확인 후 합친다.

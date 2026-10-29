@@ -12,6 +12,17 @@ export interface AudioMap {
   readonly music: Readonly<Record<Id, string>>
 }
 
+/** content/combat.yaml: 전투 규칙 수치(없으면 DEFAULT_COMBAT_RULES). */
+export interface CombatRules {
+  /** 대상이 바라보는 방향에 대한 공격 위치별 배율 */
+  readonly direction: { readonly front: number; readonly side: number; readonly back: number; readonly vsAllies: boolean }   // vsAllies: 아군도 방향 보정을 받는가(기본 꺼짐: 적만 측면·배후에 약하다)
+  /** 연계 추가타: ratio = 그 유닛의 정상 피해에 곱함, enemies = 적 쪽 연계 허용 */
+  readonly chain: { readonly ratio: number; readonly enemies: boolean }
+  /** 전투 격자 타일 글자 → 방어 보정(그 칸에 선 유닛이 받는 피해에서 뺀다, 최소 피해 1) */
+  readonly terrain: Readonly<Record<string, { readonly defense: number }>>
+}
+export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, terrain: {} }
+
 export interface ChoiceOption {
   readonly optionId: Id; readonly labelKey: string; readonly textKey: string
   readonly deed?: { readonly virtue: Virtue; readonly deed: Id }
@@ -62,6 +73,7 @@ export interface GameContent {
   readonly tiles: Readonly<Record<string, { readonly sprite?: SpriteRef; readonly ground?: Ground; readonly object?: Id; readonly walk: number | null }>>   // ASCII 1글자 → 타일
   readonly objects: Readonly<Record<Id, ObjectDef>>
   readonly audio: AudioMap
+  readonly combat?: CombatRules
   readonly playerSprite: SpriteRef
   readonly maps: Readonly<Record<Id, MapDef>>
   readonly npcs: Readonly<Record<Id, NpcDef>>
