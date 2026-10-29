@@ -1,70 +1,80 @@
 # 대륙 오버월드 지도 (map.over). 미덕 마을 스텁 7곳은 각 마을 폴더의 maps.yaml로 분리했다 (Task 23).
 # map.over: 64×48 대륙. 지형 비용은 D20의 terrainCost를 따른다.
-#   .=1  ,=2  :=2  ~=null  T=3  ^=null  ==1  o=null(고리 진입은 ringStep)  +=1  #=null
-# `+` 마을 입구 8곳: 칼라스(map.field) + 미덕 마을 7곳(내부는 M3·M4에서 채움).
+#   .=1  ,=2  :=2  ~=null  T=3  ^=null  ==1  o=null(고리 진입은 ringStep)    #=null
+# 마을 입구 8곳(집 정면 물건 + 문 앞 흙길 칸 p): 칼라스(map.field) + 미덕 마을 7곳(내부는 M3·M4에서 채움).
 # `o` 열석 고리 7개 + 칼라스 안쪽 1개(map.field) = 총 8 (D2).
 - id: map.over
   isOverworld: true
   terrainCost:
-    ".": 1
-    ",": 2
-    ":": 2
-    "~": null
-    T: 3
+    g: 1
+    h: 2
+    p: 2
+    w: null
+    t: 3
     "^": null
-    "=": 1
+    b: 1
     o: null
-    "+": 1
     "#": null
+  objects:
+    - { id: obj.house-front, at: [39, 6] }
+    - { id: obj.house-front, at: [49, 8] }
+    - { id: obj.house-front, at: [9, 10] }
+    - { id: obj.house-front, at: [21, 18] }
+    - { id: obj.house-front, at: [13, 24] }
+    - { id: obj.house-front, at: [57, 30] }
+    - { id: obj.house-front, at: [5, 36] }
+    - { id: obj.house-front, at: [31, 40] }
+    - { id: obj.bridge, at: [25, 6] }
+    - { id: obj.bridge, at: [25, 14] }
   rows:
-    - "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    - "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    - "~~.......,..,.......,..,..~....,..,.......,..,.......,..,.....~~"
-    - "~~^.^^^^.^^^^.^^^^,^^^^.^^~^.^^^^.^^^^.^^^^.^^^^,^^^^.^^^^.^^^~~"
-    - "~~^^.^^^^.^^^^.^^^^.^^^^,^~^^.^^^^.^^^^.^^^^.^^^^.^^^^,^^^^.^^~~"
-    - "~~^^^,^^^^.^^^^.^^^^.^^^^.~^^^,^^^^.^^^^.^^^^.^^^^.^^^^.^^^^,^~~"
-    - "~~.,......::::::::::::::::=:::::::::::::+::::::,.......,..,...~~"
-    - "~~....,..,:......,..,.....~.,..,....::.,..,....:..,..,.......,~~"
-    - "~~^^,.....:.,..,....o..,..~.......::.,.......,..::+.....o..,..~~"
-    - "~~^.^..,..:.......,..,....~..,..,:......,..,......:,..,.......~~"
-    - "~~,^^,....+..,..,.......,.~,...::..,..,.......,..,.:.....,..,.~~"
-    - "~~^^....,..,.......,..,...~...:..,.......,..,......:,..,......~~"
-    - "~~^,^.,.......,.TT.......,~.,:......,..,.......,..,:......,..,~~"
-    - "~~.^^....,..,.....TT,..,..~::..,..,.......,..,......:,..,.....~~"
-    - "~~^^,..,.......,..,.......=..,.......,..,...T...,..,:.^....,..~~"
-    - "~~,.......,..,.......,..,:~.....,..,.......,.T,......:,.^,....~~"
-    - "~~...,.T,.......,..,....:.~,..,.......,..,....T.T,..,:......,.~~"
-    - "~~.,....T..T..,.......,:.,~......,..,.......,..T.....:.,..,...~~"
-    - "~~....,..T.......,..,.+...~.,..,.......,..,...T.T.,..,:......,~~"
-    - "~~..,..T..T.,..,.....:.,..~.......,..,.......,..,.....:.,..,..~~"
-    - "~~..o..,T.,.......,::,....~..,..,.......,..,.......,..:.......~~"
-    - "~~,..,.......,..,.:.....,.~,.......,..,.......,..,.....:.,..,.~~"
-    - "~~......,..,.....:.,..,...~...,..,o......,..,.......,..:....o.~~"
-    - "~~.,..,.......,::,.......,~.,.......,..,.......,..,....:..,..,~~"
-    - "~~.......,..,.+::::::..,..~....,..,.......,..,.......,T.:.....~~"
-    - "~~..,..,......:,..,..::...,~.,.......,..,.......,..,...T:T.,..~~"
-    - "~~,.......,..:.......,.:,...~...,..,.......,..,.......,.T:....~~"
-    - "~~...,..,....:..,..,....::.,~.,.......,..,.......,..,.TT.:..,.~~"
-    - "~~.,.......,:.,.......,..,:..~...,..,.......,..,.......,.:,...~~"
-    - "~~....,..,.:.....,..,......:,.~,.......,..,.......,..,....:..,~~"
-    - "~~..,.....:.,..,.......,..,:...~..,..,.......,..,.......,.+,..~~"
-    - "~~.....,.:,.......,..,......:,..~.......,..,.......,..,...^^.^~~"
-    - "~~,..,..:....,..,...^...,..,.:..~..,..,.......,..,.......,^^,^~~"
-    - "~~......:..,.......,..^......:,..~.......,..,.......,..,..^^.^~~"
-    - "~~.,..,:..o...,..,.......,..,.:...~.T..,.......,..,.......^^.^~~"
-    - "~~.....:.,..,.......,..,......:,..,~~.T...,..,.......,..,.....~~"
-    - "~~..,.+,.......,..,.......,..,.:.....~..,.......,..,......^^.^~~"
-    - "~~,.......,..,.......,..,......:,..,T.~....,..,.......,..,^^.^~~"
-    - "~~...,..,T......,..,.......,..,:......,~~,.......,..,.....^^,^~~"
-    - "~~.,......T,..,.......,..,......:,..,....~..,..,.......,..,...~~"
-    - "~~....,.T,.T.....,..,.......,..,+......,..~~......,..,.......,~~"
-    - "~~..,.....T.T..,.......,..,.......,..,......~,..,.......,..,..~~"
-    - "~~.....,..,.......,..,......o,..,.......,..,.~....^,..,.......~~"
-    - "~~^.^^^.^^^.^^^.^^^.^^^.^^^,^^^.^^^,^^^.^^^.^^~~^^^.^^^.^^^.^^~~"
-    - "~~^^.^^^,^^^.^^^.^^^.^^^.^^^.^^^.^^^.^^^.^^^,^^^~~~~,^^^.^^^.^~~"
-    - "~~^^^.^^^.^^^.^^^,^^^.^^^,^^^.^^^.^^^.^^^.^^^.^^^.^^~~~~~~^^^,~~"
-    - "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    - "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    - "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    - "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    - "wwggggggghgghggggggghgghggwgggghgghggggggghgghggggggghgghgggggww"
+    - "ww^g^^^^g^^^^g^^^^h^^^^g^^w^g^^^^g^^^^g^^^^g^^^^h^^^^g^^^^g^^^ww"
+    - "ww^^g^^^^g^^^^g^^^^g^^^^h^w^^g^^^^g^^^^g^^^^g^^^^g^^^^h^^^^g^^ww"
+    - "ww^^^h^^^^g^^^^g^^^^g^^^^gw^^^h^^^^g^^^^g^^^^g^^^^g^^^^g^^^^h^ww"
+    - "wwghggggggpppppppppppppppgbgppppppppppppppppppphggggggghgghgggww"
+    - "wwgggghgghpgggggghgghgggggwghgghggggppghgghggggpgghgghggggggghww"
+    - "ww^^hgggggpghgghggggogghggwgggggggppghggggggghggpppgggggogghggww"
+    - "ww^g^gghggpggggggghgghggggwgghgghpgggggghgghggggggphgghgggggggww"
+    - "wwh^^hggggpgghgghggggggghgwhgggppgghgghggggggghgghgpggggghgghgww"
+    - "ww^^gggghgghggggggghgghgggwgggpgghggggggghgghggggggphgghggggggww"
+    - "ww^h^ghggggggghgttggggggghwghpgggggghgghggggggghgghpgggggghgghww"
+    - "wwg^^gggghgghgggggtthgghggwgpgghgghggggggghgghggggggphgghgggggww"
+    - "ww^^hgghggggggghgghgggggggbgghggggggghgghgggtggghgghpg^gggghggww"
+    - "wwhggggggghgghggggggghgghgwggggghgghggggggghgthggggggphg^hggggww"
+    - "wwggghgthggggggghgghggggpgwhgghggggggghgghggggtgthgghpgggggghgww"
+    - "wwghggggtggtgghggggggghpghwgggggghgghggggggghggtgggggpghgghgggww"
+    - "wwgggghggtggggggghgghgpgggwghgghggggggghgghgggtgtghgghpgggggghww"
+    - "wwgghggtggtghgghgggggpghggwggggggghgghggggggghgghgggggpghgghggww"
+    - "wwggogghtghggggggghpphggggwgghgghggggggghgghggggggghggpgggggggww"
+    - "wwhgghggggggghgghgpggggghgwhggggggghgghggggggghgghgggggpghgghgww"
+    - "wwgggggghgghgggggpghgghgggwggghgghogggggghgghggggggghggpggggogww"
+    - "wwghgghggggggghpphggggggghwghggggggghgghggggggghgghggggpgghgghww"
+    - "wwggggggghgghgpppppppgghggwgggghgghggggggghgghggggggghtgpgggggww"
+    - "wwgghgghggggggphgghggppggghwghggggggghgghggggggghgghgggtptghggww"
+    - "wwhggggggghggpggggggghgphgggwggghgghggggggghgghggggggghgtpggggww"
+    - "wwggghgghggggpgghgghggggppghwghggggggghgghggggggghgghgttgpgghgww"
+    - "wwghggggggghpghggggggghgghpggwggghgghggggggghgghggggggghgphgggww"
+    - "wwgggghgghgpggggghgghggggggphgwhggggggghgghggggggghgghggggpgghww"
+    - "wwgghgggggpghgghggggggghgghpgggwgghgghggggggghgghggggggghgphggww"
+    - "wwggggghgphggggggghgghggggggphggwggggggghgghggggggghgghggg^^g^ww"
+    - "wwhgghggpgggghgghggg^ggghgghgpggwgghgghggggggghgghgggggggh^^h^ww"
+    - "wwggggggpgghggggggghgg^ggggggphggwggggggghgghggggggghgghgg^^g^ww"
+    - "wwghgghpggoggghgghggggggghgghgpgggwgtgghggggggghgghggggggg^^g^ww"
+    - "wwgggggpghgghggggggghgghggggggphgghwwgtggghgghggggggghgghgggggww"
+    - "wwgghgphggggggghgghggggggghgghgpgggggwgghggggggghgghgggggg^^g^ww"
+    - "wwhggggggghgghggggggghgghggggggphgghtgwgggghgghggggggghggh^^g^ww"
+    - "wwggghgghtgggggghgghggggggghgghpgggggghwwhggggggghgghggggg^^h^ww"
+    - "wwghggggggthgghggggggghgghggggggphgghggggwgghgghggggggghgghgggww"
+    - "wwgggghgthgtggggghgghggggggghgghpgggggghggwwgggggghgghggggggghww"
+    - "wwgghgggggtgtgghggggggghgghggggggghgghggggggwhgghggggggghgghggww"
+    - "wwggggghgghggggggghgghggggggohgghggggggghgghgwgggg^hgghgggggggww"
+    - "ww^g^^^g^^^g^^^g^^^g^^^g^^^h^^^g^^^h^^^g^^^g^^ww^^^g^^^g^^^g^^ww"
+    - "ww^^g^^^h^^^g^^^g^^^g^^^g^^^g^^^g^^^g^^^g^^^h^^^wwwwh^^^g^^^g^ww"
+    - "ww^^^g^^^g^^^g^^^h^^^g^^^h^^^g^^^g^^^g^^^g^^^g^^^g^^wwwwww^^^hww"
+    - "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    - "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
   exits:
     - { at: [14, 24], to: map.field, arrive: [11, 8] }
     - { at: [50, 8], to: map.town.compassion, arrive: [1, 1] }

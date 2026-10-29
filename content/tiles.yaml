@@ -2,7 +2,7 @@
 sheets:
   town: { file: kenney-tiny-town.png, columns: 12 }
   dungeon: { file: kenney-tiny-dungeon.png, columns: 12 }
-  walls: { file: walls32.png, columns: 6, tile: 32 }   # 코드로 그린 32px 벽·문·서고 타일(scripts/assets/make-wall-sheet.py)
+  walls: { file: walls32.png, columns: 7, tile: 32 }   # 코드로 그린 32px 벽·문·서고 타일(scripts/assets/make-wall-sheet.py)
 tiles:
   ".": { sprite: [town, 1], walk: 1 }
   ",": { sprite: [town, 4], walk: 2 }
@@ -10,7 +10,7 @@ tiles:
   "=": { sprite: [town, 65], walk: 1 }
   "~": { sprite: [town, 77], walk: null }
   T: { sprite: [town, 5], walk: null }
-  "^": { sprite: [town, 45], walk: null }
+  "^": { sprite: [walls, 6], walk: null }
   "#": { sprite: [walls, 0], walk: null }
   "+": { sprite: [walls, 1], walk: 1 }
   o: { sprite: [town, 93], walk: null }

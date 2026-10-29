@@ -19,6 +19,8 @@ export interface RenderResources {
   readonly images: ReadonlyMap<string, HTMLImageElement>
 }
 
+/** walls32 시트에서 배경이 투명한 칸(산). 나머지 칸은 불투명이라 풀을 깔지 않는다. */
+const WALLS_MOUNTAIN = 6
 const OVERLAY_ORDER = ["path", "water", "stone"] as const
 
 /**
@@ -74,8 +76,11 @@ function drawGround(ctx: CanvasRenderingContext2D, res: RenderResources, content
   for (let y = y0; y < y1; y++) {
     for (let x = x0; x < x1; x++) {
       const tile = content.tiles[map.rows[y]?.[x] ?? ""]
-      if (tile?.sprite !== undefined) drawLegacy(ctx, res, content, tile.sprite, screenX(vp, x, size), screenY(vp, y, size), size)
-      else if (tile?.ground !== undefined || map.ground?.[y]?.[x] != null) drawBaseGrass(ctx, res, screenX(vp, x, size), screenY(vp, y, size), size)
+      if (tile?.sprite !== undefined) {
+        // 땅 종류가 있는 지도에서 투명한 옛 그림(산·열석 등)은 풀 위에 얹는다. 불투명한 새 시트(walls)는 그대로.
+        if (map.ground !== undefined && !("char" in tile.sprite) && (tile.sprite.sheet !== "walls" || tile.sprite.index === WALLS_MOUNTAIN)) drawBaseGrass(ctx, res, screenX(vp, x, size), screenY(vp, y, size), size)
+        drawLegacy(ctx, res, content, tile.sprite, screenX(vp, x, size), screenY(vp, y, size), size)
+      } else if (tile?.ground !== undefined || map.ground?.[y]?.[x] != null) drawBaseGrass(ctx, res, screenX(vp, x, size), screenY(vp, y, size), size)
     }
   }
   for (const kind of OVERLAY_ORDER) {

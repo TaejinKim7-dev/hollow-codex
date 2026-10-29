@@ -598,3 +598,8 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - PixelLab 보너스 오늘 3회 사용(집 정면·풀↔돌바닥·과부), 남은 2회: 과부 기본형 `widow`(`assets/sprites/characters/widow`, 프롬프트 `assets/generated/prompts/2026-10-29-base-types.md`)를 6개 마을 과부에 배정. `assign-npc-sprites.py`를 `[시트,번호]` 형식 옛 그림 전부(54명)로 넓혀 역할별 새 인물 그림을 배정했다(같은 그림이 마을 안에서 반복될 수 있음).
 - 전투: `CombatUnit.maxHp`(체력 막대 가득 값, 시작 때 기록), 막힌 밀치기는 타격음만(밀치기 소리 중복 제거). 둘 다 테스트 추가.
 - 다음: 기본형 나머지(아이·상인·서기 등), 마을 건물 정면(집 정면 그림 `kalas/house-front.png` 활용 방안: 실내로 걸어 들어가는 구조라 아직 안 놓음), C-3b.
+
+## 2026-10-29 대륙(map.over) 새 땅 이전 + 산 타일 + 마을 입구 집
+- `content/towns/overworld/maps.yaml`: `.`→g, `,`→h, `:`→p, `T`→t, `~`→w, `=`→b(다리 물건 `obj.bridge` 2곳), `+`→p(마을 입구 8곳에 `obj.house-front` 집 정면, 문 앞 칸은 흙길). `terrainCost`는 새 글자로 다시 썼다(옛과 같은 비용: g1 h2 p2 w/t/^ 막힘 b1). 물(`w`)과 맞닿은 길 4칸은 `g`로(땅 인접 규칙). 이동 규칙은 타일 `walk`로 같다(나무 t·물 w는 못 감).
+- `walls32.png`에 산 타일(칸 6, 배경 투명) 추가 → `^`. 렌더러: 땅 종류가 있는 지도의 투명한 옛 그림(산·열석)은 풀 바닥을 먼저 깐다(`WALLS_MOUNTAIN`만 투명, 나머지 walls 칸은 불투명). 캡처 직접 확인: `docs/screenshots/2026-10-29-overworld*.png`.
+- 남은 옛 타일: 열석 `o`(옛 16px), 칼라스 필드 `S`. 건물은 지붕 없는 벽 블록(집 정면 물건은 입구 장식에만 사용).
