@@ -1656,3 +1656,4 @@ ui.combat.special-banner: "SPECIAL!"
 ui.combat.morale: Resolve
 ui.combat.objective.survive: "Goal: hold out {max} rounds ({n}/{max})"
 ui.combat.objective.escape: "Goal: reach the marked cell"
+ui.notice.tip-combat: "Strike an enemy from the side or back to hurt more; a friend beside the target adds a chain hit. Yellow cells show where enemies will stand next."

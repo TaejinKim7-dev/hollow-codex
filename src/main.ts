@@ -191,13 +191,22 @@ new ResizeObserver(resize).observe(canvas)
 
 // ── 대화 로그와 자동 저장 ───────────────────────────────
 /** 화면을 막지 않는 짧은 안내. 문구는 ui.notice.<name> 키다. */
-function showNotice(name: SessionNotice): void {
+function showNotice(name: SessionNotice | "tip-combat"): void {
   const node = document.createElement("div")
   node.className = "notice"
   node.setAttribute("role", "status")
   node.textContent = t(state?.language ?? "ko", content.strings, `ui.notice.${name}`)
   document.body.appendChild(node)
   window.setTimeout(() => node.remove(), 4000)
+}
+
+/** 처음 전투를 시작할 때 한 번만 짧은 요령을 보여 준다(브라우저 저장소에 표시를 남긴다; 쓸 수 없으면 매번 보이지 않게 생략). */
+function showFirstCombatTip(): void {
+  try {
+    if (window.localStorage.getItem("hollow-codex.tip-combat") !== null) return
+    window.localStorage.setItem("hollow-codex.tip-combat", "1")
+  } catch { return }
+  showNotice("tip-combat")
 }
 
 function maybeAutoSave(next: GameState, events: readonly GameEvent[]): void {
@@ -287,6 +296,7 @@ export function apply(cmd: Command): readonly GameEvent[] {
   if (cmd.type === "endTalk") dialogueLog = []
   handleEvents(events)
   for (const name of eventSounds(events, cmd)) playSfx(name)
+  if (events.some((e) => e.type === "combatStarted")) showFirstCombatTip()
   // `moved`·`mapChanged` 없이 위치나 지도가 바뀐 경우(열석 고리 이동, 도망, 패배)도 걷기 상태와 그림을 맞춘다.
   motion = resyncMotion(motion, next.player.pos, next.player.facing)
   if (next.mapId !== s.mapId) ensureMapAssets(next.mapId)

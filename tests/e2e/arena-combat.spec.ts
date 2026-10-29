@@ -19,6 +19,7 @@ test("arena: walk in from the field and a wolf fight starts; trees do not cover 
   const s = await hook(page)
   expect(s.combat).not.toBeNull()
   expect(s.combat!.units.filter((u) => u.side === "enemy")).toHaveLength(3)
+  await expect(page.locator(".notice")).toContainText("연계")   // 처음 전투 요령
   await page.screenshot({ path: info.outputPath("arena-combat.png") })
   expect(errors).toEqual([])
 })

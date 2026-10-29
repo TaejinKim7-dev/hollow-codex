@@ -1654,3 +1654,4 @@ ui.combat.special-banner: "필살!"
 ui.combat.morale: 마음
 ui.combat.objective.survive: "목표: {max}라운드를 버텨라 ({n}/{max})"
 ui.combat.objective.escape: "목표: 표시된 칸까지 탈출"
+ui.notice.tip-combat: "적의 옆·등을 노리면 더 아프고, 같은 편이 적 옆에 서 있으면 연계가 이어집니다. 노란 칸은 적이 다음에 설 자리입니다."
