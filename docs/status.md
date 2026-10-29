@@ -50,9 +50,9 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 - 2026-10-18 Codex가 이 작업 폴더에서 `todo-1-walk-review`로 checkout한 뒤, 다른 에이전트(Claude)가 그 사실을 모르고 커밋 12개를 그 브랜치에 쌓고 `git push origin main`만 해서 원격에 안 올라감 → 2026-10-19 fast-forward로 main에 반영(e97a1d7).
 - **규칙**: 커밋 전 `git branch --show-current` 확인. 푸시는 `git push origin HEAD:<브랜치>`로 현재 브랜치를 명시. 다른 에이전트와 동시에 작업하면 각자 `git worktree`를 쓴다.
 
-## 알려진 한계 (0.1.0)
-- 그래픽: 검은 사각형, 추정 타일 번호, 16×16 → 0.2.0에서 교체. 소리: 단음 칩 합성 → 녹음 음원으로 교체.
-- 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 1/8, 능력 1/7만 효과. 에필로그가 위기 풀이를 반영하지 않음.
+## 알려진 한계 (2026-10-29)
+- 그림: 건물은 지붕 없는 벽 블록, 기본형 인물 7종·걷기 그림·마을색 변형·애니메이션 NPC 없음(PixelLab 잔액 0). 소리: 직접 듣지 못함(🧑).
+- 동료는 8명이지만 개별 합류·이탈 대사와 재합류 조건이 없다. 병과(이동력·공격 모양), 호위·증원 목표, 마을 이야기 전투 재배치는 아직. 상세 `README.md` 알려진 한계, `docs/handoff.md` 끝.
 
 ## 마지막 게이트
 oc/fx-tracking-tests (2026-10-29): npm run test:unit 0 (558 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
