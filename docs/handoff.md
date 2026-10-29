@@ -592,3 +592,9 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 화면: HUD 이름 줄에 "기세 n/6", 가득 차면 "필살" 버튼(공격 옆), 방향 키/인접 칸 탭으로 지정. 캔버스: 격자 왼쪽 위 기세 칸 막대(가득 차면 깜빡), 필살 시 "필살!" 배너 + 타격 350ms 지연 + 큰 흔들림(상한 10px), 옆 피해자는 동시에 숫자.
 - 확인: 563 passed, 게이트 전부 0, E2E 3개, 필살 프레임 스트립 직접 확인(`docs/screenshots/2026-10-29-C3a-special-strip.png`, 배너→충돌→처치 페이드→적의 차례). `?debug=1`의 `__hollowCodex__.debugSetMomentum(n)`으로 확인(저장 영향 없음). 도구 `SPECIAL=1 node scripts/visual/fx-strip.mjs <out.png>`.
 - 못 한 것: 필살 전용 소리(지금은 일반 타격음), 적 필살, C-3b(병과·숨·책략 3단계·8미덕 스킬).
+
+## 2026-10-29 벽·문·마루·계단 32px 타일(코드로 그림), 과부 기본형, 옛 인물 그림 교체
+- 옛 Kenney 16px 벽(주황 줄무늬)·문·바닥이 새 풀·돌바닥과 안 어울려서 `scripts/assets/make-wall-sheet.py`(순수 파이썬, AI 생성 없음)로 `assets/tiles/walls32.png`(6칸: 마을 벽, 문, 서고 벽, 서고 바닥, 실내 마루, 계단)을 그려 `content/tiles.yaml`의 `#` `+` `%` `_` `:` `>` `<`를 새 시트(`walls`, tile 32)로 바꿨다. 지도 글자는 그대로. 캡처 직접 확인: `docs/screenshots/2026-10-29-kalas-town-walls.png`, `-archive-walls.png`, `-town-valor-walls.png`. 한계: 건물은 여전히 "벽 블록 + 안쪽 마루"(지붕·정면 없음), 작은 지도(서고)는 가운데 정렬이라 좌우 검은 띠, 대륙(`^ T o L S` 등 나머지 옛 타일)은 그대로.
+- PixelLab 보너스 오늘 3회 사용(집 정면·풀↔돌바닥·과부), 남은 2회: 과부 기본형 `widow`(`assets/sprites/characters/widow`, 프롬프트 `assets/generated/prompts/2026-10-29-base-types.md`)를 6개 마을 과부에 배정. `assign-npc-sprites.py`를 `[시트,번호]` 형식 옛 그림 전부(54명)로 넓혀 역할별 새 인물 그림을 배정했다(같은 그림이 마을 안에서 반복될 수 있음).
+- 전투: `CombatUnit.maxHp`(체력 막대 가득 값, 시작 때 기록), 막힌 밀치기는 타격음만(밀치기 소리 중복 제거). 둘 다 테스트 추가.
+- 다음: 기본형 나머지(아이·상인·서기 등), 마을 건물 정면(집 정면 그림 `kalas/house-front.png` 활용 방안: 실내로 걸어 들어가는 구조라 아직 안 놓음), C-3b.

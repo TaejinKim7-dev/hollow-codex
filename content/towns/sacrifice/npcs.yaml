@@ -9,7 +9,7 @@
     "18": [7, 3]
   name: sacrifice.npc.altar-priest.name
   greet: sacrifice.npc.altar-priest.greet
-  sprite: [town, 90]
+  sprite: char.librarian-kalas
   topics:
     name:
       - text: sacrifice.npc.altar-priest.name.t
@@ -42,7 +42,7 @@
     "18": [6, 10]
   name: sacrifice.npc.widow.name
   greet: sacrifice.npc.widow.greet
-  sprite: [town, 94]
+  sprite: char.widow
   topics:
     name:
       - text: sacrifice.npc.widow.name.t
@@ -75,7 +75,7 @@
     "18": [12, 7]
   name: sacrifice.npc.child.name
   greet: sacrifice.npc.child.greet
-  sprite: [town, 88]
+  sprite: char.child-kalas
   topics:
     name:
       - text: sacrifice.npc.child.name.t
@@ -108,7 +108,7 @@
     "18": [11, 8]
   name: sacrifice.npc.pilgrim.name
   greet: sacrifice.npc.pilgrim.greet
-  sprite: [town, 89]
+  sprite: char.hunter-field
   topics:
     name:
       - text: sacrifice.npc.pilgrim.name.t
@@ -138,7 +138,7 @@
     "18": [8, 14]
   name: sacrifice.npc.surgeon.name
   greet: sacrifice.npc.surgeon.greet
-  sprite: [town, 87]
+  sprite: char.craftsman
   topics:
     name:
       - text: sacrifice.npc.surgeon.name.t
@@ -171,7 +171,7 @@
     "18": [18, 3]
   name: sacrifice.npc.scribe.name
   greet: sacrifice.npc.scribe.greet
-  sprite: [town, 92]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: sacrifice.npc.scribe.name.t
@@ -201,7 +201,7 @@
     "18": [14, 14]
   name: sacrifice.npc.mason.name
   greet: sacrifice.npc.mason.greet
-  sprite: [town, 91]
+  sprite: char.craftsman
   topics:
     name:
       - text: sacrifice.npc.mason.name.t
@@ -231,7 +231,7 @@
     "18": [19, 14]
   name: sacrifice.npc.baker.name
   greet: sacrifice.npc.baker.greet
-  sprite: [town, 86]
+  sprite: char.mira-weaver
   topics:
     name:
       - text: sacrifice.npc.baker.name.t
@@ -258,7 +258,7 @@
     "18": [7, 14]
   name: sacrifice.npc.healer.name
   greet: sacrifice.npc.healer.greet
-  sprite: [town, 93]
+  sprite: char.nia-scribe
   topics:
     name:
       - text: sacrifice.npc.healer.name.t
@@ -285,7 +285,7 @@
     "18": [17, 18]
   name: sacrifice.npc.gardener.name
   greet: sacrifice.npc.gardener.greet
-  sprite: [town, 85]
+  sprite: char.craftsman
   topics:
     name:
       - text: sacrifice.npc.gardener.name.t

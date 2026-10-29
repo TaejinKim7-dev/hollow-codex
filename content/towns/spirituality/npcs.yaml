@@ -9,7 +9,7 @@
     "18": [10, 9]
   name: spirituality.npc.monk.name
   greet: spirituality.npc.monk.greet
-  sprite: [town, 89]
+  sprite: char.robed-priest
   topics:
     name:
       - text: spirituality.npc.monk.name.t
@@ -43,7 +43,7 @@
     "18": [7, 9]
   name: spirituality.npc.novice.name
   greet: spirituality.npc.novice.greet
-  sprite: [town, 86]
+  sprite: char.robed-priest
   topics:
     name:
       - text: spirituality.npc.novice.name.t
@@ -71,7 +71,7 @@
     "18": [19, 4]
   name: spirituality.npc.scribe.name
   greet: spirituality.npc.scribe.greet
-  sprite: [town, 92]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: spirituality.npc.scribe.name.t
@@ -103,7 +103,7 @@
     "18": [4, 4]
   name: spirituality.npc.healer.name
   greet: spirituality.npc.healer.greet
-  sprite: [town, 87]
+  sprite: char.nia-scribe
   topics:
     name:
       - text: spirituality.npc.healer.name.t
@@ -133,7 +133,7 @@
     "18": [22, 3]
   name: spirituality.npc.hermit.name
   greet: spirituality.npc.hermit.greet
-  sprite: [town, 85]
+  sprite: char.robed-priest
   topics:
     name:
       - text: spirituality.npc.hermit.name.t
@@ -166,7 +166,7 @@
     "18": [13, 10]
   name: spirituality.npc.gardener.name
   greet: spirituality.npc.gardener.greet
-  sprite: [town, 91]
+  sprite: char.young-villager
   topics:
     name:
       - text: spirituality.npc.gardener.name.t
@@ -195,7 +195,7 @@
     "18": [11, 12]
   name: spirituality.npc.child.name
   greet: spirituality.npc.child.greet
-  sprite: [town, 93]
+  sprite: char.child-kalas
   topics:
     name:
       - text: spirituality.npc.child.name.t
@@ -220,7 +220,7 @@
     "18": [21, 16]
   name: spirituality.npc.brewer.name
   greet: spirituality.npc.brewer.greet
-  sprite: [town, 88]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: spirituality.npc.brewer.name.t
@@ -247,7 +247,7 @@
     "18": [2, 3]
   name: spirituality.npc.gatekeeper.name
   greet: spirituality.npc.gatekeeper.greet
-  sprite: [town, 90]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: spirituality.npc.gatekeeper.name.t
@@ -273,7 +273,7 @@
     "18": [24, 10]
   name: spirituality.npc.widow.name
   greet: spirituality.npc.widow.greet
-  sprite: [town, 94]
+  sprite: char.widow
   topics:
     name:
       - text: spirituality.npc.widow.name.t

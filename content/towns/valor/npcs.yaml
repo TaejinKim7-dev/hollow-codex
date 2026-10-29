@@ -9,7 +9,7 @@
     "18": [14, 11]
   name: valor.npc.champion.name
   greet: valor.npc.champion.greet
-  sprite: [town, 85]
+  sprite: char.hunter-field
   topics:
     name:
       - text: valor.npc.champion.name.t
@@ -41,7 +41,7 @@
     "18": [8, 7]
   name: valor.npc.sergeant.name
   greet: valor.npc.sergeant.greet
-  sprite: [town, 86]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: valor.npc.sergeant.name.t
@@ -69,7 +69,7 @@
     "18": [5, 17]
   name: valor.npc.smith.name
   greet: valor.npc.smith.greet
-  sprite: [town, 87]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: valor.npc.smith.name.t
@@ -93,7 +93,7 @@
     "18": [21, 4]
   name: valor.npc.brewer.name
   greet: valor.npc.brewer.greet
-  sprite: [town, 88]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: valor.npc.brewer.name.t
@@ -117,7 +117,7 @@
     "18": [14, 7]
   name: valor.npc.child.name
   greet: valor.npc.child.greet
-  sprite: [town, 89]
+  sprite: char.child-kalas
   topics:
     name:
       - text: valor.npc.child.name.t
@@ -141,7 +141,7 @@
     "18": [4, 1]
   name: valor.npc.veteran.name
   greet: valor.npc.veteran.greet
-  sprite: [town, 90]
+  sprite: char.tobi-kalas
   topics:
     name:
       - text: valor.npc.veteran.name.t
@@ -165,7 +165,7 @@
     "18": [11, 16]
   name: valor.npc.scout.name
   greet: valor.npc.scout.greet
-  sprite: [town, 91]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: valor.npc.scout.name.t
@@ -188,7 +188,7 @@
     "18": [21, 17]
   name: valor.npc.healer.name
   greet: valor.npc.healer.greet
-  sprite: [town, 92]
+  sprite: char.mira-weaver
   topics:
     name:
       - text: valor.npc.healer.name.t
@@ -212,7 +212,7 @@
     "18": [12, 14]
   name: valor.npc.standard.name
   greet: valor.npc.standard.greet
-  sprite: [town, 93]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: valor.npc.standard.name.t
@@ -236,7 +236,7 @@
     "18": [25, 7]
   name: valor.npc.widow.name
   greet: valor.npc.widow.greet
-  sprite: [town, 94]
+  sprite: char.widow
   topics:
     name:
       - text: valor.npc.widow.name.t

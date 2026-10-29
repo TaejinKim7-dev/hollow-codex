@@ -10,7 +10,7 @@
     "18": [6, 4]
   name: humility.npc.silent-elder.name
   greet: humility.npc.silent-elder.greet
-  sprite: [town, 89]
+  sprite: char.warden-kalas
   topics:
     name:
       - text: humility.npc.silent-elder.name.t
@@ -38,7 +38,7 @@
     "18": [11, 10]
   name: humility.npc.listener.name
   greet: humility.npc.listener.greet
-  sprite: [town, 90]
+  sprite: char.librarian-kalas
   topics:
     name:
       - text: humility.npc.listener.name.t
@@ -65,7 +65,7 @@
     "18": [10, 8]
   name: humility.npc.wellkeeper.name
   greet: humility.npc.wellkeeper.greet
-  sprite: [town, 91]
+  sprite: char.craftsman
   topics:
     name:
       - text: humility.npc.wellkeeper.name.t
@@ -90,7 +90,7 @@
     "18": [18, 9]
   name: humility.npc.child.name
   greet: humility.npc.child.greet
-  sprite: [town, 93]
+  sprite: char.child-kalas
   topics:
     name:
       - text: humility.npc.child.name.t
@@ -116,7 +116,7 @@
     "18": [20, 3]
   name: humility.npc.librarian.name
   greet: humility.npc.librarian.greet
-  sprite: [town, 92]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: humility.npc.librarian.name.t
@@ -141,7 +141,7 @@
     "18": [20, 16]
   name: humility.npc.gardener.name
   greet: humility.npc.gardener.greet
-  sprite: [town, 94]
+  sprite: char.craftsman
   topics:
     name:
       - text: humility.npc.gardener.name.t
@@ -166,7 +166,7 @@
     "18": [9, 15]
   name: humility.npc.cook.name
   greet: humility.npc.cook.greet
-  sprite: [town, 95]
+  sprite: char.nia-scribe
   topics:
     name:
       - text: humility.npc.cook.name.t
@@ -189,7 +189,7 @@
     "18": [5, 5]
   name: humility.npc.novice.name
   greet: humility.npc.novice.greet
-  sprite: [town, 86]
+  sprite: char.robed-priest
   topics:
     name:
       - text: humility.npc.novice.name.t
@@ -214,7 +214,7 @@
     "18": [5, 8]
   name: humility.npc.hermit.name
   greet: humility.npc.hermit.greet
-  sprite: [town, 85]
+  sprite: char.gatekeeper-field
   topics:
     name:
       - text: humility.npc.hermit.name.t
@@ -242,7 +242,7 @@
     "18": [15, 9]
   name: humility.npc.widow.name
   greet: humility.npc.widow.greet
-  sprite: [town, 88]
+  sprite: char.widow
   topics:
     name:
       - text: humility.npc.widow.name.t

@@ -9,7 +9,7 @@
     "18": [5, 3]
   name: honor.npc.elder.name
   greet: honor.npc.elder.greet
-  sprite: [town, 90]
+  sprite: char.warden-kalas
   topics:
     name:
       - text: honor.npc.elder.name.t
@@ -43,7 +43,7 @@
     "18": [7, 4]
   name: honor.npc.heir.name
   greet: honor.npc.heir.greet
-  sprite: [town, 89]
+  sprite: char.young-villager
   topics:
     name:
       - text: honor.npc.heir.name.t
@@ -75,7 +75,7 @@
     "18": [11, 9]
   name: honor.npc.herald.name
   greet: honor.npc.herald.greet
-  sprite: [town, 85]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: honor.npc.herald.name.t
@@ -104,7 +104,7 @@
     "18": [18, 3]
   name: honor.npc.scribe.name
   greet: honor.npc.scribe.greet
-  sprite: [town, 92]
+  sprite: char.confessor-kalas
   topics:
     name:
       - text: honor.npc.scribe.name.t
@@ -134,7 +134,7 @@
     "18": [5, 14]
   name: honor.npc.swordmaster.name
   greet: honor.npc.swordmaster.greet
-  sprite: [town, 86]
+  sprite: char.guard-soldier
   topics:
     name:
       - text: honor.npc.swordmaster.name.t
@@ -167,7 +167,7 @@
     "18": [18, 14]
   name: honor.npc.brewer.name
   greet: honor.npc.brewer.greet
-  sprite: [town, 88]
+  sprite: char.innkeeper-kalas
   topics:
     name:
       - text: honor.npc.brewer.name.t
@@ -193,7 +193,7 @@
     "18": [9, 9]
   name: honor.npc.child.name
   greet: honor.npc.child.greet
-  sprite: [town, 93]
+  sprite: char.child-kalas
   topics:
     name:
       - text: honor.npc.child.name.t
@@ -222,7 +222,7 @@
     "18": [21, 9]
   name: honor.npc.widow.name
   greet: honor.npc.widow.greet
-  sprite: [town, 94]
+  sprite: char.widow
   topics:
     name:
       - text: honor.npc.widow.name.t
@@ -255,7 +255,7 @@
     "18": [13, 13]
   name: honor.npc.mason.name
   greet: honor.npc.mason.greet
-  sprite: [town, 91]
+  sprite: char.craftsman
   topics:
     name:
       - text: honor.npc.mason.name.t
@@ -284,7 +284,7 @@
     "18": [12, 18]
   name: honor.npc.seamstress.name
   greet: honor.npc.seamstress.greet
-  sprite: [town, 87]
+  sprite: char.mira-weaver
   topics:
     name:
       - text: honor.npc.seamstress.name.t
