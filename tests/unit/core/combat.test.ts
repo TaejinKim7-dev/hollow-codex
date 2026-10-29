@@ -236,6 +236,26 @@ describe("grid combat", () => {
       expect(unit(r.state, "npc.mate").defending).toBe(true)
       expect(r.state.combat!.breath).toBe(1)                                                        // the mate has not acted yet, so no enemy phase / regen
     })
+    it("declare makes that enemy aim at the declarer for the round; still lowers the morale of enemies within 2; share moves hp to a neighbouring ally", () => {
+      const M5 = (x: number, y: number, hp = 8) => ({ id: "npc.mate", side: "ally", creature: null, pos: { x, y }, hp, attack: 2, maxHp: 8 }) as const
+      const decl = learned(withBreath(combatState([P(2, 1), M5(0, 1), S(2, 0, { hp: 9, morale: 9, maxMorale: 9 }), B(4, 4)]), 3), "ability.honor-truth")
+      const d = act2(decl, { kind: "skill", skill: "declare", dir: "n" })
+      expect(unit(d.state, "creature.slime#0").taunt).toBe("player")
+      const stillS = learned(withBreath(combatState([P(2, 1), S(2, 0, { hp: 9, morale: 9, maxMorale: 9 }), B(2, 3, { hp: 9, morale: 5, maxMorale: 5 })]), 3), "ability.spirituality-mind")
+      const st = act2(stillS, { kind: "skill", skill: "still" })
+      expect(unit(st.state, "creature.slime#0").morale).toBe(7)                 // 9 − 2 stilled (the bandit closed in during the enemy phase, so no isolation)
+      expect(unit(st.state, "creature.bandit#1").morale).toBe(3)                // 5 − 2
+      const shareS = learned(withBreath(combatState([P(2, 1, { hp: 6 }), M5(1, 1, 2), S(2, 5, { hp: 9 }), B(4, 5, { hp: 9 })]), 3), "ability.sacrifice-meaning")
+      const sh = act2(shareS, { kind: "skill", skill: "share", dir: "w" })
+      expect(unit(sh.state, "player").hp).toBe(4)                                // 6 − 2
+      expect(unit(sh.state, "npc.mate").hp).toBe(5)                              // 2 + 3
+    })
+    it("a declared enemy's intent targets the declarer even when another ally is closer", () => {
+      const M5 = { id: "npc.mate", side: "ally", creature: null, pos: { x: 3, y: 1 }, hp: 8, attack: 2 } as const
+      const s0 = combatState([P(0, 5), M5, S(3, 0, { hp: 9, taunt: "player" }), B(5, 5)])
+      expect(s0.combat!.intents["creature.slime#0"]!.moveTo).not.toEqual({ x: 3, y: 0 })   // it walks toward the player, not the neighbour mate
+      expect(s0.combat!.intents["creature.slime#0"]!.attack).not.toBe("npc.mate")
+    })
     it("mark makes the next hit on that enemy hurt more (×1.5)", () => {
       const M4 = { id: "npc.mate", side: "ally", creature: null, pos: { x: 1, y: 0 }, hp: 8, attack: 4 } as const
       const base = learned(withBreath(combatState([P(2, 1), M4, S(2, 0, { hp: 30, facing: "s" }), B(4, 4)]), 3), "ability.justice-eye")

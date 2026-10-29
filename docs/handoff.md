@@ -647,3 +647,6 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 
 ## 2026-10-29 에필로그에 위기 풀이 반영
 - 알려진 한계였던 "마을 위기에서 고른 풀이가 에필로그에 반영되지 않음"을 해결: `codexView().epilogue.recaps`(고른 위기마다 `epilogue.<crisisId>.<optionId>` 한 줄, 위기 id 순)와 패널 `.recaps` 목록. 8개 위기 × 2개 풀이 = 16줄(ko·en 모두; 마을 이름 칼라스·리오나·솔강·셀레스·디오네·아르곤·엘리아·헤론 일치). 테스트 2개(고른 풀이가 줄에 반영, 모든 풀이에 문자열 존재). 캡처 `docs/screenshots/2026-10-29-epilogue-recaps.png`. 디버그 `debugFinishCodex(word, crises)`.
+
+## 2026-10-29 책략 6종 완성(능력 7개 모두 효과)
+- C-3b에 `declare 선언`(ability.honor-truth: 인접 적이 그 라운드 나를 노림, `CombatUnit.taunt`, `computeIntents`가 반영), `share 나눔`(ability.sacrifice-meaning: 내 체력 2를 덜어 인접 아군 3 회복, 최대 체력 한도, 내 hp는 1 이상 유지), `still 가라앉힘`(ability.spirituality-mind: 주변 2칸 적 마음 −2, 방향 불필요) 추가. 값은 `combat.yaml breath.{shareCost,shareHeal,stillLoss}`. 라운드가 바뀌면 표식·선언이 사라진다(`clearTurnFlags`). HUD 버튼 6개 확인(`docs/screenshots/2026-10-29-C3b-skills.png`), 테스트 2개.

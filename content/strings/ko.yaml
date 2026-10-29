@@ -1675,3 +1675,6 @@ epilogue.crisis.spirituality.license.option.open-meditation: "엘리아의 명�
 epilogue.crisis.spirituality.license.option.exile-monk: "엘리아의 면허 장부는 거둬들여졌고 주지는 떠났다. 새 장부에는 이름 대신 숨 쉰 날수가 적히기 시작했다."
 epilogue.crisis.valor.challenge.option.allow-retreat: "솔강에서는 방패를 들고 돌아오는 이도 박수를 받는다. 무패의 투사는 이제 가르치는 쪽에 선다."
 epilogue.crisis.valor.challenge.option.duel-honor: "솔강의 투사는 무릎을 꿇었고 그대의 창은 목 앞에서 멈췄다. 이긴 자도 진 자도 그 순간을 노래로 남겼다."
+ui.combat.skill.declare: 선언
+ui.combat.skill.share: 나눔
+ui.combat.skill.still: 가라앉힘

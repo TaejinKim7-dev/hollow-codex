@@ -63,7 +63,9 @@ export function computeIntents(combat: CombatState, content: GameContent): Comba
     if (enemy.side !== "enemy" || !alive(enemy)) continue
     const blocked = (p: Pos) => reserved.some((r) => samePos(r, p)) || occupied(combat.units, p, enemy.id)
     const ai = (enemy.creature === null ? undefined : content.creatures[enemy.creature]?.ai) ?? "aggressive"
-    const allies = combat.units.filter((u) => u.side === "ally" && alive(u))
+    const all = combat.units.filter((u) => u.side === "ally" && alive(u))
+    const taunter = enemy.taunt === undefined ? undefined : all.find((u) => u.id === enemy.taunt)
+    const allies = taunter === undefined ? all : [taunter]   // 선언: 이 적은 선언한 아군만 노린다
     const limit = RETREAT_RATIO[ai]
     if (limit !== undefined && enemy.morale !== undefined && enemy.maxMorale !== undefined && allies.length > 0 && enemy.morale <= Math.ceil(enemy.maxMorale * limit)) {
       const nearest = (p: Pos): number => Math.min(...allies.map((a) => manhattan(p, a.pos)))

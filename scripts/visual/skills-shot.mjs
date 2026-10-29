@@ -7,7 +7,7 @@ const errs = []; p.on("pageerror", (e) => errs.push(e.message)); p.on("console",
 await p.goto("http://localhost:5173/hollow-codex/?debug=1"); await p.waitForTimeout(1500);
 const key = async (k, n) => { for (let i = 0; i < n; i++) { await p.keyboard.press(k); await p.waitForTimeout(230); } };
 await key("ArrowRight", 2); await key("ArrowUp", 2); await key("ArrowRight", 4); await p.waitForTimeout(500);
-await p.evaluate(() => window.__hollowCodex__.debugGrantAbilities(["ability.compassion-persuade", "ability.valor-shield", "ability.justice-eye"]));
+await p.evaluate(() => window.__hollowCodex__.debugGrantAbilities(["*"]));
 await p.waitForTimeout(500);
 const st = () => p.evaluate(() => { const s = window.__hollowCodex__.state(); return s.combat === null ? null : s.combat.units.map(u => ({ id: u.id, side: u.side, x: u.pos.x, y: u.pos.y, gone: u.gone })); });
 for (let g = 0; g < 8; g++) {

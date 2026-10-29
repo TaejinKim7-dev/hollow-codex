@@ -383,7 +383,7 @@ export function mountPanels(
   const onSkillClick = (skill: SkillId): void => {
     const current = state
     if (current === null) return
-    if (skill === "guard") {                       // 방향이 필요 없다
+    if (skill === "guard" || skill === "still") {  // 방향이 필요 없다
       aim = null
       dispatch({ type: "combat", action: { kind: "skill", skill } })
       return

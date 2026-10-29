@@ -3,14 +3,18 @@ export type Dir = "n" | "e" | "s" | "w"
 export type Virtue = "honesty" | "compassion" | "valor" | "justice" | "sacrifice" | "honor" | "spirituality" | "humility"
 export interface Pos { readonly x: number; readonly y: number }
 
-/** 책략: calm = 달래기(마음 감소), guard = 막기(주변 아군 방어), mark = 표식(다음 타격이 더 아픔). 각각 능력 해금이 필요. */
-export type SkillId = "calm" | "guard" | "mark"
-export const SKILL_ABILITY: Readonly<Record<SkillId, string>> = { calm: "ability.compassion-persuade", guard: "ability.valor-shield", mark: "ability.justice-eye" }
+/** 책략(각각 능력 해금 필요): calm 달래기(마음 감소) · guard 막기(주변 아군 방어) · mark 표식(다음 타격이 더 아픔) · declare 선언(그 적이 다음에 나를 노림) · share 나눔(내 체력을 덜어 인접 아군 회복) · still 가라앉힘(주변 2칸 적의 마음 감소). */
+export type SkillId = "calm" | "guard" | "mark" | "declare" | "share" | "still"
+export const SKILL_ABILITY: Readonly<Record<SkillId, string>> = {
+  calm: "ability.compassion-persuade", guard: "ability.valor-shield", mark: "ability.justice-eye",
+  declare: "ability.honor-truth", share: "ability.sacrifice-meaning", still: "ability.spirituality-mind"
+}
 
 export interface CombatUnit {
   readonly id: Id; readonly side: "ally" | "enemy"; readonly creature: Id | null; readonly pos: Pos
   readonly hp: number; readonly attack: number; readonly defending: boolean
   readonly moved: boolean; readonly acted: boolean; readonly gone: null | "dead" | "retreated" | "fled"
+  readonly taunt?: Id                                              // 선언: 이 적은 이번 라운드 이 아군을 노린다(라운드가 바뀌면 사라짐)
   readonly marked?: boolean                                        // 표식(라운드가 바뀌면 사라짐): 맞는 피해 ×markBonus
   readonly morale?: number; readonly maxMorale?: number            // 마음(적만). 없으면 마음 규칙 없음
   readonly maxHp?: number                                          // 체력 막대의 가득 찬 값(없으면 시작 hp). 패배 뒤 낮은 hp로 시작해도 막대가 가득 차 보이지 않게

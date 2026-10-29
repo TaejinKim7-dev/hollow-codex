@@ -1677,3 +1677,6 @@ epilogue.crisis.spirituality.license.option.open-meditation: "The meditation hal
 epilogue.crisis.spirituality.license.option.exile-monk: "Elia's licence ledger was collected and the abbot left. The new ledger began to record days breathed instead of names."
 epilogue.crisis.valor.challenge.option.allow-retreat: "In Solgang even the one who returns carrying a shield is applauded. The undefeated fighter now stands on the teaching side."
 epilogue.crisis.valor.challenge.option.duel-honor: "Solgang's fighter knelt and your spear stopped at his throat. Winner and loser both left that moment in a song."
+ui.combat.skill.declare: Declare
+ui.combat.skill.share: Share
+ui.combat.skill.still: Still

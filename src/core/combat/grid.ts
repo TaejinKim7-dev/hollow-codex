@@ -79,14 +79,31 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
         for (const u of combat.units) if (u.side === "ally" && alive(u) && manhattan(u.pos, actor.pos) <= 1) next = withUnit(next, u.id, { defending: true })
         return settle(next, [{ type: "sfx", name: "defend" }], content)
       }
+      if (action.skill === "still") {
+        let next = done
+        for (const u of combat.units) {
+          if (u.side !== "enemy" || !alive(u) || u.morale === undefined || manhattan(u.pos, actor.pos) > 2) continue
+          next = withUnit(next, u.id, { morale: Math.max(0, u.morale - rules.breath.stillLoss) })
+        }
+        return settle(next, [{ type: "sfx", name: "persuade" }], content)
+      }
       const dir = action.dir
-      const target = dir === undefined ? undefined : enemyAt(combat.units, offset(actor.pos, dir))
-      if (dir === undefined || !target) return ignored
+      if (dir === undefined) return ignored
+      if (action.skill === "share") {
+        const mate = combat.units.find((u) => u.side === "ally" && alive(u) && u.id !== actor.id && samePos(u.pos, offset(actor.pos, dir)))
+        if (!mate || actor.hp <= 1) return ignored
+        const give = Math.min(rules.breath.shareCost, actor.hp - 1)
+        const healed = Math.min(mate.maxHp ?? mate.hp + rules.breath.shareHeal, mate.hp + rules.breath.shareHeal)
+        return settle(withUnit(withUnit(done, actor.id, { acted: true, facing: dir, hp: actor.hp - give }), mate.id, { hp: healed }), [{ type: "sfx", name: "persuade" }], content)
+      }
+      const target = enemyAt(combat.units, offset(actor.pos, dir))
+      if (!target) return ignored
       const facing = withUnit(done, actor.id, { acted: true, facing: dir })
       if (action.skill === "calm") {
         const lowered = target.morale === undefined ? {} : { morale: Math.max(0, target.morale - rules.breath.calmLoss) }
         return settle(withUnit(facing, target.id, lowered), [{ type: "sfx", name: "persuade" }], content)
       }
+      if (action.skill === "declare") return settle(withUnit(facing, target.id, { taunt: actor.id }), [{ type: "sfx", name: "persuade" }], content)
       return settle(withUnit(facing, target.id, { marked: true }), [{ type: "sfx", name: "persuade" }], content)
     }
     case "special": {
@@ -282,7 +299,7 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
   const lone = (u: CombatUnit): boolean => !units.some((o) => o.id !== u.id && o.side === "enemy" && alive(o) && manhattan(o.pos, u.pos) <= 2)
   const isolation = rulesOf(content).morale.isolationLoss
   const reset = units.map((u0) => {
-    const u = u0.marked === true ? { ...u0, marked: false } : u0
+    const u = clearTurnFlags(u0)
     if (u.side === "ally" && alive(u)) return { ...u, moved: false, acted: false, defending: false }
     if (u.side === "enemy" && alive(u) && u.morale !== undefined && lone(u)) return { ...u, morale: Math.max(0, u.morale - isolation) }
     return u
@@ -290,6 +307,13 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
   const breath = rulesOf(content).breath
   const next: CombatState = { ...combat, units: reset, round: combat.round + 1, breath: Math.min(breath.max, (combat.breath ?? 0) + breath.regen) }
   return { combat: { ...next, intents: computeIntents(next, content) }, events }
+}
+
+/** 라운드가 바뀌면 표식·선언이 사라진다. */
+function clearTurnFlags(u: CombatUnit): CombatUnit {
+  if (u.marked === undefined && u.taunt === undefined) return u
+  const { marked: _m, taunt: _t, ...rest } = u
+  return rest
 }
 
 /** 규칙 11: 살아 있는 적 없음 → 승리, 살아 있는 아군 없음 → 패배, 조우 목표(버티기·탈출)를 이루면 승리. 아니면 null. */
