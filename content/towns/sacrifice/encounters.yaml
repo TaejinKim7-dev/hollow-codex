@@ -9,4 +9,6 @@
   allyStart: [[3, 4], [2, 4], [4, 4]]
   enemies:
     - { creature: creature.sacrifice-penitent, at: [3, 1] }
+    - { creature: creature.sacrifice-penitent, at: [2, 1] }
+    - { creature: creature.sacrifice-penitent, at: [4, 1] }
   music: music.battle

@@ -10,4 +10,5 @@
   enemies:
     - { creature: creature.robber, at: [1, 0] }
     - { creature: creature.robber, at: [5, 0] }
+    - { creature: creature.compassion-beggar, at: [3, 1] }
   music: music.battle
