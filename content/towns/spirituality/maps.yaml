@@ -22,7 +22,7 @@
     - "#gg#ggc=cggc=#gg#gc==cgg#gg#"
     - "#gg#ggggggggg#gg#ggggggg#gg#"
     - "#<g#####+#####gg####+####gg#"
-    - "#gtgggtgggtgggtgggtggggtggg#"
+    - "#gggggggggtgggtgggtgggggggg#"
     - "############################"
   exits:
     - { at: [1, 17], to: map.over, arrive: [6, 36] }

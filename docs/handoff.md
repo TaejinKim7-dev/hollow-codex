@@ -661,3 +661,6 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-29 열석 고리 이동 단서 연결
 - README의 한계였던 "고리 이름·노래 단서를 주는 대화가 없어 이동이 열리지 않음" 해소: 각 마을의 노래 단서를 주는 대화 한 곳에 해당 고리 단서(`fact.ring.<미덕>`)를 같이 준다(칼라스 `lantern-song`→honesty, 리오나 `reona.song`, 솔강 `veteran job`, 셀레스 `mourning-lullaby`, 디오네 `widow-song`, 아르곤 `lineage-song`, 엘리아·헤론 `silent-chant`). `tests/scenario/ring-clues.test.ts`가 모든 고리 단서가 어떤 대화에서든 얻어지는지 확인. `reachable.py` 0.
 - 확인 못 한 것: 실제 화면에서 고리 메뉴로 순간이동하는 흐름의 느낌(🧑).
+
+## 2026-10-29 NPC 도달 불가 수정(나무가 건물 문을 막음)
+- 점검 도구로 NPC 일과 자리 옆에 걸어갈 수 없는 곳을 찾아보니, 헤론·엘리아 마을 아래쪽 건물의 문이 나무 줄에 갇혀 있었다(정원사·요리사·양조사·조각가 등 20개 슬롯). `scripts/assets/open-blocked-paths.py`(0-1 BFS로 막힌 길의 나무 `t`만 풀 `g`로, `--dry` 지원)로 6그루를 풀로 바꿨다. 재발 방지 `tests/scenario/npc-reachability.test.ts`(모든 NPC의 모든 슬롯에 도달 가능한 이웃 칸이 있는지). README의 "밤낮 일과" 한계는 NPC끼리 막는 경우만 남는다.
