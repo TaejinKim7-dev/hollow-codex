@@ -29,6 +29,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | ✅ | **전투 C-3b·C-4·C-5 일부(2026-10-29)**: 숨과 책략 3종(달래기·막기·표식, 능력 해금), 적 마음 게이지(설득 가능·악한 적 퇴각), 조우 목표(버티기·탈출), 적 성격 5종, 자동 대전 표(`scripts/sim/combat-sim.ts`)·균형 벽 테스트. 병과·나머지 책략·호위/증원·마을 조우 재배치는 남음 | `docs/research/combat-difficulty-2026-10-29.md`, `docs/screenshots/2026-10-29-C3b-skills.png` | 🧑 판정 대기 |
 | ✅ | **전투 C-3a 기세·필살기(2026-10-29)**: 약점(옆·등) 타격·연계·처치로 기세가 쌓이고(최대 6) 가득 차면 `필살`(정상 피해×2 + 옆 적 절반, 컷인 배너 "필살!"·큰 흔들림). 병과·책략·숨은 C-3b로 남김 | `docs/screenshots/2026-10-29-C3a-special-strip.png` | 🧑 판정 대기 |
 | 🧑 | **전투 재설계 계획 승인(2026-10-28 사용자 요청: "영걸전급으로 재미있게")**: ~~C-2~~ → C-3 병과·책략 → C-4 마음·설득·목표 → C-5 AI·조우 → C-6 다듬기. 결정 5건(추천 포함) | `docs/superpowers/specs/2026-10-28-combat-fun-design.md` | 승인 대기 |
+| ✅ | **D-3 대사 남은 문제 정리(2026-10-29)**: ④ honor·sacrifice·spirituality·valor 과부 4인 분리(세린→실비·레아→노을·이레→가은·렌→서린, 마을별 말투·사연 다름) `oc/narrative-widow` / ① 정의 `lie` 주제 사람(증인)으로 이동 + ② 겸손 9인 이름 대답 개별화 `main` 반영(`31383f5`) / ③ 위기 지문 미표시 원인 조사만(코드 미수정, 수정안 기록) | `docs/narrative/2026-10-29-fixes.md` | ④는 브랜치 대기 병합, ③ UI 수정은 🧑 결정 대기 |
 | ✅ | **7개 미덕 마을 지도 새 땅으로 이전(2026-10-29, 브랜치 `oc/town-ground`)**: 연민·명예·겸손·정의·희생·영성·용맹 마을 낮은 땅(`g/p/t/c`)로 변환, 건축물 납부 `.` 유지, `check:content`·`test:unit`·`typecheck` 통과, 스크린샷 검증 | `scripts/assets/migrate-town-ground.py`, `content/towns/*/maps.yaml`, `docs/screenshots/2026-10-29-town-*.png` | 완료 |
 
 ## 진행 중

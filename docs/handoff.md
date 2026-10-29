@@ -627,3 +627,12 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - `CombatState.breath`(시작 2, 최대 5, 라운드마다 +1; `combat.yaml breath`), 행동 `skill {skill, dir?}`: **calm 달래기**(능력 `ability.compassion-persuade`; 인접 적 마음 −3), **guard 막기**(`ability.valor-shield`; 나와 인접 아군이 방어 자세), **mark 표식**(`ability.justice-eye`; 그 적이 맞는 피해 ×1.5, 라운드가 바뀌면 사라짐). 비용 1, 능력을 풀지 않았거나 숨이 모자라면 무시. `rules.ts attackDamage`가 표식을 반영(미리보기 포함). 매핑 `SKILL_ABILITY`(core/types.ts).
 - 화면: HUD "숨 n/5"와 해금한 책략 버튼(달래기·막기·표식, 숨이 모자라면 비활성), 방향이 필요한 책략은 공격처럼 방향 키/인접 칸 탭으로 지정, 표식 난 적 머리 위 붉은 과녁. 디버그 `debugGrantAbilities(ids)`·`scripts/visual/skills-shot.mjs`. 테스트 5개(core), 캡처 `docs/screenshots/2026-10-29-C3b-skills.png`(버튼·숨 표시 확인; 표식 과녁은 동료가 있어야 라운드 안에 보임 — 단독이면 곧바로 적 단계로 지워짐).
 - 병과(이동력·공격 모양)·정직/명예/희생/영성/겸손 책략은 아직. 설계 §4.2/4.5 참고.
+
+## 2026-10-29 대사 남은 문제 정리(narrative-fixes) — ④ 과부 4개 마을 분리
+- 브랜치 `oc/narrative-widow` (= `origin/main` 218226a 위에 `0eefa53`만 올림). 전체 기록(①②④)은 `oc/narrative-fixes`에 있음.
+- **배치 주의**: 작업 중 다른 에이전트가 `oc/narrative-fixes-b`(① 정의 lie·② 겸손 이름)를 `main`에 병합했다(`31383f5`). 또 `oc/town-ground`(`39bb5be`)와 `oc/fx-tracking-tests`(`ffda8f9`) 커밋도 이미 `main`에 들어 있다. 그래서 이 브랜치에는 아직 `main`에 없는 ④(과부 4개 마을 분리)만 남겼다.
+- 한 일: honor 세린→**실비**(천 판매상, 남편 이름을 천에 새김, 해요체) · sacrifice 레아→**노을**(제단 대신 아이에게 빵 반쪽, 반말) · spirituality 이레→**가은**(면허 없는 이들의 이름을 종이에 적어 뜰 나무, 해요체) · valor 렌→**서린**(방패 가죽 장인, 합쇼체). 마을 안 다른 NPC 대사·fact/option/crisis의 이름 참조까지 갱신. NPC 수·id·위치·일과·스프라이트 변경 없음. 변경은 `content/strings/ko.yaml`·`en.yaml` 값뿐(키 이름 유지 → npcs.yaml 수정 없음).
+- ③ 위기 지문 조사(코드 수정 없음): `crisis.text`는 컴파일되지만(`src/content/types.ts:73`, `src/content/compile.ts:396,600`) UI에서 렌더링되지 않는다 — `src/ui/view-model.ts:95-107`이 `DialogueView.crisis`를 `crisisOptions()`(optionId·label·available·hints)만으로 만들고 `src/ui/panels.ts:170-220`도 선택지만 그린다. 수정 제안: view-model에 `crisisText` 추가 후 선택지 위에서 한 번 렌더(콘텐츠 변경 없음). 🧑 결정 대기.
+- 검증: `python3 scripts/narrative/consistency.py` 0 problems · `reachable.py` 못 얻는 단서 0개 · `spec.py dead-topics` 0 · `npm run test:unit` 531 passed · typecheck/check:content/build/audit:dist/git diff --check 모두 exit 0.
+- 확인 못 한 것: 게임 화면의 거짓 표시(`!`) 노출(능력 획득 후) · ③ UI 수정 미실시 · 정의·겸손 과부는 변경 없음.
+- 참고: 7개 마을 지도 이전(`oc/town-ground`) 캡처 14장은 이미 이미지가 열려서 확인했다. 돌바닥(c)·풀(g)·나무(t)는 정상 렌더, 격자 정렬 이상 없음. **옛 벽(#) 타일 안쪽 절반이 순수 검정으로 나오는 현상은 이전에도 똑같았다**(변환 전 지도 캡처와 검정 비율 2.2%로 동일) — 옛 벽 그림을 2배 확대한 0.2.0 자산 작업 몫이다.
