@@ -30,3 +30,8 @@ momentum:           # 기세: 아군이 약점(옆·등)을 치거나 연계·�
   splashRatio: 0.5       # 대상 옆 다른 적이 받는 비율(필살 피해 기준)
 terrain:            # 전투 격자 타일 글자 → 그 칸에 선 유닛이 받는 피해에서 뺄 값(최소 피해 1)
   h: { defense: 1 } # 큰 풀
+classes:            # 병과(C-3c): move = 한 차례 걸음 수, range = 직선 공격 거리 [최소, 최대], takenDefense = 받는 피해에서 더 빼는 값(최소 피해 1)
+  fighter: { move: 3, range: [1, 1], takenDefense: 0 }   # 병과가 없는 유닛의 기본값
+  runner: { move: 4, range: [1, 1], takenDefense: 0 }
+  archer: { move: 2, range: [2, 3], takenDefense: 0 }
+  guardian: { move: 2, range: [1, 1], takenDefense: 1 }

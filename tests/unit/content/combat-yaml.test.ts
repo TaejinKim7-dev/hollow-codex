@@ -12,7 +12,7 @@ describe("combat.yaml in compile", () => {
   it("reads direction, chain and terrain, and fills missing parts with defaults", () => {
     const { content, errors } = compileContent({ ...raw(), "combat.yaml": { direction: { back: 2 }, terrain: { ".": { defense: 1 } } } })
     expect(errors).toEqual([])
-    expect(content?.combat).toEqual({ direction: { ...DEFAULT_COMBAT_RULES.direction, back: 2 }, chain: DEFAULT_COMBAT_RULES.chain, momentum: DEFAULT_COMBAT_RULES.momentum, morale: DEFAULT_COMBAT_RULES.morale, breath: DEFAULT_COMBAT_RULES.breath, terrain: { ".": { defense: 1 } } })
+    expect(content?.combat).toEqual({ direction: { ...DEFAULT_COMBAT_RULES.direction, back: 2 }, chain: DEFAULT_COMBAT_RULES.chain, momentum: DEFAULT_COMBAT_RULES.momentum, morale: DEFAULT_COMBAT_RULES.morale, breath: DEFAULT_COMBAT_RULES.breath, terrain: { ".": { defense: 1 } }, classes: DEFAULT_COMBAT_RULES.classes })
   })
   it("reads the momentum section and rejects a bad max", () => {
     const ok = compileContent({ ...raw(), "combat.yaml": { momentum: { max: 4, weak: 2 } } })
@@ -52,5 +52,19 @@ describe("creatures.yaml ai", () => {
     expect(ok.errors).toEqual([])
     expect(Object.values(ok.content!.creatures).some((c) => c.ai === "pack")).toBe(true)
     expect(withAi("berserk").errors.some((e) => e.includes("ai"))).toBe(true)
+  })
+  it("reads the class table, always keeps fighter, and rejects a bad range", () => {
+    const ok = compileContent({ ...raw(), "combat.yaml": { classes: { archer: { move: 2, range: [2, 3] } } } })
+    expect(ok.errors).toEqual([])
+    expect(ok.content?.combat?.classes["archer"]).toEqual({ move: 2, rangeMin: 2, rangeMax: 3, takenDefense: 0 })
+    expect(ok.content?.combat?.classes["fighter"]).toEqual({ move: 3, rangeMin: 1, rangeMax: 1, takenDefense: 0 })
+    expect(compileContent({ ...raw(), "combat.yaml": { classes: { x: { range: [3, 2] } } } }).errors.length).toBeGreaterThan(0)
+    expect(compileContent({ ...raw(), "combat.yaml": { classes: { x: { move: 0 } } } }).errors.length).toBeGreaterThan(0)
+    expect(compileContent({ ...raw(), "combat.yaml": { classes: { x: { speed: 1 } } } }).errors.length).toBeGreaterThan(0)
+  })
+  it("the real content has the four classes", async () => {
+    const { content } = compileContent(loadContentDir("content"))
+    expect(Object.keys(content?.combat?.classes ?? {}).sort()).toEqual(["archer", "fighter", "guardian", "runner"])
+    expect(content?.combat?.classes["guardian"]?.takenDefense).toBe(1)
   })
 })

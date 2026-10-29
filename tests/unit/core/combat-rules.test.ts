@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest"
-import { DEFAULT_COMBAT_RULES } from "../../../src/content/types.ts"
+import { DEFAULT_COMBAT_RULES, FIGHTER } from "../../../src/content/types.ts"
 import type { CombatRules } from "../../../src/content/types.ts"
 import type { CombatState, CombatUnit } from "../../../src/core/types.ts"
-import { attackDamage, chainHits, facingToward, sideOf, terrainDefense } from "../../../src/core/combat/rules.ts"
+import { attackDamage, chainHits, classOf, facingToward, sideOf, terrainDefense, unitMove } from "../../../src/core/combat/rules.ts"
 
 const u = (id: string, side: "ally" | "enemy", x: number, y: number, patch: Partial<CombatUnit> = {}): CombatUnit => ({
   id, side, creature: side === "enemy" ? "c" : null, pos: { x, y }, hp: 10, attack: 4, defending: false, moved: false, acted: false, gone: null, ...patch
@@ -88,5 +88,17 @@ describe("chainHits", () => {
     expect(chainHits(state([player, e1, e2]), rules, e1, player)).toEqual([])
     const on: CombatRules = { ...rules, chain: { ratio: 0.5, enemies: true } }
     expect(chainHits(state([player, e1, e2]), on, e1, player).map((h) => h.attacker)).toEqual(["e2"])
+  })
+})
+
+describe("classOf / unitMove", () => {
+  const rules = { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, runner: { move: 4, rangeMin: 1, rangeMax: 1, takenDefense: 0 } } }
+  it("falls back to fighter without or with an unknown class", () => {
+    expect(classOf(rules, {})).toEqual(FIGHTER)
+    expect(classOf(rules, { class: "nope" })).toEqual(FIGHTER)
+  })
+  it("reads the unit's own class", () => {
+    expect(unitMove(rules, { class: "runner" })).toBe(4)
+    expect(unitMove(rules, {})).toBe(3)
   })
 })

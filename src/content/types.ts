@@ -21,6 +21,10 @@ export type EncounterObjective =
   | { readonly kind: "survive"; readonly rounds: number }
   | { readonly kind: "escape"; readonly at: Pos }
 
+/** 병과: 이동력·공격 사거리(직선, 칸 수)·받는 피해 경감. combat.yaml `classes`. 병과가 없는 유닛은 fighter. */
+export interface UnitClass { readonly move: number; readonly rangeMin: number; readonly rangeMax: number; readonly takenDefense: number }
+export const FIGHTER: UnitClass = { move: 3, rangeMin: 1, rangeMax: 1, takenDefense: 0 }
+
 /** content/combat.yaml: 전투 규칙 수치(없으면 DEFAULT_COMBAT_RULES). */
 export interface CombatRules {
   /** 대상이 바라보는 방향에 대한 공격 위치별 배율 */
@@ -35,8 +39,10 @@ export interface CombatRules {
   readonly momentum: { readonly max: number; readonly weak: number; readonly chain: number; readonly defeat: number; readonly specialMultiplier: number; readonly splashRatio: number }
   /** 전투 격자 타일 글자 → 방어 보정(그 칸에 선 유닛이 받는 피해에서 뺀다, 최소 피해 1) */
   readonly terrain: Readonly<Record<string, { readonly defense: number }>>
+  /** 병과 표(항상 fighter 포함) */
+  readonly classes: Readonly<Record<Id, UnitClass>>
 }
-export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, morale: { weakLoss: 1, isolationLoss: 1, persuadeRatio: 0.5 }, breath: { start: 2, max: 5, regen: 1, cost: 1, calmLoss: 3, markBonus: 1.5, shareCost: 2, shareHeal: 3, stillLoss: 2 }, momentum: { max: 6, weak: 1, chain: 1, defeat: 1, specialMultiplier: 2, splashRatio: 0.5 }, terrain: {} }
+export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, morale: { weakLoss: 1, isolationLoss: 1, persuadeRatio: 0.5 }, breath: { start: 2, max: 5, regen: 1, cost: 1, calmLoss: 3, markBonus: 1.5, shareCost: 2, shareHeal: 3, stillLoss: 2 }, momentum: { max: 6, weak: 1, chain: 1, defeat: 1, specialMultiplier: 2, splashRatio: 0.5 }, terrain: {}, classes: { fighter: FIGHTER } }
 
 export interface ChoiceOption {
   readonly optionId: Id; readonly labelKey: string; readonly textKey: string
@@ -53,6 +59,7 @@ export interface Topic {
 export interface CompanionDef {
   readonly virtue: Virtue; readonly joinRequires: readonly Id[]; readonly leaveAfterDeeds: number
   readonly rejoinRequires: readonly Id[]; readonly hp: number; readonly attack: number
+  readonly class?: Id                                             // 병과(없으면 fighter)
 }
 export interface MapDef {
   readonly rows: readonly string[]
@@ -98,7 +105,7 @@ export interface GameContent {
     readonly codexWord?: Id   // M5: the one word this virtue's codex page takes; must be one of answer
   }>>
   readonly crises: Readonly<Record<Id, { readonly npc: Id; readonly textKey: string; readonly options: Readonly<Record<Id, CrisisOptionDef>> }>>
-  readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id; readonly morale?: number; readonly ai?: CreatureAi }>>
+  readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id; readonly morale?: number; readonly ai?: CreatureAi; readonly class?: Id }>>
   readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id; readonly repeatable?: boolean; readonly objective?: EncounterObjective }>>
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
   readonly strings: Readonly<Record<string, Readonly<Record<string, string>>>>   // 언어 코드 → 키 → 문구

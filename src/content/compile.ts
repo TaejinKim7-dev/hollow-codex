@@ -3,7 +3,7 @@
 // 5 map/grid geometry, 6 grant paths, 7 deduction answers, 8 denied terms.
 import { BLOCKER, checkGroundAdjacency, GROUNDS, mergeObjectFootprints, type Ground, type ObjectDef } from "./ground.ts"
 import type { Id, Pos, Virtue } from "../core/types.ts"
-import { CREATURE_AIS, DEFAULT_COMBAT_RULES } from "./types.ts"
+import { CREATURE_AIS, DEFAULT_COMBAT_RULES, FIGHTER, type UnitClass } from "./types.ts"
 import { findDenied, parseDenylist } from "./denylist.ts"
 import { arrivalCell } from "../core/world/ring.ts"
 import { isObj, makeReader } from "./shape.ts"
@@ -38,10 +38,10 @@ const KEYS = {
   tile: ["sprite", "ground", "object", "walk"],
   object: ["id", "image", "footprint", "blocks", "sortOffset"],
   audio: ["sfx", "footsteps", "music"],
-  combat: ["direction", "chain", "morale", "breath", "momentum", "terrain"],
+  combat: ["direction", "chain", "morale", "breath", "momentum", "terrain", "classes"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
-  creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore", "morale", "ai"],
+  creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore", "morale", "ai", "class"],
   map: ["id", "rows", "exits", "music", "encounters", "enterFlags", "heals", "isOverworld", "terrainCost", "objects"],
   exit: ["at", "to", "arrive"],
   mapEncounter: ["at", "id"],
@@ -49,7 +49,7 @@ const KEYS = {
   deed: ["virtue", "deed"],
   topic: ["text", "requires", "requiresFlags", "excludeFlags", "grants", "setsFlags", "lie", "choice"],
   npc: ["id", "map", "pos", "name", "greet", "sprite", "topics", "schedule", "companion"],
-  companion: ["virtue", "joinRequires", "leaveAfterDeeds", "rejoinRequires", "hp", "attack"],
+  companion: ["virtue", "joinRequires", "leaveAfterDeeds", "rejoinRequires", "hp", "attack", "class"],
   fact: ["id", "kind", "label", "hint"],
   deduction: ["id", "sentence", "hint", "answer", "unlocks", "codexWord"],
   crisis: ["id", "npc", "text", "options"],
@@ -202,6 +202,7 @@ function readCreatures(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
       if ((CREATURE_AIS as readonly string[]).includes(ai)) (c as { ai?: CreatureAi }).ai = ai as CreatureAi
       else r.fail(`${w}.ai`, `unknown ai "${ai}" (${CREATURE_AIS.join(" | ")})`)
     }
+    if (o["class"] !== undefined) (c as { class?: string }).class = r.str(o, "class", w)
     const morale = o["morale"] === undefined ? undefined : r.num(o, "morale", w)
     if (morale !== undefined && morale >= 0) (c as { morale?: number }).morale = morale
     else if (morale !== undefined) r.fail(`${w}.morale`, "expected a number of 0 or more")
@@ -233,8 +234,8 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
   if (v === null || v === undefined) return
   const o = r.obj(v, "")
   onlyKeys(r, o, "", KEYS.combat)
-  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; momentum: CombatRules["momentum"]; morale: CombatRules["morale"]; breath: CombatRules["breath"]; terrain: Record<string, { defense: number }> } = {
-    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, momentum: { ...DEFAULT_COMBAT_RULES.momentum }, morale: { ...DEFAULT_COMBAT_RULES.morale }, breath: { ...DEFAULT_COMBAT_RULES.breath }, terrain: {}
+  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; momentum: CombatRules["momentum"]; morale: CombatRules["morale"]; breath: CombatRules["breath"]; terrain: Record<string, { defense: number }>; classes: Record<string, UnitClass> } = {
+    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, momentum: { ...DEFAULT_COMBAT_RULES.momentum }, morale: { ...DEFAULT_COMBAT_RULES.morale }, breath: { ...DEFAULT_COMBAT_RULES.breath }, terrain: {}, classes: { ...DEFAULT_COMBAT_RULES.classes }
   }
   if (o["direction"] !== undefined) {
     const dir = r.obj(o["direction"], "direction")
@@ -297,6 +298,21 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
       const defense = r.num(eo, "defense", `terrain.${glyph}`)
       if (!Number.isInteger(defense) || defense < 0) r.fail(`terrain.${glyph}.defense`, "expected an integer of 0 or more")
       rules.terrain[glyph] = { defense }
+    }
+  }
+  if (o["classes"] !== undefined) {
+    for (const [cid, def] of Object.entries(r.obj(o["classes"], "classes"))) {
+      const w = `classes.${cid}`
+      const co = r.obj(def, w)
+      onlyKeys(r, co, w, ["move", "range", "takenDefense"])
+      const move = co["move"] === undefined ? FIGHTER.move : r.num(co, "move", w)
+      const range = co["range"] === undefined ? [FIGHTER.rangeMin, FIGHTER.rangeMax] : r.arr(co["range"], `${w}.range`)
+      const takenDefense = co["takenDefense"] === undefined ? 0 : r.num(co, "takenDefense", w)
+      const lo = range[0], hi = range[1]
+      if (!Number.isInteger(move) || move < 1 || move > 6) r.fail(`${w}.move`, "expected an integer from 1 to 6")
+      if (range.length !== 2 || !Number.isInteger(lo) || !Number.isInteger(hi) || (lo as number) < 1 || (hi as number) < (lo as number) || (hi as number) > 4) r.fail(`${w}.range`, "expected [min, max] integers with 1 <= min <= max <= 4")
+      else if (!Number.isInteger(takenDefense) || takenDefense < 0) r.fail(`${w}.takenDefense`, "expected an integer of 0 or more")
+      else rules.classes[cid] = { move, rangeMin: lo as number, rangeMax: hi as number, takenDefense }
     }
   }
   d.combat = rules
@@ -435,6 +451,7 @@ function readNpcs(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
         leaveAfterDeeds: r.num(co, "leaveAfterDeeds", cw), rejoinRequires: r.strListOr(co, "rejoinRequires", cw),
         hp: r.num(co, "hp", cw), attack: r.num(co, "attack", cw)
       }
+      if (co["class"] !== undefined) (comp as { class?: string }).class = r.str(co, "class", cw)
       if (r.errors.length === cb) npc.companion = comp
     }
     if (npcOk) put(ctx, d.npcs, "npc", r.file, id, npc)
@@ -594,6 +611,7 @@ function checkReferences(d: Draft, out: string[]): void {
   }
   const musicIds: Record<Id, true> = Object.fromEntries(Object.keys(d.audio.music).map((k) => [k, true as const]))
   const facts = d.facts.items
+  const classTable: Readonly<Record<Id, unknown>> = (d.combat ?? DEFAULT_COMBAT_RULES).classes
   if (d.playerSprite !== null) sheet("tiles.yaml", "player", d.playerSprite)
   for (const [ch, t] of Object.entries(d.tiles)) {
     if (t.sprite !== undefined) sheet("tiles.yaml", `tiles."${ch}"`, t.sprite)
@@ -627,6 +645,7 @@ function checkReferences(d: Draft, out: string[]): void {
       virtue(f, `${id}.companion.virtue`, n.companion.virtue)
       refs(f, `${id}.companion.joinRequires`, "fact", n.companion.joinRequires, facts)
       refs(f, `${id}.companion.rejoinRequires`, "fact", n.companion.rejoinRequires, facts)
+      if (n.companion.class !== undefined) ref(f, `${id}.companion.class`, "class", n.companion.class, classTable)
     }
   }
   for (const [id, ded] of Object.entries(d.deductions.items)) {
@@ -646,6 +665,7 @@ function checkReferences(d: Draft, out: string[]): void {
   for (const [id, c] of Object.entries(d.creatures.items)) {
     const f = d.creatures.file[id] ?? ""
     ref(f, `${id}.lore`, "fact", c.lore, facts)
+    if (c.class !== undefined) ref(f, `${id}.class`, "class", c.class, classTable)
     sheet(f, `${id}.sprite`, c.sprite)
   }
   for (const [id, e] of Object.entries(d.encounters.items)) {

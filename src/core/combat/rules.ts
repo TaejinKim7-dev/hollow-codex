@@ -1,4 +1,4 @@
-import type { CombatRules } from "../../content/types.ts"
+import { FIGHTER, type CombatRules, type UnitClass } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Pos } from "../types.ts"
 import { alive, manhattan } from "./intents.ts"
 
@@ -16,6 +16,14 @@ export function sideOf(target: CombatUnit, attackerPos: Pos): "front" | "side" |
   const toward = facingToward(target.pos, attackerPos)
   return toward === target.facing ? "front" : toward === OPPOSITE[target.facing] ? "back" : "side"
 }
+
+/** 유닛의 병과 값(병과가 없거나 표에 없으면 fighter). */
+export function classOf(rules: CombatRules, unit: Pick<CombatUnit, "class">): UnitClass {
+  return (unit.class === undefined ? undefined : rules.classes[unit.class]) ?? FIGHTER
+}
+
+/** 한 차례에 걸을 수 있는 최대 칸 수. */
+export const unitMove = (rules: CombatRules, unit: Pick<CombatUnit, "class">): number => classOf(rules, unit).move
 
 /** 그 칸의 지형 방어 보정(격자 밖·정의 없음 = 0). */
 export function terrainDefense(grid: readonly string[], rules: CombatRules, pos: Pos): number {
