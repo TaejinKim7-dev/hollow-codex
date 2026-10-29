@@ -1661,3 +1661,19 @@ ui.combat.skill.calm: Calm
 ui.combat.skill.guard: Guard
 ui.combat.skill.mark: Mark
 ui.combat.breath: Breath
+epilogue.crisis.kalas.trial.option.truth: "Kalas's accusation hall became a place to hear testimony. Tobi no longer speaks from the rooftop but from the middle of the square."
+epilogue.crisis.kalas.trial.option.lantern: "The lantern in Kalas's square burns again. The ledger went into the fire, and records now begin with what people say aloud."
+epilogue.crisis.compassion.hoard.option.open-pantry: "No door was ever hung on Riona's pantry again. Bread passes from hand to hand and nobody asks who is giving."
+epilogue.crisis.compassion.hoard.option.relief-tax: "Riona changed its ledger instead of its charity. The first winter after the tax fell, the line outside the pantry was short for the first time."
+epilogue.crisis.honor.lineage.option.truth-lineage: "Argon now sings the family song to its last verse. No one is ashamed of the founder who knelt."
+epilogue.crisis.honor.lineage.option.exile-elder: "Argon's elder left the town and the erased line in the ranking ledger came back. There is still anger in the voice that reads it."
+epilogue.crisis.humility.name.option.speak-name: "Names are spoken in Heron's chapel now. On the day the widow first made a sound, the people leave the doors open every year."
+epilogue.crisis.humility.name.option.stay-silent: "Heron is still a town with its mouth shut. But a few who remember your silence whisper each other's names at night."
+epilogue.crisis.justice.mourning.option.comfort-widow: "Selles's court put the lullaby on record. The hundred days of mourning now end under moonlight, not by the penalty table."
+epilogue.crisis.justice.mourning.option.strict-law: "Selles went quiet by the penalty table. Even so, in one house a lullaby still runs low."
+epilogue.crisis.sacrifice.altar.option.open-altar: "The old hearth was uncovered beneath Dione's altar. People know now that the fire that kept the town was everyone's hands, not one person's body."
+epilogue.crisis.sacrifice.altar.option.exile-priest: "Dione's altar was closed. When the counting of offerings ended, people lifted their heads and asked after each other."
+epilogue.crisis.spirituality.license.option.open-meditation: "The meditation hall in Elia stands open. The hermit's soundless song taught that breath needs no licence."
+epilogue.crisis.spirituality.license.option.exile-monk: "Elia's licence ledger was collected and the abbot left. The new ledger began to record days breathed instead of names."
+epilogue.crisis.valor.challenge.option.allow-retreat: "In Solgang even the one who returns carrying a shield is applauded. The undefeated fighter now stands on the teaching side."
+epilogue.crisis.valor.challenge.option.duel-honor: "Solgang's fighter knelt and your spear stopped at his throat. Winner and loser both left that moment in a song."

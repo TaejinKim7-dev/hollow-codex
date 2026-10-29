@@ -30,7 +30,8 @@ describe("codexView", () => {
         expect(v.epilogue).toEqual({
           title: tr(`epilogue.${kind}.title`),
           prologue: tr(`epilogue.${kind}.prologue`),
-          messages: TOWNS.map((town) => tr(`epilogue.${kind}.${town}.text`))
+          messages: TOWNS.map((town) => tr(`epilogue.${kind}.${town}.text`)),
+          recaps: []
         })
         // real text, not keys
         expect(v.epilogue!.messages.every((m) => !m.startsWith("epilogue."))).toBe(true)
@@ -43,5 +44,21 @@ describe("codexView", () => {
     const one = { ...base, deductions: { ...base.deductions, "deduction.valor": { slots: [null, null, null], confirmed: true } } }
     const pages = codexView(one, content).pages
     expect(pages.filter((p) => p.confirmed).map((p) => p.deductionId)).toEqual(["deduction.valor"])
+  })
+
+  it("adds one recap line per crisis the player resolved, naming the option they chose (ko and en)", () => {
+    for (const lang of ["ko", "en"] as const) {
+      const base = finished("word.truth", lang)
+      const state = { ...base, crises: { "crisis.compassion.hoard": "option.relief-tax", "crisis.kalas.trial": "option.lantern" } }
+      const v = codexView(state, content).epilogue!
+      const tr = (k: string): string => t(lang, content.strings, k)
+      expect(v.recaps).toEqual([tr("epilogue.crisis.compassion.hoard.option.relief-tax"), tr("epilogue.crisis.kalas.trial.option.lantern")])
+      expect(v.recaps.every((r) => !r.includes("⟦"))).toBe(true)
+    }
+  })
+  it("every option of every crisis has a recap string in both languages", () => {
+    for (const lang of ["ko", "en"] as const)
+      for (const [crisisId, crisis] of Object.entries(content.crises))
+        for (const optionId of Object.keys(crisis.options)) expect(content.strings[lang]?.[`epilogue.${crisisId}.${optionId}`], `${lang} ${crisisId} ${optionId}`).toBeTruthy()
   })
 })

@@ -423,6 +423,7 @@ export async function boot(): Promise<void> {
       debugSetMomentum?(value: number): void
       debugGrantAbilities?(ids: string[]): void
       debugGrantFacts?(ids: string[]): void
+      debugFinishCodex?(word: string, crises: Record<string, string>): void
     }
   }).__hollowCodex__ = {
     state: () => state,
@@ -435,6 +436,12 @@ export async function boot(): Promise<void> {
             const cur = state
             if (cur === null) return
             replaceState({ ...cur, mapId, player: { ...cur.player, pos: { x, y } } })
+          },
+          debugFinishCodex: (word: string, crises: Record<string, string>): void => {
+            const cur = state
+            if (cur === null) return
+            const answers = Object.fromEntries(Object.entries(content.deductions).flatMap(([id, d]) => (d.codexWord === undefined ? [] : [[id, d.codexWord] as const])))
+            replaceState({ ...cur, mapId: "map.sealed-archive", crises, codex: { answers, finalWord: word, finalOpen: true } })
           },
           debugGrantFacts: (ids: string[]): void => {
             const cur = state

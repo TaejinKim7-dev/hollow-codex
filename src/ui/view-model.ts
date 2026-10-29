@@ -49,7 +49,8 @@ export interface CodexView {
   finalWord: string | null
   finalChoices: { id: Id; label: string }[]
   /** After the final chapter: the chosen word's epilogue (title, prologue, one message per town). */
-  epilogue: { title: string; prologue: string; messages: string[] } | null
+  /** recaps: 마을 위기에서 고른 풀이마다 한 줄(고른 위기만, 마을 순서대로). */
+  epilogue: { title: string; prologue: string; messages: string[]; recaps: string[] } | null
 }
 
 /** 열석 고리 메뉴. here = 지금 서 있는 고리 이름(아니면 null). 이동은 고리 위에서만, 지금 고리는 목록에서 빠진다. */
@@ -226,7 +227,8 @@ export function codexView(state: GameState, content: GameContent): CodexView {
     epilogue = {
       title: t(lang, s, entry.titleKey),
       prologue: t(lang, s, entry.prologueKey),
-      messages: entry.townMessages.map((m) => t(lang, s, m.messageKey))
+      messages: entry.townMessages.map((m) => t(lang, s, m.messageKey)),
+      recaps: Object.entries(state.crises).sort(([a], [b]) => (a < b ? -1 : 1)).map(([crisisId, optionId]) => t(lang, s, `epilogue.${crisisId}.${optionId}`))
     }
   }
   return { pages, finalOpen: state.codex.finalOpen, finalWord, finalChoices, epilogue }

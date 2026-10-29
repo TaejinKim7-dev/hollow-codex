@@ -523,3 +523,13 @@ summary:focus-visible {
 .menu details.credits {
   padding: 0.5em 0.9em;
 }
+
+.codex .epilogue .recaps {
+  margin: 1em 0 0;
+  padding: 0.6em 0 0 1.2em;
+  border-top: 1px solid var(--panel-line);
+  color: #cbbfa8;
+}
+.codex .epilogue .recap {
+  margin: 0.4em 0;
+}

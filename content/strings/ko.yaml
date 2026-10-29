@@ -1659,3 +1659,19 @@ ui.combat.skill.calm: 달래기
 ui.combat.skill.guard: 막기
 ui.combat.skill.mark: 표식
 ui.combat.breath: 숨
+epilogue.crisis.kalas.trial.option.truth: "칼라스의 고발청은 증언을 듣는 자리가 되었다. 토비는 이제 지붕 위가 아니라 광장 한가운데서 말한다."
+epilogue.crisis.kalas.trial.option.lantern: "칼라스 광장의 등불이 다시 켜졌다. 장부는 불에 탔고, 기록은 이제 사람의 입에서 먼저 시작된다."
+epilogue.crisis.compassion.hoard.option.open-pantry: "리오나의 곳간에는 문이 다시 달리지 않았다. 빵은 손에서 손으로 건너가고, 누가 주는 쪽인지 아무도 따지지 않는다."
+epilogue.crisis.compassion.hoard.option.relief-tax: "리오나는 시혜 대신 장부를 바꾸었다. 세금이 내려간 첫 겨울, 곳간 앞의 줄이 처음으로 짧아졌다."
+epilogue.crisis.honor.lineage.option.truth-lineage: "아르곤의 가문 노래는 이제 뒷절까지 불린다. 무릎 꿇은 시조를 부끄러워하는 이는 없다."
+epilogue.crisis.honor.lineage.option.exile-elder: "아르곤의 원로는 마을을 떠났고 서열 장부의 지워진 줄은 되살아났다. 그 줄을 읽는 목소리에는 아직 분노가 섞여 있다."
+epilogue.crisis.humility.name.option.speak-name: "헤론의 예배당에서는 이제 이름이 불린다. 과부가 처음 소리를 낸 날, 사람들은 해마다 문을 열어 둔다."
+epilogue.crisis.humility.name.option.stay-silent: "헤론은 여전히 입 다문 마을이다. 다만 그대의 침묵을 기억하는 몇몇이 밤마다 서로의 이름을 속삭인다."
+epilogue.crisis.justice.mourning.option.comfort-widow: "셀레스의 법정은 자장가를 기록에 올렸다. 조문의 백 일은 이제 형벌표가 아니라 달빛 아래서 끝난다."
+epilogue.crisis.justice.mourning.option.strict-law: "셀레스는 형벌표대로 조용해졌다. 그래도 어느 집에서는 자장가가 아직 낮게 이어진다."
+epilogue.crisis.sacrifice.altar.option.open-altar: "디오네의 제단 아래에서 옛 아궁이가 드러났다. 마을을 지킨 불이 누구의 몸이 아니라 모두의 손이었음을 사람들은 안다."
+epilogue.crisis.sacrifice.altar.option.exile-priest: "디오네의 제단은 닫혔다. 바친 것의 숫자를 세는 일이 끝나자, 사람들이 고개를 들어 서로의 안부를 묻는다."
+epilogue.crisis.spirituality.license.option.open-meditation: "엘리아의 명상당 문이 열렸다. 면허 없이도 숨은 쉬어진다는 것을 은자의 소리 없는 노래가 가르쳤다."
+epilogue.crisis.spirituality.license.option.exile-monk: "엘리아의 면허 장부는 거둬들여졌고 주지는 떠났다. 새 장부에는 이름 대신 숨 쉰 날수가 적히기 시작했다."
+epilogue.crisis.valor.challenge.option.allow-retreat: "솔강에서는 방패를 들고 돌아오는 이도 박수를 받는다. 무패의 투사는 이제 가르치는 쪽에 선다."
+epilogue.crisis.valor.challenge.option.duel-honor: "솔강의 투사는 무릎을 꿇었고 그대의 창은 목 앞에서 멈췄다. 이긴 자도 진 자도 그 순간을 노래로 남겼다."

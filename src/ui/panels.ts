@@ -669,6 +669,11 @@ export function mountPanels(
       const towns = make("ul", "towns")
       for (const message of view.epilogue.messages) towns.appendChild(make("li", "town-message", message))
       codexEpilogue.appendChild(towns)
+      if (view.epilogue.recaps.length > 0) {
+        const recaps = make("ul", "recaps")
+        for (const line of view.epilogue.recaps) recaps.appendChild(make("li", "recap", line))
+        codexEpilogue.appendChild(recaps)
+      }
     }
 
     if (next.mapId !== "map.sealed-archive") codex.hidden = true

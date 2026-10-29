@@ -644,3 +644,6 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-29 대화 칩 라벨 버그(마을 단서가 ⟦키⟧로 보임) 수정
 - 거짓 표시(!) 확인하려고 정의 마을 재판관과 대화해 보니 칩이 `⟦fact.seles.witness.label⟧`로 나왔다. 원인: `view-model.ts dialogueView`가 칩 라벨 키를 `${topic}.label`로 만들었다(칼라스는 id와 라벨 키 앞부분이 같아 우연히 맞았음). 일곱 마을은 `justice.fact...label`처럼 달라서 **마을 대화 칩이 전부 자리표시로 보이던 문제**. 이제 `content.facts[topic].labelKey`를 쓴다. 거짓 표시 `!`는 `ability.see-lies`가 있으면 재판관의 증인 줄에 정상으로 붙는 것을 캡처로 확인(`docs/screenshots/2026-10-29-lie-mark.png`).
 - 재발 방지: `tests/unit/ui/real-content-labels.test.ts` — 실제 콘텐츠로 모든 NPC(ko·en)의 대화 칩·위기 선택지·지문, 수첩·경전·고리·모든 조우의 전투 HUD에 `⟦…⟧`가 없는지 검사. 디버그 훅 `debugGrantFacts`·`debugGrantAbilities` 추가(`?debug=1`).
+
+## 2026-10-29 에필로그에 위기 풀이 반영
+- 알려진 한계였던 "마을 위기에서 고른 풀이가 에필로그에 반영되지 않음"을 해결: `codexView().epilogue.recaps`(고른 위기마다 `epilogue.<crisisId>.<optionId>` 한 줄, 위기 id 순)와 패널 `.recaps` 목록. 8개 위기 × 2개 풀이 = 16줄(ko·en 모두; 마을 이름 칼라스·리오나·솔강·셀레스·디오네·아르곤·엘리아·헤론 일치). 테스트 2개(고른 풀이가 줄에 반영, 모든 풀이에 문자열 존재). 캡처 `docs/screenshots/2026-10-29-epilogue-recaps.png`. 디버그 `debugFinishCodex(word, crises)`.
