@@ -544,3 +544,25 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 사용자 위임: "마을색 팔레트 승인/선택, 소리 없는 14개 상황 효과음은 최신 트렌드에 맞게 네가 선택. 못 들으면 가장 많이 쓰는 기준". 결정과 목록은 `docs/research/art-production-plan.md` 끝(마을색 hue 표, 소리 선택). 효과음 14개는 Kenney CC0 후보(`assets-private/preview/sfx`)에서 복사해 `assets/audio/sfx/<상황>.ogg`, `sfx.json`·`LEDGER.md`·`content/audio.yaml` 갱신, 이벤트 연결은 `src/audio/event-sounds.ts`(순수 함수, 테스트 4개)를 `apply()`에서 호출. 직접 들어 보지는 못함.
 - 오늘 PixelLab 1회 사용(잔액 보너스 4회 남음): 풀↔돌바닥 `assets/sprites/tilesets/grass-stone`(프롬프트 `assets/generated/prompts/2026-10-29-grass-stone.md`), `GROUND_SETS.stone`·`OVERLAY_ORDER`에 stone 추가, 타일 글자 `c`. 칼라스 마을 지도의 풀(.→g)·흙길(,→p)·나무(T→t)·바깥 돌바닥(:→c)을 새 땅으로 바꾸고 고백석은 `obj.confession-stone`(16,12)로. 건물 안 돌바닥(:)과 벽(#)·문(+)은 옛 타일 그대로(벽 그림 필요). 캡처 `docs/screenshots/2026-10-29-kalas-town-stone.png` 직접 확인: 광장은 잘 어울리나 옛 벽이 확대되어 튄다. 도구 `scripts/visual/map-shot.mjs`.
 - 다음: 외벽·건물 그림(남은 보너스 4회), 서고 바닥·벽 타일셋, 마을색 변형 적용, C-2.
+
+## 2026-10-29 4개 마을 중복 과부 NPC 분리 (narrative-④)
+- 브랜치 `oc/narrative-fixes`, 커밋 `a4cefd8`. 작업 폴더 `/home/taejin/hollow-codex-oc-narrative-fixes`.
+- 목표: honor/sacrifice/spirituality/valor 4개 마을에서 이름·성격·배경이 똑같던 과부 NPC를 각 마을 미덕과 맞춰 독립된 인물로 분리.
+- 변경:
+  - honor: `과부 세린` → `과부 실비`. 시장 천 판매상. 남편의 이름을 천에 새기고, 꿇은 자리에 양털을 깔아 둠. 말투: 해요체.
+  - sacrifice: `과부 레아` → `과부 노을`. 빵 반쪽을 제단 대신 아이에게 건네주는 과부. 기존 해요체에서 반말로 전환해 마을의 격정과 대비.
+  - spirituality: `과부 이레` → `과부 가은`. 면허 없는 이들의 이름을 종이에 적어 뜰 나무에 매다는 과부. 숨 노래를 기억함. 말투: 해요체.
+  - valor: `과부 렌` → `과부 서린`. 방패 가죽을 꿰매던 장인. 남편이 집에 두고 나간 방패를 지킴. 말투: 합쇼체.
+  - 각 마을 내 다른 NPC 대사, fact/option/crisis 텍스트의 이름 참조도 모두 갱신.
+- 제약 준수: NPC 수/id/위치/일과/스프라이트는 변경 없음. ko.yaml과 en.yaml 키 집합 동일. `grants:`는 기존 fact/word id만 참조. 힌트에 정답 단어 미포함.
+- 검증:
+  - `python3 scripts/narrative/consistency.py` — 과부 4인의 말투 분포가 주 어체로 정리됨(실비 해요체 25, 노을 반말 13, 가은 해요체 21, 서린 합쇼체 13). 의심 목록은 기존 인물(훈련관, 면허 수행자 등)로, 과부는 미포함.
+  - `python3 scripts/narrative/reachable.py` — 얻을 수 없는 단서 0개.
+  - `python3 scripts/narrative/spec.py dead-topics` — 죽은 주제 0개.
+  - `npm run test:unit` — 531 passed.
+  - `npm run typecheck` — exit 0.
+  - `npm run check:content` — ok.
+  - `npm run build && npm run audit:dist` — ok.
+  - `git diff --check` — ok.
+- push: `git push origin HEAD:oc/narrative-fixes` 성공.
+- 상태: `docs/status.md` 갱신, D-3 완료(a4cefd8) 기록.

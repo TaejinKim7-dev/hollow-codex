@@ -2,7 +2,7 @@
 
 > 규칙: 이 파일은 **짧게, 항상 최신으로** 유지한다(60줄 이내). 작업을 시작할 때 "진행 중"에 이름을 올리고, 끝날 때 결과를 반영해 덮어쓴다. 자세한 기록은 `docs/handoff.md` 끝에 추가한다.
 
-최종 갱신: 2026-10-28 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
+최종 갱신: 2026-10-29 · 버전 0.1.0 (배포 중, 사용자 판정: 그래픽·소리 "방향 수정") · 0.2.0 자산 준비 중
 
 ## 지금 단계
 **2026-10-27 사용자 지시: 그래픽·소리 작업은 여기서 일단 정리하고, 다음은 대사(실제 내용) 품질 작업(D 단계).** D-1 칼라스 점검 완료 → `docs/narrative/kalas-audit.md`(제안), `docs/narrative/voice-bible.md`(말투 기준). 🧑 확인 뒤 `content/strings/ko.yaml` 반영. 남은 그림·소리(맵 그림 15회, 문지기 색, 집 시점 판정, NPC 걷기)는 `art-kalas-maps.md`·`art-kalas-cast.md`에 목록으로 보존.
@@ -15,6 +15,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 |---|---|---|---|
 | D-1 | 마을 대사 점검·고쳐 쓰기·인물 추가 **8개 마을 모두 15명 기준으로 반영 완료**(2026-10-27, 전체 NPC 126명). 마을당 대사 30~70줄 수정, 새 주제 20개 안팎, 새 인물 5명(ko+en). 인물 그림은 임시 스프라이트. 🧑 대사 읽기·판정, 아래 결정 3건 | `docs/narrative/<마을>-script.md`(전문), `<마을>-audit.md`(점검·설정·흐름), `voice-bible.md`(칼라스 설정) | 반영 완료, 판정 대기 |
 | ✅ | **D-2 결정 반영(2026-10-27)**: ① 규칙 변경(song·creature 칩 허용) + 나머지 24줄 재연결 → 물을 수 없는 주제 0 ② 얻을 수 없던 단서 6개 최소 수정 → 0 ③ 헷갈리는 인물 이름 7개 개명(마을 이름 유지). 게이트 전부 통과 | `docs/narrative/consistency-report.md` | 완료 |
+| ✅ | **D-3 중복 과부 NPC 분리(2026-10-29)**: honor·sacrifice·spirituality·valor 4개 마을의 과부 NPC를 각각 독립된 이름·말투·배경으로 재작성. ko/en 키 일치, 말투 일관성, reachable/spec/모든 게이트 통과 | `content/strings/ko.yaml`, `content/strings/en.yaml` | 완료(a4cefd8) |
 | ✅ | **인물 그림 방식 결정(2026-10-27)**: 새 인물 약 45명은 **기본형 12종 + 마을색 변형**(처음 계획, `art-production-plan.md` §1)으로. 생성 약 12종×(대기 1 + 걷기) + `scripts/visual/recolor.mjs`로 8마을 색 | `art-production-plan.md` | 결정됨(그림은 PixelLab 하루 5회로 진행) |
 | ✅ | R-2a2 **(2026-10-29 사용자 위임으로 Claude가 선택·연결)** 효과음 추가 14상황(게임 이벤트 중 소리 없는 것: 맵 이동·전투 시작·방어·설득·도주·승리·패배·동료 합류/이탈·열석 열림·능력·위기·경전 쓰기·에필로그) 후보 53개를 실험실에 올림 → 선택 완료, `src/audio/event-sounds.ts`로 이벤트에 연결 | 실험실 `/hollow-codex/lab/` | 완료(🧑 청취 판정 대기) |
 | R-2a3 | ElevenLabs 효과음 35개(늑대·열석·전투·이벤트·분위기 루프) 생성 완료, 🧑 실험실에서 청취·판정 | `docs/research/elevenlabs-sfx.md` | 완료(청취 대기) |
@@ -33,7 +34,6 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 
 ## 진행 중
 - R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
-- narrative-④ · Implementation/Content · oc/narrative-fixes · 2026-10-29 · 시작: 4개 마을 과부 NPC 중복 분리 (honor/sacrifice/spirituality/valor)
 
 - 형식: `- <ID> · <에이전트 이름> · <브랜치> · <시작 시각> · <한 줄 상태>`
 - 끝나면 이 줄을 지우고 위 표의 상태를 "완료(<커밋>)"로 바꾼다.
@@ -57,5 +57,4 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 - 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 1/8, 능력 1/7만 효과. 에필로그가 위기 풀이를 반영하지 않음.
 
 ## 마지막 게이트
-todo-2-art-audio-engine (2026-10-28): npm run test:unit 0 (527 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0.
-main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. 이후 커밋은 문서·자산·lab·scripts/visual만(매번 check:content 0).
+`oc/narrative-fixes` `a4cefd8` (2026-10-29): npm run test:unit 0 (531 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
