@@ -1650,3 +1650,6 @@ npc.arena.trainer.name: Drill Instructor
 npc.arena.trainer.greet: This is the practice ground. Say the word if you want to fight beside me. Two of us next to an enemy means a second blow.
 npc.arena.trainer.name.t: I keep this practice ground. My name went into the blade long ago.
 npc.arena.trainer.job.t: Get around to the flank or the back and strike. If a friend stands beside the enemy too, a second blow follows at once.
+ui.combat.special: Special
+ui.combat.momentum: Momentum
+ui.combat.special-banner: "SPECIAL!"

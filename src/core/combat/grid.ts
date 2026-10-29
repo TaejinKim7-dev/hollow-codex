@@ -2,7 +2,7 @@ import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../
 import type { CombatAction, CombatState, CombatUnit, Dir, GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
 import { recordDeed } from "../virtue/conduct.ts"
 import { findPathOnGrid, gridTileAt, offset } from "../world/path.ts"
-import { attackDamage, chainHits, facingToward } from "./rules.ts"
+import { attackDamage, chainHits, facingToward, sideOf } from "./rules.ts"
 import { alive, computeIntents, manhattan, MAX_STEPS, nextActive, occupied, samePos } from "./intents.ts"
 
 export { computeIntents } from "./intents.ts"
@@ -68,6 +68,12 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
       return settle(withUnit(state, actor.id, { acted: true }), [], content)
     case "flee":
       return onEdge(combat.grid, actor.pos) ? endCombat(state, content, "fled", []) : ignored
+    case "special": {
+      const target = enemyAt(combat.units, offset(actor.pos, action.dir))
+      const rules = rulesOf(content)
+      if (!target || (combat.momentum ?? 0) < rules.momentum.max) return ignored
+      return special(withUnit(state, actor.id, { acted: true, facing: action.dir }), content, { ...actor, facing: action.dir }, target)
+    }
     case "attack":
     case "push":
     case "persuade": {
@@ -84,6 +90,30 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
       return settle(yielded ? withUnit(done, target.id, { gone: "retreated" }) : done, events, content)
     }
   }
+}
+
+/** 필살기: 대상에게 정상 피해 × specialMultiplier, 대상과 인접한 다른 적에게는 그 피해의 splashRatio. 기세를 비운다. */
+function special(state: GameState, content: GameContent, attacker: CombatUnit, target: CombatUnit): StepResult {
+  const rules = rulesOf(content)
+  let next: GameState = { ...state, combat: { ...state.combat!, momentum: 0 } }
+  const main = Math.max(1, Math.round(attackDamage(next.combat!, rules, attacker, target) * rules.momentum.specialMultiplier))
+  const victims: { unit: CombatUnit; amount: number }[] = [{ unit: target, amount: main }]
+  for (const o of next.combat!.units) {
+    if (o.id !== target.id && o.side === "enemy" && alive(o) && manhattan(o.pos, target.pos) === 1) victims.push({ unit: o, amount: Math.max(1, Math.round(main * rules.momentum.splashRatio)) })
+  }
+  const events: GameEvent[] = []
+  for (const v of victims) {
+    const hurt = wound(v.unit, v.amount)
+    next = withUnit(next, v.unit.id, hurt)
+    events.push({ type: "combatHit", attacker: attacker.id, target: v.unit.id, amount: v.amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp), at: attacker.pos, special: true }, { type: "sfx", name: "hit" })
+    const creature = v.unit.creature === null ? undefined : content.creatures[v.unit.creature]
+    if (hurt.gone === "dead" && creature !== undefined && !creature.evil) {
+      const deed = recordDeed(next, content, "compassion", "deed.kill-innocent")
+      next = deed.state
+      events.push(...deed.events)
+    }
+  }
+  return settle(next, events, content)
 }
 
 /** 규칙 6: 격자 밖 → 물러남, 막힌 타일·유닛 → 제자리 피해 1, 그 외 1칸 이동. */
@@ -132,7 +162,26 @@ function harm(state: GameState, content: GameContent, attacker: CombatUnit, targ
       all.push(...deed.events)
     }
   }
+  if (withChain) next = addMomentum(next, rulesOf(content), gainOf(rulesOf(content), target, attacker, all))
   return settle(next, all, content)
+}
+
+/** 이번 공격 이벤트들에서 쌓일 기세: 옆·등 타격, 연계 추가타, 처치. */
+function gainOf(rules: CombatRules, target: CombatUnit, attacker: CombatUnit, events: readonly GameEvent[]): number {
+  const m = rules.momentum
+  let gain = sideOf(target, attacker.pos) === "front" ? 0 : m.weak
+  for (const e of events) {
+    if (e.type !== "combatHit") continue
+    if (e.chain !== undefined) gain += m.chain
+    if (e.defeated) gain += m.defeat
+  }
+  return gain
+}
+
+function addMomentum(state: GameState, rules: CombatRules, gain: number): GameState {
+  if (gain <= 0) return state
+  const combat = state.combat!
+  return { ...state, combat: { ...combat, momentum: Math.min(rules.momentum.max, (combat.momentum ?? 0) + gain) } }
 }
 
 /**

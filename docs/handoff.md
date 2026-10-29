@@ -586,3 +586,9 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
   ④ 과부 설정: 정의 과부 하린과 겸손 과부(무호칭)는 이미 별개 인물로 남겨 둠. 하린은 "노래하는 과부"로 아들 이렌·묘지기·재판관과 연결된 정사의 중심; 겸손 과부는 잊혀 가는 남편 이름을 지키는 인물로, 비석을 비워 두는 마을의 침묵 법과 연결.
 - 검증: `python3 scripts/narrative/consistency.py` 0 problems · `python3 scripts/narrative/reachable.py` 0 unreachable · `python3 scripts/narrative/spec.py dead-topics` 0 · `npm run test:unit` 531 passed · `npm run typecheck` 0 · `npm run check:content` 0 · `npm run build` 0 · `npm run audit:dist` 0 · `git diff --check` 0.
 - 확인 못 한 것: 실제 게임 화면에서 거짓 표시(!) 노출 여부(능력 획득 후), 위기 지문 UI 추가는 사용자/메인 에이전트 결정 필요.
+
+## 2026-10-29 전투 C-3a 기세·필살기
+- 규칙: `CombatState.momentum?`(0..max), `CombatRules.momentum`(`content/combat.yaml`: max 6, weak 1, chain 1, defeat 1, specialMultiplier 2, splashRatio 0.5). 쌓임: 아군 `attack`에서 옆·등 타격 +weak, 연계 추가타마다 +chain, 처치마다 +defeat(`grid.ts gainOf/addMomentum`). `special`(방향) 명령은 아군 활성·가득 찬 기세·인접 적일 때만: 정상 피해×2, 대상 4방 인접 다른 적에 round(주피해×0.5), 기세 0, 행동 소모. 이벤트 `combatHit.special`.
+- 화면: HUD 이름 줄에 "기세 n/6", 가득 차면 "필살" 버튼(공격 옆), 방향 키/인접 칸 탭으로 지정. 캔버스: 격자 왼쪽 위 기세 칸 막대(가득 차면 깜빡), 필살 시 "필살!" 배너 + 타격 350ms 지연 + 큰 흔들림(상한 10px), 옆 피해자는 동시에 숫자.
+- 확인: 563 passed, 게이트 전부 0, E2E 3개, 필살 프레임 스트립 직접 확인(`docs/screenshots/2026-10-29-C3a-special-strip.png`, 배너→충돌→처치 페이드→적의 차례). `?debug=1`의 `__hollowCodex__.debugSetMomentum(n)`으로 확인(저장 영향 없음). 도구 `SPECIAL=1 node scripts/visual/fx-strip.mjs <out.png>`.
+- 못 한 것: 필살 전용 소리(지금은 일반 타격음), 적 필살, C-3b(병과·숨·책략 3단계·8미덕 스킬).

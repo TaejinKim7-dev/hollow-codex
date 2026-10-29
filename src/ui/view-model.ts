@@ -1,4 +1,5 @@
 // UI 표시 전용 뷰 모델 (Task 13 PART A). DOM·렌더링 부수 효과 없음.
+import { DEFAULT_COMBAT_RULES } from "../content/types.ts"
 import type { FactKind, GameContent } from "../content/types.ts"
 import type { CombatAction, GameState, Id, Pos, Virtue } from "../core/types.ts"
 import { availableTopics, pickVariant } from "../core/dialogue/talk.ts"
@@ -32,6 +33,7 @@ export interface CombatView {
   active: string                                        // 활성 유닛 이름(플레이어 = t("player.name"))
   actions: CombatAction["kind"][]                       // moved면 move 빠짐, flee는 가장자리만, 항상 endTurn
   units: { id: Id; name: string; hp: number; side: "ally" | "enemy"; evilKnown: boolean | null }[]
+  momentum: { value: number; max: number }                // 기세 게이지(가득 차면 special 가능)
 }
 
 /** 빈 경전 인터페이스 (M5 Task 42). 8쪽 슬롯 + 마지막 장 + 에필로그 화면. */
@@ -229,7 +231,11 @@ export function combatView(state: GameState, content: GameContent): CombatView |
   const lang = state.language
   const actor = combat.units.find((u) => u.id === combat.active)
 
-  const actions: CombatAction["kind"][] = ["attack", "push", "persuade", "defend"]
+  const max = (content.combat ?? DEFAULT_COMBAT_RULES).momentum.max
+  const value = combat.momentum ?? 0
+  const actions: CombatAction["kind"][] = ["attack"]
+  if (value >= max) actions.push("special")
+  actions.push("push", "persuade", "defend")
   if (actor !== undefined && !actor.moved) actions.push("move")
   if (actor !== undefined && onEdge(combat.grid, actor.pos)) actions.push("flee")
   actions.push("endTurn")
@@ -252,5 +258,5 @@ export function combatView(state: GameState, content: GameContent): CombatView |
     return { id: u.id, name, hp: u.hp, side: u.side, evilKnown }
   })
 
-  return { active, actions, units }
+  return { active, actions, units, momentum: { value, max } }
 }

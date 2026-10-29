@@ -7,5 +7,12 @@ direction:          # 대상이 바라보는 방향에 대한 공격 위치별 �
 chain:
   ratio: 0.5        # 연계 추가타 = 그 유닛의 정상 피해 × ratio
   enemies: false    # 적도 연계하는가(난이도는 C-5에서)
+momentum:           # 기세: 아군이 약점(옆·등)을 치거나 연계·처치를 하면 쌓이고, 가득 차면 필살(special) 1회
+  max: 6
+  weak: 1           # 옆·등 타격 1회당
+  chain: 1          # 연계 추가타 1회당
+  defeat: 1         # 처치 1회당
+  specialMultiplier: 2   # 필살 피해 = 정상 피해 × 이 값
+  splashRatio: 0.5       # 대상 옆 다른 적이 받는 비율(필살 피해 기준)
 terrain:            # 전투 격자 타일 글자 → 그 칸에 선 유닛이 받는 피해에서 뺄 값(최소 피해 1)
   h: { defense: 1 } # 큰 풀

@@ -14,7 +14,7 @@ export interface FxFrame {
   slashes: readonly { x: number; y: number; dir: Dir; age: number }[]
   sparks: readonly { x: number; y: number; age: number }[]
   ghosts: readonly { unit: CombatUnit; alpha: number; dx: number; dy: number; flash: number }[]      // 이미 상태에서 사라진 유닛이 페이드 아웃하는 모습
-  banner: { text: "enemy"; alpha: number } | null
+  banner: { text: "enemy" | "special"; alpha: number } | null
 }
 export interface HitCue { at: number; amount: number; index: number; defeated: boolean }
 export interface Fx {
@@ -27,13 +27,14 @@ export interface Fx {
   clear(): void
 }
 
+const SPECIAL_HOLD = 350   // 필살기 컷인(배너)이 보이는 동안 타격을 잡아 둔다
 const CHAIN_STEP = 250   // 연계 추가타는 앞 타격이 끝나기 전에 이어 들어간다
 const ATTACK_MS = 410, IMPACT = 180, MOVE_MS = 160, YIELD_HOLD = 150, YIELD_FADE = 300, DEFEAT_HOLD = 100, DEFEAT_FADE = 300
 const clamp01 = (v: number): number => Math.min(1, Math.max(0, v))
 const smooth = (p: number): number => { const q = clamp01(p); return q * q * (3 - 2 * q) }
 const lerp = (a: number, b: number, p: number): number => a + (b - a) * clamp01(p)
 
-interface Attack { s: number; attacker: Id; target: Id; ux: number; uy: number; dir: Dir; amount: number; defeated: boolean; index: number; tx: number; ty: number; chain?: number }
+interface Attack { s: number; attacker: Id; target: Id; ux: number; uy: number; dir: Dir; amount: number; defeated: boolean; index: number; tx: number; ty: number; chain?: number; special?: boolean; follower?: boolean }
 interface Tween { id: Id; dx: number; dy: number; start: number }
 interface HpTrack { id: Id; from: number; to: number; impact: number }
 interface GhostFx { unit: CombatUnit; holdUntil: number; fadeMs: number; target: Id }
@@ -62,7 +63,7 @@ export function createFx(speed = 1): Fx {
   let tracks: HpTrack[] = []
   let ghosts: GhostFx[] = []
   let cues: HitCue[] = []
-  let banners: { start: number }[] = []
+  let banners: { start: number; kind: "enemy" | "special" }[] = []
   let cursor = 0      // 다음 동작을 시작할 시각(순서 정하기용)
   let endAt = 0       // 모든 효과(숫자·잔상·체력 잔상·배너)가 끝나는 시각 — busy와 정리의 기준
 
@@ -104,12 +105,13 @@ export function createFx(speed = 1): Fx {
         enemyFlushed = true
         const moves = unitsMoved("enemy")
         if (moves.length === 0 && !willAttack) return
-        banners.push({ start: t })
+        banners.push({ start: t, kind: "enemy" })
         endAt = Math.max(endAt, t + 700 / S)
         for (const m of moves) { tweens.push({ ...m, start: t }); endAt = Math.max(endAt, t + MOVE_MS / S) }
         if (moves.length > 0) t += MOVE_MS / S
       }
       let index = 0
+      let specialSeen = false
       const hitIds = new Set<Id>()
       for (const e of events) {
         if (e.type === "combatHit") {
@@ -120,7 +122,10 @@ export function createFx(speed = 1): Fx {
           const vx = d.pos.x - a.pos.x, vy = d.pos.y - a.pos.y
           const len = Math.hypot(vx, vy) || 1
           const ux = vx / len, uy = vy / len
-          attacks.push({ s: t, attacker: e.attacker, target: e.target, ux, uy, dir: dirOf(ux, uy), amount: e.amount, defeated: e.defeated, index, tx: d.pos.x, ty: d.pos.y, ...(e.chain === undefined ? {} : { chain: e.chain }) })
+          const follower = e.special === true && specialSeen
+          if (e.special === true && !specialSeen) { banners.push({ start: t, kind: "special" }); endAt = Math.max(endAt, t + SPECIAL_HOLD / S + 200 / S); t += SPECIAL_HOLD / S }
+          if (e.special === true) specialSeen = true
+          attacks.push({ s: t, attacker: e.attacker, target: e.target, ux, uy, dir: dirOf(ux, uy), amount: e.amount, defeated: e.defeated, index, tx: d.pos.x, ty: d.pos.y, ...(e.chain === undefined ? {} : { chain: e.chain }), ...(e.special === true ? { special: true } : {}), ...(follower ? { follower: true } : {}) })
           const from = run[e.target] ?? find(before, e.target)?.hp ?? e.hp + e.amount
           tracks.push({ id: e.target, from, to: e.hp, impact: t + IMPACT / S })
           run[e.target] = e.hp
@@ -133,7 +138,8 @@ export function createFx(speed = 1): Fx {
           }
           index += 1
           const nextHit = events.slice(events.indexOf(e) + 1).find((x) => x.type === "combatHit")
-          t += (nextHit !== undefined && nextHit.type === "combatHit" && nextHit.chain !== undefined ? CHAIN_STEP : ATTACK_MS) / S   // 다음 타격이 연계면 앞 타격이 끝나기 전에 이어 들어간다
+          const nextSpecial = nextHit !== undefined && nextHit.type === "combatHit" && nextHit.special === true && e.special === true
+          t += (nextSpecial ? 0 : nextHit !== undefined && nextHit.type === "combatHit" && nextHit.chain !== undefined ? CHAIN_STEP : ATTACK_MS) / S   // 다음 타격이 연계면 앞 타격이 끝나기 전에 이어 들어간다
         } else if (e.type === "combatYield") {
           const snap = find(before, e.target)
           if (snap !== undefined) { ghosts.push({ unit: snap, holdUntil: t + YIELD_HOLD / S, fadeMs: YIELD_FADE / S, target: e.target }); endAt = Math.max(endAt, t + (YIELD_HOLD + YIELD_FADE) / S) }
@@ -168,13 +174,13 @@ export function createFx(speed = 1): Fx {
       for (const a of attacks) {
         const t = (now - a.s) * S
         const l = lunge(t)
-        if (l !== 0) add(a.attacker, a.ux * l, a.uy * l, 0)
+        if (l !== 0 && a.follower !== true) add(a.attacker, a.ux * l, a.uy * l, 0)
         if (t >= IMPACT && t < 330) {
           const k = 0.22 * (1 - (t - IMPACT) / 150)
           add(a.target, a.ux * Math.max(0, k), a.uy * Math.max(0, k), t < 300 ? 1 - (t - IMPACT) / 120 : 0)
         }
         if (t >= IMPACT && t < 360) {
-          const amp = Math.min(6, 2 + a.amount * 1.5) * (1 - (t - IMPACT) / 180)
+          const amp = (a.special === true ? Math.min(10, 4 + a.amount * 1.5) : Math.min(6, 2 + a.amount * 1.5)) * (1 - (t - IMPACT) / 180)
           const ph = (t - IMPACT) / 12 + a.index * 1.7
           shakeX += amp * Math.cos(ph)
           shakeY += amp * Math.sin(ph * 1.3)
@@ -214,7 +220,7 @@ export function createFx(speed = 1): Fx {
       let banner: FxFrame["banner"] = null
       for (const b of banners) {
         const t = (now - b.start) * S
-        if (t >= 0 && t < 700) banner = { text: "enemy", alpha: Math.min(clamp01(t / 100), clamp01((700 - t) / 200)) }
+        if (t >= 0 && t < 700) banner = { text: b.kind, alpha: Math.min(clamp01(t / 100), clamp01((700 - t) / 200)) }
       }
 
       if (now >= endAt) {                                     // 모든 효과가 끝났으면 hp를 확정하고 목록을 비운다

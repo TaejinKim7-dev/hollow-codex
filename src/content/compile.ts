@@ -38,7 +38,7 @@ const KEYS = {
   tile: ["sprite", "ground", "object", "walk"],
   object: ["id", "image", "footprint", "blocks", "sortOffset"],
   audio: ["sfx", "footsteps", "music"],
-  combat: ["direction", "chain", "terrain"],
+  combat: ["direction", "chain", "momentum", "terrain"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
   creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
@@ -225,8 +225,8 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
   if (v === null || v === undefined) return
   const o = r.obj(v, "")
   onlyKeys(r, o, "", KEYS.combat)
-  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; terrain: Record<string, { defense: number }> } = {
-    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, terrain: {}
+  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; momentum: CombatRules["momentum"]; terrain: Record<string, { defense: number }> } = {
+    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, momentum: { ...DEFAULT_COMBAT_RULES.momentum }, terrain: {}
   }
   if (o["direction"] !== undefined) {
     const dir = r.obj(o["direction"], "direction")
@@ -246,6 +246,18 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
     if (ratio < 0) r.fail("chain.ratio", "expected a number of 0 or more")
     rules.chain = { ratio, enemies: r.bool(ch, "enemies", "chain", DEFAULT_COMBAT_RULES.chain.enemies) }
   }
+  const mm = { ...DEFAULT_COMBAT_RULES.momentum }
+  if (o["momentum"] !== undefined) {
+    const mo = r.obj(o["momentum"], "momentum")
+    onlyKeys(r, mo, "momentum", Object.keys(mm))
+    for (const k of Object.keys(mm) as (keyof typeof mm)[]) {
+      if (mo[k] === undefined) continue
+      const n = r.num(mo, k, "momentum")
+      if (n < 0 || (k === "max" && (!Number.isInteger(n) || n < 1))) r.fail(`momentum.${k}`, k === "max" ? "expected an integer of 1 or more" : "expected a number of 0 or more")
+      mm[k] = n
+    }
+  }
+  rules.momentum = mm
   if (o["terrain"] !== undefined) {
     for (const [glyph, def] of Object.entries(r.obj(o["terrain"], "terrain"))) {
       const eo = r.obj(def, `terrain.${glyph}`)

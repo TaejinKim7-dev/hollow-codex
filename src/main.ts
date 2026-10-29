@@ -410,6 +410,7 @@ export async function boot(): Promise<void> {
       dispatch(cmd: Command | UiAction): void
       handleMenu(action: "save" | "load" | "new", slotId: string): Promise<void>
       debugTeleport?(mapId: Id, x: number, y: number): void
+      debugSetMomentum?(value: number): void
     }
   }).__hollowCodex__ = {
     state: () => state,
@@ -422,6 +423,11 @@ export async function boot(): Promise<void> {
             const cur = state
             if (cur === null) return
             replaceState({ ...cur, mapId, player: { ...cur.player, pos: { x, y } } })
+          },
+          debugSetMomentum: (value: number): void => {
+            const cur = state
+            if (cur === null || cur.combat === null) return
+            replaceState({ ...cur, combat: { ...cur.combat, momentum: value } })
           }
         }
       : {})

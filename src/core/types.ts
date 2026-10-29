@@ -14,10 +14,11 @@ export interface CombatState {
   readonly active: Id; readonly round: number
   readonly intents: Readonly<Record<Id, { readonly moveTo: Pos; readonly attack: Id | null }>>
   readonly returnPos: Pos                                         // D12
+  readonly momentum?: number                                      // 기세(없으면 0). 가득 차면 special 가능
 }
 export type CombatAction =
   | { kind: "move"; to: Pos } | { kind: "attack"; dir: Dir } | { kind: "defend" } | { kind: "push"; dir: Dir }
-  | { kind: "persuade"; dir: Dir } | { kind: "flee" } | { kind: "endTurn" }
+  | { kind: "persuade"; dir: Dir } | { kind: "flee" } | { kind: "endTurn" } | { kind: "special"; dir: Dir }
 
 export type Command =
   | { type: "move"; dir: Dir } | { type: "moveTo"; target: Pos } | { type: "interact"; at?: Pos }
@@ -39,7 +40,7 @@ export type GameEvent =
   | { type: "companionJoined"; npcId: Id } | { type: "companionLeft"; npcId: Id }
   | { type: "crisisResolved"; crisisId: Id; optionId: Id }
   | { type: "combatStarted"; encounterId: Id } | { type: "combatEnded"; outcome: "victory" | "defeat" | "fled" }
-  | { type: "combatHit"; attacker: Id; target: Id; amount: number; defeated: boolean; hp: number; at: Pos; chain?: number }   // 연출용: 맞은 뒤 남은 hp, at = 때린 순간 공격자 칸
+  | { type: "combatHit"; attacker: Id; target: Id; amount: number; defeated: boolean; hp: number; at: Pos; chain?: number; special?: boolean }   // 연출용: 맞은 뒤 남은 hp, at = 때린 순간 공격자 칸
   | { type: "combatYield"; target: Id; how: "persuaded" | "retreated" }                              // 연출용: 죽지 않고 물러남
   | { type: "sfx"; name: string } | { type: "music"; track: Id }
   | { type: "timePassed"; hour: number; day: number } | { type: "dayPassed"; day: number }

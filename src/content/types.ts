@@ -18,10 +18,12 @@ export interface CombatRules {
   readonly direction: { readonly front: number; readonly side: number; readonly back: number; readonly vsAllies: boolean }   // vsAllies: 아군도 방향 보정을 받는가(기본 꺼짐: 적만 측면·배후에 약하다)
   /** 연계 추가타: ratio = 그 유닛의 정상 피해에 곱함, enemies = 적 쪽 연계 허용 */
   readonly chain: { readonly ratio: number; readonly enemies: boolean }
+  /** 기세: 아군이 약점(옆·등)을 치거나 연계·처치를 하면 쌓이고, 가득 차면 필살기 1회(special). */
+  readonly momentum: { readonly max: number; readonly weak: number; readonly chain: number; readonly defeat: number; readonly specialMultiplier: number; readonly splashRatio: number }
   /** 전투 격자 타일 글자 → 방어 보정(그 칸에 선 유닛이 받는 피해에서 뺀다, 최소 피해 1) */
   readonly terrain: Readonly<Record<string, { readonly defense: number }>>
 }
-export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, terrain: {} }
+export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, momentum: { max: 6, weak: 1, chain: 1, defeat: 1, specialMultiplier: 2, splashRatio: 0.5 }, terrain: {} }
 
 export interface ChoiceOption {
   readonly optionId: Id; readonly labelKey: string; readonly textKey: string

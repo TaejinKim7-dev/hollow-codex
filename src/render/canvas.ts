@@ -1,4 +1,5 @@
 import { combatObjectFit } from "./object-fit.ts"
+import { DEFAULT_COMBAT_RULES } from "../content/types.ts"
 import type { GameContent, MapDef, SpriteRef } from "../content/types.ts"
 import type { Dir, GameState, Id, Pos } from "../core/types.ts"
 import { npcPositionAt } from "../core/dialogue/talk.ts"
@@ -274,7 +275,34 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     }
   }
   ctx.restore()
-  if (fx.banner !== null) drawBanner(ctx, t(state.language, content.strings, "ui.combat.enemy-turn"), fx.banner.alpha, vp.scale)
+  drawMomentum(ctx, vp, size, combat.momentum ?? 0, (content.combat ?? DEFAULT_COMBAT_RULES).momentum.max, t(state.language, content.strings, "ui.combat.momentum"), performance.now())
+  if (fx.banner !== null) drawBanner(ctx, t(state.language, content.strings, fx.banner.text === "special" ? "ui.combat.special-banner" : "ui.combat.enemy-turn"), fx.banner.alpha, vp.scale)
+}
+
+/** 기세 게이지: 격자 왼쪽 위 바깥에 칸 막대. 가득 차면 깜빡인다. */
+function drawMomentum(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, value: number, max: number, label: string, nowMs: number): void {
+  const x = screenX(vp, 0, size), y = Math.max(2, screenY(vp, 0, size) - Math.round(size * 0.42))
+  const pip = Math.round(size * 0.22), gap = Math.max(1, Math.round(size * 0.04))
+  ctx.save()
+  ctx.font = `bold ${Math.round(size * 0.3)}px "NeoDunggeunmo", monospace`
+  ctx.textBaseline = "middle"
+  ctx.fillStyle = "#ffe9a8"
+  ctx.strokeStyle = "#1a1210"
+  ctx.lineWidth = Math.max(2, Math.round(size * 0.06))
+  ctx.strokeText(label, x, y + pip / 2)
+  ctx.fillText(label, x, y + pip / 2)
+  const x0 = x + (ctx.measureText(label)?.width ?? label.length * size * 0.3) + gap * 3
+  const full = value >= max
+  const pulse = full ? 0.65 + 0.35 * Math.sin(nowMs / 120) : 1
+  for (let i = 0; i < max; i++) {
+    ctx.fillStyle = "#1a1210"
+    ctx.fillRect(x0 + i * (pip + gap) - 1, y - 1, pip + 2, pip + 2)
+    ctx.globalAlpha = i < value ? pulse : 1
+    ctx.fillStyle = i < value ? (full ? "#ff9a3c" : "#ffd23f") : "#4a3f36"
+    ctx.fillRect(x0 + i * (pip + gap), y, pip, pip)
+    ctx.globalAlpha = 1
+  }
+  ctx.restore()
 }
 
 function hpColor(ratio: number): string {

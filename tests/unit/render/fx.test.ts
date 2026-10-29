@@ -260,3 +260,30 @@ describe("fx: chain hits", () => {
     expect(Math.hypot(fx.sample(T0 + 250 + 160).units["mate"]!.dx, fx.sample(T0 + 250 + 160).units["mate"]!.dy)).toBeGreaterThan(0.2)
   })
 })
+
+describe("fx: special", () => {
+  const player = unit("player", "ally", 2, 1, 10)
+  const before = [player, unit("e0", "enemy", 2, 0, 9), unit("e1", "enemy", 3, 0, 9)]
+  const after = [player, unit("e0", "enemy", 2, 0, 3), unit("e1", "enemy", 3, 0, 6)]
+  const sp = (target: string, amount: number, hp: number): GameEvent => ({ type: "combatHit", attacker: "player", target, amount, defeated: false, hp, at: { x: 2, y: 1 }, special: true })
+  const mk = (speed = 1) => { const fx = createFx(speed); fx.reset(before); fx.enqueue([sp("e0", 6, 3), sp("e1", 3, 6)], before, after, T0); return fx }
+
+  it("raises a special banner first and holds the strike until it has shown", () => {
+    const fx = mk()
+    expect(fx.sample(T0 + 100).banner).toEqual({ text: "special", alpha: expect.any(Number) })
+    expect(fx.sample(T0 + 100).units["player"]).toBeUndefined()
+    expect(fx.takeCues(T0 + 300)).toHaveLength(0)
+    expect(fx.takeCues(T0 + 1500)).toHaveLength(2)
+  })
+  it("a special impact shakes harder than a normal one with the same damage", () => {
+    const normal = oneHit().fx
+    const shakeNormal = Math.max(...Array.from({ length: 30 }, (_, i) => mag(normal.sample(T0 + 180 + i * 6).shake)))
+    const fx = mk(); const hold = 350
+    const shakeSpecial = Math.max(...Array.from({ length: 30 }, (_, i) => mag(fx.sample(T0 + hold + 180 + i * 6).shake)))
+    expect(shakeSpecial).toBeGreaterThan(shakeNormal)
+  })
+  it("both victims show their damage numbers at impact", () => {
+    const fx = mk()
+    expect(fx.sample(T0 + 350 + 200).floats.map((f) => f.text).sort()).toEqual(["-3", "-6"])
+  })
+})

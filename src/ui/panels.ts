@@ -13,7 +13,7 @@ import { combatView, codexView, dialogueView, notebookView, ringsView, type Note
 
 type TabName = "facts" | "deductions" | "hints"
 /** 방향 대기 상태(panels 안의 지역 상태). move는 칸 대기, 나머지는 방향 대기. */
-type Aim = { readonly kind: "move" } | { readonly kind: "attack" | "push" | "persuade" }
+type Aim = { readonly kind: "move" } | { readonly kind: "attack" | "push" | "persuade" | "special" }
 
 const FACT_KINDS: readonly FactKind[] = ["person", "place", "word", "song", "meaning", "creature"]
 const DIR_KEYS: Readonly<Record<string, Dir>> = {
@@ -364,7 +364,7 @@ export function mountPanels(
   const onActionClick = (kind: CombatAction["kind"]): void => {
     const current = state
     if (current === null) return
-    if (kind === "attack" || kind === "push" || kind === "persuade") {
+    if (kind === "attack" || kind === "push" || kind === "persuade" || kind === "special") {
       aim = aim !== null && aim.kind === kind ? null : { kind }
       renderCombat(current)
       return
@@ -388,7 +388,7 @@ export function mountPanels(
       return
     }
     hud.hidden = false
-    hudActive.textContent = view.active
+    hudActive.textContent = `${view.active} · ${tr("ui.combat.momentum")} ${view.momentum.value}/${view.momentum.max}`
 
     hudUnits.replaceChildren()
     for (const unit of view.units) {

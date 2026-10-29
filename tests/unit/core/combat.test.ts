@@ -120,6 +120,30 @@ describe("grid combat", () => {
       expect(unit(act(combatState([P(2, 3), S(2, 0), B(4, 4)]), { kind: "move", to: { x: 3, y: 3 } }).state, "player").facing).toBe("e")
     })
   })
+  describe("C-3a: momentum and special", () => {
+    const withMomentum = (st: GameState, momentum: number): GameState => ({ ...st, combat: { ...st.combat!, momentum } })
+    const M2 = (x: number, y: number) => ({ id: "npc.mate", side: "ally", creature: null, pos: { x, y }, hp: 8, attack: 4 }) as const
+    it("a front hit gives no momentum; a flank/back hit gives 1; a chain hit and a defeat add more", () => {
+      const front = act(combatState([P(2, 1), S(2, 0, { hp: 9, facing: "s" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      expect(front.state.combat!.momentum ?? 0).toBe(0)
+      const back = act(combatState([P(2, 1), S(2, 0, { hp: 9, facing: "n" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      expect(back.state.combat!.momentum).toBe(1)
+      const chained = act(combatState([P(2, 1), M2(1, 0), S(2, 0, { hp: 5, facing: "s" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      expect(chained.state.combat!.momentum).toBe(2)   // chain hit 1 + defeat 1
+    })
+    it("special needs a full gauge and an adjacent enemy; it hits ×2, splashes adjacent enemies, and empties the gauge", () => {
+      const base = combatState([P(2, 1), S(2, 0, { hp: 20, facing: "s" }), { ...S(3, 0, { hp: 20 }), id: "creature.slime#7" }, B(4, 4)])
+      const early = act(withMomentum(base, 5), { kind: "special", dir: "n" })
+      expect(early.events).toEqual([])
+      expect(early.state.combat!.momentum).toBe(5)
+      const r = act(withMomentum(base, 6), { kind: "special", dir: "n" })
+      const hits = r.events.filter((e) => e.type === "combatHit")
+      expect(hits[0]).toMatchObject({ attacker: "player", target: "creature.slime#0", amount: 6, special: true })   // 3 × 2
+      expect(hits[1]).toMatchObject({ target: "creature.slime#7", amount: 3, special: true })                          // round(6 × 0.5)
+      expect(r.state.combat!.momentum).toBe(0)
+      expect(r.state.combat!.round).toBe(2)   // the only ally acted, so the enemy phase ran
+    })
+  })
   it("combat ends in defeat when every ally is gone", () => {
     const r = act(combatState([P(2, 1, { hp: 1 }), B(2, 0)]), { kind: "endTurn" })
     expect(r.events).toContainEqual({ type: "combatEnded", outcome: "defeat" })
