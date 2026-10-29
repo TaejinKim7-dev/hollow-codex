@@ -19,6 +19,25 @@
 
 ---
 
+## 대상 동료 8명 (id ↔ 게임에 표시되는 이름)
+
+`npcs.yaml`의 id와 `content/strings/ko.yaml`의 표시 이름이 다르다. 설계 문서의 "리오나·아르곤·헤론·셀레스·디오네·엘리아·솔강"은 **fact id 기준 이름**이고, 실제 인게임 이름은 아래와 같다.
+
+| id | 표시 이름 (ko) | 표시 이름 (en) | 마을 | virtue | 사실 키 이름 |
+|---|---|---|---|---|---|
+| npc.compassion.wanderer | 떠돌이 노래꾼 셀 | Sel the Wandering Singer | 연민 | compassion | reona |
+| npc.honor.swordmaster | 검술 사범 바르칸 | Barkan the Swordmaster | 명예 | honor | argon |
+| npc.humility.novice | 수련 중인 이 | The Novice | 겸손 | humility | heron |
+| npc.justice.mason | 석공 두만 | Duman the Mason | 정의 | justice | seles |
+| npc.kalas.elin | 고발관 견습 엘린 | Elin, Apprentice Denouncer | 칼라스 | honesty | elin |
+| npc.sacrifice.surgeon | 외과의 세인 | Sein the Surgeon | 희생 | sacrifice | dione |
+| npc.spirituality.novice | 견습 스님 이안 | Ian the Novice | 영성 | spirituality | elia |
+| npc.valor.sergeant | 훈련관 하르 | Harr the Drillmaster | 용맹 | valor | solgang |
+
+`npc.arena.trainer`(연습장 교관, `leaveAfterDeeds: 99`)는 동료 8인에 포함하지 않는다. 연습장 전용 조연이고, 합류·이탈 대사가 필요한 대상이 아니다.
+
+---
+
 ## 표 1. 대사 표
 
 | 동료(id) | 구분 | 키 | ko | en | 근거가 된 기존 대사 키 |
@@ -45,7 +64,7 @@
 | npc.spirituality.novice | 이탈 | `companion.npc.spirituality.novice.leave` | 면허 있는 기도만 믿으려다 보니, 숨소리를 놓쳤어요. 선방 문 앞에서 다시 서 있어야겠어요. | I tried to trust only licensed prayer, and lost the sound of breath. I must stand outside the meditation door again. | `spirituality.npc.novice.silent-chant.t` — 면허 없는 노래가 듣고 나면 마음이 비워짐. |
 | npc.spirituality.novice | 재합류 | `companion.npc.spirituality.novice.rejoin` | 새벽에 숨 노래를 들었어요. 면허 없는 소리도 기도가 될 수 있다면, 저도 돌아가요. | I heard the dawn breath song. If an unlicensed sound can also be prayer, I'm coming back. | `spirituality.npc.novice.meditation-hall.t` — 면허를 보여야 안쪽 선방에 들어감. |
 | npc.valor.sergeant | 합류 | `companion.npc.valor.sergeant.join` | 허리에 칼은 찼군. 다친 전우를 데리고 돌아올 각오만 있다면 따라주지. | You wear a blade. If you're ready to bring a wounded comrade back alive, I'll come. | `valor.npc.sergeant.greet` — 발이 뒤로 빠져 있음을 지적. `valor.npc.sergeant.brother.t` — 전우는 같은 줄에 서서 버티는 사이. |
-| npc.valor.sergeant | 이탈 | `companion.npc.valor.sergeant.leave` | 물러서야 할 자리에서 앞으로 나갔어. 그런 건 용기가 아니라 멍청이짓이지. 나는 병영으로 돌아간다. | You stepped forward where you should have held. That's not courage, it's folly. I'm returning to the barracks. | `valor.npc.sergeant.retreat.t` — 병영 안과 밖에서 다른 말을 함. |
+| npc.valor.sergeant | 이탈 | `companion.npc.valor.sergeant.leave` | 물러서야 할 자리에서 앞으로 나갔어. 그런 건 용기가 아니라 멍청이 짓이지. 나는 병영으로 돌아간다. | You stepped forward where you should have held. That's not courage, it's folly. I'm returning to the barracks. | `valor.npc.sergeant.retreat.t` — 병영 안과 밖에서 다른 말을 함. |
 | npc.valor.sergeant | 재합류 | `companion.npc.valor.sergeant.rejoin` | 후퇴 법을 다시 봤다. 살아서 돌아오는 것도 용기라면, 이 칼을 다시 맡겠군. | I saw the retreat law again. If coming back alive is also courage, I'll take up this blade once more. | `valor.npc.sergeant.retreat-law.t` — 사라진 후퇴 법. |
 
 ---
@@ -86,7 +105,21 @@ python3 scripts/narrative/spellcheck.py --help
 # --help는 키 접두어로 처리되어 content/strings/ko.yaml에서 매칭되는 키가 없었음.
 ```
 
-`spellcheck.py`의 사용법은 파일 상단 주석에서 확인했다: `python3 scripts/narrative/spellcheck.py <키 접두어>`. 본 문서의 `companion.*` 키는 아직 `content/strings/*.yaml`에 반영되지 않았으므로 spellcheck.py로 직접 검사할 대상 문자열이 없다. 따라서 본 문서의 띄어쓰기·어색함은 작성자가 직접 1회 점검했다.
+`spellcheck.py`의 사용법은 파일 상단 주석에서 확인했다: `python3 scripts/narrative/spellcheck.py <키 접두어>`. 이 스크립트는 `content/strings/ko.yaml`만 읽으므로, 아직 yaml에 반영되지 않은 이 문서의 제안 문자열은 그대로 검사할 대상이 없다.
+
+그래서 **저장소 밖 임시 샌드박스**(`/tmp/opencode/spell`, 저장소 파일은 건드리지 않음)에 `content/strings/ko.yaml` 사본 + 이 문서의 `companion.*` 24줄을 넣어 같은 스크립트로 실제로 검사했다.
+
+```
+24개 검사, 3개 수정 제안
+companion.npc.honor.swordmaster.rejoin   「조의 노래 뒷절을 다시」→「조의 노래 뒤 절을 다시」 | 「이 아니라는 걸, 이제야」→「이 아니라는걸, 이제야」
+companion.npc.justice.mason.rejoin       「는 것이 벌만은 아니라」→「는 것이 벌 만은 아니라」 | 「은 아니라는 걸, 다시」→「은 아니라는걸, 다시」
+companion.npc.valor.sergeant.leave       「니라 멍청이짓이지. 나」→「니라 멍청이 짓이지. 나」
+```
+
+- **실제 수정 1건**: `멍청이짓이지` → `멍청이 짓이지` (띄어쓰기). 반영했다.
+- **오탐 2건**: `뒷절`→`뒤 절`, `벌만`→`벌 만`, `이 아니라는 걸`→`이 아니라는걸` 은 검사기 규칙이 표준 띄어쓰기와 어긋나는 제안이다. 원문이 표준이라 그대로 둔다.
+
+이 검사기는 띄어쓰기·흔한 오타만 잡는다. 어체 혼용·어색한 어휘는 못 잡으므로 영어 자연스러움과 어조는 사람이 따로 읽어야 한다.
 
 ---
 
