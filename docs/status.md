@@ -32,7 +32,6 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | 완료 | R-0 아트 방향, A-1 인벤토리, R-1a 풀↔물·다리, 엘린 걷기, R-2 소리 방침(`audio-assets.md`), R-2a 효과음 | 각 문서·자산 | 완료 |
 
 ## 진행 중
-- D-1b 정의·겸손 대사 수정 · OpenCode · oc/narrative-fixes-b · 2026-10-29 · 시작: 정의 거짓 표시 주제 이동, 겸손 이름 응답 개별화, 위기 지문 조사
 - R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
 
 - 형식: `- <ID> · <에이전트 이름> · <브랜치> · <시작 시각> · <한 줄 상태>`
@@ -57,5 +56,5 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 - 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 1/8, 능력 1/7만 효과. 에필로그가 위기 풀이를 반영하지 않음.
 
 ## 마지막 게이트
-todo-2-art-audio-engine (2026-10-28): npm run test:unit 0 (527 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0.
+oc/narrative-fixes-b (2026-10-29): npm run test:unit 0 (531 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
 main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. 이후 커밋은 문서·자산·lab·scripts/visual만(매번 check:content 0).
