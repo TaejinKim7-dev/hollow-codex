@@ -26,8 +26,8 @@
       - text: justice.npc.judge.compassion.t
     fact.seles.mourning-lullaby:
       - text: justice.npc.judge.lullaby.t
-    fact.creature.justice-mourner:
-      - text: justice.npc.judge.mourner.t
+    fact.seles.witness:
+      - text: justice.npc.judge.witness.t
         lie: true
     fact.seles.graveyard:
       - text: justice.npc.judge.graveyard.t

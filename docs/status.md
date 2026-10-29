@@ -57,4 +57,5 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 - 열석 순간이동이 실제 플레이에서 열리지 않음. 동료 1/8, 능력 1/7만 효과. 에필로그가 위기 풀이를 반영하지 않음.
 
 ## 마지막 게이트
-`oc/narrative-fixes` `a4cefd8` (2026-10-29): npm run test:unit 0 (531 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.
+`oc/narrative-fixes` (2026-10-29): npm run test:unit 0 · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. (a4cefd8 = 4개 마을 과부 분리 531 passed / e542041 병합 = 정의·겸손 수정 포함, 531 passed)
+main `d600c74` (2026-10-18): npm ci 0 · test:unit 0 (384 passed, 66 files) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0. 이후 커밋은 문서·자산·lab·scripts/visual만(매번 check:content 0).
