@@ -657,3 +657,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 
 ## 2026-10-29 경전: 적지 못할 때 안내
 - `writeCodex`가 빈 쪽에 (a) 추론 미확정이면 `codexRejected{locked}`, (b) 확정했지만 이 쪽의 단어가 아니면 `codexRejected{wrong}`를 내고 상태는 그대로(같은 객체). 이미 적힌 쪽·마지막 장 뒤 등 나머지 무시 조건은 그대로 조용히. `main.ts`가 알림 `ui.notice.codex-locked/wrong`(ko·en)을 4초 보여 준다. 테스트 갱신·추가.
+
+## 2026-10-29 열석 고리 이동 단서 연결
+- README의 한계였던 "고리 이름·노래 단서를 주는 대화가 없어 이동이 열리지 않음" 해소: 각 마을의 노래 단서를 주는 대화 한 곳에 해당 고리 단서(`fact.ring.<미덕>`)를 같이 준다(칼라스 `lantern-song`→honesty, 리오나 `reona.song`, 솔강 `veteran job`, 셀레스 `mourning-lullaby`, 디오네 `widow-song`, 아르곤 `lineage-song`, 엘리아·헤론 `silent-chant`). `tests/scenario/ring-clues.test.ts`가 모든 고리 단서가 어떤 대화에서든 얻어지는지 확인. `reachable.py` 0.
+- 확인 못 한 것: 실제 화면에서 고리 메뉴로 순간이동하는 흐름의 느낌(🧑).

@@ -23,6 +23,7 @@
       - text: sacrifice.npc.altar-priest.love.t
     fact.dione.widow-song:
       - text: sacrifice.npc.altar-priest.widow-song.t
+        grants: [fact.ring.sacrifice]
         lie: true
     fact.creature.sacrifice-penitent:
       - text: sacrifice.npc.altar-priest.penitent.t

@@ -26,6 +26,7 @@
       - text: justice.npc.judge.compassion.t
     fact.seles.mourning-lullaby:
       - text: justice.npc.judge.lullaby.t
+        grants: [fact.ring.justice]
     fact.seles.witness:
       - text: justice.npc.judge.witness.t
         lie: true

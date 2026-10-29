@@ -245,7 +245,7 @@
       - text: npc.kalas.child.name.t
     job:
       - text: npc.kalas.child.job.t
-        grants: [fact.song.lantern-song, word.lantern]
+        grants: [fact.song.lantern-song, word.lantern, fact.ring.honesty]
     word.lantern:
       - text: npc.kalas.child.song.t
     word.ledger:

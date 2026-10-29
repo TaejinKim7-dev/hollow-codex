@@ -23,6 +23,7 @@
       - text: spirituality.npc.monk.prayer.t
     fact.elia.silent-chant:
       - text: spirituality.npc.monk.silent-chant.t
+        grants: [fact.ring.spirituality]
         lie: true
     word.truth:
       - text: spirituality.npc.monk.truth.t

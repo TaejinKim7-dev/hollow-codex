@@ -52,7 +52,7 @@
         grants: [fact.argon.heir, fact.argon.lineage-song, word.truth, word.shame]
     fact.argon.lineage-song:
       - text: honor.npc.heir.song.t
-        grants: [fact.argon.lineage-song, word.truth]
+        grants: [fact.argon.lineage-song, word.truth, fact.ring.honor]
     word.truth:
       - text: honor.npc.heir.truth.t
         grants: [word.truth]

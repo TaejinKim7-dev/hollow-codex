@@ -101,7 +101,7 @@
       - text: humility.npc.child.listening.t
     fact.heron.silent-chant:
       - text: humility.npc.child.silent-chant.t
-        grants: [fact.heron.silent-chant]
+        grants: [fact.heron.silent-chant, fact.ring.humility]
     word.name:
       - text: humility.npc.child.wordname.t
     fact.heron.hermit:

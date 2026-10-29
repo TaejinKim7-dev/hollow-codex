@@ -75,7 +75,7 @@
         grants: [word.sharing]
     fact.reona.song:
       - text: compassion.npc.child.song.t
-        grants: [fact.reona.song]
+        grants: [fact.reona.song, fact.ring.compassion]
     word.gift:
       - text: compassion.npc.child.gift.t
     fact.reona.almoner:

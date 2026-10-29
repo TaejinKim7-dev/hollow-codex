@@ -154,7 +154,7 @@
       - text: valor.npc.veteran.name.t
     job:
       - text: valor.npc.veteran.job.t
-        grants: [fact.solgang.veteran, fact.solgang.battle-hymn, word.retreat]
+        grants: [fact.solgang.veteran, fact.solgang.battle-hymn, word.retreat, fact.ring.valor]
     word.retreat:
       - text: valor.npc.veteran.retreat.t
         grants: [word.courage, fact.solgang.battle-hymn]
