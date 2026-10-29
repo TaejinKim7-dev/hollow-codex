@@ -1,13 +1,12 @@
-import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../content/types.ts"
+import type { CombatRules, GameContent } from "../../content/types.ts"
 import { SKILL_ABILITY, type CombatAction, type CombatState, type CombatUnit, type Dir, type GameEvent, type GameState, type Id, type Pos, type StepResult } from "../types.ts"
 import { recordDeed } from "../virtue/conduct.ts"
 import { findPathOnGrid, gridTileAt, offset } from "../world/path.ts"
-import { attackDamage, chainHits, facingToward, sideOf } from "./rules.ts"
-import { alive, computeIntents, manhattan, MAX_STEPS, nextActive, occupied, samePos } from "./intents.ts"
+import { attackDamage, chainHits, facingToward, rulesOf, sideOf, unitMove } from "./rules.ts"
+import { alive, computeIntents, manhattan, nextActive, occupied, samePos } from "./intents.ts"
 
 export { computeIntents } from "./intents.ts"
 
-const rulesOf = (content: GameContent): CombatRules => content.combat ?? DEFAULT_COMBAT_RULES
 
 type Outcome = "victory" | "defeat" | "fled"
 
@@ -16,22 +15,22 @@ export function startCombat(state: GameState, content: GameContent, encounterId:
   const encounter = content.encounters[encounterId]
   if (!encounter) throw new Error(`unknown encounter: ${encounterId}`)
   const fresh = { defending: false, moved: false, acted: false, gone: null } as const
-  const allyStats: { id: Id; hp: number; attack: number; maxHp: number }[] = [
+  const allyStats: { id: Id; hp: number; attack: number; maxHp: number; class?: Id }[] = [
     { id: "player", hp: state.player.hp, attack: state.player.attack, maxHp: state.player.maxHp },
     ...state.party.map((id) => {
       const companion = content.npcs[id]?.companion
       if (!companion) throw new Error(`party member without companion: ${id}`)
-      return { id, hp: companion.hp, attack: companion.attack, maxHp: companion.hp }
+      return { id, hp: companion.hp, attack: companion.attack, maxHp: companion.hp, ...(companion.class === undefined ? {} : { class: companion.class }) }
     })
   ]
   const allies: CombatUnit[] = allyStats.flatMap((a, i) => {
     const pos = encounter.allyStart[i]
-    return pos ? [{ id: a.id, side: "ally", creature: null, pos, hp: a.hp, attack: a.attack, maxHp: a.maxHp, ...fresh }] : []
+    return pos ? [{ id: a.id, side: "ally", creature: null, pos, hp: a.hp, attack: a.attack, maxHp: a.maxHp, ...(a.class === undefined ? {} : { class: a.class }), ...fresh }] : []
   })
   const enemies: CombatUnit[] = encounter.enemies.map((e, i) => {
     const creature = content.creatures[e.creature]
     if (!creature) throw new Error(`unknown creature: ${e.creature}`)
-    return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, morale: creature.morale ?? creature.hp, maxMorale: creature.morale ?? creature.hp, ...fresh }
+    return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, morale: creature.morale ?? creature.hp, maxMorale: creature.morale ?? creature.hp, ...(creature.class === undefined ? {} : { class: creature.class }), ...fresh }
   })
   const placed = [...allies, ...enemies]
   const units = placed.map((u) => {   // 처음엔 가장 가까운 상대 쪽을 본다
@@ -58,7 +57,7 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
       if (actor.moved) return ignored
       const blocked = (p: Pos) => occupied(combat.units, p, actor.id)
       const path = findPathOnGrid(combat.grid, content.tiles, actor.pos, action.to, blocked)
-      if (path === null || path.length < 1 || path.length > MAX_STEPS) return ignored
+      if (path === null || path.length < 1 || path.length > unitMove(rulesOf(content), actor)) return ignored
       const last = path[path.length - 1]
       return settle(withUnit(state, actor.id, { pos: action.to, moved: true, ...(last === undefined ? {} : { facing: last }) }), [], content)
     }

@@ -1,8 +1,9 @@
 import type { GameContent } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Id, Pos } from "../types.ts"
 import { DIRS, findPathOnGrid, offset } from "../world/path.ts"
+import { rulesOf, unitMove } from "./rules.ts"
 
-/** 적이 한 라운드에 걷는 최대 칸 수. 아군의 move 한도도 같다. */
+/** 병과가 없는 유닛이 한 라운드에 걷는 칸 수(fighter 기준). 실제 한도는 병과별 `unitMove`. */
 export const MAX_STEPS = 3
 
 export const samePos = (a: Pos, b: Pos): boolean => a.x === b.x && a.y === b.y
@@ -39,12 +40,13 @@ const RETREAT_RATIO: Readonly<Record<string, number>> = { cautious: 0.5, coward:
 /** 이 적이 한 걸음 내(MAX_STEPS)로 갈 수 있는 칸(제자리 포함). */
 function stepCells(combat: CombatState, content: GameContent, enemy: CombatUnit, blocked: (p: Pos) => boolean): Pos[] {
   const out: Pos[] = [enemy.pos]
+  const steps = unitMove(rulesOf(content), enemy)
   for (let y = 0; y < combat.grid.length; y++) {
     for (let x = 0; x < (combat.grid[0]?.length ?? 0); x++) {
       const cell = { x, y }
-      if (samePos(cell, enemy.pos) || manhattan(cell, enemy.pos) > MAX_STEPS) continue
+      if (samePos(cell, enemy.pos) || manhattan(cell, enemy.pos) > steps) continue
       const path = findPathOnGrid(combat.grid, content.tiles, enemy.pos, cell, blocked)
-      if (path !== null && path.length >= 1 && path.length <= MAX_STEPS) out.push(cell)
+      if (path !== null && path.length >= 1 && path.length <= steps) out.push(cell)
     }
   }
   return out
@@ -85,7 +87,7 @@ export function computeIntents(combat: CombatState, content: GameContent): Comba
       if (best === null || score < best.score) best = { target: ally, path, score }
     }
     let moveTo = enemy.pos
-    for (const dir of best?.path.slice(0, MAX_STEPS) ?? []) moveTo = offset(moveTo, dir)
+    for (const dir of best?.path.slice(0, unitMove(rulesOf(content), enemy)) ?? []) moveTo = offset(moveTo, dir)
     const attack = best !== null && manhattan(moveTo, best.target.pos) === 1 ? best.target.id : null
     intents[enemy.id] = { moveTo, attack }
     reserved.push(moveTo)

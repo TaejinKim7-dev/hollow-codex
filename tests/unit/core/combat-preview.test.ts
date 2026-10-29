@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 import { computeIntents } from "../../../src/core/combat/grid.ts"
 import { attackTargets, previewHit, reachableCells } from "../../../src/core/combat/preview.ts"
 import type { CombatState, CombatUnit } from "../../../src/core/types.ts"
+import { DEFAULT_COMBAT_RULES } from "../../../src/content/types.ts"
 import { testContent } from "./fixture.ts"
 
 const c = testContent()
@@ -57,5 +58,17 @@ describe("previewHit", () => {
   it("halves (rounded up) against a defending target", () => {
     const s = combat([P(2, 1), S(2, 0, { defending: true }), B(4, 4)])
     expect(previewHit(s, "player", "creature.slime#0").amount).toBe(2)
+  })
+})
+
+describe("class movement", () => {
+  const withClasses = { ...c, combat: { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, runner: { move: 4, rangeMin: 1, rangeMax: 1, takenDefense: 0 }, guardian: { move: 2, rangeMin: 1, rangeMax: 1, takenDefense: 1 } } } }
+  it("a runner can reach a cell 4 steps away, a fighter and a guardian cannot", () => {
+    const at = (cls: string | undefined) => reachableCells(combat([P(0, 4, cls === undefined ? {} : { class: cls }), S(4, 0), B(4, 1)]), withClasses, "player").map(key)
+    expect(at("runner")).toContain("4,4")
+    expect(at(undefined)).not.toContain("4,4")
+    expect(at(undefined)).toContain("3,4")
+    expect(at("guardian")).not.toContain("3,4")
+    expect(at("guardian")).toContain("2,4")
   })
 })

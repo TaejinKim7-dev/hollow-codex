@@ -1,4 +1,4 @@
-import { FIGHTER, type CombatRules, type UnitClass } from "../../content/types.ts"
+import { DEFAULT_COMBAT_RULES, FIGHTER, type CombatRules, type GameContent, type UnitClass } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Pos } from "../types.ts"
 import { alive, manhattan } from "./intents.ts"
 
@@ -16,6 +16,8 @@ export function sideOf(target: CombatUnit, attackerPos: Pos): "front" | "side" |
   const toward = facingToward(target.pos, attackerPos)
   return toward === target.facing ? "front" : toward === OPPOSITE[target.facing] ? "back" : "side"
 }
+
+export const rulesOf = (content: GameContent): CombatRules => content.combat ?? DEFAULT_COMBAT_RULES
 
 /** 유닛의 병과 값(병과가 없거나 표에 없으면 fighter). */
 export function classOf(rules: CombatRules, unit: Pick<CombatUnit, "class">): UnitClass {

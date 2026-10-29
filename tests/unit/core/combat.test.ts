@@ -1,4 +1,4 @@
-import type { EncounterObjective } from "../../../src/content/types.ts"
+import { DEFAULT_COMBAT_RULES, type EncounterObjective } from "../../../src/content/types.ts"
 import { describe, expect, it } from "vitest"
 import { computeIntents } from "../../../src/core/combat/grid.ts"
 import { step } from "../../../src/core/step.ts"
@@ -292,5 +292,17 @@ describe("startCombat maxHp", () => {
     const wounded = { ...s.combat!, units: s.combat!.units }
     expect(wounded.units.find((u) => u.id === "player")!.maxHp).toBe(s.player.maxHp)
     expect(wounded.units.find((u) => u.side === "enemy")!.maxHp).toBe(wounded.units.find((u) => u.side === "enemy")!.hp)
+  })
+})
+
+describe("class movement in combatStep", () => {
+  const cc = { ...c, combat: { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, runner: { move: 4, rangeMin: 1, rangeMax: 1, takenDefense: 0 } } } }
+  it("moves a runner 4 steps but a fighter only 3", () => {
+    const run = (cls: string | undefined) => {
+      const s = combatState([P(0, 4, cls === undefined ? {} : { class: cls }), S(4, 0), B(4, 1)])
+      return step(s, { type: "combat", action: { kind: "move", to: { x: 4, y: 4 } } }, cc).state.combat?.units[0]?.pos
+    }
+    expect(run("runner")).toEqual({ x: 4, y: 4 })
+    expect(run(undefined)).toEqual({ x: 0, y: 4 })
   })
 })

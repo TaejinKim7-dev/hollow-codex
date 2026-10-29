@@ -1,8 +1,8 @@
 import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Id, Pos } from "../types.ts"
 import { DIRS, findPathOnGrid, offset } from "../world/path.ts"
-import { attackDamage, chainHits, facingToward } from "./rules.ts"
-import { alive, manhattan, MAX_STEPS, occupied, samePos } from "./intents.ts"
+import { attackDamage, chainHits, facingToward, rulesOf, unitMove } from "./rules.ts"
+import { alive, manhattan, occupied, samePos } from "./intents.ts"
 
 const unitOf = (combat: CombatState, id: Id): CombatUnit | undefined => combat.units.find((u) => u.id === id)
 
@@ -11,13 +11,14 @@ export function reachableCells(combat: CombatState, content: GameContent, unitId
   const unit = unitOf(combat, unitId)
   if (unit === undefined || !alive(unit) || unit.moved || unit.acted) return []
   const out: Pos[] = []
+  const steps = unitMove(rulesOf(content), unit)
   const blocked = (p: Pos): boolean => occupied(combat.units, p, unit.id)
   for (let y = 0; y < combat.grid.length; y++) {
     for (let x = 0; x < (combat.grid[0]?.length ?? 0); x++) {
       const cell = { x, y }
-      if (samePos(cell, unit.pos) || manhattan(cell, unit.pos) > MAX_STEPS) continue
+      if (samePos(cell, unit.pos) || manhattan(cell, unit.pos) > steps) continue
       const path = findPathOnGrid(combat.grid, content.tiles, unit.pos, cell, blocked)
-      if (path !== null && path.length >= 1 && path.length <= MAX_STEPS) out.push(cell)
+      if (path !== null && path.length >= 1 && path.length <= steps) out.push(cell)
     }
   }
   return out
