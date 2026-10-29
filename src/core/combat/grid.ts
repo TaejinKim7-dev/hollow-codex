@@ -16,22 +16,22 @@ export function startCombat(state: GameState, content: GameContent, encounterId:
   const encounter = content.encounters[encounterId]
   if (!encounter) throw new Error(`unknown encounter: ${encounterId}`)
   const fresh = { defending: false, moved: false, acted: false, gone: null } as const
-  const allyStats: { id: Id; hp: number; attack: number }[] = [
-    { id: "player", hp: state.player.hp, attack: state.player.attack },
+  const allyStats: { id: Id; hp: number; attack: number; maxHp: number }[] = [
+    { id: "player", hp: state.player.hp, attack: state.player.attack, maxHp: state.player.maxHp },
     ...state.party.map((id) => {
       const companion = content.npcs[id]?.companion
       if (!companion) throw new Error(`party member without companion: ${id}`)
-      return { id, hp: companion.hp, attack: companion.attack }
+      return { id, hp: companion.hp, attack: companion.attack, maxHp: companion.hp }
     })
   ]
   const allies: CombatUnit[] = allyStats.flatMap((a, i) => {
     const pos = encounter.allyStart[i]
-    return pos ? [{ id: a.id, side: "ally", creature: null, pos, hp: a.hp, attack: a.attack, ...fresh }] : []
+    return pos ? [{ id: a.id, side: "ally", creature: null, pos, hp: a.hp, attack: a.attack, maxHp: a.maxHp, ...fresh }] : []
   })
   const enemies: CombatUnit[] = encounter.enemies.map((e, i) => {
     const creature = content.creatures[e.creature]
     if (!creature) throw new Error(`unknown creature: ${e.creature}`)
-    return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, ...fresh }
+    return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, ...fresh }
   })
   const placed = [...allies, ...enemies]
   const units = placed.map((u) => {   // 처음엔 가장 가까운 상대 쪽을 본다
@@ -123,7 +123,7 @@ function push(state: GameState, content: GameContent, attacker: CombatUnit, targ
   const tile = gridTileAt(combat.grid, content.tiles, dest)
   const events: GameEvent[] = [{ type: "sfx", name: "push" }]
   if (tile === null) return settle(withUnit(state, target.id, { gone: "retreated" }), [{ type: "combatYield", target: target.id, how: "retreated" }, ...events], content)
-  if (tile.walk === null || occupied(combat.units, dest, target.id)) return harm(state, content, attacker, target, 1, events)
+  if (tile.walk === null || occupied(combat.units, dest, target.id)) return harm(state, content, attacker, target, 1, [])   // 막힌 밀치기는 타격음(연출 큐)만. 밀치기 소리까지 겹치지 않는다
   return settle(withUnit(state, target.id, { pos: dest }), events, content)
 }
 

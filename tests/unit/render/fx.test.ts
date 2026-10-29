@@ -287,3 +287,11 @@ describe("fx: special", () => {
     expect(fx.sample(T0 + 350 + 200).floats.map((f) => f.text).sort()).toEqual(["-3", "-6"])
   })
 })
+
+describe("fx: hp bar max", () => {
+  it("uses the unit's maxHp so a wounded unit's bar is not drawn full", () => {
+    const fx = createFx()
+    fx.reset([unit("player", "ally", 2, 1, 3, { maxHp: 12 })])
+    expect(fx.sample(T0).hp["player"]).toEqual({ shown: 3, trail: 3, max: 12 })
+  })
+})

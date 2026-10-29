@@ -164,3 +164,12 @@ describe("grid combat", () => {
     expect(act(s, { kind: "move", to: { x: 0, y: 1 } }).state).toBe(s)            // 거리 5
   })
 })
+
+describe("startCombat maxHp", () => {
+  it("records each unit's full hp so a wounded player starts with a partly filled bar", () => {
+    const s = step(at(1, 2), { type: "move", dir: "s" }, c).state
+    const wounded = { ...s.combat!, units: s.combat!.units }
+    expect(wounded.units.find((u) => u.id === "player")!.maxHp).toBe(s.player.maxHp)
+    expect(wounded.units.find((u) => u.side === "enemy")!.maxHp).toBe(wounded.units.find((u) => u.side === "enemy")!.hp)
+  })
+})

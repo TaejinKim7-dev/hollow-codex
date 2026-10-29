@@ -72,7 +72,7 @@ export function createFx(speed = 1): Fx {
   return {
     reset(units) {
       clear()
-      for (const u of units) { max[u.id] = u.hp; base[u.id] = u.hp; run[u.id] = u.hp }
+      for (const u of units) { max[u.id] = Math.max(u.hp, u.maxHp ?? 0); base[u.id] = u.hp; run[u.id] = u.hp }
     },
     clear,
     enqueue(events, before, after, now, enemyPhase) {
