@@ -603,3 +603,8 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - `content/towns/overworld/maps.yaml`: `.`→g, `,`→h, `:`→p, `T`→t, `~`→w, `=`→b(다리 물건 `obj.bridge` 2곳), `+`→p(마을 입구 8곳에 `obj.house-front` 집 정면, 문 앞 칸은 흙길). `terrainCost`는 새 글자로 다시 썼다(옛과 같은 비용: g1 h2 p2 w/t/^ 막힘 b1). 물(`w`)과 맞닿은 길 4칸은 `g`로(땅 인접 규칙). 이동 규칙은 타일 `walk`로 같다(나무 t·물 w는 못 감).
 - `walls32.png`에 산 타일(칸 6, 배경 투명) 추가 → `^`. 렌더러: 땅 종류가 있는 지도의 투명한 옛 그림(산·열석)은 풀 바닥을 먼저 깐다(`WALLS_MOUNTAIN`만 투명, 나머지 walls 칸은 불투명). 캡처 직접 확인: `docs/screenshots/2026-10-29-overworld*.png`.
 - 남은 옛 타일: 열석 `o`(옛 16px), 칼라스 필드 `S`. 건물은 지붕 없는 벽 블록(집 정면 물건은 입구 장식에만 사용).
+
+## 2026-10-29 전투 C-4(일부) 마음 게이지
+- `CombatUnit.morale/maxMorale`(적만; 시작값 = `creature.morale ?? hp`), `content/combat.yaml`의 `morale: {weakLoss 1, isolationLoss 1, persuadeRatio 0.5}`. 줄어드는 때: 아군의 `attack`·연계·필살로 맞을 때(피해 + 옆/등이면 weakLoss), 라운드가 바뀔 때 주변 2칸 안에 다른 살아 있는 적이 없으면 isolationLoss. 설득(`persuaded`): 비악 ∧ (lore 단서를 앎 ∨ 마음 ≤ ceil(최대×persuadeRatio)). 악한 적은 마음 0이면 `breakMorale`(settle 안)이 퇴각시키고 `combatYield retreated`를 낸다. 목표 6종·증원·보상 차등은 아직.
+- 화면: 적 체력 막대 아래 파란 얇은 막대(`drawMoraleBar`), HUD 칩에 "마음 n". 크리처 그림도 새 인물로 교체(`content/creatures.yaml`: 도적=craftsman, 거지=young-villager, 결투가=guard-soldier, 조문객=widow 등).
+- 확인: 573 passed, 게이트 0, E2E 3개, 프레임 스트립 직접 확인. 확인 못 한 것: 균형(마음 감소량·절반 기준), 설득 안내 문구(왜 설득이 안 되는지 표시 없음), 적 쪽 마음 표시 외의 아군 마음.

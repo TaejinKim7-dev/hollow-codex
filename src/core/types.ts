@@ -7,6 +7,7 @@ export interface CombatUnit {
   readonly id: Id; readonly side: "ally" | "enemy"; readonly creature: Id | null; readonly pos: Pos
   readonly hp: number; readonly attack: number; readonly defending: boolean
   readonly moved: boolean; readonly acted: boolean; readonly gone: null | "dead" | "retreated" | "fled"
+  readonly morale?: number; readonly maxMorale?: number            // 마음(적만). 없으면 마음 규칙 없음
   readonly maxHp?: number                                          // 체력 막대의 가득 찬 값(없으면 시작 hp). 패배 뒤 낮은 hp로 시작해도 막대가 가득 차 보이지 않게
   readonly facing?: Dir                                            // 바라보는 방향(없으면 방향 보정 없음). 이동·공격 때 갱신
 }

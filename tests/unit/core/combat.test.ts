@@ -144,6 +144,39 @@ describe("grid combat", () => {
       expect(r.state.combat!.round).toBe(2)   // the only ally acted, so the enemy phase ran
     })
   })
+  describe("C-4: morale", () => {
+    it("a hit lowers the enemy's morale by the damage, plus 1 for a flank or back hit", () => {
+      const front = act(combatState([P(2, 1), S(2, 0, { hp: 9, morale: 9, maxMorale: 9, facing: "s" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      expect(unit(front.state, "creature.slime#0").morale).toBe(5)   // 9 − 3 hit − 1 isolation (the enemy phase ran: the player is the only ally)
+      const back = act(combatState([P(2, 1), S(2, 0, { hp: 9, morale: 9, maxMorale: 9, facing: "n" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      expect(unit(back.state, "creature.slime#0").morale).toBe(2)   // 9 − (5 damage + 1 flank) − 1 isolation
+    })
+    it("persuading without the lore fact only works once the morale is at or below half", () => {
+      const high = act(combatState([P(2, 1), S(2, 0, { hp: 4, morale: 4, maxMorale: 4 }), B(4, 4)]), { kind: "persuade", dir: "n" })
+      expect(unit(high.state, "creature.slime#0").gone).toBeNull()
+      const low = act(combatState([P(2, 1), S(2, 0, { hp: 4, morale: 2, maxMorale: 4 }), B(4, 4)]), { kind: "persuade", dir: "n" })
+      expect(unit(low.state, "creature.slime#0").gone).toBe("retreated")
+      expect(low.events).toContainEqual({ type: "combatYield", target: "creature.slime#0", how: "persuaded" })
+    })
+    it("an evil enemy whose morale reaches 0 retreats instead of fighting on; a non-evil one stays", () => {
+      const evil = act(combatState([P(2, 1, { attack: 1 }), B(2, 0, { hp: 5, morale: 1, maxMorale: 5, facing: "s" }), S(4, 4)]), { kind: "attack", dir: "n" })
+      expect(unit(evil.state, "creature.bandit#1").gone).toBe("retreated")
+      expect(evil.events).toContainEqual({ type: "combatYield", target: "creature.bandit#1", how: "retreated" })
+      const kind = act(combatState([P(2, 1, { attack: 1 }), S(2, 0, { hp: 5, morale: 1, maxMorale: 5, facing: "s" }), B(4, 4)]), { kind: "attack", dir: "n" })
+      expect(unit(kind.state, "creature.slime#0").gone).toBeNull()
+    })
+    it("a lone enemy loses morale each round (isolation)", () => {
+      const s0 = combatState([P(2, 1), S(2, 4, { hp: 9, morale: 5, maxMorale: 5 }), B(0, 4, { hp: 9, morale: 5, maxMorale: 5 })])
+      const r = act(s0, { kind: "endTurn" })               // enemy phase runs, round 2; both are ≥3 apart → both isolated
+      expect(unit(r.state, "creature.slime#0").morale).toBe(4)
+      expect(unit(r.state, "creature.bandit#1").morale).toBe(4)
+    })
+    it("starting a fight fills each enemy's morale from the creature (default = its hp)", () => {
+      const s = step(at(1, 2), { type: "move", dir: "s" }, c).state
+      const e = s.combat!.units.find((u) => u.side === "enemy")!
+      expect(e.morale).toBe(e.hp); expect(e.maxMorale).toBe(e.hp)
+    })
+  })
   it("combat ends in defeat when every ally is gone", () => {
     const r = act(combatState([P(2, 1, { hp: 1 }), B(2, 0)]), { kind: "endTurn" })
     expect(r.events).toContainEqual({ type: "combatEnded", outcome: "defeat" })

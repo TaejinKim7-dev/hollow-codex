@@ -1651,3 +1651,4 @@ npc.arena.trainer.job.t: 적의 옆구리나 등 뒤로 돌아가 쳐 보게. �
 ui.combat.special: 필살
 ui.combat.momentum: 기세
 ui.combat.special-banner: "필살!"
+ui.combat.morale: 마음

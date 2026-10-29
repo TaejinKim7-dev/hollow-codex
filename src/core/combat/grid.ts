@@ -31,7 +31,7 @@ export function startCombat(state: GameState, content: GameContent, encounterId:
   const enemies: CombatUnit[] = encounter.enemies.map((e, i) => {
     const creature = content.creatures[e.creature]
     if (!creature) throw new Error(`unknown creature: ${e.creature}`)
-    return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, ...fresh }
+    return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, morale: creature.morale ?? creature.hp, maxMorale: creature.morale ?? creature.hp, ...fresh }
   })
   const placed = [...allies, ...enemies]
   const units = placed.map((u) => {   // 처음엔 가장 가까운 상대 쪽을 본다
@@ -104,7 +104,7 @@ function special(state: GameState, content: GameContent, attacker: CombatUnit, t
   const events: GameEvent[] = []
   for (const v of victims) {
     const hurt = wound(v.unit, v.amount)
-    next = withUnit(next, v.unit.id, hurt)
+    next = withUnit(next, v.unit.id, { ...hurt, ...moraleAfterHit(content, attacker, v.unit, v.amount) })
     events.push({ type: "combatHit", attacker: attacker.id, target: v.unit.id, amount: v.amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp), at: attacker.pos, special: true }, { type: "sfx", name: "hit" })
     const creature = v.unit.creature === null ? undefined : content.creatures[v.unit.creature]
     if (hurt.gone === "dead" && creature !== undefined && !creature.evil) {
@@ -127,10 +127,32 @@ function push(state: GameState, content: GameContent, attacker: CombatUnit, targ
   return settle(withUnit(state, target.id, { pos: dest }), events, content)
 }
 
-/** 규칙 7: evil 아님 ∧ 플레이어가 그 생물의 lore 단서를 앎. */
+/** 규칙 7: evil 아님 ∧ (플레이어가 그 생물의 lore 단서를 앎 ∨ 마음이 최대의 persuadeRatio 이하). */
 function persuaded(state: GameState, content: GameContent, target: CombatUnit): boolean {
   const creature = target.creature === null ? undefined : content.creatures[target.creature]
-  return creature !== undefined && !creature.evil && state.facts.includes(creature.lore)
+  if (creature === undefined || creature.evil) return false
+  if (state.facts.includes(creature.lore)) return true
+  return target.morale !== undefined && target.maxMorale !== undefined && target.morale <= Math.ceil(target.maxMorale * rulesOf(content).morale.persuadeRatio)
+}
+
+/** 맞은 적의 마음 줄이기: 피해 만큼, 옆·등 타격이면 weakLoss 더. 마음 규칙이 없는 유닛(아군 등)은 그대로. */
+function moraleAfterHit(content: GameContent, attacker: CombatUnit, target: CombatUnit, amount: number): Pick<CombatUnit, "morale"> | Record<string, never> {
+  if (target.morale === undefined) return {}
+  const weak = target.side === "enemy" && sideOf(target, attacker.pos) !== "front" ? rulesOf(content).morale.weakLoss : 0
+  return { morale: Math.max(0, target.morale - amount - weak) }
+}
+
+/** 악한 적의 마음이 0이면 항복 대신 퇴각한다. */
+function breakMorale(state: GameState, content: GameContent, events: GameEvent[]): GameState {
+  let next = state
+  for (const u of state.combat!.units) {
+    if (u.side !== "enemy" || !alive(u) || u.morale === undefined || u.morale > 0) continue
+    const creature = u.creature === null ? undefined : content.creatures[u.creature]
+    if (creature === undefined || !creature.evil) continue
+    next = withUnit(next, u.id, { gone: "retreated" })
+    events.push({ type: "combatYield", target: u.id, how: "retreated" })
+  }
+  return next
 }
 
 /**
@@ -139,7 +161,7 @@ function persuaded(state: GameState, content: GameContent, target: CombatUnit): 
  */
 function harm(state: GameState, content: GameContent, attacker: CombatUnit, target: CombatUnit, amount: number, events: GameEvent[], withChain = false): StepResult {
   const hurt = wound(target, amount)
-  let next = withUnit(state, target.id, hurt)
+  let next = withUnit(state, target.id, { ...hurt, ...moraleAfterHit(content, attacker, target, amount) })
   const all: GameEvent[] = [{ type: "combatHit", attacker: attacker.id, target: target.id, amount, defeated: hurt.gone === "dead", hp: Math.max(0, hurt.hp), at: attacker.pos }, ...events]
   const creature = target.creature === null ? undefined : content.creatures[target.creature]
   const innocent = creature !== undefined && !creature.evil
@@ -153,7 +175,9 @@ function harm(state: GameState, content: GameContent, attacker: CombatUnit, targ
     const chain = chainHits(next.combat!, rulesOf(content), attacker, { ...target, ...hurt })
     chain.forEach((h, i) => {
       all.push({ type: "combatHit", attacker: h.attacker, target: h.target, amount: h.amount, defeated: h.defeated, hp: h.hp, at: h.at, chain: i + 1 }, { type: "sfx", name: "hit" })
-      next = withUnit(next, target.id, { hp: h.hp, gone: h.defeated ? "dead" : null })
+      const chainer = next.combat!.units.find((u) => u.id === h.attacker)!
+      const cur = next.combat!.units.find((u) => u.id === target.id)!
+      next = withUnit(next, target.id, { hp: h.hp, gone: h.defeated ? "dead" : null, ...moraleAfterHit(content, chainer, cur, h.amount) })
       if (h.defeated) dead = true
     })
     if (dead && !(hurt.gone === "dead") && innocent) {
@@ -187,7 +211,8 @@ function addMomentum(state: GameState, rules: CombatRules, gain: number): GameSt
 /**
  * 명령 처리 뒤: 종료 확인 → (아군이 모두 행동했으면) 적 단계 → 다시 종료 확인 → active 재계산.
  */
-function settle(state: GameState, events: GameEvent[], content: GameContent): StepResult {
+function settle(state0: GameState, events: GameEvent[], content: GameContent): StepResult {
+  const state = breakMorale(state0, content, events)
   const ended = checkEnd(state, content, events)
   if (ended) return ended
   let combat = state.combat!
@@ -233,7 +258,13 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
       units[i] = { ...units[i]!, facing: facingToward(enemy.pos, pos) }
     }
   }
-  const reset = units.map((u) => (u.side === "ally" && alive(u) ? { ...u, moved: false, acted: false, defending: false } : u))
+  const lone = (u: CombatUnit): boolean => !units.some((o) => o.id !== u.id && o.side === "enemy" && alive(o) && manhattan(o.pos, u.pos) <= 2)
+  const isolation = rulesOf(content).morale.isolationLoss
+  const reset = units.map((u) => {
+    if (u.side === "ally" && alive(u)) return { ...u, moved: false, acted: false, defending: false }
+    if (u.side === "enemy" && alive(u) && u.morale !== undefined && lone(u)) return { ...u, morale: Math.max(0, u.morale - isolation) }
+    return u
+  })
   const next: CombatState = { ...combat, units: reset, round: combat.round + 1 }
   return { combat: { ...next, intents: computeIntents(next, content) }, events }
 }

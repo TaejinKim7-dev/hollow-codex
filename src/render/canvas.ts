@@ -256,6 +256,7 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     const bar = fx.hp[unit.id]
     const f = fx.units[unit.id]
     drawHpBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), bar?.shown ?? unit.hp, bar?.trail ?? unit.hp, bar?.max ?? Math.max(unit.hp, 1))
+    if (unit.side === "enemy" && unit.morale !== undefined && unit.maxMorale !== undefined) drawMoraleBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), unit.morale, unit.maxMorale)
   }
   for (const g of fx.ghosts) {                       // 방금 쓰러진 유닛의 체력 막대도 끝까지 줄어드는 걸 보여 준다
     const bar = fx.hp[g.unit.id]
@@ -325,6 +326,17 @@ function drawHpBar(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, ce
   ctx.fillRect(x, y, Math.round(w * ratio(trail)), h)
   ctx.fillStyle = hpColor(ratio(shown))
   ctx.fillRect(x, y, Math.round(w * ratio(shown)), h)
+}
+
+/** 적의 마음 막대: 체력 막대 바로 아래 얇은 파란 막대. */
+function drawMoraleBar(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, value: number, max: number): void {
+  const w = Math.round(size * 0.78), h = Math.max(2, Math.round(size * 0.06))
+  const x = Math.round(screenX(vp, cellX, size) + (size - w) / 2)
+  const y = Math.round(screenY(vp, cellY, size) + size + 2 * vp.scale + Math.max(3, Math.round(size * 0.1)) + 3)
+  ctx.fillStyle = "rgba(0, 0, 0, 0.7)"
+  ctx.fillRect(x - 1, y - 1, w + 2, h + 2)
+  ctx.fillStyle = "#5aa0ff"
+  ctx.fillRect(x, y, Math.round(w * Math.max(0, Math.min(1, value / Math.max(1, max)))), h)
 }
 
 function drawSlash(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, dir: Dir, age: number): void {

@@ -7,6 +7,10 @@ direction:          # 대상이 바라보는 방향에 대한 공격 위치별 �
 chain:
   ratio: 0.5        # 연계 추가타 = 그 유닛의 정상 피해 × ratio
   enemies: false    # 적도 연계하는가(난이도는 C-5에서)
+morale:             # 마음: 피해·옆/등 타격·고립으로 줄고, 비악 적은 최대치의 persuadeRatio 이하에서 설득할 수 있다(단서를 알면 언제나). 악한 적은 0이면 퇴각
+  weakLoss: 1       # 옆·등 타격이면 추가로 잃는 마음
+  isolationLoss: 1  # 라운드가 바뀔 때 주변 2칸 안에 다른 적이 없으면 잃는 마음
+  persuadeRatio: 0.5
 momentum:           # 기세: 아군이 약점(옆·등)을 치거나 연계·처치를 하면 쌓이고, 가득 차면 필살(special) 1회
   max: 6
   weak: 1           # 옆·등 타격 1회당

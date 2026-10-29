@@ -19,11 +19,13 @@ export interface CombatRules {
   /** 연계 추가타: ratio = 그 유닛의 정상 피해에 곱함, enemies = 적 쪽 연계 허용 */
   readonly chain: { readonly ratio: number; readonly enemies: boolean }
   /** 기세: 아군이 약점(옆·등)을 치거나 연계·처치를 하면 쌓이고, 가득 차면 필살기 1회(special). */
+  /** 마음(사기): 피해와 약점 타격·고립으로 줄고, 비악 적은 persuadeRatio 이하에서 설득할 수 있다. 악한 적은 0이 되면 퇴각. */
+  readonly morale: { readonly weakLoss: number; readonly isolationLoss: number; readonly persuadeRatio: number }
   readonly momentum: { readonly max: number; readonly weak: number; readonly chain: number; readonly defeat: number; readonly specialMultiplier: number; readonly splashRatio: number }
   /** 전투 격자 타일 글자 → 방어 보정(그 칸에 선 유닛이 받는 피해에서 뺀다, 최소 피해 1) */
   readonly terrain: Readonly<Record<string, { readonly defense: number }>>
 }
-export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, momentum: { max: 6, weak: 1, chain: 1, defeat: 1, specialMultiplier: 2, splashRatio: 0.5 }, terrain: {} }
+export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, morale: { weakLoss: 1, isolationLoss: 1, persuadeRatio: 0.5 }, momentum: { max: 6, weak: 1, chain: 1, defeat: 1, specialMultiplier: 2, splashRatio: 0.5 }, terrain: {} }
 
 export interface ChoiceOption {
   readonly optionId: Id; readonly labelKey: string; readonly textKey: string
@@ -85,7 +87,7 @@ export interface GameContent {
     readonly codexWord?: Id   // M5: the one word this virtue's codex page takes; must be one of answer
   }>>
   readonly crises: Readonly<Record<Id, { readonly npc: Id; readonly textKey: string; readonly options: Readonly<Record<Id, CrisisOptionDef>> }>>
-  readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id }>>
+  readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id; readonly morale?: number }>>
   readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id; readonly repeatable?: boolean }>>
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
   readonly strings: Readonly<Record<string, Readonly<Record<string, string>>>>   // 언어 코드 → 키 → 문구

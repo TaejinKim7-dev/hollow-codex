@@ -392,7 +392,7 @@ export function mountPanels(
 
     hudUnits.replaceChildren()
     for (const unit of view.units) {
-      const chip = make("span", `unit side-${unit.side}`, `${unit.name} · HP ${unit.hp}`)
+      const chip = make("span", `unit side-${unit.side}`, `${unit.name} · HP ${unit.hp}${unit.morale === undefined ? "" : ` · ${tr("ui.combat.morale")} ${unit.morale}`}`)
       if (unit.side === "enemy") {
         const nature = unit.evilKnown === null
           ? tr("ui.unknown-nature")

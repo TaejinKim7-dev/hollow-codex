@@ -32,7 +32,7 @@ export interface NotebookView {
 export interface CombatView {
   active: string                                        // 활성 유닛 이름(플레이어 = t("player.name"))
   actions: CombatAction["kind"][]                       // moved면 move 빠짐, flee는 가장자리만, 항상 endTurn
-  units: { id: Id; name: string; hp: number; side: "ally" | "enemy"; evilKnown: boolean | null }[]
+  units: { id: Id; name: string; hp: number; side: "ally" | "enemy"; evilKnown: boolean | null; morale?: number }[]
   momentum: { value: number; max: number }                // 기세 게이지(가득 차면 special 가능)
 }
 
@@ -255,7 +255,7 @@ export function combatView(state: GameState, content: GameContent): CombatView |
       const creature = content.creatures[u.creature]
       if (creature !== undefined && state.facts.includes(creature.lore)) evilKnown = creature.evil
     }
-    return { id: u.id, name, hp: u.hp, side: u.side, evilKnown }
+    return { id: u.id, name, hp: u.hp, side: u.side, evilKnown, ...(u.morale === undefined ? {} : { morale: u.morale }) }
   })
 
   return { active, actions, units, momentum: { value, max } }

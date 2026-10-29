@@ -38,10 +38,10 @@ const KEYS = {
   tile: ["sprite", "ground", "object", "walk"],
   object: ["id", "image", "footprint", "blocks", "sortOffset"],
   audio: ["sfx", "footsteps", "music"],
-  combat: ["direction", "chain", "momentum", "terrain"],
+  combat: ["direction", "chain", "morale", "momentum", "terrain"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
-  creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore"],
+  creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore", "morale"],
   map: ["id", "rows", "exits", "music", "encounters", "enterFlags", "heals", "isOverworld", "terrainCost", "objects"],
   exit: ["at", "to", "arrive"],
   mapEncounter: ["at", "id"],
@@ -197,6 +197,9 @@ function readCreatures(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
       nameKey: r.str(o, "name", w), evil: r.bool(o, "evil", w), hp: r.num(o, "hp", w), attack: r.num(o, "attack", w),
       sprite: r.sprite(o["sprite"], `${w}.sprite`), lore: r.str(o, "lore", w)
     }
+    const morale = o["morale"] === undefined ? undefined : r.num(o, "morale", w)
+    if (morale !== undefined && morale >= 0) (c as { morale?: number }).morale = morale
+    else if (morale !== undefined) r.fail(`${w}.morale`, "expected a number of 0 or more")
     if (r.errors.length === before) put(ctx, d.creatures, "creature", r.file, id, c)
   })
 }
@@ -225,8 +228,8 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
   if (v === null || v === undefined) return
   const o = r.obj(v, "")
   onlyKeys(r, o, "", KEYS.combat)
-  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; momentum: CombatRules["momentum"]; terrain: Record<string, { defense: number }> } = {
-    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, momentum: { ...DEFAULT_COMBAT_RULES.momentum }, terrain: {}
+  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; momentum: CombatRules["momentum"]; morale: CombatRules["morale"]; terrain: Record<string, { defense: number }> } = {
+    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, momentum: { ...DEFAULT_COMBAT_RULES.momentum }, morale: { ...DEFAULT_COMBAT_RULES.morale }, terrain: {}
   }
   if (o["direction"] !== undefined) {
     const dir = r.obj(o["direction"], "direction")
@@ -246,6 +249,18 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
     if (ratio < 0) r.fail("chain.ratio", "expected a number of 0 or more")
     rules.chain = { ratio, enemies: r.bool(ch, "enemies", "chain", DEFAULT_COMBAT_RULES.chain.enemies) }
   }
+  const mr = { ...DEFAULT_COMBAT_RULES.morale }
+  if (o["morale"] !== undefined) {
+    const mo = r.obj(o["morale"], "morale")
+    onlyKeys(r, mo, "morale", Object.keys(mr))
+    for (const k of Object.keys(mr) as (keyof typeof mr)[]) {
+      if (mo[k] === undefined) continue
+      const n = r.num(mo, k, "morale")
+      if (n < 0 || (k === "persuadeRatio" && n > 1)) r.fail(`morale.${k}`, k === "persuadeRatio" ? "expected a number from 0 to 1" : "expected a number of 0 or more")
+      mr[k] = n
+    }
+  }
+  rules.morale = mr
   const mm = { ...DEFAULT_COMBAT_RULES.momentum }
   if (o["momentum"] !== undefined) {
     const mo = r.obj(o["momentum"], "momentum")
