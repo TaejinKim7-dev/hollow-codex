@@ -70,6 +70,7 @@ function drawGround(ctx: CanvasRenderingContext2D, res: RenderResources, content
   // 시야 밖 한 칸씩 더 그린다: 걷기 보간으로 세계가 밀릴 때 가장자리에 검은 틈이 보이지 않게.
   const x0 = Math.max(0, vp.originTile.x - 1), y0 = Math.max(0, vp.originTile.y - 1)
   const x1 = Math.min(mapW, vp.originTile.x + vp.viewW + 1), y1 = Math.min(mapH, vp.originTile.y + vp.viewH + 1)
+  if (map.ground === undefined) extendLegacyBeyondMap(ctx, res, content, map, vp, size, mapW, mapH)
   ctx.save()
   ctx.beginPath()
   ctx.rect(screenX(vp, 0, size), screenY(vp, 0, size), mapW * size, mapH * size)
@@ -94,6 +95,26 @@ function drawGround(ctx: CanvasRenderingContext2D, res: RenderResources, content
     }
   }
   ctx.restore()
+}
+
+/** 땅 종류가 없는(옛 그림만 쓰는) 작은 지도가 화면보다 작을 때, 지도 밖을 가장자리 칸으로 이어 그리고 어둡게 눌러 검은 띠를 없앤다. */
+function extendLegacyBeyondMap(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, map: MapDef, vp: Viewport, size: number, mapW: number, mapH: number): void {
+  const left = screenX(vp, 0, size), top = screenY(vp, 0, size)
+  if (left <= 0 && top <= 0 && left + mapW * size >= ctx.canvas.width && top + mapH * size >= ctx.canvas.height) return
+  const gx0 = Math.floor(-left / size) - 1, gx1 = Math.ceil((ctx.canvas.width - left) / size) + 1
+  const gy0 = Math.floor(-top / size) - 1, gy1 = Math.ceil((ctx.canvas.height - top) / size) + 1
+  for (let gy = gy0; gy < gy1; gy++) {
+    for (let gx = gx0; gx < gx1; gx++) {
+      if (gx >= 0 && gx < mapW && gy >= 0 && gy < mapH) continue
+      const tile = content.tiles[map.rows[Math.min(mapH - 1, Math.max(0, gy))]?.[Math.min(mapW - 1, Math.max(0, gx))] ?? ""]
+      if (tile?.sprite !== undefined) drawLegacy(ctx, res, content, tile.sprite, screenX(vp, gx, size), screenY(vp, gy, size), size)
+    }
+  }
+  ctx.fillStyle = "rgba(0, 0, 0, 0.5)"
+  ctx.fillRect(0, 0, ctx.canvas.width, Math.max(0, top))
+  ctx.fillRect(0, top + mapH * size, ctx.canvas.width, ctx.canvas.height)
+  ctx.fillRect(0, top, Math.max(0, left), mapH * size)
+  ctx.fillRect(left + mapW * size, top, ctx.canvas.width, mapH * size)
 }
 
 type Item = Drawable & { readonly draw: () => void }
