@@ -102,3 +102,13 @@ describe("classOf / unitMove", () => {
     expect(unitMove(rules, {})).toBe(3)
   })
 })
+
+describe("guardian takenDefense", () => {
+  const gr: CombatRules = { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, guardian: { move: 2, rangeMin: 1, rangeMax: 1, takenDefense: 1 } } }
+  it("takes 1 less damage than a fighter, never below 1", () => {
+    const foe = u("e", "enemy", 1, 1, { attack: 4 })
+    expect(attackDamage(state([]), gr, foe, u("a", "ally", 0, 1))).toBe(4)
+    expect(attackDamage(state([]), gr, foe, u("g", "ally", 0, 1, { class: "guardian" }))).toBe(3)
+    expect(attackDamage(state([]), gr, u("e2", "enemy", 1, 1, { attack: 1 }), u("g", "ally", 0, 1, { class: "guardian" }))).toBe(1)
+  })
+})

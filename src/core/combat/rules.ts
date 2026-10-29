@@ -44,6 +44,12 @@ export function shotTarget(combat: Pick<CombatState, "units">, rules: CombatRule
   return null
 }
 
+/** unit이 지금 자리에서 targetId를 맞힐 수 있는 방향(없으면 null). 예고와 적 단계가 같은 판정을 쓰게 한다. */
+export function shotDir(combat: Pick<CombatState, "units">, rules: CombatRules, unit: CombatUnit, targetId: string): Dir | null {
+  for (const dir of ["n", "e", "s", "w"] as const) if (shotTarget(combat, rules, unit, dir)?.target.id === targetId) return dir
+  return null
+}
+
 /** 그 칸의 지형 방어 보정(격자 밖·정의 없음 = 0). */
 export function terrainDefense(grid: readonly string[], rules: CombatRules, pos: Pos): number {
   const ch = grid[pos.y]?.[pos.x]
@@ -51,13 +57,13 @@ export function terrainDefense(grid: readonly string[], rules: CombatRules, pos:
 }
 
 /**
- * 공격 1회의 피해. 공격력 × 방향 배율(반올림) − 지형 방어(최소 1), 방어 자세면 절반 올림.
+ * 공격 1회의 피해. 공격력 × 방향 배율(반올림) − 지형 방어 − 병과 방어(최소 1), 방어 자세면 절반 올림.
  * 방향·지형이 없으면 옛 규칙(공격력, 방어 자세면 ceil(공격력/2))과 같다.
  */
 export function attackDamage(combat: Pick<CombatState, "grid">, rules: CombatRules, attacker: CombatUnit, target: CombatUnit): number {
   const factor = target.side === "ally" && !rules.direction.vsAllies ? 1 : rules.direction[sideOf(target, attacker.pos)]
   const mark = target.marked === true ? rules.breath.markBonus : 1
-  const raw = Math.max(1, Math.round(attacker.attack * factor * mark) - terrainDefense(combat.grid, rules, target.pos))
+  const raw = Math.max(1, Math.round(attacker.attack * factor * mark) - terrainDefense(combat.grid, rules, target.pos) - classOf(rules, target).takenDefense)
   return target.defending ? Math.ceil(raw / 2) : raw
 }
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import type { CreatureAi } from "../../../src/content/types.ts"
+import { DEFAULT_COMBAT_RULES, type CreatureAi } from "../../../src/content/types.ts"
 import type { CombatState, CombatUnit } from "../../../src/core/types.ts"
 import { computeIntents } from "../../../src/core/combat/intents.ts"
 import { testContent } from "./fixture.ts"
@@ -45,4 +45,27 @@ describe("enemy AI personalities", () => {
     expect(computeIntents(s, withAi("coward"))["e"]!.attack).toBeNull()
   })
   void plain
+})
+
+describe("class-aware enemy intents", () => {
+  const cls = { ...base, combat: { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, archer: { move: 2, rangeMin: 2, rangeMax: 3, takenDefense: 0 }, runner: { move: 4, rangeMin: 1, rangeMax: 1, takenDefense: 0 } } } }
+  const archer = (x: number, y: number) => u("e", "enemy", x, y, { class: "archer" })
+  it("an enemy archer in a line at range shoots, backing off to the far end of its range", () => {
+    const i = computeIntents(state([u("player", "ally", 2, 5), archer(2, 3)]), cls)["e"]!
+    expect(i).toEqual({ moveTo: { x: 2, y: 2 }, attack: "player" })
+  })
+  it("steps back to a firing cell instead of standing adjacent", () => {
+    const i = computeIntents(state([u("player", "ally", 2, 3), archer(2, 2)]), cls)["e"]!
+    expect(i.attack).toBe("player")
+    expect(Math.abs(i.moveTo.x - 2) + Math.abs(i.moveTo.y - 3)).toBeGreaterThanOrEqual(2)
+  })
+  it("walks toward the ally when no firing cell is within reach", () => {
+    const i = computeIntents(state([u("player", "ally", 0, 5), archer(5, 0)]), cls)["e"]!
+    expect(i.attack).toBeNull()
+    expect(i.moveTo).not.toEqual({ x: 5, y: 0 })
+  })
+  it("an enemy runner covers 4 steps", () => {
+    const i = computeIntents(state([u("player", "ally", 0, 5), u("e", "enemy", 5, 5, { class: "runner" })]), cls)["e"]!
+    expect(5 - i.moveTo.x + (5 - i.moveTo.y)).toBe(4)
+  })
 })

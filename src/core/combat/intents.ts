@@ -1,7 +1,7 @@
 import type { GameContent } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Id, Pos } from "../types.ts"
 import { DIRS, findPathOnGrid, offset } from "../world/path.ts"
-import { rulesOf, unitMove } from "./rules.ts"
+import { classOf, rulesOf, shotDir, unitMove } from "./rules.ts"
 
 /** 병과가 없는 유닛이 한 라운드에 걷는 칸 수(fighter 기준). 실제 한도는 병과별 `unitMove`. */
 export const MAX_STEPS = 3
@@ -77,6 +77,23 @@ export function computeIntents(combat: CombatState, content: GameContent): Comba
       reserved.push(away)
       continue
     }
+    if (classOf(rulesOf(content), enemy).rangeMax > 1) {   // 원거리: 이동 뒤 한 줄로 쏠 수 있는 칸 중 아군에게서 가장 먼 칸
+      const rules = rulesOf(content)
+      let pick: { cell: Pos; target: Id; far: number } | null = null
+      for (const cell of stepCells(combat, content, enemy, blocked).filter((p) => !blocked(p) || samePos(p, enemy.pos))) {
+        const there = { ...enemy, pos: cell }
+        const units = combat.units.map((u) => (u.id === enemy.id ? there : u))
+        const shootable = allies.find((a) => shotDir({ units }, rules, there, a.id) !== null)
+        if (shootable === undefined) continue
+        const far = Math.min(...allies.map((a) => manhattan(cell, a.pos)))
+        if (pick === null || far > pick.far) pick = { cell, target: shootable.id, far }
+      }
+      if (pick !== null) {
+        intents[enemy.id] = { moveTo: pick.cell, attack: pick.target }
+        reserved.push(pick.cell)
+        continue
+      }
+    }
     let best: { target: CombatUnit; path: Dir[]; score: number } | null = null
     for (const ally of allies) {
       const path = approach(combat, content, enemy.pos, ally.pos, blocked)
@@ -88,7 +105,8 @@ export function computeIntents(combat: CombatState, content: GameContent): Comba
     }
     let moveTo = enemy.pos
     for (const dir of best?.path.slice(0, unitMove(rulesOf(content), enemy)) ?? []) moveTo = offset(moveTo, dir)
-    const attack = best !== null && manhattan(moveTo, best.target.pos) === 1 ? best.target.id : null
+    const there = { ...enemy, pos: moveTo }
+    const attack = best !== null && shotDir({ units: combat.units.map((u) => (u.id === enemy.id ? there : u)) }, rulesOf(content), there, best.target.id) !== null ? best.target.id : null
     intents[enemy.id] = { moveTo, attack }
     reserved.push(moveTo)
   }

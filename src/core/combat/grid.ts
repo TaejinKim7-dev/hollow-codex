@@ -2,7 +2,7 @@ import type { CombatRules, GameContent } from "../../content/types.ts"
 import { SKILL_ABILITY, type CombatAction, type CombatState, type CombatUnit, type Dir, type GameEvent, type GameState, type Id, type Pos, type StepResult } from "../types.ts"
 import { recordDeed } from "../virtue/conduct.ts"
 import { findPathOnGrid, gridTileAt, offset } from "../world/path.ts"
-import { attackDamage, chainHits, facingToward, rulesOf, shotTarget, sideOf, unitMove } from "./rules.ts"
+import { attackDamage, chainHits, facingToward, rulesOf, shotDir, shotTarget, sideOf, unitMove } from "./rules.ts"
 import { alive, computeIntents, manhattan, nextActive, occupied, samePos } from "./intents.ts"
 
 export { computeIntents } from "./intents.ts"
@@ -275,8 +275,10 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
     units[i] = { ...enemy, pos }
     const j = intent.attack === null ? -1 : units.findIndex((u) => u.id === intent.attack)
     const target = units[j]
-    if (target && alive(target) && manhattan(pos, target.pos) === 1) {
-      units[i] = { ...units[i]!, facing: facingToward(pos, target.pos) }
+    const moved = { ...units[i]!, pos }
+    const aim = target && alive(target) ? shotDir({ units }, rulesOf(content), moved, target.id) : null
+    if (target && aim !== null) {
+      units[i] = { ...units[i]!, facing: aim }
       const striker = units[i]!
       const rules = rulesOf(content)
       const amount = attackDamage(combat, rules, striker, target)
