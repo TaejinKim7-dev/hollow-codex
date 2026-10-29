@@ -388,7 +388,7 @@ export function mountPanels(
       return
     }
     hud.hidden = false
-    hudActive.textContent = `${view.active} · ${tr("ui.combat.momentum")} ${view.momentum.value}/${view.momentum.max}`
+    hudActive.textContent = `${view.active} · ${tr("ui.combat.momentum")} ${view.momentum.value}/${view.momentum.max}${view.objective === null ? "" : ` · ${view.objective}`}`
 
     hudUnits.replaceChildren()
     for (const unit of view.units) {

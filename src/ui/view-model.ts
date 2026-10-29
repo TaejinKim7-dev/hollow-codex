@@ -33,7 +33,8 @@ export interface CombatView {
   active: string                                        // 활성 유닛 이름(플레이어 = t("player.name"))
   actions: CombatAction["kind"][]                       // moved면 move 빠짐, flee는 가장자리만, 항상 endTurn
   units: { id: Id; name: string; hp: number; side: "ally" | "enemy"; evilKnown: boolean | null; morale?: number }[]
-  momentum: { value: number; max: number }                // 기세 게이지(가득 차면 special 가능)
+  momentum: { value: number; max: number }
+  objective: string | null                               // 섬멸이 아닌 목표 안내 문구("3/5 라운드 버티기" 등)                // 기세 게이지(가득 차면 special 가능)
 }
 
 /** 빈 경전 인터페이스 (M5 Task 42). 8쪽 슬롯 + 마지막 장 + 에필로그 화면. */
@@ -258,5 +259,9 @@ export function combatView(state: GameState, content: GameContent): CombatView |
     return { id: u.id, name, hp: u.hp, side: u.side, evilKnown, ...(u.morale === undefined ? {} : { morale: u.morale }) }
   })
 
-  return { active, actions, units, momentum: { value, max } }
+  const obj = content.encounters[combat.encounterId]?.objective
+  const objective = obj === undefined ? null
+    : obj.kind === "survive" ? t(lang, s, "ui.combat.objective.survive").replaceAll("{n}", String(Math.min(combat.round, obj.rounds))).replaceAll("{max}", String(obj.rounds))
+    : t(lang, s, "ui.combat.objective.escape")
+  return { active, actions, units, momentum: { value, max }, objective }
 }

@@ -9,7 +9,7 @@ import { arrivalCell } from "../core/world/ring.ts"
 import { isObj, makeReader } from "./shape.ts"
 import type { Obj, Reader } from "./shape.ts"
 import type {
-  CombatRules,
+  CombatRules, EncounterObjective,
   ChoiceOption, CompanionDef, CrisisOptionDef, FactKind, GameContent, MapDef, NpcDef, RawContent, SpriteRef, Topic
 } from "./types.ts"
 
@@ -54,7 +54,7 @@ const KEYS = {
   deduction: ["id", "sentence", "hint", "answer", "unlocks", "codexWord"],
   crisis: ["id", "npc", "text", "options"],
   crisisOption: ["requires", "requiresDeductions", "setsFlags", "label", "text"],
-  encounter: ["id", "map", "grid", "allyStart", "enemies", "music", "repeatable"],
+  encounter: ["id", "map", "grid", "allyStart", "enemies", "music", "repeatable", "objective"],
   enemy: ["creature", "at"],
   ring: ["id", "at", "name", "song", "fact", "onOverworld"],
   denylist: ["latin", "hangul"]
@@ -476,8 +476,20 @@ function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
       onlyKeys(r, eo, `${w}.enemies[${i}]`, KEYS.enemy)
       return { creature: r.str(eo, "creature", `${w}.enemies[${i}]`), at: r.pos(eo["at"], `${w}.enemies[${i}].at`) }
     })
+    let objective: EncounterObjective | undefined
+    if (o["objective"] !== undefined) {
+      const ob = r.obj(o["objective"], `${w}.objective`)
+      onlyKeys(r, ob, `${w}.objective`, ["kind", "rounds", "at"])
+      const kind = r.str(ob, "kind", `${w}.objective`)
+      if (kind === "survive") {
+        const rounds = r.num(ob, "rounds", `${w}.objective`)
+        if (!Number.isInteger(rounds) || rounds < 1) r.fail(`${w}.objective.rounds`, "expected an integer of 1 or more")
+        objective = { kind, rounds }
+      } else if (kind === "escape") objective = { kind, at: r.pos(ob["at"], `${w}.objective.at`) }
+      else r.fail(`${w}.objective.kind`, `unknown objective kind "${kind}" (survive | escape)`)
+    }
     const repeatable = r.optBool(o, "repeatable", w) === true
-    const enc: Encounter = { map: r.str(o, "map", w), grid: r.strList(o, "grid", w), allyStart, enemies, music: r.str(o, "music", w), ...(repeatable ? { repeatable } : {}) }
+    const enc: Encounter = { map: r.str(o, "map", w), grid: r.strList(o, "grid", w), allyStart, enemies, music: r.str(o, "music", w), ...(repeatable ? { repeatable } : {}), ...(objective === undefined ? {} : { objective }) }
     if (r.errors.length === before) put(ctx, d.encounters, "encounter", r.file, id, enc)
   })
 }
@@ -771,6 +783,7 @@ function checkGeometry(d: Draft, out: string[]): void {
     grid(f, `${id}.grid`, e.grid)
     e.allyStart.forEach((p, i) => cell(f, `${id}.allyStart[${i}]`, e.grid, p))
     e.enemies.forEach((en, i) => cell(f, `${id}.enemies[${i}].at`, e.grid, en.at))
+    if (e.objective?.kind === "escape") cell(f, `${id}.objective.at`, e.grid, e.objective.at)
   }
 }
 

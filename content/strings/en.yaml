@@ -1654,3 +1654,5 @@ ui.combat.special: Special
 ui.combat.momentum: Momentum
 ui.combat.special-banner: "SPECIAL!"
 ui.combat.morale: Resolve
+ui.combat.objective.survive: "Goal: hold out {max} rounds ({n}/{max})"
+ui.combat.objective.escape: "Goal: reach the marked cell"

@@ -1652,3 +1652,5 @@ ui.combat.special: 필살
 ui.combat.momentum: 기세
 ui.combat.special-banner: "필살!"
 ui.combat.morale: 마음
+ui.combat.objective.survive: "목표: {max}라운드를 버텨라 ({n}/{max})"
+ui.combat.objective.escape: "목표: 표시된 칸까지 탈출"

@@ -200,6 +200,17 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
   ctx.fillRect(-size, gy1, ctx.canvas.width + 2 * size, ctx.canvas.height - gy1 + size)
   ctx.fillRect(-size, gy0, gx0 + size, gy1 - gy0)
   ctx.fillRect(gx1, gy0, ctx.canvas.width - gx1 + size, gy1 - gy0)
+  // 탈출 목표 칸: 금빛 깃발 칸 표시
+  const objective = content.encounters[combat.encounterId]?.objective
+  if (objective?.kind === "escape") {
+    const ex = screenX(vp, objective.at.x, size), ey = screenY(vp, objective.at.y, size)
+    ctx.fillStyle = "rgba(255, 215, 0, 0.28)"
+    ctx.fillRect(ex, ey, size, size)
+    strokeCell(ctx, vp, objective.at, size, "#ffd23f", vp.scale * 1.5)
+    ctx.fillStyle = "#ffd23f"
+    ctx.fillRect(Math.round(ex + size * 0.46), Math.round(ey + size * 0.2), Math.max(2, Math.round(size * 0.07)), Math.round(size * 0.6))
+    ctx.fillRect(Math.round(ex + size * 0.46), Math.round(ey + size * 0.2), Math.round(size * 0.3), Math.round(size * 0.22))
+  }
   // 조작 힌트: 갈 수 있는 칸(파랑), 칠 수 있는 적(빨강 테두리)
   const overlay = view?.overlay ?? null
   if (overlay !== null) {

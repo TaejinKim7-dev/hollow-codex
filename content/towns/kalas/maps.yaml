@@ -107,5 +107,7 @@
     - { at: [5, 2], id: enc.arena.wolves }
     - { at: [5, 6], id: enc.arena.robbers }
     - { at: [9, 4], id: enc.arena.mixed }
+    - { at: [9, 2], id: enc.arena.hold }
+    - { at: [9, 6], id: enc.arena.escape }
   enterFlags: []
   heals: true

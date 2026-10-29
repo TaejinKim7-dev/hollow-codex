@@ -12,6 +12,11 @@ export interface AudioMap {
   readonly music: Readonly<Record<Id, string>>
 }
 
+/** 조우 목표. 없으면 섬멸(적을 모두 쓰러뜨리거나 물리침). survive = N라운드를 끝까지 버티면 승리, escape = 아군 누구든 그 칸에 서면 승리. */
+export type EncounterObjective =
+  | { readonly kind: "survive"; readonly rounds: number }
+  | { readonly kind: "escape"; readonly at: Pos }
+
 /** content/combat.yaml: 전투 규칙 수치(없으면 DEFAULT_COMBAT_RULES). */
 export interface CombatRules {
   /** 대상이 바라보는 방향에 대한 공격 위치별 배율 */
@@ -88,7 +93,7 @@ export interface GameContent {
   }>>
   readonly crises: Readonly<Record<Id, { readonly npc: Id; readonly textKey: string; readonly options: Readonly<Record<Id, CrisisOptionDef>> }>>
   readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id; readonly morale?: number }>>
-  readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id; readonly repeatable?: boolean }>>
+  readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id; readonly repeatable?: boolean; readonly objective?: EncounterObjective }>>
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
   readonly strings: Readonly<Record<string, Readonly<Record<string, string>>>>   // 언어 코드 → 키 → 문구
   readonly rings: Readonly<Record<Id, RingDef>>   // D14

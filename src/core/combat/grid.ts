@@ -269,11 +269,15 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
   return { combat: { ...next, intents: computeIntents(next, content) }, events }
 }
 
-/** 규칙 11: 살아 있는 적 없음 → 승리, 살아 있는 아군 없음 → 패배. 아니면 null. */
+/** 규칙 11: 살아 있는 적 없음 → 승리, 살아 있는 아군 없음 → 패배, 조우 목표(버티기·탈출)를 이루면 승리. 아니면 null. */
 function checkEnd(state: GameState, content: GameContent, events: GameEvent[]): StepResult | null {
-  const units = state.combat!.units
+  const combat = state.combat!
+  const units = combat.units
   if (!units.some((u) => u.side === "enemy" && alive(u))) return endCombat(state, content, "victory", events)
   if (!units.some((u) => u.side === "ally" && alive(u))) return endCombat(state, content, "defeat", events)
+  const objective = content.encounters[combat.encounterId]?.objective
+  if (objective?.kind === "escape" && units.some((u) => u.side === "ally" && alive(u) && samePos(u.pos, objective.at))) return endCombat(state, content, "victory", events)
+  if (objective?.kind === "survive" && combat.round > objective.rounds) return endCombat(state, content, "victory", events)
   return null
 }
 

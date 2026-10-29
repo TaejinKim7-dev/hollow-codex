@@ -81,3 +81,44 @@
     - { creature: creature.wolf, at: [6, 0] }
     - { creature: creature.robber, at: [4, 1] }
   music: music.battle
+- id: enc.arena.hold
+  map: map.arena
+  repeatable: true
+  objective: { kind: survive, rounds: 4 }
+  grid:
+    - "ggggggggg"
+    - "ggggggggg"
+    - "gghgggggg"
+    - "ggggtgggg"
+    - "ggggggghg"
+    - "gghgggggg"
+    - "ggggtgggg"
+    - "ggggggggg"
+    - "ggggggggg"
+  allyStart: [[4, 8], [3, 8], [5, 8]]
+  enemies:
+    - { creature: creature.wolf, at: [1, 0] }
+    - { creature: creature.robber, at: [4, 0] }
+    - { creature: creature.wolf, at: [7, 0] }
+    - { creature: creature.robber, at: [4, 1] }
+  music: music.battle
+- id: enc.arena.escape
+  map: map.arena
+  repeatable: true
+  objective: { kind: escape, at: [4, 0] }
+  grid:
+    - "ggggggggg"
+    - "ggtgggtgg"
+    - "ggggggggg"
+    - "gghgggggg"
+    - "ggggtgggg"
+    - "ggggggghg"
+    - "gghgggggg"
+    - "ggggggggg"
+    - "ggggggggg"
+  allyStart: [[4, 8], [3, 8], [5, 8]]
+  enemies:
+    - { creature: creature.wolf, at: [2, 2] }
+    - { creature: creature.wolf, at: [6, 2] }
+    - { creature: creature.robber, at: [4, 3] }
+  music: music.battle

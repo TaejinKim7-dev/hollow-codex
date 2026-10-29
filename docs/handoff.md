@@ -608,3 +608,8 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - `CombatUnit.morale/maxMorale`(적만; 시작값 = `creature.morale ?? hp`), `content/combat.yaml`의 `morale: {weakLoss 1, isolationLoss 1, persuadeRatio 0.5}`. 줄어드는 때: 아군의 `attack`·연계·필살로 맞을 때(피해 + 옆/등이면 weakLoss), 라운드가 바뀔 때 주변 2칸 안에 다른 살아 있는 적이 없으면 isolationLoss. 설득(`persuaded`): 비악 ∧ (lore 단서를 앎 ∨ 마음 ≤ ceil(최대×persuadeRatio)). 악한 적은 마음 0이면 `breakMorale`(settle 안)이 퇴각시키고 `combatYield retreated`를 낸다. 목표 6종·증원·보상 차등은 아직.
 - 화면: 적 체력 막대 아래 파란 얇은 막대(`drawMoraleBar`), HUD 칩에 "마음 n". 크리처 그림도 새 인물로 교체(`content/creatures.yaml`: 도적=craftsman, 거지=young-villager, 결투가=guard-soldier, 조문객=widow 등).
 - 확인: 573 passed, 게이트 0, E2E 3개, 프레임 스트립 직접 확인. 확인 못 한 것: 균형(마음 감소량·절반 기준), 설득 안내 문구(왜 설득이 안 되는지 표시 없음), 적 쪽 마음 표시 외의 아군 마음.
+
+## 2026-10-29 전투 C-4(일부) 조우 목표: 버티기·탈출
+- 조우 YAML `objective: { kind: survive, rounds: N }`(라운드가 N을 넘기면 승리, 적이 남아 있어도) / `{ kind: escape, at: [x, y] }`(아군 누구든 그 칸에 서면 승리). 없으면 섬멸(그대로). 읽기·검증 `compile.ts`(escape 칸은 격자 안·걸을 수 있어야 함), 판정 `grid.ts checkEnd`(섬멸 → 패배 → 목표 순서; 기존 순서 유지), 테스트 3개.
+- 화면: HUD 이름 줄에 "목표: 4라운드를 버텨라 (n/4)" / "목표: 표시된 칸까지 탈출", 탈출 칸은 금빛 깃발 표시. 연습장에 `enc.arena.hold`(9,2)·`enc.arena.escape`(9,6) 두 조우 추가(반복 가능). E2E `tests/e2e/arena-objectives.spec.ts`(HUD 문구·깃발 캡처 직접 확인).
+- 남은 C-4: 호위·함정 해제·증원, 목표별 보상 차등. 균형은 미검증(버티기 4라운드에서 플레이어 체력이 버티는지 등 — 🧑).

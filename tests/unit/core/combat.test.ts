@@ -1,3 +1,4 @@
+import type { EncounterObjective } from "../../../src/content/types.ts"
 import { describe, expect, it } from "vitest"
 import { computeIntents } from "../../../src/core/combat/grid.ts"
 import { step } from "../../../src/core/step.ts"
@@ -175,6 +176,27 @@ describe("grid combat", () => {
       const s = step(at(1, 2), { type: "move", dir: "s" }, c).state
       const e = s.combat!.units.find((u) => u.side === "enemy")!
       expect(e.morale).toBe(e.hp); expect(e.maxMorale).toBe(e.hp)
+    })
+  })
+  describe("C-4: objectives", () => {
+    const withObjective = (objective: EncounterObjective) => ({ ...c, encounters: { ...c.encounters, "enc.a": { ...c.encounters["enc.a"]!, objective } } })
+    it("survive: the fight is won when the round counter passes the limit, enemies or not", () => {
+      const cc = withObjective({ kind: "survive", rounds: 2 })
+      const s0 = combatState([P(2, 3), S(2, 0, { hp: 99 }), B(4, 0, { hp: 99 })])
+      const r1 = step(s0, { type: "combat", action: { kind: "endTurn" } }, cc)
+      expect(r1.state.combat).not.toBeNull()                          // round 2 starts: still going
+      const r2 = step(r1.state, { type: "combat", action: { kind: "endTurn" } }, cc)
+      expect(r2.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
+      expect(r2.state.combat).toBeNull()
+    })
+    it("escape: an ally stepping onto the exit cell wins at once", () => {
+      const cc = withObjective({ kind: "escape", at: { x: 3, y: 3 } })
+      const r = step(combatState([P(2, 3), S(2, 0, { hp: 99 })]), { type: "combat", action: { kind: "move", to: { x: 3, y: 3 } } }, cc)
+      expect(r.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
+    })
+    it("without an objective the fight still needs every enemy gone", () => {
+      const r = act(combatState([P(2, 3), S(2, 0, { hp: 99 })]), { kind: "move", to: { x: 3, y: 3 } })
+      expect(r.state.combat).not.toBeNull()
     })
   })
   it("combat ends in defeat when every ally is gone", () => {
