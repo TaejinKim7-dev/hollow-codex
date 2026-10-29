@@ -165,10 +165,22 @@
 @media (orientation: portrait) and (max-width: 640px) {
   .dialogue {
     top: auto;
-    height: 45vh;
+    height: 55vh;
     width: 100vw;
     border-left: none;
     border-top: 1px solid var(--panel-line);
+    overflow-y: auto;                 /* 지문·선택지가 길면 패널 전체가 스크롤된다(대사가 한 줄로 눌리지 않게) */
+  }
+  .dialogue header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--panel-bg);
+  }
+  .dialogue .log {
+    flex: 0 0 auto;
+    overflow: visible;
+    min-height: 6em;
   }
 }
 
