@@ -569,3 +569,10 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
   - `npm run audit:dist` 0 — `ok (63 files, 12826869 bytes)`
   - `git diff --check` 0
 - 확인 못 한 것: 브라우저/Playwright로 실제 전투 연출 동작 확인(단위 테스트로 논리만 검증; 화면·소리는 사용자 판정 대기).
+
+## 2026-10-29 7개 미덕 마을 돌바닥 이전
+- 브랜치 `oc/town-ground`. 목표: 칼라스 참조(`998a6ac`)와 동일한 규칙으로 연민·명예·겸손·정의·희생·영성·용맹 마을의 바깥 바닥을 새 땅(`g`/`p`/`t`/`c`)으로 변환, 건축물 납부 `.`와 벽 `#`, 문 `+`/`<`는 그대로.
+- 산출물: `scripts/assets/migrate-town-ground.py`(표준 라이브러리만, YAML 주석·형식 보존, 멱등), `content/towns/{compassion,honor,humility,justice,sacrifice,spirituality,valor}/maps.yaml`, `scripts/visual/map-shot.mjs`에 `HC_BASE_URL` 환경 변수 지원, `docs/screenshots/2026-10-29-town-<name>.png` 7장 + `-entrance.png` 7장.
+- 스크립트 동작: 출구 타일(`+`/`<`)에서 BFS로 바깥 영역 탐색(`.`, `,`, `:`, `T`만 이동), 바깥 `.`→`g`, `,`→`p`, `T`→`t`, `:`→`c`, 건축물 안쪽 `:`는 `:`. `c`가 8방 `p`와 맞닿으면 `g`로 교체(이번 마을들에서는 해당 사례 없음).
+- 검증: `npm run check:content` 0, `npm run test:unit` 0 (531 passed), `npm run typecheck` 0. 스크립트 2회 실행 결과 동일(unchanged 560×7). 스크린샷 14장 모두 `SHOT OK`, 직접 열어 확인: 검은 사각형 없음, 타일 배율 정상, 풀 녹색/돌바닥 회색, 나무 물건으로 렌더링, 건축물 납부는 옛 바닥, 벽과 출구 타일 유지.
+- 확인 못 한 것: 돌바닥(`c`)과 건축물 벽(`#`)의 새 그림이 아직 없어 시각적으로 구분이 미묘함(0.2.0 자산 교체 예정).
