@@ -22,6 +22,9 @@ describe("dialogueView", () => {
     expect(v?.chips.map((x) => x.topic)).toEqual(["name", "job", "word.alpha"])
     expect(v?.chips[2]?.label).toBe("word.alpha.label")
   })
+  it("the crisis passage text is shown with its options (it was compiled but never displayed)", () => {
+    expect(dialogueView(talking({}), c, [])?.crisisText).toBe("crisis.test.text")
+  })
   it("the crisis appears with availability and hints when talking to its NPC", () => {
     expect(dialogueView(talking({}), c, [])?.crisis).toEqual([
       { optionId: "opt.a", label: "opt.a.label", available: false, hints: ["fact.secret.hint"] },

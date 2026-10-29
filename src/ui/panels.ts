@@ -210,6 +210,7 @@ export function mountPanels(
 
     dlgCrisis.replaceChildren()
     if (view.crisis !== null) {
+      if (view.crisisText !== null) dlgCrisis.appendChild(make("p", "crisis-text", view.crisisText))
       for (const row of view.crisis) {
         const wrap = make("div", "crisis-option")
         const b = make("button", "crisis", row.label)

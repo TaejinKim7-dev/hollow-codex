@@ -21,6 +21,7 @@ export interface DialogueView {
   chips: { topic: string; label: string }[]            // availableTopics, 라벨 = topic.name/job/fact.labelKey
   choices: { optionId: Id; label: string }[]           // pendingChoice가 있을 때만
   crisis: { optionId: Id; label: string; available: boolean; hints: string[] }[] | null
+  crisisText: string | null                               // 이 NPC의 아직 풀지 않은 위기의 지문(선택지 위에 보인다)
   canRecruit: boolean
 }
 
@@ -99,6 +100,7 @@ export function dialogueView(
   }
 
   let crisis: DialogueView["crisis"] = null
+  let crisisText: string | null = null
   for (const [crisisId, def] of Object.entries(content.crises)) {
     if (def.npc !== dialogue.npcId || state.crises[crisisId] !== undefined) continue
     const rows = crisisOptions(state, content, crisisId).map(({ optionId, available, missing }) => ({
@@ -110,6 +112,7 @@ export function dialogueView(
         .map((key) => t(lang, s, key))
     }))
     crisis = crisis === null ? rows : [...crisis, ...rows]
+    crisisText = crisisText === null ? t(lang, s, def.textKey) : `${crisisText}\n${t(lang, s, def.textKey)}`
   }
 
   return {
@@ -118,6 +121,7 @@ export function dialogueView(
     chips,
     choices,
     crisis,
+    crisisText,
     canRecruit: canRecruit(state, content, dialogue.npcId)
   }
 }

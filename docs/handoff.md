@@ -636,3 +636,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 검증: `python3 scripts/narrative/consistency.py` 0 problems · `reachable.py` 못 얻는 단서 0개 · `spec.py dead-topics` 0 · `npm run test:unit` 531 passed · typecheck/check:content/build/audit:dist/git diff --check 모두 exit 0.
 - 확인 못 한 것: 게임 화면의 거짓 표시(`!`) 노출(능력 획득 후) · ③ UI 수정 미실시 · 정의·겸손 과부는 변경 없음.
 - 참고: 7개 마을 지도 이전(`oc/town-ground`) 캡처 14장은 이미 이미지가 열려서 확인했다. 돌바닥(c)·풀(g)·나무(t)는 정상 렌더, 격자 정렬 이상 없음. **옛 벽(#) 타일 안쪽 절반이 순수 검정으로 나오는 현상은 이전에도 똑같았다**(변환 전 지도 캡처와 검정 비율 2.2%로 동일) — 옛 벽 그림을 2배 확대한 0.2.0 자산 작업 몫이다.
+
+## 2026-10-29 OpenCode 작업 마무리 + 위기 지문 표시
+- OpenCode 3작업 완료 보고(사용자 전달): `oc/town-ground`·`oc/fx-tracking-tests`·`oc/narrative-fixes-b`는 이미 main에 반영돼 있었고, 남은 ④(과부 4개 마을 분리: honor 실비·sacrifice 노을·spirituality 가은·valor 서린)는 `oc/narrative-widow`를 병합했다. 상세 `docs/narrative/2026-10-29-fixes.md`. 게이트: consistency/reachable/dead-topics 0, 테스트 592, 모든 게이트 0.
+- ③ 위기 지문이 화면에 안 보이던 문제(조사 결과 `view-model.ts`가 `crisis.text`를 뷰에 안 넣음)를 고쳤다: `DialogueView.crisisText`(대화 중인 NPC의 풀지 않은 위기 지문)를 만들고 `panels.ts`가 선택지 위에 강조 문단(`.crisis-text`)으로 그린다. 테스트 1개, 캡처 직접 확인(`docs/screenshots/2026-10-29-crisis-text.png`, 자선 관장).
