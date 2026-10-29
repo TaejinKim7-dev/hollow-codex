@@ -228,7 +228,8 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     const intent = combat.intents[enemy.id]
     if (!intent) continue
     // 예고: 적이 다음 차례에 설 칸을 노란 블록으로 보여 준다(제자리면 생략).
-    if (intent.moveTo.x !== enemy.pos.x || intent.moveTo.y !== enemy.pos.y) {
+    const underGhost = fx.ghosts.some((g) => g.unit.pos.x === intent.moveTo.x && g.unit.pos.y === intent.moveTo.y)   // 쓰러지는 중인 유닛 칸에는 예고를 겹치지 않는다
+    if (!underGhost && (intent.moveTo.x !== enemy.pos.x || intent.moveTo.y !== enemy.pos.y)) {
       const bx = screenX(vp, intent.moveTo.x, size), by = screenY(vp, intent.moveTo.y, size)
       ctx.fillStyle = "rgba(255, 215, 0, 0.30)"
       ctx.fillRect(bx, by, size, size)
