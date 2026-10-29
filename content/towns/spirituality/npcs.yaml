@@ -66,7 +66,7 @@
     virtue: spirituality
     joinRequires: [fact.elia.novice]
     leaveAfterDeeds: 2
-    rejoinRequires: []
+    rejoinRequires: [fact.elia.breath-song]
     hp: 7
     attack: 2
     class: archer

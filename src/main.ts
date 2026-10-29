@@ -1,3 +1,4 @@
+import { companionLines } from "./ui/companion-lines.ts"
 import "./ui/fonts.css"
 import content from "virtual:content"
 import credits from "virtual:credits"
@@ -200,6 +201,18 @@ function showNotice(name: SessionNotice | "tip-combat" | "codex-locked" | "codex
   window.setTimeout(() => node.remove(), 4000)
 }
 
+/** 이미 만들어진 문장을 그대로 보여 주는 짧은 안내(동료의 합류·이탈 대사). 여러 줄이면 겹치지 않게 시간차를 둔다. */
+function showLine(text: string, index: number): void {
+  window.setTimeout(() => {
+    const node = document.createElement("div")
+    node.className = "notice"
+    node.setAttribute("role", "status")
+    node.textContent = text
+    document.body.appendChild(node)
+    window.setTimeout(() => node.remove(), 4000)
+  }, index * 4200)
+}
+
 /** 처음 전투를 시작할 때 한 번만 짧은 요령을 보여 준다(브라우저 저장소에 표시를 남긴다; 쓸 수 없으면 매번 보이지 않게 생략). */
 function showFirstCombatTip(): void {
   try {
@@ -298,6 +311,7 @@ export function apply(cmd: Command): readonly GameEvent[] {
   for (const e of events) log.log("event", e.type)
   if (cmd.type === "endTalk") dialogueLog = []
   handleEvents(events)
+  companionLines(events, s, content).forEach((line, i) => showLine(line, i))
   for (const name of eventSounds(events, cmd, next !== s)) playSfx(name)
   if (events.some((e) => e.type === "combatStarted")) showFirstCombatTip()
   // `moved`·`mapChanged` 없이 위치나 지도가 바뀐 경우(열석 고리 이동, 도망, 패배)도 걷기 상태와 그림을 맞춘다.

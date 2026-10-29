@@ -1688,5 +1688,29 @@ class.archer: 궁수
 class.archer.desc: 한 줄로 떨어진 적을 쏜다. 바로 옆의 적은 못 맞힌다.
 class.guardian: 방패병
 class.guardian.desc: 느리지만 맞는 피해가 줄어든다.
-creature.arena-archer.name: 연습 사수
-creature.arena-guard.name: 연습 방패수
+creature.arena-archer.name: 연습 궁수
+creature.arena-guard.name: 연습 방패병
+companion.npc.compassion.wanderer.join: "당신의 길에서 노래가 새어 나옵니다. 그 소리를 따라가면, 반쪽짜리 노래도 다시 완성될 것 같습니다."
+companion.npc.compassion.wanderer.leave: "제 노래는 나눔을 노래하는데…… 제가 본 것은 받는 손을 밀어내는 일이었습니다. 잠시 이 길을 걸을 수 없겠습니다."
+companion.npc.compassion.wanderer.rejoin: "곳간 문이 다시 열리었다고 들었습니다. 그 소식이 노래 한 줄이 되어 돌아왔습니다."
+companion.npc.honor.swordmaster.join: "칼을 지키려는 자라면 따라가 보게. 다만 내 칼은 이기는 법이 아니라 무엇을 지킬지 묻는 칼이네."
+companion.npc.honor.swordmaster.leave: "거짓을 듣고도 넘어가는 건, 칼날을 피하는 것과 같지 않네. 내가 가르치는 꿈은 이런 게 아니었어."
+companion.npc.honor.swordmaster.rejoin: "시조의 노래 뒷절을 다시 들었네. 꿇는 것이 부끄러운 일이 아니라는 걸, 이제야 가르칠 수 있겠어."
+companion.npc.humility.novice.join: "아직 이름도 잊지 못했지만, 침묵 속에서 들을 수 있는 길이라면 따라가겠다."
+companion.npc.humility.novice.leave: "입을 다물었다고 생각했는데, 사실은 내 목소리만 커지고 있었다. 잠시 혼자 서야겠다."
+companion.npc.humility.novice.rejoin: "내 이름을 다시 물었다. 잊는 게 아니라 받아들이는 거라면, 같이 가도 되겠다."
+companion.npc.justice.mason.join: "돌은 거짓을 새기지 않으니, 당신 길의 돌을 함께 세우러 가지."
+companion.npc.justice.mason.leave: "저울은 기울어졌는데, 나는 돌만 깎고 있었네. 벌보다 먼저 위로가 서지 않는 길이라면, 석공의 끌이 무거워."
+companion.npc.justice.mason.rejoin: "묘지 앞에 노래가 섰다고 들었네. 돌 위에 새길 수 있는 것이 벌만은 아니라는 걸, 다시 믿고 싶구먼."
+companion.npc.kalas.elin.join: "장부가 아닌 진실을 찾는 길이라면, 제 글씨도 따라가요."
+companion.npc.kalas.elin.leave: "거짓말을 들었는데 기록만 했어요. 그 장부가 사람을 덮는 걸 다시 보고 싶지 않아요."
+companion.npc.kalas.elin.rejoin: "니아 선배가 용서해 주셨어요. 저도 제 글씨를 다시 믿어도 되겠어요."
+companion.npc.sacrifice.surgeon.join: "내 칼은 벌어진 살을 잇는 칼이네. 당신 길에서도 상처를 꿰매 줄 수 있다면 따라가겠네."
+companion.npc.sacrifice.surgeon.leave: "내가 꿰맨 상처보다, 내가 내린 상처가 더 많아졌네. 제단 앞에서가 아니라 사람 곁으로 돌아가야겠어."
+companion.npc.sacrifice.surgeon.rejoin: "아궁이 불이 꺼지지 않았다고 들었네. 매일 채워 주는 사랑이라면, 내 실도 다시 쓸 수 있겠어."
+companion.npc.spirituality.novice.join: "아직 면허는 없지만, 진짜 기도를 찾는 길이라면 바닥 닦는 손도 따라갈게요."
+companion.npc.spirituality.novice.leave: "면허 있는 기도만 믿으려다 보니, 숨소리를 놓쳤어요. 선방 문 앞에서 다시 서 있어야겠어요."
+companion.npc.spirituality.novice.rejoin: "새벽에 숨 노래를 들었어요. 면허 없는 소리도 기도가 될 수 있다면, 저도 돌아가요."
+companion.npc.valor.sergeant.join: "허리에 칼은 찼군. 다친 전우를 데리고 돌아올 각오만 있다면 따라주지."
+companion.npc.valor.sergeant.leave: "물러서야 할 자리에서 앞으로 나갔어. 그런 건 용기가 아니라 멍청이 짓이지. 나는 병영으로 돌아간다."
+companion.npc.valor.sergeant.rejoin: "후퇴 법을 다시 봤다. 살아서 돌아오는 것도 용기라면, 이 칼을 다시 맡겠군."

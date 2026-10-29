@@ -34,3 +34,14 @@ describe("companions in the real content", () => {
     })
   }
 })
+
+describe("companion rejoin conditions are obtainable", () => {
+  it("every fact a departed companion needs to rejoin is granted by some topic or crisis choice", () => {
+    const content = loadRealContent()
+    const granted = new Set<string>()
+    for (const npc of Object.values(content.npcs)) for (const lines of Object.values(npc.topics)) for (const v of lines) { for (const g of v.grants ?? []) granted.add(g); for (const ch of v.choice ?? []) for (const g of ch.grants ?? []) granted.add(g) }
+    const needs = Object.entries(content.npcs).flatMap(([id, n]) => (n.companion?.rejoinRequires ?? []).map((f) => [id, f] as const))
+    expect(needs.length).toBeGreaterThanOrEqual(8)
+    for (const [id, fact] of needs) expect(granted.has(fact), `${id} needs ${fact}`).toBe(true)
+  })
+})

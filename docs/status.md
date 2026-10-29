@@ -52,7 +52,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 
 ## 알려진 한계 (2026-10-29)
 - 그림: 건물은 지붕 없는 벽 블록, 기본형 인물 7종·걷기 그림·마을색 변형·애니메이션 NPC 없음(PixelLab 잔액 0). 소리: 직접 듣지 못함(🧑).
-- 동료는 8명이지만 개별 합류·이탈 대사와 재합류 조건이 없다. 호위·증원 목표, 마을 이야기 전투 재배치는 아직(병과는 연습장·일부 동료만 배정). 상세 `README.md` 알려진 한계, `docs/handoff.md` 끝.
+- 호위·증원 목표, 마을 이야기 전투 재배치는 아직(병과는 연습장·일부 동료만 배정). 상세 `README.md` 알려진 한계, `docs/handoff.md` 끝.
 
 ## 마지막 게이트
 oc/fx-tracking-tests (2026-10-29): npm run test:unit 0 (558 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.

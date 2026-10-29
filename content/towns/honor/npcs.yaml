@@ -161,7 +161,7 @@
     virtue: honor
     joinRequires: [fact.argon.swordmaster]
     leaveAfterDeeds: 2
-    rejoinRequires: []
+    rejoinRequires: [fact.argon.kneeling-lord]
     hp: 9
     attack: 4
 - id: npc.honor.brewer

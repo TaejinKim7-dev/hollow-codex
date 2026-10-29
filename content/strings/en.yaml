@@ -1690,5 +1690,29 @@ class.archer: Archer
 class.archer.desc: Shoots a foe in a straight line. Cannot hit one standing adjacent.
 class.guardian: Guardian
 class.guardian.desc: Slow, but takes less damage.
-creature.arena-archer.name: Practice Archer
-creature.arena-guard.name: Practice Shieldman
+creature.arena-archer.name: The Drill Archer
+creature.arena-guard.name: The Drill Guard
+companion.npc.compassion.wanderer.join: "Your road lets a song leak through. If I follow that sound, even a half-remembered song might finish itself."
+companion.npc.compassion.wanderer.leave: "My song speaks of sharing… yet what I saw was a hand pushing the taker away. I cannot walk this road a little longer."
+companion.npc.compassion.wanderer.rejoin: "I heard the storehouse door stands open again. That news returned to me as one line of a song."
+companion.npc.honor.swordmaster.join: "If you mean to guard something with that blade, I'll walk with you. But my sword asks what to keep, not how to win."
+companion.npc.honor.swordmaster.leave: "Letting a lie pass is no different from dodging a blade. The kneeling I taught was never for this."
+companion.npc.honor.swordmaster.rejoin: "I heard the second verse of the founder's song again. Now I can teach that kneeling is no shame."
+companion.npc.humility.novice.join: "I haven't forgotten my name yet. But if this is a road heard in silence, I'll follow."
+companion.npc.humility.novice.leave: "I thought I kept my mouth closed. But my own voice only grew louder. I must stand alone a while."
+companion.npc.humility.novice.rejoin: "Someone asked my name again. If forgetting means acceptance, I can walk with you."
+companion.npc.justice.mason.join: "Stone won't hold a lie. Let me raise the stones along your road."
+companion.npc.justice.mason.leave: "The scale tipped, and I only kept carving stones. If comfort cannot stand before punishment, my chisel grows heavy."
+companion.npc.justice.mason.rejoin: "I heard a song stood by the grave. I want to believe again that a stone can hold more than punishment."
+companion.npc.kalas.elin.join: "If this road looks for truth outside the ledger, my hand will come too."
+companion.npc.kalas.elin.leave: "I heard a lie and only wrote it down. I don't want to see another ledger cover a person."
+companion.npc.kalas.elin.rejoin: "Senior Nia forgave me. I can trust my own handwriting again."
+companion.npc.sacrifice.surgeon.join: "My blade closes what is torn. If I can sew a wound on your road, I'll go."
+companion.npc.sacrifice.surgeon.leave: "I dealt more wounds than I closed. I must return to people, not to the altar."
+companion.npc.sacrifice.surgeon.rejoin: "I heard the hearth fire did not go out. If love fills itself every day, my thread can serve again."
+companion.npc.spirituality.novice.join: "I have no license yet. But if this road searches for real prayer, my scrubbing hands will follow."
+companion.npc.spirituality.novice.leave: "I tried to trust only licensed prayer, and lost the sound of breath. I must stand outside the meditation door again."
+companion.npc.spirituality.novice.rejoin: "I heard the dawn breath song. If an unlicensed sound can also be prayer, I'm coming back."
+companion.npc.valor.sergeant.join: "You wear a blade. If you're ready to bring a wounded comrade back alive, I'll come."
+companion.npc.valor.sergeant.leave: "You stepped forward where you should have held. That's not courage, it's folly. I'm returning to the barracks."
+companion.npc.valor.sergeant.rejoin: "I saw the retreat law again. If coming back alive is also courage, I'll take up this blade once more."

@@ -63,7 +63,7 @@
     virtue: valor
     joinRequires: [fact.solgang.sergeant]
     leaveAfterDeeds: 2
-    rejoinRequires: []
+    rejoinRequires: [fact.solgang.retreat-law]
     hp: 10
     attack: 3
     class: guardian

@@ -208,7 +208,7 @@
     virtue: humility
     joinRequires: [fact.heron.novice]
     leaveAfterDeeds: 2
-    rejoinRequires: []
+    rejoinRequires: [fact.heron.real-name]
     hp: 7
     attack: 2
     class: archer

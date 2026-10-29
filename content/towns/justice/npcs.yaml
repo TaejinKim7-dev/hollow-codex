@@ -266,7 +266,7 @@
     virtue: justice
     joinRequires: [fact.seles.mason]
     leaveAfterDeeds: 2
-    rejoinRequires: []
+    rejoinRequires: [fact.seles.comfort-widow]
     hp: 9
     attack: 3
     class: guardian

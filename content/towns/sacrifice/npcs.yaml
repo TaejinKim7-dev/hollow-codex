@@ -166,7 +166,7 @@
     virtue: sacrifice
     joinRequires: [fact.dione.surgeon]
     leaveAfterDeeds: 2
-    rejoinRequires: []
+    rejoinRequires: [fact.dione.living-love]
     hp: 8
     attack: 2
 - id: npc.sacrifice.scribe

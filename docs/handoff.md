@@ -675,3 +675,10 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 콘텐츠: 동료 병과 — 리오나 방랑자 척후, 솔강 부사관·셀레스 석공·훈련 교관 방패병, 엘리아·헤론 견습 궁수(그 밖의 동료·플레이어는 전사). 연습장 새 조우 `enc.arena.archers`(7,2)·`enc.arena.shields`(7,6), 새 적 `creature.arena-archer/-guard`. 이야기 조우·시나리오 계획은 그대로.
 - 확인: 단위 634 · 타입 · `check:content` · 빌드 · `audit:dist` · E2E 6개 모두 0/통과. 캡처 `docs/screenshots/2026-10-30-C3c-range.png`(궁수 차례의 주황 사거리 블록·파랑 이동 칸·HUD 병과)·`-arrow.png`(적 궁수 화살이 날아가는 중) 열어서 확인. 디버그 훅 `debugJoin`, 스크립트 `scripts/visual/class-shot.mjs`, 자동 대전표는 사거리 반영.
 - 확인 못 한 것: 병과 조합의 재미·균형(🧑), 척후·방패병 전용 연출 없음, 플레이어 자신은 항상 전사, 병과 문구는 임시(OpenCode OC-2 초안 도착 시 교체).
+
+## 2026-10-30 OpenCode 3작업 병합·동료 대사 반영
+- 병합: `oc/companion-lines`(동료 대사 24줄×2언어+재합류 제안), `oc/class-flavor`(병과·연습장 적 이름), `oc/encounter-audit`(마을 전투 조사 `docs/research/story-encounter-audit-2026-10-29.md`) — 모두 문서 1개씩이라 충돌 없음. 원격 `oc/*`는 병합 뒤 삭제 가능.
+- 반영: 동료 8명 `companion.<npcId>.join|leave|rejoin`(ko·en)을 `content/strings`에 옮기고(멍청이 짓이지 띄어쓰기 반영), `src/ui/companion-lines.ts companionLines(events, before, content)`가 합류·이탈·재합류(이전 상태의 `departed`로 구분)를 골라 `main.ts showLine`이 4초 안내로 보인다(연습장 교관은 대사 없음). 재합류 조건 7건을 `rejoinRequires`에 적용(엘린은 기존 `fact.kalas.elin-forgiven`): 셀 `fact.reona.open-pantry`, 바르칸 `fact.argon.kneeling-lord`, 이안 `fact.elia.breath-song`, 하르 `fact.solgang.retreat-law`, 두만 `fact.seles.comfort-widow`, 세인 `fact.dione.living-love`, 견습 `fact.heron.real-name`. 모두 실제 대화로 얻어짐(`companions.test.ts`·`reachable.py` 0).
+- 연습장 적 이름은 OpenCode 안(연습 궁수·연습 방패병)을 썼다. 병과 설명 `class.*.desc`는 화면에 아직 안 쓴다(내 문구 유지, OC 안은 문서에 남음).
+- OC-3 핵심: 고정 수순이 묶는 조우는 `enc.field.wolves`와 `enc.archive.robbers`뿐 — 7개 미덕 마을 이야기 조우는 어떤 시나리오에도 묶여 있지 않아 재배치 가능(문서의 제안표 C 참고, 승률 예상은 추정).
+- 확인: 단위 638·시나리오 52 포함·타입·`check:content`·빌드·`audit:dist`·E2E 6 모두 통과. 캡처 `docs/screenshots/2026-10-30-companion-join-line.png`(훈련관 하르 합류 대사) 열어서 확인. 확인 못 한 것: 대사 어체·영어 자연스러움(🧑), 이탈·재합류 대사의 실제 화면.

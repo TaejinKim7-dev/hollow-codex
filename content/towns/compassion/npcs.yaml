@@ -163,7 +163,7 @@
     virtue: compassion
     joinRequires: [fact.reona.wanderer]
     leaveAfterDeeds: 2
-    rejoinRequires: []
+    rejoinRequires: [fact.reona.open-pantry]
     hp: 8
     attack: 2
     class: runner
