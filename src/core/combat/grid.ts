@@ -27,12 +27,9 @@ export function startCombat(state: GameState, content: GameContent, encounterId:
     const pos = encounter.allyStart[i]
     return pos ? [{ id: a.id, side: "ally", creature: null, pos, hp: a.hp, attack: a.attack, maxHp: a.maxHp, ...(a.class === undefined ? {} : { class: a.class }), ...fresh }] : []
   })
-  const enemies: CombatUnit[] = encounter.enemies.map((e, i) => {
-    const creature = content.creatures[e.creature]
-    if (!creature) throw new Error(`unknown creature: ${e.creature}`)
-    return { id: `${e.creature}#${i}`, side: "enemy", creature: e.creature, pos: e.at, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, morale: creature.morale ?? creature.hp, maxMorale: creature.morale ?? creature.hp, ...(creature.class === undefined ? {} : { class: creature.class }), ...fresh }
-  })
-  const placed = [...allies, ...enemies]
+  const enemies: CombatUnit[] = encounter.enemies.map((e, i) => enemyUnit(content, e.creature, `${e.creature}#${i}`, e.at))
+  const ward = encounter.objective?.kind === "escort" ? [wardUnit(content, encounter.objective.ward, encounter.objective.from)] : []
+  const placed = [...allies, ...ward, ...enemies]
   const units = placed.map((u) => {   // 처음엔 가장 가까운 상대 쪽을 본다
     const foes = placed.filter((o) => o.side !== u.side)
     const near = foes.reduce<CombatUnit | null>((best, o) => (best === null || manhattan(u.pos, o.pos) < manhattan(u.pos, best.pos) ? o : best), null)
@@ -306,7 +303,10 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
     return u
   })
   const breath = rulesOf(content).breath
-  const next: CombatState = { ...combat, units: reset, round: combat.round + 1, breath: Math.min(breath.max, (combat.breath ?? 0) + breath.regen) }
+  const round = combat.round + 1
+  const reinforced = spawnReinforcements(reset, combat.grid, content, combat.encounterId, round)
+  if (reinforced.spawned.length > 0) events.push({ type: "combatReinforce", units: reinforced.spawned })
+  const next: CombatState = { ...combat, units: reinforced.units, round, breath: Math.min(breath.max, (combat.breath ?? 0) + breath.regen) }
   return { combat: { ...next, intents: computeIntents(next, content) }, events }
 }
 
@@ -317,6 +317,47 @@ function clearTurnFlags(u: CombatUnit): CombatUnit {
   return rest
 }
 
+const FRESH = { defending: false, moved: false, acted: false, gone: null } as const
+
+function enemyUnit(content: GameContent, creatureId: Id, id: Id, pos: Pos): CombatUnit {
+  const creature = content.creatures[creatureId]
+  if (!creature) throw new Error(`unknown creature: ${creatureId}`)
+  return { id, side: "enemy", creature: creatureId, pos, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, morale: creature.morale ?? creature.hp, maxMorale: creature.morale ?? creature.hp, ...(creature.class === undefined ? {} : { class: creature.class }), ...FRESH }
+}
+
+/** 호위 대상: 생물 정의를 쓰지만 아군 편(조종 가능)이다. 마음이 없다. */
+function wardUnit(content: GameContent, creatureId: Id, pos: Pos): CombatUnit {
+  const creature = content.creatures[creatureId]
+  if (!creature) throw new Error(`unknown creature: ${creatureId}`)
+  return { id: WARD_ID, side: "ally", creature: creatureId, pos, hp: creature.hp, attack: creature.attack, maxHp: creature.hp, ...(creature.class === undefined ? {} : { class: creature.class }), ...FRESH }
+}
+export const WARD_ID = "ward"
+
+/** 증원: 라운드가 round가 되는 순간 나타난다. 그 칸이 비어 있지 않으면 가장 가까운 빈 칸. 격자에 빈 칸이 없으면 나타나지 않는다. */
+function spawnReinforcements(units: readonly CombatUnit[], grid: readonly string[], content: GameContent, encounterId: Id, round: number): { units: CombatUnit[]; spawned: Id[] } {
+  const out = [...units]
+  const spawned: Id[] = []
+  const list = content.encounters[encounterId]?.reinforcements ?? []
+  list.forEach((rf, index) => {
+    if (rf.round !== round) return
+    let best: Pos | null = null
+    for (let y = 0; y < grid.length; y++) {
+      for (let x = 0; x < (grid[y]?.length ?? 0); x++) {
+        const p = { x, y }
+        const tile = gridTileAt(grid, content.tiles, p)
+        if (occupied(out, p) || tile === null || tile.walk === null) continue
+        if (best === null || manhattan(p, rf.at) < manhattan(best, rf.at)) best = p
+      }
+    }
+    if (best === null) return
+    const unit = enemyUnit(content, rf.creature, `${rf.creature}#r${index}`, best)
+    const foe = out.filter((o) => o.side === "ally" && alive(o)).reduce<CombatUnit | null>((b, o) => (b === null || manhattan(unit.pos, o.pos) < manhattan(unit.pos, b.pos) ? o : b), null)
+    out.push(foe === null ? unit : { ...unit, facing: facingToward(unit.pos, foe.pos) })
+    spawned.push(unit.id)
+  })
+  return { units: out, spawned }
+}
+
 /** 규칙 11: 살아 있는 적 없음 → 승리, 살아 있는 아군 없음 → 패배, 조우 목표(버티기·탈출)를 이루면 승리. 아니면 null. */
 function checkEnd(state: GameState, content: GameContent, events: GameEvent[]): StepResult | null {
   const combat = state.combat!
@@ -324,6 +365,11 @@ function checkEnd(state: GameState, content: GameContent, events: GameEvent[]): 
   if (!units.some((u) => u.side === "enemy" && alive(u))) return endCombat(state, content, "victory", events)
   if (!units.some((u) => u.side === "ally" && alive(u))) return endCombat(state, content, "defeat", events)
   const objective = content.encounters[combat.encounterId]?.objective
+  if (objective?.kind === "escort") {
+    const ward = units.find((u) => u.id === WARD_ID)
+    if (ward === undefined || !alive(ward)) return endCombat(state, content, "defeat", events)
+    if (samePos(ward.pos, objective.at)) return endCombat(state, content, "victory", events)
+  }
   if (objective?.kind === "escape" && units.some((u) => u.side === "ally" && alive(u) && samePos(u.pos, objective.at))) return endCombat(state, content, "victory", events)
   if (objective?.kind === "survive" && combat.round > objective.rounds) return endCombat(state, content, "victory", events)
   return null

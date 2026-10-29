@@ -1,6 +1,7 @@
 import { DEFAULT_COMBAT_RULES, type EncounterObjective } from "../../../src/content/types.ts"
 import { describe, expect, it } from "vitest"
-import { computeIntents } from "../../../src/core/combat/grid.ts"
+import { computeIntents, startCombat } from "../../../src/core/combat/grid.ts"
+import { createInitialState } from "../../../src/core/state.ts"
 import { step } from "../../../src/core/step.ts"
 import type { CombatAction, CombatState, CombatUnit, GameState } from "../../../src/core/types.ts"
 import { at, deepFreeze, stateWith, testContent } from "./fixture.ts"
@@ -201,6 +202,45 @@ describe("grid combat", () => {
       const cc = withObjective({ kind: "escape", at: { x: 3, y: 3 } })
       const r = step(combatState([P(2, 3), S(2, 0, { hp: 99 })]), { type: "combat", action: { kind: "move", to: { x: 3, y: 3 } } }, cc)
       expect(r.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
+    })
+    describe("escort and reinforcements", () => {
+      const escort = { kind: "escort", ward: "creature.slime", from: { x: 2, y: 4 }, at: { x: 2, y: 2 } } as const
+      const W = (x: number, y: number, patch: Partial<CombatUnit> = {}) => ({ id: "ward", side: "ally", creature: "creature.slime", pos: { x, y }, hp: 4, attack: 2, ...patch }) as const
+      it("starting an escort fight adds the ward as an ally unit at its start cell", () => {
+        const cc = withObjective(escort)
+        const s = startCombat(createInitialState(cc, 1), cc, "enc.a", { x: 1, y: 1 })
+        const ward = s.combat!.units.find((u) => u.id === "ward")!
+        expect(ward).toMatchObject({ side: "ally", creature: "creature.slime", pos: { x: 2, y: 4 }, hp: 4 })
+      })
+      it("the ward stepping onto the goal cell wins, and the ward falling loses", () => {
+        const cc = withObjective(escort)
+        const base = combatState([P(0, 4), W(2, 4), B(4, 0, { hp: 99 })])
+        const win = step({ ...base, combat: { ...base.combat!, active: "ward" } }, { type: "combat", action: { kind: "move", to: { x: 2, y: 2 } } }, cc)
+        expect(win.events).toContainEqual({ type: "combatEnded", outcome: "victory" })
+        const dead = combatState([P(0, 4), W(2, 4, { hp: 1 }), B(2, 3, { hp: 99 })])
+        const mid = step(dead, { type: "combat", action: { kind: "endTurn" } }, cc).state          // player passes, then the ward passes: the enemy phase kills the ward
+        const lose = step(mid, { type: "combat", action: { kind: "endTurn" } }, cc)
+        expect(lose.events).toContainEqual({ type: "combatEnded", outcome: "defeat" })
+      })
+      it("reinforcements appear when their round starts, on the nearest free cell if the spot is taken", () => {
+        const cc = { ...c, encounters: { ...c.encounters, "enc.a": { ...c.encounters["enc.a"]!, reinforcements: [{ round: 2, creature: "creature.bandit", at: { x: 2, y: 4 } }] } } }
+        const s0 = combatState([P(2, 4), S(0, 0, { hp: 99 })])   // the arrival cell is taken by the player
+        const r = step(s0, { type: "combat", action: { kind: "endTurn" } }, cc)
+        expect(r.events).toContainEqual({ type: "combatReinforce", units: ["creature.bandit#r0"] })
+        const arrived = r.state.combat!.units.find((u) => u.id === "creature.bandit#r0")!
+        expect(arrived).toMatchObject({ side: "enemy", hp: 3 })
+        expect(Math.abs(arrived.pos.x - 2) + Math.abs(arrived.pos.y - 4)).toBe(1)   // next to the occupied (2,4)
+        expect(r.state.combat!.round).toBe(2)
+      })
+      it("no reinforcements before their round, and none twice", () => {
+        const cc = { ...c, encounters: { ...c.encounters, "enc.a": { ...c.encounters["enc.a"]!, reinforcements: [{ round: 3, creature: "creature.bandit", at: { x: 0, y: 0 } }] } } }
+        const r1 = step(combatState([P(2, 4), S(4, 0, { hp: 99 })]), { type: "combat", action: { kind: "endTurn" } }, cc)
+        expect(r1.events.some((e) => e.type === "combatReinforce")).toBe(false)
+        const r2 = step(r1.state, { type: "combat", action: { kind: "endTurn" } }, cc)
+        expect(r2.events.filter((e) => e.type === "combatReinforce")).toHaveLength(1)
+        const r3 = step(r2.state, { type: "combat", action: { kind: "endTurn" } }, cc)
+        expect(r3.events.some((e) => e.type === "combatReinforce")).toBe(false)
+      })
     })
     it("without an objective the fight still needs every enemy gone", () => {
       const r = act(combatState([P(2, 3), S(2, 0, { hp: 99 })]), { kind: "move", to: { x: 3, y: 3 } })

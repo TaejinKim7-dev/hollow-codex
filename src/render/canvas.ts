@@ -224,7 +224,7 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
   ctx.fillRect(gx1, gy0, ctx.canvas.width - gx1 + size, gy1 - gy0)
   // 탈출 목표 칸: 금빛 깃발 칸 표시
   const objective = content.encounters[combat.encounterId]?.objective
-  if (objective?.kind === "escape") {
+  if (objective?.kind === "escape" || objective?.kind === "escort") {
     const ex = screenX(vp, objective.at.x, size), ey = screenY(vp, objective.at.y, size)
     ctx.fillStyle = "rgba(255, 215, 0, 0.28)"
     ctx.fillRect(ex, ey, size, size)

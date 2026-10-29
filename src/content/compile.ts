@@ -54,7 +54,7 @@ const KEYS = {
   deduction: ["id", "sentence", "hint", "answer", "unlocks", "codexWord"],
   crisis: ["id", "npc", "text", "options"],
   crisisOption: ["requires", "requiresDeductions", "setsFlags", "label", "text"],
-  encounter: ["id", "map", "grid", "allyStart", "enemies", "music", "repeatable", "objective"],
+  encounter: ["id", "map", "grid", "allyStart", "enemies", "music", "repeatable", "objective", "reinforcements"],
   enemy: ["creature", "at"],
   ring: ["id", "at", "name", "song", "fact", "onOverworld"],
   denylist: ["latin", "hangul"]
@@ -513,17 +513,25 @@ function readEncounters(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
     let objective: EncounterObjective | undefined
     if (o["objective"] !== undefined) {
       const ob = r.obj(o["objective"], `${w}.objective`)
-      onlyKeys(r, ob, `${w}.objective`, ["kind", "rounds", "at"])
+      onlyKeys(r, ob, `${w}.objective`, ["kind", "rounds", "at", "ward", "from"])
       const kind = r.str(ob, "kind", `${w}.objective`)
       if (kind === "survive") {
         const rounds = r.num(ob, "rounds", `${w}.objective`)
         if (!Number.isInteger(rounds) || rounds < 1) r.fail(`${w}.objective.rounds`, "expected an integer of 1 or more")
         objective = { kind, rounds }
       } else if (kind === "escape") objective = { kind, at: r.pos(ob["at"], `${w}.objective.at`) }
-      else r.fail(`${w}.objective.kind`, `unknown objective kind "${kind}" (survive | escape)`)
+      else if (kind === "escort") objective = { kind, ward: r.str(ob, "ward", `${w}.objective`), from: r.pos(ob["from"], `${w}.objective.from`), at: r.pos(ob["at"], `${w}.objective.at`) }
+      else r.fail(`${w}.objective.kind`, `unknown objective kind "${kind}" (survive | escape | escort)`)
     }
+    const reinforcements = o["reinforcements"] === undefined ? [] : r.arr(o["reinforcements"], `${w}.reinforcements`).map((x, i) => {
+      const ro = r.obj(x, `${w}.reinforcements[${i}]`)
+      onlyKeys(r, ro, `${w}.reinforcements[${i}]`, ["round", "creature", "at"])
+      const round = r.num(ro, "round", `${w}.reinforcements[${i}]`)
+      if (!Number.isInteger(round) || round < 2) r.fail(`${w}.reinforcements[${i}].round`, "expected an integer of 2 or more")
+      return { round, creature: r.str(ro, "creature", `${w}.reinforcements[${i}]`), at: r.pos(ro["at"], `${w}.reinforcements[${i}].at`) }
+    })
     const repeatable = r.optBool(o, "repeatable", w) === true
-    const enc: Encounter = { map: r.str(o, "map", w), grid: r.strList(o, "grid", w), allyStart, enemies, music: r.str(o, "music", w), ...(repeatable ? { repeatable } : {}), ...(objective === undefined ? {} : { objective }) }
+    const enc: Encounter = { map: r.str(o, "map", w), grid: r.strList(o, "grid", w), allyStart, enemies, music: r.str(o, "music", w), ...(repeatable ? { repeatable } : {}), ...(objective === undefined ? {} : { objective }), ...(reinforcements.length === 0 ? {} : { reinforcements }) }
     if (r.errors.length === before) put(ctx, d.encounters, "encounter", r.file, id, enc)
   })
 }
@@ -673,6 +681,8 @@ function checkReferences(d: Draft, out: string[]): void {
     ref(f, `${id}.map`, "map", e.map, d.maps.items)
     ref(f, `${id}.music`, "music", e.music, musicIds)
     e.enemies.forEach((en, i) => ref(f, `${id}.enemies[${i}].creature`, "creature", en.creature, d.creatures.items))
+    e.reinforcements?.forEach((rf, i) => ref(f, `${id}.reinforcements[${i}].creature`, "creature", rf.creature, d.creatures.items))
+    if (e.objective?.kind === "escort") ref(f, `${id}.objective.ward`, "creature", e.objective.ward, d.creatures.items)
   }
   for (const [id, mg] of Object.entries(d.rings.items)) {
     const f = d.rings.file[id] ?? ""
@@ -821,6 +831,11 @@ function checkGeometry(d: Draft, out: string[]): void {
     e.allyStart.forEach((p, i) => cell(f, `${id}.allyStart[${i}]`, e.grid, p))
     e.enemies.forEach((en, i) => cell(f, `${id}.enemies[${i}].at`, e.grid, en.at))
     if (e.objective?.kind === "escape") cell(f, `${id}.objective.at`, e.grid, e.objective.at)
+    if (e.objective?.kind === "escort") {
+      cell(f, `${id}.objective.at`, e.grid, e.objective.at)
+      cell(f, `${id}.objective.from`, e.grid, e.objective.from)
+    }
+    e.reinforcements?.forEach((rf, i) => cell(f, `${id}.reinforcements[${i}].at`, e.grid, rf.at))
   }
 }
 

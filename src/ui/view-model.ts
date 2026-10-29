@@ -258,7 +258,7 @@ export function combatView(state: GameState, content: GameContent): CombatView |
     const name = u.side === "ally"
       ? u.id === "player"
         ? t(lang, s, "player.name")
-        : t(lang, s, content.npcs[u.id]?.nameKey ?? u.id)
+        : t(lang, s, u.creature !== null ? content.creatures[u.creature]?.nameKey ?? u.creature : content.npcs[u.id]?.nameKey ?? u.id)
       : t(lang, s, u.creature === null ? u.id : content.creatures[u.creature]?.nameKey ?? u.creature)
     let evilKnown: boolean | null = null
     if (u.side === "enemy" && u.creature !== null) {
@@ -271,6 +271,7 @@ export function combatView(state: GameState, content: GameContent): CombatView |
   const obj = content.encounters[combat.encounterId]?.objective
   const objective = obj === undefined ? null
     : obj.kind === "survive" ? t(lang, s, "ui.combat.objective.survive").replaceAll("{n}", String(Math.min(combat.round, obj.rounds))).replaceAll("{max}", String(obj.rounds))
+    : obj.kind === "escort" ? t(lang, s, "ui.combat.objective.escort")
     : t(lang, s, "ui.combat.objective.escape")
   const rules = content.combat ?? DEFAULT_COMBAT_RULES
   const breathValue = combat.breath ?? 0

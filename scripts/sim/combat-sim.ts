@@ -17,6 +17,15 @@ if (content === null) { console.error(errors.join("\n")); process.exit(1) }
 function pickAction(state: GameState, actor: CombatUnit): CombatAction {
   const combat = state.combat!
   const foes = combat.units.filter((u) => u.side === "enemy" && alive(u))
+  const objective = content!.encounters[combat.encounterId]?.objective
+  if (objective?.kind === "escort" && actor.id === "ward") {   // 호위 대상은 싸우지 않고 목표 칸으로 걷는다
+    if (!actor.moved) {
+      const cells = reachableCells(combat, content!, actor.id)
+      const best = cells.reduce<{ x: number; y: number } | null>((b, c) => (b === null || manhattan(c, objective.at) < manhattan(b, objective.at) ? c : b), null)
+      if (best !== null && manhattan(best, objective.at) < manhattan(actor.pos, objective.at)) return { kind: "move", to: best }
+    }
+    return { kind: "endTurn" }
+  }
   const shots = attackTargets(combat, content!, actor.id).map((t) => ({ ...t, hp: foes.find((f) => f.id === t.id)?.hp ?? 99 })).sort((a, b) => a.hp - b.hp)   // 사거리 안의 가장 약한 적(병과 사거리 반영)
   const max = (content!.combat?.momentum.max ?? 6)
   if (shots.length > 0 && !actor.acted) {

@@ -20,6 +20,10 @@ export const CREATURE_AIS: readonly CreatureAi[] = ["aggressive", "cautious", "s
 export type EncounterObjective =
   | { readonly kind: "survive"; readonly rounds: number }
   | { readonly kind: "escape"; readonly at: Pos }
+  | { readonly kind: "escort"; readonly ward: Id; readonly from: Pos; readonly at: Pos }   // 호위 대상(생물 id)이 from에서 시작해 at에 서면 승리, 쓰러지면 패배. 대상은 아군처럼 조종한다
+
+/** 증원: 라운드가 round로 바뀔 때 적 creature가 at(자리가 차 있으면 가장 가까운 빈 칸)에 나타난다. */
+export interface Reinforcement { readonly round: number; readonly creature: Id; readonly at: Pos }
 
 /** 병과: 이동력·공격 사거리(직선, 칸 수)·받는 피해 경감. combat.yaml `classes`. 병과가 없는 유닛은 fighter. */
 export interface UnitClass { readonly move: number; readonly rangeMin: number; readonly rangeMax: number; readonly takenDefense: number }
@@ -106,7 +110,7 @@ export interface GameContent {
   }>>
   readonly crises: Readonly<Record<Id, { readonly npc: Id; readonly textKey: string; readonly options: Readonly<Record<Id, CrisisOptionDef>> }>>
   readonly creatures: Readonly<Record<Id, { readonly nameKey: string; readonly evil: boolean; readonly hp: number; readonly attack: number; readonly sprite: SpriteRef; readonly lore: Id; readonly morale?: number; readonly ai?: CreatureAi; readonly class?: Id }>>
-  readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id; readonly repeatable?: boolean; readonly objective?: EncounterObjective }>>
+  readonly encounters: Readonly<Record<Id, { readonly map: Id; readonly grid: readonly string[]; readonly allyStart: readonly Pos[]; readonly enemies: readonly { readonly creature: Id; readonly at: Pos }[]; readonly music: Id; readonly repeatable?: boolean; readonly objective?: EncounterObjective; readonly reinforcements?: readonly Reinforcement[] }>>
   readonly abilities: Readonly<Record<Id, { readonly nameKey: string }>>
   readonly strings: Readonly<Record<string, Readonly<Record<string, string>>>>   // 언어 코드 → 키 → 문구
   readonly rings: Readonly<Record<Id, RingDef>>   // D14

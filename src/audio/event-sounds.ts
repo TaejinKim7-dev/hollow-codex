@@ -14,6 +14,7 @@ export function eventSounds(events: readonly GameEvent[], cmd: Command, accepted
       case "combatEnded": out.push(e.outcome === "victory" ? "victory" : e.outcome === "defeat" ? "defeat" : "flee"); break
       case "combatHit": if (e.special === true && !out.includes("special")) out.push("special"); break
       case "combatYield": if (e.how === "persuaded") out.push("persuade"); break
+      case "combatReinforce": out.push("crisis"); break
       case "companionJoined": out.push("companion_join"); break
       case "companionLeft": out.push("companion_leave"); break
       case "ringUnlocked": out.push("ring_unlock"); break

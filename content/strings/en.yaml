@@ -1716,3 +1716,7 @@ companion.npc.spirituality.novice.rejoin: "I heard the dawn breath song. If an u
 companion.npc.valor.sergeant.join: "You wear a blade. If you're ready to bring a wounded comrade back alive, I'll come."
 companion.npc.valor.sergeant.leave: "You stepped forward where you should have held. That's not courage, it's folly. I'm returning to the barracks."
 companion.npc.valor.sergeant.rejoin: "I saw the retreat law again. If coming back alive is also courage, I'll take up this blade once more."
+ui.combat.objective.escort: "Goal: bring the ward to the marked cell"
+ui.notice.reinforce: "Reinforcements arrive!"
+creature.arena-ward.name: The Porter
+creature.arena-ambusher.name: The Ambusher

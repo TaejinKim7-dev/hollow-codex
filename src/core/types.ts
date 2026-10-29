@@ -55,6 +55,7 @@ export type GameEvent =
   | { type: "crisisResolved"; crisisId: Id; optionId: Id }
   | { type: "combatStarted"; encounterId: Id } | { type: "combatEnded"; outcome: "victory" | "defeat" | "fled" }
   | { type: "combatHit"; attacker: Id; target: Id; amount: number; defeated: boolean; hp: number; at: Pos; chain?: number; special?: boolean }   // 연출용: 맞은 뒤 남은 hp, at = 때린 순간 공격자 칸
+  | { type: "combatReinforce"; units: Id[] }                                                         // 증원: 적이 새로 나타났다
   | { type: "combatYield"; target: Id; how: "persuaded" | "retreated" }                              // 연출용: 죽지 않고 물러남
   | { type: "sfx"; name: string } | { type: "music"; track: Id }
   | { type: "timePassed"; hour: number; day: number } | { type: "dayPassed"; day: number }

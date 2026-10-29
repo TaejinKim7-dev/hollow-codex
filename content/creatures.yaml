@@ -9,3 +9,5 @@
 - { id: creature.humility-silencer, name: humility.creature.silencer.name, evil: false, hp: 4, attack: 1, sprite: char.elder-woman, lore: fact.creature.humility-silencer, ai: cautious }
 - { id: creature.arena-archer, name: creature.arena-archer.name, evil: true, hp: 3, attack: 2, sprite: char.hunter-field, lore: fact.creature.robber-greed, class: archer }
 - { id: creature.arena-guard, name: creature.arena-guard.name, evil: true, hp: 5, attack: 2, sprite: char.guard-soldier, lore: fact.creature.robber-greed, class: guardian }
+- { id: creature.arena-ward, name: creature.arena-ward.name, evil: false, hp: 6, attack: 1, sprite: char.young-villager, lore: fact.creature.wolf-hungry }
+- { id: creature.arena-ambusher, name: creature.arena-ambusher.name, evil: true, hp: 3, attack: 2, sprite: char.craftsman, lore: fact.creature.robber-greed, ai: skirmisher }

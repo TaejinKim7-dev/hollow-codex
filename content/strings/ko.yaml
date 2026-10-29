@@ -1714,3 +1714,7 @@ companion.npc.spirituality.novice.rejoin: "새벽에 숨 노래를 들었어요.
 companion.npc.valor.sergeant.join: "허리에 칼은 찼군. 다친 전우를 데리고 돌아올 각오만 있다면 따라주지."
 companion.npc.valor.sergeant.leave: "물러서야 할 자리에서 앞으로 나갔어. 그런 건 용기가 아니라 멍청이 짓이지. 나는 병영으로 돌아간다."
 companion.npc.valor.sergeant.rejoin: "후퇴 법을 다시 봤다. 살아서 돌아오는 것도 용기라면, 이 칼을 다시 맡겠군."
+ui.combat.objective.escort: "목표: 호위 대상을 표시된 칸까지 보내라"
+ui.notice.reinforce: "증원이 나타났다!"
+creature.arena-ward.name: 짐꾼
+creature.arena-ambusher.name: 매복꾼

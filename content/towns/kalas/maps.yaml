@@ -111,5 +111,7 @@
     - { at: [9, 6], id: enc.arena.escape }
     - { at: [7, 2], id: enc.arena.archers }
     - { at: [7, 6], id: enc.arena.shields }
+    - { at: [11, 2], id: enc.arena.escort }
+    - { at: [11, 6], id: enc.arena.ambush }
   enterFlags: []
   heals: true

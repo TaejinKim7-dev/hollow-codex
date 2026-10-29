@@ -52,7 +52,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 
 ## 알려진 한계 (2026-10-29)
 - 그림: 건물은 지붕 없는 벽 블록, 기본형 인물 7종·걷기 그림·마을색 변형·애니메이션 NPC 없음(PixelLab 잔액 0). 소리: 직접 듣지 못함(🧑).
-- 호위·증원 목표는 아직. 7개 미덕 마을 전투는 적 2~3명으로 재배치(2026-10-30, 들판 늑대·서고 도적은 시나리오 수순 때문에 그대로). 상세 `README.md` 알려진 한계, `docs/handoff.md` 끝.
+- 호위(escort)·증원 목표 구현(2026-10-30, 연습장 `enc.arena.escort`·`ambush`, 이야기 조우엔 아직 안 씀). 7개 미덕 마을 전투는 적 2~3명으로 재배치(2026-10-30, 들판 늑대·서고 도적은 시나리오 수순 때문에 그대로). 상세 `README.md` 알려진 한계, `docs/handoff.md` 끝.
 
 ## 마지막 게이트
 oc/fx-tracking-tests (2026-10-29): npm run test:unit 0 (558 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.

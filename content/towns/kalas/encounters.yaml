@@ -158,3 +158,44 @@
     - { creature: creature.arena-guard, at: [5, 1] }
     - { creature: creature.arena-archer, at: [4, 0] }
   music: music.battle
+- id: enc.arena.escort
+  map: map.arena
+  repeatable: true
+  objective: { kind: escort, ward: creature.arena-ward, from: [4, 7], at: [4, 0] }
+  grid:
+    - "ggggggggg"
+    - "ggtgggtgg"
+    - "ggggggggg"
+    - "gghgggggg"
+    - "ggggtgggg"
+    - "ggggggghg"
+    - "gghgggggg"
+    - "ggggggggg"
+    - "ggggggggg"
+  allyStart: [[4, 8], [3, 8], [5, 8]]
+  enemies:
+    - { creature: creature.wolf, at: [2, 2] }
+    - { creature: creature.wolf, at: [6, 2] }
+    - { creature: creature.robber, at: [4, 3] }
+  music: music.battle
+- id: enc.arena.ambush
+  map: map.arena
+  repeatable: true
+  grid:
+    - "ggggggggg"
+    - "ggggggggg"
+    - "gghgggggg"
+    - "ggggtgggg"
+    - "ggggggghg"
+    - "gghgggggg"
+    - "ggggtgggg"
+    - "ggggggggg"
+    - "ggggggggg"
+  allyStart: [[4, 8], [3, 8], [5, 8]]
+  enemies:
+    - { creature: creature.wolf, at: [3, 2] }
+    - { creature: creature.wolf, at: [5, 2] }
+  reinforcements:
+    - { round: 3, creature: creature.arena-ambusher, at: [1, 0] }
+    - { round: 3, creature: creature.arena-ambusher, at: [7, 0] }
+  music: music.battle
