@@ -268,6 +268,7 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     const bar = fx.hp[unit.id]
     const f = fx.units[unit.id]
     drawHpBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), bar?.shown ?? unit.hp, bar?.trail ?? unit.hp, bar?.max ?? Math.max(unit.hp, unit.maxHp ?? 0, 1))
+    if (unit.marked === true) drawMark(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0))
     if (unit.side === "enemy" && unit.morale !== undefined && unit.maxMorale !== undefined) drawMoraleBar(ctx, vp, size, unit.pos.x + (f?.dx ?? 0), unit.pos.y + (f?.dy ?? 0), unit.morale, unit.maxMorale)
   }
   for (const g of fx.ghosts) {                       // 방금 쓰러진 유닛의 체력 막대도 끝까지 줄어드는 걸 보여 준다
@@ -338,6 +339,18 @@ function drawHpBar(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, ce
   ctx.fillRect(x, y, Math.round(w * ratio(trail)), h)
   ctx.fillStyle = hpColor(ratio(shown))
   ctx.fillRect(x, y, Math.round(w * ratio(shown)), h)
+}
+
+/** 표식: 대상 머리 위의 붉은 과녁. */
+function drawMark(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number): void {
+  const cx = screenX(vp, cellX, size) + size / 2, cy = screenY(vp, cellY, size) + size * 0.12
+  const r = size * 0.16
+  ctx.save()
+  ctx.strokeStyle = "#ff3b30"
+  ctx.lineWidth = Math.max(2, Math.round(size * 0.05))
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(cx - r * 1.5, cy); ctx.lineTo(cx + r * 1.5, cy); ctx.moveTo(cx, cy - r * 1.5); ctx.lineTo(cx, cy + r * 1.5); ctx.stroke()
+  ctx.restore()
 }
 
 /** 적의 마음 막대: 체력 막대 바로 아래 얇은 파란 막대. */

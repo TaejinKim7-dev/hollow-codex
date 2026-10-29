@@ -38,7 +38,7 @@ const KEYS = {
   tile: ["sprite", "ground", "object", "walk"],
   object: ["id", "image", "footprint", "blocks", "sortOffset"],
   audio: ["sfx", "footsteps", "music"],
-  combat: ["direction", "chain", "morale", "momentum", "terrain"],
+  combat: ["direction", "chain", "morale", "breath", "momentum", "terrain"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
   creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore", "morale", "ai"],
@@ -233,8 +233,8 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
   if (v === null || v === undefined) return
   const o = r.obj(v, "")
   onlyKeys(r, o, "", KEYS.combat)
-  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; momentum: CombatRules["momentum"]; morale: CombatRules["morale"]; terrain: Record<string, { defense: number }> } = {
-    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, momentum: { ...DEFAULT_COMBAT_RULES.momentum }, morale: { ...DEFAULT_COMBAT_RULES.morale }, terrain: {}
+  const rules: { direction: CombatRules["direction"]; chain: CombatRules["chain"]; momentum: CombatRules["momentum"]; morale: CombatRules["morale"]; breath: CombatRules["breath"]; terrain: Record<string, { defense: number }> } = {
+    direction: { ...DEFAULT_COMBAT_RULES.direction }, chain: { ...DEFAULT_COMBAT_RULES.chain }, momentum: { ...DEFAULT_COMBAT_RULES.momentum }, morale: { ...DEFAULT_COMBAT_RULES.morale }, breath: { ...DEFAULT_COMBAT_RULES.breath }, terrain: {}
   }
   if (o["direction"] !== undefined) {
     const dir = r.obj(o["direction"], "direction")
@@ -266,6 +266,18 @@ function readCombat(r: Reader, v: unknown, d: Draft): void {
     }
   }
   rules.morale = mr
+  const br = { ...DEFAULT_COMBAT_RULES.breath }
+  if (o["breath"] !== undefined) {
+    const bo = r.obj(o["breath"], "breath")
+    onlyKeys(r, bo, "breath", Object.keys(br))
+    for (const k of Object.keys(br) as (keyof typeof br)[]) {
+      if (bo[k] === undefined) continue
+      const n = r.num(bo, k, "breath")
+      if (n < 0 || (k === "max" && n < 1)) r.fail(`breath.${k}`, "expected a number of 0 or more (max: 1 or more)")
+      br[k] = n
+    }
+  }
+  rules.breath = br
   const mm = { ...DEFAULT_COMBAT_RULES.momentum }
   if (o["momentum"] !== undefined) {
     const mo = r.obj(o["momentum"], "momentum")

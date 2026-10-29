@@ -23,6 +23,7 @@ function combatState(seeds: readonly UnitSeed[], patch: Partial<GameState> = {})
   const s = stateWith({})
   return deepFreeze({ ...s, player: { ...s.player, pos: { x: 1, y: 3 } }, combat, ...patch })
 }
+const withBreath = (st: GameState, breath: number): GameState => ({ ...st, combat: { ...st.combat!, breath } })
 const act = (s: GameState, action: CombatAction) => step(s, { type: "combat", action }, c)
 const unit = (s: GameState, id: string) => s.combat!.units.find((u) => u.id === id)!
 
@@ -204,6 +205,44 @@ describe("grid combat", () => {
     it("without an objective the fight still needs every enemy gone", () => {
       const r = act(combatState([P(2, 3), S(2, 0, { hp: 99 })]), { kind: "move", to: { x: 3, y: 3 } })
       expect(r.state.combat).not.toBeNull()
+    })
+  })
+  describe("C-3b: breath and skills", () => {
+    const learned = (st: GameState, ...abilities: string[]): GameState => ({ ...st, abilities })
+    const act2 = (st: GameState, action: CombatAction) => step(st, { type: "combat", action }, c)
+    const M3 = (x: number, y: number) => ({ id: "npc.mate", side: "ally", creature: null, pos: { x, y }, hp: 8, attack: 4 }) as const
+    it("a fight starts with the starting breath and each round restores some, up to the max", () => {
+      const s = step(at(1, 2), { type: "move", dir: "s" }, c).state
+      expect(s.combat!.breath).toBe(2)
+      const r = act2(withBreath(combatState([P(2, 3), S(2, 0, { hp: 9 }), B(0, 0, { hp: 9 })]), 5), { kind: "endTurn" })
+      expect(r.state.combat!.breath).toBe(5)                                   // already at max
+      expect(act2(withBreath(combatState([P(2, 3), S(2, 0, { hp: 9 }), B(0, 0, { hp: 9 })]), 2), { kind: "endTurn" }).state.combat!.breath).toBe(3)
+    })
+    it("calm lowers an adjacent enemy's morale by calmLoss, costs 1 breath, and needs the ability", () => {
+      const base = withBreath(combatState([P(2, 1), S(2, 0, { hp: 9, morale: 9, maxMorale: 9 }), B(4, 4)]), 2)
+      expect(act2(base, { kind: "skill", skill: "calm", dir: "n" }).events).toEqual([])           // no ability yet
+      const r = act2(learned(base, "ability.compassion-persuade"), { kind: "skill", skill: "calm", dir: "n" })
+      expect(unit(r.state, "creature.slime#0").morale).toBe(5)                                      // 9 − 3 calm − 1 isolation (enemy phase ran)
+      expect(r.state.combat!.breath).toBe(2)                                                        // 2 − 1 cost + 1 regen
+    })
+    it("without enough breath a skill is ignored", () => {
+      const base = learned(withBreath(combatState([P(2, 1), S(2, 0, { hp: 9, morale: 9, maxMorale: 9 }), B(4, 4)]), 0), "ability.compassion-persuade")
+      expect(act2(base, { kind: "skill", skill: "calm", dir: "n" }).events).toEqual([])
+    })
+    it("guard puts the actor and adjacent allies on defend", () => {
+      const base = learned(withBreath(combatState([P(2, 3), M3(1, 3), S(2, 0, { hp: 9 }), B(4, 0, { hp: 9 })]), 2), "ability.valor-shield")
+      const r = act2(base, { kind: "skill", skill: "guard" })
+      expect(unit(r.state, "player").defending).toBe(true)
+      expect(unit(r.state, "npc.mate").defending).toBe(true)
+      expect(r.state.combat!.breath).toBe(1)                                                        // the mate has not acted yet, so no enemy phase / regen
+    })
+    it("mark makes the next hit on that enemy hurt more (×1.5)", () => {
+      const M4 = { id: "npc.mate", side: "ally", creature: null, pos: { x: 1, y: 0 }, hp: 8, attack: 4 } as const
+      const base = learned(withBreath(combatState([P(2, 1), M4, S(2, 0, { hp: 30, facing: "s" }), B(4, 4)]), 3), "ability.justice-eye")
+      const marked = act2(base, { kind: "skill", skill: "mark", dir: "n" })
+      expect(unit(marked.state, "creature.slime#0").marked).toBe(true)
+      const hit = act2(marked.state, { kind: "attack", dir: "e" }).events.find((e) => e.type === "combatHit")
+      expect(hit).toMatchObject({ amount: 8 })                                                      // 4 × side 1.25 × mark 1.5 = 7.5 → 8
     })
   })
   it("combat ends in defeat when every ally is gone", () => {

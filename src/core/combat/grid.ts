@@ -1,5 +1,5 @@
 import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../content/types.ts"
-import type { CombatAction, CombatState, CombatUnit, Dir, GameEvent, GameState, Id, Pos, StepResult } from "../types.ts"
+import { SKILL_ABILITY, type CombatAction, type CombatState, type CombatUnit, type Dir, type GameEvent, type GameState, type Id, type Pos, type StepResult } from "../types.ts"
 import { recordDeed } from "../virtue/conduct.ts"
 import { findPathOnGrid, gridTileAt, offset } from "../world/path.ts"
 import { attackDamage, chainHits, facingToward, sideOf } from "./rules.ts"
@@ -40,7 +40,7 @@ export function startCombat(state: GameState, content: GameContent, encounterId:
     return near === null ? u : { ...u, facing: facingToward(u.pos, near.pos) }
   })
   const base: CombatState = {
-    encounterId, grid: encounter.grid, units, active: nextActive(units) ?? "player", round: 1, intents: {}, returnPos
+    encounterId, grid: encounter.grid, units, active: nextActive(units) ?? "player", round: 1, intents: {}, returnPos, breath: rulesOf(content).breath.start
   }
   return { ...state, combat: { ...base, intents: computeIntents(base, content) } }
 }
@@ -68,6 +68,27 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
       return settle(withUnit(state, actor.id, { acted: true }), [], content)
     case "flee":
       return onEdge(combat.grid, actor.pos) ? endCombat(state, content, "fled", []) : ignored
+    case "skill": {
+      const rules = rulesOf(content)
+      const have = combat.breath ?? 0
+      if (have < rules.breath.cost || !state.abilities.includes(SKILL_ABILITY[action.skill])) return ignored
+      const spent: GameState = { ...state, combat: { ...combat, breath: have - rules.breath.cost } }
+      const done = withUnit(spent, actor.id, { acted: true })
+      if (action.skill === "guard") {
+        let next = done
+        for (const u of combat.units) if (u.side === "ally" && alive(u) && manhattan(u.pos, actor.pos) <= 1) next = withUnit(next, u.id, { defending: true })
+        return settle(next, [{ type: "sfx", name: "defend" }], content)
+      }
+      const dir = action.dir
+      const target = dir === undefined ? undefined : enemyAt(combat.units, offset(actor.pos, dir))
+      if (dir === undefined || !target) return ignored
+      const facing = withUnit(done, actor.id, { acted: true, facing: dir })
+      if (action.skill === "calm") {
+        const lowered = target.morale === undefined ? {} : { morale: Math.max(0, target.morale - rules.breath.calmLoss) }
+        return settle(withUnit(facing, target.id, lowered), [{ type: "sfx", name: "persuade" }], content)
+      }
+      return settle(withUnit(facing, target.id, { marked: true }), [{ type: "sfx", name: "persuade" }], content)
+    }
     case "special": {
       const target = enemyAt(combat.units, offset(actor.pos, action.dir))
       const rules = rulesOf(content)
@@ -260,12 +281,14 @@ function enemyPhase(combat: CombatState, content: GameContent): { combat: Combat
   }
   const lone = (u: CombatUnit): boolean => !units.some((o) => o.id !== u.id && o.side === "enemy" && alive(o) && manhattan(o.pos, u.pos) <= 2)
   const isolation = rulesOf(content).morale.isolationLoss
-  const reset = units.map((u) => {
+  const reset = units.map((u0) => {
+    const u = u0.marked === true ? { ...u0, marked: false } : u0
     if (u.side === "ally" && alive(u)) return { ...u, moved: false, acted: false, defending: false }
     if (u.side === "enemy" && alive(u) && u.morale !== undefined && lone(u)) return { ...u, morale: Math.max(0, u.morale - isolation) }
     return u
   })
-  const next: CombatState = { ...combat, units: reset, round: combat.round + 1 }
+  const breath = rulesOf(content).breath
+  const next: CombatState = { ...combat, units: reset, round: combat.round + 1, breath: Math.min(breath.max, (combat.breath ?? 0) + breath.regen) }
   return { combat: { ...next, intents: computeIntents(next, content) }, events }
 }
 

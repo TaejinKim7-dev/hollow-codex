@@ -12,7 +12,7 @@ describe("combat.yaml in compile", () => {
   it("reads direction, chain and terrain, and fills missing parts with defaults", () => {
     const { content, errors } = compileContent({ ...raw(), "combat.yaml": { direction: { back: 2 }, terrain: { ".": { defense: 1 } } } })
     expect(errors).toEqual([])
-    expect(content?.combat).toEqual({ direction: { ...DEFAULT_COMBAT_RULES.direction, back: 2 }, chain: DEFAULT_COMBAT_RULES.chain, momentum: DEFAULT_COMBAT_RULES.momentum, morale: DEFAULT_COMBAT_RULES.morale, terrain: { ".": { defense: 1 } } })
+    expect(content?.combat).toEqual({ direction: { ...DEFAULT_COMBAT_RULES.direction, back: 2 }, chain: DEFAULT_COMBAT_RULES.chain, momentum: DEFAULT_COMBAT_RULES.momentum, morale: DEFAULT_COMBAT_RULES.morale, breath: DEFAULT_COMBAT_RULES.breath, terrain: { ".": { defense: 1 } } })
   })
   it("reads the momentum section and rejects a bad max", () => {
     const ok = compileContent({ ...raw(), "combat.yaml": { momentum: { max: 4, weak: 2 } } })
@@ -26,6 +26,12 @@ describe("combat.yaml in compile", () => {
     expect(ok.errors).toEqual([])
     expect(ok.content?.combat?.morale).toEqual({ ...DEFAULT_COMBAT_RULES.morale, weakLoss: 2 })
     expect(compileContent({ ...raw(), "combat.yaml": { morale: { persuadeRatio: 1.5 } } }).errors.length).toBeGreaterThan(0)
+  })
+  it("reads the breath section and rejects a negative cost", () => {
+    const ok = compileContent({ ...raw(), "combat.yaml": { breath: { start: 3, calmLoss: 4 } } })
+    expect(ok.errors).toEqual([])
+    expect(ok.content?.combat?.breath).toEqual({ ...DEFAULT_COMBAT_RULES.breath, start: 3, calmLoss: 4 })
+    expect(compileContent({ ...raw(), "combat.yaml": { breath: { cost: -1 } } }).errors.length).toBeGreaterThan(0)
   })
   it("rejects a terrain glyph that is not a tile, a bad number, and unknown keys", () => {
     expect(compileContent({ ...raw(), "combat.yaml": { terrain: { Q: { defense: 1 } } } }).errors.some((e) => e.includes("terrain.Q"))).toBe(true)

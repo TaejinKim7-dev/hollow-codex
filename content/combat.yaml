@@ -11,6 +11,13 @@ morale:             # 마음: 피해·옆/등 타격·고립으로 줄고, 비�
   weakLoss: 1       # 옆·등 타격이면 추가로 잃는 마음
   isolationLoss: 1  # 라운드가 바뀔 때 주변 2칸 안에 다른 적이 없으면 잃는 마음
   persuadeRatio: 0.5
+breath:             # 숨(책략 자원): 능력을 푼 뒤 달래기(calm)·막기(guard)·표식(mark)을 cost만큼 쓴다
+  start: 2
+  max: 5
+  regen: 1          # 라운드마다 회복
+  cost: 1
+  calmLoss: 3       # 달래기: 대상 마음 감소
+  markBonus: 1.5    # 표식: 표식 난 적이 맞는 피해 배율(라운드가 바뀌면 사라짐)
 momentum:           # 기세: 아군이 약점(옆·등)을 치거나 연계·처치를 하면 쌓이고, 가득 차면 필살(special) 1회
   max: 6
   weak: 1           # 옆·등 타격 1회당

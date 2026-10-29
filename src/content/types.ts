@@ -30,11 +30,13 @@ export interface CombatRules {
   /** 기세: 아군이 약점(옆·등)을 치거나 연계·처치를 하면 쌓이고, 가득 차면 필살기 1회(special). */
   /** 마음(사기): 피해와 약점 타격·고립으로 줄고, 비악 적은 persuadeRatio 이하에서 설득할 수 있다. 악한 적은 0이 되면 퇴각. */
   readonly morale: { readonly weakLoss: number; readonly isolationLoss: number; readonly persuadeRatio: number }
+  /** 숨(책략 자원): 전투 시작 start, 라운드마다 regen 회복(최대 max). 능력을 푼 뒤 책략(calm·guard·mark)을 cost만큼 쓴다. */
+  readonly breath: { readonly start: number; readonly max: number; readonly regen: number; readonly cost: number; readonly calmLoss: number; readonly markBonus: number }
   readonly momentum: { readonly max: number; readonly weak: number; readonly chain: number; readonly defeat: number; readonly specialMultiplier: number; readonly splashRatio: number }
   /** 전투 격자 타일 글자 → 방어 보정(그 칸에 선 유닛이 받는 피해에서 뺀다, 최소 피해 1) */
   readonly terrain: Readonly<Record<string, { readonly defense: number }>>
 }
-export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, morale: { weakLoss: 1, isolationLoss: 1, persuadeRatio: 0.5 }, momentum: { max: 6, weak: 1, chain: 1, defeat: 1, specialMultiplier: 2, splashRatio: 0.5 }, terrain: {} }
+export const DEFAULT_COMBAT_RULES: CombatRules = { direction: { front: 1, side: 1.25, back: 1.5, vsAllies: false }, chain: { ratio: 0.5, enemies: false }, morale: { weakLoss: 1, isolationLoss: 1, persuadeRatio: 0.5 }, breath: { start: 2, max: 5, regen: 1, cost: 1, calmLoss: 3, markBonus: 1.5 }, momentum: { max: 6, weak: 1, chain: 1, defeat: 1, specialMultiplier: 2, splashRatio: 0.5 }, terrain: {} }
 
 export interface ChoiceOption {
   readonly optionId: Id; readonly labelKey: string; readonly textKey: string

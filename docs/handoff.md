@@ -622,3 +622,8 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 적 단계의 고립으로 마음이 0이 된 악한 적이 한 입력 늦게 물러나던 문제 → `settle` 끝에서도 `breakMorale`. 이 때문에 시나리오 수순 `ROBBER_WIN`(서고 도굴꾼)을 다시 풀었다(첫 도굴꾼은 옆 타격으로 마음 0 → 퇴각, 둘째는 한 대에 퇴각).
 - 불러오기 등으로 fx가 reset 없이 비워진 뒤 체력 막대 최대값이 `maxHp`를 무시하던 문제 → `enqueue`·캔버스 대체값이 `maxHp`를 쓴다. 거절된 방어(상태 불변)에도 방어음이 나던 문제 → `eventSounds(events, cmd, accepted)`.
 - 검토가 확인한 정상: 연계가 쓰러진 대상에 안 닿음, 행실 한 번만 기록, 기세 한 번만 계산·상한, 필살 분출 순서, 목표 판정 순서(섬멸→패배→탈출/버티기), 저장 호환(새 필드 모두 선택).
+
+## 2026-10-29 전투 C-3b(경량): 숨과 책략 3종
+- `CombatState.breath`(시작 2, 최대 5, 라운드마다 +1; `combat.yaml breath`), 행동 `skill {skill, dir?}`: **calm 달래기**(능력 `ability.compassion-persuade`; 인접 적 마음 −3), **guard 막기**(`ability.valor-shield`; 나와 인접 아군이 방어 자세), **mark 표식**(`ability.justice-eye`; 그 적이 맞는 피해 ×1.5, 라운드가 바뀌면 사라짐). 비용 1, 능력을 풀지 않았거나 숨이 모자라면 무시. `rules.ts attackDamage`가 표식을 반영(미리보기 포함). 매핑 `SKILL_ABILITY`(core/types.ts).
+- 화면: HUD "숨 n/5"와 해금한 책략 버튼(달래기·막기·표식, 숨이 모자라면 비활성), 방향이 필요한 책략은 공격처럼 방향 키/인접 칸 탭으로 지정, 표식 난 적 머리 위 붉은 과녁. 디버그 `debugGrantAbilities(ids)`·`scripts/visual/skills-shot.mjs`. 테스트 5개(core), 캡처 `docs/screenshots/2026-10-29-C3b-skills.png`(버튼·숨 표시 확인; 표식 과녁은 동료가 있어야 라운드 안에 보임 — 단독이면 곧바로 적 단계로 지워짐).
+- 병과(이동력·공격 모양)·정직/명예/희생/영성/겸손 책략은 아직. 설계 §4.2/4.5 참고.

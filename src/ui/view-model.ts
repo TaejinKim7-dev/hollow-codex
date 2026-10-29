@@ -1,6 +1,7 @@
 // UI 표시 전용 뷰 모델 (Task 13 PART A). DOM·렌더링 부수 효과 없음.
 import { DEFAULT_COMBAT_RULES } from "../content/types.ts"
 import type { FactKind, GameContent } from "../content/types.ts"
+import { SKILL_ABILITY, type SkillId } from "../core/types.ts"
 import type { CombatAction, GameState, Id, Pos, Virtue } from "../core/types.ts"
 import { availableTopics, pickVariant } from "../core/dialogue/talk.ts"
 import { crisisOptions } from "../core/crisis/crisis.ts"
@@ -34,6 +35,8 @@ export interface CombatView {
   actions: CombatAction["kind"][]                       // moved면 move 빠짐, flee는 가장자리만, 항상 endTurn
   units: { id: Id; name: string; hp: number; side: "ally" | "enemy"; evilKnown: boolean | null; morale?: number }[]
   momentum: { value: number; max: number }
+  skills: { skill: SkillId; usable: boolean }[]            // 해금한 책략(숨이 모자라면 usable false)
+  breath: { value: number; max: number }
   objective: string | null                               // 섬멸이 아닌 목표 안내 문구("3/5 라운드 버티기" 등)                // 기세 게이지(가득 차면 special 가능)
 }
 
@@ -263,5 +266,8 @@ export function combatView(state: GameState, content: GameContent): CombatView |
   const objective = obj === undefined ? null
     : obj.kind === "survive" ? t(lang, s, "ui.combat.objective.survive").replaceAll("{n}", String(Math.min(combat.round, obj.rounds))).replaceAll("{max}", String(obj.rounds))
     : t(lang, s, "ui.combat.objective.escape")
-  return { active, actions, units, momentum: { value, max }, objective }
+  const rules = content.combat ?? DEFAULT_COMBAT_RULES
+  const breathValue = combat.breath ?? 0
+  const skills = (Object.keys(SKILL_ABILITY) as SkillId[]).filter((k) => state.abilities.includes(SKILL_ABILITY[k])).map((k) => ({ skill: k, usable: breathValue >= rules.breath.cost }))
+  return { active, actions, units, momentum: { value, max }, skills, breath: { value: breathValue, max: rules.breath.max }, objective }
 }

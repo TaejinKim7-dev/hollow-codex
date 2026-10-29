@@ -4,7 +4,7 @@
 import "./panels.css"
 import type { LedgerRow } from "../content/ledger.ts"
 import type { FactKind, GameContent } from "../content/types.ts"
-import type { CombatAction, Command, Dir, GameState, Id, Pos, TimeState } from "../core/types.ts"
+import type { CombatAction, Command, Dir, GameState, Id, Pos, SkillId, TimeState } from "../core/types.ts"
 import type { UiAction } from "../input/commands.ts"
 import { tileAtPointer } from "../render/viewport.ts"
 import { offset } from "../core/world/path.ts"
@@ -13,7 +13,7 @@ import { combatView, codexView, dialogueView, notebookView, ringsView, type Note
 
 type TabName = "facts" | "deductions" | "hints"
 /** 방향 대기 상태(panels 안의 지역 상태). move는 칸 대기, 나머지는 방향 대기. */
-type Aim = { readonly kind: "move" } | { readonly kind: "attack" | "push" | "persuade" | "special" }
+type Aim = { readonly kind: "move" } | { readonly kind: "attack" | "push" | "persuade" | "special" } | { readonly kind: "skill"; readonly skill: SkillId }
 
 const FACT_KINDS: readonly FactKind[] = ["person", "place", "word", "song", "meaning", "creature"]
 const DIR_KEYS: Readonly<Record<string, Dir>> = {
@@ -376,7 +376,19 @@ export function mountPanels(
       return
     }
     aim = null
-    dispatch({ type: "combat", action: { kind } })
+    if (kind === "defend" || kind === "flee" || kind === "endTurn") dispatch({ type: "combat", action: { kind } })
+  }
+
+  const onSkillClick = (skill: SkillId): void => {
+    const current = state
+    if (current === null) return
+    if (skill === "guard") {                       // 방향이 필요 없다
+      aim = null
+      dispatch({ type: "combat", action: { kind: "skill", skill } })
+      return
+    }
+    aim = aim !== null && aim.kind === "skill" && aim.skill === skill ? null : { kind: "skill", skill }
+    renderCombat(current)
   }
 
   const renderCombat = (next: GameState): void => {
@@ -388,7 +400,7 @@ export function mountPanels(
       return
     }
     hud.hidden = false
-    hudActive.textContent = `${view.active} · ${tr("ui.combat.momentum")} ${view.momentum.value}/${view.momentum.max}${view.objective === null ? "" : ` · ${view.objective}`}`
+    hudActive.textContent = `${view.active} · ${tr("ui.combat.momentum")} ${view.momentum.value}/${view.momentum.max} · ${tr("ui.combat.breath")} ${view.breath.value}/${view.breath.max}${view.objective === null ? "" : ` · ${view.objective}`}`
 
     hudUnits.replaceChildren()
     for (const unit of view.units) {
@@ -410,6 +422,15 @@ export function mountPanels(
       b.addEventListener("click", () => onActionClick(kind))
       hudActions.appendChild(b)
     }
+    for (const sk of view.skills) {
+      const label = tr(`ui.combat.skill.${sk.skill}`)
+      const b = make("button", `action skill ${sk.skill}`, label)
+      b.setAttribute("aria-label", label)
+      b.disabled = !sk.usable
+      if (aim !== null && aim.kind === "skill" && aim.skill === sk.skill) b.classList.add("aiming")
+      b.addEventListener("click", () => onSkillClick(sk.skill))
+      hudActions.appendChild(b)
+    }
     hud.classList.toggle("aiming", aim !== null)
     syncChrome()
   }
@@ -427,6 +448,8 @@ export function mountPanels(
     event.stopImmediatePropagation()
     if (a.kind === "move") {
       dispatch({ type: "combat", action: { kind: "move", to: offset(actor.pos, dir) } })
+    } else if (a.kind === "skill") {
+      dispatch({ type: "combat", action: { kind: "skill", skill: a.skill, dir } })
     } else {
       dispatch({ type: "combat", action: { kind: a.kind, dir } })
     }
@@ -451,7 +474,7 @@ export function mountPanels(
     } else {
       const dir = dirFromOffset(actor.pos, tile)
       if (dir === null) return
-      dispatch({ type: "combat", action: { kind: a.kind, dir } })
+      dispatch({ type: "combat", action: a.kind === "skill" ? { kind: "skill", skill: a.skill, dir } : { kind: a.kind, dir } })
     }
     aim = null
     renderCombat(current)

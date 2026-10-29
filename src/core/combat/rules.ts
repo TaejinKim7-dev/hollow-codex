@@ -29,7 +29,8 @@ export function terrainDefense(grid: readonly string[], rules: CombatRules, pos:
  */
 export function attackDamage(combat: Pick<CombatState, "grid">, rules: CombatRules, attacker: CombatUnit, target: CombatUnit): number {
   const factor = target.side === "ally" && !rules.direction.vsAllies ? 1 : rules.direction[sideOf(target, attacker.pos)]
-  const raw = Math.max(1, Math.round(attacker.attack * factor) - terrainDefense(combat.grid, rules, target.pos))
+  const mark = target.marked === true ? rules.breath.markBonus : 1
+  const raw = Math.max(1, Math.round(attacker.attack * factor * mark) - terrainDefense(combat.grid, rules, target.pos))
   return target.defending ? Math.ceil(raw / 2) : raw
 }
 

@@ -3,10 +3,15 @@ export type Dir = "n" | "e" | "s" | "w"
 export type Virtue = "honesty" | "compassion" | "valor" | "justice" | "sacrifice" | "honor" | "spirituality" | "humility"
 export interface Pos { readonly x: number; readonly y: number }
 
+/** 책략: calm = 달래기(마음 감소), guard = 막기(주변 아군 방어), mark = 표식(다음 타격이 더 아픔). 각각 능력 해금이 필요. */
+export type SkillId = "calm" | "guard" | "mark"
+export const SKILL_ABILITY: Readonly<Record<SkillId, string>> = { calm: "ability.compassion-persuade", guard: "ability.valor-shield", mark: "ability.justice-eye" }
+
 export interface CombatUnit {
   readonly id: Id; readonly side: "ally" | "enemy"; readonly creature: Id | null; readonly pos: Pos
   readonly hp: number; readonly attack: number; readonly defending: boolean
   readonly moved: boolean; readonly acted: boolean; readonly gone: null | "dead" | "retreated" | "fled"
+  readonly marked?: boolean                                        // 표식(라운드가 바뀌면 사라짐): 맞는 피해 ×markBonus
   readonly morale?: number; readonly maxMorale?: number            // 마음(적만). 없으면 마음 규칙 없음
   readonly maxHp?: number                                          // 체력 막대의 가득 찬 값(없으면 시작 hp). 패배 뒤 낮은 hp로 시작해도 막대가 가득 차 보이지 않게
   readonly facing?: Dir                                            // 바라보는 방향(없으면 방향 보정 없음). 이동·공격 때 갱신
@@ -16,11 +21,13 @@ export interface CombatState {
   readonly active: Id; readonly round: number
   readonly intents: Readonly<Record<Id, { readonly moveTo: Pos; readonly attack: Id | null }>>
   readonly returnPos: Pos                                         // D12
+  readonly breath?: number                                        // 숨(책략 자원)
   readonly momentum?: number                                      // 기세(없으면 0). 가득 차면 special 가능
 }
 export type CombatAction =
   | { kind: "move"; to: Pos } | { kind: "attack"; dir: Dir } | { kind: "defend" } | { kind: "push"; dir: Dir }
   | { kind: "persuade"; dir: Dir } | { kind: "flee" } | { kind: "endTurn" } | { kind: "special"; dir: Dir }
+  | { kind: "skill"; skill: SkillId; dir?: Dir }
 
 export type Command =
   | { type: "move"; dir: Dir } | { type: "moveTo"; target: Pos } | { type: "interact"; at?: Pos }
