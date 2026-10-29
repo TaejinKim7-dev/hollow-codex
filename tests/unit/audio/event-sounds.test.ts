@@ -26,6 +26,11 @@ describe("eventSounds", () => {
     expect(ev({ type: "codexWritten", deductionId: "d", word: "w" })).toEqual(["codex_write"])
     expect(ev({ type: "epilogue", kind: "truth" })).toEqual(["epilogue"])
   })
+  it("plays one special cut-in sound for a special strike, however many enemies it hits", () => {
+    const hit = (target: string): GameEvent => ({ type: "combatHit", attacker: "player", target, amount: 4, defeated: false, hp: 1, at: { x: 0, y: 0 }, special: true })
+    expect(eventSounds([hit("a"), hit("b")], combat({ kind: "endTurn" }))).toEqual(["special"])
+    expect(eventSounds([{ type: "combatHit", attacker: "player", target: "a", amount: 4, defeated: false, hp: 1, at: { x: 0, y: 0 } }], combat({ kind: "endTurn" }))).toEqual([])
+  })
   it("plays persuade only when a creature was actually persuaded, and defend on the defend command", () => {
     expect(eventSounds([{ type: "combatYield", target: "t", how: "persuaded" }], combat({ kind: "endTurn" }))).toEqual(["persuade"])
     expect(eventSounds([{ type: "combatYield", target: "t", how: "retreated" }], combat({ kind: "endTurn" }))).toEqual([])

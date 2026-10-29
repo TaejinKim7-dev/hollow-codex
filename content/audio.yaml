@@ -13,6 +13,7 @@ sfx:
   door: door
   teleport: teleport
   coins: coins
+  special: ring_unlock   # 필살 컷인: 묵직한 종소리(열석 고리 소리 재사용)
   map_change: map_change
   combat_start: combat_start
   defend: defend
