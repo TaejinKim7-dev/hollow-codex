@@ -33,6 +33,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 
 ## 진행 중
 - R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
+- narrative-④ · Implementation/Content · oc/narrative-fixes · 2026-10-29 · 시작: 4개 마을 과부 NPC 중복 분리 (honor/sacrifice/spirituality/valor)
 
 - 형식: `- <ID> · <에이전트 이름> · <브랜치> · <시작 시각> · <한 줄 상태>`
 - 끝나면 이 줄을 지우고 위 표의 상태를 "완료(<커밋>)"로 바꾼다.
