@@ -17,3 +17,8 @@
 3. 조우 재배치(`content/towns/*/encounters.yaml`) + 새 크리처 필요 시 `creatures.yaml` — 자동 대전 표로 곡선 조정.
 4. 균형 테스트와 문서(`combat-difficulty-*.md` 갱신).
 5. 화면 확인(연습장·마을 조우) 프레임 스트립, 게이트, push.
+
+## 진행(2026-10-29)
+- 완료: Task 1(`creature.ai` 읽기), Task 2(`intents.ts` 성격 5종: aggressive·skirmisher·pack·cautious·coward — `tests/unit/core/combat-ai.test.ts`), 크리처에 성격 배정(늑대 pack, 도적 skirmisher, 거지·조문객·고행자·침묵자 cautious, 자랑꾼 skirmisher, 가짜 스님 coward).
+- 보류(결정): **이야기 조우(마을 7곳)는 일부러 짧게 둔다.** 시나리오 테스트가 고정 수순(`WOLF_PUSH_WIN`·미덕 마을 수순)에 묶여 있고, 이 전투의 목적은 "죽이지 않을 선택"을 하는 이야기 장면이다. 난이도는 연습장·후속 선택 콘텐츠(탑·시련)에서 올린다. 마을 조우를 키우려면 해당 시나리오 수순을 먼저 다시 풀어야 한다.
+- 남음: 균형 테스트(Task 4)는 자동 대전 표를 벽으로 쓰는 단위 테스트로 아래에 추가.

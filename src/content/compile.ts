@@ -3,13 +3,13 @@
 // 5 map/grid geometry, 6 grant paths, 7 deduction answers, 8 denied terms.
 import { BLOCKER, checkGroundAdjacency, GROUNDS, mergeObjectFootprints, type Ground, type ObjectDef } from "./ground.ts"
 import type { Id, Pos, Virtue } from "../core/types.ts"
-import { DEFAULT_COMBAT_RULES } from "./types.ts"
+import { CREATURE_AIS, DEFAULT_COMBAT_RULES } from "./types.ts"
 import { findDenied, parseDenylist } from "./denylist.ts"
 import { arrivalCell } from "../core/world/ring.ts"
 import { isObj, makeReader } from "./shape.ts"
 import type { Obj, Reader } from "./shape.ts"
 import type {
-  CombatRules, EncounterObjective,
+  CombatRules, CreatureAi, EncounterObjective,
   ChoiceOption, CompanionDef, CrisisOptionDef, FactKind, GameContent, MapDef, NpcDef, RawContent, SpriteRef, Topic
 } from "./types.ts"
 
@@ -41,7 +41,7 @@ const KEYS = {
   combat: ["direction", "chain", "morale", "momentum", "terrain"],
   start: ["map", "pos", "hp", "attack"],
   ability: ["id", "name"],
-  creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore", "morale"],
+  creature: ["id", "name", "evil", "hp", "attack", "sprite", "lore", "morale", "ai"],
   map: ["id", "rows", "exits", "music", "encounters", "enterFlags", "heals", "isOverworld", "terrainCost", "objects"],
   exit: ["at", "to", "arrive"],
   mapEncounter: ["at", "id"],
@@ -196,6 +196,11 @@ function readCreatures(r: Reader, v: unknown, d: Draft, ctx: Ctx): void {
     const c: Creature = {
       nameKey: r.str(o, "name", w), evil: r.bool(o, "evil", w), hp: r.num(o, "hp", w), attack: r.num(o, "attack", w),
       sprite: r.sprite(o["sprite"], `${w}.sprite`), lore: r.str(o, "lore", w)
+    }
+    if (o["ai"] !== undefined) {
+      const ai = r.str(o, "ai", w)
+      if ((CREATURE_AIS as readonly string[]).includes(ai)) (c as { ai?: CreatureAi }).ai = ai as CreatureAi
+      else r.fail(`${w}.ai`, `unknown ai "${ai}" (${CREATURE_AIS.join(" | ")})`)
     }
     const morale = o["morale"] === undefined ? undefined : r.num(o, "morale", w)
     if (morale !== undefined && morale >= 0) (c as { morale?: number }).morale = morale

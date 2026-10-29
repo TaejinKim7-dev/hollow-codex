@@ -1,9 +1,9 @@
-- { id: creature.wolf, name: creature.wolf.name, evil: false, hp: 3, attack: 2, sprite: char.wolf-hungry, lore: fact.creature.wolf-hungry }
-- { id: creature.robber, name: creature.robber.name, evil: true, hp: 4, attack: 3, sprite: char.craftsman, lore: fact.creature.robber-greed }
-- { id: creature.compassion-beggar, name: compassion.creature.beggar.name, evil: false, hp: 2, attack: 1, sprite: char.young-villager, lore: fact.creature.compassion-beggar }
+- { id: creature.wolf, name: creature.wolf.name, evil: false, hp: 3, attack: 2, sprite: char.wolf-hungry, lore: fact.creature.wolf-hungry, ai: pack }
+- { id: creature.robber, name: creature.robber.name, evil: true, hp: 4, attack: 3, sprite: char.craftsman, lore: fact.creature.robber-greed, ai: skirmisher }
+- { id: creature.compassion-beggar, name: compassion.creature.beggar.name, evil: false, hp: 2, attack: 1, sprite: char.young-villager, lore: fact.creature.compassion-beggar, ai: cautious }
 - { id: creature.valor-duelist, name: valor.creature.duelist.name, evil: false, hp: 5, attack: 3, sprite: char.guard-soldier, lore: fact.creature.valor-duelist }
-- { id: creature.justice-mourner, name: justice.creature.mourner.name, evil: false, hp: 4, attack: 1, sprite: char.widow, lore: fact.creature.justice-mourner }
-- { id: creature.sacrifice-penitent, name: sacrifice.creature.penitent.name, evil: false, hp: 4, attack: 1, sprite: char.robed-priest, lore: fact.creature.sacrifice-penitent }
-- { id: creature.honor-braggart, name: honor.creature.braggart.name, evil: true, hp: 5, attack: 3, sprite: char.warden-kalas, lore: fact.creature.honor-braggart }
-- { id: creature.spirituality-fake-monk, name: spirituality.creature.fake-monk.name, evil: true, hp: 4, attack: 2, sprite: char.robed-priest, lore: fact.creature.spirituality-fake-monk }
-- { id: creature.humility-silencer, name: humility.creature.silencer.name, evil: false, hp: 4, attack: 1, sprite: char.elder-woman, lore: fact.creature.humility-silencer }
+- { id: creature.justice-mourner, name: justice.creature.mourner.name, evil: false, hp: 4, attack: 1, sprite: char.widow, lore: fact.creature.justice-mourner, ai: cautious }
+- { id: creature.sacrifice-penitent, name: sacrifice.creature.penitent.name, evil: false, hp: 4, attack: 1, sprite: char.robed-priest, lore: fact.creature.sacrifice-penitent, ai: cautious }
+- { id: creature.honor-braggart, name: honor.creature.braggart.name, evil: true, hp: 5, attack: 3, sprite: char.warden-kalas, lore: fact.creature.honor-braggart, ai: skirmisher }
+- { id: creature.spirituality-fake-monk, name: spirituality.creature.fake-monk.name, evil: true, hp: 4, attack: 2, sprite: char.robed-priest, lore: fact.creature.spirituality-fake-monk, ai: coward }
+- { id: creature.humility-silencer, name: humility.creature.silencer.name, evil: false, hp: 4, attack: 1, sprite: char.elder-woman, lore: fact.creature.humility-silencer, ai: cautious }

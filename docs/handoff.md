@@ -613,3 +613,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 조우 YAML `objective: { kind: survive, rounds: N }`(라운드가 N을 넘기면 승리, 적이 남아 있어도) / `{ kind: escape, at: [x, y] }`(아군 누구든 그 칸에 서면 승리). 없으면 섬멸(그대로). 읽기·검증 `compile.ts`(escape 칸은 격자 안·걸을 수 있어야 함), 판정 `grid.ts checkEnd`(섬멸 → 패배 → 목표 순서; 기존 순서 유지), 테스트 3개.
 - 화면: HUD 이름 줄에 "목표: 4라운드를 버텨라 (n/4)" / "목표: 표시된 칸까지 탈출", 탈출 칸은 금빛 깃발 표시. 연습장에 `enc.arena.hold`(9,2)·`enc.arena.escape`(9,6) 두 조우 추가(반복 가능). E2E `tests/e2e/arena-objectives.spec.ts`(HUD 문구·깃발 캡처 직접 확인).
 - 남은 C-4: 호위·함정 해제·증원, 목표별 보상 차등. 균형은 미검증(버티기 4라운드에서 플레이어 체력이 버티는지 등 — 🧑).
+
+## 2026-10-29 C-5 일부: 적 성격(AI) 5종 + 자동 대전 균형 벽
+- `creature.ai`(aggressive 기본 · skirmisher 가장 약한 아군 · pack 다른 적이 붙은 아군 · cautious 마음 ≤ 절반이면 거리 두기 · coward 마음 ≤ 3/4이면 거리 두기). `intents.ts`의 `computeIntents`가 성격별 대상·이동을 고르고 예고(노란 블록·빨간 테두리)는 그대로 같은 결과를 보인다. 테스트 `combat-ai.test.ts`. 크리처에 배정: 늑대 pack, 도적 skirmisher 등.
+- `scripts/sim/combat-sim.ts` + `tests/unit/core/combat-balance.test.ts`(자동 대전이 모든 조우를 12라운드 안에 끝내는지). 이야기 조우는 일부러 짧게 둔다(결정 이유는 `docs/superpowers/plans/2026-10-29-combat-c5-ai-encounters.md`).

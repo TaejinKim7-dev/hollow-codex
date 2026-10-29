@@ -34,3 +34,17 @@ describe("combat.yaml in compile", () => {
     expect(compileContent({ ...raw(), "combat.yaml": { speed: 1 } }).errors.length).toBeGreaterThan(0)
   })
 })
+
+describe("creatures.yaml ai", () => {
+  const withAi = (ai: unknown) => {
+    const files = loadContentDir("content")
+    const list = (files["creatures.yaml"] as Record<string, unknown>[]).map((c, i) => (i === 0 ? { ...c, ai } : c))
+    return compileContent({ ...files, "creatures.yaml": list })
+  }
+  it("reads a known ai and rejects an unknown one", () => {
+    const ok = withAi("pack")
+    expect(ok.errors).toEqual([])
+    expect(Object.values(ok.content!.creatures).some((c) => c.ai === "pack")).toBe(true)
+    expect(withAi("berserk").errors.some((e) => e.includes("ai"))).toBe(true)
+  })
+})
