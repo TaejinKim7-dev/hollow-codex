@@ -544,3 +544,10 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 사용자 위임: "마을색 팔레트 승인/선택, 소리 없는 14개 상황 효과음은 최신 트렌드에 맞게 네가 선택. 못 들으면 가장 많이 쓰는 기준". 결정과 목록은 `docs/research/art-production-plan.md` 끝(마을색 hue 표, 소리 선택). 효과음 14개는 Kenney CC0 후보(`assets-private/preview/sfx`)에서 복사해 `assets/audio/sfx/<상황>.ogg`, `sfx.json`·`LEDGER.md`·`content/audio.yaml` 갱신, 이벤트 연결은 `src/audio/event-sounds.ts`(순수 함수, 테스트 4개)를 `apply()`에서 호출. 직접 들어 보지는 못함.
 - 오늘 PixelLab 1회 사용(잔액 보너스 4회 남음): 풀↔돌바닥 `assets/sprites/tilesets/grass-stone`(프롬프트 `assets/generated/prompts/2026-10-29-grass-stone.md`), `GROUND_SETS.stone`·`OVERLAY_ORDER`에 stone 추가, 타일 글자 `c`. 칼라스 마을 지도의 풀(.→g)·흙길(,→p)·나무(T→t)·바깥 돌바닥(:→c)을 새 땅으로 바꾸고 고백석은 `obj.confession-stone`(16,12)로. 건물 안 돌바닥(:)과 벽(#)·문(+)은 옛 타일 그대로(벽 그림 필요). 캡처 `docs/screenshots/2026-10-29-kalas-town-stone.png` 직접 확인: 광장은 잘 어울리나 옛 벽이 확대되어 튄다. 도구 `scripts/visual/map-shot.mjs`.
 - 다음: 외벽·건물 그림(남은 보너스 4회), 서고 바닥·벽 타일셋, 마을색 변형 적용, C-2.
+
+## 2026-10-29 7개 미덕 마을 돌바닥 이전
+- 브랜치 `oc/town-ground`. 목표: 칼라스 참조(`998a6ac`)와 동일한 규칙으로 연민·명예·겸손·정의·희생·영성·용맹 마을의 바깥 바닥을 새 땅(`g`/`p`/`t`/`c`)으로 변환, 건축물 납부 `.`와 벽 `#`, 문 `+`/`<`는 그대로.
+- 산출물: `scripts/assets/migrate-town-ground.py`(표준 라이브러리만, YAML 주석·형식 보존, 멱등), `content/towns/{compassion,honor,humility,justice,sacrifice,spirituality,valor}/maps.yaml`, `scripts/visual/map-shot.mjs`에 `HC_BASE_URL` 환경 변수 지원, `docs/screenshots/2026-10-29-town-<name>.png` 7장 + `-entrance.png` 7장.
+- 스크립트 동작: 출구 타일(`+`/`<`)에서 BFS로 바깥 영역 탐색(`.`, `,`, `:`, `T`만 이동), 바깥 `.`→`g`, `,`→`p`, `T`→`t`, `:`→`c`, 건축물 안쪽 `:`는 `:`. `c`가 8방 `p`와 맞닿으면 `g`로 교체(이번 마을들에서는 해당 사례 없음).
+- 검증: `npm run check:content` 0, `npm run test:unit` 0 (531 passed), `npm run typecheck` 0. 스크립트 2회 실행 결과 동일(unchanged 560×7). 스크린샷 14장 모두 `SHOT OK`, 직접 열어 확인: 검은 사각형 없음, 타일 배율 정상, 풀 녹색/돌바닥 회색, 나무 물건으로 렌더링, 건축물 납부는 옛 바닥, 벽과 출구 타일 유지.
+- 확인 못 한 것: 돌바닥(`c`)과 건축물 벽(`#`)의 새 그림이 아직 없어 시각적으로 구분이 미묘함(0.2.0 자산 교체 예정).
