@@ -492,3 +492,22 @@ summary:focus-visible {
   background: rgba(255, 154, 60, 0.08);
   white-space: pre-wrap;
 }
+
+/* 메뉴 음량 슬라이더: 줄마다 이름 · 막대를 가로로 놓고 안쪽 여백을 준다 */
+.menu .volume {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: 0.5em 0.9em;
+}
+.menu .volume .volume-label {
+  min-width: 5.5em;
+}
+.menu .volume .volume-slider {
+  flex: 1;
+  min-height: 44px;
+  accent-color: #ffd23f;
+}
+.menu details.credits {
+  padding: 0.5em 0.9em;
+}

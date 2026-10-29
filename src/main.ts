@@ -438,11 +438,11 @@ export async function boot(): Promise<void> {
           },
           debugGrantFacts: (ids: string[]): void => {
             const cur = state
-            if (cur !== null) replaceState({ ...cur, facts: [...new Set([...cur.facts, ...ids])] })
+            if (cur !== null) replaceState({ ...cur, facts: [...new Set([...cur.facts, ...(ids.includes("*") ? Object.keys(content.facts) : ids)])] })
           },
           debugGrantAbilities: (ids: string[]): void => {
             const cur = state
-            if (cur !== null) replaceState({ ...cur, abilities: [...new Set([...cur.abilities, ...ids])] })
+            if (cur !== null) replaceState({ ...cur, abilities: [...new Set([...cur.abilities, ...(ids.includes("*") ? Object.keys(content.abilities) : ids)])] })
           },
           debugSetMomentum: (value: number): void => {
             const cur = state
