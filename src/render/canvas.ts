@@ -18,7 +18,7 @@ export interface RenderResources {
   readonly images: ReadonlyMap<string, HTMLImageElement>
 }
 
-const OVERLAY_ORDER = ["path", "water"] as const
+const OVERLAY_ORDER = ["path", "water", "stone"] as const
 
 /**
  * 프레임을 하나 그린다. 테스트 없음(사용자 확인).

@@ -3,8 +3,8 @@ import type { Ground } from "../content/ground.ts"
 import type { Id } from "../core/types.ts"
 import type { WangTable } from "./autotile.ts"
 
-/** 풀 위에 덮어 그리는 땅 → 그 땅을 잇는 Wang 타일셋 폴더. 시트가 아직 없는 땅(stone, floor)은 없다. */
-export const GROUND_SETS: Readonly<Partial<Record<Ground, string>>> = { path: "grass-path-v3", water: "grass-water" }
+/** 풀 위에 덮어 그리는 땅 → 그 땅을 잇는 Wang 타일셋 폴더. 시트가 아직 없는 땅(floor)은 없다. */
+export const GROUND_SETS: Readonly<Partial<Record<Ground, string>>> = { path: "grass-path-v3", water: "grass-water", stone: "grass-stone" }
 /** 바닥 풀 한 칸("0000" 패턴)을 가져오는 타일셋. */
 export const BASE_SET = "grass-path-v3"
 

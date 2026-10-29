@@ -27,4 +27,5 @@ tiles:
   p: { ground: path, walk: 1 }
   w: { ground: water, walk: null }
   b: { ground: water, walk: 1 }
+  c: { ground: stone, walk: 1 }
 player: char.stranger-B-navy
