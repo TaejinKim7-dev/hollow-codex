@@ -92,7 +92,14 @@ describe("writeCodex", () => {
     const s = ready()
     const result = writeCodex(s, "deduction.honesty", "word.weapon", c)
     expect(result.state).toBe(s)
-    expect(result.events).toEqual([])
+    expect(result.events).toEqual([{ type: "codexRejected", reason: "wrong" }])
+  })
+  it("says the page is locked when its deduction is not confirmed yet", () => {
+    const s = ready()
+    const locked = { ...s, deductions: { ...s.deductions, "deduction.honesty": { ...s.deductions["deduction.honesty"]!, confirmed: false } } }
+    const result = writeCodex(locked, "deduction.honesty", "word.truth", c)
+    expect(result.state).toBe(locked)
+    expect(result.events).toEqual([{ type: "codexRejected", reason: "locked" }])
   })
   it("ignores unknown deduction ids", () => {
     const s = ready()

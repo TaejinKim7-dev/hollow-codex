@@ -1678,3 +1678,5 @@ epilogue.crisis.valor.challenge.option.duel-honor: "솔강의 투사는 무릎�
 ui.combat.skill.declare: 선언
 ui.combat.skill.share: 나눔
 ui.combat.skill.still: 가라앉힘
+ui.notice.codex-locked: "이 쪽은 아직 쓸 수 없습니다. 그 미덕의 추론을 먼저 확정해야 합니다."
+ui.notice.codex-wrong: "이 쪽에 어울리는 단어가 아닙니다. 확정한 추론의 답을 떠올려 보세요."

@@ -61,14 +61,16 @@ export function enterSealedArchive(
  * 빈 경전 한 쪽을 적는다(D11: 이미 추론 확정한 것). 다음을 모두 만족할 때만 적고, 아니면 무시(같은 state, 이벤트 0):
  * 봉인 서고 안이다 · 그 미덕의 추론을 확정했다 · 그 단어를 안다 · 그 쪽의 codexWord(content)와 같다.
  * 이미 적힌 쪽, 모든 쪽이 적힌 뒤, 마지막 장을 고른 뒤에도 무시한다.
+ * 적지 못한 쪽이 아직 비어 있을 때의 두 경우(추론 미확정 / 이 쪽의 단어가 아님)는 상태는 그대로 두고 `codexRejected`로 알린다(화면 안내).
  */
 export function writeCodex(state: GameState, deductionId: Id, word: Id, content: GameContent): StepResult {
   const ignored: StepResult = { state, events: [] }
   if (state.codex.finalWord !== null) return ignored
   if (state.mapId !== ARCHIVE_MAP) return ignored
   if (!CODEX_DEDUCTION_IDS.includes(deductionId)) return ignored
-  if (state.deductions[deductionId]?.confirmed !== true) return ignored
+  if (state.deductions[deductionId]?.confirmed !== true) return { state, events: [{ type: "codexRejected", reason: "locked" }] }
   if (!state.facts.includes(word)) return ignored
+  if (state.codex.answers[deductionId] === undefined && codexWordOf(content, deductionId) !== word) return { state, events: [{ type: "codexRejected", reason: "wrong" }] }
   if (codexWordOf(content, deductionId) !== word) return ignored
   if (state.codex.answers[deductionId] !== undefined) return ignored
   if (CODEX_DEDUCTION_IDS.every((id) => state.codex.answers[id] !== undefined)) return ignored

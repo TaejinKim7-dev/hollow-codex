@@ -191,7 +191,7 @@ new ResizeObserver(resize).observe(canvas)
 
 // ── 대화 로그와 자동 저장 ───────────────────────────────
 /** 화면을 막지 않는 짧은 안내. 문구는 ui.notice.<name> 키다. */
-function showNotice(name: SessionNotice | "tip-combat"): void {
+function showNotice(name: SessionNotice | "tip-combat" | "codex-locked" | "codex-wrong"): void {
   const node = document.createElement("div")
   node.className = "notice"
   node.setAttribute("role", "status")
@@ -267,6 +267,9 @@ function handleEvents(events: readonly GameEvent[]): void {
       case "companionJoinRejected":
         // M2 진행 이벤트: UI/세이브는 apply에서 처리, 여기선 디버그 기록만.
         log.log("event-m2", e)
+        break
+      case "codexRejected":
+        showNotice(e.reason === "locked" ? "codex-locked" : "codex-wrong")
         break
       case "codexWritten":
       case "codexFinalChosen":

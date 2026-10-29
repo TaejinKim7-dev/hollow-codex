@@ -1680,3 +1680,5 @@ epilogue.crisis.valor.challenge.option.duel-honor: "Solgang's fighter knelt and 
 ui.combat.skill.declare: Declare
 ui.combat.skill.share: Share
 ui.combat.skill.still: Still
+ui.notice.codex-locked: "This page cannot be written yet. Confirm that virtue's deduction first."
+ui.notice.codex-wrong: "That word does not belong on this page. Think back to the answer of the deduction you confirmed."

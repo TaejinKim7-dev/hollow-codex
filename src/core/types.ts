@@ -61,6 +61,7 @@ export type GameEvent =
   | { type: "ringUnlocked"; ringId: Id; fact: Id }
   | { type: "companionJoinRejected"; npcId: Id }
   | { type: "codexWritten"; deductionId: Id; word: Id }
+  | { type: "codexRejected"; reason: "locked" | "wrong" }                  // 경전 쪽에 적지 못한 까닭(화면 안내용): locked = 그 추론을 아직 확정하지 않음, wrong = 이 쪽의 단어가 아님
   | { type: "codexFinalChosen"; word: Id }
   | { type: "epilogue"; kind: "truth" | "love" | "courage" }
 

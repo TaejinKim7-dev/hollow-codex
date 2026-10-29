@@ -654,3 +654,6 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-29 동료 8명 완성(마을마다 1명)
 - 알려진 한계였던 "동료 1/8" 해소: 리오나 방랑자(`npc.compassion.wanderer`) · 솔강 훈련관(`sergeant`) · 셀레스 석공(`mason`) · 디오네 외과의(`surgeon`) · 아르곤 검술사범(`swordmaster`) · 엘리아 견습(`novice`) · 헤론 견습(`novice`)에 `companion:` 추가(미덕 = 마을 미덕, `joinRequires` = 그 사람의 이름 단서, `leaveAfterDeeds` 2, `rejoinRequires` [] — 떠난 뒤 곧바로 다시 합류 가능; 단서형 재합류 조건은 서사 작업으로 남김, hp 7~10·공격 2~4). 새 대사 없음(기존 사람 단서·"함께 가기" 버튼 사용). 시나리오 테스트 `tests/scenario/companions.test.ts`(모든 동료: 단서 없이는 불가, 단서가 있으면 영입 → 전투 편성 hp → 행실 2건에 떠남), 캡처 `docs/screenshots/2026-10-29-recruit-button.png`.
 - 남음: 동료별 개별 대사(합류·이탈 순간), 재합류 조건, 병과별 전투 차이.
+
+## 2026-10-29 경전: 적지 못할 때 안내
+- `writeCodex`가 빈 쪽에 (a) 추론 미확정이면 `codexRejected{locked}`, (b) 확정했지만 이 쪽의 단어가 아니면 `codexRejected{wrong}`를 내고 상태는 그대로(같은 객체). 이미 적힌 쪽·마지막 장 뒤 등 나머지 무시 조건은 그대로 조용히. `main.ts`가 알림 `ui.notice.codex-locked/wrong`(ko·en)을 4초 보여 준다. 테스트 갱신·추가.
