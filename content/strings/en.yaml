@@ -696,7 +696,7 @@ justice.npc.judge.law.t: Law is rooted in custom. Sing during mourning, and it i
 justice.npc.judge.punishment.t: Punishment is the fire that makes people remember custom. Forty lashes, and no sentence is ever lessened. That is what Seles calls justice.
 justice.npc.judge.compassion.t: Compassion is a word unfit for this court. If punishments shrink, everyone will try to shake the custom. I am the one who stops that shaking.
 justice.npc.judge.lullaby.t: A lullaby? Singing, during mourning? That is an insult to custom. The widow Harin will not escape punishment.
-justice.npc.judge.mourner.t: The young man seen at the grave is a thief. The witness has already stood. The punishment is fixed.
+justice.npc.judge.witness.t: What the witness saw is clear. The youth holding something gleaming at the grave is a thief. The witness has already stood.
 justice.npc.judge.graveyard.t: The clause that no one may stay at the graves after dark, I wrote it first. Thirty years ago, one winter, I carried a man down from a grave where he had kept vigil all night. He was already cold.
 justice.npc.judge.fairness.t: Fairness is the same punishment for everyone. Had it been my own blood, I would have handed down the same verdict.
 
@@ -1439,6 +1439,7 @@ humility.npc.silent-elder.listening.t: I never taught anyone to listen. …I sho
 
 humility.npc.listener.name: The Listener
 humility.npc.listener.greet: …I will listen.
+humility.npc.listener.name.t: I have never heard a name. My ear is open, but no one calls me.
 humility.npc.listener.job.t: I listen. Without silence, nothing can be heard.
 humility.npc.listener.listening.t: Listening is not filling — it is emptying.
 humility.npc.listener.three.t: Empty yourself, and you hear the three.
@@ -1448,6 +1449,7 @@ humility.npc.listener.wordname.t: No one has ever told me a name.
 
 humility.npc.wellkeeper.name: The Wellkeeper
 humility.npc.wellkeeper.greet: The well has no words.
+humility.npc.wellkeeper.name.t: Do not ask my name. Water rises without one, and so do I.
 humility.npc.wellkeeper.job.t: I keep the well.
 humility.npc.wellkeeper.wordname.t: Water has no name.
 humility.npc.wellkeeper.silence-rule.t: It is the rule of giving no name. As water rises without knowing a name.
@@ -1456,6 +1458,7 @@ humility.npc.wellkeeper.silence.t: The bottom of the well is always still, whate
 
 humility.npc.child.name: Village Child
 humility.npc.child.greet: …They tell me to be quiet too.
+humility.npc.child.name.t: Mum told me with just her breath... but I didn't quite hear. So I think I don't have one.
 humility.npc.child.job.t: I'm learning songs. Not out loud, just with my breath. In, hold, out.
 humility.npc.child.listening.t: If you listen hard, you can hear it.
 humility.npc.child.silent-chant.t: A song sung on the breath. It is sung even when unheard.
@@ -1464,6 +1467,7 @@ humility.npc.child.hermit.t: The hermit grandpa sometimes dozes off while he's c
 
 humility.npc.librarian.name: The Archive Keeper
 humility.npc.librarian.greet: Books say nothing. …Come in.
+humility.npc.librarian.name.t: There is not one name in the archive. I am empty like those books.
 humility.npc.librarian.job.t: I gather blank pages. Only one sheet still has writing on it, and all it says is 'three.'
 humility.npc.librarian.three.t: Three of what, it doesn't say. …Other towns read it as truth, love and courage. This village chose to leave all three empty.
 humility.npc.librarian.listening.t: Listening, more than reading. A blank page is read with the ears.
@@ -1472,6 +1476,7 @@ humility.npc.librarian.wordname.t: Not one book here has a name in it. Not the a
 
 humility.npc.gardener.name: The Forester
 humility.npc.gardener.greet: Trees do not call names.
+humility.npc.gardener.name.t: The forest does not call names. I stand silent like a tree.
 humility.npc.gardener.job.t: I tend the nameless forest.
 humility.npc.gardener.listening.t: The forest speaks not in sound but in breath.
 humility.npc.gardener.wordname.t: Name it, and the leaf falls.
@@ -1480,6 +1485,7 @@ humility.npc.gardener.grove.t: Every tree had someone who planted it. No one kno
 
 humility.npc.cook.name: The Cook
 humility.npc.cook.greet: …Sit. Rice is eaten quietly.
+humility.npc.cook.name.t: If a name is called, the rice goes cold. Here we only sit quiet before the bowl.
 humility.npc.cook.job.t: I cook. No one's name can be called, so each bowl goes where its owner always sits.
 humility.npc.cook.silence.t: I lift the lid before the pot boils. Here, even a pot isn't allowed to make a sound.
 humility.npc.cook.wordname.t: One bowl has sat empty since winter. I haven't cleared that place yet.
@@ -1487,6 +1493,7 @@ humility.npc.cook.novice.t: The novice eats last, and quietest. Even when hungry
 
 humility.npc.novice.name: The Novice
 humility.npc.novice.greet: …I am still in training.
+humility.npc.novice.name.t: I have not yet forgotten my name. Only when forgetting ends can I speak it.
 humility.npc.novice.job.t: I learn silence in the chapel. The first lesson is to scrub the floor without a sound.
 humility.npc.novice.silence.t: Close the mouth, and the ears open.
 humility.npc.novice.wordname.t: I was taught to forget names.
@@ -1495,6 +1502,7 @@ humility.npc.novice.listening.t: So far, it's more holding back than listening.
 
 humility.npc.hermit.name: The Hermit
 humility.npc.hermit.greet: …Quietly. Do you not hear that sound?
+humility.npc.hermit.name.t: I left my name inside the chapel. Calling it from outside only echoes.
 humility.npc.hermit.job.t: I hide, and count my breaths. With each count, a line of a soundless song goes by.
 humility.npc.hermit.silence.t: Silence is not emptiness — it is a place.
 humility.npc.hermit.three.t: Humility is all three, emptied.
@@ -1504,6 +1512,7 @@ humility.npc.hermit.chapel.t: I was inside it once. Silence is heard better from
 
 humility.npc.widow.name: The Widow
 humility.npc.widow.greet: …My husband's name keeps fading.
+humility.npc.widow.name.t: My husband's name is already fading. Mine is even farther away.
 humility.npc.widow.job.t: I keep a name I'm losing. He never once spoke it himself, and I never said it aloud either.
 humility.npc.widow.wordname.t: I buried the name with him. Here, the stones are left blank.
 humility.npc.widow.listening.t: If someone would listen, I might say it aloud, just once.

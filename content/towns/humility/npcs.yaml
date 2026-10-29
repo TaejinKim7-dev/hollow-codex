@@ -41,7 +41,7 @@
   sprite: [town, 90]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.listener.name.t
     job:
       - text: humility.npc.listener.job.t
         grants: [word.listening, word.silence, fact.heron.listener]
@@ -68,7 +68,7 @@
   sprite: [town, 91]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.wellkeeper.name.t
     job:
       - text: humility.npc.wellkeeper.job.t
         grants: [fact.heron.well]
@@ -93,7 +93,7 @@
   sprite: [town, 93]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.child.name.t
     job:
       - text: humility.npc.child.job.t
         grants: [fact.heron.breathing-rhythm]
@@ -119,7 +119,7 @@
   sprite: [town, 92]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.librarian.name.t
     job:
       - text: humility.npc.librarian.job.t
         grants: [fact.heron.library, word.three]
@@ -144,7 +144,7 @@
   sprite: [town, 94]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.gardener.name.t
     job:
       - text: humility.npc.gardener.job.t
         grants: [fact.heron.grove]
@@ -169,7 +169,7 @@
   sprite: [town, 95]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.cook.name.t
     job:
       - text: humility.npc.cook.job.t
         grants: [fact.heron.silence-rule, word.name]
@@ -192,7 +192,7 @@
   sprite: [town, 86]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.novice.name.t
     job:
       - text: humility.npc.novice.job.t
         grants: [fact.heron.novice, fact.heron.chapel-of-silence]
@@ -217,7 +217,7 @@
   sprite: [town, 85]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.hermit.name.t
     job:
       - text: humility.npc.hermit.job.t
         grants: [fact.heron.hermit, fact.heron.silent-chant]
@@ -245,7 +245,7 @@
   sprite: [town, 88]
   topics:
     name:
-      - text: npc.default.unknown
+      - text: humility.npc.widow.name.t
     job:
       - text: humility.npc.widow.job.t
         grants: [word.name, fact.heron.silence-rule]

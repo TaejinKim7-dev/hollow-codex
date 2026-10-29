@@ -576,3 +576,13 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 스크립트 동작: 출구 타일(`+`/`<`)에서 BFS로 바깥 영역 탐색(`.`, `,`, `:`, `T`만 이동), 바깥 `.`→`g`, `,`→`p`, `T`→`t`, `:`→`c`, 건축물 안쪽 `:`는 `:`. `c`가 8방 `p`와 맞닿으면 `g`로 교체(이번 마을들에서는 해당 사례 없음).
 - 검증: `npm run check:content` 0, `npm run test:unit` 0 (531 passed), `npm run typecheck` 0. 스크립트 2회 실행 결과 동일(unchanged 560×7). 스크린샷 14장 모두 `SHOT OK`, 직접 열어 확인: 검은 사각형 없음, 타일 배율 정상, 풀 녹색/돌바닥 회색, 나무 물건으로 렌더링, 건축물 납부는 옛 바닥, 벽과 출구 타일 유지.
 - 확인 못 한 것: 돌바닥(`c`)과 건축물 벽(`#`)의 새 그림이 아직 없어 시각적으로 구분이 미묘함(0.2.0 자산 교체 예정).
+
+## 2026-10-29 D-1b 정의·겸손 대사 수정 (oc/narrative-fixes-b)
+- 담당: OpenCode · 브랜치 `oc/narrative-fixes-b` · 커밋 `6fa26f6`
+- 한 일:
+  ① 정의 마을 `lie` 주제 이동: `npc.justice.judge`의 `fact.creature.justice-mourner` 주제를 제거하고, 동일 거짓 문장을 `fact.seles.witness`(person) 주제로 옮겨 `lie: true`를 유지. 문자열 키 `justice.npc.judge.mourner.t` → `justice.npc.judge.witness.t`로 변경하고 ko/en에서 동시 교체.
+  ② 겸손 마을 9명 NPC의 name 응답 개별화: `npc.default.unknown` 대신 `humility.npc.<id>.name.t` 신규 키 9개 추가(listener, wellkeeper, child, librarian, gardener, cook, novice, hermit, widow). 각자 침묵 규칙을 다른 이유로 말하며 1~2문장, 낮고 짧은 말투 유지. `npc.default.unknown` 자체는 삭제하지 않음.
+  ③ 위기 지문 조사(READ ONLY, 코드 수정 없음): `crisis.*.text` 키는 8개 마을 전부 ko/en에 존재하고 `content/towns/*/crisis.yaml`이 참조하지만, UI(`src/ui/view-model.ts`, `src/ui/panels.ts`)에서 위기 본문 설명을 렌더링하지 않음. `DialogueView.crisis`는 선택지 라벨·available·hints만 포함하고 `Crisis.textKey`는 빠져 있음. 수정 제안: `dialogueView`가 `crisisText` 필드를 추가해 `crisisId`별 설명을 1회 렌더링하거나, 선택지 목록 상단에 crisis.textKey를 넣는다.
+  ④ 과부 설정: 정의 과부 하린과 겸손 과부(무호칭)는 이미 별개 인물로 남겨 둠. 하린은 "노래하는 과부"로 아들 이렌·묘지기·재판관과 연결된 정사의 중심; 겸손 과부는 잊혀 가는 남편 이름을 지키는 인물로, 비석을 비워 두는 마을의 침묵 법과 연결.
+- 검증: `python3 scripts/narrative/consistency.py` 0 problems · `python3 scripts/narrative/reachable.py` 0 unreachable · `python3 scripts/narrative/spec.py dead-topics` 0 · `npm run test:unit` 531 passed · `npm run typecheck` 0 · `npm run check:content` 0 · `npm run build` 0 · `npm run audit:dist` 0 · `git diff --check` 0.
+- 확인 못 한 것: 실제 게임 화면에서 거짓 표시(!) 노출 여부(능력 획득 후), 위기 지문 UI 추가는 사용자/메인 에이전트 결정 필요.

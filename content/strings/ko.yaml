@@ -694,7 +694,7 @@ justice.npc.judge.law.t: 법은 관례에 뿌리를 둔다. 조문 기간에 노
 justice.npc.judge.punishment.t: 형벌은 사람이 관례를 기억하게 하는 불이다. 매질은 사십 대, 어떤 벌도 감면하지 않는다. 셀레스는 그것을 정의라 부른다.
 justice.npc.judge.compassion.t: 연민은 법정에 어울리지 않는 말이다. 벌을 줄이면 모두가 관례를 흔들려 할 것이다. 나는 그 흔들림을 막는 자다.
 justice.npc.judge.lullaby.t: 자장가라니. 조문 기간에 노래라니. 그것은 관례에 대한 모독이다. 과부 하린은 벌을 피할 수 없다.
-justice.npc.judge.mourner.t: 무덤에서 본 젊은이는 도둑이다. 증인이 이미 섰다. 벌은 정해져 있다.
+justice.npc.judge.witness.t: 목격자가 본 것은 분명하다. 묘둠에서 반짝이는 것을 쥔 젊은이는 도둑이다. 증인은 이미 섰다.
 justice.npc.judge.graveyard.t: 해가 지면 묘지에 머물지 말라는 조항은 내가 처음 쓴 것이다. 삼십 년 전 겨울, 무덤 앞에서 밤을 새운 사람을 내 손으로 업고 내려왔다. 그는 이미 차가웠다.
 justice.npc.judge.fairness.t: 공정이란 누구에게나 같은 벌을 내리는 것이다. 내 피붙이였어도 나는 같은 판결을 내렸을 것이다.
 
@@ -1437,6 +1437,7 @@ humility.npc.silent-elder.listening.t: 듣는 법을 가르친 적은 없다. �
 
 humility.npc.listener.name: 듣는 이
 humility.npc.listener.greet: ……듣겠다.
+humility.npc.listener.name.t: 이름은 들은 적이 없다. 귀는 늘 열린 데, 불러 줄 이가 없구나.
 humility.npc.listener.job.t: 듣는 일을 한다. 침묵 없이는 아무것도 들리지 않는다.
 humility.npc.listener.listening.t: 듣는 것은 채우는 것이 아니라 비우는 것이다.
 humility.npc.listener.three.t: 비우면 셋이 들린다.
@@ -1446,6 +1447,7 @@ humility.npc.listener.wordname.t: 이름은 아무도 들려주지 않는다.
 
 humility.npc.wellkeeper.name: 우물지기
 humility.npc.wellkeeper.greet: 우물은 말이 없다.
+humility.npc.wellkeeper.name.t: 이름을 묻지 마라. 물은 이름 없이도 차오르니, 나도 그렇게 산다.
 humility.npc.wellkeeper.job.t: 우물을 지킨다.
 humility.npc.wellkeeper.wordname.t: 물에는 이름이 없다.
 humility.npc.wellkeeper.silence-rule.t: 이름을 대지 못하는 규칙이다. 물이 이름을 몰라도 차오르듯.
@@ -1454,6 +1456,7 @@ humility.npc.wellkeeper.silence.t: 우물 바닥은 늘 고요하다. 위에서 
 
 humility.npc.child.name: 마을 아이
 humility.npc.child.greet: ……나도 조용히 하래요.
+humility.npc.child.name.t: 엄마가 숨으로만 말해 줬는데…… 잘 못 들었어요. 그래서 없는 거 같아요.
 humility.npc.child.job.t: 노래를 외워요. 소리는 안 내고 숨으로만요. 들이쉬고, 참고, 내쉬고.
 humility.npc.child.listening.t: 귀를 기울이면 들려요.
 humility.npc.child.silent-chant.t: 숨으로 부르는 노래요. 들리지 않아도 불려요.
@@ -1462,6 +1465,7 @@ humility.npc.child.hermit.t: 은자 할아버지는 숨을 세다가 가끔 졸�
 
 humility.npc.librarian.name: 서고지기
 humility.npc.librarian.greet: 책은 말이 없네. ……들어오게.
+humility.npc.librarian.name.t: 서고에는 이름이 한 글자도 없다. 나도 그 책들처럼 비어 있네.
 humility.npc.librarian.job.t: 빈 페이지를 모으네. 글자가 남은 건 단 한 장, 그것도 셋이라는 한 낱말뿐일세.
 humility.npc.librarian.three.t: 무엇이 셋인지는 적혀 있지 않네. ……다른 마을들은 진실, 사랑, 용기라 읽는다더군. 이 마을은 그 셋을 비워 두는 쪽을 택했고.
 humility.npc.librarian.listening.t: 읽기보다 듣기일세. 빈 종이는 귀로 읽는 것이니.
@@ -1470,6 +1474,7 @@ humility.npc.librarian.wordname.t: 이 서고에는 이름 적힌 책이 한 권
 
 humility.npc.gardener.name: 숲지기
 humility.npc.gardener.greet: 나무는 이름을 부르지 않는다.
+humility.npc.gardener.name.t: 숲은 이름을 부르지 않는다. 나도 나무처럼 말없이 서 있다.
 humility.npc.gardener.job.t: 이름 없는 숲을 가꾼다.
 humility.npc.gardener.listening.t: 숲의 말은 소리가 아니라 숨이다.
 humility.npc.gardener.wordname.t: 이름을 붙이면 잎이 진다.
@@ -1478,6 +1483,7 @@ humility.npc.gardener.grove.t: 나무마다 심은 이가 있었다. 아무도 �
 
 humility.npc.cook.name: 밥하는 이
 humility.npc.cook.greet: ……앉아라. 밥은 조용히 먹는 거다.
+humility.npc.cook.name.t: 이름 부르면 밥 식는다. 여기서는 그릇 앞에 조용히 앉기만 한다.
 humility.npc.cook.job.t: 밥을 짓는다. 이름을 부를 수 없으니, 그릇은 늘 앉던 자리에 놓아 둔다.
 humility.npc.cook.silence.t: 솥이 끓기 전에 뚜껑을 연다. 여기서는 솥도 소리를 내면 안 되니까.
 humility.npc.cook.wordname.t: 그릇 하나가 겨울부터 비어 있다. 그 자리는 아직 치우지 않았다.
@@ -1485,6 +1491,7 @@ humility.npc.cook.novice.t: 수련하는 애가 제일 늦게, 제일 조용히 
 
 humility.npc.novice.name: 수련 중인 이
 humility.npc.novice.greet: ……아직 수련 중이라.
+humility.npc.novice.name.t: 아직 이름을 잊지 못했다. 잊는 것이 끝나면 비로소 말할 수 있을 텐데.
 humility.npc.novice.job.t: 예배당에서 침묵을 배운다. 바닥 닦는 소리까지 내지 않는 것이 첫 수련이다.
 humility.npc.novice.silence.t: 입을 다물면 귀가 열린다.
 humility.npc.novice.wordname.t: 이름을 잊어야 한다고 배웠다.
@@ -1493,6 +1500,7 @@ humility.npc.novice.listening.t: 아직은 듣는 것보다 참는 것이 더 �
 
 humility.npc.hermit.name: 은자
 humility.npc.hermit.greet: ……조용히. 그 소리, 들리지 않는가.
+humility.npc.hermit.name.t: 이름은 예배당 안에 두고 나왔다. 밖에서 부르면 메아칠 뿐이다.
 humility.npc.hermit.job.t: 숨어서 숨을 센다. 셀 때마다 소리 없는 노래가 한 소절씩 지나간다.
 humility.npc.hermit.silence.t: 침묵은 공허가 아니라 자리다.
 humility.npc.hermit.three.t: 셋이 다 비워진 것이 겸손이다.
@@ -1502,6 +1510,7 @@ humility.npc.hermit.chapel.t: 나도 그 안에 있었다. 침묵은 안에서�
 
 humility.npc.widow.name: 과부
 humility.npc.widow.greet: ……남편 이름이 자꾸 흐려진다.
+humility.npc.widow.name.t: 남편 이름도 흐려지는데, 제 이름은 더 일러요.
 humility.npc.widow.job.t: 잊어 가는 이름을 지킨다. 그 사람은 평생 제 이름을 입에 올리지 않았고, 나도 끝내 소리 내어 부르지 못했다.
 humility.npc.widow.wordname.t: 이름은 무덤에 같이 묻었다. 비석은 비워 두는 법이라.
 humility.npc.widow.listening.t: 들어 줄 이가 있다면, 한 번쯤은 소리 내어 불러 볼 텐데.

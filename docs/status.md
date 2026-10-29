@@ -30,7 +30,6 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | ✅ | **전투 C-2 구현(2026-10-29)**: 방향 보정(정면 1/옆 1.25/등 1.5, 적만)·지형 방어(`content/combat.yaml`, `h` +1)·**연계 추가타**(아군이 적 옆에 서면 추가타, 적 연계는 꺼짐)·미리보기 "-N ×k"·"N연계!" 연출·9×9 연습장 조우·훈련 교관 동료. 🧑 "연계가 재미있나" 판정 대기 | `docs/superpowers/plans/2026-10-29-combat-c2-terrain-chain.md`, `docs/screenshots/2026-10-29-C2-chain-strip.png` | 판정 대기 |
 | 🧑 | **전투 재설계 계획 승인(2026-10-28 사용자 요청: "영걸전급으로 재미있게")**: ~~C-2~~ → C-3 병과·책략 → C-4 마음·설득·목표 → C-5 AI·조우 → C-6 다듬기. 결정 5건(추천 포함) | `docs/superpowers/specs/2026-10-28-combat-fun-design.md` | 승인 대기 |
 | ✅ | **7개 미덕 마을 지도 새 땅으로 이전(2026-10-29, 브랜치 `oc/town-ground`)**: 연민·명예·겸손·정의·희생·영성·용맹 마을 낮은 땅(`g/p/t/c`)로 변환, 건축물 납부 `.` 유지, `check:content`·`test:unit`·`typecheck` 통과, 스크린샷 검증 | `scripts/assets/migrate-town-ground.py`, `content/towns/*/maps.yaml`, `docs/screenshots/2026-10-29-town-*.png` | 완료 |
-| 다음 | 칼라스 마을·서고 지도를 새 땅·물건으로 이전(맵 그림 약 15회 필요), 새 인물 기본형 12종(PixelLab 하루 +5, 잔액 0이었음), 효과음 14상황 선택 | `art-kalas-maps.md` | 그림 횟수 대기 |
 
 ## 진행 중
 - R-1 이동 검토 · Codex · todo-1-walk-review · 2026-10-18 · 시작: 최종 영상·16프레임 확인, 순간이동 경로 수정
