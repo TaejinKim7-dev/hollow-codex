@@ -30,6 +30,9 @@ C-5 계획에서 말하는 "동료 없이 자동 대전 승률 55~75%"는 본 �
 
 ### 요약
 
+- **평균값(이야기 조우 9개, 동료 없음)**: 평균 라운드 **2.4**, 평균 플레이어 잔여 hp **10.4 / 12**.
+- **평균값(7개 미덕 마을 조우만)**: 평균 라운드 **2.0**, 평균 잔여 hp **10.4 / 12**.
+- **평균값(동료 교관 포함, 9개)**: 평균 라운드 **1.9**, 평균 잔여 hp **11.7 / 12**. 동료를 데려가면 조회가 짧아지고 손실이 거의 없어진다.
 - 7개 미덕 마을 조우는 대부분 1~2라운드에 끝나고 플레이어 hp가 9~12로 거의 손해가 없다. **너무 쉽다.**
 - 칼라스 들판(`enc.field.wolves`)은 5라운드 걸리지만 플레이어가 피해를 거의 입지 않는다(hp 12).
 - 칼라스 서고(`enc.archive.robbers`)는 혼자서 hp 9로 조금 더 긴장감이 있다.
@@ -51,6 +54,10 @@ C-5 계획에서 말하는 "동료 없이 자동 대전 승률 55~75%"는 본 �
 | enc.field.wolves | `kalas-truth.test.ts` — "resolveCrisis option.truth, ledger-kept, no deeds" | `WOLF_PUSH_WIN` | `endTurn`, `endTurn`, `move(3,5)`, `push(e)`, `push(w)`, `move(4,6)`, `push(n)`, `move(1,6)`, `push(n)`, `move(3,5)`, `push(s)`, `move(2,5)`, `push(w)`, `move(1,5)`, `push(s)`, `push(w)` | 승리, 행실 없음, `clearedEncounters`에 포함 |
 | enc.field.wolves | `kalas-rules.test.ts` — "(b) pushing wolves off the bridge wins without any deed" | `WOLF_PUSH_WIN` | 위와 동일 | 승리, `deeds` 빈 배열, `clearedEncounters`에 포함 |
 | enc.field.wolves | `kalas-rules.test.ts` — "(b) killing a wolf records a compassion deed" | `WOLF_KILL` | `endTurn`, `endTurn`, `move(3,5)`, `attack(e)`, `attack(w)`, `attack(e)` | 승리, `deed.kill-innocent` 기록 |
+| enc.field.wolves | `kalas-rules.test.ts` — "(a) wrong words leave the deduction unconfirmed" | `WOLF_PUSH_WIN` | 위와 동일 | 승리, 추론 미확정, `deductionConfirmed` 이벤트 없음 |
+| enc.field.wolves | `kalas-rules.test.ts` — "(c) elin leaves after 2 honesty deeds and rejoins from nia's forgiveness" | `WOLF_PUSH_WIN` | 위와 동일 | `companionLeft`/`companionJoined` 이벤트, `party` == `["npc.kalas.elin"]` |
+| enc.field.wolves | `kalas-rules.test.ts` — "(d) a mid-run serialize/deserialize continues to the same final state" | `WOLF_PUSH_WIN` | 위와 동일 | 절반 재생 + 저장/복원 후 최종 state가 전체 재생과 동일 |
+| enc.field.wolves | `kalas-lantern.test.ts` — "resolveCrisis option.lantern, ledger-burned, see-lies, robbers cleared" | `WOLF_PUSH_WIN` | 위와 동일 | 최종 `deeds` == `[]`, crisis `option.lantern`, `ledger-burned`, `ability.see-lies` |
 | enc.field.wolves | `m2-traversal.test.ts` — "walks the Kalas round trip and a virtue-town round trip, ending on the overworld" | `WOLF_PUSH_WIN` | 위와 동일 | 승리, 행실 없음, 대륙 왕복 진행 |
 | enc.archive.robbers | `kalas-lantern.test.ts` — "resolveCrisis option.lantern, ledger-burned, see-lies, robbers cleared" | `ROBBER_WIN` | `endTurn`, `move(3,3)`, `attack(n)`, `move(4,3)`, `attack(s)` | 승리, `clearedEncounters`에 포함 |
 
@@ -95,9 +102,10 @@ npm run test:unit     # 91 files, 619 tests passed, exit 0
 npm run typecheck     # exit 0
 npm run check:content # ok, exit 0
 git branch --show-current  # oc/encounter-audit
-git diff --stat 6c7609f..HEAD  # (빈 출력 — HEAD가 base 커밋이며 아직 변경 없음)
-git diff --stat main           # main(5cc934f) 대비 전투·콘텐츠 작업 전체가 잡힘
-git status --short             # ?? node_modules (untracked)
+git diff --stat 6c7609f..HEAD  # docs/research/story-encounter-audit-2026-10-29.md | 1 file changed (새 문서 1개만)
+git diff --stat main           # main(5cc934f) 대비 전투·콘텐츠 작업 전체가 잡힘(참고용)
+git status --short             # ?? node_modules (untracked, 심볼릭 링크)
 ```
 
-`git diff --stat 6c7609f..HEAD`가 비어 있는 이유는, 이 worktree가 이미 base 커밋 `6c7609f`를 가리키고 있기 때문이다. `git diff --stat main`에는 `main` 브랜치(tip `5cc934f`)보다 앞선 전투·콘텐츠 작업 전체가 포함된다. 본 문서 작성 후 커밋하면 base 대비 diff에 문서 1개만 나타날 것이다.
+- **기준 커밋 주의**: 이 저장소의 `main` tip은 `5cc934f`로 오래되어 있다(전투·콘텐츠 작업이 `main`에 반영되지 않음). 따라서 `git diff --stat main`에는 이번 조사와 무관한 전투 작업 전체가 잡힌다. 의미 있는 판정 기준은 **이 브랜치의 base 커밋 `6c7609f` 대�� diff**이며, 그 기준에서 변경은 이 문서 1개뿐이다.
+- `node_modules`는 worktree마다 만든 심볼릭 링크(untracked)이고 커밋 대상이 아니다.
