@@ -552,3 +552,20 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 - 콘텐츠: 연습장 `enc.arena.mixed`를 9×9(큰 풀 `h`·나무 `t`)로, 훈련 교관 `npc.arena.trainer`(단서 없이 합류하는 동료; 연습장과 함께 판정 뒤 삭제 예정).
 - 확인: 553 passed, typecheck/check:content/build/audit:dist 0, E2E 3개 통과, 연계 프레임 스트립을 직접 열어 확인(2연계 숫자·추가타·처치 페이드). 도구 `scripts/visual/fx-chain.mjs`, `fx-strip.mjs`, `fx-timing.mjs`. 확인 못 한 것: 방향·지형이 체감되는지(🧑), 연계 소리, 적 연계가 켜진 난이도.
 - 다음: 판정 뒤 C-3(병과·책략·기세). OpenCode 병렬 작업 3건(town-ground, narrative-fixes, fx-tracking-tests)은 `oc/*` 브랜치로 올라오면 받아서 게이트 확인 후 합친다.
+
+## 2026-10-29 oc/fx-tracking-tests — 전투 연출 추적 분리
+- 목표: `src/main.ts`의 `trackCombatFx`와 `lingerState` 처리를 순수 모듈 `src/render/combat-track.ts`로 추출하고 TDD로 단위 테스트 추가(handoff 2026-10-28 보류 "`trackCombatFx`(main) 자체 테스트 없음").
+- 한 일:
+  - `tests/unit/render/combat-track.test.ts` 먼저 작성 → RED 기록(모듈 없음).
+  - `src/render/combat-track.ts` 추가: `createCombatTrack(fx)` factory, `CombatFx`/`CombatTrack` 인터페이스, `apply(prev, next, events, now)`, `update(now)`, `release()`, `lingerState` getter. `performance.now()`는 외부에서 주입.
+  - `src/main.ts`에서 `lingerState`, `trackCombatFx`, `endedCombatUnits` import 제거; `createCombatTrack(fx)` 사용. `draw()`는 `combatTrack.update(now)` + `combatTrack.lingerState ?? s`, `apply()`는 `combatTrack.apply(...)`, `replaceState()`와 `skipLinger()`는 `combatTrack.release()`.
+  - `docs/status.md` 갱신.
+- 커밋: `ffda8f9` refactor(render): extract combat fx tracking into combat-track.ts with TDD tests
+- 게이트(직접 실행):
+  - `npm run test:unit` 0 — 85 files, **558 passed** (기존 553 + 신규 5)
+  - `npm run typecheck` 0
+  - `npm run check:content` 0 — `ok (13 maps, 127 npcs, 140 facts, 294 ledger files, 198 src/tests/scripts files scanned)`
+  - `npm run build` 0
+  - `npm run audit:dist` 0 — `ok (63 files, 12826869 bytes)`
+  - `git diff --check` 0
+- 확인 못 한 것: 브라우저/Playwright로 실제 전투 연출 동작 확인(단위 테스트로 논리만 검증; 화면·소리는 사용자 판정 대기).

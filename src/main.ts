@@ -12,8 +12,8 @@ import type { UiAction } from "./input/commands.ts"
 import { loadMapAssets, mapAssetPrefixes, spriteUrls } from "./render/assets.ts"
 import { drawFrame } from "./render/canvas.ts"
 import type { CombatFxView } from "./render/canvas.ts"
-import { endedCombatUnits } from "./render/combat-linger.ts"
 import { combatOverlay } from "./render/combat-overlay.ts"
+import { createCombatTrack } from "./render/combat-track.ts"
 import { createFx } from "./render/fx.ts"
 import { eventSounds } from "./audio/event-sounds.ts"
 import { createMotion, resyncMotion } from "./render/motion.ts"
@@ -62,8 +62,7 @@ const images = new Map<string, HTMLImageElement>()
 const requestedAssets = new Set<string>()
 let motion: Motion = createMotion(content.start.pos, "s")
 const fx = createFx(1.5)   // 연출 배속(판정: 기본 속도가 조금 느리다는 평가)
-/** 전투가 끝난 직후(마지막 일격)에도 연출이 끝날 때까지 전투 장면을 계속 그리기 위한 직전 상태. */
-let lingerState: GameState | null = null
+const combatTrack = createCombatTrack(fx)
 
 /** 이 지도에 필요한 그림을 불러온다. 아직 못 불러온 요소는 그 칸만 건너뛰고, 다 불러오면 다시 그린다. */
 function ensureMapAssets(mapId: Id): void {
@@ -159,8 +158,8 @@ function draw(): void {
     return
   }
   const now = performance.now()
-  if (lingerState !== null && !fx.busy(now)) { lingerState = null; fx.clear() }
-  const shown = lingerState ?? s
+  combatTrack.update(now)
+  const shown = combatTrack.lingerState ?? s
   const vp = frameViewport(shown, content, { w: canvas.width, h: canvas.height })
   const frame = motion.sample(now)
   const combatView: CombatFxView | null = shown.combat === null
@@ -276,32 +275,13 @@ function handleEvents(events: readonly GameEvent[]): void {
   }
 }
 
-/** 전투 연출: 시작이면 초기화, 진행이면 이벤트를 시간표에 올리고, 끝났어도 마지막 일격이 보이도록 직전 장면을 남긴다. */
-function trackCombatFx(prev: GameState, next: GameState, events: readonly GameEvent[]): void {
-  const pc = prev.combat
-  const nc = next.combat
-  const now = performance.now()
-  if (pc === null && nc !== null) { lingerState = null; fx.reset(nc.units); return }
-  if (pc !== null && nc !== null) { fx.enqueue(events, pc.units, nc.units, now, pc.round !== nc.round); return }
-  if (pc !== null && nc === null) {
-    if (events.some((e) => e.type === "combatHit" || e.type === "combatYield")) {
-      const units = endedCombatUnits(pc.units, events)
-      fx.enqueue(events, pc.units, units, now)
-      lingerState = { ...prev, combat: { ...pc, units } }
-    } else {                                                  // 도망 등: 보여 줄 마지막 일격이 없다. 남은 연출과 소리를 버린다.
-      fx.clear()
-      lingerState = null
-    }
-  }
-}
-
 /** 핵심 실행: step → 상태 교체 → 이벤트 처리 → 그리기 예약. return 이벤트 목록(터치 반복 판정용). */
 export function apply(cmd: Command): readonly GameEvent[] {
   const s = state
   if (s === null) return []
   log.log("cmd", cmd.type)
   const { state: next, events } = step(s, cmd, content)
-  trackCombatFx(s, next, events)
+  combatTrack.apply(s, next, events, performance.now())
   state = next
   for (const e of events) log.log("event", e.type)
   if (cmd.type === "endTalk") dialogueLog = []
@@ -385,8 +365,7 @@ function replaceState(next: GameState): void {
   stopTouchRepeat()
   state = next
   motion = createMotion(next.player.pos, next.player.facing)
-  fx.clear()
-  lingerState = null
+  combatTrack.release()
   ensureMapAssets(next.mapId)
   dialogueLog = []
   lastAutoTurn = next.turn
@@ -462,9 +441,8 @@ export async function boot(): Promise<void> {
 
   /** 마지막 일격 연출이 남아 있는 동안의 첫 입력은 연출을 건너뛰는 데만 쓴다(탐험 화면으로 새지 않게). */
   const skipLinger = (): boolean => {
-    if (lingerState === null) return false
-    lingerState = null
-    fx.clear()
+    if (combatTrack.lingerState === null) return false
+    combatTrack.release()
     scheduleFrame()
     return true
   }
