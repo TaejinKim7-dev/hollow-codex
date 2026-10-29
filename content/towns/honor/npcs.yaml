@@ -157,6 +157,13 @@
       - text: honor.npc.swordmaster.heir.t
     word.shame:
       - text: honor.npc.swordmaster.shame.t
+  companion:
+    virtue: honor
+    joinRequires: [fact.argon.swordmaster]
+    leaveAfterDeeds: 2
+    rejoinRequires: []
+    hp: 9
+    attack: 4
 - id: npc.honor.brewer
   map: map.town.honor
   pos: [18, 13]

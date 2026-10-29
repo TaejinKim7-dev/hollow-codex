@@ -204,6 +204,13 @@
       - text: humility.npc.novice.hermit.t
     word.listening:
       - text: humility.npc.novice.listening.t
+  companion:
+    virtue: humility
+    joinRequires: [fact.heron.novice]
+    leaveAfterDeeds: 2
+    rejoinRequires: []
+    hp: 7
+    attack: 2
 - id: npc.humility.hermit
   map: map.town.humility
   pos: [6, 8]

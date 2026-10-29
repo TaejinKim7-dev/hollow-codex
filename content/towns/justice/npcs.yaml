@@ -261,6 +261,13 @@
       - text: justice.npc.mason.graveyard.t
     word.punishment:
       - text: justice.npc.mason.punishment.t
+  companion:
+    virtue: justice
+    joinRequires: [fact.seles.mason]
+    leaveAfterDeeds: 2
+    rejoinRequires: []
+    hp: 9
+    attack: 3
 - id: npc.justice.scribe
   map: map.town.justice
   pos: [20, 3]

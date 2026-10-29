@@ -59,6 +59,13 @@
       - text: valor.npc.sergeant.champion.t
     word.courage:
       - text: valor.npc.sergeant.retreat-law.t
+  companion:
+    virtue: valor
+    joinRequires: [fact.solgang.sergeant]
+    leaveAfterDeeds: 2
+    rejoinRequires: []
+    hp: 10
+    attack: 3
 - id: npc.valor.smith
   map: map.town.valor
   pos: [5, 16]

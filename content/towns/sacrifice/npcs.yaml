@@ -161,6 +161,13 @@
       - text: sacrifice.npc.surgeon.widow.t
     fact.dione.altar:
       - text: sacrifice.npc.surgeon.altar.t
+  companion:
+    virtue: sacrifice
+    joinRequires: [fact.dione.surgeon]
+    leaveAfterDeeds: 2
+    rejoinRequires: []
+    hp: 8
+    attack: 2
 - id: npc.sacrifice.scribe
   map: map.town.sacrifice
   pos: [18, 3]

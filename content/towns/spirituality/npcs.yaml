@@ -61,6 +61,13 @@
       - text: spirituality.npc.novice.monk.t
     fact.elia.widow:
       - text: spirituality.npc.novice.widow.t
+  companion:
+    virtue: spirituality
+    joinRequires: [fact.elia.novice]
+    leaveAfterDeeds: 2
+    rejoinRequires: []
+    hp: 7
+    attack: 2
 - id: npc.spirituality.scribe
   map: map.town.spirituality
   pos: [18, 4]

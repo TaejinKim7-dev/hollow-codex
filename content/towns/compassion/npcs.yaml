@@ -159,6 +159,13 @@
       - text: compassion.npc.wanderer.plaza.t
     word.charity:
       - text: compassion.npc.wanderer.charity.t
+  companion:
+    virtue: compassion
+    joinRequires: [fact.reona.wanderer]
+    leaveAfterDeeds: 2
+    rejoinRequires: []
+    hp: 8
+    attack: 2
 - id: npc.compassion.miller
   map: map.town.compassion
   pos: [4, 7]

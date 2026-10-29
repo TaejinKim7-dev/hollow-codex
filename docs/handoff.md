@@ -650,3 +650,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 
 ## 2026-10-29 책략 6종 완성(능력 7개 모두 효과)
 - C-3b에 `declare 선언`(ability.honor-truth: 인접 적이 그 라운드 나를 노림, `CombatUnit.taunt`, `computeIntents`가 반영), `share 나눔`(ability.sacrifice-meaning: 내 체력 2를 덜어 인접 아군 3 회복, 최대 체력 한도, 내 hp는 1 이상 유지), `still 가라앉힘`(ability.spirituality-mind: 주변 2칸 적 마음 −2, 방향 불필요) 추가. 값은 `combat.yaml breath.{shareCost,shareHeal,stillLoss}`. 라운드가 바뀌면 표식·선언이 사라진다(`clearTurnFlags`). HUD 버튼 6개 확인(`docs/screenshots/2026-10-29-C3b-skills.png`), 테스트 2개.
+
+## 2026-10-29 동료 8명 완성(마을마다 1명)
+- 알려진 한계였던 "동료 1/8" 해소: 리오나 방랑자(`npc.compassion.wanderer`) · 솔강 훈련관(`sergeant`) · 셀레스 석공(`mason`) · 디오네 외과의(`surgeon`) · 아르곤 검술사범(`swordmaster`) · 엘리아 견습(`novice`) · 헤론 견습(`novice`)에 `companion:` 추가(미덕 = 마을 미덕, `joinRequires` = 그 사람의 이름 단서, `leaveAfterDeeds` 2, `rejoinRequires` [] — 떠난 뒤 곧바로 다시 합류 가능; 단서형 재합류 조건은 서사 작업으로 남김, hp 7~10·공격 2~4). 새 대사 없음(기존 사람 단서·"함께 가기" 버튼 사용). 시나리오 테스트 `tests/scenario/companions.test.ts`(모든 동료: 단서 없이는 불가, 단서가 있으면 영입 → 전투 편성 hp → 행실 2건에 떠남), 캡처 `docs/screenshots/2026-10-29-recruit-button.png`.
+- 남음: 동료별 개별 대사(합류·이탈 순간), 재합류 조건, 병과별 전투 차이.
