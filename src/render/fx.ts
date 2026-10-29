@@ -12,6 +12,7 @@ export interface FxFrame {
   hp: Readonly<Record<Id, { shown: number; trail: number; max: number }>>
   floats: readonly { x: number; y: number; text: string; kind: "normal" | "defeat" | "chain"; age: number }[]   // x,y: 칸 좌표, age 0..1
   slashes: readonly { x: number; y: number; dir: Dir; age: number }[]
+  arrows: readonly { x: number; y: number; dir: Dir }[]                              // 원거리 공격이 날아가는 중인 화살(칸 좌표, 칸 가운데 기준)
   sparks: readonly { x: number; y: number; age: number }[]
   ghosts: readonly { unit: CombatUnit; alpha: number; dx: number; dy: number; flash: number }[]      // 이미 상태에서 사라진 유닛이 페이드 아웃하는 모습
   banner: { text: "enemy" | "special"; alpha: number } | null
@@ -34,7 +35,7 @@ const clamp01 = (v: number): number => Math.min(1, Math.max(0, v))
 const smooth = (p: number): number => { const q = clamp01(p); return q * q * (3 - 2 * q) }
 const lerp = (a: number, b: number, p: number): number => a + (b - a) * clamp01(p)
 
-interface Attack { s: number; attacker: Id; target: Id; ux: number; uy: number; dir: Dir; amount: number; defeated: boolean; index: number; tx: number; ty: number; chain?: number; special?: boolean; follower?: boolean }
+interface Attack { s: number; attacker: Id; target: Id; ax: number; ay: number; ranged?: boolean; ux: number; uy: number; dir: Dir; amount: number; defeated: boolean; index: number; tx: number; ty: number; chain?: number; special?: boolean; follower?: boolean }
 interface Tween { id: Id; dx: number; dy: number; start: number }
 interface HpTrack { id: Id; from: number; to: number; impact: number }
 interface GhostFx { unit: CombatUnit; holdUntil: number; fadeMs: number; target: Id }
@@ -125,7 +126,7 @@ export function createFx(speed = 1): Fx {
           const follower = e.special === true && specialSeen
           if (e.special === true && !specialSeen) { banners.push({ start: t, kind: "special" }); endAt = Math.max(endAt, t + SPECIAL_HOLD / S + 200 / S); t += SPECIAL_HOLD / S }
           if (e.special === true) specialSeen = true
-          attacks.push({ s: t, attacker: e.attacker, target: e.target, ux, uy, dir: dirOf(ux, uy), amount: e.amount, defeated: e.defeated, index, tx: d.pos.x, ty: d.pos.y, ...(e.chain === undefined ? {} : { chain: e.chain }), ...(e.special === true ? { special: true } : {}), ...(follower ? { follower: true } : {}) })
+          attacks.push({ s: t, attacker: e.attacker, target: e.target, ax: a.pos.x, ay: a.pos.y, ...(Math.abs(vx) + Math.abs(vy) > 1 ? { ranged: true } : {}), ux, uy, dir: dirOf(ux, uy), amount: e.amount, defeated: e.defeated, index, tx: d.pos.x, ty: d.pos.y, ...(e.chain === undefined ? {} : { chain: e.chain }), ...(e.special === true ? { special: true } : {}), ...(follower ? { follower: true } : {}) })
           const from = run[e.target] ?? find(before, e.target)?.hp ?? e.hp + e.amount
           tracks.push({ id: e.target, from, to: e.hp, impact: t + IMPACT / S })
           run[e.target] = e.hp
@@ -165,6 +166,7 @@ export function createFx(speed = 1): Fx {
       let shakeX = 0, shakeY = 0
       const floats: FxFrame["floats"][number][] = []
       const slashes: FxFrame["slashes"][number][] = []
+      const arrows: FxFrame["arrows"][number][] = []
       const sparks: FxFrame["sparks"][number][] = []
 
       for (const tw of tweens) {
@@ -174,7 +176,8 @@ export function createFx(speed = 1): Fx {
       for (const a of attacks) {
         const t = (now - a.s) * S
         const l = lunge(t)
-        if (l !== 0 && a.follower !== true) add(a.attacker, a.ux * l, a.uy * l, 0)
+        if (l !== 0 && a.follower !== true) add(a.attacker, a.ux * l * (a.ranged === true ? 0.3 : 1), a.uy * l * (a.ranged === true ? 0.3 : 1), 0)   // 원거리는 거의 제자리에서 쏜다
+        if (a.ranged === true && t >= 60 && t < IMPACT) { const p = (t - 60) / (IMPACT - 60); arrows.push({ x: lerp(a.ax, a.tx, p), y: lerp(a.ay, a.ty, p), dir: a.dir }) }
         if (t >= IMPACT && t < 330) {
           const k = 0.22 * (1 - (t - IMPACT) / 150)
           add(a.target, a.ux * Math.max(0, k), a.uy * Math.max(0, k), t < 300 ? 1 - (t - IMPACT) / 120 : 0)
@@ -227,7 +230,7 @@ export function createFx(speed = 1): Fx {
         for (const tr of tracks) base[tr.id] = tr.to
         attacks = []; tweens = []; tracks = []; ghosts = []; banners = []
       }
-      return { shake: { x: shakeX, y: shakeY }, units, hp, floats, slashes, sparks, ghosts: ghostFrames, banner }
+      return { shake: { x: shakeX, y: shakeY }, units, hp, floats, slashes, arrows, sparks, ghosts: ghostFrames, banner }
     }
   }
 }

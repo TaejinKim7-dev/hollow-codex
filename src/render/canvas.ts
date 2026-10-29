@@ -185,7 +185,7 @@ export function npcsToDraw(state: GameState, content: GameContent): { readonly i
 
 /** 전투 연출 입력: 연출 프레임과(있으면) 조작 힌트. */
 export interface CombatFxView { readonly frame: FxFrame; readonly overlay: CombatOverlay | null }
-const NO_FX: FxFrame = { shake: { x: 0, y: 0 }, units: {}, hp: {}, floats: [], slashes: [], sparks: [], ghosts: [], banner: null }
+const NO_FX: FxFrame = { shake: { x: 0, y: 0 }, units: {}, hp: {}, floats: [], slashes: [], arrows: [], sparks: [], ghosts: [], banner: null }
 
 function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content: GameContent, state: GameState, view: CombatFxView | null): void {
   const combat = state.combat
@@ -242,6 +242,10 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
       ctx.strokeStyle = "rgba(170, 205, 255, 0.55)"
       ctx.lineWidth = Math.max(1, vp.scale)
       ctx.strokeRect(screenX(vp, p.x, size) + 0.5, screenY(vp, p.y, size) + 0.5, size - 1, size - 1)
+    }
+    for (const p of overlay.range) {
+      ctx.fillStyle = "rgba(255, 150, 60, 0.26)"
+      ctx.fillRect(screenX(vp, p.x, size), screenY(vp, p.y, size), size, size)
     }
     for (const tg of overlay.targets) strokeCell(ctx, vp, tg.pos, size, "#ff3b30", vp.scale * 1.5)
   }
@@ -300,6 +304,7 @@ function drawCombat(ctx: CanvasRenderingContext2D, res: RenderResources, content
     ctx.globalAlpha = 1
   }
   for (const sl of fx.slashes) drawSlash(ctx, vp, size, sl.x, sl.y, sl.dir, sl.age)
+  for (const ar of fx.arrows) drawArrow(ctx, vp, size, ar.x, ar.y, ar.dir)
   ctx.fillStyle = "#ffe9a8"
   for (const sp of fx.sparks) {
     ctx.globalAlpha = Math.max(0, 1 - sp.age)
@@ -383,6 +388,21 @@ function drawMoraleBar(ctx: CanvasRenderingContext2D, vp: Viewport, size: number
   ctx.fillRect(x - 1, y - 1, w + 2, h + 2)
   ctx.fillStyle = "#5aa0ff"
   ctx.fillRect(x, y, Math.round(w * Math.max(0, Math.min(1, value / Math.max(1, max)))), h)
+}
+
+function drawArrow(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, dir: Dir): void {
+  const cx = screenX(vp, cellX, size) + size / 2, cy = screenY(vp, cellY, size) + size / 2
+  ctx.save()
+  ctx.translate(cx, cy)
+  ctx.rotate({ e: 0, s: Math.PI / 2, w: Math.PI, n: -Math.PI / 2 }[dir])
+  const len = size * 0.5, w = Math.max(2, Math.round(size * 0.07))
+  ctx.fillStyle = "#e8dcc0"
+  ctx.fillRect(-len / 2, -w / 2, len, w)                       // 화살대
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(len / 2 - w * 2, -w * 1.5, w * 2, w * 3)        // 촉
+  ctx.fillStyle = "#ffd36b"
+  ctx.fillRect(-len / 2, -w * 1.2, w * 1.5, w * 2.4)           // 깃
+  ctx.restore()
 }
 
 function drawSlash(ctx: CanvasRenderingContext2D, vp: Viewport, size: number, cellX: number, cellY: number, dir: Dir, age: number): void {

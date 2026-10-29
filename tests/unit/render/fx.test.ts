@@ -305,3 +305,28 @@ describe("fx: hp bar max without reset", () => {
     expect(fx.sample(T0 + 1).hp["player"]!.max).toBe(10)
   })
 })
+
+describe("fx: ranged attack", () => {
+  function shot() {
+    const archer = unit("player", "ally", 2, 3, 10)
+    const before = [archer, unit("e0", "enemy", 2, 1, 4)]
+    const after = [archer, unit("e0", "enemy", 2, 1, 1)]
+    const fx = createFx()
+    fx.reset(before)
+    fx.enqueue([hit("player", "e0", 3, 1)], before, after, T0)
+    return fx
+  }
+  it("an arrow flies from the attacker to the target before impact", () => {
+    const fx = shot()
+    expect(fx.sample(T0 + 30).arrows).toEqual([])
+    const mid = fx.sample(T0 + 120).arrows
+    expect(mid).toHaveLength(1)
+    expect(mid[0]!.dir).toBe("n")
+    expect(mid[0]!.y).toBeGreaterThan(1); expect(mid[0]!.y).toBeLessThan(3)
+    expect(fx.sample(T0 + 300).arrows).toEqual([])
+  })
+  it("the archer barely leaves its cell, and a melee hit shows no arrow", () => {
+    expect(Math.abs(shot().sample(T0 + 200).units["player"]!.dy)).toBeLessThan(0.3)
+    expect(oneHit().fx.sample(T0 + 120).arrows).toEqual([])
+  })
+})

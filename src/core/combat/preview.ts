@@ -1,7 +1,7 @@
 import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Id, Pos } from "../types.ts"
-import { DIRS, findPathOnGrid } from "../world/path.ts"
-import { attackDamage, chainHits, facingToward, rulesOf, shotTarget, unitMove } from "./rules.ts"
+import { DIRS, findPathOnGrid, offset } from "../world/path.ts"
+import { attackDamage, chainHits, facingToward, classOf, rulesOf, shotTarget, unitMove } from "./rules.ts"
 import { alive, manhattan, occupied, samePos } from "./intents.ts"
 
 const unitOf = (combat: CombatState, id: Id): CombatUnit | undefined => combat.units.find((u) => u.id === id)
@@ -33,6 +33,24 @@ export function attackTargets(combat: CombatState, content: GameContent, unitId:
   for (const dir of DIRS) {
     const shot = shotTarget(combat, rules, unit, dir)
     if (shot !== null) out.push({ id: shot.target.id, pos: shot.target.pos, dir, dist: shot.dist })
+  }
+  return out
+}
+
+/** 사거리가 2칸 이상인 병과가 지금 자리에서 쏠 수 있는 모든 칸(줄 위 사거리 안, 격자 안). 근접 병과·행동을 마친 유닛이면 []. */
+export function shotCells(combat: CombatState, content: GameContent, unitId: Id): Pos[] {
+  const unit = unitOf(combat, unitId)
+  if (unit === undefined || !alive(unit) || unit.acted) return []
+  const { rangeMin, rangeMax } = classOf(rulesOf(content), unit)
+  if (rangeMax <= 1) return []
+  const out: Pos[] = []
+  for (const dir of DIRS) {
+    let p = unit.pos
+    for (let d = 1; d <= rangeMax; d++) {
+      p = offset(p, dir)
+      if (combat.grid[p.y]?.[p.x] === undefined) break
+      if (d >= rangeMin) out.push(p)
+    }
   }
   return out
 }

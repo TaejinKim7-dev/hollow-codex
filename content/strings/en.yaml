@@ -1682,3 +1682,11 @@ ui.combat.skill.share: Share
 ui.combat.skill.still: Still
 ui.notice.codex-locked: "This page cannot be written yet. Confirm that virtue's deduction first."
 ui.notice.codex-wrong: "That word does not belong on this page. Think back to the answer of the deduction you confirmed."
+class.fighter: Fighter
+class.fighter.desc: Strikes the foe right in front.
+class.runner: Scout
+class.runner.desc: Runs far and hunts for a foe's flank and back.
+class.archer: Archer
+class.archer.desc: Shoots a foe in a straight line. Cannot hit one standing adjacent.
+class.guardian: Guardian
+class.guardian.desc: Slow, but takes less damage.

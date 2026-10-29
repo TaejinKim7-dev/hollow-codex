@@ -43,3 +43,11 @@ describe("real content: no unresolved labels in dialogue chips and crisis option
     expect(bad).toEqual([])
   })
 })
+
+describe("real content: every class has a name and description in ko and en", () => {
+  it("class.<id> and class.<id>.desc exist", () => {
+    const missing: string[] = []
+    for (const id of Object.keys(content!.combat!.classes)) for (const lang of ["ko", "en"] as const) for (const k of [`class.${id}`, `class.${id}.desc`]) if (content!.strings[lang]?.[k] === undefined) missing.push(`${lang} ${k}`)
+    expect(missing).toEqual([])
+  })
+})

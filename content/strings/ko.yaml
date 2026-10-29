@@ -1680,3 +1680,11 @@ ui.combat.skill.share: 나눔
 ui.combat.skill.still: 가라앉힘
 ui.notice.codex-locked: "이 쪽은 아직 쓸 수 없습니다. 그 미덕의 추론을 먼저 확정해야 합니다."
 ui.notice.codex-wrong: "이 쪽에 어울리는 단어가 아닙니다. 확정한 추론의 답을 떠올려 보세요."
+class.fighter: 전사
+class.fighter.desc: 바로 앞의 적을 벤다.
+class.runner: 척후
+class.runner.desc: 빠르게 달려 적의 옆과 등을 노린다.
+class.archer: 궁수
+class.archer.desc: 한 줄로 떨어진 적을 쏜다. 바로 옆의 적은 못 맞힌다.
+class.guardian: 방패병
+class.guardian.desc: 느리지만 맞는 피해가 줄어든다.

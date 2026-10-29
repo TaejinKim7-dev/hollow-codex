@@ -1,9 +1,10 @@
 import type { GameContent } from "../content/types.ts"
-import { attackTargets, previewHit, reachableCells } from "../core/combat/preview.ts"
+import { attackTargets, previewHit, reachableCells, shotCells } from "../core/combat/preview.ts"
 import type { GameState, Id, Pos } from "../core/types.ts"
 
 export interface CombatOverlay {
   readonly reachable: readonly Pos[]
+  readonly range: readonly Pos[]                                  // 원거리 병과의 사격 칸(한 줄 위 사거리 안, 병과가 전사면 [])
   readonly targets: readonly { readonly id: Id; readonly pos: Pos; readonly amount: number; readonly defeated: boolean; readonly chain: number }[]
 }
 
@@ -15,6 +16,7 @@ export function combatOverlay(state: GameState, content: GameContent): CombatOve
   if (actor === undefined || actor.side !== "ally" || actor.gone !== null || actor.acted) return null
   return {
     reachable: reachableCells(combat, content, actor.id),
+    range: shotCells(combat, content, actor.id),
     targets: attackTargets(combat, content, actor.id).map((t) => ({ id: t.id, pos: t.pos, ...previewHit(combat, actor.id, t.id, content.combat) }))
   }
 }
