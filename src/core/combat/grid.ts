@@ -2,7 +2,7 @@ import type { CombatRules, GameContent } from "../../content/types.ts"
 import { SKILL_ABILITY, type CombatAction, type CombatState, type CombatUnit, type Dir, type GameEvent, type GameState, type Id, type Pos, type StepResult } from "../types.ts"
 import { recordDeed } from "../virtue/conduct.ts"
 import { findPathOnGrid, gridTileAt, offset } from "../world/path.ts"
-import { attackDamage, chainHits, facingToward, rulesOf, sideOf, unitMove } from "./rules.ts"
+import { attackDamage, chainHits, facingToward, rulesOf, shotTarget, sideOf, unitMove } from "./rules.ts"
 import { alive, computeIntents, manhattan, nextActive, occupied, samePos } from "./intents.ts"
 
 export { computeIntents } from "./intents.ts"
@@ -106,15 +106,15 @@ export function combatStep(state: GameState, action: CombatAction, content: Game
       return settle(withUnit(facing, target.id, { marked: true }), [{ type: "sfx", name: "persuade" }], content)
     }
     case "special": {
-      const target = enemyAt(combat.units, offset(actor.pos, action.dir))
       const rules = rulesOf(content)
+      const target = shotTarget(combat, rules, actor, action.dir)?.target
       if (!target || (combat.momentum ?? 0) < rules.momentum.max) return ignored
       return special(withUnit(state, actor.id, { acted: true, facing: action.dir }), content, { ...actor, facing: action.dir }, target)
     }
     case "attack":
     case "push":
     case "persuade": {
-      const target = enemyAt(combat.units, offset(actor.pos, action.dir))
+      const target = action.kind === "attack" ? shotTarget(combat, rulesOf(content), actor, action.dir)?.target : enemyAt(combat.units, offset(actor.pos, action.dir))
       if (!target) return ignored
       const done = withUnit(state, actor.id, { acted: true, facing: action.dir })
       if (action.kind === "attack") {

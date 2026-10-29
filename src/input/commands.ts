@@ -41,7 +41,7 @@ export function keyToCommand(key: string, mode: InputMode): Command | UiAction |
 export function pointerToCommand(tile: Pos, state: GameState, content: GameContent): Command | null {
   if (state.combat !== null) {
     // 활성 아군 바로 옆의 적을 누르면 곧바로 공격한다(조준 단계 없이). 그 밖에는 그 칸으로 이동.
-    const hit = attackTargets(state.combat, state.combat.active).find((t) => samePos(t.pos, tile))
+    const hit = attackTargets(state.combat, content, state.combat.active).find((t) => samePos(t.pos, tile))
     if (hit !== undefined) return { type: "combat", action: { kind: "attack", dir: hit.dir } }
     return { type: "combat", action: { kind: "move", to: tile } }
   }

@@ -15,6 +15,6 @@ export function combatOverlay(state: GameState, content: GameContent): CombatOve
   if (actor === undefined || actor.side !== "ally" || actor.gone !== null || actor.acted) return null
   return {
     reachable: reachableCells(combat, content, actor.id),
-    targets: attackTargets(combat, actor.id).map((t) => ({ id: t.id, pos: t.pos, ...previewHit(combat, actor.id, t.id, content.combat) }))
+    targets: attackTargets(combat, content, actor.id).map((t) => ({ id: t.id, pos: t.pos, ...previewHit(combat, actor.id, t.id, content.combat) }))
   }
 }

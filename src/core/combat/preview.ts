@@ -1,7 +1,7 @@
 import { DEFAULT_COMBAT_RULES, type CombatRules, type GameContent } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Id, Pos } from "../types.ts"
-import { DIRS, findPathOnGrid, offset } from "../world/path.ts"
-import { attackDamage, chainHits, facingToward, rulesOf, unitMove } from "./rules.ts"
+import { DIRS, findPathOnGrid } from "../world/path.ts"
+import { attackDamage, chainHits, facingToward, rulesOf, shotTarget, unitMove } from "./rules.ts"
 import { alive, manhattan, occupied, samePos } from "./intents.ts"
 
 const unitOf = (combat: CombatState, id: Id): CombatUnit | undefined => combat.units.find((u) => u.id === id)
@@ -24,15 +24,15 @@ export function reachableCells(combat: CombatState, content: GameContent, unitId
   return out
 }
 
-/** 바로 옆(4방향)에 있는 살아 있는 적과 그쪽을 보는 방향. 이미 행동한 유닛이면 []. */
-export function attackTargets(combat: CombatState, unitId: Id): { id: Id; pos: Pos; dir: Dir }[] {
+/** 병과 사거리 안에서 이 유닛이 칠 수 있는 상대(4방향 직선, 줄마다 하나)와 그쪽을 보는 방향·거리. 이미 행동한 유닛이면 []. */
+export function attackTargets(combat: CombatState, content: GameContent, unitId: Id): { id: Id; pos: Pos; dir: Dir; dist: number }[] {
   const unit = unitOf(combat, unitId)
   if (unit === undefined || !alive(unit) || unit.acted) return []
-  const out: { id: Id; pos: Pos; dir: Dir }[] = []
+  const rules = rulesOf(content)
+  const out: { id: Id; pos: Pos; dir: Dir; dist: number }[] = []
   for (const dir of DIRS) {
-    const pos = offset(unit.pos, dir)
-    const target = combat.units.find((u) => u.side !== unit.side && alive(u) && samePos(u.pos, pos))
-    if (target !== undefined) out.push({ id: target.id, pos, dir })
+    const shot = shotTarget(combat, rules, unit, dir)
+    if (shot !== null) out.push({ id: shot.target.id, pos: shot.target.pos, dir, dist: shot.dist })
   }
   return out
 }

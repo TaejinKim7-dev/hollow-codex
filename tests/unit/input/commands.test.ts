@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { step } from "../../../src/core/step.ts"
 import { keyToCommand, pointerToCommand } from "../../../src/input/commands.ts"
+import { DEFAULT_COMBAT_RULES } from "../../../src/content/types.ts"
 import { at, stateWith, testContent } from "../core/fixture.ts"
 
 const c = testContent()
@@ -30,6 +31,13 @@ describe("pointerToCommand", () => {
     const start = step(at(1, 2), { type: "move", dir: "s" }, c).state          // player (2,4), slime (2,0), bandit (4,1)
     const near = step(start, { type: "combat", action: { kind: "move", to: { x: 2, y: 1 } } }, c).state
     expect(pointerToCommand({ x: 2, y: 0 }, near, c)).toEqual({ type: "combat", action: { kind: "attack", dir: "n" } })
+  })
+  it("combat mode: an archer taps an enemy two cells away to shoot it", () => {
+    const rc = { ...c, combat: { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, archer: { move: 2, rangeMin: 2, rangeMax: 3, takenDefense: 0 } } } }
+    const start = step(at(1, 2), { type: "move", dir: "s" }, rc).state          // player (2,4), slime (2,0)
+    const near = step(start, { type: "combat", action: { kind: "move", to: { x: 2, y: 2 } } }, rc).state
+    const archer = { ...near, combat: { ...near.combat!, units: near.combat!.units.map((u) => (u.id === "player" ? { ...u, class: "archer" } : u)) } }
+    expect(pointerToCommand({ x: 2, y: 0 }, archer, rc)).toEqual({ type: "combat", action: { kind: "attack", dir: "n" } })
   })
   it("combat mode: a far enemy or an empty cell is still a move", () => {
     const start = step(at(1, 2), { type: "move", dir: "s" }, c).state

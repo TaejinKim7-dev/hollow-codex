@@ -37,15 +37,15 @@ describe("reachableCells", () => {
 
 describe("attackTargets", () => {
   it("lists living adjacent enemies with the direction to face them", () => {
-    expect(attackTargets(combat([P(2, 1), S(2, 0), B(3, 1)]), "player")).toEqual([
-      { id: "creature.slime#0", pos: { x: 2, y: 0 }, dir: "n" },
-      { id: "creature.bandit#1", pos: { x: 3, y: 1 }, dir: "e" }
+    expect(attackTargets(combat([P(2, 1), S(2, 0), B(3, 1)]), c, "player")).toEqual([
+      { id: "creature.slime#0", pos: { x: 2, y: 0 }, dir: "n", dist: 1 },
+      { id: "creature.bandit#1", pos: { x: 3, y: 1 }, dir: "e", dist: 1 }
     ])
   })
   it("ignores far enemies, dead enemies and a unit that already acted", () => {
-    expect(attackTargets(combat([P(2, 4), S(2, 0), B(4, 1)]), "player")).toEqual([])
-    expect(attackTargets(combat([P(2, 1), S(2, 0, { gone: "dead" }), B(4, 4)]), "player")).toEqual([])
-    expect(attackTargets(combat([P(2, 1, { acted: true }), S(2, 0), B(4, 4)]), "player")).toEqual([])
+    expect(attackTargets(combat([P(2, 4), S(2, 0), B(4, 1)]), c, "player")).toEqual([])
+    expect(attackTargets(combat([P(2, 1), S(2, 0, { gone: "dead" }), B(4, 4)]), c, "player")).toEqual([])
+    expect(attackTargets(combat([P(2, 1, { acted: true }), S(2, 0), B(4, 4)]), c, "player")).toEqual([])
   })
 })
 
@@ -70,5 +70,28 @@ describe("class movement", () => {
     expect(at(undefined)).toContain("3,4")
     expect(at("guardian")).not.toContain("3,4")
     expect(at("guardian")).toContain("2,4")
+  })
+})
+
+describe("ranged attack (archer: range 2-3 in a straight line)", () => {
+  const rc = { ...c, combat: { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, archer: { move: 2, rangeMin: 2, rangeMax: 3, takenDefense: 0 } } } }
+  const A = (x: number, y: number) => P(x, y, { class: "archer" })
+  const targets = (units: ReturnType<typeof P>[] | Parameters<typeof combat>[0]) => attackTargets(combat(units), rc, "player")
+  it("hits the first enemy at distance 2 and 3 in a line", () => {
+    expect(targets([A(2, 4), S(2, 2)]).map((t) => [t.id, t.dir, t.dist])).toEqual([["creature.slime#0", "n", 2]])
+    expect(targets([A(2, 4), S(2, 1)]).map((t) => t.dist)).toEqual([3])
+  })
+  it("cannot hit an adjacent enemy or one beyond range 3", () => {
+    expect(targets([A(2, 4), S(2, 3)])).toEqual([])
+    expect(targets([A(0, 4), S(0, 0)])).toEqual([])
+  })
+  it("does not shoot through a friend and ignores enemies behind the first unit", () => {
+    const friend = { id: "comp", side: "ally", creature: null, pos: { x: 2, y: 3 }, hp: 5, attack: 2 } as const
+    expect(targets([A(2, 4), friend, S(2, 2)])).toEqual([])
+    expect(targets([A(2, 4), S(2, 3), B(2, 2)])).toEqual([])   // 바로 앞 적이 가까워 못 치고, 그 뒤 적은 가려진다
+  })
+  it("stays safe at the grid edge", () => {
+    expect(() => targets([A(0, 0), S(4, 4)])).not.toThrow()
+    expect(targets([A(0, 0), S(4, 4)])).toEqual([])
   })
 })

@@ -1,5 +1,6 @@
 import { DEFAULT_COMBAT_RULES, FIGHTER, type CombatRules, type GameContent, type UnitClass } from "../../content/types.ts"
 import type { CombatState, CombatUnit, Dir, Pos } from "../types.ts"
+import { offset } from "../world/path.ts"
 import { alive, manhattan } from "./intents.ts"
 
 const OPPOSITE: Readonly<Record<Dir, Dir>> = { n: "s", s: "n", e: "w", w: "e" }
@@ -26,6 +27,22 @@ export function classOf(rules: CombatRules, unit: Pick<CombatUnit, "class">): Un
 
 /** 한 차례에 걸을 수 있는 최대 칸 수. */
 export const unitMove = (rules: CombatRules, unit: Pick<CombatUnit, "class">): number => classOf(rules, unit).move
+
+/**
+ * 이 유닛이 dir 방향 한 줄로 맞힐 수 있는 상대. 그 줄에서 처음 만나는 살아 있는 유닛이 상대편이고 거리가 병과 사거리 안일 때만 대상이다.
+ * 중간에 같은 편이 서 있거나 사거리 밖(너무 가깝거나 멀다)이면 null(오사 없음). 지형은 막지 않는다.
+ */
+export function shotTarget(combat: Pick<CombatState, "units">, rules: CombatRules, unit: CombatUnit, dir: Dir): { target: CombatUnit; dist: number } | null {
+  const { rangeMin, rangeMax } = classOf(rules, unit)
+  let p = unit.pos
+  for (let dist = 1; dist <= rangeMax; dist++) {
+    p = offset(p, dir)
+    const hit = combat.units.find((u) => alive(u) && u.pos.x === p.x && u.pos.y === p.y)
+    if (hit === undefined) continue
+    return hit.side !== unit.side && dist >= rangeMin ? { target: hit, dist } : null
+  }
+  return null
+}
 
 /** 그 칸의 지형 방어 보정(격자 밖·정의 없음 = 0). */
 export function terrainDefense(grid: readonly string[], rules: CombatRules, pos: Pos): number {

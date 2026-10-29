@@ -306,3 +306,19 @@ describe("class movement in combatStep", () => {
     expect(run(undefined)).toEqual({ x: 0, y: 4 })
   })
 })
+
+describe("ranged attack in combatStep", () => {
+  const rc = { ...c, combat: { ...DEFAULT_COMBAT_RULES, classes: { ...DEFAULT_COMBAT_RULES.classes, archer: { move: 2, rangeMin: 2, rangeMax: 3, takenDefense: 0 } } } }
+  const mate = { id: "mate", side: "ally", creature: null, pos: { x: 0, y: 4 }, hp: 5, attack: 1 } as const   // 아직 행동하지 않은 동료가 있어야 라운드가 넘어가지 않는다
+  const shoot = (units: Parameters<typeof combatState>[0]) => step(combatState([...units, mate]), { type: "combat", action: { kind: "attack", dir: "n" } }, rc)
+  it("an archer hits an enemy two cells away without moving", () => {
+    const r = shoot([P(2, 4, { class: "archer" }), S(2, 2), B(4, 0)])
+    expect(r.events.some((e) => e.type === "combatHit" && e.target === "creature.slime#0")).toBe(true)
+    expect(r.state.combat?.units[0]?.pos).toEqual({ x: 2, y: 4 })
+    expect(r.state.combat?.units[0]?.acted).toBe(true)
+  })
+  it("is ignored against an adjacent enemy for an archer, but a fighter hits it", () => {
+    expect(shoot([P(2, 4, { class: "archer" }), S(2, 3), B(4, 0)]).state.combat?.units[0]?.acted).toBe(false)
+    expect(shoot([P(2, 4), S(2, 3), B(4, 0)]).state.combat?.units[0]?.acted).toBe(true)
+  })
+})
