@@ -66,6 +66,7 @@
     rejoinRequires: []
     hp: 10
     attack: 3
+    class: guardian
 - id: npc.valor.smith
   map: map.town.valor
   pos: [5, 16]

@@ -668,3 +668,10 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-29 완성도 점검·방향 문서
 - `docs/progress-2026-10-29.md`: 영역별 진행률(약 70%, 추정치), TODO(판정 대기·PixelLab 필요·잔액 없이 가능·공개 준비), 방향. 코드 변경 없음.
 - 알려진 것: `docs/status.md`의 "진행 중" Codex 줄 등 일부가 낡았던 것을 정리했다.
+
+## 2026-10-30 전투 병과(C-3c) 구현
+- 계획 `docs/superpowers/plans/2026-10-29-combat-c3c-classes.md`(구현 메모 참고). 병과 4종 `fighter`(이동3·사거리1)·`runner`(이동4)·`archer`(이동2·직선 2~3칸, 바로 옆은 못 침)·`guardian`(이동2·받는 피해 −1)은 `content/combat.yaml classes:`. `CombatUnit.class?`(없으면 fighter, 저장 호환), 생물·동료 `class:` 키, `check:content`가 모르는 병과 id를 거부.
+- 코드: `rules.ts`(`classOf`·`unitMove`·`shotTarget`·`shotDir`·`rulesOf`), `preview.ts`(`attackTargets(combat, content, id)`가 `dist`를 돌려줌, `shotCells`), `intents.ts`(원거리 적은 한 줄로 쏠 수 있는 칸 중 아군에게서 가장 먼 칸으로 물러나 쏨, 없으면 접근), `grid.ts`(공격·필살은 줄에서 처음 만나는 상대편 유닛, 같은 편이 가리면 못 쏨; 밀기·설득·책략은 인접만). 화면: 사거리 칸 주황 블록, HUD 유닛에 병과명, `fx.arrows`(원거리는 제자리에서 쏘고 화살이 날아감). 문자열 `class.<id>`(.desc).
+- 콘텐츠: 동료 병과 — 리오나 방랑자 척후, 솔강 부사관·셀레스 석공·훈련 교관 방패병, 엘리아·헤론 견습 궁수(그 밖의 동료·플레이어는 전사). 연습장 새 조우 `enc.arena.archers`(7,2)·`enc.arena.shields`(7,6), 새 적 `creature.arena-archer/-guard`. 이야기 조우·시나리오 계획은 그대로.
+- 확인: 단위 634 · 타입 · `check:content` · 빌드 · `audit:dist` · E2E 6개 모두 0/통과. 캡처 `docs/screenshots/2026-10-30-C3c-range.png`(궁수 차례의 주황 사거리 블록·파랑 이동 칸·HUD 병과)·`-arrow.png`(적 궁수 화살이 날아가는 중) 열어서 확인. 디버그 훅 `debugJoin`, 스크립트 `scripts/visual/class-shot.mjs`, 자동 대전표는 사거리 반영.
+- 확인 못 한 것: 병과 조합의 재미·균형(🧑), 척후·방패병 전용 연출 없음, 플레이어 자신은 항상 전사, 병과 문구는 임시(OpenCode OC-2 초안 도착 시 교체).

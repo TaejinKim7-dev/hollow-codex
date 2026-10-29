@@ -26,7 +26,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 | ✅ | **S 설계 + P 계획 + I-1/I-2 구현(2026-10-28, 브랜치 `todo-2-art-audio-engine`)**: 32px 칸·가변 시야(11~15×7)·층 렌더링·듀얼 그리드 자동 타일·걷기 보간·소리 엔진(`audio.yaml`)·칩 합성기 제거·배포 예산. 칼라스 들판·전투(들판 늑대)·칼라스 인물 11명이 새 그림. 나머지 7마을·서고·대륙은 옛 16px 그림을 2배로 호환 표시 | 설계 `docs/superpowers/specs/2026-10-28-art-audio-redesign.md`, 계획 `docs/superpowers/plans/2026-10-28-art-audio-engine.md`, 화면 `docs/screenshots/2026-10-28-I2-*.png` | 🧑 화면·소리 판정 대기 |
 | ✅ | **전투 C-1 타격감 구현(2026-10-28)**: 공격 연출 시간표·범위/미리보기·체력 막대·숫자·배너·타일 눌러 공격·타격 소리 음정. 사용자 판정: 타격감 OK, 연출 약간 느림 → 1.5배속 반영. 적 예고는 노란 블록, 전투 격자의 나무는 자기 칸 크기로 축소. **전투 연습장** `map.arena`(들판 (9,7) 입구, 표지판, 반복 조우 3개 — 판정 뒤 삭제 검토) | `docs/superpowers/plans/2026-10-28-combat-c1-hit-feel.md`, `docs/screenshots/2026-10-28-C1-*.png` | 판정 대기 |
 | ✅ | **전투 C-2 구현(2026-10-29)**: 방향 보정(정면 1/옆 1.25/등 1.5, 적만)·지형 방어(`content/combat.yaml`, `h` +1)·**연계 추가타**(아군이 적 옆에 서면 추가타, 적 연계는 꺼짐)·미리보기 "-N ×k"·"N연계!" 연출·9×9 연습장 조우·훈련 교관 동료. 🧑 "연계가 재미있나" 판정 대기 | `docs/superpowers/plans/2026-10-29-combat-c2-terrain-chain.md`, `docs/screenshots/2026-10-29-C2-chain-strip.png` | 판정 대기 |
-| ✅ | **전투 C-3b·C-4·C-5 일부(2026-10-29)**: 숨과 책략 3종(달래기·막기·표식, 능력 해금), 적 마음 게이지(설득 가능·악한 적 퇴각), 조우 목표(버티기·탈출), 적 성격 5종, 자동 대전 표(`scripts/sim/combat-sim.ts`)·균형 벽 테스트. 병과·나머지 책략·호위/증원·마을 조우 재배치는 남음 | `docs/research/combat-difficulty-2026-10-29.md`, `docs/screenshots/2026-10-29-C3b-skills.png` | 🧑 판정 대기 |
+| ✅ | **전투 C-3b·C-4·C-5 일부(2026-10-29)**: 숨과 책략 3종(달래기·막기·표식, 능력 해금), 적 마음 게이지(설득 가능·악한 적 퇴각), 조우 목표(버티기·탈출), 적 성격 5종, 자동 대전 표(`scripts/sim/combat-sim.ts`)·균형 벽 테스트. **병과 4종(전사·척후·궁수·방패병, `combat.yaml classes`, 계획 `2026-10-29-combat-c3c-classes.md`) 구현·연습장 궁수·방패수 조우**. 호위/증원·마을 조우 재배치는 남음 | `docs/research/combat-difficulty-2026-10-29.md`, `docs/screenshots/2026-10-29-C3b-skills.png` | 🧑 판정 대기 |
 | ✅ | **전투 C-3a 기세·필살기(2026-10-29)**: 약점(옆·등) 타격·연계·처치로 기세가 쌓이고(최대 6) 가득 차면 `필살`(정상 피해×2 + 옆 적 절반, 컷인 배너 "필살!"·큰 흔들림). 병과·책략·숨은 C-3b로 남김 | `docs/screenshots/2026-10-29-C3a-special-strip.png` | 🧑 판정 대기 |
 | 🧑 | **전투 재설계 계획 승인(2026-10-28 사용자 요청: "영걸전급으로 재미있게")**: ~~C-2~~ → C-3 병과·책략 → C-4 마음·설득·목표 → C-5 AI·조우 → C-6 다듬기. 결정 5건(추천 포함) | `docs/superpowers/specs/2026-10-28-combat-fun-design.md` | 승인 대기 |
 | ✅ | **D-3 대사 남은 문제 정리(2026-10-29)**: ④ honor·sacrifice·spirituality·valor 과부 4인 분리(세린→실비·레아→노을·이레→가은·렌→서린, 마을별 말투·사연 다름) `oc/narrative-widow` / ① 정의 `lie` 주제 사람(증인)으로 이동 + ② 겸손 9인 이름 대답 개별화 `main` 반영(`31383f5`) / ③ 위기 지문 미표시 원인 조사만(코드 미수정, 수정안 기록) | `docs/narrative/2026-10-29-fixes.md` | ④는 브랜치 대기 병합, ③ UI 수정은 🧑 결정 대기 |
@@ -52,7 +52,7 @@ R(자산 방향) 진행 중. 그림은 PixelLab 생성, 소리는 CC0/CC-BY/CC-B
 
 ## 알려진 한계 (2026-10-29)
 - 그림: 건물은 지붕 없는 벽 블록, 기본형 인물 7종·걷기 그림·마을색 변형·애니메이션 NPC 없음(PixelLab 잔액 0). 소리: 직접 듣지 못함(🧑).
-- 동료는 8명이지만 개별 합류·이탈 대사와 재합류 조건이 없다. 병과(이동력·공격 모양), 호위·증원 목표, 마을 이야기 전투 재배치는 아직. 상세 `README.md` 알려진 한계, `docs/handoff.md` 끝.
+- 동료는 8명이지만 개별 합류·이탈 대사와 재합류 조건이 없다. 호위·증원 목표, 마을 이야기 전투 재배치는 아직(병과는 연습장·일부 동료만 배정). 상세 `README.md` 알려진 한계, `docs/handoff.md` 끝.
 
 ## 마지막 게이트
 oc/fx-tracking-tests (2026-10-29): npm run test:unit 0 (558 passed) · typecheck 0 · check:content 0 · build 0 · audit:dist 0 · git diff --check 0.

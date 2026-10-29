@@ -166,6 +166,7 @@
     rejoinRequires: []
     hp: 8
     attack: 2
+    class: runner
 - id: npc.compassion.miller
   map: map.town.compassion
   pos: [4, 7]

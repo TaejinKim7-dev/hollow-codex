@@ -4,6 +4,8 @@
 
 **Goal:** 유닛마다 병과(이동력·공격 사거리·받는 피해)가 달라, 배치와 편성이 전투의 선택이 되게 한다.
 
+**구현 메모(2026-10-30):** 병과 표는 별도 `classes.yaml` 대신 `content/combat.yaml`의 `classes:` 절에 두었고(`CombatRules.classes`), `classOf`·`unitMove`는 `content`가 아니라 `rules`(`rulesOf(content)`)를 받는다. 사거리 칸은 `shotCells`(preview.ts), 예고·적 단계 공통 판정은 `shotDir`(rules.ts).
+
 **Architecture:** 병과는 `content/classes.yaml`의 수치표이고, `CombatUnit.class?`(없으면 `fighter`)로 전투 상태에 실린다. 이동 한도(`MAX_STEPS` 상수)와 "바로 옆만 공격"이라는 가정을 `unitMove`·`shotTargets` 두 함수로 바꿔 이동·공격·미리보기·적 AI가 모두 같은 함수를 쓴다. 밀기·설득·책략은 그대로 인접만.
 
 **Tech Stack:** TypeScript, Vitest, YAML 콘텐츠, canvas 오버레이.

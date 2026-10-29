@@ -1690,3 +1690,5 @@ class.archer: Archer
 class.archer.desc: Shoots a foe in a straight line. Cannot hit one standing adjacent.
 class.guardian: Guardian
 class.guardian.desc: Slow, but takes less damage.
+creature.arena-archer.name: Practice Archer
+creature.arena-guard.name: Practice Shieldman

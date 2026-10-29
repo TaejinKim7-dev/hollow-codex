@@ -527,3 +527,4 @@
     rejoinRequires: []
     hp: 8
     attack: 3
+    class: guardian

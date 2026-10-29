@@ -211,6 +211,7 @@
     rejoinRequires: []
     hp: 7
     attack: 2
+    class: archer
 - id: npc.humility.hermit
   map: map.town.humility
   pos: [6, 8]

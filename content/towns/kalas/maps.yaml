@@ -109,5 +109,7 @@
     - { at: [9, 4], id: enc.arena.mixed }
     - { at: [9, 2], id: enc.arena.hold }
     - { at: [9, 6], id: enc.arena.escape }
+    - { at: [7, 2], id: enc.arena.archers }
+    - { at: [7, 6], id: enc.arena.shields }
   enterFlags: []
   heals: true

@@ -69,6 +69,7 @@
     rejoinRequires: []
     hp: 7
     attack: 2
+    class: archer
 - id: npc.spirituality.scribe
   map: map.town.spirituality
   pos: [18, 4]

@@ -6,10 +6,9 @@ import { loadContentDir } from "../../src/content/load-node.ts"
 import { createInitialState } from "../../src/core/state.ts"
 import { step } from "../../src/core/step.ts"
 import { startCombat } from "../../src/core/combat/grid.ts"
-import { reachableCells } from "../../src/core/combat/preview.ts"
+import { attackTargets, reachableCells } from "../../src/core/combat/preview.ts"
 import { alive, manhattan } from "../../src/core/combat/intents.ts"
-import { DIRS, offset } from "../../src/core/world/path.ts"
-import type { CombatAction, CombatUnit, Dir, GameState } from "../../src/core/types.ts"
+import type { CombatAction, CombatUnit, GameState } from "../../src/core/types.ts"
 
 const prefix = process.argv[2] ?? ""
 const { content, errors } = compileContent(loadContentDir("content"))
@@ -18,12 +17,11 @@ if (content === null) { console.error(errors.join("\n")); process.exit(1) }
 function pickAction(state: GameState, actor: CombatUnit): CombatAction {
   const combat = state.combat!
   const foes = combat.units.filter((u) => u.side === "enemy" && alive(u))
-  const adjacent = foes.filter((f) => manhattan(f.pos, actor.pos) === 1).sort((a, b) => a.hp - b.hp)
-  const dirTo = (f: CombatUnit): Dir => DIRS.find((d) => { const p = offset(actor.pos, d); return p.x === f.pos.x && p.y === f.pos.y })!
+  const shots = attackTargets(combat, content!, actor.id).map((t) => ({ ...t, hp: foes.find((f) => f.id === t.id)?.hp ?? 99 })).sort((a, b) => a.hp - b.hp)   // 사거리 안의 가장 약한 적(병과 사거리 반영)
   const max = (content!.combat?.momentum.max ?? 6)
-  if (adjacent.length > 0 && !actor.acted) {
-    const t = adjacent[0]!
-    return (combat.momentum ?? 0) >= max ? { kind: "special", dir: dirTo(t) } : { kind: "attack", dir: dirTo(t) }
+  if (shots.length > 0 && !actor.acted) {
+    const t = shots[0]!
+    return (combat.momentum ?? 0) >= max ? { kind: "special", dir: t.dir } : { kind: "attack", dir: t.dir }
   }
   if (!actor.moved && foes.length > 0) {
     const goal = foes.reduce((b, f) => (manhattan(f.pos, actor.pos) < manhattan(b.pos, actor.pos) ? f : b))

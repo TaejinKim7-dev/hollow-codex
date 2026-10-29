@@ -122,3 +122,39 @@
     - { creature: creature.wolf, at: [6, 2] }
     - { creature: creature.robber, at: [4, 3] }
   music: music.battle
+- id: enc.arena.archers
+  map: map.arena
+  repeatable: true
+  grid:
+    - "ggggggg"
+    - "ggggggg"
+    - "ggghggg"
+    - "ggggggg"
+    - "gghgggg"
+    - "ggggggg"
+    - "ggggggg"
+  allyStart: [[3, 6], [2, 6], [4, 6]]
+  enemies:
+    - { creature: creature.arena-archer, at: [1, 0] }
+    - { creature: creature.arena-archer, at: [5, 0] }
+    - { creature: creature.arena-guard, at: [3, 1] }
+  music: music.battle
+- id: enc.arena.shields
+  map: map.arena
+  repeatable: true
+  grid:
+    - "ggggggggg"
+    - "ggggggggg"
+    - "ggghggggg"
+    - "ggggggggg"
+    - "gggggghgg"
+    - "gghgggggg"
+    - "ggggggggg"
+    - "ggggggggg"
+    - "ggggggggg"
+  allyStart: [[4, 8], [3, 8], [5, 8]]
+  enemies:
+    - { creature: creature.arena-guard, at: [3, 1] }
+    - { creature: creature.arena-guard, at: [5, 1] }
+    - { creature: creature.arena-archer, at: [4, 0] }
+  music: music.battle

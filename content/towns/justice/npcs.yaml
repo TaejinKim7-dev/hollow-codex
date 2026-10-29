@@ -269,6 +269,7 @@
     rejoinRequires: []
     hp: 9
     attack: 3
+    class: guardian
 - id: npc.justice.scribe
   map: map.town.justice
   pos: [20, 3]

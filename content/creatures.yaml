@@ -7,3 +7,5 @@
 - { id: creature.honor-braggart, name: honor.creature.braggart.name, evil: true, hp: 5, attack: 3, sprite: char.warden-kalas, lore: fact.creature.honor-braggart, ai: skirmisher }
 - { id: creature.spirituality-fake-monk, name: spirituality.creature.fake-monk.name, evil: true, hp: 4, attack: 2, sprite: char.robed-priest, lore: fact.creature.spirituality-fake-monk, ai: coward }
 - { id: creature.humility-silencer, name: humility.creature.silencer.name, evil: false, hp: 4, attack: 1, sprite: char.elder-woman, lore: fact.creature.humility-silencer, ai: cautious }
+- { id: creature.arena-archer, name: creature.arena-archer.name, evil: true, hp: 3, attack: 2, sprite: char.hunter-field, lore: fact.creature.robber-greed, class: archer }
+- { id: creature.arena-guard, name: creature.arena-guard.name, evil: true, hp: 5, attack: 2, sprite: char.guard-soldier, lore: fact.creature.robber-greed, class: guardian }
