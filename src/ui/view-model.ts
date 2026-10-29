@@ -87,7 +87,7 @@ export function dialogueView(
 
   const chips = availableTopics(state, content, dialogue.npcId).map((topic) => ({
     topic,
-    label: t(lang, s, topic === "name" ? "topic.name" : topic === "job" ? "topic.job" : `${topic}.label`)
+    label: t(lang, s, topic === "name" ? "topic.name" : topic === "job" ? "topic.job" : content.facts[topic]?.labelKey ?? `${topic}.label`)
   }))
 
   let choices: DialogueView["choices"] = []

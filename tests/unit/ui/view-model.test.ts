@@ -17,6 +17,11 @@ describe("dialogueView", () => {
     expect(dialogueView(talking({}), c, log)?.lines[0]?.lieMark).toBe(false)
     expect(dialogueView(talking({ abilities: ["ability.see-lies"] }), c, log)?.lines[0]?.lieMark).toBe(true)
   })
+  it("a chip is labelled by the fact's labelKey, not by a key made from the topic id (towns name their labels differently)", () => {
+    const content = { ...c, facts: { ...c.facts, "word.alpha": { ...c.facts["word.alpha"]!, labelKey: "custom.alpha.label" } }, strings: { ...c.strings, ko: { ...c.strings["ko"], "custom.alpha.label": "알파" } } }
+    const v = dialogueView(talking({ facts: ["fact.secret", "word.alpha"] }), content, [])
+    expect(v?.chips.find((x) => x.topic === "word.alpha")?.label).toBe("알파")
+  })
   it("chips list only topics available for this NPC", () => {
     const v = dialogueView(talking({ facts: ["fact.secret", "word.alpha"] }), c, [])
     expect(v?.chips.map((x) => x.topic)).toEqual(["name", "job", "word.alpha"])

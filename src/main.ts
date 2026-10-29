@@ -422,6 +422,7 @@ export async function boot(): Promise<void> {
       debugTeleport?(mapId: Id, x: number, y: number): void
       debugSetMomentum?(value: number): void
       debugGrantAbilities?(ids: string[]): void
+      debugGrantFacts?(ids: string[]): void
     }
   }).__hollowCodex__ = {
     state: () => state,
@@ -434,6 +435,10 @@ export async function boot(): Promise<void> {
             const cur = state
             if (cur === null) return
             replaceState({ ...cur, mapId, player: { ...cur.player, pos: { x, y } } })
+          },
+          debugGrantFacts: (ids: string[]): void => {
+            const cur = state
+            if (cur !== null) replaceState({ ...cur, facts: [...new Set([...cur.facts, ...ids])] })
           },
           debugGrantAbilities: (ids: string[]): void => {
             const cur = state

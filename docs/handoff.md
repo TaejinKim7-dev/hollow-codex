@@ -640,3 +640,7 @@ M4 중간 게이트: `test:unit` 230 passed · `check:content` ok (11 maps, 81 n
 ## 2026-10-29 OpenCode 작업 마무리 + 위기 지문 표시
 - OpenCode 3작업 완료 보고(사용자 전달): `oc/town-ground`·`oc/fx-tracking-tests`·`oc/narrative-fixes-b`는 이미 main에 반영돼 있었고, 남은 ④(과부 4개 마을 분리: honor 실비·sacrifice 노을·spirituality 가은·valor 서린)는 `oc/narrative-widow`를 병합했다. 상세 `docs/narrative/2026-10-29-fixes.md`. 게이트: consistency/reachable/dead-topics 0, 테스트 592, 모든 게이트 0.
 - ③ 위기 지문이 화면에 안 보이던 문제(조사 결과 `view-model.ts`가 `crisis.text`를 뷰에 안 넣음)를 고쳤다: `DialogueView.crisisText`(대화 중인 NPC의 풀지 않은 위기 지문)를 만들고 `panels.ts`가 선택지 위에 강조 문단(`.crisis-text`)으로 그린다. 테스트 1개, 캡처 직접 확인(`docs/screenshots/2026-10-29-crisis-text.png`, 자선 관장).
+
+## 2026-10-29 대화 칩 라벨 버그(마을 단서가 ⟦키⟧로 보임) 수정
+- 거짓 표시(!) 확인하려고 정의 마을 재판관과 대화해 보니 칩이 `⟦fact.seles.witness.label⟧`로 나왔다. 원인: `view-model.ts dialogueView`가 칩 라벨 키를 `${topic}.label`로 만들었다(칼라스는 id와 라벨 키 앞부분이 같아 우연히 맞았음). 일곱 마을은 `justice.fact...label`처럼 달라서 **마을 대화 칩이 전부 자리표시로 보이던 문제**. 이제 `content.facts[topic].labelKey`를 쓴다. 거짓 표시 `!`는 `ability.see-lies`가 있으면 재판관의 증인 줄에 정상으로 붙는 것을 캡처로 확인(`docs/screenshots/2026-10-29-lie-mark.png`).
+- 재발 방지: `tests/unit/ui/real-content-labels.test.ts` — 실제 콘텐츠로 모든 NPC(ko·en)의 대화 칩·위기 선택지·지문, 수첩·경전·고리·모든 조우의 전투 HUD에 `⟦…⟧`가 없는지 검사. 디버그 훅 `debugGrantFacts`·`debugGrantAbilities` 추가(`?debug=1`).
